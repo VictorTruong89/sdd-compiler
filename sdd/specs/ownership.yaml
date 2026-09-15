@@ -1,0 +1,17 @@
+# Spec ownership — which spec governs which code path.
+#
+# STATUS: PLACEHOLDER (2026-09-14). No code exists yet, so nothing is governed.
+# When a spec is added, add its globs here in the same change.
+# A glob that matches nothing governs nothing, silently — move globs with the code.
+
+# Required reading before editing ANY governed source file.
+always:
+  - sdd/specs/constitution.md
+
+# First matching entry wins; globs are fnmatch-style against the repo-relative path.
+map: []
+#  - globs:
+#      - "src/sdd_compiler/<module>/**"
+#    spec: sdd/specs/F1_<slug>/spec.md
+#    why: >
+#      <one line: what this spec governs and why the glob is drawn here>

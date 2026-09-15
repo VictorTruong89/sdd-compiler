@@ -1,0 +1,994 @@
+<title>Tiered Markdown vs Spec Graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#F6F7F9; --surface:#FFFFFF; --surface-2:#EEF1F5; --code-bg:#EDF0F4;
+  --ink:#141A24; --ink-soft:#57616F; --ink-faint:#828C9A;
+  --accent:#1F4E8C; --accent-soft:#E3EBF6;
+  --verd:#0E7C6B; --verd-soft:#DEEFEB;
+  --oxide:#A33A1E; --oxide-soft:#F7E4DE;
+  --plum:#6B3FA0; --plum-soft:#EDE5F6;
+  --rule:#DCE1E8; --rule-soft:#E9ECF1;
+  --fs-xs:.76rem; --fs-sm:.875rem; --fs-base:1.0625rem;
+  --fs-lg:1.22rem; --fs-xl:1.55rem; --fs-2xl:2.05rem; --fs-3xl:2.75rem;
+  --measure:68ch;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+    --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+    --accent:#77ADEB; --accent-soft:#17293F;
+    --verd:#3ECBB2; --verd-soft:#0F2C29;
+    --oxide:#E58A6D; --oxide-soft:#331E17;
+    --plum:#B99AE6; --plum-soft:#271D36;
+    --rule:#26313F; --rule-soft:#1D2531;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+  --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+  --accent:#77ADEB; --accent-soft:#17293F;
+  --verd:#3ECBB2; --verd-soft:#0F2C29;
+  --oxide:#E58A6D; --oxide-soft:#331E17;
+  --plum:#B99AE6; --plum-soft:#271D36;
+  --rule:#26313F; --rule-soft:#1D2531;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:var(--fs-base);line-height:1.7;-webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(1rem,4vw,2.5rem)}
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-block:clamp(2.5rem,7vw,4.5rem) clamp(2rem,5vw,3rem)}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.1rem}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,5.5vw,var(--fs-3xl));line-height:1.08;letter-spacing:-.015em;margin:0 0 1rem;text-wrap:balance}
+.standfirst{font-size:var(--fs-lg);color:var(--ink-soft);margin:0;max-width:62ch;text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);letter-spacing:.04em}
+.tocbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+.tocbar .wrap{display:flex;gap:.4rem;overflow-x:auto;padding-block:.5rem}
+.tocbar a{flex:0 0 auto;display:flex;align-items:baseline;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.45rem .7rem;border-radius:3px;white-space:nowrap}
+.tocbar a:hover{background:var(--surface-2);color:var(--ink)}
+.tocbar a b{font-weight:700}
+.tocbar a.l0 b{color:var(--ink-soft)} .tocbar a.l1 b{color:var(--accent)} .tocbar a.l2 b{color:var(--verd)} .tocbar a.l3 b{color:var(--plum)} .tocbar a.l4 b{color:var(--oxide)} .tocbar a.l5 b{color:var(--ink)}
+.lecture{padding-block:clamp(3rem,8vw,6rem) clamp(2rem,5vw,4rem);border-bottom:1px solid var(--rule)}
+.lechead{display:flex;gap:clamp(1rem,3vw,2rem);align-items:flex-start;margin-bottom:2.5rem}
+.lecnum{flex:0 0 auto;font-family:var(--mono);font-weight:700;font-size:var(--fs-sm);letter-spacing:.1em;padding:.35rem .6rem;border-radius:3px;line-height:1.2}
+.l0 .lecnum{background:var(--surface-2);color:var(--ink-soft)}
+.l1 .lecnum{background:var(--accent-soft);color:var(--accent)}
+.l2 .lecnum{background:var(--verd-soft);color:var(--verd)}
+.l3 .lecnum{background:var(--plum-soft);color:var(--plum)}
+.l4 .lecnum{background:var(--oxide-soft);color:var(--oxide)}
+.l5 .lecnum{background:var(--surface-2);color:var(--ink)}
+.lechead h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,var(--fs-2xl));line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance}
+.lechead p{margin:0;color:var(--ink-soft);max-width:58ch}
+h3{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:1.25;margin:3.2rem 0 1rem;text-wrap:balance;padding-top:1.2rem;border-top:1px solid var(--rule-soft)}
+h3 .sn{font-family:var(--mono);font-size:var(--fs-sm);color:var(--ink-faint);margin-right:.6rem;font-weight:500}
+h4{font-family:var(--display);font-weight:600;font-size:var(--fs-lg);margin:2rem 0 .6rem;line-height:1.3}
+p{margin:0 0 1.1rem;max-width:var(--measure);text-wrap:pretty}
+ul,ol{margin:0 0 1.2rem;padding-left:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.5rem}
+li::marker{color:var(--ink-faint)}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.1em .35em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:var(--fs-sm);line-height:1.62;background:var(--code-bg);border:1px solid var(--rule);border-radius:5px;padding:1.1rem 1.25rem;overflow-x:auto;margin:0 0 1.4rem;max-width:var(--measure)}
+pre code{background:none;padding:0;font-size:inherit}
+.cm{color:var(--ink-faint)} .kw{color:var(--accent);font-weight:500} .st{color:var(--verd)}
+.callout{border-left:3px solid var(--accent);background:var(--surface);padding:1.1rem 1.3rem;margin:0 0 1.5rem;max-width:var(--measure);border-radius:0 4px 4px 0}
+.callout.warn{border-left-color:var(--oxide)} .callout.key{border-left-color:var(--verd)} .callout.fresh{border-left-color:var(--plum)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout .lbl{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem;font-weight:700}
+.callout.warn .lbl{color:var(--oxide)} .callout.key .lbl{color:var(--verd)} .callout.fresh .lbl{color:var(--plum)}
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm);min-width:34rem}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td code{font-size:.82em}
+figure{margin:0 0 1.8rem}
+.figscroll{overflow-x:auto}
+figure svg{display:block;width:100%;min-width:680px;height:auto;background:var(--surface);border:1px solid var(--rule);border-radius:5px}
+figcaption{font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);margin-top:.6rem;letter-spacing:.02em;line-height:1.55;max-width:var(--measure)}
+.svg-ink{fill:var(--ink)} .svg-soft{fill:var(--ink-soft)} .svg-faint{fill:var(--ink-faint)}
+.svg-box{fill:var(--surface-2);stroke:var(--rule)}
+.svg-agent{fill:var(--plum-soft);stroke:var(--plum)}
+.svg-comp{fill:var(--verd-soft);stroke:var(--verd)}
+.svg-core{fill:var(--accent-soft);stroke:var(--accent)}
+.svg-line{stroke:var(--ink-faint);fill:none;stroke-width:1.2}
+.svg-head{fill:var(--ink-faint)}
+.t-plum{fill:var(--plum)} .t-verd{fill:var(--verd)} .t-acc{fill:var(--accent)}
+svg text{font-family:var(--mono);font-size:11px}
+.exercises{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.6rem;margin-top:2.5rem;max-width:var(--measure)}
+.exercises h4{margin-top:0} .exercises ol{margin-bottom:0}
+.pill{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.05em;padding:.12em .45em;border-radius:3px;background:var(--surface-2);color:var(--ink-soft);white-space:nowrap}
+.pill.ok{background:var(--verd-soft);color:var(--verd)} .pill.no{background:var(--oxide-soft);color:var(--oxide)} .pill.ag{background:var(--plum-soft);color:var(--plum)}
+.tierbanner{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--oxide);border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin:0 0 2rem;max-width:var(--measure)}
+.tierbanner p{margin-bottom:.6rem} .tierbanner p:last-child{margin-bottom:0}
+footer{padding-block:clamp(2.5rem,6vw,4rem) 5rem;color:var(--ink-soft)}
+footer p{font-size:var(--fs-sm)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.svg-bad{fill:var(--oxide-soft);stroke:var(--oxide)}
+.svg-warn{fill:#F6ECD2;stroke:#A77A12}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .svg-warn{fill:#33290F;stroke:#D9A93B}}
+:root[data-theme="dark"] .svg-warn{fill:#33290F;stroke:#D9A93B}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">SDD Compiler · Lecture · In progress</p>
+    <h1>Tiered Markdown or a spec graph?</h1>
+    <p class="standfirst">A fair comparison against the method already running in <code>collective-investment-ai-assistant</code>: separate spec files per tier and feature. Five criteria, measured where possible. Then: how to store a graph so AI agents can use it, and how a human can see a thousand specs in thirty families without drowning. Parts 6–10 turn the comparison into an experiment: metrics from the literature, how to measure them with Claude Code, a failure catalogue, and a design for counting mistakes.</p>
+    <div class="meta">
+      <span>Opened 2026-09-13</span>
+      <span>Measured against: collective-investment-ai-assistant/sdd/ as of 2026-09-13</span>
+      <span>Working design: core-working-principle.md §13–§15</span>
+      <span>Parts 6–10: comparative study design (course project), sources checked 2026-09-13</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tocbar" aria-label="Parts">
+  <div class="wrap">
+    <a class="l0" href="#p0"><b>0</b> A premise to check</a>
+    <a class="l1" href="#p1"><b>1</b> How tiered Markdown works</a>
+    <a class="l2" href="#p2"><b>2</b> Five criteria</a>
+    <a class="l3" href="#p3"><b>3</b> The synthesis</a>
+    <a class="l4" href="#p4"><b>4</b> Storing the graph</a>
+    <a class="l5" href="#p5"><b>5</b> Seeing 1,000 specs</a>
+    <a class="l1" href="#p6"><b>6</b> The study</a>
+    <a class="l2" href="#p7"><b>7</b> Metrics</a>
+    <a class="l3" href="#p8"><b>8</b> Measuring in Claude Code</a>
+    <a class="l4" href="#p9"><b>9</b> Failure catalogue</a>
+    <a class="l5" href="#p10"><b>10</b> Experiment design</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="lecture l0" id="p0">
+  <div style="padding-top:2.5rem">
+  <div class="tierbanner">
+    <p><strong>Lecture — for understanding, not binding.</strong> Proposals that come out of this lecture are recorded in <code>core-working-principle.md</code> §13–§15. If this page and that file disagree, the Markdown wins.</p>
+    <p><strong>What is measured and what is not.</strong> File sizes, section shares and defect records below were measured in the other repository on 2026-09-13. Token figures are <em>bytes ÷ 4</em>, a rough rule of thumb. These files are full of symbols like ★ and ⚠ that tokenize expensively, so treat every token figure as an order of magnitude. <strong>No effectiveness percentage appears anywhere.</strong> None has been measured, and Part 2 ends with what would have to be measured.</p>
+  </div>
+  </div>
+
+  <div class="lechead">
+    <span class="lecnum">PART 0</span>
+    <div>
+      <h2>A premise worth checking before comparing</h2>
+      <p>The question starts from "a spec graph is certainly better than a flat long prompt". That premise is plausible, but it is less certain than it sounds, and it matters for how the real comparison is framed.</p>
+    </div>
+  </div>
+
+  <p>Three reasons the premise is weaker than it sounds:</p>
+  <ul>
+    <li><strong>It was never measured.</strong> The coverage and token figures from the earlier discussion (72% vs 93% and so on) were illustrative inventions. The direction is plausible, but the size of the effect is unknown.</li>
+    <li><strong>"Flat long prompt" is not what agents do any more.</strong> A coding agent like Claude Code does not receive one pasted document. It greps, opens files, follows references and plans. The honest baseline is <em>an agent working over well-organized Markdown files</em>, which is exactly the method this lecture compares against.</li>
+    <li><strong>The graph can lose things a file keeps.</strong> A file carries its reasoning, its rejected options and its tone of warning ("⚠ the adapter does not catch, soften or de-rate it"). Atoms and canonical forms can strip that out. Part 2 shows this is not a small point.</li>
+  </ul>
+  <div class="callout key">
+    <span class="lbl">So the real question is</span>
+    <p>Not "graph or flat prompt", but: <strong>does compiling a graph over well-tiered Markdown add enough to justify its cost, and what does it risk losing?</strong></p>
+  </div>
+</section>
+
+<!-- ===================================================== PART 1 -->
+<section class="lecture l1" id="p1">
+  <div class="lechead">
+    <span class="lecnum">PART 1</span>
+    <div>
+      <h2>How the tiered Markdown method actually works</h2>
+      <p>Read from the repository, not from memory: its tiers, the shape of one spec, the machinery around it, and what it has already had to repair.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">1.1</span>The tiers</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>File</th><th>Role</th><th>Size (bytes)</th></tr></thead>
+    <tbody>
+      <tr><td><code>specs/vision.md</code></td><td>What is built and why. Read before proposing anything</td><td>21,816</td></tr>
+      <tr><td><code>specs/constitution.md</code></td><td>How to build: principles, invariants, data contracts, test tiers. <strong>Required reading before any governed edit</strong></td><td>28,088</td></tr>
+      <tr><td><code>specs/F&lt;n&gt;_&lt;slug&gt;/spec.md</code> × 12</td><td>One feature, one file, fixed section numbers §1–§9</td><td>14,979 – 37,352 each</td></tr>
+      <tr><td><code>specs/ownership.yaml</code></td><td>Code path globs → governing spec. Read by a <code>PreToolUse</code> hook</td><td>11,770</td></tr>
+      <tr><td><code>sdd/questions.md</code></td><td>Every question, with rejected options</td><td>65,022</td></tr>
+      <tr><td><code>sdd/design/…</code></td><td>Brainstorm tier, non-authoritative. The audit tool describes it as "~19 documents and ~13,000 lines"</td><td>—</td></tr>
+      <tr><td><code>CLAUDE.md</code></td><td>Working agreement, loaded into every session</td><td>4,653</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">1.2</span>The shape of one spec — and where its bytes go</h3>
+  <p>Every spec uses the same nine sections. Measured over all twelve specs, the median share of each spec's bytes is:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Section</th><th>Content</th><th>Median share of bytes</th></tr></thead>
+    <tbody>
+      <tr><td>header</td><td>Status, sources, what it governs</td><td>4%</td></tr>
+      <tr><td>§1–§3</td><td>Goal &amp; why · scope / non-goals · triggers</td><td>16%</td></tr>
+      <tr><td>§4</td><td>Behaviour &amp; reuse</td><td>7%</td></tr>
+      <tr><td>§5</td><td>Contracts (data and API shapes)</td><td>8%</td></tr>
+      <tr><td><strong>§6</strong></td><td><strong>Acceptance criteria</strong> — the testable core</td><td><strong>17%</strong></td></tr>
+      <tr><td><strong>§7–§8</strong></td><td><strong>Decisions with rejected options · open questions</strong></td><td><strong>30%</strong></td></tr>
+      <tr><td>§9</td><td>Traceability: AC → test → code, plus findings</td><td>15%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">The number that should change the design</span>
+    <p>The acceptance criteria, the part that atomizes most naturally, are about <strong>a sixth</strong> of a spec. Decisions and their rejected alternatives are nearly <strong>a third</strong>. A graph that carries atoms well but treats decisions as "annotations" would drop the largest part of what these specs contain, and the part that stops an agent from re-proposing something already rejected. The working design lists "where are decisions recorded?" as an open question. This measurement promotes it to a required node kind.</p>
+  </div>
+
+  <h3><span class="sn">1.3</span>This method is already a graph — drawn by hand</h3>
+  <p>Look at the method with graph eyes and almost every graph concept is already present, maintained manually in prose:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Graph concept</th><th>Tiered Markdown equivalent</th><th>Maintained by</th></tr></thead>
+    <tbody>
+      <tr><td>Node id</td><td><code>AC-F9.3</code>, <code>CT-9.1</code>, <code>D2</code> — "IDs are never renumbered"</td><td>Author discipline</td></tr>
+      <tr><td>Edge</td><td>An inline citation: "(<code>RA-67</code>, <code>AC-1.77</code>)"</td><td>Author discipline, <strong>untyped</strong></td></tr>
+      <tr><td>L0 · C</td><td><code>vision.md</code> · <code>constitution.md</code></td><td>Files</td></tr>
+      <tr><td>L1 · L3/L4 · V</td><td>§6 ACs · §5 contracts · §9 traceability</td><td>Section numbers</td></tr>
+      <tr><td>Family</td><td>One feature folder</td><td>Folder</td></tr>
+      <tr><td>Component index</td><td><code>ownership.yaml</code> globs</td><td>Hand-edited YAML</td></tr>
+      <tr><td>Level-0 map</td><td>The spec index table in <code>specs/README.md</code></td><td>Hand-edited table</td></tr>
+      <tr><td>Retrieval gate</td><td><code>sdd_gate.py</code> refuses an edit until the governing spec is read</td><td>Hook</td></tr>
+      <tr><td>Compiler checks</td><td><code>check_id_families.py</code>, <code>check_traceability_rows.py</code>, <code>sdd_audit.py</code>, …</td><td>Hand-written, one per defect found</td></tr>
+    </tbody>
+  </table></div>
+  <p>The workflow guide for agents in that repo says it outright: <em>"an AC is an index into constraints, not the whole constraint"</em>. Its worked example shows a rule cited by an AC whose second half lives "in a different section and would be missed by reading only §15". That is a graph traversal, done by an agent's attention.</p>
+
+  <h3><span class="sn">1.4</span>What the method has already had to repair</h3>
+  <p>The repository's own tool docstrings record the defects that caused each check to be written. They are the best available evidence of where hand-maintained relations fail:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Recorded defect</th><th>What went wrong</th><th>Failure class</th></tr></thead>
+    <tbody>
+      <tr><td><code>DX-44</code> ID collision</td><td>Two different <code>AC-F9.6</code>s, both about the discipline card. "The collision bit immediately": the first implementation satisfied one and failed the other</td><td>Identity</td></tr>
+      <tr><td><code>check_id_families.py</code></td><td>The merged tree used <strong>39 ID families</strong> the constitution did not declare, after a correction that had already missed eleven. <code>M-n</code> (mandate) collided with <code>M&lt;n&gt;</code> (milestone)</td><td>Registry drift</td></tr>
+      <tr><td><code>DX-53</code> traceability rows</td><td>On one day, in <strong>six</strong> specs, a structural AC's row named a checking tool that <strong>did not exist</strong>, or checked something else. "A traceability row naming a plausible tool reads exactly like coverage"</td><td>Unverified link</td></tr>
+      <tr><td><code>sdd_audit.py</code></td><td>Across the design tier, rules "deleted by a section rewrite, defined twice with nothing saying which binds, or asserted against contract fields that were never declared anywhere"</td><td>Duplication · dangling reference</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout key">
+    <span class="lbl">Reading the evidence fairly</span>
+    <p>These defects were <em>found</em>, which says the method plus hand-written checks works. They were found <em>late</em>, and each needed a new tool, which says the relations were never checked by construction. Every one of the four classes is something a compiled graph checks as a matter of course: unique ids, a declared registry, links that must resolve, and one definition per claim.</p>
+  </div>
+</section>
+
+<!-- ===================================================== PART 2 -->
+<section class="lecture l2" id="p2">
+  <div class="lechead">
+    <span class="lecnum">PART 2</span>
+    <div>
+      <h2>Five criteria, compared honestly</h2>
+      <p>For each criterion: how tiered Markdown does it, how a compiled graph does it, where each fails, and a verdict in words. "Graph" below means the design in <code>core-working-principle.md</code>, not an idealized one.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">2.1</span>Token consumption</h3>
+  <h4>(a) Producing the structure</h4>
+  <p><strong>Tiered Markdown:</strong> no cost beyond writing the specs. The structure <em>is</em> the writing. The hidden cost is the hand-written check tools and the review sessions that found the defects in §1.4.</p>
+  <p><strong>Graph:</strong> the specs are still written, plus a compile cost paid in agent questions:</p>
+  <pre><code>compile tokens ≈ Σ blocks  × tokens(Q-ATOM)
+               + Σ atoms   × tokens(Q-DESC)
+               + Σ new terms × tokens(Q-TERM)
+               + Σ candidate pairs × tokens(Q-PAIR)
+
+<span class="cm"># one-time for the existing corpus; afterwards only CHANGED blocks
+# and their candidate pairs — the judgment lock makes rebuilds free</span></code></pre>
+  <p>For scale, the twelve spec files total about 305 KB, roughly 76 thousand tokens by the rough rule. Each Q-DESC sends one atom and its block, not a file. The term that can explode is <strong>candidate pairs</strong>. It grows with how candidates are generated, which is exactly why candidate generation is the design's main measured risk.</p>
+
+  <h4>(b) Consuming the specs while coding</h4>
+  <p><strong>Tiered Markdown:</strong> the hook sets a <em>floor</em> per session. Before editing code governed by F9, the agent must read the constitution plus F9, and CLAUDE.md is already loaded:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Session reading</th><th>Bytes</th><th>≈ tokens (÷4)</th></tr></thead>
+    <tbody>
+      <tr><td>Smallest spec (F9) + constitution + CLAUDE.md</td><td>47,720</td><td>~12k</td></tr>
+      <tr><td>Largest spec (F2) + constitution + CLAUDE.md</td><td>70,093</td><td>~18k</td></tr>
+      <tr><td>…plus vision.md ("read before proposing")</td><td>+21,816</td><td>+~5k</td></tr>
+      <tr><td>…plus each cited spec the agent chases</td><td>+15–37k per spec</td><td>+~4–9k each</td></tr>
+    </tbody>
+  </table></div>
+  <p>The floor is paid again in every new session, by design. But these files are stable, and <strong>stable text is what prompt caching rewards</strong>: repeated reads of an unchanged constitution are much cheaper than the raw count suggests.</p>
+  <p><strong>Graph:</strong> a context pack contains only what a recipe reaches. It will usually be smaller than a whole spec plus the constitution, because it carries the relevant constraints rather than all of them. Two costs push back. Packs differ per task, so they cache less well. And <strong>if decisions are included (they should be, §1.2), the pack grows toward the file it replaced</strong>.</p>
+  <div class="callout">
+    <span class="lbl">Verdict · tokens</span>
+    <p><strong>Producing:</strong> Markdown is cheaper. The graph adds a compile cost that is one-time plus incremental. <strong>Consuming:</strong> the graph is likely smaller per task, but the margin is unknown and shrinks once rationale is included and caching is considered. <em>Not a decisive criterion either way until measured.</em></p>
+  </div>
+
+  <h3><span class="sn">2.2</span>Ease for the agent to assemble the right context</h3>
+  <p><strong>Tiered Markdown:</strong> routing is excellent at the coarse level. <code>ownership.yaml</code> maps a code path to <em>one</em> spec (first match wins), and the hook enforces the read. Below that level it is manual:</p>
+  <ul>
+    <li><strong>Outbound references</strong> must be chased by hand: every <code>RA-67</code>, <code>QR-16</code>, <code>F1 CT-1.4</code>. Some point into another repository.</li>
+    <li><strong>Inbound references</strong>, "who depends on <em>me</em>?", have no index at all. The only tool is a grep across every file, which works for ids and fails for relations nobody wrote as an id.</li>
+    <li><strong>Constraints are "all of the constitution"</strong>, not "the ones that apply to this code", so the agent must judge applicability itself.</li>
+  </ul>
+  <p><strong>Graph:</strong> a recipe computes the set: core, contracts, constraints <em>in scope</em>, data, verification, boundary. It does this in both directions, and it says what it cut. The weakness is that a recipe can only follow links that exist. A relation the atomizer or the pair judge missed is missing from the pack, where a whole-file read would at least have put the sentence in front of the agent.</p>
+  <div class="callout">
+    <span class="lbl">Verdict · context assembly</span>
+    <p><strong>Graph, clearly</strong>, for inbound relations and scoped constraints, which Markdown cannot index. <strong>Markdown holds its own</strong> for "everything about this one feature", because the feature file already is that set.</p>
+  </div>
+
+  <h3><span class="sn">2.3</span>Risk of missing something, and of hallucination</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Risk</th><th>Tiered Markdown</th><th>Graph</th></tr></thead>
+    <tbody>
+      <tr><td>Missing a constraint in the same feature</td><td><span class="pill ok">low</span> — the whole file is read</td><td><span class="pill">low if linked</span> — silent if a link is missing; the manifest shows unreached family members</td></tr>
+      <tr><td>Missing a constraint in <em>another</em> file</td><td><span class="pill no">real</span> — only if cited and chased; uncited relations are invisible</td><td><span class="pill ok">lower</span> — constraint scopes and inbound links bring it in</td></tr>
+      <tr><td>Attention dilution in a long read</td><td><span class="pill">present</span> — 20–37 KB spec plus 28 KB constitution in one context</td><td><span class="pill ok">smaller</span> — pack is scoped</td></tr>
+      <tr><td>Believing a false link</td><td><span class="pill no">recorded</span> — six false traceability rows in one day (DX-53)</td><td><span class="pill ok">checked</span> — a link to a nonexistent node or file fails the build</td></tr>
+      <tr><td>Hallucinated requirement entering the specs</td><td><span class="pill">author review only</span></td><td><span class="pill">guarded</span> — quote anchoring and G4 flag <code>inferred</code>; but atomization is a <em>new place</em> for hallucination to enter</td></tr>
+      <tr><td>Dropping the "why"</td><td><span class="pill ok">low</span> — §7 travels with the file</td><td><span class="pill no">real</span> — unless decisions are nodes and recipes include them</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout">
+    <span class="lbl">Verdict · miss-out and hallucination</span>
+    <p><strong>They fail in different places.</strong> Markdown misses <em>across</em> files and trusts unverified links. The graph misses where its own links are missing and adds an extraction step that can hallucinate. The graph's failures are <em>checkable</em> (resolution, manifest, guards). Markdown's cross-file misses are not, without hand-written tools.</p>
+  </div>
+
+  <h3><span class="sn">2.4</span>Risk of misunderstanding specs and their relationships</h3>
+  <p><strong>Tiered Markdown</strong> expresses relationships in prose: "wraps this", "gates F6b", "one prompt, two transports", "(<code>RA-67</code>, <code>AC-1.77</code>)". A citation says <em>that</em> two things are related, never <em>how</em>. Is <code>RA-67</code> a constraint on AC-F9.4, the rule it refines, or a rejected alternative? The reader infers it. Identity itself can break: the <code>AC-F9.6</code> collision meant one id named two claims, and an implementation satisfied the wrong one.</p>
+  <p><strong>A graph</strong> makes relations typed (<code>refines</code>, <code>constrains</code>, <code>conflicts_with</code>) and identities unique by construction. Its own risk is <strong>false precision</strong>: a typed edge produced by an agent judgment <em>looks</em> authoritative even when wrong. A canonical form can also flatten nuance. "MUST propagate the error" loses "⚠ does not catch, soften or de-rate it", and those three verbs are the actual risk.</p>
+  <div class="callout">
+    <span class="lbl">Verdict · relationships</span>
+    <p><strong>Graph</strong> for identity and relation type. <strong>Markdown</strong> for nuance of meaning. The graph must therefore keep the verbatim source one hop from every node (level 3), and every typed edge must carry its rationale and the quote it rests on.</p>
+  </div>
+
+  <h3><span class="sn">2.5</span>Ease of finding just one spec, or a few</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Lookup</th><th>Tiered Markdown</th><th>Graph</th></tr></thead>
+    <tbody>
+      <tr><td>By known id (<code>AC-F9.3</code>)</td><td><span class="pill ok">excellent</span> — grep; ids are stable</td><td><span class="pill ok">excellent</span> — <code>node(id)</code></td></tr>
+      <tr><td>By feature</td><td><span class="pill ok">excellent</span> — open the folder</td><td><span class="pill ok">excellent</span> — family card</td></tr>
+      <tr><td>By topic word ("expiry")</td><td><span class="pill">noisy</span> — every mention, no member / mention distinction</td><td><span class="pill ok">good</span> — term index separates members from mentions</td></tr>
+      <tr><td>By relation ("what constrains this endpoint?")</td><td><span class="pill no">poor</span> — no index</td><td><span class="pill ok">excellent</span> — one lookup</td></tr>
+      <tr><td>With no tooling at all</td><td><span class="pill ok">works</span> — any editor, any agent</td><td><span class="pill no">needs the CLI/MCP</span> — or generated Markdown views (Part 4)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">2.6</span>Scorecard</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Criterion</th><th>Tiered Markdown</th><th>Compiled graph</th><th>Settled by</th></tr></thead>
+    <tbody>
+      <tr><td>1a Tokens to produce</td><td>better</td><td>adds compile cost</td><td>—</td></tr>
+      <tr><td>1b Tokens to consume</td><td>higher floor, cache-friendly</td><td>likely smaller per task</td><td>measurement</td></tr>
+      <tr><td>2 Context assembly</td><td>good within a feature</td><td>better across features</td><td>measurement</td></tr>
+      <tr><td>3 Miss-out · hallucination</td><td>misses across files, unchecked</td><td>misses on missing links, checkable</td><td>measurement</td></tr>
+      <tr><td>4 Relationships</td><td>keeps nuance, loses type</td><td>keeps type, risks nuance</td><td>design (keep source one hop away)</td></tr>
+      <tr><td>5 Finding one spec</td><td>equal by id · worse by relation</td><td>equal by id · better by relation · needs tooling</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">2.7</span>What would settle it</h3>
+  <p>A small, honest experiment on the real repository, run before any claim of superiority is written into the vision:</p>
+  <ul>
+    <li><strong>Tasks:</strong> a set of real coding and change tasks, each with a known answer set: which ACs, contracts, constraints and decisions the correct change must respect.</li>
+    <li><strong>Arms:</strong> (A) agent with the files, the hook and grep, which is today's method; (B) the same agent with the same files <em>plus</em> graph queries and context packs.</li>
+    <li><strong>Measure:</strong> tokens read; share of the answer set present in context; constraints violated in the resulting change; rejected options re-proposed; wrong relationship claims; lookups needed to find a given spec.</li>
+  </ul>
+  <p>Arm B adds to arm A rather than replacing it. That framing is deliberate, and Part 3 explains why.</p>
+</section>
+
+<!-- ===================================================== PART 3 -->
+<section class="lecture l3" id="p3">
+  <div class="lechead">
+    <span class="lecnum">PART 3</span>
+    <div>
+      <h2>The synthesis: compile the graph <em>over</em> tiered Markdown</h2>
+      <p>The comparison is not a contest. The strengths do not overlap, so the right design keeps both.</p>
+    </div>
+  </div>
+  <p>P-0 already says prose is the source of truth and the graph is compiled. The comparison sharpens what that means:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Keep from tiered Markdown</th><th>Add from the graph</th></tr></thead>
+    <tbody>
+      <tr><td>Files as the <strong>authoring and reading unit</strong>: one feature, one file, fixed sections</td><td>Atoms as the <strong>checking and linking unit</strong></td></tr>
+      <tr><td>Stable human ids (<code>AC-F9.3</code>). The compiler adopts them as node ids when present (U1)</td><td>Guaranteed uniqueness and a declared id registry: collisions fail the build</td></tr>
+      <tr><td>Decisions with rejected options, travelling with the feature</td><td>Decisions as <strong>nodes</strong> linked to the claims they changed, so recipes carry them</td></tr>
+      <tr><td>Whole-file reads when the task is "this feature"</td><td>Scoped packs when the task crosses features; inbound links; constraints in scope</td></tr>
+      <tr><td>Hooks that force reading the governing spec</td><td>Hooks that can also hand over the context pack and manifest</td></tr>
+      <tr><td>Nothing requires tooling</td><td>Generated Markdown views, so even a tool-less agent benefits</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout key">
+    <span class="lbl">Consequence for U1 (generic)</span>
+    <p>A project like <code>collective-investment-ai-assistant</code> should be compilable <em>as it is</em>. Its section numbers become layer hints in the project profile, its existing ids become node ids, <code>ownership.yaml</code> becomes component allocation, and its hand-written checks become compiler passes it no longer has to maintain. If adopting the compiler required rewriting the specs, U1 would have failed.</p>
+  </div>
+</section>
+
+<!-- ===================================================== PART 4 -->
+<section class="lecture l4" id="p4">
+  <div class="lechead">
+    <span class="lecnum">PART 4</span>
+    <div>
+      <h2>Storing the graph for AI-friendly use</h2>
+      <p>Where the graph lives on disk decides whether agents can use it with plain file tools, whether git diffs are readable, and whether queries are fast.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">4.1</span>What "AI-friendly" requires</h3>
+  <ol>
+    <li><strong>One record is one complete, self-describing unit</strong> an agent can read without loading its neighbours.</li>
+    <li><strong>Small addressable pieces</strong>, so reading one family never means reading all thirty.</li>
+    <li><strong>Plain text, deterministic order, fixed key order</strong>, so a git diff shows exactly the nodes that changed and an unchanged graph is byte-identical.</li>
+    <li><strong>Greppable ids</strong>, so the tool-less path still works.</li>
+    <li><strong>Queryable</strong>, so a tooled agent asks questions instead of opening files.</li>
+    <li><strong>Generated, never hand-edited</strong>, per P-0.</li>
+  </ol>
+
+  <h3><span class="sn">4.2</span>The options</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Format</th><th>Strength</th><th>Weakness</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td>One big JSON file</td><td>Simple to load</td><td>Unreadable diffs; an agent must load everything</td><td><span class="pill no">rejected</span></td></tr>
+      <tr><td><strong>JSON Lines, sharded by family</strong></td><td>One line = one record; diffs per node; greppable; one family per file</td><td>Not queryable by itself</td><td><span class="pill ok">record of truth</span></td></tr>
+      <tr><td>One YAML/MD file per node</td><td>Very readable</td><td>A thousand files; noisy tree; slow to scan</td><td><span class="pill">not as record</span></td></tr>
+      <tr><td>SQLite</td><td>Fast queries, indexes, joins</td><td>Binary in git: no diffs, no merges</td><td><span class="pill ok">derived cache</span>, git-ignored</td></tr>
+      <tr><td>Graph database (e.g. Neo4j)</td><td>Rich traversal</td><td>A server to run; not files; overkill at this size</td><td><span class="pill no">rejected</span> for release 1</td></tr>
+      <tr><td>Generated Markdown views</td><td>Readable by humans and tool-less agents</td><td>Read-only</td><td><span class="pill ok">views</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">4.3</span>Proposed layout</h3>
+  <pre><code>.sdd/                              <span class="cm"># next to the specs, committed to git</span>
+  graph.meta.json                  <span class="cm"># compiler + schema + question versions, source hashes, counts</span>
+  profile.yaml                     <span class="cm"># project profile (U1) — the only hand-edited file here</span>
+  terms.jsonl                      <span class="cm"># term registry, one term per line, sorted by id</span>
+  nodes/&lt;family&gt;.jsonl             <span class="cm"># one node per line, sorted by id</span>
+  edges/&lt;family&gt;.jsonl             <span class="cm"># edges stored with the family of their SOURCE node</span>
+  lock/&lt;kind&gt;.jsonl                <span class="cm"># judgment lock, one answer per line</span>
+  views/                           <span class="cm"># GENERATED Markdown — do not edit</span>
+    map.md                         <span class="cm"># level 0</span>
+    families/&lt;family&gt;.md           <span class="cm"># level 1 cards, with node ids and source links</span>
+  cache/index.sqlite               <span class="cm"># derived, git-ignored, rebuilt on demand</span></code></pre>
+  <p>One node, one line (wrapped here for reading):</p>
+  <pre><code><span class="cm"># illustrative — spans, family and terms are not compiled values</span>
+{"id":"AC-F9.3","kind":"requirement","layer":"L1","family":"thesis_source",
+ "components":["term:RelayAdapter"],"terms":["term:thesis","term:RelayContradictedError"],
+ "source":{"file":"sdd/specs/F9_thesis_source_port/spec.md","spans":[[6120,6498]]},
+ "canonical":{"subject":"term:RelayAdapter","modality":"MUST NOT","response":"catch, soften or de-rate RelayContradictedError","trigger":"a relayed claim contradicts pipeline data"},
+ "check_status":"clean","judgments":["q-desc:9f2c…"]}</code></pre>
+
+  <h3><span class="sn">4.4</span>Why these choices</h3>
+  <ul>
+    <li><strong>Shard by family, not by layer or source file.</strong> Most tasks are per subject, so an agent without tools opens one family file. It also keeps git diffs local to the feature that changed. A family re-derivation that moves a node shows up as a move, which is itself a useful review signal.</li>
+    <li><strong>Edges live with their source node's family,</strong> so every edge has exactly one home and no file duplicates another.</li>
+    <li><strong>Ids never embed the family or layer.</strong> Those can change; an id cannot. Where the project already has ids (<code>AC-F9.3</code>), the compiler adopts them; elsewhere it assigns opaque sequential ids.</li>
+    <li><strong>SQLite is a cache, never the truth.</strong> Delete it and nothing is lost; the next query rebuilds it.</li>
+    <li><strong>Views are how tool-less agents benefit.</strong> An agent that reads <code>views/families/thesis_source.md</code> gets the level-1 card with ids it can grep, without any MCP server running.</li>
+    <li><strong>How agents use it, in order of preference:</strong> (1) queries through the agent integration (O3); (2) generated views; (3) grep on JSONL by id. All three return the same facts.</li>
+  </ul>
+  <div class="callout warn">
+    <span class="lbl">Size, honestly</span>
+    <p>A node line with canonical fields and spans is likely a few hundred bytes to a couple of kilobytes. A thousand nodes is then on the order of a megabyte of JSONL: small for git, small for SQLite, and far too large for an agent to read whole, which is the point of shards and queries. The per-line size is an estimate from the schema, not a measurement.</p>
+  </div>
+</section>
+
+<!-- ===================================================== PART 5 -->
+<section class="lecture l5" id="p5">
+  <div class="lechead">
+    <span class="lecnum">PART 5</span>
+    <div>
+      <h2>Seeing a thousand specs in thirty families</h2>
+      <p>Drawing 1,000 nodes and several thousand edges at once produces a hairball: technically complete, humanly useless. The answer is aggregation first, then drill-down.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">5.1</span>The principle: overview first, zoom and filter, details on demand</h3>
+  <p>This sentence is a well-known rule from information visualization research, usually credited to Ben Shneiderman (to verify). It maps directly onto the disclosure levels already in the design. The visualization is simply those levels drawn.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>View</th><th>Shows</th><th>Items on screen</th><th>Answers</th></tr></thead>
+    <tbody>
+      <tr><td><strong>V1 · Health matrix</strong></td><td>30 families × 8 layers; each cell = node count, coloured by worst status</td><td>240 cells</td><td>"Where is the spec thin, conflicted or stale?"</td></tr>
+      <tr><td><strong>V2 · Family map</strong></td><td>30 family bubbles; size = members; edges = aggregated cross-family links, thickness = count</td><td>30 nodes</td><td>"Which subjects are entangled?"</td></tr>
+      <tr><td><strong>V3 · Family lanes</strong></td><td>One family's ~30 nodes in horizontal layer lanes; refines edges vertical; other families as collapsed stubs at the edge</td><td>~30 nodes + stubs</td><td>"How is this feature built up, top to bottom?"</td></tr>
+      <tr><td><strong>V4 · Node focus</strong></td><td>One node, its 1–2 hop neighbourhood, all edge types, source text panel</td><td>&lt; 20 nodes</td><td>"What touches this, and what does it actually say?"</td></tr>
+      <tr><td>V5 · Component matrix</td><td>Components × families; cell = allocated nodes</td><td>small matrix</td><td>"What does this service owe to which features?"</td></tr>
+      <tr><td>V6 · Issues list</td><td>Conflicts, ambiguities, stale items as a filterable table, linked to V3/V4</td><td>a list</td><td>"What must I fix?"</td></tr>
+      <tr><td>V7 · U5 diff</td><td>V1 with cells coloured by comparison outcome</td><td>240 cells</td><td>"Where does as-built diverge from design?"</td></tr>
+    </tbody>
+  </table></div>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 760 300" role="img" aria-label="Two sketches. Left: a health matrix of families by layers, one cell highlighted as conflicted. Right: the lanes view of one family, with nodes placed in horizontal layer lanes, vertical refines edges, and collapsed stubs for linked nodes in other families.">
+      <text x="20" y="24" class="svg-ink" font-weight="700">V1 · HEALTH MATRIX (overview)</text>
+      <text x="92" y="48" class="svg-faint">L0</text><text x="122" y="48" class="svg-faint">L1</text><text x="152" y="48" class="svg-faint">L2</text><text x="182" y="48" class="svg-faint">L3</text><text x="212" y="48" class="svg-faint">L4</text><text x="242" y="48" class="svg-faint">L5</text><text x="275" y="48" class="svg-faint">C</text><text x="303" y="48" class="svg-faint">V</text>
+      <text x="16" y="70" class="svg-soft">share_link</text>
+      <text x="20" y="96" class="svg-soft">file</text>
+      <text x="20" y="122" class="svg-soft">thesis_src</text>
+      <text x="20" y="148" class="svg-soft">registry</text>
+      <text x="20" y="174" class="svg-soft">trace</text>
+      <text x="20" y="200" class="svg-faint">… 25 more</text>
+      <g>
+        <rect x="86" y="56" width="26" height="20" rx="2" class="svg-box"/><rect x="116" y="56" width="26" height="20" rx="2" class="svg-comp"/><rect x="146" y="56" width="26" height="20" rx="2" class="svg-comp"/><rect x="176" y="56" width="26" height="20" rx="2" class="svg-comp"/><rect x="206" y="56" width="26" height="20" rx="2" class="svg-comp"/><rect x="236" y="56" width="26" height="20" rx="2" class="svg-comp"/><rect x="266" y="56" width="26" height="20" rx="2" class="svg-comp"/><rect x="296" y="56" width="26" height="20" rx="2" class="svg-comp"/>
+        <rect x="86" y="82" width="26" height="20" rx="2" class="svg-box"/><rect x="116" y="82" width="26" height="20" rx="2" class="svg-comp"/><rect x="146" y="82" width="26" height="20" rx="2" class="svg-comp"/><rect x="176" y="82" width="26" height="20" rx="2" class="svg-box"/><rect x="206" y="82" width="26" height="20" rx="2" class="svg-box"/><rect x="236" y="82" width="26" height="20" rx="2" class="svg-box"/><rect x="266" y="82" width="26" height="20" rx="2" class="svg-box"/><rect x="296" y="82" width="26" height="20" rx="2" class="svg-box"/>
+        <rect x="86" y="108" width="26" height="20" rx="2" class="svg-box"/><rect x="116" y="108" width="26" height="20" rx="2" class="svg-comp"/><rect x="146" y="108" width="26" height="20" rx="2" class="svg-comp"/><rect x="176" y="108" width="26" height="20" rx="2" class="svg-bad"/><rect x="206" y="108" width="26" height="20" rx="2" class="svg-comp"/><rect x="236" y="108" width="26" height="20" rx="2" class="svg-box"/><rect x="266" y="108" width="26" height="20" rx="2" class="svg-comp"/><rect x="296" y="108" width="26" height="20" rx="2" class="svg-comp"/>
+        <rect x="86" y="134" width="26" height="20" rx="2" class="svg-comp"/><rect x="116" y="134" width="26" height="20" rx="2" class="svg-comp"/><rect x="146" y="134" width="26" height="20" rx="2" class="svg-comp"/><rect x="176" y="134" width="26" height="20" rx="2" class="svg-comp"/><rect x="206" y="134" width="26" height="20" rx="2" class="svg-comp"/><rect x="236" y="134" width="26" height="20" rx="2" class="svg-warn"/><rect x="266" y="134" width="26" height="20" rx="2" class="svg-comp"/><rect x="296" y="134" width="26" height="20" rx="2" class="svg-comp"/>
+        <rect x="86" y="160" width="26" height="20" rx="2" class="svg-box"/><rect x="116" y="160" width="26" height="20" rx="2" class="svg-comp"/><rect x="146" y="160" width="26" height="20" rx="2" class="svg-comp"/><rect x="176" y="160" width="26" height="20" rx="2" class="svg-comp"/><rect x="206" y="160" width="26" height="20" rx="2" class="svg-comp"/><rect x="236" y="160" width="26" height="20" rx="2" class="svg-comp"/><rect x="266" y="160" width="26" height="20" rx="2" class="svg-comp"/><rect x="296" y="160" width="26" height="20" rx="2" class="svg-box"/>
+      </g>
+      <text x="20" y="228" class="svg-faint">green clean · grey empty</text>
+      <text x="20" y="245" class="svg-faint">amber ambiguous/stale · red conflict</text>
+      <text x="20" y="262" class="svg-faint">click a cell → V3 for that family</text>
+      <line x1="350" y1="20" x2="350" y2="280" class="svg-line"/>
+
+      <text x="372" y="24" class="svg-ink" font-weight="700">V3 · FAMILY LANES (thesis_src)</text>
+      <text x="372" y="56" class="svg-faint">L1</text><line x1="398" y1="60" x2="700" y2="60" class="svg-line" stroke-dasharray="2 4"/>
+      <text x="372" y="110" class="svg-faint">L3</text><line x1="398" y1="114" x2="700" y2="114" class="svg-line" stroke-dasharray="2 4"/>
+      <text x="372" y="164" class="svg-faint">L5</text><line x1="398" y1="168" x2="700" y2="168" class="svg-line" stroke-dasharray="2 4"/>
+      <text x="372" y="218" class="svg-faint">C</text><line x1="398" y1="222" x2="700" y2="222" class="svg-line" stroke-dasharray="2 4"/>
+      <text x="372" y="262" class="svg-faint">V</text><line x1="398" y1="266" x2="700" y2="266" class="svg-line" stroke-dasharray="2 4"/>
+      <rect x="410" y="46" width="70" height="26" rx="3" class="svg-comp"/><text x="418" y="63" class="svg-ink">AC-F9.3</text>
+      <rect x="500" y="46" width="70" height="26" rx="3" class="svg-comp"/><text x="508" y="63" class="svg-ink">AC-F9.4</text>
+      <rect x="410" y="100" width="70" height="26" rx="3" class="svg-bad"/><text x="418" y="117" class="svg-ink">CT-9.1</text>
+      <rect x="500" y="154" width="70" height="26" rx="3" class="svg-comp"/><text x="508" y="171" class="svg-ink">rule-1</text>
+      <rect x="590" y="208" width="70" height="26" rx="3" class="svg-comp"/><text x="598" y="225" class="svg-ink">P5</text>
+      <rect x="410" y="252" width="70" height="26" rx="3" class="svg-comp"/><text x="418" y="269" class="svg-ink">test F9.3</text>
+      <line x1="445" y1="100" x2="445" y2="74" class="svg-line"/>
+      <line x1="535" y1="154" x2="535" y2="74" class="svg-line"/>
+      <line x1="625" y1="208" x2="470" y2="74" class="svg-line"/>
+      <line x1="445" y1="252" x2="445" y2="128" class="svg-line"/>
+      <rect x="690" y="92" width="58" height="22" rx="11" class="svg-box" stroke-dasharray="3 3"/><text x="698" y="107" class="svg-soft">F1 +3</text>
+      <line x1="480" y1="113" x2="690" y2="103" class="svg-line" stroke-dasharray="3 3"/>
+    </svg>
+    </div>
+    <figcaption>Illustrative layout, not real data. V1 fits every family on one screen; clicking a cell opens V3, where one family is laid out in layer lanes and other families collapse into stubs such as "F1 +3".</figcaption>
+  </figure>
+
+  <h3><span class="sn">5.2</span>Rules that keep a large graph legible</h3>
+  <ul>
+    <li><strong>Never draw all 1,000 at once by default.</strong> V1 and V2 are the entry points. Every larger drawing is a filter result.</li>
+    <li><strong>Families are compound nodes</strong> that expand and collapse. A collapsed family is one bubble with a member count.</li>
+    <li><strong>Layout is stable across compiles.</strong> Positions are computed deterministically and cached, so adding one spec does not reshuffle the picture the reader has memorized. Preserving the reader's mental map matters more than an optimal layout.</li>
+    <li><strong>Lanes, not force layouts, for one family.</strong> Layer is meaningful, so it is a fixed axis. Force-directed layouts put nodes wherever physics lands them and hide the refinement structure.</li>
+    <li><strong>Edges are filterable by type,</strong> with cross-family edges aggregated into one counted edge until expanded.</li>
+    <li><strong>Colour means status only</strong>, one meaning everywhere: clean, ambiguous, stale, conflicted, empty. Layer and family are position, never colour.</li>
+    <li><strong>Every visual item links to text:</strong> the node view and the verbatim source. The picture is for navigation. Reading happens in text.</li>
+  </ul>
+
+  <h3><span class="sn">5.3</span>How to build it</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Approach</th><th>Use</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Generated static HTML</strong> from <code>.sdd/</code></td><td>Release 1 viewer: <code>sdd view</code> writes one self-contained page</td><td>Opens in a browser or a VS Code webview. No server. Same data as the agent's queries</td></tr>
+      <tr><td>Cytoscape.js</td><td>V2 · V3 · V4 — compound nodes, filtering, layouts</td><td>Designed for interactive graphs of this size; confirm performance at prototype</td></tr>
+      <tr><td>ELK layered layout (elkjs)</td><td>V3 lanes — layered placement with fixed rank per layer</td><td>Deterministic given the same input</td></tr>
+      <tr><td>Plain SVG / canvas</td><td>V1 · V5 · V7 matrices</td><td>No library needed</td></tr>
+      <tr><td>Sigma.js + Graphology (WebGL)</td><td>Only if a whole-graph view is ever really needed</td><td>Handles far larger graphs; not needed for the default views</td></tr>
+      <tr><td>Graphviz / Mermaid</td><td>Static per-family diagrams inside generated Markdown views</td><td>Mermaid becomes unreadable well before a hundred nodes; fine for one family card</td></tr>
+      <tr><td>GraphML / DOT export</td><td>Ad-hoc exploration in Gephi or yEd</td><td>An export, not a product feature</td></tr>
+    </tbody>
+  </table></div>
+  <p>Library names are from working knowledge. Versions, licences and performance claims are to verify when the viewer is prototyped.</p>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>The comparison found decisions are about a third of each spec's bytes. Name two ways a graph could lose them, and one design change that prevents each.</li>
+      <li>Why is SQLite a cache and JSONL the record, and not the other way round?</li>
+      <li>A reviewer wants to see every conflict involving the <em>registry</em> family. Which views do they pass through, in order, and what does each one filter?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================================================== PART 6 -->
+<section class="lecture l1" id="p6">
+  <div class="lechead">
+    <span class="lecnum">PART 6</span>
+    <div>
+      <h2>The study: one agent, three ways of holding the specs</h2>
+      <p>The comparison in Parts 1–3 becomes a controlled experiment. This part fixes what is compared and what must be held constant. Parts 7–10 cover what to measure, how to measure it with Claude Code, what can go wrong, and how to count mistakes.</p>
+    </div>
+  </div>
+
+  <div class="tierbanner">
+    <p><strong>Course-project context.</strong> This comparison is the core of the MIA 5150 project. It stays out of <code>vision.md</code>, by the owner's decision. <strong>Citation status:</strong> every source in Parts 6–10 was opened and checked on 2026-09-13, and §10.9 lists them with links. One automated summary returned an <em>invented</em> taxonomy for a paper; reading the PDF itself exposed it. That is exactly the failure this study measures, and it is why every citation below was checked against the paper itself.</p>
+  </div>
+
+  <h3><span class="sn">6.1</span>The three arms</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Arm</th><th>What the agent gets</th><th>How it reaches a spec</th></tr></thead>
+    <tbody>
+      <tr><td><strong>F · Flat long Markdown</strong></td><td>One file holding every spec, in a fixed order</td><td>Reads the file (whole, or in chunks)</td></tr>
+      <tr><td><strong>T · Tiered Markdown</strong></td><td>Vision, constitution and one file per feature, laid out as in <code>collective-investment-ai-assistant</code></td><td>Opens files, greps, follows cited ids</td></tr>
+      <tr><td><strong>G · Spec graph</strong></td><td>The compiled graph (Part 4 layout) plus query tools</td><td>Queries: map, family card, node, context pack</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">6.2</span>Three confounds that would invalidate the comparison</h3>
+  <ol>
+    <li><strong>Content.</strong> If one arm's specs say something the others' do not, the study measures authoring, not representation. <em>Control:</em> generate all three arms from <strong>one canonical source</strong>, and run an automated equivalence check that every gold atom and every relation is present in every arm (§10.1).</li>
+    <li><strong>Access mechanism versus representation.</strong> Arm G differs from T in two ways at once: the structure <em>and</em> a query tool. A win for G could come from the tool alone. <em>Control:</em> add an ablation arm <strong>G-v</strong>, the graph's generated Markdown views (map, family cards) as plain files, with no query tool. Now T → G-v isolates structure, and G-v → G isolates tooling.</li>
+    <li><strong>Format.</strong> The surface format of a prompt alone can swing performance widely. Sclar et al. (ICLR 2024) report differences of up to 76 accuracy points from formatting changes on LLaMA-2-13B. He et al. (2024) report up to 40% variation on a code-translation task across plain text, Markdown, JSON and YAML templates, with larger models more robust. <em>Control:</em> keep node text in the same Markdown prose in all arms. Only structure and access change, never the serialization of a claim.</li>
+  </ol>
+
+  <h3><span class="sn">6.3</span>Holding the agent constant</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Held constant</th><th>How, in Claude Code</th></tr></thead>
+    <tbody>
+      <tr><td>Model and effort</td><td>Pin the model id and effort level on every run; record both from the telemetry <code>model</code> and <code>effort</code> fields (§8.2)</td></tr>
+      <tr><td>Ambient context</td><td><code>--bare</code> skips auto-discovery of CLAUDE.md, hooks, skills, plugins, MCP servers and auto memory, so a developer's own setup cannot leak in. The study's hooks and MCP servers are then passed explicitly with <code>--settings</code> and <code>--mcp-config</code></td></tr>
+      <tr><td>Tools and permissions</td><td>The same <code>--allowedTools</code> list and <code>--permission-mode</code> in every arm, except arm G adds its query tools</td></tr>
+      <tr><td>Starting code</td><td>A fresh copy (git worktree) of the same commit for every run</td></tr>
+      <tr><td>Task prompt</td><td>Identical text across arms, except one line naming where the specs are</td></tr>
+      <tr><td>Stochasticity</td><td>Not controllable. Ouyang et al. (TOSEM 2024) found that setting temperature to 0 still does not guarantee determinism in code generation. <em>Response:</em> repeat every (task, arm) several times and analyse at the run level (§10.6)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout key">
+    <span class="lbl">The one-sentence test, filled in as a draft</span>
+    <p><em>We claim that</em> <strong>structuring specifications as a compiled graph, rather than as tiered or flat Markdown, reduces specification-grounded errors in code produced by the same coding agent</strong>, <em>and we will show it by measuring</em> <strong>acceptance-criterion pass rate, trap-violation rate and hallucination counts, with token cost as a secondary outcome</strong>, <em>against</em> <strong>flat and tiered Markdown arms with identical content</strong>, <em>on</em> <strong>a purpose-built specification corpus with hidden acceptance tests and planted traps</strong>. The claim stays hypothetical until measured; a null result is a valid finding.</p>
+  </div>
+</section>
+
+<!-- ===================================================== PART 7 -->
+<section class="lecture l2" id="p7">
+  <div class="lechead">
+    <span class="lecnum">PART 7</span>
+    <div>
+      <h2>Metrics from the literature — reading, then generating</h2>
+      <p>The agent's work has two stages that fail differently. First it finds and understands the relevant specs. Then it writes code that honours them. Each stage has an established family of metrics, and each needs adapting to specs.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">7.1</span>Stage 1 — reading the specs</h3>
+  <p>Three research lines supply the metrics. Retrieval evaluation asks whether the right context was found. Long-context studies ask whether found context is actually used. Factuality evaluation asks whether what the agent <em>says</em> the specs require is true.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Metric</th><th>Definition</th><th>Source</th><th>Adapted to this study</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Context recall</strong></td><td>Share of the needed evidence present in the retrieved context</td><td>RAGAS metric family (RAGAS docs)</td><td>|gold specs retrieved| ÷ |gold specs| for a task, at node or section granularity</td></tr>
+      <tr><td><strong>Context precision</strong></td><td>Share of retrieved context that is relevant</td><td>RAGAS</td><td>|gold specs retrieved| ÷ |specs retrieved|. Measures over-reading</td></tr>
+      <tr><td><strong>Faithfulness</strong></td><td>Whether the answer is grounded in the context</td><td>RAGAS</td><td>Whether the agent's stated requirements are supported by the specs</td></tr>
+      <tr><td><strong>Atomic claim precision</strong></td><td>Break an output into atomic facts; report the share supported by a knowledge source</td><td>FActScore — Min et al., EMNLP 2023</td><td>Ask the agent to list the requirements it will implement; atomize; score each against the spec set. Unsupported claims = <strong>hallucinated specs</strong>. Its recall twin = <strong>missed specs</strong></td></tr>
+      <tr><td><strong>Localization Acc@k</strong></td><td>Whether the true target is among the top-k located items, at file / module / function level</td><td>LocAgent — Chen, Tang, Deng, et al., ACL 2025, on SWE-bench Lite</td><td>Whether the governing specs are among the first k spec units the agent opened</td></tr>
+      <tr><td><strong>Trace-link precision / recall / F1 / MAP</strong></td><td>Standard metrics for recovering links between requirements and other artefacts</td><td>Traceability link recovery literature (for example Hey et al., IEEE RE 2024)</td><td>For relation questions: did the agent recover "X constrains Y", "D2 rejected option Z"?</td></tr>
+      <tr><td><strong>Position and length sensitivity</strong></td><td>Accuracy as the position of relevant information, or the total input length, varies</td><td>Liu et al., TACL 2024 (Lost in the Middle); Hsieh et al., COLM 2024 (RULER); Chroma, 2025 (Context Rot)</td><td>In arm F, place trap specs at the start, middle or end; vary corpus size. The graph arm should be flat across positions</td></tr>
+      <tr><td><strong>Non-literal retrieval</strong></td><td>Accuracy when question and evidence share little wording</td><td>NoLiMa — Modarressi et al., ICML 2025</td><td>Traps phrased with synonyms or aliases ("public link" vs "share link"), which grep cannot find</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">A trap in the reading metrics</span>
+    <p>In arm F the whole file is loaded, so <em>loaded-context</em> recall is trivially 100% and says nothing. What differs between arms is whether loaded content is <em>used</em>. So reading is scored at two levels. <strong>Retrieved</strong> means what the agent opened, taken from logs (§8). <strong>Identified</strong> means what the agent explicitly names as governing the task, taken from a structured answer. Identified recall and precision are the comparable reading metrics across all arms.</p>
+  </div>
+
+  <h3><span class="sn">7.2</span>Stage 2 — generating code from the specs</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Metric</th><th>Definition</th><th>Source</th><th>Adapted</th></tr></thead>
+    <tbody>
+      <tr><td><strong>pass@k</strong></td><td>Probability that at least one of k samples passes all tests; estimated without bias from n ≥ k samples as 1 − C(n−c, k) / C(n, k), where c samples passed</td><td>Chen et al., 2021 (Codex / HumanEval)</td><td>pass@1 per (task, arm) over repeated runs</td></tr>
+      <tr><td><strong>pass^k</strong></td><td>Probability that <em>all</em> k independent trials succeed. It measures consistency, which pass@k hides</td><td>τ-bench — Yao et al., 2024</td><td>Does an arm succeed <em>reliably</em>? Specs exist to make behaviour repeatable, so this is arguably the more relevant metric</td></tr>
+      <tr><td><strong>Resolved rate</strong></td><td>Share of tasks whose generated patch makes the designated failing tests pass without breaking passing ones</td><td>SWE-bench — Jimenez et al., ICLR 2024</td><td>A task is resolved when all its hidden AC tests pass and no pre-existing test breaks</td></tr>
+      <tr><td><strong>AC pass rate</strong></td><td>Partial credit: share of a task's acceptance criteria whose hidden tests pass</td><td>Derived from the above</td><td>Distinguishes "missed one AC" from "missed all of them"</td></tr>
+      <tr><td><strong>Test strength</strong></td><td>Weak tests over-report correctness. HumanEval+ added about 80× more tests and cut pass@k by up to 19.3–28.9%</td><td>EvalPlus — Liu et al., NeurIPS 2023</td><td>Hidden AC tests must be strong: boundary values, negative cases, and mutation-checked (§10.4)</td></tr>
+      <tr><td><strong>Hallucination rate by category</strong></td><td>Counts of hallucinations in generated code, classified by a taxonomy</td><td>Zhang et al., ISSTA 2025; Liu et al., TSE 2024; Spracklen et al., USENIX Security 2025</td><td>Per task and per 100 changed lines, using the categories in Part 9</td></tr>
+      <tr><td><strong>Requirement-violation counts</strong></td><td>Functional and non-functional requirement violations, from Zhang et al.'s taxonomy</td><td>Zhang et al., ISSTA 2025</td><td>One count per planted trap violated (§10.2)</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Closest benchmarks to this study's setting</strong> (for positioning, not for reuse):</p>
+  <ul>
+    <li><strong>NoCode-bench</strong> (Jiang, Deng, Cao, Pradel, Liu, 2025): 634 tasks in which a documentation change specifies a feature and developer tests validate the code. The best task success rate was reported as 28.07%, "despite significant token consumption". It is the nearest existing setting to "spec change → code".</li>
+    <li><strong>SWE-bench Verified</strong> (OpenAI with the SWE-bench authors, 2024): human screening flagged 38.3% of sampled issues as underspecified. This is a warning that the task text itself is a variable (§9.5).</li>
+  </ul>
+
+  <h3><span class="sn">7.3</span>Stage 3 — cost and effort</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Metric</th><th>Why it needs care</th></tr></thead>
+    <tbody>
+      <tr><td>Input, output, cache-read and cache-write tokens, separately</td><td>Arm T re-reads stable files, which caching rewards. Arm G's packs vary per task. Reporting only total tokens would hide exactly the effect Part 2 predicted</td></tr>
+      <tr><td>Estimated cost (USD)</td><td>Claude Code's cost figures are client-side estimates from a bundled price table and can drift from billing. The authoritative source is the Usage and Cost API or the Console (§8.3)</td></tr>
+      <tr><td>Turns, tool calls, spec units opened, wall time</td><td>Effort proxies. Arm G may use more, cheaper calls</td></tr>
+      <tr><td>Correct ACs per 1,000 tokens</td><td>Efficiency adjusted for quality: an arm that is cheap and wrong is not efficient</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">7.4</span>Reliability of the measurement itself</h3>
+  <ul>
+    <li><strong>Uncertainty on every number.</strong> Miller (Anthropic, 2024) argues that evaluations are experiments. He recommends confidence intervals, <em>paired</em> comparisons when arms share questions, clustered standard errors when questions come in groups, and power analysis before running.</li>
+    <li><strong>Agreement between human annotators.</strong> Error labels need two annotators and an agreement statistic. MAST (Cemri et al., NeurIPS 2025) built its failure taxonomy from expert-annotated traces and reports Cohen's κ = 0.88.</li>
+    <li><strong>LLM-as-judge, if used.</strong> Zheng et al. (NeurIPS 2023) document position, verbosity and self-enhancement biases, alongside over 80% agreement with human preferences for strong judges. Use LLM judging only for triage, calibrated against human labels on a sample.</li>
+  </ul>
+</section>
+
+<!-- ===================================================== PART 8 -->
+<section class="lecture l3" id="p8">
+  <div class="lechead">
+    <span class="lecnum">PART 8</span>
+    <div>
+      <h2>Measuring with Claude Code</h2>
+      <p>There is no single "evaluation API". There are six official instrumentation surfaces, and together they capture almost everything the metrics need. Each was checked against the Claude Code documentation on 2026-09-13.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">8.1</span>The six surfaces</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Surface</th><th>What it yields</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 · Headless run</strong><br><code>claude -p … --output-format json</code></td><td><code>result</code>, <code>session_id</code>, <code>total_cost_usd</code> with a per-model breakdown, <code>usage</code>, turn count, duration. Exit code 0 on success</td><td>One row per run: cost, tokens, turns, success of the process</td></tr>
+      <tr><td><strong>2 · Structured answers</strong><br><code>--json-schema '&lt;schema&gt;'</code></td><td>Output conforming to a JSON Schema, in <code>structured_output</code></td><td>Reading tasks: "list the spec ids that govern this change", "does D2 permit X?" Scored automatically against gold</td></tr>
+      <tr><td><strong>3 · Event stream</strong><br><code>--output-format stream-json --verbose</code></td><td>Newline-delimited events: every assistant message and tool use, with the final <code>result</code> message last. Subagent messages carry <code>parent_tool_use_id</code></td><td>The full trajectory: what was read, in what order, which retries happened</td></tr>
+      <tr><td><strong>4 · Hooks</strong></td><td>Every hook receives <code>session_id</code>, <code>transcript_path</code> and <code>cwd</code>. <code>PostToolUse</code> receives <code>tool_name</code>, <code>tool_input</code> (for Read: <code>file_path</code>, <code>offset</code>, <code>limit</code>) and <code>tool_response</code>. <code>InstructionsLoaded</code> reports each CLAUDE.md load with a <code>load_reason</code> that includes <code>compact</code>. <code>PreCompact</code>/<code>PostCompact</code> fire around context compaction. <code>Stop</code> carries <code>last_assistant_message</code>; <code>SessionEnd</code> fires at exit</td><td><strong>Exact reading logs</strong>: which spec file and which line range, per run. Detecting compaction, which is a confound because summarised context can drop specs</td></tr>
+      <tr><td><strong>5 · OpenTelemetry</strong></td><td>Metrics: <code>claude_code.token.usage</code>, <code>claude_code.cost.usage</code>, <code>claude_code.lines_of_code.count</code>, <code>claude_code.active_time.total</code>, and more. Events: <code>claude_code.api_request</code> (model, <code>input_tokens</code>, <code>output_tokens</code>, <code>cache_read_tokens</code>, <code>cache_creation_tokens</code>, <code>cost_usd</code>, <code>duration_ms</code>, <code>effort</code>, <code>query_source</code>) and <code>claude_code.tool_result</code> (<code>tool_name</code>, <code>success</code>, <code>duration_ms</code>, <code>tool_result_size_bytes</code>). Prompts, responses and tool arguments are <strong>redacted by default</strong>; the variables <code>OTEL_LOG_USER_PROMPTS</code>, <code>OTEL_LOG_ASSISTANT_RESPONSES</code> and <code>OTEL_LOG_TOOL_DETAILS</code> enable them</td><td>Per-request token accounting, split into cache and non-cache tokens. Per-tool latency and result sizes, which roughly measure how much spec text entered context</td></tr>
+      <tr><td><strong>6 · Transcript and Agent SDK</strong></td><td>The session transcript as JSONL at <code>transcript_path</code>, written asynchronously. The Agent SDK for Python and TypeScript runs the same agent loop with message objects and per-message usage</td><td>Archival record of every run. The SDK suits a batch harness that launches hundreds of runs</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">8.2</span>Metric → surface</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Metric (Part 7)</th><th>Computed from</th></tr></thead>
+    <tbody>
+      <tr><td>Retrieved-context recall / precision · Acc@k</td><td>Hook log of <code>Read</code> / <code>Grep</code> / query-tool calls, mapped to spec units, compared with gold</td></tr>
+      <tr><td>Identified recall / precision · relation accuracy</td><td><code>--json-schema</code> answers, compared with gold</td></tr>
+      <tr><td>Atomic claim precision (hallucinated specs)</td><td>The agent's structured requirement list, atomized and checked against the spec corpus</td></tr>
+      <tr><td>pass@1 · pass^k · resolved · AC pass rate</td><td>Hidden test suite run by the harness <em>after</em> the session ends, never visible to the agent</td></tr>
+      <tr><td>Trap violations · hallucination categories</td><td>Automated checks (§10.5) plus human annotation of the final diff and transcript</td></tr>
+      <tr><td>Tokens (by type) · cost · turns · time</td><td>OpenTelemetry <code>api_request</code> events (tokens by type), headless JSON (cost, turns, duration)</td></tr>
+      <tr><td>Confounds: compaction, CLAUDE.md loads, model drift</td><td><code>PreCompact</code>, <code>InstructionsLoaded</code>, and the telemetry <code>model</code> field on every request</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">8.3</span>What cannot be measured, and what to do about it</h3>
+  <ul>
+    <li><strong>Reading is not attending.</strong> Logs show what entered the context, never what the model actually used. <em>Response:</em> the identified-level metrics and the traps are behavioural evidence of use.</li>
+    <li><strong>Cost figures are estimates.</strong> The documentation states <code>total_cost_usd</code> is computed client-side from a bundled price table and can drift from the bill. <em>Response:</em> report tokens as primary and cost as derived. Reconcile totals once against the Usage and Cost API.</li>
+    <li><strong>The transcript can lag.</strong> The documentation notes it is written asynchronously. <em>Response:</em> read final text from <code>Stop</code>'s <code>last_assistant_message</code> or the headless <code>result</code>, not from the transcript mid-run.</li>
+    <li><strong>No sampling control.</strong> Treat every run as a stochastic draw (§6.3, §10.6).</li>
+    <li><strong>Model and tool versions change over time.</strong> Record the Claude Code version and the model id per request. Run all arms interleaved over the same days, never arm by arm.</li>
+    <li><strong>Privacy.</strong> Enabling prompt, response and tool-content logging exports spec text and code to wherever telemetry goes. <em>Response:</em> keep the collector local.</li>
+  </ul>
+
+  <h3><span class="sn">8.4</span>A minimal run harness</h3>
+  <pre><code><span class="cm"># one run = one (task, arm, repetition), in a fresh worktree</span>
+git worktree add runs/$RUN_ID base-commit
+cd runs/$RUN_ID &amp;&amp; prepare_arm $ARM
+<span class="cm">#   $ARM is F | T | G-v | G and lays out the specs for that arm</span>
+
+<span class="cm"># study/hooks.json      : PostToolUse, PreCompact, InstructionsLoaded loggers
+# study/arm-$ARM.mcp.json: empty for F and T; query tools for G</span>
+CLAUDE_CODE_ENABLE_TELEMETRY=1 OTEL_LOG_TOOL_DETAILS=1 \
+claude --bare -p "$(cat tasks/$TASK.md)" \
+  --model "$PINNED_MODEL" \
+  --settings study/hooks.json \
+  --mcp-config study/arm-$ARM.mcp.json \
+  --allowedTools "Read,Grep,Glob,Edit,Write,Bash" \
+  --output-format stream-json --verbose &gt; logs/$RUN_ID.jsonl
+
+<span class="cm"># scoring happens outside the session; the agent never saw these tests</span>
+run_hidden_tests  &gt; scores/$RUN_ID.tests.json
+run_static_checks &gt; scores/$RUN_ID.static.json</code></pre>
+  <p>Flag names and the environment variable that enables telemetry must be re-checked against the installed Claude Code version before the pilot. The documentation marks several behaviours as version-dependent.</p>
+</section>
+
+<!-- ===================================================== PART 9 -->
+<section class="lecture l4" id="p9">
+  <div class="lechead">
+    <span class="lecnum">PART 9</span>
+    <div>
+      <h2>What goes wrong: a failure catalogue for this use case</h2>
+      <p>Every failure an experiment can count must first be named. The catalogue merges published taxonomies with the defects already recorded in <code>collective-investment-ai-assistant</code>. Each entry says how it is detected.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">9.1</span>Published taxonomies this catalogue builds on</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Source</th><th>Taxonomy (names as published)</th></tr></thead>
+    <tbody>
+      <tr><td>Zhang, Wang, Wang, Chen, Zheng — ISSTA 2025, repository-level code generation, six LLMs on CoderEval</td><td><strong>Task Requirement Conflicts</strong> (Functional Requirement Violation; Non-functional Requirement Violation) · <strong>Factual Knowledge Conflicts</strong> (Background, Library, API Knowledge Conflicts) · <strong>Project Context Conflicts</strong> (Environment, Dependency, Non-code Resource Conflicts). Contributing factors: training data quality, intention understanding capacity, knowledge acquisition capacity, repository-level context awareness</td></tr>
+      <tr><td>Liu et al. — IEEE TSE 2024 (HalluCode)</td><td>Three primary categories: <strong>Requirement Conflicting</strong>, <strong>Code Inconsistency</strong>, <strong>Knowledge Conflicting</strong> hallucinations, with 12 specific categories</td></tr>
+      <tr><td>Spracklen et al. — USENIX Security 2025</td><td><strong>Package hallucination</strong>: code that imports or installs a package that does not exist. Across 576,000 samples from 16 models, the average rate was at least 5.2% for commercial models and 21.7% for open-source models</td></tr>
+      <tr><td>Cemri et al. — NeurIPS 2025 (MAST)</td><td>14 failure modes in three groups: system design issues, inter-agent misalignment, <strong>task verification</strong>. Includes <em>disobey task specification</em>, <em>step repetition</em> and <em>unaware of termination conditions</em></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">9.2</span>Reading-stage failures</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Id</th><th>Failure</th><th>Evidence it is real</th><th>Detection</th></tr></thead>
+    <tbody>
+      <tr><td>R1</td><td><strong>Position blindness</strong> — a spec in the middle of long context is under-used</td><td>Liu et al., TACL 2024</td><td>Trap position varied in arm F; identified recall by position</td></tr>
+      <tr><td>R2</td><td><strong>Length degradation</strong> — reliability falls as input grows, even on simple tasks</td><td>RULER (only 4 of 17 models held up at 32K); Context Rot (18 models)</td><td>Corpus size as a factor; identified recall versus tokens loaded</td></tr>
+      <tr><td>R3</td><td><strong>Literal-match dependence</strong> — relevant specs worded differently from the task are missed</td><td>NoLiMa, ICML 2025</td><td>Alias traps; grep-miss rate in arm T</td></tr>
+      <tr><td>R4</td><td><strong>Instruction density</strong> — too many simultaneous requirements get dropped, with a bias toward earlier ones</td><td>IFScale (Jaroslawicz et al., 2025): best models at 68% with 500 instructions</td><td>AC pass rate versus number of ACs in a task; position of dropped ACs</td></tr>
+      <tr><td>R5</td><td><strong>Cross-file constraint miss</strong> — a constraint defined elsewhere (constitution, another feature) is never read</td><td>The repo's own <code>agent-workflow.md</code>: a second constraint "in a different section … would be missed"</td><td>Hook log: governing constraint never opened; trap violated</td></tr>
+      <tr><td>R6</td><td><strong>Over-reading</strong> — large irrelevant context loaded, which costs tokens and feeds R1/R2</td><td>Follows from R1/R2</td><td>Retrieved-context precision; tokens</td></tr>
+      <tr><td>R7</td><td><strong>Superseded spec used</strong> — an old decision or rejected option treated as current</td><td>Decisions are about 30% of spec bytes (§1.2)</td><td>"Rejected-option" traps</td></tr>
+      <tr><td>R8</td><td><strong>Compaction loss</strong> — specs read early are summarised away in long sessions</td><td>Claude Code exposes <code>PreCompact</code>/<code>PostCompact</code> for exactly this event</td><td>Compaction hook + violations of specs read before it</td></tr>
+      <tr><td>R9</td><td><strong>Identity confusion</strong> — two specs with one id, or one term with two names</td><td><code>DX-44</code> collision in the repo</td><td>Duplicate-id and alias traps</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">9.3</span>Relationship failures</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Id</th><th>Failure</th><th>Detection</th></tr></thead>
+    <tbody>
+      <tr><td>X1</td><td><strong>Relation type misread</strong> — a cited id treated as a requirement when it is a rejected alternative, or the reverse</td><td>Relation questions (<code>--json-schema</code>) versus gold</td></tr>
+      <tr><td>X2</td><td><strong>Scope misapplied</strong> — a constraint applied too broadly or too narrowly</td><td>Scope traps with in-scope and out-of-scope targets</td></tr>
+      <tr><td>X3</td><td><strong>Exception ignored</strong> — the general rule implemented, the conditional exception dropped</td><td>Exception traps with a dedicated hidden test</td></tr>
+      <tr><td>X4</td><td><strong>Conflict silently resolved</strong> — two contradictory specs; the agent picks one without flagging it</td><td>Planted contradiction; did the agent report it?</td></tr>
+      <tr><td>X5</td><td><strong>Unverified link trusted</strong> — a traceability claim naming a check that does not exist is believed</td><td>Repo record: six such rows in one day (<code>DX-53</code>)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">9.4</span>Generation failures</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Id</th><th>Failure</th><th>Taxonomy link</th><th>Detection</th></tr></thead>
+    <tbody>
+      <tr><td>G1</td><td><strong>Functional requirement violated</strong></td><td>Zhang: Functional Requirement Violation</td><td>Hidden AC tests</td></tr>
+      <tr><td>G2</td><td><strong>Non-functional requirement violated</strong> — latency, privacy, logging, fail-loud rules</td><td>Zhang: Non-functional Requirement Violation</td><td>Property tests, static rules, targeted review</td></tr>
+      <tr><td>G3</td><td><strong>Negative constraint broken</strong> — a "must never" or "must not" done anyway</td><td>A form of G1/G2, and easy to miss because nothing fails loudly</td><td>Explicit negative tests; grep-based static rules</td></tr>
+      <tr><td>G4</td><td><strong>Invented requirement</strong> — behaviour no spec asks for, presented as required</td><td>Liu: Requirement Conflicting</td><td>Atomic claim precision; diff review</td></tr>
+      <tr><td>G5</td><td><strong>Nonexistent package or API</strong></td><td>Spracklen; Zhang: Library / API Knowledge Conflicts</td><td>Import resolution against the lockfile or registry; type checker</td></tr>
+      <tr><td>G6</td><td><strong>Project context conflict</strong> — wrong module, wrong internal interface, a contract field that does not exist</td><td>Zhang: Project Context Conflicts; Liu: Code Inconsistency</td><td>Type checking, contract tests</td></tr>
+      <tr><td>G7</td><td><strong>Partial implementation</strong> — some ACs skipped while the task is reported done</td><td>MAST: task verification failures</td><td>AC pass rate &lt; 1 combined with the agent's claim of completion</td></tr>
+      <tr><td>G8</td><td><strong>False verification claim</strong> — "all tests pass" when they were not run or did not pass</td><td>MAST: task verification</td><td>Compare stated claims with the Bash log and hidden tests</td></tr>
+      <tr><td>G9</td><td><strong>Visible-test overfitting</strong> — code tuned to the tests the agent can see</td><td>EvalPlus: weak tests over-report correctness</td><td>Hidden tests stronger than visible ones</td></tr>
+      <tr><td>G10</td><td><strong>Regression</strong> — previously passing behaviour broken</td><td>SWE-bench resolved-rate definition</td><td>Pre-existing test suite</td></tr>
+      <tr><td>G11</td><td><strong>Rejected option re-introduced</strong></td><td>Specific to spec sets that record decisions</td><td>Decision traps with a structural check</td></tr>
+      <tr><td>G12</td><td><strong>Sycophantic compliance</strong> — the task prompt contains a wrong premise and the agent follows it over the spec</td><td>Sharma et al., ICLR 2024: assistants match user beliefs over truthful answers</td><td>A premise-conflict trap: the task text contradicts a spec</td></tr>
+      <tr><td>G13</td><td><strong>Loops and stalls</strong> — repeated steps, no termination</td><td>MAST: step repetition; unaware of termination conditions</td><td>Turn count, repeated identical tool calls</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">9.5</span>Measurement failures — ways the <em>study</em> goes wrong</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Id</th><th>Failure</th><th>Evidence</th><th>Guard</th></tr></thead>
+    <tbody>
+      <tr><td>M1</td><td>Non-determinism mistaken for an effect</td><td>Ouyang et al., TOSEM 2024</td><td>Repetitions; run-level analysis; confidence intervals</td></tr>
+      <tr><td>M2</td><td>Format effect mistaken for a structure effect</td><td>Sclar et al., ICLR 2024; He et al., 2024</td><td>Same claim text in every arm (§6.2)</td></tr>
+      <tr><td>M3</td><td>Underspecified tasks</td><td>SWE-bench Verified: 38.3% of sampled issues flagged underspecified</td><td>Every task reviewed for solvability from the specs alone, before the study</td></tr>
+      <tr><td>M4</td><td>Weak hidden tests</td><td>EvalPlus</td><td>Mutation-check the hidden tests (§10.4)</td></tr>
+      <tr><td>M5</td><td>Biased judging</td><td>Zheng et al., NeurIPS 2023</td><td>Annotators blind to arm; LLM judges only for triage, calibrated against humans</td></tr>
+      <tr><td>M6</td><td>Content mismatch between arms</td><td>—</td><td>Automated equivalence check (§10.1)</td></tr>
+      <tr><td>M7</td><td>Leakage — answers visible to the agent</td><td>—</td><td>Hidden tests outside the worktree; graph views generated only from specs</td></tr>
+      <tr><td>M8</td><td>Tool-inflicted error — the query tool itself returns wrong or partial context</td><td>§3.7 of the design</td><td>Validate query outputs against the source independently of the agent</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ===================================================== PART 10 -->
+<section class="lecture l5" id="p10">
+  <div class="lechead">
+    <span class="lecnum">PART 10</span>
+    <div>
+      <h2>Experiment design: counting the mistakes</h2>
+      <p>A study that counts mistakes needs four things built before any run: a corpus with known answers, traps that provoke specific failures, a scoring pipeline, and a statistical plan chosen in advance.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">10.1</span>The corpus — one source, four renderings</h3>
+  <ol>
+    <li><strong>A purpose-built product specification</strong> of moderate size: several features, each with contracts, acceptance criteria, decisions with rejected options, and cross-cutting constraints. It follows the section shape of <code>collective-investment-ai-assistant</code> so tiered Markdown is realistic.</li>
+    <li><strong>A reference implementation and hidden tests</strong> for each AC, written before any agent run.</li>
+    <li><strong>One canonical source</strong> (the tiered files) from which the other arms are generated. <strong>F</strong> concatenates the files in a fixed order, with trap positions controlled. <strong>G-v</strong> and <strong>G</strong> compile the graph and its views.</li>
+    <li><strong>An equivalence check</strong>: every gold atom, id and relation is found in every arm. The study does not start until this passes.</li>
+    <li><strong>Optional external validity:</strong> reading-only tasks on the real <code>collective-investment-ai-assistant</code> specs, which need no implementation. Decide what may be published first, since that repository has commercial intent and the course requires a public code link.</li>
+  </ol>
+
+  <h3><span class="sn">10.2</span>Planted traps — each aimed at a named failure</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Trap</th><th>How it is built</th><th>Targets</th><th>Scored by</th></tr></thead>
+    <tbody>
+      <tr><td>T-XFILE</td><td>A constraint in the constitution or another feature that the task's own spec does not cite</td><td>R5 · G2</td><td>Hidden test + read log</td></tr>
+      <tr><td>T-MIDDLE</td><td>A decisive spec placed at the start, middle or end of arm F</td><td>R1</td><td>Identified recall by position</td></tr>
+      <tr><td>T-ALIAS</td><td>The spec uses a synonym of the task's wording</td><td>R3</td><td>Identified recall; grep-miss</td></tr>
+      <tr><td>T-NEG</td><td>A "must never" requirement</td><td>G3</td><td>Negative hidden test</td></tr>
+      <tr><td>T-EXC</td><td>A general rule plus a conditional exception elsewhere</td><td>X3</td><td>Exception test</td></tr>
+      <tr><td>T-REJ</td><td>A decision whose rejected option is the obvious implementation</td><td>R7 · G11</td><td>Structural check</td></tr>
+      <tr><td>T-CONFLICT</td><td>Two specs that genuinely contradict</td><td>X4</td><td>Did the agent flag it? (structured answer + transcript)</td></tr>
+      <tr><td>T-SCOPE</td><td>A constraint scoped to some endpoints only</td><td>X2</td><td>Tests on in-scope and out-of-scope targets</td></tr>
+      <tr><td>T-PREMISE</td><td>The task prompt asserts something a spec contradicts</td><td>G12</td><td>Which one the code follows</td></tr>
+      <tr><td>T-UNIT</td><td>A quantity with units ("5 GiB", "300 ms")</td><td>G1</td><td>Boundary test</td></tr>
+      <tr><td>T-ID</td><td>A duplicated id, or a traceability row naming a missing check</td><td>R9 · X5</td><td>Relation question; structural check</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">Traps must not look like traps</span>
+    <p>If traps are stylistically different from ordinary specs, a capable model may spot them and pay special attention, which inflates every arm. Write them in the same voice as their neighbours, and have someone who did not write them try to find them before the study.</p>
+  </div>
+
+  <h3><span class="sn">10.3</span>Tasks</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Kind</th><th>The agent is asked to</th><th>Primary metrics</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Read (R-tasks)</strong></td><td>Name the specs governing a change; answer relation questions — no code</td><td>Identified recall / precision; relation accuracy; atomic claim precision; tokens</td></tr>
+      <tr><td><strong>Build (B-tasks)</strong></td><td>Implement a feature from its specs</td><td>AC pass rate; resolved; pass^k; trap violations; hallucination counts; tokens</td></tr>
+      <tr><td><strong>Change (C-tasks)</strong></td><td>Apply a spec change to existing code</td><td>Same as B, plus regressions (G10) and impact recall: were all affected places updated?</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">10.4</span>Making the hidden tests trustworthy</h3>
+  <ul>
+    <li><strong>One or more tests per AC</strong>, including boundaries and negative cases, each tagged with the AC and the trap it covers.</li>
+    <li><strong>Mutation check:</strong> deliberately break the reference implementation in ways that violate each AC. Every mutant must be caught by at least one test, or that AC's tests are too weak. This is EvalPlus's lesson applied at small scale.</li>
+    <li><strong>Solvability review</strong> (M3): someone who did not write the task confirms it is solvable from the specs alone.</li>
+  </ul>
+
+  <h3><span class="sn">10.5</span>The scoring pipeline — automated first, human second</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Step</th><th>Automated</th><th>Human</th></tr></thead>
+    <tbody>
+      <tr><td>1 Correctness</td><td>Hidden tests → AC pass, resolved, regressions</td><td>—</td></tr>
+      <tr><td>2 Static</td><td>Import resolution (G5), type checker (G6), structural rules for T-REJ / T-NEG (G3, G11), lint</td><td>—</td></tr>
+      <tr><td>3 Reading</td><td>Hook logs and structured answers versus gold</td><td>—</td></tr>
+      <tr><td>4 Claims</td><td>Extract the agent's claims of completion and verification from the final message</td><td>Compare with logs and tests (G7, G8)</td></tr>
+      <tr><td>5 Error annotation</td><td>An optional LLM pre-labelling pass, for triage only</td><td><strong>Two annotators</strong>, blind to arm, label each diff and transcript with the §9 codebook; report Cohen's κ; resolve disagreements; calibrate any LLM labels on a sample</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Units of counting.</strong> The unit of observation is one <em>run</em> = (task, arm, repetition). For each run, record binary outcomes (resolved, each trap violated or not), counts (hallucinations by category, ACs failed), and continuous values (tokens, cost, turns). Report error <em>rates</em> per task, per AC and per trap, never raw totals across arms with different task counts.</p>
+
+  <h3><span class="sn">10.6</span>Statistical plan, fixed before the runs</h3>
+  <ul>
+    <li><strong>Paired design.</strong> Every task runs in every arm, so arms are compared <em>within</em> task. This removes task difficulty as a source of noise, as Miller (2024) recommends for questions shared across compared systems.</li>
+    <li><strong>Repetitions.</strong> Several runs per (task, arm) give pass^k and a per-task success probability. Choose the number with a power estimate from pilot variance, not a round number.</li>
+    <li><strong>Clustering.</strong> Runs within a task are correlated. Use task-clustered bootstrap confidence intervals, or a mixed-effects logistic model with task as a random effect, for binary outcomes.</li>
+    <li><strong>Paired binary comparisons.</strong> For "trap violated: arm T versus arm G" on the same task, use McNemar's test or the clustered bootstrap.</li>
+    <li><strong>Multiple comparisons.</strong> Four arms and several metrics invite false positives. Name <em>one</em> primary metric in advance; treat the rest as secondary and correct for multiplicity.</li>
+    <li><strong>Report everything.</strong> The course rules count reporting only the runs that worked as misconduct. Keep every run, and state exclusions and their reasons before looking at outcomes.</li>
+  </ul>
+
+  <h3><span class="sn">10.7</span>Budget, stated as arithmetic, not guesses</h3>
+  <pre><code>runs          = tasks × arms × repetitions
+tokens        = Σ_runs (input + output + cache_read + cache_write)   <span class="cm"># measured in the pilot</span>
+estimated USD = Σ_runs cost_usd                                      <span class="cm"># reconciled once with the Usage and Cost API</span>
+annotation    = runs × minutes per run to label × 2 annotators</code></pre>
+  <p>A Claude Code run is billed in API usage, not GPU hours. The course's hardware section is about local GPU jobs, so the proposal should show this token arithmetic from the pilot rather than a GPU estimate. If a local open-weights model is added as a second agent later, its runs need their own GPU-hour arithmetic.</p>
+
+  <h3><span class="sn">10.8</span>The two-day trial, as the brief requires</h3>
+  <ol>
+    <li>One small feature (a handful of ACs, two traps), arms T and G-v only, three runs each.</li>
+    <li>Build the harness in §8.4 far enough to capture hook logs, stream JSON and hidden test results.</li>
+    <li>Print one number: for example, trap-violation rate per arm, or identified recall of governing specs. Record the tokens per run. Those figures size the real study.</li>
+  </ol>
+
+  <h3><span class="sn">10.9</span>References — opened and checked 2026-09-13</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Reference</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td>Chen et al. (2021). <em>Evaluating Large Language Models Trained on Code.</em> <a href="https://arxiv.org/abs/2107.03374">arXiv:2107.03374</a></td><td>pass@k, HumanEval</td></tr>
+      <tr><td>Jimenez et al. (2024). <em>SWE-bench: Can Language Models Resolve Real-world GitHub Issues?</em> ICLR 2024. <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/edac78c3e300629acfe6cbe9ca88fb84-Abstract-Conference.html">proceedings</a></td><td>Resolved rate</td></tr>
+      <tr><td>OpenAI &amp; SWE-bench authors (2024). <em>Introducing SWE-bench Verified.</em> <a href="https://openai.com/index/introducing-swe-bench-verified/">openai.com</a> · <a href="https://www.swebench.com/verified.html">swebench.com</a></td><td>Underspecified tasks (38.3%)</td></tr>
+      <tr><td>Liu, Xia, Wang, Zhang (2023). <em>Is Your Code Generated by ChatGPT Really Correct?</em> NeurIPS 2023. <a href="https://arxiv.org/abs/2305.01210">arXiv:2305.01210</a></td><td>Test insufficiency, HumanEval+</td></tr>
+      <tr><td>Yao et al. (2024). <em>τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains.</em> <a href="https://arxiv.org/abs/2406.12045">arXiv:2406.12045</a></td><td>pass^k</td></tr>
+      <tr><td>Jiang, Deng, Cao, Pradel, Liu (2025). <em>NoCode-bench: A Benchmark for Evaluating Natural Language-Driven Feature Addition.</em> <a href="https://arxiv.org/abs/2507.18130">arXiv:2507.18130</a> (a later arXiv version is retitled <em>Doc2Feat-Bench</em>)</td><td>Documentation-driven feature addition</td></tr>
+      <tr><td>Chen et al. (2025). <em>LocAgent: Graph-Guided LLM Agents for Code Localization.</em> ACL 2025. <a href="https://aclanthology.org/2025.acl-long.426/">ACL Anthology</a></td><td>Acc@k localization</td></tr>
+      <tr><td>RAGAS metrics documentation. <a href="https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/">docs.ragas.io</a></td><td>Context precision / recall, faithfulness</td></tr>
+      <tr><td>Min et al. (2023). <em>FActScore.</em> EMNLP 2023. <a href="https://aclanthology.org/2023.emnlp-main.741/">ACL Anthology</a></td><td>Atomic claim precision</td></tr>
+      <tr><td>Liu et al. (2024). <em>Lost in the Middle: How Language Models Use Long Contexts.</em> TACL. <a href="https://aclanthology.org/2024.tacl-1.9/">ACL Anthology</a></td><td>Position blindness</td></tr>
+      <tr><td>Hsieh et al. (2024). <em>RULER: What's the Real Context Size of Your Long-Context Language Models?</em> COLM 2024. <a href="https://arxiv.org/abs/2404.06654">arXiv:2404.06654</a></td><td>Length degradation</td></tr>
+      <tr><td>Hong, Troynikov, Huber (2025). <em>Context Rot: How Increasing Input Tokens Impacts LLM Performance.</em> Chroma technical report. <a href="https://www.trychroma.com/research/context-rot">trychroma.com</a></td><td>Length degradation (industry report, not peer-reviewed)</td></tr>
+      <tr><td>Modarressi et al. (2025). <em>NoLiMa: Long-Context Evaluation Beyond Literal Matching.</em> ICML 2025. <a href="https://proceedings.mlr.press/v267/modarressi25a.html">PMLR</a></td><td>Non-literal retrieval</td></tr>
+      <tr><td>Jaroslawicz et al. (2025). <em>How Many Instructions Can LLMs Follow at Once?</em> <a href="https://arxiv.org/abs/2507.11538">arXiv:2507.11538</a></td><td>Instruction density</td></tr>
+      <tr><td>Zhang, Wang, Wang, Chen, Zheng (2025). <em>LLM Hallucinations in Practical Code Generation: Phenomena, Mechanism, and Mitigation.</em> ISSTA 2025. <a href="https://arxiv.org/abs/2409.20550">arXiv:2409.20550</a></td><td>Hallucination taxonomy (verified from the full text)</td></tr>
+      <tr><td>Liu et al. (2024). <em>Beyond Functional Correctness: Exploring Hallucinations in LLM-Generated Code.</em> IEEE TSE (accepted). <a href="https://arxiv.org/abs/2404.00971">arXiv:2404.00971</a></td><td>HalluCode taxonomy (primary categories verified from the PDF)</td></tr>
+      <tr><td>Spracklen et al. (2025). <em>We Have a Package for You!</em> USENIX Security 2025. <a href="https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen">usenix.org</a></td><td>Package hallucination</td></tr>
+      <tr><td>Cemri et al. (2025). <em>Why Do Multi-Agent LLM Systems Fail?</em> NeurIPS 2025. <a href="https://arxiv.org/abs/2503.13657">arXiv:2503.13657</a></td><td>MAST failure modes; κ = 0.88</td></tr>
+      <tr><td>Sharma et al. (2024). <em>Towards Understanding Sycophancy in Language Models.</em> ICLR 2024. <a href="https://arxiv.org/abs/2310.13548">arXiv:2310.13548</a></td><td>Sycophantic compliance</td></tr>
+      <tr><td>Ouyang, Zhang, Harman, Wang (2024). <em>An Empirical Study of the Non-determinism of ChatGPT in Code Generation.</em> TOSEM. <a href="https://arxiv.org/abs/2308.02828">arXiv:2308.02828</a></td><td>Non-determinism</td></tr>
+      <tr><td>Sclar, Choi, Tsvetkov, Suhr (2024). <em>Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design.</em> ICLR 2024. <a href="https://arxiv.org/abs/2310.11324">arXiv:2310.11324</a></td><td>Format sensitivity</td></tr>
+      <tr><td>He et al. (2024). <em>Does Prompt Formatting Have Any Impact on LLM Performance?</em> <a href="https://arxiv.org/abs/2411.10541">arXiv:2411.10541</a></td><td>Markdown / JSON / YAML format effects</td></tr>
+      <tr><td>Zheng et al. (2023). <em>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.</em> NeurIPS 2023. <a href="https://arxiv.org/abs/2306.05685">arXiv:2306.05685</a></td><td>Judge biases</td></tr>
+      <tr><td>Miller (2024). <em>Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations.</em> <a href="https://arxiv.org/abs/2411.00640">arXiv:2411.00640</a></td><td>Paired, clustered, powered evaluation</td></tr>
+      <tr><td>Claude Code documentation: <a href="https://code.claude.com/docs/en/headless">Run programmatically</a> · <a href="https://code.claude.com/docs/en/hooks">Hooks</a> · <a href="https://code.claude.com/docs/en/monitoring-usage">Monitoring</a> · <a href="https://code.claude.com/docs/en/agent-sdk/cost-tracking">Cost tracking</a></td><td>Measurement surfaces (Part 8)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">Before citing any of these in the proposal</span>
+    <p>These were checked against abstract pages, proceedings pages, and for the two taxonomies the full text. Author lists marked "et al." should be completed from the paper itself. Traceability link recovery was only surveyed (for example Hey et al., IEEE RE 2024) and needs a proper primary source before it is cited.</p>
+  </div>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>Arm G wins on AC pass rate but arm G-v does not. What does that tell you, and what does it <em>not</em> tell you?</li>
+      <li>Why is loaded-context recall meaningless in arm F, and which metric replaces it?</li>
+      <li>A run's final message says "all acceptance criteria implemented and tested". Hidden tests show 7 of 9 ACs passing and the Bash log shows no test run. Which catalogue entries does this run record?</li>
+      <li>Why must trap positions be varied in arm F but not in arm G?</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Lecture — non-authoritative. Opened 2026-09-13. Working design: <code>core-working-principle.md</code> §13–§15. Evidence measured in <code>collective-investment-ai-assistant/sdd/</code> on 2026-09-13.</p>
+  </div>
+</footer>

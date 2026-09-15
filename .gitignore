@@ -1,0 +1,31 @@
+# ── OS / editor ────────────────────────────────────────────────────
+.DS_Store
+*.swp
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# ── Python ─────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+
+# ── Node (if a VS Code extension or viewer is added) ───────────────
+node_modules/
+
+# ── Secrets — never commit ─────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Claude Code: personal settings stay local ──────────────────────
+.claude/settings.local.json
+
+# ── SDD Compiler outputs that are derived, never the record ────────
+.sdd/cache/
