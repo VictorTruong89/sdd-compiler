@@ -1,6 +1,6 @@
 # Spec ownership — which spec governs which code path.
 #
-# STATUS: PLACEHOLDER (2026-09-14). No code exists yet, so nothing is governed.
+# STATUS: F1 wired 2026-09-15. No code exists yet, so the globs match nothing until code lands.
 # When a spec is added, add its globs here in the same change.
 # A glob that matches nothing governs nothing, silently — move globs with the code.
 
@@ -9,7 +9,52 @@ always:
   - sdd/specs/constitution.md
 
 # First matching entry wins; globs are fnmatch-style against the repo-relative path.
-map: []
+map:
+  - globs:
+      - "src/sdd_compiler/ingest/**"
+      - "src/sdd_compiler/cli.py"
+      - "src/sdd_compiler/profile.py"
+    spec: sdd/specs/F1_ingest/spec.md
+    why: >
+      F1 — segmentation, block identity, .sdd/ storage, CLI surface and the post-edit hook adapter.
+      ⚠ cli.py is shared with later specs (F3, F4, F6); re-split when those land. A hooks module is
+      out of rel01 (D26). The paths do not exist yet: they govern nothing until code lands.
+  - globs:
+      - "src/sdd_compiler/model/**"
+    spec: sdd/specs/F2_node_model/spec.md
+    why: >
+      F2 — node, term, link and conflict-record schemas; layer constants; placement; family rule;
+      status derivation. Every other module depends on these contracts.
+  - globs:
+      - "src/sdd_compiler/atomize/**"
+      - "src/sdd_compiler/llm/**"
+    spec: sdd/specs/F3_atomizer/spec.md
+    why: >
+      F3 — model backends (child environment, .env confinement), questions, guards, quantities,
+      alignment, judgment lock, review queue.
+  - globs:
+      - "src/sdd_compiler/store/**"
+      - "src/sdd_compiler/query/**"
+      - "src/sdd_compiler/views/**"
+    spec: sdd/specs/F4_graph_store/spec.md
+    why: >
+      F4 — .sdd/ layout, transactions and consistency checks, conflicted-node registry, full-form
+      queries, collapsed-form views. F1's block/source/run files are written through this store.
+
+  - globs:
+      - "src/sdd_compiler/retrieval/**"
+    spec: sdd/specs/F5_retrieval/spec.md
+    why: >
+      F5 — candidate sources, scoring, capping, pair keys and the exhaustive measurement mode.
+      No model calls happen here.
+  - globs:
+      - "src/sdd_compiler/conflicts/**"
+      - "src/sdd_compiler/report.py"
+    spec: sdd/specs/F6_conflicts/spec.md
+    why: >
+      F6 — the Q-PAIR judgment, links and conflict records, closing rules, and the end-of-run report.
+
+# Template:
 #  - globs:
 #      - "src/sdd_compiler/<module>/**"
 #    spec: sdd/specs/F1_<slug>/spec.md

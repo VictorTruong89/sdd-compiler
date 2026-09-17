@@ -1,7 +1,11 @@
 # SDD Compiler — working agreement
 
-> **Status:** PLACEHOLDER skeleton · opened 2026-09-14 · release **rel01** (target: a workable
-> product by **2026-09-30**). Sections marked `TODO` are filled as rel01 decisions land.
+> **Status:** opened 2026-09-14 · release **rel01** (target **2026-09-30**). Sections marked `TODO`
+> are filled as rel01 decisions land.
+>
+> ★ **rel01 in one sentence (rel01 D26):** point `sddc compile` at a folder of static Markdown spec
+> files and get back a spec graph plus a report of every conflict in it. No hooks, no live input, no
+> stopping mid-run.
 
 This repo builds the **SDD Compiler**: a tool that consolidates spec-driven-development specs
 into a graph an AI agent can check and query. The repo is itself built **spec-first**. The specs
@@ -10,10 +14,11 @@ is a bug — say so rather than quietly picking a side.
 
 ## Read before you write
 
-- `sdd/specs/vision.md` — what is being built and why. *(TODO — being rewritten for rel01.)*
+- `sdd/specs/vision.md` — what is being built and why. **Adopted 2026-09-17.**
 - `sdd/specs/constitution.md` — non-negotiable rules. *(TODO.)*
 - The spec that governs the path you touch — mapping in `sdd/specs/ownership.yaml`. *(TODO.)*
-- Working on rel01 scope? `sdd/design/rel01_brainstorm.md`.
+- Working on rel01? `sdd/design/rel01_brainstorm.md` (goals G1–G4, stack, decisions) and
+  `sdd/design/rel01_design/`.
 
 ## Layout
 
@@ -25,8 +30,8 @@ is a bug — say so rather than quietly picking a side.
 | `sdd/archive/` | Superseded documents, frozen | Historical |
 | `sdd/questions.md` | Question register: decisions and rejected options | Reasoning, never rules |
 | `docs/lectures/` | **HTML lectures** for the owner's understanding | Never binding |
-| `src/`, `tests/` | Code and tests *(TODO — stack decided in rel01 S1)* | Downstream of specs |
-| `chat_history/` | Raw brainstorm exports from before rel01 | Reference only |
+| `src/`, `tests/` | Python CLI code and tests (stack: constitution §6) | Downstream of specs |
+| `sdd/archive/chat_history/` | Raw brainstorm exports and course brief from before rel01 | Historical |
 
 ## Document conventions
 
@@ -52,7 +57,7 @@ is a bug — say so rather than quietly picking a side.
 
 ## House rules
 
-- Never `git commit` or push without the owner's review.
+- **Never run `git commit` or `git push`.** The owner reviews and commits. Staging is also left to the owner.
 - Never hardcode a credential; read from the environment.
 - Fail loud, never silent.
 

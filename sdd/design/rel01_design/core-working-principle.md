@@ -19,9 +19,14 @@
 - **`N-n`** is a node in the worked example (§9).
 
 >
-> ⚠ **Pre-rel01 reference (moved 2026-09-14).** Written before the vision was scrapped.
-> "vision O1–O3 / U1–U7" point to the archived vision. Proposals P-0…P-14 are input to
-> [`../rel01_brainstorm.md`](../rel01_brainstorm.md), not decisions.
+> ⚠ **Pre-rel01 document (moved 2026-09-14).** "vision O1–O3 / U1–U7" point to the archived vision.
+> ★ **Scoped by rel01 D26 (2026-09-17):** rel01 is a **batch** compiler over static Markdown. Where this
+> document assumes interactive authoring — "one button press", per-press checking, an author confirming
+> at the commit point, hook-carried questions — read it as *one command over the whole spec set*. The
+> graph model, guards, placement, family rule, retrieval and storage are unaffected.
+> ✅ **Proposals P-0…P-14 approved in rel01 D12**, amended by later rel01 decisions that win where
+> they differ: status names and values (D9, D15), conflict storage (D9, D14), P-11 deferred, P-14
+> realized first as the collapsed human form (D10). See [`../rel01_brainstorm.md`](../rel01_brainstorm.md).
 ---
 
 ## 1. The frame
@@ -766,21 +771,21 @@ reached by any link from tiers 1–2. N-6 is reached only as a boundary.
 
 | Id | Proposal | § | Status |
 |---|---|---|---|
-| P-0 | Prose is the source; the graph is compiled | 1.1 | proposed |
-| P-1 | Question kinds, check-immediately rule, judgment lock | 1.2 | proposed |
-| P-2 | Atom tests T1–T4 and the list rule | 3.1 | proposed |
-| P-3 | Sentence roles | 3.2 | proposed |
-| P-4 | EARS-style canonical fields; quantities normalized by code | 3.3 | proposed |
-| P-5 | Guards G1–G6 | 3.4 | proposed |
-| P-6 | Stable ids; block-level re-atomization with alignment | 3.6 | proposed |
-| P-7 | Layers L0–L5 + C + V; fixed meanings; project profile | 4.1 | proposed |
-| P-8 | Seven-question placement with precedence and overlap rules | 4.2 | proposed |
-| P-9 | Family = primary term by fixed rule; actors and components never seed | 4.3 | proposed |
-| P-10 | Indexes, queries, disclosure levels, recipes with manifest | 6 | proposed |
-| P-11 | U5: same versions and registry; ordered matching; five outcomes | 8 | proposed |
-| P-12 | Compile tiered Markdown as-is; adopt existing ids; decisions are a node kind | 13 | proposed |
-| P-13 | Storage: `.sdd/` with JSONL sharded by family, generated views, SQLite cache | 14 | proposed |
-| P-14 | Visualization: aggregate-first views V1–V7, stable layout, generated static viewer | 15 | proposed |
+| P-0 | Prose is the source; the graph is compiled | 1.1 | approved (rel01 D12) |
+| P-1 | Question kinds, check-immediately rule, judgment lock | 1.2 | approved (rel01 D12) |
+| P-2 | Atom tests T1–T4 and the list rule | 3.1 | approved (rel01 D12) |
+| P-3 | Sentence roles | 3.2 | approved (rel01 D12) |
+| P-4 | EARS-style canonical fields; quantities normalized by code | 3.3 | approved (rel01 D12) |
+| P-5 | Guards G1–G6 | 3.4 | approved (rel01 D12) |
+| P-6 | Stable ids; block-level re-atomization with alignment | 3.6 | approved (rel01 D12) |
+| P-7 | Layers L0–L5 + C + V; fixed meanings; project profile | 4.1 | approved (rel01 D12) |
+| P-8 | Seven-question placement with precedence and overlap rules | 4.2 | approved (rel01 D12) |
+| P-9 | Family = primary term by fixed rule; actors and components never seed | 4.3 | approved (rel01 D12) |
+| P-10 | Indexes, queries, disclosure levels, recipes with manifest | 6 | approved (rel01 D12) |
+| P-11 | U5: same versions and registry; ordered matching; five outcomes | 8 | approved (rel01 D12) |
+| P-12 | Compile tiered Markdown as-is; adopt existing ids; decisions are a node kind | 13 | approved (rel01 D12) |
+| P-13 | Storage: `.sdd/` with JSONL sharded by family, generated views, SQLite cache | 14 | approved (rel01 D12) |
+| P-14 | Visualization: aggregate-first views V1–V7, stable layout, generated static viewer | 15 | approved (rel01 D12) |
 
 ### 10.2 Open questions
 
@@ -949,7 +954,7 @@ real corpus.
 6. Link types are filterable. Cross-family links stay aggregated until expanded.
 7. Every visual item links to its node view and verbatim source.
 
-**Build approach (release 1):** `sdd view` generates one self-contained static HTML page from
+**Build approach (release 1):** `sddc view` generates one self-contained static HTML page from
 `.sdd/`. It opens in a browser or a VS Code webview, with no server. Candidate libraries:
 
 - Cytoscape.js for V2–V4

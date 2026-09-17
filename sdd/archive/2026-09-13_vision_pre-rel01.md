@@ -4,8 +4,8 @@
 > **Tier:** authoritative once adopted, **release-independent**.
 > **Audience:** the human authors and the AI agents who propose, design or review work on the SDD
 > Compiler, and any later reader who needs the goal without reading the brainstorm history.
-> **Sources:** `chat_history/Spec-Compiler-SDD-chat-export-1789156135574.json` (generic discussion)
-> and `chat_history/sdd-compiler-design.html` (design tied to one project).
+> **Sources:** `sdd/archive/chat_history/Spec-Compiler-SDD-chat-export-1789156135574.json` (generic discussion)
+> and `sdd/archive/chat_history/sdd-compiler-design.html` (design tied to one project).
 > Neither is binding. This file supersedes them wherever they disagree.
 
 ---

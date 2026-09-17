@@ -2,7 +2,8 @@
 
 No hooks are active. `.claude/settings.json` has an empty `hooks` object.
 
-Candidates for rel01 (undecided):
+⛔ **Not part of rel01** (rel01 D26: the compiler runs as one batch command). The candidates below are
+kept for the release that adds live editing:
 
 - **Spec-read gate:** a `PreToolUse` hook on `Edit|Write` that denies edits to governed paths until
   the governing spec has been read in the session (pattern from `collective-investment-ai-assistant`).
