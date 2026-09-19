@@ -1,0 +1,331 @@
+"""F3 §4.5, §4.8 — pending blocks in, a draft of the graph out.
+
+Pending blocks are processed in `(source, first line)` order, in **chunks**
+(⚑ F3 D18). One chunk goes through every model step — Q-ATOM, Q-DESC, the T3
+split re-ask, Q-TERM — before any of it is kept. That is what makes the call cap
+safe (AC-3.5): when the budget runs out mid-chunk, the finished chunks stand and
+the interrupted one stays pending, whole. A backend failure — a usage limit, an
+outage — stops the same way (I-43), so paid-for work is never thrown away.
+
+A block is **all or nothing** (AC-3.16): one atom that fails its checks drops
+every node of its block, and the block becomes an `atomize_failed` attention
+item and stays pending. A block that yields no atoms completes.
+
+The draft is in memory. F4 writes it in one transaction (T11), including each
+completed block's `atomized_hash` (F1 D13).
+"""
+from __future__ import annotations
+
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass, field
+from typing import Any
+
+from ..errors import ExitCode, SddcError
+from ..llm import Backend
+from ..model.family import term_links
+from ..model.ids import IdCounter, adopt_human_ids, human_labels
+from ..model.layers import LAYER_OF_QUESTION
+from ..model.placement import Placement, place
+from ..model.schema import validate
+from .describe import DescribeItem, describe_atoms
+from .align import NewAtom, align
+from .forming import NodeDraft, block_annotations, layer_hint, resolve_verifies
+from .placement_types import PlacedAtom
+from .qatom import atomize_blocks
+from .terms import TermResolution, normalize_name, resolve_terms
+
+DEFAULT_BLOCK_BATCH = 20     # blocks per Q-ATOM call (measured, rel01 S20)
+
+
+@dataclass
+class GraphDraft:
+    nodes: dict[str, dict[str, Any]] = field(default_factory=dict)
+    terms: dict[str, dict[str, Any]] = field(default_factory=dict)        # new or changed terms
+    links: list[dict[str, Any]] = field(default_factory=list)
+    reviews: list[dict[str, Any]] = field(default_factory=list)
+    completed: dict[str, str] = field(default_factory=dict)              # block id -> atomized_hash
+    alignments: list[dict[str, Any]] = field(default_factory=list)       # F3 §4.6, for the report
+    failed: dict[str, str] = field(default_factory=dict)                 # block id -> reason
+    stopped: str | None = None                                            # "call_cap" | "backend"
+    stop_reason: str | None = None
+    counters: dict[str, int] = field(default_factory=dict)
+
+
+@dataclass
+class _Chunk:
+    placed: dict[str, list[PlacedAtom]] = field(default_factory=dict)    # good blocks, in order
+    annotations: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
+    failed: dict[str, str] = field(default_factory=dict)
+    terms: TermResolution = field(default_factory=TermResolution)
+
+
+def atomize_pending(
+    blocks: Sequence[Mapping[str, Any]],
+    backend: Backend,
+    *,
+    run_id: str,
+    weak_words: Sequence[str] = (),
+    layer_hints: Mapping[str, Mapping[str, Any]] | None = None,
+    registry: Mapping[str, Mapping[str, Any]] | None = None,
+    existing_nodes: Mapping[str, Mapping[str, Any]] | None = None,
+    counters: Mapping[str, int] | None = None,
+    block_batch: int = DEFAULT_BLOCK_BATCH,
+    previous: Mapping[str, Sequence[Mapping[str, Any]]] | None = None,
+    lock: Any | None = None,
+) -> GraphDraft:
+    """`previous`: a changed block's old nodes, which its new atoms are aligned to (F3 §4.6)."""
+    draft = GraphDraft()
+    node_ids = IdCounter("N-", start=(counters or {}).get("N", 0))
+    review_ids = IdCounter("RV-", start=(counters or {}).get("RV", 0))
+    known_terms: dict[str, Mapping[str, Any]] = dict(registry or {})
+    existing = dict(existing_nodes or {})
+    ordered = sorted(blocks, key=lambda b: (b["source"], b["lines"][0]))
+    good_blocks: dict[str, Mapping[str, Any]] = {}
+    atom_counts: dict[str, int] = {}
+    node_drafts: list[NodeDraft] = []
+    pending_reviews: list[dict[str, Any]] = []
+
+    for start in range(0, len(ordered), block_batch):
+        chunk_blocks = ordered[start:start + block_batch]
+        try:
+            chunk = _run_chunk(chunk_blocks, backend, weak_words, known_terms, lock)
+        except SddcError as error:
+            # I-43: a stop mid-run keeps every finished chunk (and its lock records);
+            # only the interrupted chunk stays pending.
+            if error.exit_code in (ExitCode.CALL_CAP, ExitCode.BACKEND):
+                draft.stopped = "call_cap" if error.exit_code == ExitCode.CALL_CAP else "backend"
+                draft.stop_reason = str(error)
+                break
+            raise
+
+        by_id = {block["id"]: block for block in chunk_blocks}
+        for block_id, reason in chunk.failed.items():
+            draft.failed[block_id] = reason
+            pending_reviews.append(_review("atomize_failed", block_id, reason, by_id[block_id]))
+
+        for block_id, placed in chunk.placed.items():
+            good_blocks[block_id] = by_id[block_id]
+            atom_counts[block_id] = len(placed)
+        labels = human_labels(good_blocks, atom_counts)          # a duplicate label fails the build
+        adopted = adopt_human_ids({b: good_blocks[b] for b in chunk.placed}, atom_counts)
+
+        new_terms = {**chunk.terms.new_terms, **chunk.terms.changed_terms}
+        known_terms.update(new_terms)
+        draft.terms.update(new_terms)
+        for item in chunk.terms.reviews:
+            pending_reviews.append(_review(item["type"], item["subject"], item["detail"], None))
+
+        for block_id, placed in chunk.placed.items():
+            block = by_id[block_id]
+            annotations = block_annotations(block, chunk.annotations.get(block_id, []))
+            olds = list((previous or {}).get(block_id, []))
+            aligned = align(olds, [
+                NewAtom(n, " … ".join(block["text"][s:e] for s, e in piece.atom.spans),
+                        piece.description.canonical["subject"], piece.description.canonical["response"])
+                for n, piece in enumerate(placed)])
+            for old_id, kind in aligned.dropped.items():
+                draft.alignments.append({"block": block_id, "node": old_id, "kind": kind})
+            for n, piece in enumerate(placed):
+                kept, kind = aligned.assigned[n]
+                # An aligned id beats an adopted one: identity across edits first (F3 D22).
+                node_id = kept or adopted.get(block_id) or node_ids.next_id()
+                if olds:
+                    draft.alignments.append({"block": block_id, "node": node_id, "kind": kind})
+                if node_id in existing or any(d.node_id == node_id for d in node_drafts):
+                    raise SddcError(f"node id {node_id} is already in use (F2 §4.8)", ExitCode.INPUT)
+                terms = _resolved_terms(piece, chunk.terms, known_terms)
+                node_drafts.append(NodeDraft(
+                    node_id=node_id, placed=piece, block=block, terms=terms,
+                    label=labels.get(block_id),
+                    layer_hint=layer_hint(block.get("heading_path") or [], layer_hints),
+                    annotations=annotations,
+                    pending_terms=sorted({t["term"] for t in terms} & chunk.terms.pending_review),
+                    alignment=kind if kept else "new",
+                    old=next((o for o in olds if o["id"] == kept), None),
+                ))
+            draft.completed[block_id] = block["text_hash"]
+
+    _finish(draft, node_drafts, existing, run_id)
+    for item in pending_reviews:
+        draft.reviews.append({**item, "id": review_ids.next_id(), "opened_run": run_id})
+    for node in draft.nodes.values():
+        if "inferred" in node["flags"]:
+            details = "; ".join(a["detail"] for a in node["ambiguity"] if a["kind"] == "inferred")
+            draft.reviews.append({
+                **_review("inferred_node", node["id"], details, None, node=node),
+                "id": review_ids.next_id(), "opened_run": run_id,
+            })
+    draft.reviews = [_ordered_review(item) for item in draft.reviews]
+    draft.counters = {"N": node_ids.value, "RV": review_ids.value}
+    return draft
+
+
+# -- one chunk: every model step ------------------------------------------------
+
+def _run_chunk(
+    blocks: Sequence[Mapping[str, Any]],
+    backend: Backend,
+    weak_words: Sequence[str],
+    known_terms: Mapping[str, Mapping[str, Any]],
+    lock: Any | None = None,
+) -> _Chunk:
+    chunk = _Chunk()
+    aliases = {t["canonical"]: list(t.get("aliases", [])) for t in known_terms.values()}
+    atomized = atomize_blocks(list(blocks), backend, lock=lock)
+    chunk.failed.update(atomized.failures)
+    chunk.annotations.update(atomized.annotations)
+
+    atoms_by_block = {block["id"]: [] for block in blocks if block["id"] not in chunk.failed}
+    for atom in atomized.atoms:
+        if atom.block_id in atoms_by_block:
+            atoms_by_block[atom.block_id].append(atom)
+
+    by_id = {block["id"]: block for block in blocks}
+    atom_judgments = dict(atomized.judgments)
+    placed = _describe_and_place(atoms_by_block, by_id, backend, weak_words, aliases, chunk.failed,
+                                 lock, atom_judgments)
+
+    for block_id, split in list(placed.items()):
+        if not isinstance(split, dict):
+            continue
+        # AC-3.12 — one more Q-ATOM for this block, naming the two claims to separate.
+        note = (f"Your atoms mixed two claims that belong to different layers: "
+                f"{split['first']['quote']!r} and {split['second']['quote']!r}. "
+                f"Make them separate atoms.")
+        again = atomize_blocks([by_id[block_id]], backend, note=note, lock=lock)
+        if block_id in again.failures:
+            chunk.failed[block_id] = again.failures[block_id]
+            del placed[block_id]
+            continue
+        chunk.annotations[block_id] = again.annotations.get(block_id, [])
+        atom_judgments.update(again.judgments)
+        # F3 D23 (I-42): this is the last chance. If the model again keeps one claim
+        # across two layers — typically a bold title and its explanation — place it by
+        # the first yes and flag it `mixed_layers`, rather than fail the block.
+        retried = _describe_and_place({block_id: again.atoms}, by_id, backend, weak_words, aliases,
+                                      chunk.failed, lock, atom_judgments, accept_mixed=True)
+        if block_id not in retried:
+            del placed[block_id]
+            continue
+        placed[block_id] = retried[block_id]
+
+    chunk.placed = {b: placed[b] for b in atoms_by_block if b in placed}
+    tags = [tag for pieces in chunk.placed.values() for piece in pieces for tag in piece.description.terms]
+    chunk.terms = resolve_terms(tags, known_terms, backend, lock=lock)
+    return chunk
+
+
+def _describe_and_place(
+    atoms_by_block: Mapping[str, Sequence[Any]],
+    by_id: Mapping[str, Mapping[str, Any]],
+    backend: Backend,
+    weak_words: Sequence[str],
+    aliases: Mapping[str, list[str]],
+    failed: dict[str, str],
+    lock: Any | None = None,
+    atom_judgments: Mapping[str, str] | None = None,
+    accept_mixed: bool = False,
+) -> dict[str, Any]:
+    """Block id → its placed atoms, or the split that stopped it. Failed blocks go to `failed`."""
+    items = [
+        DescribeItem(f"{block_id}#{n}", atom, by_id[block_id])
+        for block_id, atoms in atoms_by_block.items()
+        for n, atom in enumerate(atoms, start=1)
+    ]
+    described = describe_atoms(items, backend, weak_words=list(weak_words), aliases=dict(aliases),
+                               lock=lock)
+
+    result: dict[str, Any] = {}
+    for block_id, atoms in atoms_by_block.items():
+        mine = [item for item in items if item.block["id"] == block_id]
+        broken = [item.atom_id for item in mine if item.atom_id in described.failures]
+        if broken:
+            failed[block_id] = f"{broken[0]}: {described.failures[broken[0]]}"
+            continue
+        pieces = []
+        for item in mine:
+            description = described.descriptions[item.atom_id]
+            placement = place(description.kind, description.layer_answers)
+            if placement.split_required and accept_mixed:
+                split = placement.split_required
+                placement = Placement(layer=LAYER_OF_QUESTION[split["first"]["question"]], ambiguity=[{
+                    "kind": "mixed_layers", "quote": split["second"]["quote"],
+                    "detail": f"{split['second']['question']} also answered yes, on words that do not "
+                              f"overlap {split['first']['question']}'s; the model twice kept one claim",
+                }])
+            if placement.split_required:
+                result[block_id] = placement.split_required
+                break
+            judgments = [j for j in ((atom_judgments or {}).get(block_id),
+                                     described.judgments.get(item.atom_id)) if j]
+            pieces.append(PlacedAtom(item.atom, description, placement, judgments))
+        else:
+            result[block_id] = pieces
+    return result
+
+
+# -- after the last chunk: cross-node work and validation -----------------------
+
+def _finish(draft: GraphDraft, drafts: list[NodeDraft], existing: Mapping[str, Mapping[str, Any]],
+            run_id: str) -> None:
+    for node_draft in drafts:
+        if node_draft.layer != "V":
+            draft.nodes[node_draft.node_id] = node_draft.record(run_id)
+
+    verifications = [d for d in drafts if d.layer == "V"]
+    if verifications:
+        view = {**existing, **draft.nodes,
+                **{d.node_id: {"label": d.label, "text": d.text, "family": None} for d in verifications}}
+        verifies, links = resolve_verifies(
+            view, {d.node_id: d.description.verifies_text for d in verifications})
+        for node_draft in verifications:
+            node_draft.verifies = verifies[node_draft.node_id]
+            node_draft.verified_families = [
+                view[target]["family"] for target in node_draft.verifies if view[target].get("family")
+            ]
+            draft.nodes[node_draft.node_id] = node_draft.record(run_id)
+        draft.links += links
+
+    draft.nodes = dict(sorted(draft.nodes.items()))
+    for node in draft.nodes.values():
+        draft.links += term_links(node["id"], node["terms"])
+    draft.links.sort(key=lambda link: (link["from"], link["type"], link["to"]))
+
+    for node in draft.nodes.values():
+        validate("node", node)
+    for term in draft.terms.values():
+        validate("term", term)
+    for link in draft.links:
+        validate("link", link)
+
+
+def _resolved_terms(piece: PlacedAtom, terms: TermResolution,
+                    known: Mapping[str, Mapping[str, Any]]) -> list[dict[str, Any]]:
+    resolved = []
+    for tag in piece.description.terms:
+        term = terms.by_tag.get(normalize_name(tag["name"]))
+        if term is None:          # not a term name (F3 D19): dropped
+            continue
+        if any(entry["term"] == term and entry["role"] == tag["role"] for entry in resolved):
+            continue
+        resolved.append({"term": term, "kind": known[term]["kind"], "role": tag["role"],
+                         "quote": tag["quote"]})
+    return resolved
+
+
+def _review(kind: str, subject: str, detail: str, block: Mapping[str, Any] | None,
+            node: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    source = None
+    if block is not None:
+        source = {"file": block["source"], "lines": list(block["lines"]), "quotes": []}
+    elif node is not None:
+        source = {"file": node["source"]["file"], "lines": node["source"]["lines"],
+                  "quotes": [node["text"]]}
+    return {"type": kind, "subject": subject, "detail": detail, "source": source,
+            "state": "open", "closed_run": None}
+
+
+def _ordered_review(item: Mapping[str, Any]) -> dict[str, Any]:
+    """CT-3.3 key order."""
+    keys = ("id", "type", "subject", "detail", "source", "state", "opened_run", "closed_run")
+    return {key: item[key] for key in keys}

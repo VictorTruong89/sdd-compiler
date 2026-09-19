@@ -1,0 +1,447 @@
+"""T10 — forming nodes from pending blocks (F3 §4.5; AC-3.5, 3.9, 3.12, 3.14 … 3.16; F2 D12, D13).
+
+Every model answer is scripted with the fake backend, in the order the pipeline
+asks: Q-ATOM for a chunk, Q-DESC for its atoms, then Q-TERM when needed.
+
+Tier: integration (the whole pipeline, in memory) and unit.
+"""
+from __future__ import annotations
+
+import pytest
+
+from sdd_compiler.atomize.forming import resolve_verifies, scope_selector
+from sdd_compiler.atomize.pipeline import atomize_pending
+from sdd_compiler.atomize.terms import similar_terms
+from sdd_compiler.llm import CallBudget, FakeBackend
+from sdd_compiler.model.schema import validate
+
+EXPIRY = "A share link must expire 30 days after it is created."
+
+
+def block(block_id, text, kind="paragraph", line=3, heading=("Sharing",)):
+    return {"id": block_id, "text": text, "kind": kind, "heading_path": list(heading),
+            "table_header": None, "source": "sdd/specs/F9_demo/spec.md",
+            "lines": [line, line + text.count("\n")], "text_hash": f"sha256:{block_id}"}
+
+
+def q_atom(*entries):
+    """entries: (block_id, [(kind, [quotes]), …])"""
+    return {"blocks": [
+        {"block_id": block_id,
+         "sentences": [{"quote": q, "role": kind} for kind, quotes in atoms for q in quotes],
+         "atoms": [{"kind": kind, "quotes": quotes} for kind, quotes in atoms]}
+        for block_id, atoms in entries
+    ]}
+
+
+NO = {"answer": "no", "quote": None}
+
+
+def q_desc_entry(atom_id, subject="share link", response="expire 30 days after it is created",
+                 q_yes=None, terms=None, modality="MUST", scope_layers=(), verifies_text=None,
+                 decision=None, canonical=None):
+    q_yes = q_yes if q_yes is not None else {"Q3": "expire 30 days after it is created"}
+    answers = {f"Q{n}": dict(NO) for n in range(1, 8)}
+    for question, quote in q_yes.items():
+        answers[question] = {"answer": "yes", "quote": quote}
+    return {
+        "atom_id": atom_id,
+        "canonical": canonical or {"state": None, "trigger": None, "scope": None,
+                                   "subject": subject, "modality": modality, "response": response},
+        "layer_answers": answers,
+        "terms": terms if terms is not None else
+                 [{"name": "share link", "kind": "entity", "role": "subject", "quote": "share link"}],
+        "ambiguity": [],
+        "scope_layers": list(scope_layers),
+        "scope_description": None,
+        "verifies_text": verifies_text,
+        "decision": decision,
+    }
+
+
+def q_desc(*entries):
+    return {"atoms": list(entries)}
+
+
+def run(blocks, answers, **options):
+    backend = FakeBackend(answers, budget=options.pop("budget", None))
+    options.setdefault("run_id", "R-0002")
+    return atomize_pending(blocks, backend, **options), backend
+
+
+# -- AC-3.14 a node is formed ---------------------------------------------------
+
+def test_ac_3_14_one_requirement_forms_one_valid_node():
+    draft, backend = run([block("B-000001", EXPIRY)], [
+        q_atom(("B-000001", [("requirement", [EXPIRY])])),
+        q_desc(q_desc_entry("B-000001#1")),
+    ])
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc"]   # empty registry: no Q-TERM
+
+    [node] = draft.nodes.values()
+    validate("node", node)
+    assert node["id"] == "N-000001"
+    assert (node["layer"], node["family"], node["family_rule"]) == ("L1", "term:share_link", "subject")
+    assert node["last_checked_run"] is None and node["status"] == "unchecked"
+    assert node["source"]["block_id"] == "B-000001" and node["source"]["spans"] == [[0, len(EXPIRY)]]
+    assert node["canonical"]["quantities"][0]["normalized"] == {"value": 2_592_000, "unit": "s"}
+    assert ("N-000001", "uses_term", "term:share_link") in {
+        (l["from"], l["type"], l["to"]) for l in draft.links}
+    assert draft.terms["term:share_link"]["status"] == "proposed"
+    assert draft.completed == {"B-000001": "sha256:B-000001"}
+    assert draft.stopped is None
+
+
+def test_a_block_with_no_atoms_completes_without_nodes():
+    draft, _ = run([block("B-000001", "This section explains the background.")], [
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": "This section explains the background.", "role": "context"}],
+                     "atoms": []}]},
+    ])
+    assert draft.nodes == {}
+    assert draft.completed == {"B-000001": "sha256:B-000001"}
+
+
+# -- AC-3.15 term resolution ----------------------------------------------------------
+
+REGISTRY = {"term:share_link": {"id": "term:share_link", "canonical": "share link",
+                                "aliases": ["shared link"], "kind": "entity",
+                                "defined_by": None, "status": "confirmed"}}
+
+
+def test_ac_3_15_an_alias_resolves_without_asking():
+    text = "A shared link must expire 30 days after it is created."
+    tags = [{"name": "shared link", "kind": "entity", "role": "subject", "quote": "shared link"}]
+    draft, backend = run([block("B-000001", text)], [
+        q_atom(("B-000001", [("requirement", [text])])),
+        q_desc(q_desc_entry("B-000001#1", subject="shared link", terms=tags)),
+    ], registry=REGISTRY)
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc"]
+    [node] = draft.nodes.values()
+    assert node["terms"][0]["term"] == "term:share_link"
+    assert draft.terms == {}                                   # nothing new
+
+
+SHARING = "A sharing link must expire 30 days after it is created."
+SHARING_TAGS = [{"name": "sharing link", "kind": "entity", "role": "subject", "quote": "sharing link"}]
+
+
+def test_ac_3_15_an_unsure_term_is_kept_separate_and_sent_for_review():
+    draft, backend = run([block("B-000001", SHARING)], [
+        q_atom(("B-000001", [("requirement", [SHARING])])),
+        q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
+        {"terms": [{"term_key": "term:sharing_link", "verdict": "unsure",
+                    "same_as": None, "reason": "may be the share link"}]},
+    ], registry=REGISTRY)
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc", "q-term"]
+    assert "term:share_link" in backend.asked[2].prompt
+
+    [node] = draft.nodes.values()
+    assert node["terms"][0]["term"] == "term:sharing_link"
+    assert "pending_review" in [a["kind"] for a in node["ambiguity"]]
+    assert node["status"] == "ambiguous"
+    [item] = [r for r in draft.reviews if r["type"] == "term_unsure"]
+    assert item["subject"] == "term:sharing_link" and item["state"] == "open"
+    validate("term", draft.terms["term:sharing_link"])
+
+
+def test_q_term_same_must_name_one_of_the_candidates():
+    bad = {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
+                      "same_as": "term:invented", "reason": "r"}]}
+    good = {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
+                       "same_as": "term:share_link", "reason": "one thing"}]}
+    draft, backend = run([block("B-000001", SHARING)], [
+        q_atom(("B-000001", [("requirement", [SHARING])])),
+        q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
+        bad, good,
+    ], registry=REGISTRY)
+    assert [q.kind for q in backend.asked][-2:] == ["q-term", "q-term"]
+    [item] = [r for r in draft.reviews if r["type"] == "term_same"]
+    assert "term:share_link" in item["detail"]
+
+
+def test_f3_d20_a_same_verdict_merges_at_once_and_can_be_undone():
+    """F3 Q7 option b: the new name becomes an alias; nothing turns ambiguous."""
+    draft, _ = run([block("B-000001", SHARING)], [
+        q_atom(("B-000001", [("requirement", [SHARING])])),
+        q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
+        {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
+                    "same_as": "term:share_link", "reason": "one thing"}]},
+    ], registry=REGISTRY)
+    [node] = draft.nodes.values()
+    assert node["terms"][0]["term"] == "term:share_link"
+    assert node["family"] == "term:share_link"
+    assert "pending_review" not in [a["kind"] for a in node["ambiguity"]]
+    assert node["status"] == "unchecked"
+    assert "term:sharing_link" not in draft.terms
+    assert draft.terms["term:share_link"]["aliases"] == ["shared link", "sharing link"]
+    [item] = [r for r in draft.reviews if r["type"] == "term_same"]
+    assert item["subject"] == "term:share_link"
+    assert "reject" in item["detail"].lower()
+
+
+def test_f3_d20_a_later_tag_with_the_merged_name_resolves_without_asking():
+    second = "A sharing link must be revocable."
+    tags = [{"name": "sharing link", "kind": "entity", "role": "subject", "quote": "sharing link"}]
+    draft, backend = run([block("B-000001", SHARING), block("B-000002", second, line=9)], [
+        q_atom(("B-000001", [("requirement", [SHARING])])),
+        q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
+        {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
+                    "same_as": "term:share_link", "reason": "one thing"}]},
+        q_atom(("B-000002", [("requirement", [second])])),
+        q_desc(q_desc_entry("B-000002#1", subject="sharing link", response="be revocable",
+                            q_yes={"Q3": second}, terms=tags)),
+    ], registry=REGISTRY, block_batch=1)
+    assert [q.kind for q in backend.asked].count("q-term") == 1
+    assert {n["terms"][0]["term"] for n in draft.nodes.values()} == {"term:share_link"}
+
+
+def test_similar_terms_share_a_word_or_most_letters():
+    assert [t["id"] for t in similar_terms("sharing link", REGISTRY)] == ["term:share_link"]
+    assert similar_terms("invoice", REGISTRY) == []
+
+
+# -- AC-3.16 a block is all or nothing -------------------------------------------------
+
+THREE = "Links must expire. Links must be revocable. Links must be logged."
+
+
+def test_ac_3_16_one_failed_atom_drops_the_whole_block():
+    quotes = ["Links must expire.", "Links must be revocable.", "Links must be logged."]
+    link = [{"name": "link", "kind": "entity", "role": "subject", "quote": "Links"}]
+    bad = q_desc_entry("B-000001#3", subject="links", q_yes={"Q3": "not in the block"}, terms=link)
+    draft, _ = run([block("B-000001", THREE)], [
+        q_atom(("B-000001", [("requirement", [q]) for q in quotes])),
+        q_desc(*(q_desc_entry(f"B-000001#{n}", subject="links", q_yes={"Q3": quotes[n - 1]}, terms=link)
+                 for n in (1, 2)), bad),
+        q_desc(bad),
+    ])
+    assert draft.nodes == {}
+    assert "B-000001" in draft.failed and "B-000001" not in draft.completed
+    [item] = draft.reviews
+    assert (item["type"], item["subject"]) == ("atomize_failed", "B-000001")
+
+
+# -- AC-3.12 a T3 split re-asks Q-ATOM once ---------------------------------------------------
+
+TWO_LAYERS = "The service stores each link. The API returns 404 for an expired link."
+
+
+def test_ac_3_12_split_required_re_asks_q_atom_with_both_quotes():
+    whole = [TWO_LAYERS]
+    split = q_desc_entry("B-000001#1", subject="the service",
+                         q_yes={"Q4": "The service stores each link",
+                                "Q5": "The API returns 404 for an expired link"},
+                         terms=[{"name": "link", "kind": "entity", "role": "response", "quote": "link"}])
+    first, second = "The service stores each link.", "The API returns 404 for an expired link."
+    link = [{"name": "link", "kind": "entity", "role": "response", "quote": "link"}]
+    draft, backend = run([block("B-000001", TWO_LAYERS)], [
+        q_atom(("B-000001", [("requirement", whole)])),
+        q_desc(split),
+        q_atom(("B-000001", [("requirement", [first]), ("requirement", [second])])),
+        q_desc(q_desc_entry("B-000001#1", subject="the service", q_yes={"Q4": first}, terms=link),
+               q_desc_entry("B-000001#2", subject="the API", q_yes={"Q5": second}, terms=link)),
+    ])
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc", "q-atom", "q-desc"]
+    assert "The service stores each link" in backend.asked[2].prompt
+    assert "The API returns 404 for an expired link" in backend.asked[2].prompt
+    assert sorted(n["layer"] for n in draft.nodes.values()) == ["L2", "L3"]
+
+
+def test_i42_a_refused_split_forms_the_node_with_the_first_layer_flagged_mixed():
+    """F3 D23: two refusals to split are evidence of one claim — form it, flag it, never fail it."""
+    split = q_desc_entry("B-000001#1", subject="the service",
+                         q_yes={"Q4": "The service stores each link",
+                                "Q5": "The API returns 404 for an expired link"},
+                         terms=[{"name": "link", "kind": "entity", "role": "response", "quote": "link"}])
+    draft, _ = run([block("B-000001", TWO_LAYERS)], [
+        q_atom(("B-000001", [("requirement", [TWO_LAYERS])])), q_desc(split),
+        q_atom(("B-000001", [("requirement", [TWO_LAYERS])])), q_desc(split),
+    ])
+    assert draft.failed == {}
+    [node] = draft.nodes.values()
+    assert node["layer"] == "L2"                                   # the first yes (Q4)
+    [flag] = [a for a in node["ambiguity"] if a["kind"] == "mixed_layers"]
+    assert flag["quote"] == "The API returns 404 for an expired link"
+    assert node["status"] == "ambiguous"
+    validate("node", node)
+
+
+# -- AC-3.9 an inferred node is flagged and reviewed ---------------------------------------------
+
+def test_ac_3_9_an_inferred_node_is_ambiguous_and_has_a_review_item():
+    injected = q_desc_entry("B-000001#1", response="expire after 30 days, encrypted with AES-256")
+    draft, _ = run([block("B-000001", EXPIRY)], [
+        q_atom(("B-000001", [("requirement", [EXPIRY])])), q_desc(injected),
+    ])
+    [node] = draft.nodes.values()
+    assert node["flags"] == ["inferred"] and node["status"] == "ambiguous"
+    [item] = draft.reviews
+    assert (item["type"], item["subject"]) == ("inferred_node", node["id"])
+
+
+# -- F2 D12 labels and adopted ids ---------------------------------------------------------------
+
+def test_d12_a_single_node_block_adopts_its_id_and_a_split_one_labels_every_node():
+    single = "- **AC-1.4** — the link must expire."
+    double = "- **AC-1.5** — the link must expire. the link must be revocable."
+    link = [{"name": "link", "kind": "entity", "role": "subject", "quote": "link"}]
+    draft, _ = run([block("B-000001", single, kind="list_item"),
+                    block("B-000002", double, kind="list_item", line=4)], [
+        q_atom(("B-000001", [("requirement", ["the link must expire."])]),
+               ("B-000002", [("requirement", ["the link must expire."]),
+                             ("requirement", ["the link must be revocable."])])),
+        q_desc(*(q_desc_entry(i, subject="the link", q_yes={"Q3": q}, terms=link)
+                 for i, q in (("B-000001#1", "the link must expire."),
+                              ("B-000002#1", "the link must expire."),
+                              ("B-000002#2", "the link must be revocable.")))),
+    ])
+    by_label = sorted((n["id"], n["label"]) for n in draft.nodes.values())
+    assert by_label == [("AC-1.4", "AC-1.4"), ("N-000001", "AC-1.5"), ("N-000002", "AC-1.5")]
+
+
+# -- F2 D13 scope selector and verifies (AC-2.24, AC-2.25) --------------------------------------------
+
+def test_ac_2_24_the_scope_selector_is_built_from_scope_terms_and_scope_layers():
+    terms = [
+        {"term": "term:upload", "kind": "entity", "role": "scope"},
+        {"term": "term:api", "kind": "category", "role": "scope"},
+        {"term": "term:owner", "kind": "actor", "role": "subject"},
+    ]
+    assert scope_selector(terms, ["L3"]) == {
+        "families": ["term:upload"], "layers": ["L3"],
+        "terms": ["term:api", "term:upload"], "categories": ["term:api"],
+    }
+
+
+def test_ac_2_24_a_constraint_scoped_to_one_family_joins_it():
+    text = "Every upload request must be logged."
+    tags = [{"name": "request", "kind": "event", "role": "response", "quote": "request"},
+            {"name": "upload", "kind": "entity", "role": "scope", "quote": "upload"}]
+    draft, _ = run([block("B-000001", text)], [
+        q_atom(("B-000001", [("constraint", [text])])),
+        q_desc(q_desc_entry("B-000001#1", subject="every request", response="be logged",
+                            q_yes={"Q1": "Every upload request must be logged"}, terms=tags,
+                            scope_layers=["L3"])),
+    ])
+    [node] = draft.nodes.values()
+    assert node["layer"] == "C"
+    assert node["scope_selector"]["families"] == ["term:upload"]
+    assert (node["family"], node["family_rule"]) == ("term:upload", "constraint")
+
+
+def node_stub(node_id, label=None, family=None, layer="L1", text=""):
+    return {"id": node_id, "label": label, "family": family, "layer": layer, "text": text,
+            "source": {"spans": [[0, 1]]}, "verifies": None}
+
+
+def test_ac_2_25_a_cited_label_resolves_to_every_node_carrying_it():
+    nodes = {
+        "N-000001": node_stub("N-000001", "AC-1.4", "term:table"),
+        "N-000002": node_stub("N-000002", "AC-1.4", "term:table"),
+        "N-000003": node_stub("N-000003", layer="V", text="The fixture test checks AC-1.4."),
+        "N-000004": node_stub("N-000004", layer="V", text="It is tested."),
+    }
+    verifies, links = resolve_verifies(nodes, {"N-000003": None, "N-000004": None})
+    assert verifies == {"N-000003": ["N-000001", "N-000002"], "N-000004": []}
+    assert [(l["from"], l["type"], l["to"], l["provenance"]) for l in links] == [
+        ("N-000003", "verifies", "N-000001", "code"), ("N-000003", "verifies", "N-000002", "code")]
+
+
+def test_ac_2_25_a_verification_joins_the_family_of_what_it_verifies():
+    target = "- **AC-1.4** — the table must carry its header."
+    check = "The fixture test checks AC-1.4."
+    table = [{"name": "table", "kind": "entity", "role": "subject", "quote": "table"}]
+    draft, _ = run([block("B-000001", target, kind="list_item"), block("B-000002", check, line=9)], [
+        q_atom(("B-000001", [("requirement", ["the table must carry its header."])]),
+               ("B-000002", [("verification", [check])])),
+        q_desc(q_desc_entry("B-000001#1", subject="the table", q_yes={"Q6": "the table must carry its header."},
+                            terms=table),
+               q_desc_entry("B-000002#1", subject="the fixture test", response="checks AC-1.4",
+                            q_yes={}, terms=[], modality=None, verifies_text="AC-1.4")),
+    ])
+    verification = next(n for n in draft.nodes.values() if n["layer"] == "V")
+    assert verification["verifies"] == ["AC-1.4"]
+    assert (verification["family"], verification["family_rule"]) == ("term:table", "verification")
+    validate("node", verification)
+
+
+# -- AC-3.5 the call cap keeps completed chunks ------------------------------------------------------
+
+def test_ac_3_5_the_call_cap_keeps_finished_blocks_and_leaves_the_rest_pending():
+    other = "A share link must be revocable."
+    draft, _ = run(
+        [block("B-000001", EXPIRY), block("B-000002", other, line=5)],
+        [q_atom(("B-000001", [("requirement", [EXPIRY])])), q_desc(q_desc_entry("B-000001#1"))],
+        budget=CallBudget(max_calls=2), block_batch=1,
+    )
+    assert draft.stopped == "call_cap"
+    assert list(draft.completed) == ["B-000001"]
+    assert "B-000002" not in draft.failed
+    assert len(draft.nodes) == 1
+
+
+# -- layer hints ------------------------------------------------------------------------------------------
+
+def test_a_profile_hint_matching_the_heading_is_recorded_not_obeyed():
+    draft, _ = run([block("B-000001", EXPIRY, heading=("Data model",))], [
+        q_atom(("B-000001", [("requirement", [EXPIRY])])), q_desc(q_desc_entry("B-000001#1")),
+    ], layer_hints={"L4": {"display": None, "hints": ["## Data model"]}})
+    [node] = draft.nodes.values()
+    assert node["layer_hint"] == "L4"
+    assert node["layer"] == "L1"
+
+
+# -- term hygiene (F3 D19): families are terms, so terms must name things -----------------
+
+from sdd_compiler.atomize.terms import fold_name, is_term_name  # noqa: E402
+
+
+@pytest.mark.parametrize("name", ["AC-1.9", "D9", "F6", "P-6", "rel01 S21", "120 s timeout",
+                                  "include_code_blocks: false", "they return only ok and reason now"])
+def test_ids_values_and_clauses_are_not_terms(name):
+    assert not is_term_name(name)
+
+
+@pytest.mark.parametrize("name", ["share link", "block", "blocks.jsonl", "profile", "Claude Code"])
+def test_names_of_things_are_terms(name):
+    assert is_term_name(name)
+
+
+@pytest.mark.parametrize(("name", "folded"), [
+    ("blocks", "block"), ("Share Links", "share link"), ("status", "status"),
+    ("process", "process"), ("analysis", "analysis"), ("entries", "entry"), ("runs", "run"),
+])
+def test_names_fold_to_the_singular(name, folded):
+    assert fold_name(name) == folded
+
+
+def test_a_plural_resolves_to_the_singular_term_without_asking():
+    text = "Blocks must keep their ids."
+    tags = [{"name": "blocks", "kind": "data", "role": "subject", "quote": "Blocks"},
+            {"name": "AC-1.9", "kind": "external_reference", "role": "scope", "quote": "Blocks"}]
+    registry = {"term:block": {"id": "term:block", "canonical": "block", "aliases": [],
+                               "kind": "data", "defined_by": None, "status": "proposed"}}
+    draft, backend = run([block("B-000001", text)], [
+        q_atom(("B-000001", [("requirement", [text])])),
+        q_desc(q_desc_entry("B-000001#1", subject="blocks", response="keep their ids",
+                            q_yes={"Q6": text}, terms=tags)),
+    ], registry=registry)
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc"]
+    [node] = draft.nodes.values()
+    assert [t["term"] for t in node["terms"]] == ["term:block"]     # the id tag is dropped
+    assert draft.terms == {}
+
+
+def test_a_merge_into_a_term_merged_in_the_same_batch_follows_the_chain():
+    """Live M2 gate, run 2: B was judged the same as A after A had merged away — KeyError."""
+    from sdd_compiler.atomize.terms import resolve_terms
+    tags = [{"name": "link token", "kind": "entity"}, {"name": "token link", "kind": "entity"}]
+    backend = FakeBackend([{"terms": [
+        {"term_key": "term:link_token", "verdict": "same", "same_as": "term:share_link", "reason": "r"},
+        {"term_key": "term:token_link", "verdict": "same", "same_as": "term:link_token", "reason": "r"},
+    ]}])
+    result = resolve_terms(tags, REGISTRY, backend)
+    assert result.by_tag == {"link token": "term:share_link", "token link": "term:share_link"}
+    assert result.changed_terms["term:share_link"]["aliases"] == ["link token", "shared link", "token link"]
+    assert result.new_terms == {}

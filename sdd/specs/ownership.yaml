@@ -28,10 +28,13 @@ map:
   - globs:
       - "src/sdd_compiler/atomize/**"
       - "src/sdd_compiler/llm/**"
+      - "src/sdd_compiler/pipeline.py"
     spec: sdd/specs/F3_atomizer/spec.md
     why: >
       F3 — model backends (child environment, .env confinement), questions, guards, quantities,
-      alignment, judgment lock, review queue.
+      alignment, judgment lock, the attention list. ★ pipeline.py is the `sddc compile` orchestration
+      (ingest → atomize → check → report): F3 defines the command, its phases and its exit codes
+      (rel01 D29 / build-plan B1).
   - globs:
       - "src/sdd_compiler/store/**"
       - "src/sdd_compiler/query/**"

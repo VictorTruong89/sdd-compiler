@@ -66,7 +66,7 @@ always reviewable, diffable and versioned.
   |---|---|
   | Heading | Not a block; updates `heading_path` |
   | Paragraph | Block, kind `paragraph` |
-  | List item | Block per item, kind `list_item`; nested items are separate blocks with `parent_block` |
+  | List item | Block per item, kind `list_item`. A sub-item is its own block with `parent_relation: nested`; a further paragraph or fence inside the same item keeps its own kind and gets `parent_relation: continuation` (D11) |
   | Table | Block per **body row**, kind `table_row`, carrying the header row as `table_header` |
   | Content inside a blockquote | Keeps its own kind, with `in_blockquote: true` |
   | Fenced code | Block, kind `code`; pending only if `profile.include_code_blocks` is true |
@@ -76,11 +76,17 @@ always reviewable, diffable and versioned.
   trimming trailing whitespace per line, and collapsing runs of blank lines. Case, punctuation and
   inner whitespace are preserved.
 - **Identity on re-ingest of a file** (P-6), applied in order:
-  1. same `text_hash` and same `heading_path` as an unmatched old block → keep id, `unchanged`;
+  1. same `text_hash` and same `heading_path` as an unmatched old live block → keep id, `unchanged`;
   2. same `heading_path` and same ordinal position among blocks under that heading as an unmatched old
-     block → keep id, `changed`;
-  3. remaining new blocks → new id, `new`; remaining old blocks → `removed` (kept, never deleted).
-- **Pending set:** blocks with status `new` or `changed`, excluding `code` blocks unless opted in.
+     live block → keep id, `changed`;
+  3. remaining new blocks → new id, `new`; remaining old blocks → `removed`: the record is kept with
+     `removed_run` set, never deleted.
+  `new · changed · unchanged · removed` is the **run's delta**. It is reported (CT-1.3 counts, the run
+  output) and **not stored on the block** (D13): a stored per-run flag flips back on the next run.
+- **Pending set (D13), derived, never stored:** a block is pending when it is live (`removed_run` is
+  null), it is not a `code` block unless `include_code_blocks` is true, and its `text_hash` differs from
+  its `atomized_hash` (including when `atomized_hash` is null). A block therefore stays pending until
+  the atomizer has actually processed its current text, however many runs that takes.
 - **Runs are atomic:**
   - every store file is written to a temporary file and renamed only after the whole run succeeds;
   - a lock file in `.sdd/` serializes runs, and a second run waits up to **15 seconds**, then fails
@@ -105,18 +111,26 @@ always reviewable, diffable and versioned.
   "text": "exact source text",
   "text_hash": "sha256:<hex>",
   "parent_block": "B-000120 | null",
+  "parent_relation": "nested | continuation | null",
   "table_header": "string | null",
   "in_blockquote": false,
-  "status": "new | changed | unchanged | removed",
   "first_seen_run": "R-0007",
-  "last_changed_run": "R-0009"
+  "last_changed_run": "R-0009",
+  "removed_run": "R-0011 | null",
+  "atomized_hash": "sha256:<hex> | null"
 }
 ```
 Rules:
 - `id` has the form `B-` plus 6 or more zero-padded digits, is assigned once, and is never reused.
 - `lines` are 1-based and inclusive.
 - `text` is the verbatim source slice of those lines.
-- `parent_block` is non-null only for nested list items.
+- `parent_block` is non-null when a block belongs to a list item, and `parent_relation` says how
+  (F1 D11): `nested` for a sub-item, `continuation` for a further paragraph or code fence inside the
+  same item. Both are null otherwise, and they are always null or non-null together.
+- `last_changed_run` is the run that first saw the current text. `removed_run` is set once, by the run
+  that no longer found the block, and never cleared (D12).
+- `atomized_hash` is written **only by the atomizer** (F3 §4.5): the `text_hash` it last processed to
+  completion. Ingest copies it unchanged. It is how pending is derived (D13).
 
 **CT-1.2 — Source record** (`.sdd/sources.jsonl`, sorted by `path`):
 ```json
@@ -145,6 +159,7 @@ atomizer: { backend: claude-code, model: haiku }   # read by F3, not by F1
   "pending": [ {"id": "B-000123", "status": "changed", "source": "…", "lines": [42, 44],
                 "heading_path": ["…"], "kind": "list_item", "text": "…"} ] }
 ```
+`status` here is derived (D13): `new` when `atomized_hash` is null, `changed` when it is an older hash.
 
 **CT-1.6 — CLI surface**
 - `sddc [--root DIR] [--json] <command>`
@@ -178,6 +193,10 @@ reserved for "conflict" (F6).
 - **AC-1.6** *(code blocks)* — **Given** a fenced code block and `include_code_blocks: false`, **when**
   ingested, **then** it is stored with kind `code` and is not in the pending set; **and with**
   `include_code_blocks: true` it is pending. → *unit.*
+- **AC-1.30** *(a block belongs to its list item)* — **Given** a list item holding a second paragraph
+  and a nested sub-item, **when** segmented, **then** the second paragraph is a `paragraph` block with
+  `parent_block` naming the item and `parent_relation: continuation`, the sub-item is a `list_item`
+  block with `parent_relation: nested`, and a top-level block has both fields null. → *unit.*
 - **AC-1.7** *(skipped constructs)* — **Given** front matter, an HTML comment and a horizontal rule,
   **when** ingested, **then** none of them produces a block. → *unit.*
 
@@ -186,12 +205,16 @@ reserved for "conflict" (F6).
   completes, **then** it reports 0 new, 0 changed, 0 removed, and `blocks.jsonl` and `sources.jsonl`
   are byte-identical to the first run's. → *property.*
 - **AC-1.9** *(insertion keeps ids)* — **Given** a paragraph inserted above existing blocks, **when**
-  re-ingested, **then** every pre-existing block keeps its id with status `unchanged`, and only the
-  inserted block is `new`. → *unit.*
+  re-ingested, **then** every pre-existing block keeps its id and the run classifies it `unchanged`,
+  and only the inserted block is `new`. → *unit.*
 - **AC-1.10** *(edit keeps id)* — **Given** one word changed in a list item, **when** re-ingested,
-  **then** that item keeps its id with status `changed`, and no other block changes status. → *unit.*
+  **then** that item keeps its id and the run classifies it `changed`, and no other block changes. → *unit.*
 - **AC-1.11** *(removal is recorded)* — **Given** a paragraph deleted from a file, **when** re-ingested,
-  **then** its record remains with status `removed`, and its id is never reused. → *unit.*
+  **then** its record remains with `removed_run` set, and its id is never reused. → *unit.*
+- **AC-1.31** *(pending until processed; D13)* — **Given** three blocks ingested and none atomized,
+  **when** the unchanged file is ingested again, **then** all three are still pending (`new`); **given**
+  the atomizer then records `atomized_hash` for one of them, **then** two are pending; **given** that
+  block's text is then edited, **then** it is pending again as `changed`. → *unit.*
 - **AC-1.12** *(normalization boundary)* — **Given** a block whose only change is trailing whitespace or
   CRLF line endings, **when** re-ingested, **then** it is `unchanged`; **given** a change of case
   ("must" → "MUST"), **then** it is `changed`. → *unit.*
@@ -225,6 +248,31 @@ reserved for "conflict" (F6).
   store directory stays `.sdd/`. *Rejected:* `sdd` — may clash with other tools on PATH;
   `spec-compiler` — long to type.
 - **D9 — Lock wait 15 seconds** (resolves Q4).
+- **D13 — The block record stores facts; the run's delta and the pending set are derived** (closes
+  Q6, option c, 2026-09-18). `status` is removed from CT-1.1; `removed_run` and `atomized_hash` are
+  added. *Why:* `status` meant "what the last ingest saw", but pending needs "has the atomizer processed
+  this text". They diverge whenever a run ends early: after a call-cap exit (F3 AC-3.5), a block that
+  failed its checks twice, or a crash, the next ingest would mark the unprocessed blocks `unchanged` and
+  they would **silently never be atomized**. Deriving pending from `atomized_hash` removes that failure
+  and makes AC-1.8 hold exactly as written. *Rejected:* (a) rewording AC-1.8 to a fixed point — leaves
+  the silent drop in place for T10 to discover; (b) dropping `status` without saying how pending is
+  derived. *Cost:* one CT-1.1 change, one F3 sentence, about six tests.
+- **D12 — ⚑ A `removed` record never matches again** (found while building T4). Re-adding deleted prose
+  produces a **new** id. *Why:* "this id existed and was removed" should stay a fact; resurrecting an id
+  would make the history ambiguous and would silently re-attach any later judgments made about the old
+  block. *Cost:* re-adding a paragraph that was deleted by mistake costs its id, which is cheap —
+  nothing downstream is lost, because a removed block has no nodes.
+- **D11 — A block records which list item it belongs to, and how** (closes Q5). `parent_relation` is
+  `nested` for a sub-item and `continuation` for a further paragraph or fence inside one item.
+  *Why:* a continuation paragraph genuinely belongs to its item, and losing that is a **silent** loss —
+  atomized alone, "Model calls go through one interface with two backends" reads as a system-wide
+  requirement and can be placed in the wrong family with nothing marking it as suspect. Measured on this
+  repository: 3 of 649 list items are affected, so the cost of the fix is small and so is the blast
+  radius of getting it wrong. *Rejected:* leaving it (a rare but silent mis-placement); merging an item
+  and its continuations into one block — the item's lines are not contiguous when a sub-list sits
+  between them, which would break the verbatim-slice property F3's span guard depends on.
+  ⚠ Whether the atomizer *uses* the link as context is a separate decision, deliberately deferred to F3
+  and measurable (G4 M4).
 - **D10 — rel01 is batch-only** (rel01 D26). Withdrawn from this spec and **deferred, not deleted**:
   `sddc add` with `--to`, `--under`, `--text`, stdin and interactive input (old D2, D6, D7 and
   AC-1.13…AC-1.16, AC-1.27…AC-1.29); the `sddc hook post-edit` adapter (old D3 and AC-1.17…AC-1.19);
@@ -234,12 +282,25 @@ reserved for "conflict" (F6).
 
 ## 8. Open questions
 
-*None. Q1–Q4 were resolved 2026-09-15 as D6–D9; D26 withdrew the features Q1–Q3 concerned (D10).*
+*Q6 was closed 2026-09-18 as D13. Q5 was closed 2026-09-18 as D11.*
+
+<!-- Q5, for the record — A continuation paragraph inside a list item (a loose list: one item holding two paragraphs)
+  becomes a plain `paragraph` with no parent, because CT-1.1 allows `parent_block` only for nested list
+  items. Found while building T3; pinned by a test. Options: leave it (the second paragraph is atomized
+  on its own, which may be right); or widen `parent_block` to mean "the block this one continues".
+  ⚠ Nothing blocks on it, but the first real spec set with loose lists will show whether atoms lose
+  their context this way. -->
+
+*Q1–Q4 were resolved 2026-09-15 as D6–D9; D26 withdrew the features Q1–Q3 concerned (D10).*
 
 ## 9. Traceability
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-1.1 … AC-1.7 | *(to be written)* | `src/sdd_compiler/ingest/segment.py` |
-| AC-1.8 … AC-1.12 | *(to be written)* | `src/sdd_compiler/ingest/identity.py` |
-| AC-1.21 … AC-1.26 | *(to be written)* | `src/sdd_compiler/ingest/pipeline.py` · `src/sdd_compiler/store/` · `src/sdd_compiler/profile.py` |
+| CT-1.4 profile · CT-1.6 CLI surface | `tests/test_profile.py::test_ct_1_4_*` (4) · `tests/test_cli_skeleton.py::test_ct_1_6_*` (4) | `src/sdd_compiler/profile.py` · `cli.py` · `errors.py` |
+| AC-1.1 … AC-1.7, AC-1.30 | `tests/test_segment.py` (16) | `src/sdd_compiler/ingest/segment.py` |
+| AC-1.8 … AC-1.12 | `tests/test_identity.py` (14) | `src/sdd_compiler/ingest/identity.py` |
+| AC-1.26 *(partial: the lock itself)* | `tests/test_store_lock.py::test_ac_1_26_a_second_holder_waits_then_exits_4` (+3) | `src/sdd_compiler/store/lock.py` |
+| AC-1.24 *(partial: raised by `load_profile`)* | `tests/test_profile.py::test_ac_1_24_missing_store_is_a_store_error` | `src/sdd_compiler/profile.py` |
+| AC-1.8, AC-1.31, AC-1.21 … AC-1.26 | `tests/test_ingest_pipeline.py` (14) | `src/sdd_compiler/ingest/pipeline.py` · `commands.py` · `cli.py` |
+| ~~AC-1.21 … AC-1.26~~ *(superseded row)* | `src/sdd_compiler/ingest/pipeline.py` · `src/sdd_compiler/store/` · `src/sdd_compiler/profile.py` |

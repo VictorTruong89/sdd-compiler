@@ -1,6 +1,6 @@
 # F6 — Conflict detection: judge the pairs, record the conflicts, report them all
 
-> **Spec-ID:** F6 · **Status:** 🟡 draft · **Drafted:** 2026-09-17
+> **Spec-ID:** F6 · **Status:** 🟢 approved · **Drafted:** 2026-09-17 · **Approved:** 2026-09-18 (rel01 D28)
 > ⛔ **Coding gated (rel01 D20).**
 > **Source:** rel01 sub-goal G3.2 · approved proposals P-1 (Q-PAIR, judgment lock) and §5 of
 > [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
@@ -246,14 +246,20 @@ conflicts:
 
 ## 8. Open questions
 
-- **Q1 — Does the pair question need the neighbours' text** (for example the constraint a node refines)
-  to judge well, or do the two nodes suffice? Starting answer: the two nodes plus their layer and
-  family labels. Revisit if verdicts look uninformed.
-- **Q2 — Should `duplicates` and `subsumes` be reported as conflicts at all**, or as a separate
-  "hygiene" list, so a report of 40 duplications does not bury 3 contradictions? Starting answer: one
-  list, sorted by kind with contradictions first.
-- **Q3 — Confidence calibration:** is `high|low` from the model worth anything? Measure in G4 against
-  human labels before trusting it.
+*None. Q1–Q3 were resolved 2026-09-18 as D8–D10 (rel01 D28).*
+
+- **D8 — The pair question carries the two nodes plus their layer and family labels, and nothing else**
+  (resolves Q1). *Rejected for rel01:* including refinement ancestors or the constraints covering each
+  node — it grows every prompt for a benefit nobody has measured. If verdicts look uninformed on a real
+  corpus, this is the first thing to change, and the judgment lock makes the before/after comparable.
+- **D9 — One conflict list, sorted with contradictions first**, then duplications, then subsumptions
+  (resolves Q2). *Rejected:* a separate hygiene list — it splits the reader's attention and invites
+  ignoring one of the two lists. Sorting solves the "40 duplicates bury 3 contradictions" problem
+  without hiding anything. The counts per kind are in the report header, so a large duplication count is
+  visible at a glance.
+- **D10 — `confidence` is recorded and flagged, never acted on** (resolves Q3). rel01 stores it and
+  raises ambiguity `low_confidence_verdict`; nothing filters or re-ranks by it until G4 has compared it
+  with human labels.
 
 ## 9. Traceability
 

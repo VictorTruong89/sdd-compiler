@@ -1,6 +1,6 @@
 # F5 — Related-node retrieval: which pairs are worth judging
 
-> **Spec-ID:** F5 · **Status:** 🟡 draft · **Drafted:** 2026-09-17
+> **Spec-ID:** F5 · **Status:** 🟢 approved · **Drafted:** 2026-09-17 · **Approved:** 2026-09-18 (rel01 D28)
 > ⛔ **Coding gated (rel01 D20).**
 > **Source:** rel01 sub-goal G3.1 · approved proposal P-10 and the candidate rule in
 > [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
@@ -190,18 +190,23 @@ retrieval:
 - **D3 — ⚑ An exhaustive mode for measurement only.** *Why:* the design's biggest risk is a missed
   pair, and this is the only honest way to measure it.
 - **D4 — ⚑ `pair_key` includes both text hashes**, so an edit re-opens exactly the pairs it touches.
+- **D6 — Starting values adopted** (resolves Q1): `max_pairs_per_node: 10`, `min_score: 1.0`,
+  `min_shared_keywords: 2`, and the §4.3 weights. ⚠ They are **starting values, not findings**: the run
+  counts (CT-5.3) and the exhaustive mode exist so G4 can replace them with measured ones. Changing a
+  weight or a threshold is a profile change, never a code change.
+- **D7 — `(global)` constraints are proposed only against nodes sharing a term or a keyword with them**
+  (resolves Q2). *Rejected:* proposing every node — a single global constraint would otherwise flood
+  every candidate set and consume the run budget.
+- **D8 — One fixed, versioned stop-word list in code** for `keywords` (resolves Q3, and F2 Q2 for the
+  same field). *Rejected:* a profile setting — two projects with different lists could not be compared,
+  and the list is not the kind of thing a user should have to tune.
 - **D5 — Deferred: `checked_against` per node** (conflict-list item 5.4). A batch run checks the whole
   graph, so the cheaper `last_checked_run` plus `stale_reasons` is enough for rel01. It returns with
   incremental checking.
 
 ## 8. Open questions
 
-- **Q1 — Defaults** (`max_pairs_per_node` 10, `min_score` 1.0, `min_shared_keywords` 2) and the weights
-  in §4.3: set from the first measurement, not by taste.
-- **Q2 — Should S3 also propose the reverse direction for `(global)` constraints?** Every node is in
-  their scope, which would flood the candidate set. Current answer: `(global)` constraints are proposed
-  only against nodes sharing a term or keyword with them.
-- **Q3 — Keyword stop-word list** is shared with F2 Q2.
+*None. Q1–Q3 were resolved 2026-09-18 as D6–D8 (rel01 D28).*
 
 ## 9. Traceability
 

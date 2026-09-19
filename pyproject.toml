@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sdd-compiler"
+version = "0.1.0.dev0"
+description = "Compile Markdown specifications into a checked spec graph"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0", "markdown-it-py>=2.2"]
+
+[project.scripts]
+sddc = "sdd_compiler.cli:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

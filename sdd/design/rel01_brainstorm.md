@@ -50,27 +50,27 @@ becomes one spec with its own acceptance criteria:
 **Grouping moves from G3 to G2.1.** Family assignment is part of *placement*: it is decided when a
 node is formed, from node properties, and every later algorithm depends on it being settled.
 
-## Progress board — updated 2026-09-17
+## Progress board — updated 2026-09-18
 
 | Goal | Artefact | State |
 |---|---|---|
-| G1 ingest | [`F1_ingest`](../specs/F1_ingest/spec.md) 18 ACs | 🟢 approved · revised for D26 |
-| G2.1 node & layer model | [`F2_node_model`](../specs/F2_node_model/spec.md) 23 ACs | 🟢 approved |
-| G2.2 atomizer | [`F3_atomizer`](../specs/F3_atomizer/spec.md) 24 ACs | 🟢 approved · revised for D26 |
+| G1 ingest | [`F1_ingest`](../specs/F1_ingest/spec.md) 20 ACs | 🟢 approved · revised for D26, D13 (F1) |
+| G2.1 node & layer model | [`F2_node_model`](../specs/F2_node_model/spec.md) 25 ACs | 🟢 approved · open: Q1 |
+| G2.2 atomizer | [`F3_atomizer`](../specs/F3_atomizer/spec.md) 24 ACs | 🟢 approved · revised for D26 · open: Q1, Q3 |
 | G2.3 graph store & views | [`F4_graph_store`](../specs/F4_graph_store/spec.md) 18 ACs | 🟢 approved |
-| G3.1 retrieval | [`F5_retrieval`](../specs/F5_retrieval/spec.md) 16 ACs | 🟡 draft — awaiting owner review |
-| G3.2 conflicts & report | [`F6_conflicts`](../specs/F6_conflicts/spec.md) 19 ACs | 🟡 draft — awaiting owner review |
+| G3.1 retrieval | [`F5_retrieval`](../specs/F5_retrieval/spec.md) 16 ACs | 🟢 approved (D28) |
+| G3.2 conflicts & report | [`F6_conflicts`](../specs/F6_conflicts/spec.md) 19 ACs | 🟢 approved (D28) |
 | G3.3 traversal | [`rel01_design/G3-3-traversal.md`](rel01_design/G3-3-traversal.md) | design only · spec id `F7` reserved |
-| G4 measurement | [`rel01_design/G4-measurement.md`](rel01_design/G4-measurement.md) | ⬜ outline not written (D22) |
-| — | [`rel01_design/build-plan.md`](rel01_design/build-plan.md) | ⬜ not written (D20 gate) |
-| — | `src/`, `tests/` | ⬜ **no code yet** (gated) |
+| G4 measurement | [`rel01_design/G4-measurement.md`](rel01_design/G4-measurement.md) | ✅ outline approved (D29) |
+| — | [`rel01_design/build-plan.md`](rel01_design/build-plan.md) | ✅ approved (D29); B1–B3 decided |
+| — | `src/`, `tests/` | ✅ M1 complete · 🔨 **M2** — T6 … T12 done, 463 tests · **M2 gate measured and reviewed** (owner decisions R1 … R11 pending) · next: M3, M4 |
 
-**Totals:** 6 specs · **118 acceptance criteria** · 0 tests · 0 lines of product code.
-**Decisions:** rel01 D1–D27. **Question register:** 11 entries, all answered or closed.
+**Totals:** 6 specs · **121 acceptance criteria** · 463 tests · M1 built, M2 built and gated; remaining work: build-plan §9.
+**Decisions:** rel01 D1–D31. **Question register:** 11 entries, all answered or closed.
 **Vision:** adopted 2026-09-17. **Constitution:** §1 and §6 written; §2–§5 still `TODO`.
 
-⚠ **Schedule.** Target close is 2026-09-30, thirteen days away, and nothing is built. The gate (D20) has
-two items left: the G4 outline and the build plan. See "What ships by 30 September" below.
+⚠ **Schedule.** Target close is 2026-09-30. The D20 gate is satisfied (D29); M1 is built; M2's tasks are built. Next: the I-43 fix, a
+sampled M2 gate, then M3 and M4 (build-plan §9; when to compile: S26). See "What ships by 30 September" below.
 
 ### The rel01 command surface, as currently specified
 
@@ -252,6 +252,311 @@ use in a later release; rel01 wires none of them.
 - **Next:** write F5 and F6 for the batch case, F7 as design-only, then the G4 outline and the build
   plan.
 
+### S13 — 2026-09-18 — gate satisfied (D29); M1 T1 built
+
+- D29: G4 outline and build plan approved; B1 `pipeline.py` under F3, B2 five commands, B3 test tiers
+  adopted into constitution §4 (plus §6: Python ≥ 3.11, `src/` layout, setuptools, pytest).
+- **T1 built, test-first:** `pyproject.toml`, `errors.py` (the seven exit codes), `profile.py`
+  (CT-1.4 with strict validation), `cli.py` (CT-1.6 skeleton, five commands registered), `__main__.py`.
+  **15 tests green.**
+- ⚠ **Spec-versus-library conflict found and resolved in favour of the spec:** argparse exits `2` on a
+  usage error, but CT-1.6 reserves `2` for input errors and `1` for usage. The parser is subclassed so
+  a usage error exits `1`.
+- Deliberate: a registered but unimplemented command prints what it is and exits `1`, rather than
+  pretending to work.
+- **Next:** T2 store primitives, then T3 segmentation.
+
+### S27 — 2026-09-18 — I-42, I-43 fixed; the M2 gate measured
+
+- **F3 D23** (owner): a split refused twice is formed with the first yes's layer, flagged
+  `mixed_layers` (F2 D15). **F3 D24** (owner): a backend failure mid-run keeps finished work.
+- **M2 gate, run on a stratified sample** (63 blocks, 9 per shape, two independent runs, $3.21 in
+  total): results, findings G-1 … G-14 and recommendations R1 … R11 in
+  [`rel01_design/M2-gate.md`](rel01_design/M2-gate.md) — Part A a plain-language lecture, Part B the record,
+  Part C a verdict and reason for every sampled block (run 1: 23 ✅ · 25 ⚠️ · 15 ❌; run 2: 12 ✅ · 27 ⚠️ ·
+  24 ❌), adding findings G-9 … G-14 and recommendations R7 … R11. Headline: the pipeline is robust
+  (all checks clean, the usage limit hit and was survived); **families do not group** (G-1), **Q-TERM
+  merges hyponyms** (G-3), **fresh runs disagree** (G-6). A crash found and fixed (I-45). **463 tests.**
+
+### S26 — 2026-09-18 — Progress review; when to compile
+
+- **Remaining code** (build-plan §9): I-43 fix; M3 (T13, T14); M4 (T15–T19), which is the release.
+  Seven tasks, eight working days to 2026-09-30.
+- **Owner question: compile once all code is finished?** Answer recorded: **no, and not a full one
+  now.**
+  1. **Now — no full compile.** A full compile (≈ 733 blocks, ≈ 1,000+ headless calls, extrapolated
+     ≈ $19 and ≈ 3 h) runs on the owner's Claude Code subscription, whose session was at 86 %; under
+     I-43 a usage-limit stop mid-run would throw the whole run away.
+  2. **After I-43 (and ideally I-42): one small, stratified M2-gate run** — ≈ 60 blocks across every
+     block shape (header/scope, criteria, decisions, tables, bold-title items), repeated twice for
+     spread. Families (I-28), `C` over-assignment, split failures (I-30, I-42) and cost decide how F5
+     retrieval and the M3 views should lean. Found after M4 is coded, they would mean rework.
+  3. **One full compile at the M4 gate**, which the build plan already requires (compile the fixture
+     and this repository, judge every reported conflict). The judgment lock replays everything the
+     gate run already paid for.
+  Consider the `anthropic-api` backend (rel01 D30, "later") before that full run: no 22k-token
+  harness prompt per call, and it does not draw on the subscription's limits.
+
+### S25 — 2026-09-18 — M2 T12: judgment lock, replay, identity across edits — M2's tasks complete
+
+- **T12 built:** `atomize/lock.py` (per-item judgment lock, replay through the guards, `--no-replay`),
+  `atomize/align.py` (unchanged / edited / split / merged / new / removed), wired into `compile`: an
+  edited node keeps its id and its judged neighbours go stale; code links are regenerated; nodes cite
+  the judgments that formed them. **461 tests green.** ⚑ F3 D21, D22.
+- **Live, on a copy of `vision.md` (31 blocks):**
+
+| Run | Calls | Cost | Replayed | Result |
+|---|---|---|---|---|
+| A1 first compile | 37 | $0.76 | 8 (within the run) | 25 completed, 6 failed, 42 nodes |
+| A2 same sources | 10 | $0.12 | 28 | retried the 6 failed; 1 completed |
+| B rebuild: A's sources + lock, fresh store | 11 | $0.19 | 127 | every block completed in A rebuilt with identical content; calls only for A's failed blocks (I-41) |
+| B + one-word edit | 7 | $0.08 | 23 | aligned — first as `unchanged` with stale text (bug I-40), fixed |
+| B + second edit | 9 | $0.11 | 22 | `edited`, id kept, text current; store checks clean |
+
+  ⚠ 4 blocks fail on every run, all "bold title + explanation" list items (I-42) — an M2-gate decision.
+- **M2's build tasks are complete (T6 … T12).** Next: the M2 gate.
+
+### S24 — 2026-09-18 — F3 D20 decided; M2 T11: the graph store, and `sddc compile` end to end
+
+- **F3 Q7 → D20** (owner, option b): a Q-TERM `same` merges at once as an alias, undoable by review.
+- **T11 built:** `store/graph.py` — family shards (`nodes/`, `edges/`), `terms.jsonl`,
+  `conflicts.jsonl`, the derived registry, `review.jsonl`, `graph.meta.json` with id counters, the F2
+  §4.9 deletion cascade, the eight consistency checks (`check_store`), one transaction; and
+  `pipeline.py` — `sddc compile` = ingest → atomize pending → delete, merge, write, in one
+  transaction under the lock. Items close themselves (F3 §4.9); calls and cost are reported.
+  `sddc ingest` shipped (B2 amended). **438 tests green.** ⚑ F2 D14, F4 D8, D9.
+- **Live smoke run** (`sddc init`, then `sddc compile` twice, on a copy of `vision.md`): run 1 — 31 blocks,
+  7 min 11 s, 26 atomized, 5 failed, 43 nodes; run 2 — re-tried exactly the 5 failed blocks (F1 D13 at
+  work), 4 completed, 10 more nodes. Final store: 53 nodes, 99 terms, 20 families, **all eight checks
+  clean**. Cost not recorded (I-37, now fixed).
+
+### S23 — 2026-09-18 — F2 D12, D13 decided; M2 T10: node forming
+
+- **F2 Q4 → D12** (`label` on every node of a labelled block) and **F2 Q3 → D13** (code fills
+  `scope_selector` and `verifies`; AC-2.24, AC-2.25); Q-PAIR relations deferred as **rel01 D31**.
+  Retrospective entry I-26: a contract field with readers but no producer.
+- **T10 built:** `atomize/pipeline.py` (chunks of 20, every model step per chunk, block all-or-nothing,
+  the split re-ask, call cap keeps finished chunks), `forming.py` (CT-2.1 records, scope selector,
+  `verifies` by citation, layer hints), `terms.py` (registry, Q-TERM only for similar names, term
+  hygiene). Backend: no stdin wait, readable 429s. ⚑ F3 D15 … D19. **F3 Q7 → D20** (owner, option b):
+  a Q-TERM `same` merges at once as an alias, undoable by review. **417 tests green.**
+- **Live, full pipeline on 32 mixed blocks** (10 F1 header/scope, 12 F1 criteria, 10 F3 decisions):
+
+| Run | Calls (atom / desc / term) | Cost | Time | Completed | Nodes | Terms (used once) | Family null | Status ambiguous |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 7 / 14 / 2 | $0.82 | 452 s | 30 of 32 | 49 | 142 (119) | 16 | 31 |
+| 2, term hygiene | *(summary lost, I-32)* | — | — | 25 of 32 | 49 | 91 (76) | 22 | 33 |
+
+  Every record passed its contract in both runs. *Extrapolation, to be measured:* ≈ $0.026 and ≈ 14 s
+  per block → this repository (733 blocks) ≈ $19 and ≈ 3 hours per full compile.
+  ⚠ **For the M2 gate:** families (I-28) are the main risk; then `ambiguous` at ≈ 2/3 of nodes
+  (pending_review, unresolved_term, unplaceable), permanent split failures (I-30), and cost.
+
+### S22 — 2026-09-18 — F3 D13, D14 decided; M2 T9: the F2 model
+
+- **F3 Q5 → D13** (G4 grounds against block and headings) and **F3 Q6 → D14** (a requirement without
+  modality is formed and flagged `missing_modality`, a new F2 ambiguity kind).
+- **T9 built** — `src/sdd_compiler/model/`: fixed layers and the profile's display names and hints
+  (AC-2.22), placement with the T3 split (AC-2.1 … 2.5, exhaustive over 128 answer patterns), the family
+  rule (AC-2.6 … 2.11), status and conflict fields (AC-2.12 … 2.16), record schemas with the rules a
+  schema cannot express (AC-2.14, 2.17, 2.18), ids, human-id adoption and keywords (AC-2.19 … 2.21).
+  **371 tests green.** Decisions ⚑ F2 D9 (family rules literally in order), D10 (which human ids are
+  adopted); open F2 Q3 (who fills `scope_selector` / `verifies`); Q4 closed as F2 D12 (`label` field).
+- ⚠ **Live, on 20 acceptance-criterion blocks of F1** (build-plan §8, I-21 … I-24):
+
+| Run | Q-ATOM calls / cost | Q-DESC calls / cost | Atoms | Q-ATOM fails | `split_required` | family fallback | AC ids kept |
+|---|---|---|---|---|---|---|---|
+| before the `*` fix | 19 / $0.389 | 2 / $0.064 | 8 | **14 of 20** | 0 of 8 | 1 of 8 | 1 of 18 |
+| after, run 1 | — | — | 45 | 0 | 11 | 19 | 3 of 18 |
+| after, run 2 | 2 / $0.044 | 11 / $0.307 | 35 | 0 | 5 | 9 | 5 of 18 |
+
+  (Run 1's call counts were cut from the captured output.) Layers in run 2: L1 21, C 5, L4 1, V 1.
+  ⚠ For the M2 gate: split rate on Given/When/Then criteria, stray `V` atoms from `→ *unit.*`, and the
+  family fallback rate all need a stratified sample and repeated runs before they mean anything.
+
+### S21 — 2026-09-18 — F1 D13 (derived pending), and M2 T8: Q-DESC, G4, G6, quantities
+
+- **F1 Q6 closed as F1 D13 (option c).** The block record stores facts (`removed_run`,
+  `atomized_hash`); the run's delta is reported, not stored; pending is derived. This fixes a silent
+  drop: blocks left unprocessed by a call-cap exit or a failure would have been marked `unchanged` by
+  the next ingest and never atomized. AC-1.31 added. M1 gate re-run: 733 blocks, run 2 byte-identical.
+- **F3 Q4 closed as F3 D9** (G2 up to layout).
+- **T8 built:** `quantities.py` (AC-3.13), `describe.py` (Q-DESC, G2/G4/G5/G6, AC-3.9 up to the
+  description, AC-3.11), `batch.py` (the shared batch-and-re-ask loop, now also used by Q-ATOM),
+  `atomizer.thinking`. **174 tests green.**
+- ⚠ **Live runs changed the design four times** (build-plan §8, I-13 … I-20): thinking off by default
+  (F3 D10), `vague_term` from G6 only (D11), the model told not to quote the section line, and G4's
+  source widened (F3 D13). Null modality is flagged, not failed (F3 D14).
+
+| Live run, same 20 blocks of `F1_ingest/spec.md` | Q-ATOM calls / cost | Q-DESC calls / cost | Atoms | Describe failures | `inferred` |
+|---|---|---|---|---|---|
+| thinking on, Q-DESC batch ≈ 25, then 8 | — | timed out at 120 s | — | — | — |
+| thinking off, batch 8, G4 narrow | 4 / $0.106 | 14 / $0.479 | 23 | 6 | 8 of 17 (all context) |
+| + "never quote the section", G4 wide | 1 / $0.021 | 9 / $0.259 | 23 | 3 (null modality) | 1 of 20 (false: backticks) |
+| + `vague_term` G6-only, inline marks ignored | 1 / $0.023 | 10 / $0.347 | 21 | 1 (correct G2 rejection) | 1 of 20 (**real**: "post-rel01") |
+
+  ⚠ One run per row, and runs vary (I-20). *Extrapolation, to be measured:* this repository's 733
+  blocks ≈ 800 atoms → Q-ATOM ≈ $1, **Q-DESC ≈ $12–14 and ≈ 40 minutes**. Q-DESC now dominates cost,
+  which strengthens the case for the `anthropic-api` backend (rel01 D30, "later"): no harness prompt
+  per call.
+  ⚠ Also for the M2 gate: the first `yes` was Q1 (→ `C`) for 9 of 20 atoms. `C` may be over-assigned;
+  judge by hand at the gate.
+
+### S20 — 2026-09-18 — M2 T7: batched Q-ATOM and guards G2, G3, G5
+
+- `atomize/qatom.py` and `atomize/guards.py` built test-first against F3 AC-3.6 … AC-3.8, AC-3.10:
+  batched question, G5 schema check on the whole answer, G2 anchoring and G3 coverage per block,
+  one single-block re-ask naming the failed check. **119 tests green.**
+- ⚠ **The first live batch exposed a false alarm in G2.** 20 blocks of `F1_ingest/spec.md`: 7 calls,
+  **$0.0147 per block — dearer than one call per block**, 5 blocks failed. Every rejected quote was
+  correct prose: the source wraps lines (`\n`) and, in blockquotes, repeats `> ` on each line, where
+  the model writes a space. The error message cut quotes at 60 characters, which hid the cause; it now
+  shows 160.
+- **Fix, approved as F3 D9 (Q4 option a):** G2 matches *up to layout* — whitespace runs and continuation `>`
+  markers — and still maps to true source offsets. Changed words, case, punctuation and paraphrase
+  are still rejected (pinned by tests).
+
+| Live run, same 20 blocks | Calls | Cost per block | Atoms | Failed |
+|---|---|---|---|---|
+| strict G2 | 7 | $0.0147 | 14 | 5 |
+| whitespace-tolerant | 2 | $0.0052 | 19 | 1 (blockquote) |
+| layout-tolerant | 2 | $0.0071 | 23 | 0 |
+
+  ⚠ One run each. Model output varies between runs (atom counts differ), so these are single data
+  points, not averages. Extrapolated to 723 blocks: ≈ $4–5 for Q-ATOM, *to be measured*.
+
+### S19 — 2026-09-18 — M2 T6: the model interface, and the first cost measurement
+
+- `llm/` built test-first against F3 AC-3.1 … AC-3.5: the question and answer envelope, the headless
+  Claude Code backend (child marker, key stripped, no `--bare`, version captured once, usage and cost
+  recorded), the optional API backend's key handling, the shared `CallBudget`, and the **fake backend**
+  every later test uses. The profile now carries F3 CT-3.4's settings. **99 tests green.**
+- ✅ **One real Haiku call, to prove the wiring:** Claude Code 2.1.275 split a two-sentence block into
+  two atoms with verbatim quotes; usage, cost and duration were all captured.
+
+#### ⚠ Measured: the per-call overhead dominates, and it changes the plan
+
+Three consecutive real calls, each asking about one short block:
+
+| Call | Cost | In | Out | Cache read | Cache write | Time |
+|---|---|---|---|---|---|---|
+| 1 | $0.0315 | 10 | 443 | 0 | 22,603 | 6.7 s |
+| 2 | $0.0113 | 10 | 166 | 16,293 | 6,310 | 3.8 s |
+| 3 | $0.0137 | 10 | 643 | 16,293 | 6,314 | 7.0 s |
+
+**Every headless call carries ~22k tokens of Claude Code's own harness prompt**, against a question of
+ten tokens. Steady state is ≈ $0.012 and ≈ 5 s per call, almost none of it ours.
+
+Extrapolated to this repository (723 blocks): **≈ $13.60 and ≈ 1 hour for Q-ATOM alone**, before
+Q-DESC (one call per atom) or Q-PAIR (one per candidate pair). A full compile would be tens of dollars
+and several hours — which would make "run it often" false.
+
+**Three ways out, for the owner to choose (none taken yet):**
+1. **Batch** several blocks per call. F3 §4.3 rule 4 already allows it, provided each answer is
+   validated separately and a failure re-asks only the failed item. 20 blocks per call turns 723 calls
+   into ~36: roughly $0.50 and minutes instead of dollars and hours.
+2. **Prefer the `anthropic-api` backend** for bulk work: no harness prompt, so a call costs what the
+   question costs. Needs the key and the unbuilt code path.
+3. **Both**, with the profile choosing.
+
+⚑ This is exactly the number the G4 outline asked for at the M2 gate (metric M7), arriving earlier than
+planned because the backend could be measured before the pipeline exists.
+
+### S18 — 2026-09-18 — M1 T5, and M1 closed
+
+- `ingest/pipeline.py`, `commands.py` and the CLI wiring: `sddc init`, `sddc compile [PATH…]` and
+  `sddc status`, under the store lock, in one transaction. **77 tests green.**
+- ✅ **M1 gate run on a copy of this repository's `sdd/`:**
+  - `compile` → 9 files, **723 blocks**, all new;
+  - `compile` again → **0 new, 0 changed, 723 unchanged**;
+  - one word edited in F2 → **1 changed, 722 unchanged**, and `status` reports exactly that block
+    (`B-000104`, lines 17–19);
+  - the whole store is 480 KB for 723 blocks.
+- ⚠ **A defect in an approved AC, found by its own test — F1 Q6.** AC-1.8 asks for `blocks.jsonl` to be
+  byte-identical between run 1 and run 2, which cannot hold: run 1 marks blocks `new`, run 2 marks them
+  `unchanged`. The property it means — the store reaches a **fixed point** — is built and tested. Two
+  ways out are written up in F1 §8; (a) rewording needs no code change. **Owner decision needed.**
+- ⚑ While raising it: `sources.last_ingest_run` is now stamped only when a file's content changed, so a
+  compile that finds nothing leaves the store untouched.
+- `--json` is accepted before or after the command, because people reach for it in both places.
+- **Next:** M2 T6 — the model interface with the fake backend, the first code that talks to Haiku.
+
+### S17 — 2026-09-18 — M1 T4: identity and change detection
+
+- `ingest/identity.py` built test-first against F1 AC-1.8 … AC-1.12: normalization, hashing, the three
+  matching passes (exact → positional → the rest), id allocation, and the record shape of CT-1.1.
+  **63 tests green.**
+- ✅ **Verified on the real corpus, which is the point of the whole design:**
+  - first run over `sdd/specs/`: **732 blocks**, all `new`;
+  - second run, nothing edited: **732 unchanged, 0 changed** — the store is stable;
+  - one word edited inside F2: **1 changed, 125 unchanged**, and the pending set is that single block.
+  Incremental atomization only pays off if an edit stays local, and now it demonstrably does.
+- ⚑ **F1 D12 added:** a `removed` record never matches again, so re-adding deleted prose gets a new id.
+  Resurrecting an id would make the history ambiguous and silently re-attach old judgments.
+- **Next:** T5 — wire `init`, the ingest pipeline and `status` together, with the store transaction and
+  lock, closing M1.
+
+### S16 — 2026-09-18 — F1 Q5 closed as D11 (option B)
+
+- Measured first: **3 of 649 list items** in this repository hold a continuation paragraph (0.5%).
+- Owner chose option B: record the structural fact. `parent_relation` is now `nested` or
+  `continuation`, CT-1.1 gained the field, **AC-1.30** covers it, and the segmenter links continuation
+  paragraphs and fences to their item. **49 tests green.**
+- Rejected: merging an item with its continuations into one block — their lines are not contiguous when
+  a sub-list sits between them, which would break the verbatim-slice property that all 729 blocks
+  currently satisfy and that F3's span guard depends on.
+- Deliberately deferred: whether the atomizer *uses* the link as context. That is an F3 decision and a
+  measurable one (G4 M4), so it is not being guessed now.
+
+### S15 — 2026-09-18 — M1 T3: segmentation
+
+- `ingest/segment.py` built test-first against F1 AC-1.1 … AC-1.7. **46 tests green.**
+- ✅ **Verified the "to verify" assumption:** `markdown-it-py` 2.2 reports `token.map` as a 0-based
+  half-open line range; the conversion to the spec's 1-based inclusive lines happens in one function.
+  The dependency is now in `pyproject.toml`.
+- ✅ **Run against this repository's own specs:** 729 blocks (168 paragraphs, 373 list items, 162 table
+  rows, 26 code blocks), and every block's `text` was found verbatim in its source file — the property
+  F3's span-anchoring guard will rest on.
+- ⚠ **Gap found and recorded as F1 Q5, not silently accepted:** a continuation paragraph inside one
+  list item becomes a plain paragraph with no parent, because CT-1.1 allows `parent_block` only for
+  nested items. A test pins today's behaviour so a change has to be deliberate.
+- Front matter is blanked out before parsing, which keeps every line number honest.
+- **Next:** T4 identity and diff (AC-1.8 … AC-1.12) — hashing, exact and positional matching, and
+  `removed`.
+
+### S14 — 2026-09-18 — M1 T2: store primitives
+
+- Built test-first: `store/jsonl.py` (caller-supplied key order, sorted lines, UTF-8 kept verbatim,
+  corrupt lines named with their line number), `store/transaction.py` (stage to `.sddc-tmp` neighbours,
+  `os.replace` them together on success, discard on any exception), `store/lock.py` (one writer, 15 s
+  wait, exit `4`). **33 tests green.**
+- ⚑ **A lock whose holder process is gone is reclaimed**, not honoured. Otherwise one crashed run
+  wedges the repository until someone deletes a file by hand — which would teach users to delete locks,
+  the one habit that makes the lock useless.
+- Determinism is enforced where it is cheapest: the writer refuses a record with an unexpected or a
+  missing field, so no field is ever written that nobody validated.
+- **Next:** T3 segmentation (F1 AC-1.1 … AC-1.7) — the first real Markdown work, still no model.
+
+### S12 — 2026-09-18 — G4 outline and build plan drafted
+
+- **G4 outline:** five effectiveness questions (finds real conflicts · does not invent · stable ·
+  affordable · legible), nine metrics, two corpora (this repo's own specs, plus a planted-conflict
+  fixture), and a check that the instrumentation already specified covers them. Two gaps named: no
+  record of human adjudication (needs one small command, decide before the first compile) and no
+  agent-side read logs (rel01 has no hooks).
+- **Build plan:** four releasable milestones — block inventory → the graph exists → the graph is
+  readable → conflicts reported — with 19 tasks mapped to acceptance criteria and code paths, a gate
+  after each milestone, the definition of done, and the risks. It asks for three decisions: B1 who owns
+  `sddc compile`, B2 which five commands ship, B3 the constitution §4 test tier names.
+- **Next:** owner approves both → rel01 D20's gate is satisfied → coding starts at M1 T1.
+
+### S11 — 2026-09-18 — F5 and F6 approved; git remote set up
+
+- D28: all suggested answers in F5 and F6 adopted; both specs 🟢. The rel01 spec set is complete:
+  F1–F6, 118 acceptance criteria, F7 design only.
+- The repository now has a remote; the release branch is pushed. `main` stays empty until rel01 closes.
+- **Remaining gate items (D20):** the G4 outline (D22), then the build plan. Then code.
+
 ### S10 — 2026-09-17 — F5 and F6 written; F7 kept as design
 
 - F5 adds two candidate sources beyond the pre-rel01 rule (shared keywords, same measured property),
@@ -394,6 +699,33 @@ use in a later release; rel01 wires none of them.
   `rel01_design/G3-3-traversal.md`, with spec id `F7` reserved. Rationale: F7's acceptance criteria
   would have to be invented before any real graph exists; F5 and F6 can be specified now because the
   graph model (F2) and the store (F4) are fixed.
+
+- **rel01 D28 — 2026-09-18 — F5 and F6 approved, with every suggested answer adopted.** F5: starting
+  values for the thresholds and weights (F5 D6), `(global)` constraints proposed only against nodes
+  sharing a term or keyword (D7), one fixed versioned stop-word list (D8, which also settles F2 Q2 for
+  `keywords`). F6: the pair question carries only the two nodes plus their layer and family labels (F6
+  D8), one conflict list with contradictions first (D9), `confidence` recorded and flagged but never
+  acted on (D10). ⚠ The F5 numbers are **starting values, not measurements**; G4 replaces them.
+  Still open elsewhere: F2 Q1, F3 Q1–Q3, F4 Q1–Q2.
+
+- **rel01 D29 — 2026-09-18 — The G4 outline and the build plan are approved; the D20 coding gate is
+  satisfied; coding starts at M1 T1.** Build-plan decisions taken as recommended:
+  **B1** `sddc compile` orchestration lives in `src/sdd_compiler/pipeline.py`, governed by F3
+  (no F8 spec). **B2** rel01 ships five commands — `init · compile · status · conflicts · family`;
+  the other ten stay specified but unbuilt, and the close-out must list them. **B3** constitution §4
+  adopts the tiers `unit · contract · property · golden · integration`, which the ACs already use.
+  Also settled in the constitution §6: Python ≥ 3.11, `src/` layout, setuptools, pytest.
+
+- **rel01 D30 — 2026-09-18 — Cut the per-call overhead by batching now; add the `anthropic-api`
+  backend for bulk work later** (S19 option 1 now, option 2 later). Q-ATOM carries a batch of blocks
+  per call; each block is validated alone and only a failed block is re-asked, alone, once (F3 §4.3
+  rule 4). Measured in S20 on 20 real blocks: 2 calls, $0.0071 per block, against ≈ $0.012 per block
+  one call at a time.
+
+- **rel01 D31 — 2026-09-18 — `verifies` and `constrains` as Q-PAIR relations are deferred past rel01**
+  (F2 Q3 option c). rel01 fills `scope_selector` and `verifies` by code (F2 D13, option b). After rel01,
+  G4 counts how many `C` and `V` nodes that leaves unresolved, and that number decides whether Q-PAIR
+  (F6 CT-6.1) gains the two relations.
 
 ## Rejected alternatives
 

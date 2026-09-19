@@ -69,6 +69,7 @@ Because both forms are generated from the same records, they cannot disagree. Th
   conflicts.jsonl              conflict records (F2 CT-2.4), sorted by id
   conflicted_nodes.json        the registry (CT-4.2)
   lock/<kind>.jsonl            judgment lock (F3)
+  run.lock                     held while a run writes (F1 §4, 15 s wait); not `lock`, which is the judgment lock's folder
   review.jsonl                 review queue (F3)
   views/                       GENERATED Markdown, do not edit (§4.6)
 ```
@@ -198,7 +199,8 @@ Sorted by id. Derived on every transaction; never edited.
   record that lists it, **when** `sddc check` runs, **then** it reports the violation and exits `4`. →
   *unit.*
 - **AC-4.8** *(check is complete)* — **Given** a store with one violation of each check in §4.3, **when**
-  `sddc check` runs, **then** all seven are reported. → *integration.*
+  `sddc check` runs, **then** all eight are reported (the eighth, counters, was added by rel01 D24). →
+  *integration.*
 
 **Full form**
 - **AC-4.9** *(node query)* — **Given** a node with incoming and outgoing links, **when**
@@ -241,6 +243,10 @@ Sorted by id. Derived on every transaction; never edited.
 - **D5 — ⚑ Status marks** `✓ ? ~ · ✗` in text views, because colour is not available in every
   terminal or Markdown viewer (P-14 rule 5 adapted).
 - **D6 — ⚑ `graph_hash` on every query** lets an agent detect a stale read.
+- **D8 — ⚑ The run lock is `.sdd/run.lock`** (found while building T11). The M1 lock file was
+  `.sdd/lock`, which collides with §4.1's judgment-lock folder `lock/`.
+- **D9 — ⚑ Emptied shard files are deleted** in the same transaction, so a family that loses its last
+  node leaves no stale file for the loader to read.
 - **D7 — ⚑ Interlinked conflicts are grouped** in the human view (rel01 D13: humans see several
   interlinked conflicts at once).
 
@@ -254,7 +260,9 @@ Sorted by id. Derived on every transaction; never edited.
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-4.1 … AC-4.4 | *(to be written)* | `src/sdd_compiler/store/graph.py` |
-| AC-4.5 … AC-4.8 | *(to be written)* | `src/sdd_compiler/store/check.py` |
+| AC-4.3 *(partial: the JSONL writer)* | `tests/test_store_jsonl.py::test_ac_4_3_insertion_order_does_not_change_the_bytes` (+8) | `src/sdd_compiler/store/jsonl.py` |
+| AC-4.4 *(partial: the transaction)* | `tests/test_store_transaction.py::test_ac_4_4_a_failed_transaction_changes_nothing` (+3) | `src/sdd_compiler/store/transaction.py` |
+| AC-4.1 … AC-4.8 · D8, D9 | `tests/test_store_graph.py` (12) — AC-4.7/4.8 through `check_store`; the `sddc check` command is deferred (B2) | `src/sdd_compiler/store/graph.py` · `transaction.py` · `lock.py` |
+| *(compile writes the graph, B1)* | `tests/test_compile.py` (9) | `src/sdd_compiler/pipeline.py` |
 | AC-4.9 … AC-4.13 | *(to be written)* | `src/sdd_compiler/query/` |
 | AC-4.14 … AC-4.18 | *(to be written)* | `src/sdd_compiler/views/` |

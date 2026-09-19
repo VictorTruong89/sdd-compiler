@@ -37,8 +37,19 @@ never reused.
 
 ## 4. Test tiers
 
-*TODO — every AC maps to exactly one tier (for example unit · contract · property · golden ·
-integration · end-to-end).*
+> **Adopted:** rel01 D29 (2026-09-18). Every acceptance criterion maps to **exactly one** tier. The
+> tier decides the *shape* of the test.
+
+| Tier | Shape | Example |
+|---|---|---|
+| **unit** | One function, fixed input | Layer placement from seven answers (F2 AC-2.1) |
+| **contract** | A record or CLI output validated against its schema | `status --json` (F1 AC-1.21) |
+| **property** | Holds over many generated inputs | Status precedence over every fact combination (F2 AC-2.12) |
+| **golden** | Text output compared with a stored expectation | `sddc map` (F4 AC-4.14) |
+| **integration** | Several components over a fixture repository | Compile the fixture and report its conflicts (F6 AC-6.10) |
+
+⚠ **Getting the tier wrong is the quiet failure:** a property criterion given one example test looks
+green and proves almost nothing.
 
 ## 5. Change process
 
@@ -48,8 +59,9 @@ integration · end-to-end).*
 
 > **Adopted:** rel01 D3 (2026-09-14). Details marked TODO are decided when F1 is specified.
 
-- **Language:** Python, packaged as a command-line tool named **`sddc`** (package `sdd_compiler`, store `.sdd/`; rel01 D21). *(TODO: minimum Python version, packaging
-  tool, test runner.)*
+- **Language:** Python **≥ 3.11**, packaged as a command-line tool named **`sddc`** (package
+  `sdd_compiler` under `src/`, store `.sdd/`; rel01 D21). Build backend `setuptools` via
+  `pyproject.toml`; tests with **pytest**; runtime dependencies kept minimal (rel01 D29).
 - **Model access:** Claude Code with **Haiku**:
   - **command hooks** trigger the CLI;
   - **headless Claude Code** (`claude -p`) runs structured judgments;

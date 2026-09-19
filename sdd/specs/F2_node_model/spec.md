@@ -97,6 +97,16 @@ The primary term is chosen by the first rule that applies:
    `(global)`.
 5. **Fallback** — nothing resolves → family `null`, ambiguity kind `unresolved_term`.
 
+**Where `scope_selector` and `verifies` come from (D13).** Both are filled by code, never written by
+the model directly:
+- `scope_selector` (a `C` node): `terms` = its resolved terms with role `scope`; `families` = those of
+  kind `entity`, `data` or `event`; `categories` = those of kind `category`; `layers` = Q-DESC's closed
+  answer `scope_layers` (any of `L0`…`L5`). An empty selector means the constraint is global.
+- `verifies` (a `V` node): after every node of the run is formed, each node id or `AC-`/`CT-` label
+  cited in the node's quotes or in Q-DESC's `verifies_text` resolves to the node(s) with that id or
+  `label`; each creates a `verifies` link with provenance `code`. Nothing cited → `verifies: []`, and the
+  family falls to the subject rule or `unresolved_term`. The verification rule is then re-applied.
+
 `actor`, `component` and `category` terms never seed a family. A pin overrides the rule, and the node
 gets flag `pinned_family`. Mentioning a term never makes a node a member of that term's family; it
 creates a `uses_term` link.
@@ -166,17 +176,18 @@ Id counters are never rewound.
   "id": "N-000042",
   "kind": "requirement | constraint | assumption | verification | decision",
   "source": {"file": "…", "block_id": "B-000123", "heading_path": ["…"], "lines": [42, 44],
-             "spans": [[1203, 1288]]},
+             "spans": [[12, 97]]},                       // offsets in the block's text (F3 D15)
   "text": "verbatim text of the spans",
   "canonical": {
     "state": "string | null", "trigger": "string | null", "scope": "string | null",
-    "subject": "string", "modality": "MUST | MUST NOT | SHOULD | SHOULD NOT | MAY",
+    "subject": "string", "modality": "MUST | MUST NOT | SHOULD | SHOULD NOT | MAY | null",
     "response": "string",
     "quantities": [{"value": 30, "unit": "day", "normalized": {"value": 2592000, "unit": "s"},
                     "quote": "30 days"}]
   },
   "terms": [{"term": "term:share_link", "role": "subject | response | trigger | state | scope",
              "quote": "share link"}],
+  "label": "AC-1.8 | null",
   "primary_term": "term:share_link | null",
   "layer": "L0 | L1 | L2 | L3 | L4 | L5 | C | V | null",
   "layer_answers": {"Q1": {"answer": "no", "quote": null}, "Q3": {"answer": "yes", "quote": "…"}},
@@ -190,7 +201,7 @@ Id counters are never rewound.
                "affects": ["N-000011"]},
   "annotations": [{"role": "rationale | example", "text": "…", "spans": [[0, 0]]}],
   "keywords": ["expire", "share", "link"],
-  "ambiguity": [{"kind": "vague_term | unbounded_quantity | missing_actor | referential | scope | unresolved_term | unplaceable | inferred | pending_review",
+  "ambiguity": [{"kind": "vague_term | unbounded_quantity | missing_actor | missing_modality | mixed_layers | referential | scope | unresolved_term | unplaceable | inferred | pending_review",
                  "quote": "string | null", "detail": "string"}],
   "conflict_ids": ["CF-000003"],
   "related_conflict_nodes": ["N-000017"],
@@ -207,6 +218,10 @@ Rules:
 - `keywords` are computed by code from `text` (lower-cased word tokens minus a fixed stop-word list,
   sorted, unique). They serve retrieval (F5) and are never model output.
 - `status` always equals `derive_status` of the other fields (AC-2.14).
+- `label` is the human id (`AC-<n>.<k>`, `CT-<n>.<k>`) of the block the node was formed from, on
+  **every** node of that block, whether or not the id was adopted (D12). Null otherwise.
+- `canonical.modality` is null only for an assumption, a decision or a verification stating no
+  obligation, or together with ambiguity `missing_modality` (F3 D14).
 
 **CT-2.2 — Term record**
 ```json
@@ -290,6 +305,15 @@ record is `open`.
   `resolved`, **when** facts are recomputed, **then** `conflict_ids` and `related_conflict_nodes` are
   empty and status is no longer `conflict`. → *unit.*
 
+- **AC-2.24** *(scope selector derived; D13)* — **Given** a `C` node whose scope-role terms are
+  `term:upload` (entity) and `term:api` (category) and whose `scope_layers` is `[L3]`, **then**
+  `scope_selector` is `{families: [term:upload], layers: [L3], terms: [term:api, term:upload],
+  categories: [term:api]}` and its family is `term:upload` by the constraint rule. → *unit.*
+- **AC-2.25** *(verifies resolved by citation; D13)* — **Given** a `V` node whose quote cites `AC-1.4`
+  and two nodes labelled `AC-1.4` in family `term:table`, **then** `verifies` lists both, two
+  `verifies` links with provenance `code` exist, and the family is `term:table` by the verification
+  rule; **given** a `V` node citing nothing, **then** `verifies` is `[]`. → *unit.*
+
 **Records and ids**
 - **AC-2.17** *(schema validation)* — **Given** records missing required fields, with unknown enum
   values, or with a `judgment`-provenance link lacking a judgment id, **when** validated, **then** each
@@ -325,7 +349,7 @@ record is `open`.
     conflict record, and closes a record that falls below two members (§4.9).
   - **Neighbours.** Every node that had a judged link to the deleted node gains a `stale_reasons` entry,
     so it is re-checked rather than silently keeping a verdict about something gone.
-  - ⚠ **Asymmetry with F1:** F1 keeps *blocks* with status `removed`, because block identity drives
+  - ⚠ **Asymmetry with F1:** F1 keeps *blocks* with `removed_run` set (F1 D13), because block identity drives
     change detection across runs. Only *nodes* are deleted. Say so if this should change too.
 - **D4 — ⚑ `keywords` computed by code** as a cheap retrieval signal for F5. *Rejected:* model-generated
   keywords — non-deterministic and unverifiable.
@@ -336,19 +360,55 @@ record is `open`.
 - **D7 — ⚑ New link type `decides`** from a decision node to the nodes it changed (P-12 "links to the
   nodes it changed").
 - **D8 — ⚑ Modality set** adds `SHOULD NOT` to the proposals' list.
+- **D9 — ⚑ The family rules apply literally in order** (found while building T9). §4.4 says "the first
+  rule that applies", so a `C` or `V` node whose subject is an entity takes that entity's family by the
+  subject rule before the constraint or verification rule is reached. *Why:* it is what the text says,
+  and it keeps "uploaded files must never exceed 5 GB" in the `file` family, where a reader looks for it.
+- **D10 — ⚑ Which human ids are adopted** (found while building T9). Only `AC-<n>.<k>` and `CT-<n>.<k>`,
+  which are unique across the repository by construction; only as the **label** at the start of a
+  paragraph or list item (a mention or a table row is not the claim); and only when the block forms
+  exactly one node. *Why:* `D<n>`, `Q<n>` and `T<n>` are unique only inside one spec (constitution §1),
+  so adopting them would fail every multi-spec build on the duplicate rule. See Q4 for the multi-atom
+  case.
+- **D12 — Every node formed from a labelled block carries the label** (closes Q4, option c). A block
+  that forms exactly one node still adopts its human id (AC-2.19); a block that forms several gives
+  them `N-` ids, and all of them carry `label: "AC-1.8"`. *Why:* in two live runs, 13–14 of 18 F1
+  acceptance criteria formed several nodes, so without the field the id survived only inside the
+  text. *Rejected:* (a) text only — "which nodes came from AC-1.8" would need a text search; (b)
+  suffixed ids (`AC-1.8.1`) — a new id form and a constitution change for what a field does.
+- **D13 — Code fills `scope_selector` and `verifies` from answers already given** (closes Q3, option b;
+  §4.4). *Why:* both fields feed placement (family rules 3, 4) and retrieval (F5 S3), and nothing
+  produced them; the atomizer already tags scope terms, and the `label` field (D12) makes a cited
+  criterion resolvable by lookup. One closed Q-DESC field (`scope_layers`) is the only new model output.
+  *Rejected for rel01:* (a) leaving them empty — S3 and rule 4 would be dead code in production.
+  *Deferred past rel01 (rel01 D31):* (c) `verifies` and `constrains` as Q-PAIR relations, which would
+  find targets that are described but not named, at the cost of model calls and an ordering loop
+  (family → retrieval → judgment → family).
+- **D14 — ⚑ A conflict record resolved by a deletion keeps its members** (found while building T11).
+  §4.9 step 3 says to remove the deleted node from `members`, but CT-2.4 requires at least two. A record
+  falling below two is resolved (`member_deleted`) and keeps its member list as history; an **open**
+  record never lists a deleted node, and the store checks only open records' members.
+- **D15 — Ambiguity kind `mixed_layers`** (F3 D23): a node whose layer answers still point at two
+  layers after the split re-ask is placed by the first yes and carries this ambiguity, quoting the
+  second yes.
+- **D11 — Ambiguity kind `missing_modality`** (F3 D14): a requirement or constraint that states no modal
+  verb is formed with `modality: null` and this ambiguity.
 
 ## 8. Open questions
 
 - **Q1 — Decision nodes: is a rejected option a field (as here) or its own node?** Proposals §13.3.
   Field chosen for rel01; revisit if rejected options need their own links.
-- **Q2 — Stop-word list** for `keywords`: a fixed English list in code, or a profile setting? Default:
-  fixed list, versioned.
+*Q2 closed 2026-09-18 by F5 D8: one fixed, versioned stop-word list in code (`keywords.py`, `en-1`). Q4
+closed 2026-09-18 as D12. Q3 closed 2026-09-18 as D13.*
 
 ## 9. Traceability
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-2.1 … AC-2.5 | *(to be written)* | `src/sdd_compiler/model/placement.py` |
-| AC-2.6 … AC-2.11 | *(to be written)* | `src/sdd_compiler/model/family.py` |
-| AC-2.12 … AC-2.16 | *(to be written)* | `src/sdd_compiler/model/status.py` |
-| AC-2.17 … AC-2.22 | *(to be written)* | `src/sdd_compiler/model/schema.py` · `src/sdd_compiler/model/ids.py` · `src/sdd_compiler/model/layers.py` |
+| AC-2.1 … AC-2.5 | `tests/test_model_placement.py` (133) | `src/sdd_compiler/model/placement.py` · `layers.py` |
+| AC-2.6 … AC-2.11 · D9 | `tests/test_model_family.py` (12) | `src/sdd_compiler/model/family.py` |
+| AC-2.12 … AC-2.16 | `tests/test_model_status.py` (20) | `src/sdd_compiler/model/status.py` |
+| AC-2.14, AC-2.17 … AC-2.21 · D10 … D12 | `tests/test_model_records.py` (29) | `src/sdd_compiler/model/schema.py` · `ids.py` · `keywords.py` |
+| AC-2.22 | `tests/test_profile.py` (3) | `src/sdd_compiler/profile.py` · `model/layers.py` |
+| AC-2.24, AC-2.25 · D13 | `tests/test_atomize_pipeline.py` | `src/sdd_compiler/atomize/forming.py` · `pipeline.py` |
+| AC-2.23 · D14 | `tests/test_store_graph.py::test_f2_ac_2_23_deleting_a_node_cascades` | `src/sdd_compiler/store/graph.py` |
