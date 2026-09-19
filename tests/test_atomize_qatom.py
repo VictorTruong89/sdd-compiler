@@ -59,6 +59,13 @@ def test_the_prompt_states_the_atom_tests_and_the_quote_rule():
         assert marker in prompt.lower()
 
 
+def test_the_prompt_keeps_a_rule_stated_in_a_table_row_as_a_claim():
+    """M3 gate (I-56): Q-ATOM labelled F5's seven source rows `definition` and formed nothing, so
+    F5's core rules were absent from the graph. `definition` is for what a word means."""
+    prompt = build_question([BLOCK_A]).prompt.lower()
+    assert "table row" in prompt and "what a word means" in prompt
+
+
 # -- the happy path ---------------------------------------------------------
 
 def test_a_valid_batch_yields_atoms_per_block():
@@ -314,3 +321,32 @@ def test_emphasis_marks_are_formatting_not_words():
     start, end = outcome.atoms[0].spans[0]
     assert block["text"][start:end] == "Given** a paragraph, **when** ingested, **then** it is a block."
     assert "**Given" not in block["text"][start:end]
+
+
+# -- rel01 D32: R5 backticks and R10 a sentence-initial capital are layout ----------------
+
+def _one(block_text, quote):
+    block = {"id": "B-000020", "kind": "paragraph", "heading_path": [], "table_header": None, "text": block_text}
+    answer = {"blocks": [{"block_id": block["id"], "sentences": [{"quote": quote, "role": "requirement"}],
+                          "atoms": [{"kind": "requirement", "quotes": [quote]}]}]}
+    return block, atomize_blocks([block], FakeBackend([answer, answer]))
+
+
+def test_r5_dropped_backticks_still_anchor():
+    """Live gate: `SDD_COMPILER_CHILD=1` quoted without its backticks failed the block (G-7)."""
+    block, outcome = _one("The child has `SDD_COMPILER_CHILD=1` set.", "The child has SDD_COMPILER_CHILD=1 set.")
+    assert outcome.failures == {}
+    start, end = outcome.atoms[0].spans[0]
+    assert "SDD_COMPILER_CHILD=1" in block["text"][start:end]
+
+
+def test_r10_a_lowercased_first_letter_still_anchors():
+    """Live gate: "a Q-TERM…" for "A Q-TERM…" failed B-000410 in both runs (G-13)."""
+    block, outcome = _one("A Q-TERM verdict merges at once.", "a Q-TERM verdict merges at once.")
+    assert outcome.failures == {}
+    assert outcome.atoms[0].spans == [(0, len(block["text"]))]
+
+
+def test_r10_case_elsewhere_still_counts():
+    _, outcome = _one("A Q-TERM verdict MUST merge.", "A Q-TERM verdict must merge.")
+    assert "B-000020" in outcome.failures

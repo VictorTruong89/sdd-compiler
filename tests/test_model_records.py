@@ -10,7 +10,8 @@ import random
 import pytest
 
 from sdd_compiler.errors import SddcError
-from sdd_compiler.model.ids import IdCounter, adopt_human_ids, find_human_id, human_labels, term_id
+from sdd_compiler.model.ids import (IdCounter, adopt_human_ids, find_human_id, find_local_label,
+                                   human_labels, term_id)
 from sdd_compiler.model.keywords import STOP_WORDS, STOP_WORDS_VERSION, keywords
 from sdd_compiler.model.schema import RecordError, validate
 
@@ -90,7 +91,7 @@ def test_a_code_link_and_a_term_pass():
     validate("link", {"from": "N-000001", "type": "uses_term", "to": "term:file",
                       "provenance": "code", "judgment": None, "rationale": None, "quotes": []})
     validate("term", {"id": "term:share_link", "canonical": "share link", "aliases": [],
-                      "kind": "entity", "defined_by": None, "status": "proposed"})
+                      "kind": "entity", "defined_by": None, "status": "proposed", "broader": None})
 
 
 def test_a_conflict_record_needs_two_sorted_members():
@@ -191,8 +192,27 @@ def test_d12_every_node_of_a_labelled_block_carries_the_label():
     assert human_labels(blocks, {"B-1": 1, "B-2": 3, "B-3": 1}) == {"B-1": "AC-1.4", "B-2": "AC-1.5"}
 
 
+@pytest.mark.parametrize(
+    ("text", "kind", "found"),
+    [
+        ("| **S1 same family** | Same `family` | family id |", "table_row", "S1"),
+        ("| T1 | F1/F3/F6 write records | `transaction` |", "table_row", "T1"),
+        ("- **D1 — ⚑ Two extra candidate sources**", "list_item", "D1"),
+        ("| AC-1.4 | tests/test_x.py |", "table_row", None),     # a global id is never local
+        ("- **AC-1.4** — Given …", "list_item", None),
+        ("See S1 for details.", "paragraph", None),              # a mention
+        ("- S1 is plain", "list_item", None),                    # a list item needs the bold lead
+        ("| Source | Rule |", "table_row", None),
+    ],
+)
+def test_f2_d20_a_local_label_names_a_row_or_item_inside_one_file(text, kind, found):
+    """F2 D20 (M3 gate, I-56): F5's criteria cite "S1" … "S7", ids unique only inside F5."""
+    assert find_local_label({"text": text, "kind": kind}) == found
+
+
 def test_d12_a_label_is_part_of_the_node_contract():
     validate("node", changed(label="AC-1.5"))
+    validate("node", changed(label="S1"))                    # F2 D20, a local label
     with pytest.raises(RecordError) as error:
         validate("node", changed(label="see AC-1.5"))
     assert "label" in str(error.value)

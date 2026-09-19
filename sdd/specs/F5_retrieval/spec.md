@@ -56,7 +56,7 @@ For node **A**, candidates are gathered from these sources. Each source records 
 |---|---|---|
 | **S1 same family** | Same `family` (not `(global)`) | family id |
 | **S2 shared subject term** | Shares a term of kind `entity`, `data` or `event` | the term ids |
-| **S3 constraint scope** | A `C` node whose `scope_selector` covers the other node, in either direction | the selector that matched |
+| **S3 constraint scope** | A `C` node whose `scope_selector` covers the other node, in either direction, by the rule of D9 | the selector that matched |
 | **S4 adjacent layer** | Same family and layer distance ≤ 1 in the order L0…L5 | both layers |
 | **S5 shared keywords** | At least `min_shared_keywords` (default 2) common `keywords` | the shared keywords |
 | **S6 same measured property** | Shares a term **and** both carry a quantity of the same dimension (time, size, count, percent) | the dimension and both values |
@@ -139,8 +139,10 @@ retrieval:
 - **AC-5.2** *(shared subject term, actors excluded)* — **Given** two nodes sharing `term:file` (an
   entity) and two others sharing only `term:owner` (an actor), **then** the first pair is proposed with
   S2 evidence and the second is not proposed by S2. → *unit.*
-- **AC-5.3** *(constraint scope)* — **Given** a `C` node scoped to layer `L3` and a node in `L3`,
-  **then** the pair is proposed with S3 evidence naming the selector. → *unit.*
+- **AC-5.3** *(constraint scope; amended by D9)* — **Given** a `C` node scoped to category
+  `term:endpoint` in layer `L3` and an `L3` node using `term:endpoint`, **then** the pair is proposed
+  with S3 evidence naming the selector; **given** a `C` node scoped to `L3` only and an `L3` node sharing
+  no term or keyword with it, **then** S3 does not contribute. → *unit.*
 - **AC-5.4** *(adjacent layer)* — **Given** two nodes of one family in `L1` and `L2`, **then** S4
   contributes; **given** `L1` and `L4`, **then** S4 does not. → *unit.*
 - **AC-5.5** *(shared keywords)* — **Given** two nodes sharing 2 keywords and `min_shared_keywords: 2`,
@@ -200,6 +202,14 @@ retrieval:
 - **D8 — One fixed, versioned stop-word list in code** for `keywords` (resolves Q3, and F2 Q2 for the
   same field). *Rejected:* a profile setting — two projects with different lists could not be compared,
   and the list is not the kind of thing a user should have to tune.
+- **D9 — ⚑ A layer alone does not put a node in a constraint's scope** (M3 gate review, I-57; owner
+  2026-09-19). A selector that names a family, term or category covers the nodes matching it, narrowed
+  by its layers if it has any. A **layer-only** selector is a global constraint within those layers, so
+  it takes D7's bar: the node must also share a term or keyword. One function serves S3 and F4's card
+  (`model/scope.py`). *Why:* on R12, Q-DESC gave layer-only scopes to constraints about the checking
+  process ("nodes unchanged since their last run are skipped" → L1, L4, L5). S3 then made about 60
+  pairs among 43 nodes, each above `min_score` on S3 alone. With D9: 16. *Rejected:* lowering S3's weight
+  below `min_score`. That would also weaken the constraints that name their scope.
 - **D5 — Deferred: `checked_against` per node** (conflict-list item 5.4). A batch run checks the whole
   graph, so the cheaper `last_checked_run` plus `stale_reasons` is enough for rel01. It returns with
   incremental checking.
@@ -212,6 +222,6 @@ retrieval:
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-5.1 … AC-5.8 | *(to be written)* | `src/sdd_compiler/retrieval/sources.py` |
+| AC-5.1 … AC-5.8 | *(to be written)* · the coverage rule of AC-5.3 and D9: `tests/test_model_scope.py` (4) | `src/sdd_compiler/retrieval/sources.py` · `src/sdd_compiler/model/scope.py` |
 | AC-5.9 … AC-5.11 | *(to be written)* | `src/sdd_compiler/retrieval/score.py` |
 | AC-5.12 … AC-5.16 | *(to be written)* | `src/sdd_compiler/retrieval/select.py` · `src/sdd_compiler/cli.py` |

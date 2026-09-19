@@ -135,7 +135,10 @@ violations and exits `4` if any exist.
   status mark: `✓` all validated, `?` any ambiguous, `~` any stale, `·` any unchecked, `✗` any conflict,
   using the worst status by F2 precedence. Rows sort by open conflicts, then by name.
 - `sddc family TERM` — the member nodes by layer, one line each: id, status mark, and the first 80
-  characters of the text. Constraints in scope and related families follow.
+  characters of the text. Constraints in scope and related families follow. Within a layer, lines
+  follow the source (D13). Constraints in scope are lines like the members (D14). A card names its
+  broader and narrower families (D15), and an ambiguous line names its ambiguity kinds (D16). `TERM` may
+  be `(no family)` or `global`, the two non-family rows of the map.
 - `sddc conflicts` — the end-of-run view of every open conflict (rel01 D26): id, kind, members with
   source file and line, rationale. Interlinked conflicts (sharing a member) are grouped together.
 
@@ -226,8 +229,9 @@ Sorted by id. Derived on every transaction; never edited.
 - **AC-4.16** *(interlinked grouping)* — **Given** conflicts CF-1 {A, B} and CF-2 {B, C}, **when**
   `sddc conflicts` runs, **then** they are shown as one group. → *unit.*
 - **AC-4.17** *(views regenerated and marked)* — **Given** any committed transaction, **then**
-  `views/map.md`, the changed families' cards and `views/conflicts.md` match the CLI output, and each
-  starts with the do-not-edit header. → *golden.*
+  `views/map.md`, the changed families' cards and `views/conflicts.md` match the CLI output — the same
+  lines in the same order; a card keeps each claim's full text (D17) — and each starts with the
+  do-not-edit header. → *golden.*
 - **AC-4.18** *(forms agree)* — **Given** any graph, **then** the counts in `sddc map` equal the counts
   derivable from `query map` and from the node records. → *property.*
 
@@ -247,6 +251,27 @@ Sorted by id. Derived on every transaction; never edited.
   `.sdd/lock`, which collides with §4.1's judgment-lock folder `lock/`.
 - **D9 — ⚑ Emptied shard files are deleted** in the same transaction, so a family that loses its last
   node leaves no stale file for the loader to read.
+- **D10 — ⚑ The map lists real families first; `(global)` and `(no family)` close the table** (T14).
+  They are not families, and sorting them by name put `(global)` between real families.
+- **D11 — ⚑ A family card lists a constraint as "in scope" when its selector covers any member** — by
+  the one rule F5's S3 uses, `sdd_compiler.model.scope.covers` (amended by F5 D9, I-57). Before that, by
+  family, or any member's layer, term or category (T14). A constraint with an empty selector is not
+  listed on every card. Found by reviewing the first golden file: a layer-scoped constraint was
+  missing.
+- **D12 — ⚑ A card line drops inline `*` and backtick marks** (T14, from reviewing R12's real cards).
+  A node's `text` is the verbatim span and may begin inside `**Given**`; the human view shows the words.
+- **D13 — ⚑ Card lines follow the source** — file, first line, id (M3 gate review). Sorting by id put
+  `AC-5.13` before `AC-5.2` once criteria nodes carry their labels as ids (F2 D12).
+- **D14 — ⚑ Constraints in scope are shown as lines, not bare ids** (M3 gate review). `sddc show` and
+  `query node` are deferred (B2), so a bare id was a dead end in the CLI. The term's aliases head the card.
+- **D15 — ⚑ A card shows `broader` both ways** — "Kind of: node" and "Narrower families: checked_node
+  (1), …" (M3 gate review; F2 D16). The map is unchanged: rows and counts stay per family (AC-4.18).
+  Shown instead of nesting families, because nesting would move counts and change F5's S1.
+- **D16 — ⚑ An ambiguous line names why** — `? (referential, missing_actor)` (M3 gate review). On R12,
+  18 of 43 nodes were `?`; a bare mark gives the reader nothing to act on.
+- **D17 — The generated Markdown card keeps each claim whole; the terminal cuts at 80** (closes Q2,
+  option b; owner 2026-09-19). The cut hid the point of long claims. AC-4.17's "match the CLI output"
+  now means the same lines in the same order, with full text and linked ids.
 - **D7 — ⚑ Interlinked conflicts are grouped** in the human view (rel01 D13: humans see several
   interlinked conflicts at once).
 
@@ -254,7 +279,7 @@ Sorted by id. Derived on every transaction; never edited.
 
 - **Q1 — Are `.sdd/views/` committed to git or ignored?** Committed means readable on any git host
   without the CLI, at the cost of noisier diffs. Default: committed.
-- **Q2 — Text width** of `sddc family` lines (80 characters here).
+*Q2 closed 2026-09-19 as D17 (option b).*
 
 ## 9. Traceability
 
@@ -264,5 +289,9 @@ Sorted by id. Derived on every transaction; never edited.
 | AC-4.4 *(partial: the transaction)* | `tests/test_store_transaction.py::test_ac_4_4_a_failed_transaction_changes_nothing` (+3) | `src/sdd_compiler/store/transaction.py` |
 | AC-4.1 … AC-4.8 · D8, D9 | `tests/test_store_graph.py` (12) — AC-4.7/4.8 through `check_store`; the `sddc check` command is deferred (B2) | `src/sdd_compiler/store/graph.py` · `transaction.py` · `lock.py` |
 | *(compile writes the graph, B1)* | `tests/test_compile.py` (9) | `src/sdd_compiler/pipeline.py` |
-| AC-4.9 … AC-4.13 | *(to be written)* | `src/sdd_compiler/query/` |
-| AC-4.14 … AC-4.18 | *(to be written)* | `src/sdd_compiler/views/` |
+| §4.4 indexes · `status` counts (T13) | `tests/test_views.py` | `src/sdd_compiler/store/index.py` · `commands.py` |
+| AC-4.15 · D10 … D17 · `sddc family` (T14) | `tests/test_views.py` (19 in the file) · `tests/test_model_scope.py` (4, D11), goldens in `tests/golden/` | `src/sdd_compiler/views/render.py` · `commands.py` · `cli.py` |
+| AC-4.14, AC-4.17 *(partial: `views/map.md` only; the `sddc map` command is deferred, B2)* | `tests/test_views.py::test_ac_4_14_…`, `::test_ac_4_17_…` | `src/sdd_compiler/views/render.py` |
+| AC-4.18 *(partial: the rendered map against the records; `query map` is deferred, B2)* | `tests/test_views.py::test_ac_4_18_map_counts_equal_the_records_on_random_graphs` | `src/sdd_compiler/views/render.py` |
+| AC-4.16 *(interlinked conflicts grouped)* | *(T18)* | `src/sdd_compiler/views/render.py` |
+| AC-4.9 … AC-4.13 | *(deferred: `query` is M5, build plan B2)* | `src/sdd_compiler/query/` |

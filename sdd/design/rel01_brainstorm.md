@@ -50,12 +50,12 @@ becomes one spec with its own acceptance criteria:
 **Grouping moves from G3 to G2.1.** Family assignment is part of *placement*: it is decided when a
 node is formed, from node properties, and every later algorithm depends on it being settled.
 
-## Progress board — updated 2026-09-18
+## Progress board — updated 2026-09-19
 
 | Goal | Artefact | State |
 |---|---|---|
 | G1 ingest | [`F1_ingest`](../specs/F1_ingest/spec.md) 20 ACs | 🟢 approved · revised for D26, D13 (F1) |
-| G2.1 node & layer model | [`F2_node_model`](../specs/F2_node_model/spec.md) 25 ACs | 🟢 approved · open: Q1 |
+| G2.1 node & layer model | [`F2_node_model`](../specs/F2_node_model/spec.md) 28 ACs | 🟢 approved · open: Q1 · D18 … D20 added (M3 gate) |
 | G2.2 atomizer | [`F3_atomizer`](../specs/F3_atomizer/spec.md) 24 ACs | 🟢 approved · revised for D26 · open: Q1, Q3 |
 | G2.3 graph store & views | [`F4_graph_store`](../specs/F4_graph_store/spec.md) 18 ACs | 🟢 approved |
 | G3.1 retrieval | [`F5_retrieval`](../specs/F5_retrieval/spec.md) 16 ACs | 🟢 approved (D28) |
@@ -63,10 +63,10 @@ node is formed, from node properties, and every later algorithm depends on it be
 | G3.3 traversal | [`rel01_design/G3-3-traversal.md`](rel01_design/G3-3-traversal.md) | design only · spec id `F7` reserved |
 | G4 measurement | [`rel01_design/G4-measurement.md`](rel01_design/G4-measurement.md) | ✅ outline approved (D29) |
 | — | [`rel01_design/build-plan.md`](rel01_design/build-plan.md) | ✅ approved (D29); B1–B3 decided |
-| — | `src/`, `tests/` | ✅ M1 complete · 🔨 **M2** — T6 … T12 done, 463 tests · **M2 gate measured and reviewed** (owner decisions R1 … R11 pending) · next: M3, M4 |
+| — | `src/`, `tests/` | ✅ M1 complete · 🔨 **M2** — M2 done and gated (R1 … R14) · **M3 built; gate: view code ✅, content ❌** (owner 2026-09-19) · I-56, I-57 fixed in code · 517 tests · next: R15 re-measure, then M4 |
 
-**Totals:** 6 specs · **121 acceptance criteria** · 463 tests · M1 built, M2 built and gated; remaining work: build-plan §9.
-**Decisions:** rel01 D1–D31. **Question register:** 11 entries, all answered or closed.
+**Totals:** 6 specs · **125 acceptance criteria** (recounted 2026-09-19; the earlier 121 was 1 short) · 517 tests · M1, M2 built and gated; M3 built and gated (content re-measured in R15); remaining work: build-plan §9.
+**Decisions:** rel01 D1–D33. **Question register:** 11 entries, all answered or closed.
 **Vision:** adopted 2026-09-17. **Constitution:** §1 and §6 written; §2–§5 still `TODO`.
 
 ⚠ **Schedule.** Target close is 2026-09-30. The D20 gate is satisfied (D29); M1 is built; M2's tasks are built. Next: the I-43 fix, a
@@ -265,6 +265,75 @@ use in a later release; rel01 wires none of them.
 - Deliberate: a registered but unimplemented command prints what it is and exits `1`, rather than
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
+
+### S31 — 2026-09-19 — M3 gate closed; I-56, I-57, F4 Q2, gate protocol
+
+- **Owner approved** the card-by-card reading in `R12_views_on.md`. **M3 gate:** the view code passes;
+  the graph content fails.
+- **I-56 fixed in code.** The data showed three causes, one of which my suggestion had missed:
+  - Q-ATOM labelled F5's S1 … S7 rows `definition`, so they formed no node (I-59, **F3 D32**). The
+    suggestion to resolve `S1` assumed nodes that did not exist (I-60).
+  - The subject rule ran before the verification rule for criteria (I-61, **F2 D18**).
+  - Ids such as `S4` could not be cited (**F2 D20**, local labels, resolved within their file).
+  - Components never seeded a family, so exhaustive mode had none (**F2 D19**, as a last resort).
+  - New acceptance criteria: AC-2.26 … AC-2.28.
+- **I-57 fixed:** a layer-only scope needs a shared term or keyword (**F5 D9**, the same bar as D7). One
+  `covers` function serves the card and S3. On R12, S3 pairs fall from ≈ 60 to 16. AC-5.3 amended.
+- **F4 Q2 closed as D17:** the Markdown card keeps full text; the terminal cuts at 80.
+- **Gate protocol adopted** (build-plan §3): pass line first; every output or a blind sample; a
+  first-time reader; a verdict per item; durable evidence (I-62).
+- **517 tests, 125 ACs** (recount; the board said 121 before, actually 122). **Next:** R15, re-compile F5 and re-read every card; then T15.
+
+### S30 — 2026-09-19 — M3 gate reviewed
+
+- **Evidence widened:** the R12 "on" store had survived in an earlier session's scratch folder. All 19
+  real cards were rendered, not the two chosen before (I-54). They are in
+  `rel01_design/measurements/R12_views_on.md`, with a one-sentence reading of each card for the owner
+  to confirm.
+- **Three defects fixed, test first:**
+  - `sddc family "(no family)"` was refused (I-51).
+  - AC-4.18's property test checked a helper the map did not use (I-52).
+  - Every card showed "Kind of: (no family)" when any node was unplaced (I-53, found only on real data).
+- **Four card changes, F4 D13 … D16 ⚑:**
+  - lines follow the source;
+  - constraints in scope are shown as lines, not ids;
+  - "Kind of" and "Narrower families" come from `broader`;
+  - an ambiguous line names its kinds.
+- F4 traceability for AC-4.14, AC-4.17 and AC-4.18 is marked partial, because `sddc map` and
+  `query map` are deferred (I-58). **498 tests.**
+- **Claude's reading: the view code passes; the graph content does not.** Only 3 of 19 cards (12 of 43
+  nodes) read as a coherent group. The largest, `node`, holds nine S1 … S7 criteria filed by their Given
+  clause (I-56).
+- **Open for the owner before T15:**
+  - **I-56:** the family subject for criteria.
+  - **I-57:** layer-only constraint scope. By the card's rule, S3 alone proposes about 60 pairs among 43
+    nodes, above `min_score`.
+  - **F4 Q2:** text width.
+
+### S29 — 2026-09-19 — R12 … R14 done; M3 built
+
+- **R13, R14 built** (F3 D30, D31): resolve references before flagging `referential`; `narrower`
+  points specific → general, reversed verdicts refused by code.
+- **R12, re-run** after a re-login cleared the scratch area and lost the first result (I-50). One whole
+  spec (F5, 65 blocks), R2 off against R2 on: terms used once **67 % → 42 %**, nodes in families of three
+  or more 42 % → 56 %, cheaper; one-node families unchanged at about two thirds. Reports now kept in
+  `rel01_design/measurements/`. Write-up: `rel01_design/M2-gate.md` §B8.
+- **M3 built:** T13 indexes and `status` graph counts (F1 CT-1.5 extended); T14 the map, family cards,
+  generated `.sdd/views/`, `sddc family NAME` (F4 D10 … D12), two reviewed golden files. The first golden
+  review caught a missing in-scope constraint and a row-order oddity; the first real card caught stray
+  Markdown marks. **494 tests.** M3 gate: the owner reads the real cards in
+  `measurements/R12_views_on.md`.
+
+### S28 — 2026-09-18 — R1 … R11 built; R6 re-measured
+
+- **rel01 D33** (owner): R1 and R2, option (a) each. **All eleven gate fixes built** test-first (F2 D16,
+  D17; F3 D9 extended, D25 … D29). **477 tests.**
+- **R6** (same 63 blocks, two fresh runs, $1.64): 60 and 61 blocks completed (was 60, 51); no node
+  without a family beyond 7.5 %; every acceptance criterion one `V` node; wrong merges down from ≈ 27 to
+  5; 40–57 % cheaper; runs agree on node count for 75 % of blocks (was 49 %). **Not met:** the family
+  targets — which this scattered sample cannot measure (I-49, my target-setting error). Proposed R12 (a
+  dense sample), R13 (`referential` resolution), R14 (`narrower` direction). Details:
+  [`rel01_design/M2-gate.md`](rel01_design/M2-gate.md) §B7.
 
 ### S27 — 2026-09-18 — I-42, I-43 fixed; the M2 gate measured
 
@@ -726,6 +795,24 @@ planned because the backend could be measured before the pipeline exists.
   (F2 Q3 option c). rel01 fills `scope_selector` and `verifies` by code (F2 D13, option b). After rel01,
   G4 counts how many `C` and `V` nodes that leaves unresolved, and that number decides whether Q-PAIR
   (F6 CT-6.1) gains the two relations.
+
+- **rel01 D32 — 2026-09-18 — M2 gate recommendations R3 … R11 accepted as recommended**
+  (`rel01_design/M2-gate.md` §B5): reword Q1 and Q3 without trigger words (R3, R11); the family
+  fallback takes the first entity/data/event term anywhere before null (R4, an F2 §4.4 change);
+  backticks and a quote's first-letter case are layout (R5, R10, extending F3 D9); non-empty canonical
+  subject and response (R7); **an acceptance criterion becomes one `V` node verifying the requirement it
+  tests** (R8, an F3 change); Q-ATOM prompt examples for non-claim roles (R9). R1 and R2 pending. The
+  spec amendments are written when each is implemented; R6 re-measures the sample afterwards.
+
+- **rel01 D33 — 2026-09-18 — R1 and R2 approved, option (a) each** (`rel01_design/M2-gate.md` §B6,
+  which keeps the options and reasons). **R1:** Q-TERM gains the verdict `narrower`; the terms stay
+  separate and the new one records `broader`; `same` means synonyms, spellings and plurals only.
+  *Rejected:* back to D16 (the ambiguity flood), stricter wording alone (already ignored 9 of 16
+  times), a spelling-only code rule (blocks real synonyms). **R2:** each Q-DESC call is shown up to
+  ~100 existing term names and asked to reuse one when it names the same thing, with R1's rule (*a kind
+  of X is not X*); the list is not part of the lock key. *Rejected for now:* a separate vocabulary pass
+  (kept in reserve), code-side clustering (merges distinct things). Success targets for R6: terms used
+  once ≤ 50 %, one-node families ≤ half, family null ≤ 10 %, no hyponym merges.
 
 ## Rejected alternatives
 

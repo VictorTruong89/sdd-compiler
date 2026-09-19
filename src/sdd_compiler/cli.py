@@ -75,6 +75,8 @@ def build_parser() -> argparse.ArgumentParser:
                 "paths", nargs="*", metavar="PATH",
                 help="spec files or directories; default: everything matching spec_globs",
             )
+        if name == "family":
+            sub.add_argument("name", metavar="NAME", help="a family's term id, name or alias")
         if name == "compile":
             sub.add_argument("--no-replay", action="store_true", default=False,
                              help="ask the model even where the judgment lock holds an answer")
@@ -106,6 +108,8 @@ def dispatch(args: argparse.Namespace) -> int:
         return commands.compile_(root, paths=args.paths, as_json=as_json, replay=not args.no_replay)
     if args.command == "ingest":
         return commands.ingest(root, paths=args.paths, as_json=as_json)
+    if args.command == "family":
+        return commands.family(root, args.name, as_json=as_json)
     if args.command == "status":
         return commands.status(root, as_json=as_json)
 

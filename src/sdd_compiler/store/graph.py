@@ -195,6 +195,8 @@ def _stage(store: Path, graph: Graph, tx: Transaction, sources: Mapping[str, str
     tx.write_jsonl("review.jsonl", graph.reviews.values(), REVIEW_KEYS)
     tx.write_text("conflicted_nodes.json", _dump(registry_of(graph)))
     tx.write_text("graph.meta.json", _dump(_meta(graph, sources or {}, other_counters or {})))
+    from ..views.render import stage_views          # the views read the index, which reads us
+    stage_views(tx, store, graph)
 
 
 def registry_of(graph: Graph) -> dict[str, Any]:

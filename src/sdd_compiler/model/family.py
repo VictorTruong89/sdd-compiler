@@ -8,13 +8,19 @@ that entity's family before the constraint rule is reached):
 2. **response** — the subject is an actor, a component, an external system or
    "the system": the first `entity`/`data`/`event` term in the response;
 3. **verification** — a `V` node takes the family of what it verifies; several
-   families → the first, flagged `family_disputed`;
+   families → the first, flagged `family_disputed`. ⚑ F2 D18: for a `V` node that
+   resolved `verifies`, this rule comes **first** — a criterion's Given clause
+   ("Given two nodes…") names its fixture, not what it tests;
 4. **constraint** — a `C` node scoped to exactly one family belongs to it,
    otherwise to `(global)`;
-5. **fallback** — family null, ambiguity `unresolved_term`.
+5. **mention** — the first `entity`/`data`/`event` term the node uses in any
+   role (F2 D17, rel01 D32 R4): a last resort, better than no family;
+6. **component** — ⚑ F2 D19: a `component` subject, when nothing above applies
+   ("exhaustive mode" had no family at all);
+7. **fallback** — family null, ambiguity `unresolved_term`.
 
-A pin overrides all five. Actors, components and categories never seed a family:
-otherwise "user" or "the service" would absorb half the graph.
+A pin overrides them all. Actors and categories never seed a family, and a
+component only by rule 6: otherwise "user" or "the service" would absorb half the graph.
 """
 from __future__ import annotations
 
@@ -49,6 +55,9 @@ def derive_family(
     if pin:
         return Family(pin, "pinned", flags=["pinned_family"])
 
+    if layer == "V" and verified_families:                              # F2 D18
+        return _verification(verified_families)
+
     subject_term = next((t for t in terms if t["role"] == "subject"), None)
     if subject_term is not None and subject_term["kind"] in SEEDS:
         return Family(subject_term["term"], "subject")
@@ -63,19 +72,26 @@ def derive_family(
         if response is not None:
             return Family(response["term"], "response")
 
-    if layer == "V" and verified_families:
-        disputed = len(set(verified_families)) > 1
-        return Family(verified_families[0], "verification",
-                      flags=["family_disputed"] if disputed else [])
-
     if layer == "C":
         distinct = sorted(set(scope_families))
         return Family(distinct[0] if len(distinct) == 1 else GLOBAL, "constraint")
+
+    mentioned = next((t for t in terms if t["kind"] in SEEDS), None)
+    if mentioned is not None:
+        return Family(mentioned["term"], "mention")
+
+    if subject_term is not None and subject_term["kind"] == "component":   # F2 D19
+        return Family(subject_term["term"], "component")
 
     return Family(None, "fallback", ambiguity=[{
         "kind": "unresolved_term", "quote": None,
         "detail": "no entity, data or event term to name the node's family",
     }])
+
+
+def _verification(verified_families: Sequence[str]) -> Family:
+    disputed = len(set(verified_families)) > 1
+    return Family(verified_families[0], "verification", flags=["family_disputed"] if disputed else [])
 
 
 def term_links(node_id: str, terms: Sequence[dict[str, Any]]) -> list[dict[str, Any]]:

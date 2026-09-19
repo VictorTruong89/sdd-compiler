@@ -5,6 +5,8 @@
 2. Otherwise the tag becomes a new `proposed` term. If the registry holds terms
    with **similar** names, Q-TERM asks whether it is one of them:
    - `different` → nothing more;
+   - `narrower` → a kind of an existing term (F3 D25, rel01 D33 R1): the new term
+     stays separate, with its own family, and records `broader`. No review item;
    - `same` → **merged at once** (F3 D20): the new name becomes an alias of the
      existing term, every tag with that name resolves to it, and a `term_same`
      attention item lets a person reject the merge (undo). No node turns
@@ -40,7 +42,7 @@ from ..model.ids import term_id
 from .batch import ask_each
 from .guards import GuardFailure
 
-SCHEMA_VERSION = "q-term/1"
+SCHEMA_VERSION = "q-term/2"      # /2 adds `narrower` (rel01 D33 R1)
 MAX_CANDIDATES = 10          # F3 Q3 default
 SIMILARITY = 0.8
 
@@ -50,11 +52,11 @@ SCHEMA: dict[str, Any] = {
     "required": ["terms"],
     "properties": {"terms": {"type": "array", "items": {
         "type": "object", "additionalProperties": False,
-        "required": ["term_key", "verdict", "same_as", "reason"],
+        "required": ["term_key", "verdict", "target", "reason"],
         "properties": {
             "term_key": {"type": "string"},
-            "verdict": {"type": "string", "enum": ["same", "different", "unsure"]},
-            "same_as": {"type": ["string", "null"]},
+            "verdict": {"type": "string", "enum": ["same", "narrower", "different", "unsure"]},
+            "target": {"type": ["string", "null"]},
             "reason": {"type": "string"},
         },
     }}},
@@ -62,11 +64,17 @@ SCHEMA: dict[str, Any] = {
 
 _INSTRUCTIONS = """\
 You are deciding whether newly found specification terms name something already in the
-term registry. For each new term, answer:
-- same: it names exactly the same thing as one listed candidate; give that candidate's id
-  in same_as;
-- different: it names something else;
-- unsure: you cannot tell from what is given.
+term registry. For each new term, answer with one verdict:
+- same: another name for exactly the same thing — a synonym, a spelling or a plural
+  ("ids" and "id"; "share link" and "shared link"). Give that candidate's id in target.
+- narrower: the NEW term is a kind of, a part of, or a specialized form of a candidate
+  ("review item" is narrower than "item"; "judgment id" is narrower than "id"). A kind of X
+  is NOT the same as X. Give the broader candidate's id in target. narrower always points
+  from the more specific name (the new term) to the more general one (the candidate). If
+  the NEW term is the general one — new "backend", candidate "claude code backend" — the
+  answer is different, never narrower.
+- different: it names something else. target is null.
+- unsure: you cannot tell from what is given. target is null.
 Give a one-sentence reason. Answer for each term, using its exact term_key.
 """
 
@@ -161,7 +169,7 @@ def resolve_terms(
         candidates = similar_terms(name, known)
         new_id = term_id(name)
         record = {"id": new_id, "canonical": name, "aliases": [], "kind": tag["kind"],
-                  "defined_by": None, "status": "proposed"}
+                  "defined_by": None, "status": "proposed", "broader": None}
         result.new_terms[new_id] = record
         result.by_tag[name] = new_id
         known[new_id] = record
@@ -179,15 +187,32 @@ def _ask_q_term(asks: list[_Ask], backend: Backend, result: TermResolution,
     def accept(ask: _Ask, payload: dict[str, Any]) -> None:
         verdict = payload["verdict"]
         allowed = {candidate["id"] for candidate in ask.candidates}
-        if verdict == "same" and payload["same_as"] not in allowed:
+        if verdict in ("same", "narrower") and payload["target"] not in allowed:
             raise GuardFailure(
-                f"same_as must be one of the listed candidates ({', '.join(sorted(allowed))}); "
-                f"got {payload['same_as']!r}"
+                f"target must be one of the listed candidates ({', '.join(sorted(allowed))}); "
+                f"got {payload['target']!r}"
             )
         if verdict == "different":
             return
+        if verdict == "narrower":
+            # R1 (rel01 D33): a kind of X keeps its own term and family, and records X.
+            target = payload["target"]
+            candidate = next(c for c in ask.candidates if c["id"] == target)
+            if _contains_all_words(candidate["canonical"], ask.name):
+                # R14: "backend" is not narrower than "claude code backend" — it is broader.
+                raise GuardFailure(
+                    f"{ask.name!r} cannot be narrower than {candidate['canonical']!r}: the candidate "
+                    f"already contains every word of it, so the new term is the broader one; "
+                    f"answer different"
+                )
+            while target in result.merged_into:
+                target = result.merged_into[target]
+            if ask.key in result.new_terms:
+                result.new_terms[ask.key] = {**result.new_terms[ask.key], "broader": target}
+                known[ask.key] = result.new_terms[ask.key]
+            return
         if verdict == "same":
-            _merge(ask, payload["same_as"], payload["reason"], result, known)
+            _merge(ask, payload["target"], payload["reason"], result, known)
             return
         result.reviews.append({"type": "term_unsure", "subject": ask.key,
                                "detail": f"Q-TERM: unsure — {payload['reason']}"})
@@ -252,6 +277,13 @@ def build_question(asks: Sequence[_Ask], note: str | None = None) -> Question:
         parts.append(f"\n--- TERM {ask.key} ---\nname: \"{ask.name}\" ({ask.kind})\ncandidates:\n{listed}")
     return Question(kind="q-term", schema_version=SCHEMA_VERSION, schema=SCHEMA,
                     prompt="".join(parts), payload={"term_keys": [ask.key for ask in asks]})
+
+
+def _contains_all_words(longer: str, shorter: str) -> bool:
+    """True when `longer` names more than `shorter` and includes every word of it (plurals folded)."""
+    small = {_singular(w) for w in normalize_name(shorter).split()}
+    large = {_singular(w) for w in normalize_name(longer).split()}
+    return small < large
 
 
 def _index(registry: Mapping[str, Mapping[str, Any]]) -> dict[str, str]:

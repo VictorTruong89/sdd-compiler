@@ -32,6 +32,11 @@ _HUMAN_ID = re.compile(
     r"^(?:[-*+]\s+|\d+[.)]\s+)?(?:\*\*|__)?(?P<id>(?:AC|CT)-\d+\.\d+)(?!\w|\.\d)"
 )
 _LABELLED_KINDS = ("paragraph", "list_item")
+# F2 D20: a local label — `S1`, `D3`, `T1` — unique only inside its file. It opens a table row
+# (bold or not) or, in bold, a list item. Never adopted as a node id; resolved within the file.
+_LOCAL_LABEL = re.compile(
+    r"^(?:\|\s*(?:\*\*|__)?|(?:[-*+]\s+|\d+[.)]\s+)(?:\*\*|__))(?P<id>[A-Z]{1,2}\d{1,3})(?=[\s*_|—:.,-]|$)"
+)
 
 
 @dataclass
@@ -59,6 +64,14 @@ def find_human_id(block: Mapping[str, Any]) -> str | None:
     if block.get("kind") not in _LABELLED_KINDS:
         return None
     match = _HUMAN_ID.match(block["text"].lstrip())
+    return match.group("id") if match else None
+
+
+def find_local_label(block: Mapping[str, Any]) -> str | None:
+    """F2 D20 — the local id a table row or list item opens with, when it has no global one."""
+    if block.get("kind") not in ("table_row", "list_item") or find_human_id(block):
+        return None
+    match = _LOCAL_LABEL.match(block["text"].lstrip())
     return match.group("id") if match else None
 
 

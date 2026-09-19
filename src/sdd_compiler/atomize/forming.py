@@ -26,6 +26,7 @@ from .guards import locate_quote
 from .placement_types import PlacedAtom
 
 _CITATION = re.compile(r"(?<![\w.-])((?:AC|CT)-\d+\.\d+|N-\d{6,})(?!\w|\.\d)")
+_LOCAL_CITATION = re.compile(r"(?<![\w.-])([A-Z]{1,2}\d{1,3})(?![\w.-]\w)")    # F2 D20
 
 
 @dataclass
@@ -138,11 +139,19 @@ def scope_selector(terms: Sequence[Mapping[str, Any]], scope_layers: Sequence[st
 def resolve_verifies(
     nodes: Mapping[str, Mapping[str, Any]], verifies_texts: Mapping[str, str | None]
 ) -> tuple[dict[str, list[str]], list[dict[str, Any]]]:
-    """F2 D13, AC-2.25 — each id or `AC-`/`CT-` label a `V` node cites → the nodes carrying it."""
+    """F2 D13, AC-2.25 — each id or `AC-`/`CT-` label a `V` node cites → the nodes carrying it.
+
+    F2 D20: a local label (`S4`) resolves only to nodes of the citing node's own file, and only
+    when one block carries it there; a label on two blocks of a file is ambiguous and resolves
+    to nothing."""
     by_label: dict[str, list[str]] = {}
+    local: dict[tuple[str, str], list[str]] = {}
     for node_id, node in nodes.items():
-        if node.get("label"):
-            by_label.setdefault(node["label"], []).append(node_id)
+        label = node.get("label")
+        if label and "-" in label:
+            by_label.setdefault(label, []).append(node_id)
+        elif label:
+            local.setdefault((_file(node), label), []).append(node_id)
 
     verifies: dict[str, list[str]] = {}
     links: list[dict[str, Any]] = []
@@ -153,11 +162,19 @@ def resolve_verifies(
             if citation in nodes:
                 targets.add(citation)
             targets.update(by_label.get(citation, []))
+        for citation in _LOCAL_CITATION.findall(cited_text):
+            carriers = local.get((_file(nodes[node_id]), citation), [])
+            if len({(nodes[c].get("source") or {}).get("block_id") for c in carriers}) == 1:
+                targets.update(carriers)
         targets.discard(node_id)
         verifies[node_id] = sorted(targets)
         links += [{"from": node_id, "type": "verifies", "to": target, "provenance": "code",
                    "judgment": None, "rationale": None, "quotes": []} for target in verifies[node_id]]
     return verifies, links
+
+
+def _file(node: Mapping[str, Any]) -> str | None:
+    return (node.get("source") or {}).get("file")
 
 
 def block_annotations(block: Mapping[str, Any], pairs: Sequence[tuple[str, str]]) -> list[dict[str, Any]]:

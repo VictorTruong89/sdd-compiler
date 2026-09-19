@@ -258,6 +258,10 @@ pays only for changed and previously failed blocks.
 
 ## B5. Recommendations — owner decisions before the M4 gate
 
+> **Owner, 2026-09-18:** R3 … R11 **accepted as recommended** (rel01 D32), including R8's answer: an
+> acceptance criterion becomes one `V` node. **R1 and R2 approved, option (a) each** (rel01 D33), after
+> the explanation in §B6. All are implemented before R6 re-measures.
+
 | # | Change | Addresses | Size |
 |---|---|---|---|
 | **R1** | **Q-TERM gains a verdict `narrower`** ("a kind of"), which keeps the terms separate with no review item; only true synonyms and spelling variants are `same`. Revisits F3 D20's premise | G-3 | small (schema `q-term/2`, prompt) |
@@ -272,8 +276,154 @@ pays only for changed and previously failed blocks.
 | R11 | Reword Q3 (`L1`) so internal rules stop landing in behaviour | G-14 | small |
 | R6 | Re-measure after the approved changes on the same sample (the lock replays nothing, since the prompts change) | all | ≈ $3, 30 min |
 
+## B6. R1 and R2 — explained, then decided (option (a) each, rel01 D33)
+
+### R1 — how Q-TERM should answer "is this new term an existing one?"
+
+**Today.** Q-TERM answers `same`, `different` or `unsure`. Since F3 D20, `same` merges at once: the new
+name becomes an alias, and every claim that used it moves into the existing term's family.
+
+**The evidence.** In run 1, 9 of the 16 `same` verdicts justify themselves in the model's own words as
+*a kind of*: "Review item is a specialized form of item", "A violation report is a type of report",
+"Batch run is a specialized execution of run". The model sees the difference and has no way to say it,
+so it picks the nearest answer, `same`. Each such merge pools distinct things: claims about *judgment
+ids* and *term ids* land in one family, `id`.
+
+| Option | What changes | For | Against |
+|---|---|---|---|
+| **(a) Add `narrower`** (recommended) | Q-TERM may answer `narrower: term:item`. The terms stay **separate**, each with its own family, and the new term records `broader: term:item` (a new, optional CT-2.2 field). No review item. `same` is redefined narrowly (synonyms, spellings, plurals), with examples from our own specs | Gives the model the answer it is already trying to give; keeps families specific; records the relation for later (the M3 map could nest `review item` under `item`) | A schema change (`q-term/2`, CT-2.2 field). Relies on the model using the new answer, which R6 measures |
+| (b) Go back to D16: nothing merges until a person accepts | Every `same` becomes a review item and `pending_review` | Nothing wrong merges unseen | Brings back the flood D20 removed (16 of 49 nodes ambiguous on the T10 sample), and genuine synonyms stay split until someone acts |
+| (c) Stricter wording only | Prompt says "a kind of is *not* same" | Cheapest | The prompt already said "exactly the same thing"; the model ignored it 9 times out of 16 |
+| (d) A code rule: merge only near-identical spellings | `same` accepted only when the names differ by plural or spelling | Deterministic | Blocks real synonyms ("share link" / "shared URL"), which are the reason Q-TERM exists |
+
+**Recommendation: (a).** It fixes the cause rather than the symptom, it keeps D20's benefit (true
+synonyms still merge at once, with no flood), and the recorded `broader` relation is useful rather than
+thrown away. Success at R6: no hyponym merges in the sample's `term_same` items.
+
+### R2 — letting Q-DESC reuse names the graph already has
+
+**Today.** Q-DESC tags each atom's terms seeing only that batch of atoms. It never sees the term
+registry. So the same thing is named afresh each time — "pending status", "pending", "changed status"
+within one criterion (B-000082, run 1) — and since a family *is* a term, every new name is a new family.
+That is why 72–79 % of terms are used once and 28–36 of ~42 families have one node (G-1).
+
+Q-TERM cannot repair this afterwards. It only compares names that look alike, and "pending status" and
+"block" do not.
+
+| Option | What changes | For | Against |
+|---|---|---|---|
+| **(a) Show the registry in the Q-DESC prompt** (recommended) | Each Q-DESC call lists existing term names (canonical and aliases), bounded: first those already used in the same spec file, then the most used overall, up to ~100. The prompt asks the model to **reuse a listed name when it names the same thing**, and to create a new one only when none fits | Attacks the cause directly: the model cannot reuse a name it has never seen. Cheap: ~100 names ≈ 600–800 extra input tokens, about $0.001 against a call's ≈ $0.02 (*estimate*) | Order-dependent: the first chunk of a fresh compile sees an empty registry. A replayed answer may have been given with a different list — acceptable, since the lock, not the prompt, is what makes a compile reproducible |
+| (b) A vocabulary pass after describing | One extra call per chunk: all new names in, a mapping to canonical names out | Sees all the names at once | Another model question with its own errors — it would face R1's hyponym problem again — and more cost |
+| (c) Code-side clustering | Merge names by string rules (drop modifiers, lemmatize) | Deterministic | Would merge distinct things ("pending status" → "status"): exactly the error R1 is fixing |
+
+**Recommendation: (a), and keep (b) in reserve** if R6 shows families still scattered. One detail to
+decide with it: the list is **not** part of the lock key. If it were, every Q-DESC answer would miss the
+lock as soon as one term was added anywhere, and nothing would replay.
+
+**Success at R6** (proposed targets for the same 63-block sample): terms used by one node ≤ 50 % (from
+72–79 %); families with one node ≤ half of families (from 67–84 %); family null ≤ 10 % (from 23–24 %,
+with R4's help).
+
+**R1 and R2 together.** R2 makes the model *reuse* names; R1 stops wrong *merges*. They share one risk:
+R2 could tempt the model to reuse the broader name ("item" for a review item), and R1 cannot catch that,
+because Q-TERM never sees a name that was reused. So R2's prompt must carry the same rule as R1 — *a kind
+of X is not X; name the specific thing* — with the same examples, and R6 must check reused names as well
+as merges. Recommended: both, then R6.
+
 **On sequencing:** M3 (views) can be built now — its code does not depend on these answers. M4's
 retrieval leans on families and terms, so R1–R4 should land before the M4 gate compiles the repository.
+
+## B7. R6 — the re-measure after the fixes (2026-09-18)
+
+**What was run.** The same 63 blocks (same seed), after R1 … R5 and R7 … R11 were built (477 tests),
+compiled twice more in fresh stores: runs **R6a** and **R6b**. Nothing was replayed from the earlier
+runs; the changed prompts change every lock key.
+
+### The numbers, before and after
+
+| | Gate runs 1 · 2 (before) | R6a · R6b (after) | Target (rel01 D33) | Met? |
+|---|---|---|---|---|
+| Blocks completed | 60 · 51 | **60 · 61** | — | better |
+| Nodes | 84 · 74 | 53 · 43 | — | fewer: titles, notes and Given/When fragments no longer become claims |
+| Model calls · cost | 77 · $1.69 and 79 · $1.52 | **49 · $0.99 and 33 · $0.65** | — | 40–57 % cheaper |
+| Family null | 24 % · 23 % | **7.5 % · 0 %** | ≤ 10 % | ✅ (R4) |
+| Wrong `same` merges | ≈ 9 of 16 · — (27 merges in all) | 5 merges in all, 2–3 still wrong | none | ⚠️ much better, not zero |
+| `narrower` verdicts | — | 21 · 18, about 1 in 4 wrong (often reversed: "backend" under "claude code backend") | — | harmless for families: narrower terms stay separate |
+| Acceptance criteria as one `V` node | fragments + stray tier nodes | **17 of 17 criteria**, one `V` node each | — | ✅ (R8) |
+| Terms used by one node | 79 % · 72 % | 88 % · 83 % | ≤ 50 % | ❌ — but see "why" below |
+| One-node families | 28 of 42 · 36 of 43 | 41 of 43 · 29 of 33 | ≤ half | ❌ — see below |
+| `ambiguous` nodes | 62 % · 73 % | 68 % · 63 % | — | unchanged; `referential` (an unresolved "it", "this") is on about a third |
+| `C` nodes | 17 · 17 | 12 · 11 | — | share unchanged, but most are now real constraints; ≈ 4 of 12 still misfiled |
+| `inferred` nodes | 2 · 2 | 0 · 0 | — | ✅ |
+| Spread: same node count | 31 of 63 (49 %) | **47 of 63 (75 %)** | — | ✅ steadier |
+| Spread: same layer · family, single-node blocks | 10 · 10 of 16 | 13 · 7 of 15 | — | layer steadier, family not |
+| Store checks | clean | clean | — | ✅ |
+
+### In plain words
+
+- **The fixes did what they were aimed at.** Almost every block now completes, the noise nodes are
+  gone, every acceptance criterion is exactly one verification node, no node is left without a family,
+  wrong merges fell from dozens to a handful, and a compile costs about half as much.
+- **Two runs now agree far more often** on how many claims a block holds (3 in 4 blocks, up from 1 in 2)
+  and on the layer.
+- **The family targets were not met, and this sample cannot tell us whether R2 works.** The 63 blocks
+  are scattered across nine spec files by design; after the fixes they yield only 43–53 claims, as few
+  as 2 per file, about as many topics as claims. Families can only form where several claims are about
+  the same thing, and a scattered sample has few such places. The earlier runs *looked* better partly
+  because one criterion split into three fragments that shared a family, which the fixes removed. **The
+  target was set against the wrong kind of sample; that was my mistake.**
+- **Ambiguity is still two thirds of the nodes,** mostly unresolved references ("it", "this"), and now
+  the largest remaining source of noise.
+
+### What this means next
+
+| # | Proposal | Why |
+|---|---|---|
+| R12 | Judge families on a **dense** sample: one whole spec file (for example F5, 65 blocks, ≈ $1–1.5 at R6's rate) or the M4 gate's full compile | Only a sample in which claims share topics can show whether R2 makes them share names |
+| R13 | Treat `referential` as the next lever: resolve "it"/"this" from the same block or heading before flagging (Q-DESC prompt), and count what remains | It is now the main cause of `ambiguous` |
+| R14 | Tell Q-TERM that `narrower` points from the *specific* to the *general*, with a reversed example | ≈ 1 in 4 `narrower` verdicts were reversed; harmless to families, but the recorded relation is wrong |
+
+## B8. R12 … R14 — families measured properly, two prompt fixes (2026-09-19)
+
+**R13 and R14 (built, F3 D30, D31).** Q-DESC now resolves "it", "this", "they" from the same block or
+section before flagging `referential`. Q-TERM is told that `narrower` points from the specific to the
+general, and code refuses a reversed one: "backend" cannot be narrower than "claude code backend".
+
+**R12 — does showing Q-DESC the vocabulary (R2) make families form?** B7 could not tell, because the
+scattered sample had too few claims per topic (I-49). R12 compiled **one whole spec, F5 (65 blocks)**,
+twice in fresh stores. The code was identical; one run showed Q-DESC the existing term names (R2
+**on**) and the other did not (**off**). The reports are kept in
+[`measurements/`](measurements/) (`R12_dense_on.json`, `R12_dense_off.json`).
+
+| | R2 off | R2 on | Target (D33) |
+|---|---|---|---|
+| Blocks completed | 64 of 65 | 64 of 65 | — |
+| Nodes · terms | 50 · 79 | 43 · 45 | — |
+| Terms used by one node | **53 of 79 (67 %)** | **19 of 45 (42 %)** | ≤ 50 % ✅ with R2 |
+| Nodes in families of three or more | 21 of 50 (42 %) | **24 of 43 (56 %)** | — |
+| One-node families | 15 of 22 (68 %) | 12 of 18 (67 %) | ≤ half ❌ either way |
+| Family null | 4 (8 %) | 3 (7 %) | ≤ 10 % ✅ |
+| Model calls · cost | 33 · $0.86 | 21 · $0.69 | — |
+| Store checks | clean | clean | — |
+
+**In plain words.** Showing the model the names already in use works: it reuses them. Almost half as
+many terms are invented (45 against 79), a clear majority of claims now sit in families of three or
+more, and the run is cheaper because Q-TERM has less to ask. What R2 does not fix is the long tail:
+two thirds of families still hold one claim, often a near-name of a bigger family ("other node",
+"checked node" beside `node`). One run per arm, so this is a strong signal, not a settled number.
+
+**The real views** from the R2-on store are saved in
+[`measurements/R12_views_on.md`](measurements/R12_views_on.md) for the M3 gate. Reading them: the
+`candidate` card says, without F5 open, that candidates below `min_score` are dropped, the rest ranked
+and capped, and three criteria (`AC-5.8`, `AC-5.10`, `AC-5.11`, now under their own ids, R8) verify it.
+Review of that card found one display flaw, fixed as F4 D12: stray `**` and backtick marks inside lines.
+⚠ *Superseded by the M3 gate review (S30, build-plan I-54):* `candidate` was one of the best cards. All
+19 cards are now in that file. Only 3 of them read as a coherent group, and the largest, `node`, does
+not (I-56).
+
+**Still open for the M4 gate:** the singleton tail (a candidate fix: when Q-TERM finds a new term
+`narrower` than an existing one with few nodes, show both in one family card, using `broader`); and
+`ambiguous` at 40–60 % of nodes, which the check phase (M4) will add to rather than reduce.
 
 ---
 

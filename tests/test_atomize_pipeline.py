@@ -106,7 +106,7 @@ def test_a_block_with_no_atoms_completes_without_nodes():
 
 REGISTRY = {"term:share_link": {"id": "term:share_link", "canonical": "share link",
                                 "aliases": ["shared link"], "kind": "entity",
-                                "defined_by": None, "status": "confirmed"}}
+                                "defined_by": None, "status": "confirmed", "broader": None}}
 
 
 def test_ac_3_15_an_alias_resolves_without_asking():
@@ -131,7 +131,7 @@ def test_ac_3_15_an_unsure_term_is_kept_separate_and_sent_for_review():
         q_atom(("B-000001", [("requirement", [SHARING])])),
         q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
         {"terms": [{"term_key": "term:sharing_link", "verdict": "unsure",
-                    "same_as": None, "reason": "may be the share link"}]},
+                    "target": None, "reason": "may be the share link"}]},
     ], registry=REGISTRY)
     assert [q.kind for q in backend.asked] == ["q-atom", "q-desc", "q-term"]
     assert "term:share_link" in backend.asked[2].prompt
@@ -147,9 +147,9 @@ def test_ac_3_15_an_unsure_term_is_kept_separate_and_sent_for_review():
 
 def test_q_term_same_must_name_one_of_the_candidates():
     bad = {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
-                      "same_as": "term:invented", "reason": "r"}]}
+                      "target": "term:invented", "reason": "r"}]}
     good = {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
-                       "same_as": "term:share_link", "reason": "one thing"}]}
+                       "target": "term:share_link", "reason": "one thing"}]}
     draft, backend = run([block("B-000001", SHARING)], [
         q_atom(("B-000001", [("requirement", [SHARING])])),
         q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
@@ -166,7 +166,7 @@ def test_f3_d20_a_same_verdict_merges_at_once_and_can_be_undone():
         q_atom(("B-000001", [("requirement", [SHARING])])),
         q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
         {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
-                    "same_as": "term:share_link", "reason": "one thing"}]},
+                    "target": "term:share_link", "reason": "one thing"}]},
     ], registry=REGISTRY)
     [node] = draft.nodes.values()
     assert node["terms"][0]["term"] == "term:share_link"
@@ -187,7 +187,7 @@ def test_f3_d20_a_later_tag_with_the_merged_name_resolves_without_asking():
         q_atom(("B-000001", [("requirement", [SHARING])])),
         q_desc(q_desc_entry("B-000001#1", subject="sharing link", terms=SHARING_TAGS)),
         {"terms": [{"term_key": "term:sharing_link", "verdict": "same",
-                    "same_as": "term:share_link", "reason": "one thing"}]},
+                    "target": "term:share_link", "reason": "one thing"}]},
         q_atom(("B-000002", [("requirement", [second])])),
         q_desc(q_desc_entry("B-000002#1", subject="sharing link", response="be revocable",
                             q_yes={"Q3": second}, terms=tags)),
@@ -283,8 +283,9 @@ def test_ac_3_9_an_inferred_node_is_ambiguous_and_has_a_review_item():
 # -- F2 D12 labels and adopted ids ---------------------------------------------------------------
 
 def test_d12_a_single_node_block_adopts_its_id_and_a_split_one_labels_every_node():
-    single = "- **AC-1.4** — the link must expire."
-    double = "- **AC-1.5** — the link must expire. the link must be revocable."
+    # CT labels: an AC-labelled block is always one verification atom (R8), so it cannot split.
+    single = "- **CT-1.4** — the link must expire."
+    double = "- **CT-1.5** — the link must expire. the link must be revocable."
     link = [{"name": "link", "kind": "entity", "role": "subject", "quote": "link"}]
     draft, _ = run([block("B-000001", single, kind="list_item"),
                     block("B-000002", double, kind="list_item", line=4)], [
@@ -297,7 +298,7 @@ def test_d12_a_single_node_block_adopts_its_id_and_a_split_one_labels_every_node
                               ("B-000002#2", "the link must be revocable.")))),
     ])
     by_label = sorted((n["id"], n["label"]) for n in draft.nodes.values())
-    assert by_label == [("AC-1.4", "AC-1.4"), ("N-000001", "AC-1.5"), ("N-000002", "AC-1.5")]
+    assert by_label == [("CT-1.4", "CT-1.4"), ("N-000001", "CT-1.5"), ("N-000002", "CT-1.5")]
 
 
 # -- F2 D13 scope selector and verifies (AC-2.24, AC-2.25) --------------------------------------------
@@ -330,9 +331,54 @@ def test_ac_2_24_a_constraint_scoped_to_one_family_joins_it():
     assert (node["family"], node["family_rule"]) == ("term:upload", "constraint")
 
 
-def node_stub(node_id, label=None, family=None, layer="L1", text=""):
+def node_stub(node_id, label=None, family=None, layer="L1", text="", file="a.md", block_id=None):
     return {"id": node_id, "label": label, "family": family, "layer": layer, "text": text,
-            "source": {"spans": [[0, 1]]}, "verifies": None}
+            "source": {"file": file, "block_id": block_id or f"B-{node_id}", "spans": [[0, 1]]},
+            "verifies": None}
+
+
+def test_f2_d20_a_local_label_resolves_only_inside_its_own_file():
+    """"then S4 contributes" verifies F5's S4 row — not a row "S4" in another spec."""
+    nodes = {
+        "N-000001": node_stub("N-000001", "S4", "term:candidate", file="f5.md"),
+        "N-000002": node_stub("N-000002", "S4", "term:other", file="f9.md"),
+        "AC-5.4": node_stub("AC-5.4", "AC-5.4", layer="V", text="Given two nodes, then S4 contributes.",
+                            file="f5.md"),
+    }
+    verifies, _ = resolve_verifies(nodes, {"AC-5.4": None})
+    assert verifies == {"AC-5.4": ["N-000001"]}
+
+
+def test_f2_d20_a_local_label_on_two_blocks_of_one_file_resolves_to_nothing():
+    nodes = {
+        "N-000001": node_stub("N-000001", "D1", block_id="B-1"),
+        "N-000002": node_stub("N-000002", "D1", block_id="B-2"),
+        "N-000003": node_stub("N-000003", "S1", block_id="B-3"),
+        "N-000004": node_stub("N-000004", "S1", block_id="B-3"),          # one block, two nodes
+        "AC-1.1": node_stub("AC-1.1", layer="V", text="Given D1, then S1 holds."),
+    }
+    verifies, _ = resolve_verifies(nodes, {"AC-1.1": None})
+    assert verifies == {"AC-1.1": ["N-000003", "N-000004"]}
+
+
+def test_f2_d20_a_criterion_joins_the_family_of_the_row_it_cites():
+    """End to end, the F5 shape: a table row "S4", then a criterion "Given two nodes …, then S4 …"."""
+    row = "| **S4 adjacent layer** | Same family and layer distance ≤ 1 | both layers |"
+    check = "- **AC-5.4** — **Given** two nodes of one family, **then** S4 contributes."
+    draft, _ = run([block("B-000001", row, kind="table_row"), block("B-000002", check, line=9, kind="list_item")], [
+        q_atom(("B-000001", [("requirement", ["Same family and layer distance ≤ 1"])]),
+               ("B-000002", [("verification", ["**Given** two nodes of one family, **then** S4 contributes."])])),
+        q_desc(q_desc_entry("B-000001#1", subject="candidate", q_yes={"Q1": "Same family and layer distance ≤ 1"},
+                            terms=[{"name": "candidate", "kind": "data", "role": "subject", "quote": "Same family"}]),
+               q_desc_entry("B-000002#1", subject="two nodes", response="S4 contributes", q_yes={},
+                            terms=[{"name": "node", "kind": "entity", "role": "subject", "quote": "two nodes"}],
+                            modality=None, verifies_text="S4")),
+    ])
+    row_node = next(n for n in draft.nodes.values() if n["layer"] != "V")
+    criterion = draft.nodes["AC-5.4"]
+    assert row_node["label"] == "S4"
+    assert criterion["verifies"] == [row_node["id"]]
+    assert (criterion["family"], criterion["family_rule"]) == ("term:candidate", "verification")
 
 
 def test_ac_2_25_a_cited_label_resolves_to_every_node_carrying_it():
@@ -349,19 +395,19 @@ def test_ac_2_25_a_cited_label_resolves_to_every_node_carrying_it():
 
 
 def test_ac_2_25_a_verification_joins_the_family_of_what_it_verifies():
-    target = "- **AC-1.4** — the table must carry its header."
-    check = "The fixture test checks AC-1.4."
+    target = "- **CT-1.4** — the table must carry its header."
+    check = "The fixture test checks CT-1.4."
     table = [{"name": "table", "kind": "entity", "role": "subject", "quote": "table"}]
     draft, _ = run([block("B-000001", target, kind="list_item"), block("B-000002", check, line=9)], [
         q_atom(("B-000001", [("requirement", ["the table must carry its header."])]),
                ("B-000002", [("verification", [check])])),
         q_desc(q_desc_entry("B-000001#1", subject="the table", q_yes={"Q6": "the table must carry its header."},
                             terms=table),
-               q_desc_entry("B-000002#1", subject="the fixture test", response="checks AC-1.4",
-                            q_yes={}, terms=[], modality=None, verifies_text="AC-1.4")),
+               q_desc_entry("B-000002#1", subject="the fixture test", response="checks CT-1.4",
+                            q_yes={}, terms=[], modality=None, verifies_text="CT-1.4")),
     ])
     verification = next(n for n in draft.nodes.values() if n["layer"] == "V")
-    assert verification["verifies"] == ["AC-1.4"]
+    assert verification["verifies"] == ["CT-1.4"]
     assert (verification["family"], verification["family_rule"]) == ("term:table", "verification")
     validate("node", verification)
 
@@ -421,7 +467,7 @@ def test_a_plural_resolves_to_the_singular_term_without_asking():
     tags = [{"name": "blocks", "kind": "data", "role": "subject", "quote": "Blocks"},
             {"name": "AC-1.9", "kind": "external_reference", "role": "scope", "quote": "Blocks"}]
     registry = {"term:block": {"id": "term:block", "canonical": "block", "aliases": [],
-                               "kind": "data", "defined_by": None, "status": "proposed"}}
+                               "kind": "data", "defined_by": None, "status": "proposed", "broader": None}}
     draft, backend = run([block("B-000001", text)], [
         q_atom(("B-000001", [("requirement", [text])])),
         q_desc(q_desc_entry("B-000001#1", subject="blocks", response="keep their ids",
@@ -438,10 +484,128 @@ def test_a_merge_into_a_term_merged_in_the_same_batch_follows_the_chain():
     from sdd_compiler.atomize.terms import resolve_terms
     tags = [{"name": "link token", "kind": "entity"}, {"name": "token link", "kind": "entity"}]
     backend = FakeBackend([{"terms": [
-        {"term_key": "term:link_token", "verdict": "same", "same_as": "term:share_link", "reason": "r"},
-        {"term_key": "term:token_link", "verdict": "same", "same_as": "term:link_token", "reason": "r"},
+        {"term_key": "term:link_token", "verdict": "same", "target": "term:share_link", "reason": "r"},
+        {"term_key": "term:token_link", "verdict": "same", "target": "term:link_token", "reason": "r"},
     ]}])
     result = resolve_terms(tags, REGISTRY, backend)
     assert result.by_tag == {"link token": "term:share_link", "token link": "term:share_link"}
     assert result.changed_terms["term:share_link"]["aliases"] == ["link token", "shared link", "token link"]
     assert result.new_terms == {}
+
+
+# -- rel01 D33 R1: a kind of X is `narrower`, not `same` ------------------------------------
+
+def test_r1_a_narrower_term_stays_separate_and_records_its_broader_term():
+    """Live gate: "review item" merged into "item" — 9 of 16 `same` verdicts were kinds of."""
+    from sdd_compiler.atomize.terms import resolve_terms
+    registry = {"term:item": {"id": "term:item", "canonical": "item", "aliases": [], "kind": "entity",
+                              "defined_by": None, "status": "confirmed", "broader": None}}
+    backend = FakeBackend([{"terms": [{"term_key": "term:review_item", "verdict": "narrower",
+                                       "target": "term:item", "reason": "a review item is a kind of item"}]}])
+    result = resolve_terms([{"name": "review item", "kind": "entity"}], registry, backend)
+    assert result.by_tag == {"review item": "term:review_item"}
+    assert result.new_terms["term:review_item"]["broader"] == "term:item"
+    assert result.reviews == [] and result.pending_review == set()
+    assert "narrower" in backend.asked[0].prompt and "a kind of" in backend.asked[0].prompt
+
+
+def test_r1_narrower_must_name_a_candidate():
+    from sdd_compiler.atomize.terms import resolve_terms
+    bad = {"terms": [{"term_key": "term:sharing_link", "verdict": "narrower", "target": "term:nope", "reason": "r"}]}
+    good = {"terms": [{"term_key": "term:sharing_link", "verdict": "different", "target": None, "reason": "r"}]}
+    backend = FakeBackend([bad, good])
+    resolve_terms([{"name": "sharing link", "kind": "entity"}], REGISTRY, backend)
+    assert len(backend.asked) == 2
+
+
+# -- rel01 D33 R2: Q-DESC is shown the vocabulary ---------------------------------------------
+
+def test_r2_the_description_question_lists_known_terms_and_the_kind_of_rule():
+    from sdd_compiler.atomize.describe import DescribeItem, build_question
+    from sdd_compiler.atomize.qatom import Atom
+    item = DescribeItem("B-000001#1", Atom("B-000001", "requirement", [EXPIRY], [(0, len(EXPIRY))]),
+                        block("B-000001", EXPIRY))
+    prompt = build_question([item], None, vocabulary=["share link", "owner"]).prompt
+    assert "- share link" in prompt and "- owner" in prompt
+    assert "a kind of" in prompt.lower()
+
+
+def test_r2_the_vocabulary_is_not_part_of_the_lock_key():
+    from sdd_compiler.atomize.describe import build_question
+    assert build_question([], None, vocabulary=["share link"]).prompt == build_question([], None).prompt
+
+
+def test_r2_the_pipeline_offers_same_file_terms_first():
+    from sdd_compiler.atomize.pipeline import vocabulary
+    registry = {f"term:t{i}": {"id": f"term:t{i}", "canonical": f"t{i}", "aliases": [], "kind": "entity",
+                               "defined_by": None, "status": "proposed", "broader": None} for i in range(5)}
+    usage_total = {"term:t0": 9, "term:t1": 1, "term:t2": 5}
+    usage_by_file = {"a.md": {"term:t1": 1}}
+    assert vocabulary(registry, usage_total, usage_by_file, ["a.md"], limit=3) == ["t1", "t0", "t2"]
+
+
+# -- rel01 D32: R3/R11 layer questions, R8 criteria, R9 non-claims ----------------------------
+
+def test_r3_r11_layer_questions_carry_no_trigger_words():
+    from sdd_compiler.atomize.describe import LAYER_QUESTIONS
+    text = dict(LAYER_QUESTIONS)
+    assert "every / all / never" not in text["Q1"]
+    assert "inside" in text["Q3"].lower()
+
+
+def test_r9_the_atomizer_is_shown_what_is_not_a_claim():
+    from sdd_compiler.atomize.qatom import build_question
+    prompt = build_question([], None).prompt
+    for marker in ("Why:", "Rejected:", "open question", "title", "Given"):
+        assert marker in prompt
+
+
+def test_r8_an_acceptance_criterion_becomes_one_verification_node():
+    """Live gate: AC blocks split into Given/When/Then fragments plus a stray tier-tag node (G-10)."""
+    text = ("- **AC-1.5** — **Given** a list item, **when** ingested, **then** it is a block and its "
+            "parent is recorded. → *unit.*")
+    given, then, tier = "a list item", "it is a block and its parent is recorded", "unit"
+    draft, backend = run([block("B-000001", text, kind="list_item")], [
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": text, "role": "verification"}],
+                     "atoms": [{"kind": "requirement", "quotes": [given]},
+                               {"kind": "requirement", "quotes": [then]},
+                               {"kind": "verification", "quotes": [tier]}]}]},
+        q_desc(q_desc_entry("B-000001#1", subject="a list item", response="is a block, its parent recorded",
+                            q_yes={}, modality=None, verifies_text="list-item ingest",
+                            terms=[{"name": "list item", "kind": "data", "role": "subject", "quote": "list item"}])),
+    ])
+    [node] = draft.nodes.values()
+    assert node["id"] == "AC-1.5" and node["label"] == "AC-1.5"
+    assert (node["kind"], node["layer"]) == ("verification", "V")
+    assert [q.payload["atom_ids"] for q in backend.asked if q.kind == "q-desc"] == [["B-000001#1"]]
+
+
+# -- R13, R14 (after R6) --------------------------------------------------------------------
+
+def test_r14_a_reversed_narrower_is_refused_and_re_asked():
+    """R6: "backend" was judged narrower than "claude code backend" — backwards."""
+    from sdd_compiler.atomize.terms import resolve_terms
+    registry = {"term:claude_code_backend": {"id": "term:claude_code_backend", "canonical": "claude code backend",
+                                             "aliases": [], "kind": "component", "defined_by": None,
+                                             "status": "proposed", "broader": None}}
+    reversed_ = {"terms": [{"term_key": "term:backend", "verdict": "narrower",
+                            "target": "term:claude_code_backend", "reason": "r"}]}
+    fixed = {"terms": [{"term_key": "term:backend", "verdict": "different", "target": None, "reason": "r"}]}
+    backend = FakeBackend([reversed_, fixed])
+    result = resolve_terms([{"name": "backend", "kind": "component"}], registry, backend)
+    assert len(backend.asked) == 2
+    assert "broader" in backend.asked[1].prompt
+    assert result.new_terms["term:backend"]["broader"] is None
+
+
+def test_r14_the_prompt_says_which_way_narrower_points():
+    from sdd_compiler.atomize.terms import build_question
+    prompt = build_question([], None).prompt
+    assert "specific" in prompt and "general" in prompt
+
+
+def test_r13_the_description_question_resolves_references_before_flagging():
+    from sdd_compiler.atomize.describe import build_question
+    prompt = build_question([], None).prompt
+    assert "resolve" in prompt.lower() and "only when" in prompt.lower()

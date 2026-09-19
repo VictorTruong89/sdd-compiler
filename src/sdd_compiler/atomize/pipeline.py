@@ -23,7 +23,7 @@ from typing import Any
 from ..errors import ExitCode, SddcError
 from ..llm import Backend
 from ..model.family import term_links
-from ..model.ids import IdCounter, adopt_human_ids, human_labels
+from ..model.ids import IdCounter, adopt_human_ids, find_human_id, find_local_label, human_labels
 from ..model.layers import LAYER_OF_QUESTION
 from ..model.placement import Placement, place
 from ..model.schema import validate
@@ -31,10 +31,11 @@ from .describe import DescribeItem, describe_atoms
 from .align import NewAtom, align
 from .forming import NodeDraft, block_annotations, layer_hint, resolve_verifies
 from .placement_types import PlacedAtom
-from .qatom import atomize_blocks
+from .qatom import Atom, atomize_blocks
 from .terms import TermResolution, normalize_name, resolve_terms
 
 DEFAULT_BLOCK_BATCH = 20     # blocks per Q-ATOM call (measured, rel01 S20)
+VOCABULARY_LIMIT = 100       # term names shown to Q-DESC (rel01 D33 R2)
 
 
 @dataclass
@@ -84,11 +85,17 @@ def atomize_pending(
     atom_counts: dict[str, int] = {}
     node_drafts: list[NodeDraft] = []
     pending_reviews: list[dict[str, Any]] = []
+    usage_total: dict[str, int] = {}
+    usage_by_file: dict[str, dict[str, int]] = {}
+    for node in existing.values():
+        _count_usage(node["source"]["file"], [t["term"] for t in node["terms"]], usage_total, usage_by_file)
 
     for start in range(0, len(ordered), block_batch):
         chunk_blocks = ordered[start:start + block_batch]
         try:
-            chunk = _run_chunk(chunk_blocks, backend, weak_words, known_terms, lock)
+            names = vocabulary(known_terms, usage_total, usage_by_file,
+                               sorted({b["source"] for b in chunk_blocks}))
+            chunk = _run_chunk(chunk_blocks, backend, weak_words, known_terms, lock, names)
         except SddcError as error:
             # I-43: a stop mid-run keeps every finished chunk (and its lock records);
             # only the interrupted chunk stays pending.
@@ -136,13 +143,14 @@ def atomize_pending(
                 terms = _resolved_terms(piece, chunk.terms, known_terms)
                 node_drafts.append(NodeDraft(
                     node_id=node_id, placed=piece, block=block, terms=terms,
-                    label=labels.get(block_id),
+                    label=labels.get(block_id) or find_local_label(block),   # F2 D12, D20
                     layer_hint=layer_hint(block.get("heading_path") or [], layer_hints),
                     annotations=annotations,
                     pending_terms=sorted({t["term"] for t in terms} & chunk.terms.pending_review),
                     alignment=kind if kept else "new",
                     old=next((o for o in olds if o["id"] == kept), None),
                 ))
+                _count_usage(block["source"], [t["term"] for t in terms], usage_total, usage_by_file)
             draft.completed[block_id] = block["text_hash"]
 
     _finish(draft, node_drafts, existing, run_id)
@@ -168,6 +176,7 @@ def _run_chunk(
     weak_words: Sequence[str],
     known_terms: Mapping[str, Mapping[str, Any]],
     lock: Any | None = None,
+    names: Sequence[str] = (),
 ) -> _Chunk:
     chunk = _Chunk()
     aliases = {t["canonical"]: list(t.get("aliases", [])) for t in known_terms.values()}
@@ -179,11 +188,14 @@ def _run_chunk(
     for atom in atomized.atoms:
         if atom.block_id in atoms_by_block:
             atoms_by_block[atom.block_id].append(atom)
+    for block in blocks:
+        if block["id"] in atoms_by_block:
+            atoms_by_block[block["id"]] = one_criterion(block, atoms_by_block[block["id"]])
 
     by_id = {block["id"]: block for block in blocks}
     atom_judgments = dict(atomized.judgments)
     placed = _describe_and_place(atoms_by_block, by_id, backend, weak_words, aliases, chunk.failed,
-                                 lock, atom_judgments)
+                                 lock, atom_judgments, names=names)
 
     for block_id, split in list(placed.items()):
         if not isinstance(split, dict):
@@ -203,7 +215,8 @@ def _run_chunk(
         # across two layers — typically a bold title and its explanation — place it by
         # the first yes and flag it `mixed_layers`, rather than fail the block.
         retried = _describe_and_place({block_id: again.atoms}, by_id, backend, weak_words, aliases,
-                                      chunk.failed, lock, atom_judgments, accept_mixed=True)
+                                      chunk.failed, lock, atom_judgments, accept_mixed=True,
+                                      names=names)
         if block_id not in retried:
             del placed[block_id]
             continue
@@ -225,6 +238,7 @@ def _describe_and_place(
     lock: Any | None = None,
     atom_judgments: Mapping[str, str] | None = None,
     accept_mixed: bool = False,
+    names: Sequence[str] = (),
 ) -> dict[str, Any]:
     """Block id → its placed atoms, or the split that stopped it. Failed blocks go to `failed`."""
     items = [
@@ -233,7 +247,7 @@ def _describe_and_place(
         for n, atom in enumerate(atoms, start=1)
     ]
     described = describe_atoms(items, backend, weak_words=list(weak_words), aliases=dict(aliases),
-                               lock=lock)
+                               lock=lock, vocabulary=names)
 
     result: dict[str, Any] = {}
     for block_id, atoms in atoms_by_block.items():
@@ -264,6 +278,55 @@ def _describe_and_place(
     return result
 
 
+def one_criterion(block: Mapping[str, Any], atoms: Sequence[Atom]) -> list[Atom]:
+    """R8 (rel01 D32, F3 D28): a block labelled `AC-…` is one verification atom.
+
+    Enforced in code, not left to the prompt: in the gate, criteria came back as
+    Given / When / Then fragments plus a stray atom made from the tier tag. The
+    fragments' quotes are kept, in block order, so the node covers the criterion.
+    """
+    label = find_human_id(block)
+    if not label or not label.startswith("AC-") or len(atoms) <= 1 and all(
+            a.kind == "verification" for a in atoms):
+        return list(atoms)
+    pairs = sorted({(span, quote) for atom in atoms for span, quote in zip(atom.spans, atom.quotes)})
+    return [Atom(block_id=block["id"], kind="verification",
+                 quotes=[quote for _, quote in pairs], spans=[span for span, _ in pairs])]
+
+
+def vocabulary(
+    registry: Mapping[str, Mapping[str, Any]],
+    usage_total: Mapping[str, int],
+    usage_by_file: Mapping[str, Mapping[str, int]],
+    files: Sequence[str],
+    limit: int = VOCABULARY_LIMIT,
+) -> list[str]:
+    """R2 (rel01 D33): the term names Q-DESC is shown — the chunk's own files' terms first,
+    then the most used overall, then the rest; each group by use, then by id."""
+    chosen: list[str] = []
+
+    def take(ids: Any) -> None:
+        for term_id in ids:
+            if term_id in registry and term_id not in chosen and len(chosen) < limit:
+                chosen.append(term_id)
+
+    local: dict[str, int] = {}
+    for name in files:
+        for term_id, count in usage_by_file.get(name, {}).items():
+            local[term_id] = local.get(term_id, 0) + count
+    take(sorted(local, key=lambda t: (-local[t], t)))
+    take(sorted(usage_total, key=lambda t: (-usage_total[t], t)))
+    take(sorted(registry))
+    return [registry[term_id]["canonical"] for term_id in chosen]
+
+
+def _count_usage(file: str, terms: Sequence[str], total: dict[str, int],
+                 by_file: dict[str, dict[str, int]]) -> None:
+    for term in terms:
+        total[term] = total.get(term, 0) + 1
+        by_file.setdefault(file, {})[term] = by_file.setdefault(file, {}).get(term, 0) + 1
+
+
 # -- after the last chunk: cross-node work and validation -----------------------
 
 def _finish(draft: GraphDraft, drafts: list[NodeDraft], existing: Mapping[str, Mapping[str, Any]],
@@ -275,7 +338,9 @@ def _finish(draft: GraphDraft, drafts: list[NodeDraft], existing: Mapping[str, M
     verifications = [d for d in drafts if d.layer == "V"]
     if verifications:
         view = {**existing, **draft.nodes,
-                **{d.node_id: {"label": d.label, "text": d.text, "family": None} for d in verifications}}
+                **{d.node_id: {"label": d.label, "text": d.text, "family": None,
+                               "source": {"file": d.block["source"], "block_id": d.block["id"]}}
+                   for d in verifications}}
         verifies, links = resolve_verifies(
             view, {d.node_id: d.description.verifies_text for d in verifications})
         for node_draft in verifications:

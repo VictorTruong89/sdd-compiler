@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import copy
 
+import pytest
+
 from sdd_compiler.atomize.describe import DescribeItem, build_question, describe_atoms
 from sdd_compiler.atomize.qatom import Atom
 from sdd_compiler.llm import FakeBackend
@@ -285,3 +287,12 @@ def test_d14_a_requirement_without_modality_is_described_and_flagged():
     described = outcome.descriptions["A-1"]
     assert described.canonical["modality"] is None
     assert [a["kind"] for a in described.ambiguity] == ["missing_modality"]
+
+
+@pytest.mark.parametrize("field", ["subject", "response"])
+def test_r7_an_empty_canonical_field_is_re_asked(field):
+    """Live gate: run 1 formed two nodes with an empty subject and response (G-9)."""
+    blank = entry(canonical={**entry()["canonical"], field: "  "})
+    outcome, backend = run(ONE, [blank], [entry()])
+    assert len(backend.asked) == 2
+    assert outcome.failures == {}

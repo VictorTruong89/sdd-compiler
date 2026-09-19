@@ -1,4 +1,4 @@
-"""The five rel01 commands (build-plan B2), thin over the pipeline."""
+"""The six rel01 commands (build-plan B2, amended by I-38), thin over the pipeline."""
 from __future__ import annotations
 
 import json
@@ -7,6 +7,9 @@ from pathlib import Path
 from .errors import ExitCode, SddcError
 from .ingest import pipeline
 from .pipeline import compile_graph
+from .store.graph import load_graph
+from .store.index import GraphIndex, counts as graph_counts
+from .views.render import family_card, family_label
 from .profile import STORE_DIR, profile_path, render_default_profile
 
 
@@ -65,13 +68,42 @@ def ingest(root: Path, paths: list[str] | None = None, as_json: bool = False) ->
 
 def status(root: Path, as_json: bool = False) -> int:
     payload = pipeline.status(root)
-    counts = payload["counts"]
+    payload["graph"] = dict(graph_counts(load_graph(Path(root) / STORE_DIR)))   # T13 (F4 §4.4)
+    counts, g = payload["counts"], payload["graph"]
     _say(
         f"{counts['sources']} source(s) · {counts['blocks']} blocks · "
-        f"{counts['pending']} pending (run {payload['run'] or 'none yet'})",
+        f"{counts['pending']} pending (run {payload['run'] or 'none yet'}) · "
+        f"{g['nodes']} nodes · {g['families']} families · "
+        f"{g['open_conflicts']} open conflict{'s' if g['open_conflicts'] != 1 else ''} · "
+        f"{g['attention_items']} attention item(s)",
         payload,
         as_json,
     )
+    return ExitCode.OK
+
+
+def family(root: Path, name: str, as_json: bool = False) -> int:
+    """T14 — one family's card (F4 §4.6); `--json` gives the members by layer."""
+    graph = load_graph(Path(root) / STORE_DIR)
+    index = GraphIndex.build(graph)
+    try:
+        found = index.family_of(name)
+    except KeyError:
+        known = sorted(family_label(f) for f in index.by_family)
+        raise SddcError(
+            f"no family named {name!r}; families: {', '.join(known[:20]) or 'none yet'}"
+            + (" …" if len(known) > 20 else ""),
+            ExitCode.INPUT,
+        ) from None
+    if as_json:
+        members: dict[str, list[dict]] = {}
+        for node_id in index.by_family[found]:
+            node = index.by_id[node_id]
+            members.setdefault(node["layer"] or "—", []).append(
+                {"id": node_id, "status": node["status"], "text": node["text"]})
+        print(json.dumps({"family": found, "members": members}, ensure_ascii=False))
+    else:
+        print(family_card(graph, found, index=index), end="")
     return ExitCode.OK
 
 

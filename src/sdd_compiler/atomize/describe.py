@@ -59,11 +59,13 @@ MODEL_AMBIGUITY = ("missing_actor", "referential", "scope")
 
 #: F2 §4.3 / P-8. The order is the precedence order; the layer mapping is F2's.
 LAYER_QUESTIONS = (
-    ("Q1", "Does it restrict MANY nodes or the whole system (every / all / never / budgets), "
-           "rather than describe one behaviour?"),
+    ("Q1", "Does it restrict many parts of the system at once — a budget, an invariant, a policy "
+           "that applies across features — rather than state one behaviour, rule or fact? "
+           "(Judge the meaning, not words such as 'every' or 'never'.)"),
     ("Q2", "Can it only be judged by a business outcome, not by testing software?"),
-    ("Q3", "Can an outside observer verify it WITHOUT naming a protocol artefact "
-           "(path, method, status code, field, event name)?"),
+    ("Q3", "Can someone outside the system check it just by using the system — its commands, "
+           "outputs and files — without looking inside at internal data or algorithms, and "
+           "without naming a protocol artefact (path, method, status code, field, event name)?"),
     ("Q4", "Is it about which component exists, owns or runs something?"),
     ("Q5", "Is it about an agreement between two named parties (API, event, message, file format)?"),
     ("Q6", "Is it about the shape, type, identity or lifecycle of data?"),
@@ -75,6 +77,8 @@ SCOPE_LAYERS = ("L0", "L1", "L2", "L3", "L4", "L5")
 
 _TEXT = {"type": "string"}
 _NULLABLE_TEXT = {"type": ["string", "null"]}
+#: R7 (rel01 D32): a canonical subject or response must say something.
+_CLAIM_TEXT = {"type": "string", "pattern": r"\S"}
 _ANSWER = {
     "type": "object", "additionalProperties": False, "required": ["answer", "quote"],
     "properties": {"answer": {"type": "string", "enum": ["yes", "no"]}, "quote": _NULLABLE_TEXT},
@@ -96,7 +100,7 @@ SCHEMA: dict[str, Any] = {
                 "required": ["state", "trigger", "scope", "subject", "modality", "response"],
                 "properties": {
                     "state": _NULLABLE_TEXT, "trigger": _NULLABLE_TEXT, "scope": _NULLABLE_TEXT,
-                    "subject": _TEXT, "response": _TEXT,
+                    "subject": _CLAIM_TEXT, "response": _CLAIM_TEXT,
                     "modality": {"type": ["string", "null"], "enum": [*MODALITIES, None]},
                 },
             },
@@ -160,6 +164,8 @@ quotes from its source block. Answer for each atom, using its exact atom_id.
 4. Ambiguity. List only what a careful reader genuinely could not pin down:
    missing_actor (no one is named to do it), referential (an unresolved "it", "this",
    "they"), scope (unclear what it applies to). Quote it, or null. An empty list is normal.
+   First resolve "it", "this", "they" from the same block text or its section; write the
+   resolved thing as the subject. Flag referential only when neither names it.
 
 5. For a constraint over a group, describe the scope in scope_description, tag the terms
    that name the group with role "scope", and list in scope_layers which layers it covers
@@ -205,12 +211,22 @@ class DescribeOutcome:
     judgments: dict[str, str] = field(default_factory=dict)      # atom id -> J id (with a lock)
 
 
-def build_question(items: Sequence[DescribeItem], note: str | None = None) -> Question:
+def build_question(items: Sequence[DescribeItem], note: str | None = None,
+                   vocabulary: Sequence[str] = ()) -> Question:
     parts = [_INSTRUCTIONS.format(
         layer_questions="".join(f"   {key}  {text}\n" for key, text in LAYER_QUESTIONS),
         term_kinds=", ".join(TERM_KINDS),
         term_roles=", ".join(TERM_ROLES),
     )]
+    if items and vocabulary:
+        # R2 (rel01 D33). Rendered only with items, so the instructions — and with them
+        # the lock key (F3 D21) — do not change as the registry grows.
+        parts.append(
+            "\nTerms already in the graph. When a claim is about one of these things, tag it with\n"
+            "exactly this name. A kind of X is not X: for a review item write \"review item\", not\n"
+            "\"item\". Create a new name only when none of these names the thing.\n"
+            + "".join(f"- {name}\n" for name in vocabulary)
+        )
     if note:
         parts.append(f"\nThe previous answer was rejected. {note}\nTry again, carefully.\n")
     # Each block's text is sent once, however many of its atoms are asked about.
@@ -243,6 +259,7 @@ def describe_atoms(
     aliases: dict[str, list[str]],
     batch_size: int = DEFAULT_BATCH_SIZE,
     lock: Any | None = None,
+    vocabulary: Sequence[str] = (),
 ) -> DescribeOutcome:
     """Describe atoms in batches, re-asking once for each atom whose answer failed a check."""
     outcome = DescribeOutcome()
@@ -255,7 +272,7 @@ def describe_atoms(
             items[start:start + batch_size],
             item_id=lambda item: item.atom_id,
             backend=backend,
-            build_question=build_question,
+            build_question=lambda items_, note: build_question(items_, note, vocabulary),
             list_key="atoms",
             id_key="atom_id",
             accept=accept,

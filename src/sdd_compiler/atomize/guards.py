@@ -125,13 +125,19 @@ def _first_free_occurrence(
     if not flat_needle:
         return None
 
-    start = flat_text.find(flat_needle)
-    while start != -1:
-        end = start + len(flat_needle)
-        span = (offsets[start], offsets[end - 1] + 1)
-        if not _overlaps(span, claimed):
-            return span
-        start = flat_text.find(flat_needle, start + 1)
+    # A quote lifted from the start of a sentence may change the case of its first
+    # letter ("a Q-TERM" for "A Q-TERM"); case anywhere else still counts (R10).
+    variants = [flat_needle]
+    if flat_needle[0].isalpha() and flat_needle[0].swapcase() != flat_needle[0]:
+        variants.append(flat_needle[0].swapcase() + flat_needle[1:])
+    for variant in variants:
+        start = flat_text.find(variant)
+        while start != -1:
+            end = start + len(variant)
+            span = (offsets[start], offsets[end - 1] + 1)
+            if not _overlaps(span, claimed):
+                return span
+            start = flat_text.find(variant, start + 1)
     return None
 
 
@@ -139,8 +145,8 @@ def _flatten(text: str) -> tuple[str, list[int]]:
     """Collapse layout to one space, keeping a map back to real offsets.
 
     Layout is a run of whitespace, the blockquote markers that Markdown repeats
-    at the start of every wrapped line inside a `>` block, and `*` emphasis
-    marks. All three are how the file is formatted, not what it says, so a quote
+    at the start of every wrapped line inside a `>` block, `*` emphasis marks and
+    backticks. All are how the file is formatted, not what it says, so a quote
     may differ there.
     """
     flattened: list[str] = []
@@ -148,8 +154,9 @@ def _flatten(text: str) -> tuple[str, list[int]]:
     index = 0
     length = len(text)
     while index < length:
-        if text[index] == "*":
-            # Emphasis marks: `**Given**` and `Given` are the same words (F3 D9).
+        if text[index] in "*`":
+            # Emphasis and inline-code marks: `**Given**` and `Given`, `` `x` `` and `x`,
+            # are the same words (F3 D9, extended by rel01 D32 R5).
             index += 1
             continue
         if not text[index].isspace():

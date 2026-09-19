@@ -86,7 +86,8 @@ on offsets supplied by the model.
 
 ### 4.4 Family — exactly one (P-9)
 
-The primary term is chosen by the first rule that applies:
+The primary term is chosen by the first rule that applies. ⚑ For a `V` node whose `verifies` resolved,
+rule 3 is tried first (D18):
 
 1. **Subject rule** — `canonical.subject` resolves to a term of kind `entity`, `data` or `event`.
 2. **Response rule** — the subject is an `actor`, a `component`, an `external_system` or "the system";
@@ -95,7 +96,9 @@ The primary term is chosen by the first rule that applies:
    node takes the first verified node's family and gets flag `family_disputed`.
 4. **Constraint rule** — a `C` node whose scope selects exactly one family belongs to it; otherwise to
    `(global)`.
-5. **Fallback** — nothing resolves → family `null`, ambiguity kind `unresolved_term`.
+5. **Mention** (D17) — the first `entity`/`data`/`event` term the node uses in any role.
+6. **Component** (D19) — the subject is a `component` term: that term.
+7. **Fallback** — nothing resolves → family `null`, ambiguity kind `unresolved_term`.
 
 **Where `scope_selector` and `verifies` come from (D13).** Both are filled by code, never written by
 the model directly:
@@ -104,10 +107,11 @@ the model directly:
   answer `scope_layers` (any of `L0`…`L5`). An empty selector means the constraint is global.
 - `verifies` (a `V` node): after every node of the run is formed, each node id or `AC-`/`CT-` label
   cited in the node's quotes or in Q-DESC's `verifies_text` resolves to the node(s) with that id or
-  `label`; each creates a `verifies` link with provenance `code`. Nothing cited → `verifies: []`, and the
+  `label`, and each cited local label (`S4`, D20) to the nodes of the **same file** carrying it, when
+  one block there carries it; each creates a `verifies` link with provenance `code`. Nothing cited → `verifies: []`, and the
   family falls to the subject rule or `unresolved_term`. The verification rule is then re-applied.
 
-`actor`, `component` and `category` terms never seed a family. A pin overrides the rule, and the node
+`actor` and `category` terms never seed a family, and a `component` only by rule 6. A pin overrides the rule, and the node
 gets flag `pinned_family`. Mentioning a term never makes a node a member of that term's family; it
 creates a `uses_term` link.
 
@@ -187,13 +191,13 @@ Id counters are never rewound.
   },
   "terms": [{"term": "term:share_link", "role": "subject | response | trigger | state | scope",
              "quote": "share link"}],
-  "label": "AC-1.8 | null",
+  "label": "AC-1.8 | S1 | null",
   "primary_term": "term:share_link | null",
   "layer": "L0 | L1 | L2 | L3 | L4 | L5 | C | V | null",
   "layer_answers": {"Q1": {"answer": "no", "quote": null}, "Q3": {"answer": "yes", "quote": "…"}},
   "layer_hint": "string | null",
   "family": "term:share_link | (global) | null",
-  "family_rule": "subject | response | verification | constraint | pinned | fallback",
+  "family_rule": "subject | response | verification | constraint | mention | component | pinned | fallback",
   "components": ["term:LinkService"],
   "scope_selector": {"families": [], "layers": [], "terms": [], "categories": []},
   "verifies": ["N-000010"],
@@ -227,9 +231,12 @@ Rules:
 ```json
 { "id": "term:share_link", "canonical": "share link", "aliases": ["shared link"],
   "kind": "entity | data | event | actor | component | external_system | category | external_reference",
-  "defined_by": "N-000005 | B-000030 | null", "status": "confirmed | proposed" }
+  "defined_by": "N-000005 | B-000030 | null", "status": "confirmed | proposed",
+  "broader": "term:item | null" }
 ```
-Attributes (for example `expires_at`) resolve to their parent entity term in rel01.
+Attributes (for example `expires_at`) resolve to their parent entity term in rel01. `broader` names the
+term this one is a kind of, as judged by Q-TERM's `narrower` verdict (D16); the terms keep separate
+families.
 
 **CT-2.3 — Link record**
 ```json
@@ -314,6 +321,19 @@ record is `open`.
   `verifies` links with provenance `code` exist, and the family is `term:table` by the verification
   rule; **given** a `V` node citing nothing, **then** `verifies` is `[]`. → *unit.*
 
+- **AC-2.26** *(a criterion joins what it tests; D18)* — **Given** a `V` node whose subject term is the
+  entity `term:node` and whose `verifies` resolves to a node in `term:candidate`, **then** its family is
+  `term:candidate` by rule `verification`; **given** nothing resolved, **then** `term:node` by
+  `subject`. → *unit.*
+- **AC-2.27** *(component as last resort; D19)* — **Given** a subject tagged `component`
+  (`term:exhaustive_mode`) and no entity, data or event term anywhere, **then** the family is
+  `term:exhaustive_mode`, rule `component`; **given** an entity in the response, **then** the response
+  rule applies as before. → *unit.*
+- **AC-2.28** *(local labels; D20)* — **Given** a table row `| **S4 adjacent layer** | … |` in
+  `f5.md`, a row labelled `S4` in `f9.md`, and a criterion in `f5.md` citing "S4", **then** the row's
+  node carries `label: "S4"`, the criterion verifies only the `f5.md` node and joins its family; a local
+  label carried by two blocks of one file resolves to nothing. → *unit.*
+
 **Records and ids**
 - **AC-2.17** *(schema validation)* — **Given** records missing required fields, with unknown enum
   values, or with a `judgment`-provenance link lacking a judgment id, **when** validated, **then** each
@@ -391,6 +411,28 @@ record is `open`.
 - **D15 — Ambiguity kind `mixed_layers`** (F3 D23): a node whose layer answers still point at two
   layers after the split re-ask is placed by the first yes and carries this ambiguity, quoting the
   second yes.
+- **D16 — A term may record the term it is a kind of (`broader`)** (rel01 D33 R1, F3 D25). "Review
+  item" is narrower than "item": both stay terms with their own families, and the relation is kept for
+  later views rather than lost in a merge.
+- **D17 — A mentioned entity names the family before null** (rel01 D32 R4). Rule 5 takes the first
+  `entity`/`data`/`event` term the node uses in any role. *Why:* 20 of 84 gate nodes had no family,
+  10 of them because no subject term was tagged. *Narrows* the principle "mentioning a term never makes
+  a node a member" to: never while any earlier rule applies. AC-2.11 still holds.
+- **D18 — ⚑ A verification that resolved `verifies` takes that family first** (M3 gate review, I-56;
+  owner approved the direction 2026-09-19). *Amends D9 for `V` nodes.* On R12, nine of F5's criteria
+  sat in `term:node` because "Given two nodes…" gave the subject; the Given clause names a criterion's
+  fixture, not what it tests. D9's reason (a `C` node about files stays in `file`) does not transfer,
+  because a criterion's subject is its setup.
+- **D19 — ⚑ A `component` subject names the family as a last resort**, after mention and before null
+  (M3 gate review, I-56). "Exhaustive mode" had about five claims and no family, because components never
+  seeded one. Placed last, it takes only nodes that would otherwise be null. Actors and categories
+  still never seed a family.
+- **D20 — ⚑ Local labels** (M3 gate review, I-56). A table row that opens with an id (`S1`, `T1`, bold
+  or not), or a list item that opens with a bold one (`**D1 — …**`), gives its nodes that `label`. A
+  local label is **never adopted** as a node id and never fails a build as a duplicate (D10 still
+  holds). It resolves only inside its file, and only when one block there carries it. *Why:* F5's
+  criteria cite "S1" … "S7", ids unique only inside F5. *Rejected:* adopting them as ids, which fails
+  every multi-spec build (D10).
 - **D11 — Ambiguity kind `missing_modality`** (F3 D14): a requirement or constraint that states no modal
   verb is formed with `modality: null` and this ambiguity.
 
@@ -406,9 +448,10 @@ closed 2026-09-18 as D12. Q3 closed 2026-09-18 as D13.*
 | AC | Test (file::test) | Code |
 |---|---|---|
 | AC-2.1 … AC-2.5 | `tests/test_model_placement.py` (133) | `src/sdd_compiler/model/placement.py` · `layers.py` |
-| AC-2.6 … AC-2.11 · D9 | `tests/test_model_family.py` (12) | `src/sdd_compiler/model/family.py` |
+| AC-2.6 … AC-2.11 · D9 · AC-2.26, AC-2.27 · D18, D19 | `tests/test_model_family.py` (14) | `src/sdd_compiler/model/family.py` |
 | AC-2.12 … AC-2.16 | `tests/test_model_status.py` (20) | `src/sdd_compiler/model/status.py` |
 | AC-2.14, AC-2.17 … AC-2.21 · D10 … D12 | `tests/test_model_records.py` (29) | `src/sdd_compiler/model/schema.py` · `ids.py` · `keywords.py` |
 | AC-2.22 | `tests/test_profile.py` (3) | `src/sdd_compiler/profile.py` · `model/layers.py` |
 | AC-2.24, AC-2.25 · D13 | `tests/test_atomize_pipeline.py` | `src/sdd_compiler/atomize/forming.py` · `pipeline.py` |
+| AC-2.28 · D20 | `tests/test_model_records.py::test_f2_d20_…` (8 cases) · `tests/test_atomize_pipeline.py::test_f2_d20_…` (3) | `src/sdd_compiler/model/ids.py` · `schema.py` · `atomize/forming.py` · `pipeline.py` |
 | AC-2.23 · D14 | `tests/test_store_graph.py::test_f2_ac_2_23_deleting_a_node_cascades` | `src/sdd_compiler/store/graph.py` |

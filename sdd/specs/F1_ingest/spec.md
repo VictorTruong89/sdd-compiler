@@ -157,8 +157,11 @@ atomizer: { backend: claude-code, model: haiku }   # read by F3, not by F1
 { "run": "R-0009",
   "counts": {"sources": 3, "blocks": 41, "pending": 2},
   "pending": [ {"id": "B-000123", "status": "changed", "source": "…", "lines": [42, 44],
-                "heading_path": ["…"], "kind": "list_item", "text": "…"} ] }
+                "heading_path": ["…"], "kind": "list_item", "text": "…"} ],
+  "graph": {"nodes": 14, "by_status": {"validated": 12, "conflict": 2}, "families": 2,
+            "open_conflicts": 1, "attention_items": 0} }
 ```
+`graph` was added by M3 T13 (F4 §4.4): the node counts, from the graph store.
 `status` here is derived (D13): `new` when `atomized_hash` is null, `changed` when it is an older hash.
 
 **CT-1.6 — CLI surface**

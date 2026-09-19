@@ -82,6 +82,24 @@ Label EVERY sentence with a role: requirement, constraint, assumption, verificat
 decision, definition, rationale, example, context, open_question. Only the first five
 become atoms.
 
+Not every sentence is a claim. Label these with a role and make NO atom of them:
+- a title or heading line, e.g. "**CT-1.4 — Profile** (`.sdd/profile.yaml`):" -> context;
+- a status or process note, e.g. "Tiers are provisional.", "Adopted: rel01 D3." -> context;
+- an open question, e.g. "Q3 — Q-TERM candidate count N. Default 10." -> open_question;
+- a pointer elsewhere, e.g. "Finding candidate related nodes -> F5." -> context;
+- a legend, a TODO, or a test-tier tag such as "-> *unit.*" -> context;
+- rationale, including EVERY sentence after "Why:" or "Rejected:", even one that says
+  must or never -> rationale.
+
+Use "definition" ONLY for a sentence that says what a word means ("A node is one atomic
+claim."). A table row or list item that states how something behaves, is decided or is
+checked is a claim, even when it opens with a name: "| S1 same family | Same `family`
+(not `(global)`) | family id |" -> requirement.
+
+An acceptance criterion (labelled AC-..., or written as Given ... when ... then ...) is ONE
+atom of kind verification. Do not split its Given, When and Then: they are its setup and
+its expected outcome.
+
 Quote VERBATIM from the block: every quote must appear in the block character for
 character. Do not paraphrase, do not fix typos, do not add anything the block does
 not say. Answer for each block you are given, using its exact block_id.

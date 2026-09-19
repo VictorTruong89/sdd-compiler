@@ -80,8 +80,8 @@ stay pending.
 | Kind | Input | Output (schema-bound) |
 |---|---|---|
 | **Q-ATOM** | A **batch** of pending blocks (rel01 D30), each with text, kind, heading path, table header | Sentence roles; atoms, each `{kind, quotes[]}` with **verbatim quotes**; non-normative sentences labelled with their role |
-| **Q-DESC** | A **batch** of atoms (rel01 D30; at most 8 per call, rel01 S21), each with its quotes; each block's text and heading path sent once | Canonical fields (F2 CT-2.1 `canonical`, without normalized quantities); layer answers Q1–Q7 with quotes; term tags `{name, kind, role, quote}`; ambiguity candidates `{kind, quote}`; for `C` a scope description and `scope_layers` (closed list of `L0`…`L5`, F2 D13); for `V` the text of what it verifies; for `decision` chosen, rejected with reasons |
-| **Q-TERM** | One proposed term plus up to N existing terms with similar names | `same: term id` · `different` · `unsure`, with a reason |
+| **Q-DESC** | A **batch** of atoms (rel01 D30; at most 8 per call, rel01 S21), each with its quotes; each block's text and heading path sent once; up to 100 existing term names to reuse (D26) | Canonical fields (F2 CT-2.1 `canonical`, without normalized quantities); layer answers Q1–Q7 with quotes; term tags `{name, kind, role, quote}`; ambiguity candidates `{kind, quote}`; for `C` a scope description and `scope_layers` (closed list of `L0`…`L5`, F2 D13); for `V` the text of what it verifies; for `decision` chosen, rejected with reasons |
+| **Q-TERM** | One proposed term plus up to N existing terms with similar names | `same` (synonym, spelling, plural) · `narrower` (a kind of a candidate) · `different` · `unsure`, with a `target` for the first two and a reason (`q-term/2`, D25) |
 
 - The atom tests T1–T4 (P-2), the role list (P-3) and the canonical form (P-4) are stated in the
   question text.
@@ -103,7 +103,8 @@ stay pending.
 
 | Guard | Applied to | Check | On failure |
 |---|---|---|---|
-| **G2** Span anchoring | Q-ATOM, Q-DESC quotes | Every quote occurs verbatim in the block text — ⚑ *up to layout*: runs of whitespace, and the `>` markers Markdown repeats on each wrapped line of a blockquote, and `*` emphasis marks may differ (D9). Words, order, case and punctuation must match. Code computes the offsets. A quote occurring more than once anchors to the first occurrence not already claimed by another atom in the same block | Re-ask |
+| **G2** Span anchoring | Q-ATOM, Q-DESC quotes | Every quote occurs verbatim in the block text — ⚑ *up to layout*: runs of whitespace, and the `>` markers Markdown repeats on each wrapped line of a blockquote, and `*` emphasis marks may differ, as may backticks and the case of a quote's **first** letter (D9). Words, order, case and
+punctuation must otherwise match. Code computes the offsets. A quote occurring more than once anchors to the first occurrence not already claimed by another atom in the same block | Re-ask |
 | **G3** Coverage | Q-ATOM | Every sentence of the block containing a normative word (`must, shall, should, may, never, only, required, not allowed`) is covered by an atom quote or labelled non-normative | Re-ask |
 | **G4** No injection | Q-DESC | Every term name and every quantity in the canonical fields appears in the atom's quotes, directly or as a registered alias — **source = the atom's block and its heading path** (D13); values are compared ignoring inline Markdown marks (`` ` ``, `*`) | Node gets flag `inferred` and ambiguity `inferred`, plus a review-queue item |
 | **G5** Schema | All | The answer validates against its schema version | Re-ask |
@@ -127,6 +128,7 @@ For each validated atom:
    - `different` → create a `proposed` term;
    - `same` → the name becomes an alias of that existing term, and a `term_same` review item lets a
      person reject the merge (D20);
+   - `narrower` → a `proposed` term of its own, recording `broader` (D25); no review item;
    - `unsure` → a `proposed` term, a `term_unsure` review item, and ambiguity `pending_review` on the
      node until reviewed (D16).
 3. Compute quantities, `keywords`, spans and lines.
@@ -444,6 +446,42 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   now behaves like exit `5`: finished chunks and their judgment-lock records are written; the
   interrupted chunk stays pending. *Why:* a usage limit (hit twice in live runs) would otherwise
   discard every paid-for answer of the run.
+- **D9 extended (rel01 D32 R5, R10):** backticks are layout, like `*`; a case difference in a quote's
+  first letter only is tolerated ("a Q-TERM…" for "A Q-TERM…" failed a block in both gate runs).
+- **D25 — Q-TERM `narrower`** (rel01 D33 R1). A kind of a candidate keeps its own term and family and
+  records `broader` (F2 D16). `same` is defined as synonyms, spellings and plurals, with examples.
+  *Why:* at the M2 gate 9 of 16 `same` verdicts explained themselves as "a specialized form of".
+- **D26 — Q-DESC is shown the vocabulary** (rel01 D33 R2): up to 100 existing term names — the chunk's
+  own files' terms first, then the most used — to reuse when they name the same thing, with the rule "a
+  kind of X is not X". The list is rendered outside the instructions, so it is **not** in the lock key
+  (D21). *Why:* 72–79 % of gate terms were used once, so families held one node each.
+- **D27 — Prompt corrections from the M2 gate** (rel01 D32 R3, R9, R11). Q1 asks about meaning, not
+  words such as "every" or "never"; Q3 asks whether an outsider can check the claim without looking
+  inside the system; Q-ATOM lists what is *not* a claim (titles, status and process notes, open
+  questions, pointers, legends, tier tags, and every sentence after *Why:* or *Rejected:*).
+- **D28 — An acceptance criterion is one verification atom** (rel01 D32 R8). A block labelled `AC-…` is
+  folded by code into a single `verification` atom holding all its quotes; the prompt says the same for
+  Given/When/Then text. *Why:* at the gate, criteria became Given/When/Then fragments plus a stray atom
+  from the tier tag. A side effect: such blocks form one node, so they adopt their `AC-` id (F2
+  AC-2.19).
+- **D29 — Canonical subject and response must say something** (rel01 D32 R7): an empty or blank one fails
+  G5 and is re-asked. *Why:* two gate nodes were formed with both empty.
+- **D30 — Resolve a reference before flagging it** (owner, after R6: R13). Q-DESC is told to resolve
+  "it", "this", "they" from the same block or its section and to write the resolved thing as the
+  subject; `referential` is flagged only when neither names it. *Why:* after R1 … R11, `referential` was
+  still on about a third of nodes and the main cause of `ambiguous`.
+- **D31 — `narrower` points from the specific to the general** (owner, after R6: R14). The Q-TERM prompt
+  says so, with a reversed example, and code refuses a `narrower` verdict whose candidate already
+  contains every word of the new term ("backend" against "claude code backend"): the new term is the
+  broader one, so the answer is re-asked. *Why:* about 1 in 4 `narrower` verdicts in R6 were reversed.
+
+- **D32 — ⚑ `definition` is only for what a word means** (M3 gate review, I-56). Q-ATOM labelled all
+  seven of F5's candidate-source table rows `definition` and formed no node, so F5's core rules were
+  absent from the graph with no warning. The prompt now says that a row or item stating how something
+  behaves, is decided or is checked is a claim, with F5's S1 row as the example. ⚠ **Still open:** F2 §4.1
+  says "definitions become term-registry entries", but nothing writes them (`defined_by` is always
+  null). A sentence labelled `definition` is dropped silently. This is the I-26 pattern again: a field
+  with readers and no producer (build-plan I-59).
 
 ## 8. Open questions
 
@@ -465,7 +503,7 @@ change of alias is visible.*
 | AC-3.1 … AC-3.4, AC-3.5 *(budget; the pending-blocks half lands with T10)* | `tests/test_llm_backend.py` (16) · `tests/test_profile.py` (3) | `src/sdd_compiler/llm/` · `profile.py` |
 | AC-3.6 … AC-3.8, AC-3.10 · D9 | `tests/test_atomize_qatom.py` (20) | `src/sdd_compiler/atomize/qatom.py` · `guards.py` |
 | AC-3.9 *(flag and ambiguity; node status and review item with T10)*, AC-3.11, AC-3.13 · D10–D14 | `tests/test_atomize_qdesc.py` (22) · `tests/test_quantities.py` (25) · `tests/test_llm_backend.py` (+2) | `src/sdd_compiler/atomize/describe.py` · `quantities.py` · `batch.py` · `llm/claude_code.py` |
-| AC-3.5 *(pending half)*, AC-3.9 *(node and review item)*, AC-3.12, AC-3.14 … AC-3.16 · D15 … D20 | `tests/test_atomize_pipeline.py` (41) | `src/sdd_compiler/atomize/pipeline.py` · `forming.py` · `terms.py` · `batch.py` |
+| AC-3.5 *(pending half)*, AC-3.9 *(node and review item)*, AC-3.12, AC-3.14 … AC-3.16 · D15 … D20, D25 … D31 | `tests/test_atomize_pipeline.py` (52) | `src/sdd_compiler/atomize/pipeline.py` · `forming.py` · `terms.py` · `batch.py` |
 | §4.8 run report (calls, cost) · §4.9 items closing themselves | `tests/test_compile.py` | `src/sdd_compiler/pipeline.py` |
 | AC-3.17 … AC-3.20 · D21, D22 | `tests/test_atomize_align.py` (9) · `tests/test_atomize_lock.py` (8) · `tests/test_compile.py` (+6) | `src/sdd_compiler/atomize/align.py` · `lock.py` · `batch.py` · `src/sdd_compiler/pipeline.py` |
 | AC-3.21 … AC-3.22 | *(to be written)* | `src/sdd_compiler/atomize/pipeline.py` · `src/sdd_compiler/report.py` |

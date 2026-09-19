@@ -30,7 +30,7 @@ AMBIGUITY_KINDS = (
     "vague_term", "unbounded_quantity", "missing_actor", "missing_modality", "mixed_layers", "referential",
     "scope", "unresolved_term", "unplaceable", "inferred", "pending_review",
 )
-FAMILY_RULES = ("subject", "response", "verification", "constraint", "pinned", "fallback")
+FAMILY_RULES = ("subject", "response", "verification", "constraint", "mention", "component", "pinned", "fallback")  # F2 D19: component
 FLAGS = ("inferred", "pinned_family", "allocation_proposed", "family_disputed")
 STATUSES = ("unchecked", "validated", "conflict", "ambiguous", "stale")
 TERM_KINDS = ("entity", "data", "event", "actor", "component", "external_system",
@@ -80,7 +80,7 @@ NODE_SCHEMA = _obj({
     "terms": {"type": "array", "items": _obj({
         "term": {"type": "string", "pattern": r"^term:"}, "role": _enum(TERM_ROLES), "quote": _STR,
     })},
-    "label": {"type": ["string", "null"], "pattern": r"^(AC|CT)-\d+\.\d+$"},
+    "label": {"type": ["string", "null"], "pattern": r"^((AC|CT)-\d+\.\d+|[A-Z]{1,2}\d{1,3})$"},  # F2 D20
     "primary_term": _NSTR,
     "layer": _enum(tuple(LAYERS), nullable=True),
     "layer_answers": {
@@ -120,6 +120,7 @@ TERM_SCHEMA = _obj({
     "id": {"type": "string", "pattern": r"^term:[a-z0-9_]+$"},
     "canonical": _STR, "aliases": _STRS, "kind": _enum(TERM_KINDS),
     "defined_by": _NSTR, "status": _enum(("confirmed", "proposed")),
+    "broader": {"type": ["string", "null"], "pattern": r"^term:"},   # F2 D16: "a kind of"
 })
 
 LINK_SCHEMA = _obj({

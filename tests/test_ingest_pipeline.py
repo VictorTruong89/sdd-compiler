@@ -135,7 +135,7 @@ def test_ac_1_21_status_json_matches_ct_1_5(repo):
     assert result.returncode == 0
 
     payload = json.loads(result.stdout)
-    assert set(payload) == {"run", "counts", "pending"}
+    assert set(payload) == {"run", "counts", "pending", "graph"}     # `graph`: F1 CT-1.5, extended by T13
     assert payload["counts"] == {"sources": 1, "blocks": 3, "pending": 3}
     first = payload["pending"][0]
     assert set(first) == {"id", "status", "source", "lines", "heading_path", "kind", "text"}
