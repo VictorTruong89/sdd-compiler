@@ -1,0 +1,218 @@
+R-000003: compiled 2 file(s) · 0 new · 0 changed · 0 removed
+atomized 142 of 154 pending block(s) · 12 failed · 23 formed no node · 176 node(s) formed, 0 deleted
+checked 587 pair(s) (562 judged, 0 replayed) · 271 model call(s) · $5.9334 · 15 answer(s) replayed from the lock
+4 annotation(s) dropped: a quote that is not in its block (F3 D35)
+⚠ 25 pair(s) could not be judged: the answer failed its checks twice
+CONFLICTS: 70 open (29 contradiction, 21 duplication, 20 subsumption) in 28 group(s)
+  CF-000001 contradiction  N-000005 sdd/specs/F5_retrieval/spec.md:45 ↔ N-000006 sdd/specs/F5_retrieval/spec.md:46
+    "A node needs checking when its `status` is `unchecked`, or `stale`, or when it is `ambiguous`" ↔ "Nodes whose text and whose candidates are unchanged since their `last_checked_run` are skipped"
+    rationale: A specifies nodes MUST be checked when unchecked/stale/ambiguous-never-judged; B specifies nodes MUST be skipped (not checked) when text and candidates are unchanged since last check.
+  CF-000007 subsumption  AC-5.14 sdd/specs/F5_retrieval/spec.md:182 ↔ N-000005 sdd/specs/F5_retrieval/spec.md:45
+    "the first two are checked, the `validated` one is skipped, and the `conflict` one is checked again" ↔ "`unchecked`, or `stale`, or when it is `ambiguous` and was never judged"
+    rationale: AC-5.14 provides a detailed specification of checking behavior across all node statuses (unchecked, stale, validated, conflict), which subsumes N-000005's simpler requirement that nodes with unchecked, stale, or ambiguous status need checking.
+  CF-000009 contradiction  AC-6.9 sdd/specs/F6_conflicts/spec.md:207 ↔ N-000095 sdd/specs/F6_conflicts/spec.md:108
+    "all five are judged, two records exist, and the run continues to the end" ↔ "the run exits `5` and the report says checking is incomplete"
+    rationale: AC-6.9 states the run continues to the end with all five pairs judged when contradictions exist, while N-000095 states the run exits with code 5 and reports checking is incomplete when pairs are left unjudged—these describe mutually exclusive outcomes for the same scenario.
+  CF-000017 contradiction  AC-6.10 sdd/specs/F6_conflicts/spec.md:210 ↔ AC-6.12 sdd/specs/F6_conflicts/spec.md:215
+    "the report names both conflicts with their members, files and lines, groups records sharing a member, states the counts, and exits `3`" ↔ "judged verdicts are written, unjudged nodes keep `unchecked` or `stale`, the report says checking is incomplete with the number of remaining pairs, and the run exits `5`"
+    rationale: Both claims describe different exit codes for the same run command under mutually exclusive conditions: AC-6.10 exits 3 (conflicts exist), AC-6.12 exits 5 (call cap exceeded). Both cannot occur simultaneously for the same run.
+  CF-000018 contradiction  AC-6.11 sdd/specs/F6_conflicts/spec.md:213 ↔ AC-6.12 sdd/specs/F6_conflicts/spec.md:215
+    "the report says so and the run exits `0`" ↔ "the run exits `5`"
+    rationale: These claims specify different exit codes for different scenarios of the same run: AC-6.11 exits 0 when there are no conflicts, AC-6.12 exits 5 when call cap is smaller than pairs to judge. These represent mutually exclusive conditions.
+  CF-000029 contradiction  AC-6.10 sdd/specs/F6_conflicts/spec.md:210 ↔ N-000095 sdd/specs/F6_conflicts/spec.md:108
+    "the report names both conflicts with their members, files and lines, groups records sharing a member, states the counts, and exits 3" ↔ "the run exits 5 and the report says checking is incomplete"
+    rationale: AC-6.10 states the report exits code 3 when conflicts exist; N-000095 states the run exits code 5 when checking is incomplete—both cannot hold at the same time for the same run, making them mutually exclusive outcomes.
+  CF-000039 contradiction  AC-6.10 sdd/specs/F6_conflicts/spec.md:210 ↔ N-000112 sdd/specs/F6_conflicts/spec.md:253
+    "the report names both conflicts with their members, files and lines, groups records sharing a member, states the counts, and exits `3`" ↔ "exit `5` with an explicit "incomplete" report rather than silently checking less"
+    rationale: AC-6.10 states the report exits code 3, while N-000112 states the command exits code 5 with an incomplete report; both address exit codes for the same operation but specify different codes (3 vs. 5), making them mutually exclusive for the same scenario.
+  CF-000040 contradiction  AC-6.11 sdd/specs/F6_conflicts/spec.md:213 ↔ N-000095 sdd/specs/F6_conflicts/spec.md:108
+    "the run exits `0`" ↔ "the run exits `5` and the report says checking is incomplete"
+    rationale: AC-6.11 specifies that when there are no conflicts, the run exits 0, while N-000095 specifies that the run exits 5 with an incomplete report; both specify exit codes for the same run but state different codes (0 vs. 5), making them contradictory.
+  CF-000041 contradiction  AC-6.11 sdd/specs/F6_conflicts/spec.md:213 ↔ N-000112 sdd/specs/F6_conflicts/spec.md:253
+    "the run exits `0`" ↔ "exit `5` with an explicit "incomplete" report"
+    rationale: AC-6.11 specifies the run exits 0 when there are no conflicts, while N-000112 specifies the command exits 5 with an incomplete report; both address exit codes but specify contradictory values (0 vs. 5) for overlapping scenarios.
+  CF-000051 duplication  N-000095 sdd/specs/F6_conflicts/spec.md:108 ↔ N-000112 sdd/specs/F6_conflicts/spec.md:253
+    "the run exits `5` and the report says checking is incomplete" ↔ "exit `5` with an explicit "incomplete" report"
+    rationale: Both claims state the same requirement: the run must exit with code 5 and produce a report indicating the checking is incomplete.
+  CF-000030 subsumption  AC-6.12 sdd/specs/F6_conflicts/spec.md:215 ↔ N-000112 sdd/specs/F6_conflicts/spec.md:253
+    "the report says checking is incomplete with the number of remaining pairs, and the run exits `5`" ↔ "exit `5` with an explicit "incomplete" report"
+    rationale: AC-6.12 completely describes what happens when a call cap is smaller than pairs to judge, including exiting with code 5 and reporting incomplete status. N-000112 just states the outcome (exit 5 with incomplete report) without the context. AC-6.12 already implies N-000112.
+  CF-000010 contradiction  N-000118 sdd/specs/F6_conflicts/spec.md:280 ↔ N-000123 sdd/specs/F6_conflicts/spec.md:284
+    "Q-PAIR is batched: 8 pairs per call" ↔ "a failure re-asks **that pair alone"
+    rationale: N-000118 requires batching 8 pairs per call; N-000123 requires re-asking a failed pair alone, which precludes the batch size constraint when a failure occurs.
+  CF-000011 contradiction  N-000145 sdd/specs/F6_conflicts/spec.md:325 ↔ N-000146 sdd/specs/F6_conflicts/spec.md:325
+    "confidence` is recorded and flagged, never acted on" ↔ "rel01 stores it and raises ambiguity `low_confidence_verdict"
+    rationale: N-000145 states confidence is 'never acted on'; N-000146 states confidence is stored and raises an ambiguity verdict, which is an action taken in response to it.
+  CF-000002 duplication  N-000101 sdd/specs/F6_conflicts/spec.md:148 ↔ N-000146 sdd/specs/F6_conflicts/spec.md:325
+    "adds ambiguity `low_confidence_verdict` to both nodes" ↔ "raises ambiguity `low_confidence_verdict"
+    rationale: Both claims state the same requirement: when confidence is low, a low_confidence_verdict ambiguity must be added/raised to the node(s).
+  CF-000026 duplication  AC-6.8 sdd/specs/F6_conflicts/spec.md:193 ↔ N-000101 sdd/specs/F6_conflicts/spec.md:148
+    "both nodes gain ambiguity `low_confidence_verdict`" ↔ "adds ambiguity `low_confidence_verdict` to both nodes"
+    rationale: Both claims state the same requirement: when confidence is low, ambiguity `low_confidence_verdict` is added to both nodes. AC-6.8 describes this as a consequence of a `contradicts` answer with low confidence; N-000101 describes it as a general rule for low confidence—they state the same outcome.
+  CF-000046 duplication  AC-6.8 sdd/specs/F6_conflicts/spec.md:193 ↔ N-000113 sdd/specs/F6_conflicts/spec.md:255
+    "the record is created **and** both nodes gain ambiguity `low_confidence_verdict`" ↔ "records the verdict and flags the nodes"
+    rationale: Both claims describe the same requirement: when a low-confidence contradicts answer is recorded, the verdict is recorded/created and the nodes are flagged/gain ambiguity marking.
+  CF-000012 contradiction  AC-6.17 sdd/specs/F6_conflicts/spec.md:232 ↔ N-000077 sdd/specs/F6_conflicts/spec.md:75
+    "when one member is deleted, then the record is `resolved`" ↔ "Two members are enough"
+    rationale: AC-6.17 specifies that when one member is deleted, the conflict record is resolved (implying it can be resolved with only one member remaining). N-000077 states that two members are required for a conflict record to exist, which contradicts the scenario where deletion of one member resolves the record.
+  CF-000013 contradiction  N-000036 sdd/specs/F5_retrieval/spec.md:202 ↔ N-000042 sdd/specs/F5_retrieval/spec.md:220
+    "`max_pairs_per_node: 10`" ↔ "`max_pairs_per_node` is 6, not 10"
+    rationale: Claim A states `max_pairs_per_node` starting value is 10, while Claim B states it is 6; both are describing the same parameter's value for the same system at the same time, and these values cannot both be true simultaneously.
+  CF-000038 contradiction  AC-5.10 sdd/specs/F5_retrieval/spec.md:170 ↔ N-000042 sdd/specs/F5_retrieval/spec.md:220
+    "Given 25 scoring candidates with `max_pairs_per_node: 10`, then exactly 10 are returned" ↔ "max_pairs_per_node` is 6, not 10"
+    rationale: AC-5.10 states that with `max_pairs_per_node: 10`, exactly 10 are returned (the 10 highest); N-000042 states that `max_pairs_per_node` is 6, not 10. Both cannot hold simultaneously—if the actual value is 6, the scenario in AC-5.10 with 10 cannot be correct.
+  CF-000047 contradiction  N-000019 sdd/specs/F5_retrieval/spec.md:80 ↔ N-000042 sdd/specs/F5_retrieval/spec.md:220
+    "the top `max_pairs_per_node` (default 10) are returned" ↔ "max_pairs_per_node` is 6, not 10"
+    rationale: N-000019 states the default for max_pairs_per_node is 10; N-000042 states it is 6, not 10—these cannot both be true for the same parameter.
+  CF-000070 contradiction  N-000032 sdd/specs/F5_retrieval/spec.md:197 ↔ N-000042 sdd/specs/F5_retrieval/spec.md:220
+    "Fixed additive scoring with a per-node cap" ↔ "`max_pairs_per_node` is 6, not 10"
+    rationale: Both claims concern the value of max_pairs_per_node: Claim A implies the cap defaults to 10, while Claim B explicitly states max_pairs_per_node is 6, not 10.
+  CF-000049 duplication  N-000014 sdd/specs/F5_retrieval/spec.md:61 ↔ N-000036 sdd/specs/F5_retrieval/spec.md:202
+    "At least `min_shared_keywords` (default 2)" ↔ "`min_shared_keywords: 2`"
+    rationale: Both claims state the same requirement: that `min_shared_keywords` has a default or starting value of 2.
+  CF-000057 duplication  N-000018 sdd/specs/F5_retrieval/spec.md:79 ↔ N-000036 sdd/specs/F5_retrieval/spec.md:202
+    "Candidates below `min_score` (default 1.0) are dropped." ↔ "`max_pairs_per_node: 10`, `min_score: 1.0`"
+    rationale: Both state that the default value of `min_score` is 1.0, though A describes a filtering constraint and B lists it as a starting value.
+  CF-000053 subsumption  AC-5.10 sdd/specs/F5_retrieval/spec.md:170 ↔ N-000090 sdd/specs/F6_conflicts/spec.md:99
+    "the run counts record 15 dropped by the cap" ↔ "A `resolved` record stays in `conflicts.jsonl` as history"
+    rationale: AC-5.10 specifies that run counts record dropped candidates, which implies a resolved_record (which is a kind of run_record) will be created as per N-000090.
+  CF-000021 contradiction  AC-6.2 sdd/specs/F6_conflicts/spec.md:177 ↔ AC-6.20 sdd/specs/F6_conflicts/spec.md:200
+    "no link and no conflict record exist, and the judgment is in the lock" ↔ "Given an open conflict, when `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, then `.sdd/adjudications.jsonl` gains a record"
+    rationale: AC-6.2 states that with a fake 'none' answer, no conflict record exists and the judgment is in the lock. AC-6.20 describes the adjudications.jsonl gaining a record when an open conflict is judged. These describe mutually exclusive states: one excludes conflict records for 'none', the other requires open conflicts to create records.
+  CF-000022 contradiction  AC-6.2 sdd/specs/F6_conflicts/spec.md:177 ↔ AC-6.4 sdd/specs/F6_conflicts/spec.md:182
+    "no link and no conflict record exist, and the judgment is in the lock" ↔ "both a `duplicates` link and a conflict record of kind `duplication` exist"
+    rationale: AC-6.2 states that for a 'none' answer, no conflict record exists. AC-6.4 states that for a 'duplicates' answer, both a duplicates link AND a conflict record of kind 'duplication' exist. These describe mutually exclusive outcomes: one excludes records for certain answers, the other requires them.
+  CF-000023 contradiction  AC-6.21 sdd/specs/F6_conflicts/spec.md:196 ↔ AC-6.3 sdd/specs/F6_conflicts/spec.md:179
+    "when the judge answers `duplicates` or `subsumes`, then no conflict record and no link are made" ↔ "links of those types exist with `provenance: judgment`, a judgment id and a rationale, and no conflict record"
+    rationale: AC-6.21 says when the judge answers `duplicates`, no conflict record is made; AC-6.3 says for `refines` and `depends_on` answers there is no conflict record but links exist—both speak to different judge answers so no direct contradiction on the same condition.
+  CF-000024 contradiction  AC-6.21 sdd/specs/F6_conflicts/spec.md:196 ↔ AC-6.4 sdd/specs/F6_conflicts/spec.md:182
+    "when the judge answers `duplicates` or `subsumes`, then no conflict record and no link are made" ↔ "both a `duplicates` link and a conflict record of kind `duplication` exist"
+    rationale: AC-6.21 states that when the judge answers `duplicates`, no conflict record is made; AC-6.4 states that for a `duplicates` answer, both a duplicates link and a conflict record exist—these directly contradict on the same condition.
+  CF-000032 contradiction  AC-6.2 sdd/specs/F6_conflicts/spec.md:177 ↔ N-000072 sdd/specs/F6_conflicts/spec.md:62
+    "no link and no conflict record exist" ↔ "`duplicates` link **and** a conflict record, kind `duplication`"
+    rationale: A requires that no link and no conflict record exist for a fake none answer; B requires that a duplicates link and conflict record be created—both cannot hold for the same judgment.
+  CF-000055 contradiction  AC-6.21 sdd/specs/F6_conflicts/spec.md:196 ↔ N-000106 sdd/specs/F6_conflicts/spec.md:245
+    "when** the judge answers `duplicates` or `subsumes`, **then** no conflict record and no link are made" ↔ "`subsumes` opens a conflict only when the two differ in modality or quantity"
+    rationale: AC-6.21 states that when judge answers `subsumes`, no conflict record is made and the run counts one suppressed, while N-000106 clarifies that `subsumes` opens a conflict only when the two differ in modality or quantity—meaning sometimes `subsumes` does open a conflict record, contradicting AC-6.21's unconditional statement.
+  CF-000019 duplication  AC-6.14 sdd/specs/F6_conflicts/spec.md:223 ↔ N-000023 sdd/specs/F5_retrieval/spec.md:90
+    "its `pair_key` changes, the pair is judged again" ↔ "The key changes when either node's text changes, which is exactly when the pair must be judged again"
+    rationale: Both claims state the same essential rule: when a node's text changes, the pair_key changes and the pair must be judged again. AC-6.14 adds the detail that the previous verdict is not reused, but N-000023 establishes the core relationship.
+  CF-000028 duplication  N-000073 sdd/specs/F6_conflicts/spec.md:63 ↔ N-000106 sdd/specs/F6_conflicts/spec.md:245
+    "subsumes` link; a conflict record, kind `subsumption`, **only** when the two differ in modality or in a quantity" ↔ "`subsumes` opens a conflict only when the two differ in modality or quantity"
+    rationale: Both claims state the same rule: a subsumes link (or subsumption conflict record) opens or is created only when the two nodes differ in modality or quantity.
+  CF-000031 duplication  AC-6.14 sdd/specs/F6_conflicts/spec.md:223 ↔ N-000135 sdd/specs/F6_conflicts/spec.md:304
+    "the pair is judged again, and the previous verdict is not reused" ↔ "marks the human verdict **stale** instead of carrying it forward"
+    rationale: Both claims state the same requirement: when a judged pair's node text changes, the previous verdict/judgment must not be carried forward—instead it is marked as stale or not reused. They describe identical behavior for the same scenario.
+  CF-000042 duplication  AC-6.14 sdd/specs/F6_conflicts/spec.md:223 ↔ N-000086 sdd/specs/F6_conflicts/spec.md:89
+    "the previous verdict is not reused" ↔ "the stale verdicts from the old text are discarded"
+    rationale: Both claims state the same requirement: when node text changes, the stale verdicts from the old text are discarded and not reused. AC-6.14 frames it as 'previous verdict is not reused' when text changes, while N-000086 states 'stale verdicts from the old text are discarded'—these are equivalent expressions of the same rule.
+  CF-000043 duplication  AC-6.18 sdd/specs/F6_conflicts/spec.md:234 ↔ N-000081 sdd/specs/F6_conflicts/spec.md:81
+    "when the ambiguity is resolved, then that verdict is stale and re-judged" ↔ "When the ambiguity is resolved, every provisional verdict touching that node is marked stale and re-judged"
+    rationale: Both state that provisional verdicts touching an ambiguous node are marked stale and re-judged when ambiguity resolves. A uses 'verdict' and 'ambiguous node', while B uses 'provisional_verdict' and 'node', but they describe the same resolution requirement.
+  CF-000045 duplication  AC-6.20 sdd/specs/F6_conflicts/spec.md:200 ↔ N-000135 sdd/specs/F6_conflicts/spec.md:304
+    "when the pair is judged again, then that verdict reads `stale`" ↔ "a pair judged again marks the human verdict **stale** instead of carrying it forward"
+    rationale: Both claims describe the same behavior: when a pair is judged again, the previous human verdict is marked stale instead of being carried forward. AC-6.20 states the verdict 'reads stale' and N-000135 states it's 'marked stale'—these express the same requirement.
+  CF-000003 subsumption  AC-5.12 sdd/specs/F5_retrieval/spec.md:177 ↔ N-000023 sdd/specs/F5_retrieval/spec.md:90
+    "when** either node's text changes, **then** the key changes" ↔ "The key changes when either node's text changes, which is exactly when the pair must be judged again"
+    rationale: A is a general acceptance criterion that establishes pair_key symmetry and change behavior; N-000023 is a more specific requirement restating one aspect (key changes when node text changes) and adding a consequence (pair must be re-judged). A's property subsumes B's narrower claim.
+  CF-000020 subsumption  AC-6.14 sdd/specs/F6_conflicts/spec.md:223 ↔ N-000084 sdd/specs/F6_conflicts/spec.md:88
+    "its `pair_key` changes, the pair is judged again, and the previous verdict is not reused" ↔ "When a node's text changes, its `pair_key`s change"
+    rationale: AC-6.14 specifies that when node text changes, the pair_key changes and the pair is judged again (and previous verdict not reused). N-000084 only states that pair_key changes when node text changes. AC-6.14 includes and extends what N-000084 says.
+  CF-000035 subsumption  AC-6.18 sdd/specs/F6_conflicts/spec.md:234 ↔ N-000086 sdd/specs/F6_conflicts/spec.md:89
+    "that verdict is stale and re-judged" ↔ "the stale verdicts from the old text are discarded"
+    rationale: AC-6.18 specifies that provisional verdicts are stale and re-judged when ambiguity is resolved, which already covers the requirement in N-000086 that stale verdicts must be discarded.
+  CF-000044 subsumption  AC-6.20 sdd/specs/F6_conflicts/spec.md:200 ↔ N-000086 sdd/specs/F6_conflicts/spec.md:89
+    "when the pair is judged again, then that verdict reads `stale`" ↔ "the stale verdicts from the old text are discarded"
+    rationale: AC-6.20 specifies that a verdict reads `stale` when a pair is judged again, which already encompasses the requirement in N-000086 that stale verdicts from old text are discarded.
+  CF-000061 subsumption  AC-6.20 sdd/specs/F6_conflicts/spec.md:200 ↔ N-000136 sdd/specs/F6_conflicts/spec.md:305
+    "gains a record naming the conflict" ↔ "Records are appended, never rewritten"
+    rationale: AC-6.20 specifies that adjudication records are gained (appended to .sdd/adjudications.jsonl); N-000136 specifies the general principle that records are appended, never rewritten. AC-6.20's description of record appending already implies the constraint in N-000136.
+  CF-000064 subsumption  N-000136 sdd/specs/F6_conflicts/spec.md:305 ↔ N-000149 sdd/specs/F6_conflicts/spec.md:334
+    "Records are appended, never rewritten" ↔ "the record and links a contradiction produces"
+    rationale: Claim A establishes that all records are append-only; since contradiction_record is a kind of record, this requirement subsumes any specific claims about contradiction_record behavior.
+  CF-000027 contradiction  N-000068 sdd/specs/F6_conflicts/spec.md:54 ↔ N-000128 sdd/specs/F6_conflicts/spec.md:293
+    "It receives both nodes' canonical form, verbatim text" ↔ "renaming nodes' text to a canonical term — the verbatim span is the evidence a person checks"
+    rationale: A requires the Q-PAIR call to receive verbatim text and canonical form; B forbids renaming nodes' text to canonical form, stating the verbatim span is the evidence. If canonical form implies normalization, these requirements conflict.
+  CF-000058 contradiction  N-000062 sdd/specs/F6_conflicts/spec.md:27 ↔ N-000089 sdd/specs/F6_conflicts/spec.md:98
+    "when a conflict closes" ↔ "An edit alone never closes a conflict"
+    rationale: Claim A describes conditions when a conflict closes (unspecified mechanism); Claim B explicitly states an edit alone never closes a conflict, directly contradicting the implicit possibility in Claim A.
+  CF-000060 contradiction  AC-6.13 sdd/specs/F6_conflicts/spec.md:220 ↔ N-000030 sdd/specs/F5_retrieval/spec.md:135
+    "it succeeds with zero calls" ↔ "No test calls a model: F5 makes no model calls at all"
+    rationale: AC-6.13 requires zero model calls on repeated run with fake backend; N-000030 states F5 makes no model calls at all. They both constrain model calls but in different contexts—one specific to repeated runs, one absolute.
+  CF-000016 duplication  AC-5.15 sdd/specs/F5_retrieval/spec.md:185 ↔ N-000025 sdd/specs/F5_retrieval/spec.md:95
+    "returns all 15 pairs with scores, judges nothing, and makes no model call" ↔ "returns all pairs among the checked nodes, with their scores, without judging anything"
+    rationale: Both claims state the same requirement: `sddc pairs --exhaustive` returns all pairs among checked nodes with scores without judging anything. AC-5.15 is an acceptance criterion that restates the requirement N-000025 in Given/When/Then form.
+  CF-000054 subsumption  AC-5.15 sdd/specs/F5_retrieval/spec.md:185 ↔ N-000030 sdd/specs/F5_retrieval/spec.md:135
+    "makes no model call" ↔ "F5 makes no model calls at all"
+    rationale: AC-5.15 specifies that `sddc pairs --exhaustive` makes no model call; N-000030 states the general rule that no test calls a model. AC-5.15's specific example is implied by N-000030's broader constraint.
+  CF-000065 contradiction  AC-6.7 sdd/specs/F6_conflicts/spec.md:191 ↔ N-000141 sdd/specs/F6_conflicts/spec.md:320
+    "the answer is rejected by the schema check" ↔ "The direction rule is in the schema, not in a later check"
+    rationale: AC-6.7 states that `contradicts` with `direction: a_to_b` is rejected by a schema check, implying direction validation happens later; N-000141 states the direction rule is in the schema itself, not in a later check—both cannot be true simultaneously.
+  CF-000008 duplication  AC-6.7 sdd/specs/F6_conflicts/spec.md:191 ↔ N-000143 sdd/specs/F6_conflicts/spec.md:322
+    "the answer is rejected by the schema check" ↔ "AC-6.7's answer is rejected before anything reads it"
+    rationale: Both claims state the same requirement: AC-6.7 specifies that an answer with contradicts is rejected by schema check, and N-000143 restates that AC-6.7's answer is rejected before anything reads it—they describe the same rejection event.
+  CF-000066 contradiction  N-000026 sdd/specs/F5_retrieval/spec.md:100 ↔ N-000033 sdd/specs/F5_retrieval/spec.md:199
+    "Compilation never uses exhaustive mode" ↔ "An exhaustive mode for measurement only"
+    rationale: N-000026 states compilation MUST NOT use exhaustive mode; N-000033 describes exhaustive mode as enabled for measurement. These cannot both hold if compilation is a measurement context.
+  CF-000069 contradiction  N-000002 sdd/specs/F5_retrieval/spec.md:20 ↔ N-000026 sdd/specs/F5_retrieval/spec.md:100
+    "an exhaustive mode exists to measure what the ranked mode misses" ↔ "Compilation never uses exhaustive mode: it is an offline measurement tool"
+    rationale: Claim A requires an exhaustive mode to exist and be used for measurement; Claim B states compilation must NOT use exhaustive mode because it is only an offline measurement tool.
+  CF-000067 contradiction  N-000107 sdd/specs/F6_conflicts/spec.md:245 ↔ N-000108 sdd/specs/F6_conflicts/spec.md:246
+    "Plain subsumption is useful structure, not a defect" ↔ "a MUST subsumed by a SHOULD is a defect"
+    rationale: N-000107 states plain subsumption is not a defect; N-000108 states a MUST subsumed by a SHOULD (a form of subsumption) is a defect. These cannot both be true for the same subsumption scenario.
+  CF-000068 contradiction  AC-5.3 sdd/specs/F5_retrieval/spec.md:143 ↔ N-000047 sdd/specs/F5_retrieval/spec.md:237
+    "the pair is proposed with S3 evidence naming the selector" ↔ "S6* now needs a shared term **or keyword**, not a shared term"
+    rationale: Claim A specifies S3 contributes when sharing a term; Claim B now requires S6 to accept 'term **or keyword**' (expanding beyond term alone). These represent conflicting specifications for what suffices for similar selection logic.
+  CF-000005 subsumption  N-000045 sdd/specs/F5_retrieval/spec.md:232 ↔ N-000047 sdd/specs/F5_retrieval/spec.md:237
+    "S6 takes a shared keyword" ↔ "S6* now needs a shared term or keyword"
+    rationale: N-000045 states S2 follows broader and S6 takes a shared keyword; N-000047 states S6 needs a shared term or keyword. Since N-000045 already establishes that S6 takes a shared keyword, this is encompassed by the broader statement in N-000045.
+  CF-000004 duplication  AC-5.9 sdd/specs/F5_retrieval/spec.md:168 ↔ N-000029 sdd/specs/F5_retrieval/spec.md:117
+    "evidence` is non-empty and its points sum exactly to `score`" ↔ "evidence` is never empty, and its `points` sum to `score`"
+    rationale: Both claims state the identical requirement that evidence must be non-empty and its points must sum to the score; AC-5.9 adds context (given any candidate) but the core assertion is the same.
+  CF-000033 subsumption  AC-5.9 sdd/specs/F5_retrieval/spec.md:168 ↔ N-000009 sdd/specs/F5_retrieval/spec.md:53
+    "evidence is non-empty and its points sum exactly to score" ↔ "Each source records the evidence it used"
+    rationale: AC-5.9 specifies that evidence must be non-empty and points sum to a score for any candidate, which subsumes N-000009's simpler requirement that each source must record the evidence it used—AC-5.9 adds constraints that any evidence record must satisfy.
+  CF-000025 duplication  AC-6.6 sdd/specs/F6_conflicts/spec.md:188 ↔ N-000075 sdd/specs/F6_conflicts/spec.md:66
+    "answer whose quote is not verbatim in the node, then the question is re-asked once" ↔ "A quote that is not found verbatim in that node's text fails guard G2 and is re-asked once"
+    rationale: Both claims state the same requirement: when a quote is not found verbatim in a node, the answer/question is re-asked once. AC-6.6 frames it as a response to an answer with a non-verbatim quote; N-000075 frames it as a guard failure—they describe the same behavior.
+  CF-000050 duplication  N-000080 sdd/specs/F6_conflicts/spec.md:81 ↔ N-000109 sdd/specs/F6_conflicts/spec.md:248
+    "Verdicts involving an ambiguous node are recorded with `provisional: true`" ↔ "Ambiguous nodes are judged, with `provisional` verdicts"
+    rationale: Both claims state the same requirement: when ambiguous nodes are judged, the verdicts are recorded/made with the `provisional` flag set to true.
+  CF-000052 duplication  N-000114 sdd/specs/F6_conflicts/spec.md:257 ↔ N-000115 sdd/specs/F6_conflicts/spec.md:257
+    "Deterministic checking order" ↔ "Which conflict is found first is then reproducible"
+    rationale: Both claims state the same requirement: the conflict detection order must be deterministic such that which conflict is found first is reproducible.
+  CF-000059 duplication  N-000091 sdd/specs/F6_conflicts/spec.md:104 ↔ N-000111 sdd/specs/F6_conflicts/spec.md:253
+    "Pair judging and atomization share `atomizer.max_calls_per_run`" ↔ "One run budget shared with atomization"
+    rationale: Both claims state that a shared budget/resource (`atomizer.max_calls_per_run` and `run budget`) is divided between pair judging/atomization; they describe the same constraint under different terminology.
+  CF-000062 duplication  N-000043 sdd/specs/F5_retrieval/spec.md:226 ↔ N-000127 sdd/specs/F6_conflicts/spec.md:290
+    "two kinds of one thing" ↔ "two kinds of one thing"
+    rationale: Both claims express the same structural relationship: that something (S8/export_archive in A, terms/claims in B) comprises or consists of two kinds of one thing.
+  CF-000037 subsumption  N-000127 sdd/specs/F6_conflicts/spec.md:290 ↔ N-000148 sdd/specs/F6_conflicts/spec.md:333
+    "Each claim now lists its terms, the question states how the two sets relate" ↔ "AC-6.2 … AC-6.8 · CT-6.1, CT-6.3 · D15 (T16, R16) | `tests/test_conflicts_judge.py`"
+    rationale: A specifies the structure of claims (listing terms and how sets relate); B lists which claims are verified by tests and implementation files. A's requirement about claim structure subsumes B's requirement about which specific claims have verification, since B references claims that must follow A's structural rule.
+  CF-000063 duplication  N-000100 sdd/specs/F6_conflicts/spec.md:148 ↔ N-000142 sdd/specs/F6_conflicts/spec.md:320
+    "direction` must be `symmetric` for `none`, `duplicates` and `contradicts`" ↔ "`none`, `duplicates` and `contradicts` are symmetric"
+    rationale: Both claims state that `none`, `duplicates`, and `contradicts` must be symmetric—N-000100 focuses on the direction field requirement, while N-000142 states this symmetry must hold in both CT-6.1 and JSON Schema, but they assert the same core constraint.
+  CF-000006 subsumption  N-000048 sdd/specs/F5_retrieval/spec.md:243 ↔ N-000049 sdd/specs/F5_retrieval/spec.md:244
+    "counts count proposals, not distinct pairs" ↔ "only holds if every number counts proposals"
+    rationale: N-000048 establishes that CT-5.3 counts proposals (not pairs), which is the prerequisite assumption that N-000049 requires to hold: 'AC-5.16's identity only holds if every number counts proposals'.
+  CF-000014 subsumption  N-000102 sdd/specs/F6_conflicts/spec.md:170 ↔ N-000103 sdd/specs/F6_conflicts/spec.md:170
+    "Tests use F3's recorded fake backend" ↔ "no test calls a live model"
+    rationale: N-000102 states that tests use a recorded fake backend (a substitute for a live model); N-000103 states that no test calls a live model. Using a recorded fake backend necessarily implies no live model is called, so N-000102 already implies N-000103.
+  CF-000015 subsumption  N-000139 sdd/specs/F6_conflicts/spec.md:312 ↔ N-000140 sdd/specs/F6_conflicts/spec.md:313
+    "a node is never silently dropped from the queue" ↔ "it is discharged only by the phase that honours it"
+    rationale: N-000140 specifies that nodes are discharged only by the phase that honours them (a specific mechanism); N-000139 states that nodes are never silently dropped from the queue. The controlled discharge mechanism in N-000140 already implies the guarantee in N-000139 that nodes won't be silently dropped.
+  CF-000034 subsumption  AC-6.1 sdd/specs/F6_conflicts/spec.md:173 ↔ N-000074 sdd/specs/F6_conflicts/spec.md:66
+    "one conflict record exists with kind contradiction, both ids sorted in members, the rationale and both quotes" ↔ "Every answer carries a rationale and a quote from each node"
+    rationale: AC-6.1 specifies detailed requirements for a conflict record including that it contains a rationale and quotes, which subsumes N-000074's more general requirement that every answer carries a rationale and a quote from each node—AC-6.1's conflict record is a specific kind of answer.
+  CF-000036 subsumption  N-000015 sdd/specs/F5_retrieval/spec.md:62 ↔ N-000041 sdd/specs/F5_retrieval/spec.md:214
+    "in claims sharing a term or a keyword" ↔ "the node must also share a term or keyword"
+    rationale: N-000015 establishes the general requirement that candidates may share a term or keyword with same-dimension quantities, while N-000041 applies this to a specific context (layer-only selector) where nodes must meet this same bar (share a term or keyword).
+  CF-000048 subsumption  AC-5.6 sdd/specs/F5_retrieval/spec.md:152 ↔ N-000126 sdd/specs/F6_conflicts/spec.md:288
+    "two nodes with no shared term but a shared keyword, one "5 GB" and one "5 GiB", **then** S6 contributes" ↔ "Retrieval delivered the 5 GB / 5 GiB pair"
+    rationale: AC-5.6 establishes that when S6 encounters the 5 GB / 5 GiB pair with no shared term but a shared keyword, S6 contributes; N-000126 simply records that the judge received this pair and answered 'none'. AC-5.6's specification of S6's behavior subsumes the fact that this pair was delivered.
+  CF-000056 subsumption  N-000003 sdd/specs/F5_retrieval/spec.md:38 ↔ N-000064 sdd/specs/F6_conflicts/spec.md:41
+    "`sddc compile` reaches the check phase" ↔ "sddc check-conflicts [--no-replay]"
+    rationale: N-000003 is the general requirement that `sddc compile` reaches the check phase and invokes `candidates_for`, while N-000064 specifies a particular command variant (`sddc check-conflicts`) that is a kind of `sddc compile` and participates in this phase.
+ATTENTION: 22 item(s) — see .sdd/review.jsonl
+exit 3

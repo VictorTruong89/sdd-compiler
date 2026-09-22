@@ -71,9 +71,12 @@ def render_report(summary: Mapping[str, Any], graph: Any, exit_code: int) -> str
         lines.append(f"{len(summary['annotations_dropped'])} annotation(s) dropped: "
                      "a quote that is not in its block (F3 D35)")
     if conflicts.get("incomplete"):
-        lines.append(f"⚠ CHECKING INCOMPLETE: the call cap stopped the run and "
+        why = {"call_cap": "the call cap", "backend": "the model backend"}.get(
+            conflicts.get("stopped"), "the run")
+        lines.append(f"⚠ CHECKING INCOMPLETE: {why} stopped the check phase and "
                      f"{conflicts.get('unjudged', 0)} pair(s) were not judged; "
-                     f"what was judged is written")
+                     f"what was judged is written"
+                     + (f" — {conflicts['stop_reason']}" if conflicts.get("stop_reason") else ""))
     if conflicts.get("unjudged_failed"):
         lines.append(f"⚠ {conflicts['unjudged_failed']} pair(s) could not be judged: "
                      f"the answer failed its checks twice")

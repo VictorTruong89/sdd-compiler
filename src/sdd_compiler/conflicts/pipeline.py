@@ -20,12 +20,27 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
-from ..atomize.guards import GuardFailure
 from ..errors import ExitCode, SddcError
 from ..llm import Backend
 from ..retrieval.select import propose
-from .judge import INSTRUCTIONS, SCHEMA_VERSION, Verdict, judge
+from .judge import PairItem, Verdict, judge_batch
 from .records import outcome_for
+
+#: Pairs per Q-PAIR call (R21). Eight is what Q-DESC settled on (rel01 S21): enough to amortise the
+#: harness prompt, small enough that a batch stays inside the call timeout.
+PAIR_BATCH = 8
+
+
+class _Counting:
+    """Counts the calls the phase makes, for CT-6.2."""
+
+    def __init__(self, backend, counts):
+        self._backend, self._counts = backend, counts
+        self.name = getattr(backend, "name", "backend")
+
+    def ask(self, question):
+        self._counts["calls"] += 1
+        return self._backend.ask(question)
 
 
 @dataclass
@@ -35,6 +50,8 @@ class CheckResult:
     ambiguity: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
     counts: dict[str, Any] = field(default_factory=dict)
     incomplete: bool = False
+    stopped: str | None = None          # "call_cap" | "backend" — which limit ended the phase
+    stop_reason: str | None = None
     unjudged: int = 0
     counter: int = 0                                                     # highest conflict id used
     checked: list[str] = field(default_factory=list)                     # nodes this run looked at
@@ -52,55 +69,90 @@ def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id
         "by_relation": dict.fromkeys(
             ("none", "refines", "depends_on", "duplicates", "subsumes", "contradicts"), 0),
         "opened": 0, "closed": {"rejudged": 0, "member_deleted": 0}, "calls": 0,
-        "provisional": 0, "unjudged_failed": 0, "incomplete": False,
+        "provisional": 0, "unjudged_failed": 0, "suppressed": 0, "incomplete": False,
         "retrieval": dict(proposal.counts),
     }
     result = CheckResult(counts=counts, counter=graph.counters.get("conflict", 0),
                          checked=list(proposal.checked))
     open_records = {frozenset(record["members"]): record
                     for record in graph.conflicts.values() if record["state"] == "open"}
-    for position, candidate in enumerate(proposal.pairs):
-        a, b = nodes[candidate["a"]], nodes[candidate["b"]]
-        input_hash = lock.key("q-pair", SCHEMA_VERSION, INSTRUCTIONS,
-                              {"pair_key": candidate["pair_key"]})
-        hit = lock.lookup("q-pair", input_hash)
-        if hit is not None:
-            verdict = _verdict_from(hit["answer"], a, b)
-            judgment = hit["id"]
-            counts["pairs_replayed"] += 1
-            lock.replayed += 1
-        else:
-            try:
-                verdict = judge(a, b, backend, settings=settings)
-            except SddcError as error:
-                if error.exit_code not in (ExitCode.CALL_CAP, ExitCode.BACKEND):
-                    raise
-                result.incomplete = True
-                counts["incomplete"] = True
-                result.unjudged = len(proposal.pairs) - position
-                break
-            except GuardFailure:
-                # Checked twice and still wrong: no verdict, and the phase carries on (§4.2).
-                counts["unjudged_failed"] += 1
-                counts["calls"] += 2
-                continue
-            counts["pairs_judged"] += 1
-            counts["calls"] += verdict.attempts
-            judgment = lock.record("q-pair", SCHEMA_VERSION, input_hash, _answer_of(verdict),
-                                   verdict.answer, attempts=verdict.attempts, batch_of=None,
-                                   provisional=verdict.provisional)
-        counts["by_relation"][verdict.relation] += 1
-        counts["provisional"] += 1 if verdict.provisional else 0
-        _apply(result, verdict, a, b, settings=settings, run_id=run_id, judgment=judgment,
-               open_records=open_records, counts=counts)
+    items = [PairItem(a=nodes[c["a"]], b=nodes[c["b"]], key=c["pair_key"],
+                      related_terms=_term_relations(nodes[c["a"]], nodes[c["b"]], graph.terms))
+             for c in proposal.pairs]
+    counted = _Counting(backend, counts)
+
+    for start in range(0, len(items), PAIR_BATCH):
+        chunk = items[start:start + PAIR_BATCH]
+        replayed_before = lock.replayed
+        try:
+            outcome = judge_batch(chunk, counted, settings=settings, lock=lock)
+        except SddcError as error:
+            if error.exit_code not in (ExitCode.CALL_CAP, ExitCode.BACKEND):
+                raise
+            # What earlier batches judged is kept; this one and the rest stay unjudged (F6 §4.7).
+            result.incomplete = True
+            counts["incomplete"] = True
+            result.stopped = "call_cap" if error.exit_code == ExitCode.CALL_CAP else "backend"
+            result.stop_reason = str(error)
+            counts["stopped"] = result.stopped
+            result.unjudged = len(items) - start
+            break
+
+        replayed = lock.replayed - replayed_before
+        counts["pairs_replayed"] += replayed
+        counts["pairs_judged"] += len(outcome.verdicts) - replayed
+        counts["unjudged_failed"] += len(outcome.failures)
+        for item in chunk:
+            verdict = outcome.verdicts.get(item.pair_id)
+            if verdict is None:
+                continue                  # checked twice and still wrong (§4.2); the phase goes on
+            counts["by_relation"][verdict.relation] += 1
+            if verdict.provisional:
+                counts["provisional"] += 1
+                lock.mark_provisional(outcome.judgments.get(item.pair_id, ""))
+            _apply(result, verdict, item.a, item.b, settings=settings, run_id=run_id,
+                   judgment=outcome.judgments.get(item.pair_id, ""),
+                   open_records=open_records, counts=counts)
 
     return result
+
+
+def _term_relations(a, b, registry: Mapping[str, Mapping[str, Any]]) -> list[str]:
+    """What the graph already knows about the two namings (F6 D17, I-76): the same term on both
+    sides, one that is a kind of the other, or two that are kinds of one thing."""
+    def named(node):
+        return {t["term"] for t in node["terms"] if t["term"] in registry}
+
+    def parents(term):
+        chain, seen = [], {term}
+        current = (registry.get(term) or {}).get("broader")
+        while current and current not in seen:
+            chain.append(current)
+            seen.add(current)
+            current = (registry.get(current) or {}).get("broader")
+        return chain
+
+    mine, theirs = named(a), named(b)
+    lines = [f"{term} is used by both claims" for term in sorted(mine & theirs)]
+    for x in sorted(mine - theirs):
+        for y in sorted(theirs - mine):
+            if y in parents(x):
+                lines.append(f"{x} is a kind of {y}")
+            elif x in parents(y):
+                lines.append(f"{y} is a kind of {x}")
+            else:
+                common = set(parents(x)) & set(parents(y))
+                if common:
+                    lines.append(f"{x} and {y} are both kinds of {sorted(common)[0]}")
+    return lines
 
 
 def _apply(result: CheckResult, verdict: Verdict, a, b, *, settings, run_id, judgment,
            open_records, counts) -> None:
     outcome = outcome_for(verdict, a, b, settings=settings, run_id=run_id,
                           conflict_id="CF-%06d" % (result.counter + 1), judgment=judgment)
+    if outcome.suppressed:
+        counts["suppressed"] += 1
     result.links += outcome.links
     for node_id, entries in outcome.ambiguity.items():
         result.ambiguity.setdefault(node_id, []).extend(entries)

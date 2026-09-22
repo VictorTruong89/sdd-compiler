@@ -97,6 +97,13 @@ class JudgmentLock:
         self.new_records.append(record)
         return identifier
 
+    def mark_provisional(self, judgment_id: str) -> None:
+        """F6 §4.4 — the verdict touched an `ambiguous` node. Set after the answer is recorded,
+        because only the caller knows the nodes' status (R21: the batch records the answer)."""
+        record = self.records.get(judgment_id)
+        if record is not None:
+            record["provisional"] = True
+
     def stage(self, transaction: Transaction) -> None:
         """Write every kind's file whole, sorted by id (F4 §4.2 determinism)."""
         kinds = sorted({r["kind"] for r in self.new_records})

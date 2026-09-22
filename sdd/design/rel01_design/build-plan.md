@@ -89,7 +89,7 @@ pass. Tasks inside a milestone are ordered by dependency.
 | T17 | Check phase: never stops, shared budget, incomplete reporting; conflict lifecycle (re-judge, close, member deleted) | F6 AC-6.9, AC-6.12 … AC-6.19 | `conflicts/pipeline.py`, `conflicts/lifecycle.py` |
 | T18 | The end-of-run report and `sddc conflicts`, grouped and sorted with contradictions first; exit codes 0/3/5 | F6 AC-6.10, AC-6.11 · F4 AC-4.16 | `report.py` |
 | T19 | **Adjudication record** (G4 §4): `sddc conflicts judge …` → `.sdd/adjudications.jsonl` | *new AC in F6* | `conflicts/adjudicate.py` |
-| **G** | **Gate:** compile the planted-conflict fixture; measure recall (G4 M1); compile this repository and judge every reported conflict (M2) | — | — |
+| **G** | **Gate:** compile the planted-conflict fixture; measure recall (G4 M1); compile this repository and judge every reported conflict (M2). Protocol §3 above; write-up [`M4-gate.md`](M4-gate.md) | — | — |
 
 ### M5 — Only if time remains
 
@@ -157,9 +157,19 @@ proves almost nothing.
 | T16 Q-PAIR judgment; links and conflict records; direction and confidence | ✅ | 18 | F6 AC-6.2 … AC-6.8, AC-6.1 partial · CT-6.1, CT-6.3 · **F6 D11** (the direction rule lives in the schema). Writing them through a transaction is T17 |
 | T17 check phase inside `compile`; budget; conflict lifecycle | ✅ | 19 | F6 AC-6.9, AC-6.12 … AC-6.19, and AC-6.1, AC-6.11 end to end · **F6 D12, D13** · exit codes 3 and 5 wired. `compile` = ingest → atomize → **check** → write |
 | T18 end-of-run report; `sddc conflicts`; exit 3 | ✅ | 12 (2 goldens) | F6 AC-6.10, AC-6.11 · F4 AC-4.16 · **`compile` now prints the report**: what failed, what formed no node, what was dropped, every conflict grouped with contradictions first |
-| T19 adjudication record | ⬜ | | |
+| Planted-conflict fixture (G4 §3 corpus 2) | ✅ | 1 | `tests/fixtures/planted/` — 3 files, 28 blocks, six pairs P1 … P6 in [`EXPECTED.md`](../../../tests/fixtures/planted/EXPECTED.md); written in ordinary spec voice. A suite test keeps it from rotting |
+| **M4 gate** pass line | ✅ written **before** the run finished — [`M4-gate.md`](M4-gate.md) §1 | — | G1 ≥ 4 of 6 planted pairs including P1 · G2 ≥ half of what is reported judged real · G3 the run finishes, the store checks pass, the report names every conflict. Owner confirms |
+| **M4 gate** | ❌ **failed, usefully** — [`M4-gate.md`](M4-gate.md) | +1 | First end-to-end run: 28 blocks → 34 nodes → 123 pairs → 72 judged → **11 conflicts**, store clean, $1.30. **M1 recall 1 of 6** planted pairs; **M2 precision 3 of 11 (27 %)**. Every planted pair *was* proposed — five ranked 81st–130th because each side got its own term (the measured cost of I-65). One real duplication found that nobody planted. Follow-ups R15 … R18 in the gate file |
+| **R15, R16** gate fixes | ✅ | +3 | **F5 D11** (S2 follows `broader`; S6 takes a shared keyword) · **F6 D15** (when two numbers are *not* a contradiction). Effect measured offline before spending: the 5 GB/5 GiB pair rank 123 → 50, the alias pair 81 → 43 |
+| **R17** gate re-run, identical corpus | ✅ $2.35 — [`M4-gate.md`](M4-gate.md) §5 | — | All **159 pairs judged**, exit 3, store clean. **Precision 27 % → 71 %**; **recall 1 → 2 of 6** (P4 found). G2 and G3 now pass, **G1 still fails** |
+| **R19** I-77 and I-76 fixed in code | ✅ | +4 | **F6 D16**: a criterion never duplicates or subsumes what it `verifies` — checked against the graph, not asked of the model. **F5 D12** (S8, two kinds of one thing) and **F6 D17** (the judge is shown the terms and how they relate). Measured offline on R17's store: the 5 GB/5 GiB pair rank 63 → **43**, and the judge is now told the fact whose absence made it refuse |
+| **R20 (B), R21 (A)** cost, measured not guessed | ✅ | +5 | **F5 D13**: the cap is 6, not 10 — 36 % fewer pairs on R17's store with every known-real pair kept. **F6 D18**: Q-PAIR is batched 8 per call, as Q-ATOM and Q-DESC already are, with each answer still checked alone and a failure re-asking that pair. Together: the gate corpus needs **15 judge calls instead of 159**; this repository ≈ **$12**, not $55–70 |
+| **C — the dogfood** (F5 + F6, 181 real blocks) | ✅ $6.32 — [`M4-gate.md`](M4-gate.md) §7 | +1 | **192 nodes, 562 pairs judged, 70 conflicts, exit 3, store clean.** M2 on a sample of 39: **4 real (≈ 10 %)** — three of them one defect **introduced that day** (F5 D13 changed the cap; D6, §4.3 and AC-5.10 kept the old number), and one genuine under-specification in §4.1. **65 of 70 involve an acceptance criterion or a decision entry** |
+| **I-82** every `$` relabelled: estimated API-equivalent, not spend | ✅ docs | — | The owner checked the Console and saw no credit movement. These runs are on the **subscription**; the figure is Claude Code's own per-call `total_cost_usd`. G4 §2 and M4-gate §7 corrected; the Usage & Cost Admin API (`/v1/organizations/cost_report`, Admin key, curl-only) would show nothing, because it reports API traffic |
+| **Next: the full-corpus test session** | ⬜ handover written | 4–6 rounds | [`HANDOVER_full_compile.md`](HANDOVER_full_compile.md) — `sdd/specs/` end to end on the subscription, in resumable slices, ≈ $26 estimated. Produces the close-out number |
+| T19 adjudication record (G4 §4) | ✅ | 9 | **F6 AC-6.20, D14** · `sddc conflicts judge CF-… --verdict real\|false --note "…"` → `.sdd/adjudications.jsonl`. M2 (precision) is now recordable — the one number the 30 September close is about |
 
-Counts are tests per task's test files (T1's include 3 profile tests added in T6). Suite total: **594**. (T9's count is mostly the 128-case exhaustive placement test.)
+Counts are tests per task's test files (T1's include 3 profile tests added in T6). Suite total: **617**. (T9's count is mostly the 128-case exhaustive placement test.)
 
 ## 8. Issues found while building — log for the retrospective
 
@@ -273,6 +283,23 @@ order found. Owner decisions are cited by their spec decision id.
 
 | I-70 | R16 reading | **The split re-ask undid F3 D34.** A table row's atoms are folded into one claim on the first pass, and then AC-3.12's re-ask asked the model to separate the row's rule from its evidence cell — and it did. All seven of F5's source rows became two nodes, one a bare fragment ("the term ids", "the block id"), which spawned five one-node families the blind reader called unintelligible | The R16 blind reading named the fragments; the store confirmed two nodes per row | **F3 D36**: a block that is one claim by its own form (a table row, an `AC-` block) is placed by its first yes and flagged `mixed_layers`, never asked to split. Decided in the first pass, so it also saves a call |
 
+| I-71 | M4 gate | The gate's first compile died on its **first** model call: the account's session limit (429). Exit `6`, nothing atomized, nothing lost | Reading the run's summary | No defect — **F3 D24 working as designed on a real 429**. Worth recording as the first live proof of I-43's fix |
+| I-72 | M4 gate | The check phase stopped after 72 of 123 pairs with **93 of 200 calls used**, and the report said *"the call cap stopped the run"*, exiting `5`. It was a backend 429. A report that names the wrong cause sends the reader to the wrong fix — raise the cap, which would have changed nothing | Comparing the calls used against the cap in the run summary | **Fixed:** the check phase records which limit stopped it (`stopped`, `stop_reason`), the report names it, and a backend stop exits `6` |
+| I-73 | M4 gate | **The misses are in ranking, not judging.** All six planted pairs were proposed as candidates; five ranked 81st–130th of 137 and were never reached, because each side of each pair carries a different term (`export_archive` vs `workspace_export`), so S1 (3.0) and S2 (2.0) are dead and only S5's keyword overlap fires, at exactly `min_score` | The M4 gate's per-pair diagnosis | ⚠ **Open, owner — R15.** Options: Q-TERM merges phrasings of one thing; or a source that fires on the same quantity dimension *without* a shared term. This is I-65 (term proliferation) with a price on it |
+| I-74 | M4 gate | **8 of 11 reported conflicts are false**, and 5 of them are one mistake repeated: the judge reads two different numbers about related objects as a contradiction — a 24-hour link inside a 30-day archive, a 13-day restore inside a 14-day window — and once invented arithmetic ("day 30 versus day 31") | Adjudicating every record with `sddc conflicts judge` (T19) | ⚠ **Open, owner — R16.** One prompt rule: two numbers conflict only when both must hold for the same object at the same time |
+| I-75 | M4 gate | **The cost model does not reach this repository.** 28 blocks cost $1.30 and 93 calls with a third of the pairs unjudged; `sdd/specs/` is 733 blocks. G4's "one number for the close" — conflicts on our own specs — is not affordable on the `claude-code` backend at ≈ $0.014 per call | Extrapolating the gate's cost | ⚠ **Open, owner — R18.** Either the `anthropic-api` backend (rel01 D30's plan), or close rel01 with the fixture as the measured corpus and say so plainly |
+
+| I-78 | R19 | Fixing I-76 raised a fair question about **P6**: Q-TERM judged "download link" **different** from "share link", so no relation reaches either retrieval or the judge. The fixture means them as one thing — the link you download the archive with | Measuring the I-76 fix offline: P6 gained nothing | ⚠ **Open, owner.** Not a code defect: the model made a defensible call on two names that a human reads as one. It is the same lesson as I-76 from the other side — **the term layer decides what the rest of the pipeline can see** |
+| I-76 | R17 | **The naming problem moved from retrieval into the judge.** R15 delivered the two quantity pairs to the judge (rank 123 → 63, 81 → 42) and it refused them in those very words: *"the two claims govern different export types ('export archive' vs 'workspace export')"*. The model reads two objects where the spec means one | R17's per-pair verdicts, read against the answer key | ⚠ **Open, owner.** No retrieval tuning reaches this: a pair the judge is *told* about is still refused. Term hygiene at atomization (I-65) is the one lever left, and it is now the release's biggest quality item |
+| I-77 | R17 | **R16's rule did not fully take.** The prompt says in as many words that an acceptance criterion restating its requirement is design, not duplication — and the judge still opened CF-000002 for exactly that | Adjudicating R17 | ⚠ **Open, small.** Either the rule needs to be a code check (a `V` node against the requirement it `verifies` is never a duplication) or the prompt needs the rule closer to the answer format. Code is the surer of the two |
+
+| I-79 | C (dogfood) | The first compile of **real specs** (F5 + F6, 173 blocks) ended after **19**: one Q-ATOM call over 20 dense blocks returned no `structured_output`, which the backend raised as "backend unavailable", exit `6`. The $0.39 of finished work was kept (D24), but the run was over | The dogfood run's stop reason | **F3 D37**: `AnswerRejected` — one unusable answer is re-asked per item by the batch layer, as a guard failure already is. A dead backend, a missing binary and a 429 stay exit `6` |
+
+| I-80 | C (dogfood) | **The compiler found a defect its author had made hours earlier.** F5 D13 changed `max_pairs_per_node` to 6; D6, §4.3 and AC-5.10 kept 10. Three of the four real finds are that one defect, in three places | The dogfood's own output, adjudicated | Fixed in F5 the same hour. **This is the product's purpose demonstrated on its own specification** — and evidence for the close that a spec set drifts within a single working day |
+| I-81 | C (dogfood) | **Precision on our own specs is ≈ 10 %, against 71 % on the fixture**, and the reason is structural: **65 of 70 conflicts involve an acceptance criterion or a decision entry**. A criterion restating its requirement, a decision heading summarising its body, two criteria about different situations — the document's own form, read as defects | Counting the members of all 70 records | ⚠ **Open, owner.** F6 D16 already suppresses the criterion case when `verifies` resolves (3 times here); on real specs most criteria cite nothing. Extending "the form says so" to decision headings is the same lever M3 and the M4 gate both pointed at |
+
+| I-82 | — | **Every `$` in this repository was labelled "cost" and is not spend.** The figure is Claude Code's own `total_cost_usd` per call, which we sum — an estimate of the equivalent **API list price**. These runs go through the `claude` CLI on the owner's **subscription**: no organization credits move (the owner checked the Console and saw none), and the Usage & Cost Admin API would show nothing, because it reports API traffic. The 429s we hit say "session limit", which is the subscription's, not an API rate limit | The owner asking why the Console showed no deduction | Relabelled in G4 §2 and M4-gate §7 as **estimated API-equivalent cost**. ⚠ Every earlier figure (R12 … R21, both gates) carries the same caveat. Real API spend, if the `anthropic-api` backend is ever used, is readable from `GET /v1/organizations/cost_report` with an Admin key |
+
 **Patterns so far** (for the retrospective):
 - **Real data finds what specs miss.** I-3, I-6, I-8, I-9 all came from running on this repository's own
   specs or the live model, not from reading the spec. Run on the real corpus at every task, not only at
@@ -305,6 +332,31 @@ order found. Owner decisions are cited by their spec decision id.
 - **A property test must test the output, not a helper beside it** (I-52). Parse what the user sees.
 - **`None` as both "absent" and a real key is a trap** (I-51, I-53). The unplaced family's key is
   `None`, and two separate bugs came from it in one milestone.
+- **Fixing the cheap stage shows you the expensive one** (I-76). Retrieval was tuned in an afternoon
+  and delivered the pairs; the judge then failed on the same naming confusion. A pipeline hides its
+  worst stage behind its weakest one.
+- **A number with a unit can still be the wrong number** (I-82). "$6.32" was measured, reproducible
+  and correctly summed — and it is not money. The evidence rule this repository already has ("no
+  invented numbers") does not catch a real number under a wrong name; **state what a figure *is*, not
+  only where it came from.**
+- **A corpus of specifications is not prose** (I-81). The fixture was plain paragraphs and scored
+  71 %; our own specs are dense with criteria and decision entries and scored 10 %. A tool measured
+  only on prose will surprise you on documents.
+- **Estimates made on a fixture underestimate the real corpus** (C). $2 predicted, $6.32 spent: our
+  specs form more pairs per block, and a quarter of the first answers needed a re-ask.
+- **Severity is a design decision, and the default was wrong** (I-79). "No structured output" was
+  filed under *the backend is gone* when it meant *this answer is unusable*. The first class ends a
+  run; the second costs one re-ask. Every raised error picks one of those, and on a long run the
+  choice is the difference between finishing and not.
+- **A prompt rule is not a fix, it is a request** (I-77). The instruction naming the exact false
+  positive did not stop it. What can be checked in code should be.
+- **A gate that fails is worth more than one that passes** (M4). It located the failure precisely —
+  ranking, not judging — and that distinction decides which of five candidate fixes is worth building.
+- **A weakness measured in one gate becomes a number in the next** (I-65 → I-73). "Families group
+  badly" was a readability complaint at M3; at M4 it is five missed conflicts out of six.
+- **The fixture found a defect its own author missed** (M4 §3). Prose written to be consistent, by
+  someone who had just written the answer key, still held a real duplication. That is the product
+  working — and why "I read it carefully" is not a substitute for a check.
 - **Two rules that never meet in one test can still contradict each other** (I-70). "A row is one
   claim" and "a mixed-layer atom is re-asked to split" were each correct and tested; the second
   silently undid the first on the only blocks where both applied.
@@ -339,12 +391,16 @@ order found. Owner decisions are cited by their spec decision id.
 - **Test on every kind of block, not the first twenty** (I-21). The same guard that passed 20 header
   blocks failed 14 of 20 acceptance criteria. The M2 gate sample must be stratified by block shape.
 
-## 9. What remains — updated 2026-09-19
+## 9. What remains — updated 2026-09-22
 
-**Built:** M1 (T1–T5), M2 (T6–T12) and M3 (T13, T14): `sddc init · ingest · compile · status · family`,
-generated `.sdd/views/`, 517 tests. M3's view code passed its gate; the graph content it shows is
-re-measured in R15.
-`compile` today = ingest → atomize → write the graph. It does not yet check for conflicts.
+**Built: all four milestones.** M1 (T1–T5), M2 (T6–T12), M3 (T13, T14), M4 (T15–T19) — **617 tests**.
+`sddc init · ingest · compile · status · family · conflicts`, and `compile` = ingest → atomize →
+**check** → report. Both gates are run: M3 closed (views pass, content short of the line); M4 measured
+on the planted fixture and on 181 blocks of our own specs.
+
+**What is left is a decision and a measurement, not a feature.** The deferred surface (B2, M5) is
+`review`, `query`, `pairs --exhaustive`, `check`, `map`, `blocks`, `show` — every one a view on a store
+that already exists. F3 AC-3.21 and AC-3.22 are satisfied by T17/T18 and need only their tests.
 
 | Item | Kind | Size | Blocks |
 |---|---|---|---|
@@ -360,7 +416,14 @@ re-measured in R15.
 | ~~M3 gate~~ — owner verdict | ✅ approved 2026-09-19 | — | — |
 | ~~I-56~~ code · ~~I-57~~ · ~~F4 Q2~~ · ~~gate protocol~~ | ✅ built, 517 tests | — | — |
 | ~~R15~~ re-compile F5 and re-read every card | ✅ done 2026-09-21, $1.20 — [`M3-gate.md`](M3-gate.md) | — | — |
-| **R16** — optional: re-compile F5 once more, now that I-63 and I-64 are fixed. ≈ $1.20, ~10 min. Three of R15's six ❌ cards are artefacts of those two defects, so R16 is the first fair reading | measurement | small | a clean gate number; **not** M4 |
+| **The full-corpus test session** — compile this repository's own `sdd/specs/` end to end, in resumable slices, on the Claude Code **subscription** (never the API backend). Handover prompt: [`HANDOVER_full_compile.md`](HANDOVER_full_compile.md) | measurement | 1–2 sessions | **the close-out number** (G4 §5) |
+| ~~I-77~~ a criterion never duplicates what it verifies | ✅ F6 D16, in code | — | — |
+| ~~I-76~~ term hygiene: S8 siblings, and the judge is shown the terms | ✅ F5 D12, F6 D17 | — | — |
+| ~~B, A~~ cap 6 (F5 D13) and batched Q-PAIR (F6 D18) | ✅ 15 judge calls where 159 were needed | — | — |
+| ~~C~~ the dogfood on F5 + F6 | ✅ [`M4-gate.md`](M4-gate.md) §7 — 70 conflicts, 4 real in a sample of 39, one of them a defect made that day | — | — |
+| **I-81** the specs' own structure reads as conflicts (65 of 70) — extend "the form says so" from `verifies` to decision headings | decision + small code | small | precision on real specs |
+| **I-78** Q-TERM called "download link" different from "share link" | decision | small | the P6 class |
+| ~~R18 pricing decision~~ — superseded by B and A: the full corpus is now ≈ $26 estimated, not $55–70. Options priced in [`M4-gate.md`](M4-gate.md) §6: batch Q-PAIR (≈ 8× fewer calls), tune thresholds (free, halves pairs), a sampled dogfood (≈ $6–8), the `anthropic-api` backend, or the full run (≈ $55–70, 7–11 h) | owner | — | the 30 September close |
 | Owner: confirm the M3 pass line, and the verdict on [`M3-gate.md`](M3-gate.md) §3 | decision | small | closing M3 |
 | I-66 the in-scope list reads as boilerplate | decision + small view change | small | nothing |
 | ~~I-59, the report half~~ blocks that formed no node are counted (F3 D33) | ✅ built, 2 tests | — | — |
@@ -370,7 +433,7 @@ re-measured in R15.
 | ~~T17~~ check phase, shared budget, conflict lifecycle | ✅ built — 19 tests | — | — |
 | ~~T18~~ report, `sddc conflicts`, exit 3 | ✅ built — 12 tests, 2 goldens | — | — |
 | ~~R16~~ re-measure after the I-63, I-64, I-67 fixes | ✅ $1.31 (+ $1.20 lost to the crash) — [`M3-gate.md`](M3-gate.md) §5 | — | — |
-| T19 adjudication record (G4) | code (M4) | small | G4 measurements M1–M2 |
+| ~~T19~~ adjudication record (G4) | ✅ built — 9 tests | — | — |
 | M5 (optional) | exhaustive mode, `check`, `review`, `query`, `map`, `blocks`, `show`, `pairs`, `check-conflicts` | — | nothing in rel01 |
 
 **On compiling:** see the brainstorm, rel01 S26 — one small stratified gate run now, one full compile at

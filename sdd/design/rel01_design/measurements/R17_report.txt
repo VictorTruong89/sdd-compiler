@@ -1,0 +1,27 @@
+R-000001: compiled 3 file(s) · 28 new · 0 changed · 0 removed
+atomized 28 of 28 pending block(s) · 0 failed · 6 formed no node · 31 node(s) formed, 0 deleted
+checked 159 pair(s) (159 judged, 0 replayed) · 177 model call(s) · $2.3540 · 0 answer(s) replayed from the lock
+CONFLICTS: 7 open (4 contradiction, 2 duplication, 1 subsumption) in 4 group(s)
+  CF-000001 contradiction  N-000017 sdd/specs/F2_retention/spec.md:14 ↔ N-000026 sdd/specs/F2_retention/spec.md:31
+    "is kept for 30 days after it is created" ↔ "removes an export archive 7 days after it was created"
+    rationale: Claim A specifies export archives are kept for 30 days; Claim B specifies they are removed after 7 days. The same entity cannot have both a 30-day and a 7-day retention period.
+  CF-000003 contradiction  N-000018 sdd/specs/F2_retention/spec.md:14 ↔ N-000026 sdd/specs/F2_retention/spec.md:31
+    "deleted with its download link" ↔ "removes an export archive 7 days after it was created"
+    rationale: Both claims mandate when an export archive is deleted, but specify incompatible deletion triggers: N-000018 requires deletion with its download link, while N-000026 requires deletion 7 days after creation regardless of link state.
+  CF-000004 contradiction  N-000020 sdd/specs/F2_retention/spec.md:16 ↔ N-000026 sdd/specs/F2_retention/spec.md:31
+    "day 29 does not extend its life" ↔ "removes an export archive 7 days after it was created"
+    rationale: Claim B removes archives after 7 days, making Claim A's day 29 download scenario impossible—both cannot apply to the same archive simultaneously.
+  CF-000005 duplication  N-000021 sdd/specs/F2_retention/spec.md:21 ↔ N-000026 sdd/specs/F2_retention/spec.md:31
+    "audit event is kept for one year" ↔ "audit event after one year"
+    rationale: Both claims specify that audit events must be retained for exactly one year, restating the same retention policy from different perspectives (keeping vs. removal).
+  CF-000007 contradiction  N-000011 sdd/specs/F1_exports/spec.md:31 ↔ N-000012 sdd/specs/F1_exports/spec.md:33
+    "Every export must be encrypted with the workspace key" ↔ "The nightly backup export should be encrypted"
+    rationale: Claim A mandates every export (including nightly backups) MUST be encrypted with the workspace key, while Claim B downgrades nightly backup exports to SHOULD be encrypted—a weaker requirement that contradicts the mandatory encryption already established for all exports.
+  CF-000002 duplication  AC-1.1 sdd/specs/F1_exports/spec.md:49 ↔ N-000008 sdd/specs/F1_exports/spec.md:23
+    "the request is rejected at queue time" ↔ "rejected when it is queued"
+    rationale: Both claims state that an export request is rejected at the queue stage when the archive would exceed a size limit, differing only in that B adds a user notification requirement which is a clarification detail, not a contradicting element.
+  CF-000006 subsumption  N-000022 sdd/specs/F2_retention/spec.md:21 ↔ N-000024 sdd/specs/F2_retention/spec.md:26
+    "never deleted by a member, only by the retention job" ↔ "are removed by the retention job in one pass"
+    rationale: Claim A's assertion that audit events are deleted "only by the retention job" already implies Claim B's statement that the retention job removes them; A is more restrictive and implies B's weaker claim.
+ATTENTION: 1 item(s) — see .sdd/review.jsonl
+exit 3

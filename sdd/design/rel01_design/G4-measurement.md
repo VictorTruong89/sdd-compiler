@@ -34,7 +34,7 @@ F7 traversal and an agent harness. rel01 only has to make that study *possible* 
 | **M4 Atomizer stability** | Agreement between two atomization runs of the same block, lock disabled | `--no-replay` and a run-to-run diff |
 | **M5 Build determinism** | Same sources + same lock ⇒ byte-identical records | Already an acceptance criterion (F3 AC-3.19, F4 AC-4.3) |
 | **M6 Edit locality** | One edited paragraph changes how many nodes and how many verdicts | Run records before and after one edit |
-| **M7 Cost** | Model calls, tokens and wall time per compile, and per node | F3 CT-3.2, F5 CT-5.3, F6 CT-6.2 |
+| **M7 Cost** | Model calls, tokens and wall time per compile, and per node | F3 CT-3.2, F5 CT-5.3, F6 CT-6.2. ⚠ **Every `$` figure in this repository is Claude Code's own `total_cost_usd`, summed per call: an *estimate of the equivalent API list price*, not money billed.** These runs go through the `claude` CLI on the owner's subscription, so nothing is deducted from organization API credits and nothing appears in the Usage & Cost Admin API, which reports API traffic only. Anthropic's own docs call the Claude Code figures "estimated" (Claude Code Analytics API). Quote them as **estimated API-equivalent cost**, never as spend |
 | **M8 Injection rate** | Share of nodes flagged `inferred` — content the model added | The `inferred` flag, already specified |
 | **M9 Report legibility** | Can a reader, given only the report, locate and judge each conflict? | A small human trial; no instrumentation |
 

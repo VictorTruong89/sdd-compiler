@@ -60,6 +60,31 @@ def test_the_question_shows_both_nodes_with_what_the_judge_needs():
     assert build_question(A, B).schema_version == SCHEMA_VERSION
 
 
+def test_r19_the_question_shows_the_terms_and_warns_about_two_names_for_one_thing():
+    """I-76: R15 delivered the 5 GB / 5 GiB pair to the judge and it answered `none` — "the two
+    claims govern different export types (export archive vs workspace export)". The graph knows
+    both are kinds of `export`; the question now says so (F6 D17)."""
+    a = {**A, "terms": [{"term": "term:export_archive", "role": "subject", "quote": "archive"}]}
+    b = {**B, "terms": [{"term": "term:workspace_export", "role": "subject", "quote": "export"}]}
+    prompt = build_question(a, b, related_terms=["term:export_archive and term:workspace_export "
+                                                 "are both kinds of term:export"]).prompt
+    assert "term:export_archive" in prompt and "term:workspace_export" in prompt
+    assert "both kinds of term:export" in prompt
+    lowered = prompt.lower()
+    assert "same thing" in lowered and "different name" in lowered
+
+
+def test_r16_the_prompt_says_when_two_numbers_are_not_a_contradiction():
+    """M4 gate I-74: 5 of 8 false positives were one mistake — a 24-hour link inside a 30-day
+    archive, a 13-day restore inside a 14-day window, read as contradictions; and once the judge
+    computed "day 30 versus day 31", arithmetic the text does not do."""
+    prompt = build_question(A, B).prompt.lower()
+    assert "same thing at the same time" in prompt
+    assert "inside" in prompt and "window" in prompt
+    assert "do not calculate" in prompt or "never compute" in prompt
+    assert "acceptance criterion" in prompt          # restating a requirement is not duplication
+
+
 # -- AC-6.7 the direction rule is part of the schema --------------------------------------
 
 @pytest.mark.parametrize("relation", ["none", "duplicates", "contradicts"])
@@ -166,6 +191,35 @@ def test_ac_6_5_the_rule_can_be_turned_off_in_the_profile():
     outcome = outcome_for(verdict, A, node("N-000042", B_TEXT), settings=settings,
                           run_id="R-000001", conflict_id="CF-000001", judgment="J-000400")
     assert outcome.conflict["kind"] == "subsumption"
+
+
+def test_i77_a_criterion_never_duplicates_the_requirement_it_verifies():
+    """R17 (I-77): the judge opened a duplication between AC-1.1 and the requirement it verifies,
+    the exact case F6 D15's prompt names. A prompt rule is a request; this one is checked in code
+    (F6 D16). A *contradiction* between a test and its rule is still reported — that one matters."""
+    requirement = node("N-000008", "A request whose archive would be larger is rejected when queued.")
+    criterion = {**node("AC-1.1", "Given a project whose archive would exceed the limit, then it is "
+                                  "rejected at queue time.", layer="V"),
+                 "verifies": ["N-000008"]}
+    verdict, _ = verdict_for(answer(relation="duplicates", quote_a="rejected", quote_b="rejected"),
+                             a=criterion, b=requirement)
+    outcome = outcome_for(verdict, criterion, requirement, settings=SETTINGS, run_id="R-000001",
+                          conflict_id="CF-000001", judgment="J-000400")
+    assert outcome.conflict is None and outcome.links == []
+    assert outcome.suppressed == "verifies_its_own_requirement"
+
+    subsumed, _ = verdict_for(answer(relation="subsumes", direction="a_to_b",
+                                     quote_a="rejected", quote_b="rejected"),
+                              a=criterion, b=requirement)
+    assert outcome_for(subsumed, criterion, requirement, settings=SETTINGS, run_id="R-000001",
+                       conflict_id="CF-000001", judgment="J-000400").conflict is None
+
+    clash, _ = verdict_for(answer(relation="contradicts", quote_a="rejected", quote_b="rejected"),
+                           a=criterion, b=requirement)
+    kept = outcome_for(clash, criterion, requirement, settings=SETTINGS, run_id="R-000001",
+                       conflict_id="CF-000001", judgment="J-000400")
+    assert kept.conflict["kind"] == "contradiction"          # a test that denies its rule is a defect
+    assert kept.suppressed is None
 
 
 def test_ac_6_8_a_low_confidence_verdict_is_recorded_and_flags_both_nodes():

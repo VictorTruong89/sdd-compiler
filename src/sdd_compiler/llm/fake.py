@@ -19,6 +19,16 @@ class FakeBackend:
         self.budget = budget
         self.asked: list[Question] = []
 
+    @staticmethod
+    def _as_batch(question: Question, answer: dict[str, Any]) -> dict[str, Any]:
+        """R21: Q-PAIR asks about a batch. A test that scripts one verdict means it for the pairs
+        in that call, so the fake repeats it, tagged with each `pair_id`. A script that already
+        has the batch shape is left alone."""
+        if question.kind != "q-pair" or "pairs" in answer:
+            return answer
+        return {"pairs": [{**answer, "pair_id": pair_id}
+                          for pair_id in question.payload.get("pair_ids", [])]}
+
     def ask(self, question: Question) -> Answer:
         if self.budget is not None:
             self.budget.spend()
@@ -28,7 +38,7 @@ class FakeBackend:
             f"A test that runs out here is asking more questions than it expected."
         )
         return Answer(
-            data=self._answers.pop(0),
+            data=self._as_batch(question, self._answers.pop(0)),
             backend=self.name,
             model="fake",
             usage={"input_tokens": 0, "output_tokens": 0,

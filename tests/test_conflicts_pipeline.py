@@ -64,8 +64,37 @@ A = "A share link expires 30 days after it is created."
 B = "A share link is valid for one hour."
 
 
+class Judge:
+    """A fake that answers a *batch* of pairs, as Q-PAIR is asked since R21.
+
+    `answers` are consumed one per pair, in the order the pairs are asked about, so a test still
+    scripts "the first verdict, the second verdict…"; pairs beyond the script get `none`.
+    """
+
+    name = "fake"
+
+    def __init__(self, answers, budget=None):
+        self._answers = list(answers)
+        self.budget = budget
+        self.asked = []
+
+    def ask(self, question):
+        if self.budget is not None:
+            self.budget.spend()
+        self.asked.append(question)
+        pairs = []
+        for pair_id in question.payload["pair_ids"]:
+            entry = self._answers.pop(0) if self._answers else answer(relation="none")
+            pairs.append({**entry, "pair_id": pair_id})
+        from sdd_compiler.llm import Answer
+        return Answer(data={"pairs": pairs}, backend="fake", model="fake",
+                      usage={"input_tokens": 0, "output_tokens": 0, "cache_read_tokens": 0,
+                             "cache_creation_tokens": 0},
+                      cost_usd=0.0, duration_ms=0, cli_version=None)
+
+
 def run_check(graph, answers, lock, *, budget=None, run_id="R-000002"):
-    backend = FakeBackend(list(answers), budget=budget)
+    backend = Judge(list(answers), budget=budget)
     return check(graph, backend=backend, retrieval=RETRIEVAL, settings=CONFLICTS,
                  run_id=run_id, lock=lock), backend
 
@@ -73,6 +102,53 @@ def run_check(graph, answers, lock, *, budget=None, run_id="R-000002"):
 @pytest.fixture()
 def lock(tmp_path):
     return JudgmentLock(tmp_path / ".sdd", start=0, run_id="R-000002")
+
+
+# -- R21 (A): Q-PAIR is batched, as Q-ATOM and Q-DESC already are (rel01 D30) ---------------
+
+def many_nodes(count):
+    texts = [f"A share link rule number {n}, about links and archives." for n in range(count)]
+    return [node("N-%06d" % (n + 1), t, line=n + 1) for n, t in enumerate(texts)]
+
+
+def test_r21_one_call_carries_many_pairs(lock):
+    graph = graph_of(*many_nodes(6))                       # 6 nodes → 15 pairs
+    answers = [answer(relation="none")] * 15
+    result, backend = run_check(graph, answers, lock)
+    assert result.counts["pairs_judged"] == 15
+    assert len(backend.asked) == 2                          # ceil(15 / 8), not 15
+    assert all(q.kind == "q-pair" for q in backend.asked)
+    assert result.counts["calls"] == 2
+
+
+def test_r21_a_pair_whose_answer_fails_is_re_asked_alone(lock):
+    graph = graph_of(*many_nodes(4))                        # 6 pairs, one call
+    bad = answer(quote_a="this phrase is not in the node")
+    result, backend = run_check(graph, [bad, answer(relation="none")], lock)
+    assert len(backend.asked) == 2                          # the batch, then one pair alone
+    assert result.counts["pairs_judged"] == 6               # the re-ask fixed the whole batch's item
+    assert result.counts["unjudged_failed"] == 0
+
+
+def test_r21_a_batch_still_replays_pair_by_pair(lock, tmp_path):
+    graph = graph_of(*many_nodes(5))                        # 10 pairs
+    first, backend = run_check(graph, [answer(relation="none")] * 10, lock)
+    assert first.counts["pairs_judged"] == 10 and len(backend.asked) == 2
+
+    again = JudgmentLock(tmp_path / ".sdd", start=lock.counter, run_id="R-000003")
+    again.records = dict(lock.records)
+    second, backend = run_check(graph, [], again, run_id="R-000003")
+    assert backend.asked == []
+    assert second.counts["pairs_replayed"] == 10
+
+
+def test_r21_a_budget_that_runs_out_keeps_the_batches_already_judged(lock):
+    graph = graph_of(*many_nodes(6))                        # 15 pairs → 2 calls
+    result, backend = run_check(graph, [answer(relation="none")] * 15, lock, budget=CallBudget(1))
+    assert len(backend.asked) == 1
+    assert result.incomplete is True and result.stopped == "call_cap"
+    assert result.counts["pairs_judged"] == 8               # the first batch is kept
+    assert result.unjudged == 7
 
 
 # -- AC-6.9 the phase never stops at a conflict -------------------------------------------
@@ -86,7 +162,7 @@ def test_ac_6_9_every_pair_is_judged_and_two_records_open(lock):
     answers[3] = answer()
     result, backend = run_check(graph, answers, lock)
 
-    assert len(backend.asked) == 10                         # 5 nodes → 10 unordered pairs
+    assert len(backend.asked) == 2                          # 10 pairs, batched 8 at a time (R21)
     assert len(result.conflicts) == 2
     assert result.counts["pairs_judged"] == 10
     assert result.counts["by_relation"]["contradicts"] == 2
@@ -95,20 +171,66 @@ def test_ac_6_9_every_pair_is_judged_and_two_records_open(lock):
     assert result.incomplete is False
 
 
+def test_r19_the_phase_tells_the_judge_how_the_two_namings_relate(lock):
+    """F6 D17: the graph already knows `export_archive` and `workspace_export` are kinds of
+    `export` (F2 D16). The judge refused such a pair for lack of that fact (I-76)."""
+    a_node = node("N-000001", A, line=1, family="term:export_archive")
+    b_node = node("N-000002", B, line=2, family="term:workspace_export")
+    for record, term in ((a_node, "term:export_archive"), (b_node, "term:workspace_export")):
+        record["terms"] = [{"term": term, "role": "subject", "quote": "export"}]
+    graph = graph_of(a_node, b_node)
+    graph.terms = {
+        "term:export": {"id": "term:export", "canonical": "export", "aliases": [], "kind": "entity",
+                        "defined_by": None, "status": "confirmed", "broader": None},
+        "term:export_archive": {"id": "term:export_archive", "canonical": "export archive",
+                                "aliases": [], "kind": "entity", "defined_by": None,
+                                "status": "confirmed", "broader": "term:export"},
+        "term:workspace_export": {"id": "term:workspace_export", "canonical": "workspace export",
+                                  "aliases": [], "kind": "entity", "defined_by": None,
+                                  "status": "confirmed", "broader": "term:export"},
+    }
+    _, backend = run_check(graph, [answer()], lock)
+    [question] = backend.asked
+    assert "HOW THEIR TERMS RELATE" in question.prompt
+    assert "term:export_archive" in question.prompt and "kinds of term:export" in question.prompt
+
+
 # -- AC-6.12 the budget stops the phase without losing what it judged ----------------------
 
 def test_ac_6_12_an_exhausted_budget_keeps_what_was_judged_and_says_it_is_incomplete(lock):
     graph = graph_of(node("N-000001", A, line=1), node("N-000002", B, line=2),
                      node("N-000003", "A share link may be revoked.", line=3))
-    budget = CallBudget(2)
+    budget = CallBudget(0)                                   # nothing left for the check phase
     result, backend = run_check(graph, [answer()] * 3, lock, budget=budget)
 
-    assert len(backend.asked) == 2
+    assert backend.asked == []
     assert result.incomplete is True
-    assert result.counts["pairs_judged"] == 2
-    assert result.unjudged == 1
+    assert result.counts["pairs_judged"] == 0
+    assert result.unjudged == 3
     assert result.counts["incomplete"] is True
-    assert len(result.conflicts) == 2                       # what was judged is kept
+    assert result.conflicts == {}                           # nothing judged, nothing invented
+
+
+def test_the_stop_says_which_limit_stopped_it(lock):
+    """M4 gate (I-72): the fixture run stopped after 72 of 123 pairs with 93 of 200 calls used —
+    a backend 429, reported as "the call cap stopped the run" and exit 5. A report that names the
+    wrong cause sends the reader to the wrong fix."""
+    graph = graph_of(node("N-000001", A, line=1), node("N-000002", B, line=2))
+    backend = FakeBackend([], budget=CallBudget(0))
+    result = check(graph, backend=backend, retrieval=RETRIEVAL, settings=CONFLICTS,
+                   run_id="R-000002", lock=lock)
+    assert result.incomplete and result.stopped == "call_cap"
+
+    class Refusing:
+        name = "fake"
+
+        def ask(self, question):
+            raise SddcError("claude exited 1: session limit (API status 429)", ExitCode.BACKEND)
+
+    again = check(graph, backend=Refusing(), retrieval=RETRIEVAL, settings=CONFLICTS,
+                  run_id="R-000002", lock=lock)
+    assert again.stopped == "backend"
+    assert "429" in again.stop_reason
 
 
 # -- AC-6.13 replay: a second run asks nothing ---------------------------------------------
@@ -214,7 +336,7 @@ def test_ac_6_19_judged_plus_replayed_equals_the_candidate_pairs(lock, tmp_path)
     assert second.counts["pairs_judged"] + second.counts["pairs_replayed"] == second.counts["candidates"]
     assert sorted(second.counts) == ["by_relation", "calls", "candidates", "closed", "incomplete",
                                      "opened", "pairs_judged", "pairs_replayed", "provisional",
-                                     "retrieval", "unjudged_failed"]     # F6 D12
+                                     "retrieval", "suppressed", "unjudged_failed"]   # F6 D12, D16
 
 
 def test_a_guard_failure_on_one_pair_leaves_the_rest_judged(lock):
@@ -222,9 +344,10 @@ def test_a_guard_failure_on_one_pair_leaves_the_rest_judged(lock):
     graph = graph_of(node("N-000001", A, line=1), node("N-000002", B, line=2),
                      node("N-000003", "A share link may be revoked.", line=3))
     bad = answer(quote_a="this is not in the node")
-    result, backend = run_check(graph, [bad, bad, answer(relation="none"), answer(relation="none")],
+    # The batch of 3 consumes three answers, then the re-ask of the first consumes the fourth.
+    result, backend = run_check(graph, [bad, answer(relation="none"), answer(relation="none"), bad],
                                 lock)
-    assert result.counts["pairs_judged"] == 2                  # the third pair failed twice
+    assert result.counts["pairs_judged"] == 2                  # the first pair failed twice
     assert result.counts["unjudged_failed"] == 1
     assert result.incomplete is False
 

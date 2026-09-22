@@ -5,12 +5,12 @@ from pathlib import Path
 from typing import Any
 
 from ..profile import AtomizerSettings
-from .base import Answer, Backend, CallBudget, Question
+from .base import Answer, AnswerRejected, Backend, CallBudget, Question
 from .claude_code import ClaudeCodeBackend
 from .fake import FakeBackend
 
 __all__ = [
-    "Answer", "Backend", "CallBudget", "ClaudeCodeBackend", "FakeBackend",
+    "Answer", "AnswerRejected", "Backend", "CallBudget", "ClaudeCodeBackend", "FakeBackend",
     "Question", "get_backend",
 ]
 

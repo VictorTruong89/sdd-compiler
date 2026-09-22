@@ -75,6 +75,12 @@ def build_parser() -> argparse.ArgumentParser:
                 "paths", nargs="*", metavar="PATH",
                 help="spec files or directories; default: everything matching spec_globs",
             )
+        if name == "conflicts":
+            sub.add_argument("judge", nargs="?", metavar="judge",
+                             help="the word `judge`, to record a human verdict (G4 §4)")
+            sub.add_argument("conflict", nargs="?", metavar="CF-ID", help="the conflict judged")
+            sub.add_argument("--verdict", choices=("real", "false"), help="is the conflict real?")
+            sub.add_argument("--note", default=None, help="why, in one line")
         if name == "family":
             sub.add_argument("name", metavar="NAME", help="a family's term id, name or alias")
         if name == "compile":
@@ -113,7 +119,11 @@ def dispatch(args: argparse.Namespace) -> int:
     if args.command == "status":
         return commands.status(root, as_json=as_json)
     if args.command == "conflicts":
-        return commands.conflicts(root, as_json=as_json)
+        if args.judge and args.judge != "judge":
+            raise SddcError(f"unknown sub-command {args.judge!r}; did you mean "
+                            f"`sddc conflicts judge {args.judge}`?", ExitCode.USAGE)
+        return commands.conflicts(root, as_json=as_json, judge=args.conflict if args.judge else None,
+                                  verdict=args.verdict, note=args.note)
 
     print(
         f"sddc: `{args.command}` is not built yet — it arrives with milestone "

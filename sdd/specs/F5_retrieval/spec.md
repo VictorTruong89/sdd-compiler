@@ -55,12 +55,13 @@ For node **A**, candidates are gathered from these sources. Each source records 
 | Source | Rule | Evidence recorded |
 |---|---|---|
 | **S1 same family** | Same `family` (not `(global)`) | family id |
-| **S2 shared subject term** | Shares a term of kind `entity`, `data` or `event` | the term ids |
+| **S2 shared subject term** | Shares a term of kind `entity`, `data` or `event`, **or one that is a kind of the other** (`broader`, D11) | the term ids, and the chain that matched |
 | **S3 constraint scope** | A `C` node whose `scope_selector` covers the other node, in either direction, by the rule of D9 | the selector that matched |
 | **S4 adjacent layer** | Same family and layer distance ≤ 1 in the order L0…L5 | both layers |
 | **S5 shared keywords** | At least `min_shared_keywords` (default 2) common `keywords` | the shared keywords |
-| **S6 same measured property** | Shares a term **and** both carry a quantity of the same dimension (time, size, count, percent) | the dimension and both values |
+| **S6 same measured property** | Both carry a quantity of the same dimension (time, size, count, percent), in claims sharing a term **or a keyword** (D11) | the dimension and both values |
 | **S7 same source block** | Both atomized from the same block | the block id |
+| **S8 two kinds of one thing** | Their terms are not shared, and neither is above the other, but both are kinds of one term (`broader`, D12) | the shared parent and both terms |
 
 **Why S5 and S6 exist (⚑ D1).** The pre-rel01 rule was family, shared term, constraint scope and
 adjacent layer only. That never proposes the first node of a family, and it misses conflicts whose
@@ -72,11 +73,11 @@ contradiction.
 
 ```text
 score = 3.0 · S1 + 2.0 · S2(per shared term, max 4.0) + 2.0 · S3 + 1.0 · S4
-      + 0.5 · S5(per shared keyword, max 2.0) + 2.5 · S6 + 1.5 · S7
+      + 0.5 · S5(per shared keyword, max 2.0) + 2.5 · S6 + 1.5 · S7 + 1.0 · S8
 ```
 
 - Candidates below `min_score` (default 1.0) are dropped.
-- The rest are ranked by score, then by node id, and the top `max_pairs_per_node` (default 10) are
+- The rest are ranked by score, then by node id, and the top `max_pairs_per_node` (default 6, D13) are
   returned.
 - Both numbers live in the profile (CT-5.2). They are **starting values to tune with measurement**, not
   findings.
@@ -118,7 +119,7 @@ record (F1 CT-1.3, extended by CT-5.3).
 **CT-5.2 — Profile additions**
 ```yaml
 retrieval:
-  max_pairs_per_node: 10
+  max_pairs_per_node: 6        # D13 (was 10)
   min_score: 1.0
   min_shared_keywords: 2
 ```
@@ -148,11 +149,17 @@ retrieval:
 - **AC-5.5** *(shared keywords)* — **Given** two nodes sharing 2 keywords and `min_shared_keywords: 2`,
   **then** S5 contributes and names the shared keywords; **given** one shared keyword, **then** S5 does
   not. → *unit.*
-- **AC-5.6** *(same measured property)* — **Given** two nodes sharing `term:share_link`, one with
-  "30 days" and one with "1 hour", **then** S6 contributes with dimension `time` and both values. →
-  *unit.*
+- **AC-5.6** *(same measured property; amended by D11)* — **Given** two nodes sharing
+  `term:share_link`, one with "30 days" and one with "1 hour", **then** S6 contributes with dimension
+  `time` and both values; **given** two nodes with no shared term but a shared keyword, one "5 GB" and
+  one "5 GiB", **then** S6 contributes; **given** no shared term and no shared keyword, **then** it does
+  not. → *unit.*
 - **AC-5.7** *(same block)* — **Given** two nodes atomized from one block, **then** S7 contributes. →
   *unit.*
+- **AC-5.17** *(two kinds of one thing; D12)* — **Given** nodes whose terms are `term:export_archive`
+  and `term:workspace_export`, both recorded `broader: term:export`, **then** S8 contributes naming the
+  shared parent, and S2 does not; **given** a term and its own parent, **then** S2 contributes and S8
+  does not; **given** unrelated terms, **then** neither. → *unit.*
 - **AC-5.8** *(first node of a family)* — **Given** a graph where a node's family, terms and block are
   unique to it, **when** candidates are gathered, **then** any candidate comes from S5 or S6, and the
   result may legitimately be empty. → *unit.*
@@ -160,7 +167,8 @@ retrieval:
 **Ranking and capping**
 - **AC-5.9** *(evidence explains the score)* — **Given** any candidate, **then** `evidence` is
   non-empty and its points sum exactly to `score`. → *property.*
-- **AC-5.10** *(cap and threshold)* — **Given** 25 scoring candidates with `max_pairs_per_node: 10`,
+- **AC-5.10** *(cap and threshold)* — **Given** 25 scoring candidates with `max_pairs_per_node: 10`
+  (the criterion fixes the number it tests; the profile default is 6, D13),
   **then** exactly 10 are returned, they are the 10 highest, ties break by node id, and the run counts
   record 15 dropped by the cap. → *unit.*
 - **AC-5.11** *(determinism)* — **Given** the same graph, **when** candidates are computed twice in
@@ -192,7 +200,7 @@ retrieval:
 - **D3 — ⚑ An exhaustive mode for measurement only.** *Why:* the design's biggest risk is a missed
   pair, and this is the only honest way to measure it.
 - **D4 — ⚑ `pair_key` includes both text hashes**, so an edit re-opens exactly the pairs it touches.
-- **D6 — Starting values adopted** (resolves Q1): `max_pairs_per_node: 10`, `min_score: 1.0`,
+- **D6 — Starting values adopted** (resolves Q1): ~~`max_pairs_per_node: 10`~~ **6 since D13**, `min_score: 1.0`,
   `min_shared_keywords: 2`, and the §4.3 weights. ⚠ They are **starting values, not findings**: the run
   counts (CT-5.3) and the exhaustive mode exist so G4 can replace them with measured ones. Changing a
   weight or a threshold is a profile change, never a code change.
@@ -210,6 +218,29 @@ retrieval:
   process ("nodes unchanged since their last run are skipped" → L1, L4, L5). S3 then made about 60
   pairs among 43 nodes, each above `min_score` on S3 alone. With D9: 16. *Rejected:* lowering S3's weight
   below `min_score`. That would also weaken the constraints that name their scope.
+- **D13 — ⚑ `max_pairs_per_node` is 6, not 10** (R20, from the M4 gate's data). The cap is where cost
+  lives: the check phase makes one judgement per pair. On R17's store, 10 gave 184 pairs and 6 gave
+  117 — **36 % fewer** — and every pair a human had judged real survived both. *Rejected:*
+  `min_score: 2.5`, which cuts as much but deletes the keyword-only class entirely — the "SQLite versus
+  100 concurrent writes" shape that S5 exists for (D1), and the class P3 belongs to. ⚠ Judged on one
+  31-node store and four real pairs: a starting value, like the rest (D6).
+- **D12 — ⚑ S8: two kinds of one thing** (after R17: I-76). Q-TERM had already filed
+  `export_archive` and `workspace_export` as kinds of `export` — and nothing paired the claims about
+  them, because neither term is the other's ancestor. A shared parent is a weaker signal than a shared
+  term and scores 1.0 against 2.0. Measured on R17's own store: the 5 GB/5 GiB pair moves from rank 63
+  to **43**, at 25 more candidates (159 → 184). *Rejected:* scoring it as a full shared term — "file
+  path" and "file size" are also siblings, and they are not the same subject.
+- **D11 — ⚑ S2 follows `broader`, and S6 takes a shared keyword** (R15, after the M4 gate: I-73).
+  All six planted conflicts were proposed, and five ranked 81st–130th of 137, because each side of a
+  pair had been given its own term: `export_archive` against `workspace_export`, `export` against
+  `nightly_backup_export`. S1 and S2 were dead on every one of them.
+  *S2* now counts a term that is **a kind of** the other's (F2 D16 already records it, and nothing read
+  it). *S6* now needs a shared term **or keyword**, not a shared term: two quantities of one dimension
+  in claims about the same words are the shape S6 exists for. Measured on the gate's own store: the
+  5 GB/5 GiB pair moves from rank 123 to **50**, the alias pair from 81 to **43**, at the cost of 19
+  more candidates (137 → 156). *Rejected:* dropping S6's requirement entirely — it would pair every
+  number in the corpus with every other; and raising S5's weight — it lifts noise and signal equally.
+  ⚠ The two planted pairs with **no quantity** (P3, P4) are not helped by either change.
 - **D10 — ⚑ The CT-5.3 counts count proposals, not distinct pairs** (T15). A pair both of whose ends
   are checked is proposed twice, so AC-5.16's identity
   (`proposed = capped + dropped_below_min_score + dropped_by_cap`) only holds if every number counts
@@ -228,7 +259,7 @@ retrieval:
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-5.1 … AC-5.8 · D9 (T15) | `tests/test_retrieval_sources.py` (12) · `tests/test_model_scope.py` (4) | `src/sdd_compiler/retrieval/sources.py` · `src/sdd_compiler/model/scope.py` |
+| AC-5.1 … AC-5.8, AC-5.17 · D9, D11, D12 (T15, R15, R19) | `tests/test_retrieval_sources.py` (16) · `tests/test_model_scope.py` (4) | `src/sdd_compiler/retrieval/sources.py` · `src/sdd_compiler/model/scope.py` |
 | AC-5.9 *(points sum to the score, 200 random pairs)* · D2 | `tests/test_retrieval_sources.py::test_ac_5_9_…`, `::test_the_weights_are_the_ones_the_spec_prints` | `src/sdd_compiler/retrieval/score.py` |
 | AC-5.10, AC-5.11, AC-5.13, AC-5.14 · CT-5.1 · D10 | `tests/test_retrieval_select.py` (10) | `src/sdd_compiler/retrieval/select.py` |
 | AC-5.12 *(pair key)* · D4 | `tests/test_retrieval_select.py::test_ac_5_12_…` (2) | `src/sdd_compiler/retrieval/select.py::pair_key` |

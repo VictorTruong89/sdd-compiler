@@ -60,6 +60,15 @@ def test_ac_5_12_the_key_holds_over_random_texts():
 
 # -- §4.3 ranking and the cap (AC-5.10, AC-5.11, AC-5.13) --------------------------------
 
+CAP_TEN = RetrievalSettings(**{**DEFAULT_RETRIEVAL, "max_pairs_per_node": 10})
+
+
+def test_f5_d13_the_default_cap_is_six():
+    """R20 (B): on R17's store, 10 gave 184 pairs and 6 gave 117 — every pair a human had judged
+    real survived. The cap is where cost lives: one call per pair."""
+    assert SETTINGS.max_pairs_per_node == 6
+
+
 def test_ac_5_10_the_cap_keeps_the_ten_highest_and_the_counts_say_what_it_dropped():
     checked = node("N-000000", keywords=["shared", "words"])
     others = []
@@ -67,7 +76,7 @@ def test_ac_5_10_the_cap_keeps_the_ten_highest_and_the_counts_say_what_it_droppe
         # A descending score: the first few also share a block, then keywords, then family alone.
         others.append(node("N-%06d" % n, status="validated", block="B-000001" if n <= 5 else "B-other",
                            keywords=["shared", "words"] if n <= 12 else []))
-    result = propose(graph_of([checked, *others]), terms=TERMS, settings=SETTINGS)
+    result = propose(graph_of([checked, *others]), terms=TERMS, settings=CAP_TEN)
 
     assert len(result.pairs) == 10
     assert [c["rank"] for c in result.pairs] == list(range(1, 11))

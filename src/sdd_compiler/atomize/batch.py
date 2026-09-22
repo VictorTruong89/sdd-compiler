@@ -13,10 +13,12 @@ from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
-from ..llm import Answer, Backend, Question
+from ..llm import Answer, AnswerRejected, Backend, Question
 from .guards import GuardFailure, check_schema
 
 BuildQuestion = Callable[[Sequence[Any], "str | None"], Question]
+#: Stands in for the answer that never arrived, so a rejected call has nothing to record (I-79).
+_EMPTY = Answer(data={}, backend="none", model="none")
 Accept = Callable[[Any, dict[str, Any]], None]
 LockInput = Callable[[Any], Mapping[str, Any]]
 
@@ -123,9 +125,11 @@ def _ask(
 ) -> tuple[dict[str, dict[str, Any]], str | None, Answer]:
     """Ask, then apply G5 to the whole answer. Returns entries keyed by item id."""
     question = build_question(items, note)
-    answer = backend.ask(question)
     try:
+        answer = backend.ask(question)
         check_schema(answer.data, question.schema)
+    except AnswerRejected as rejected:      # I-79: one unusable answer, not a dead backend
+        return {}, str(rejected), _EMPTY
     except GuardFailure as failure:
         return {}, str(failure), answer
 

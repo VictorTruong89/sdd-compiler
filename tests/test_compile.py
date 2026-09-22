@@ -431,3 +431,29 @@ def test_ac_6_17_deleting_a_member_closes_the_record_and_the_run_counts_it(repo)
     assert graph.nodes["N-000001"]["conflict_ids"] == []
     assert result.summary()["conflicts"]["closed"]["member_deleted"] == 1
     assert result.exit_code == ExitCode.OK
+
+
+# -- the M4 gate fixture stays alive in the suite (G4 §3 corpus 2) -----------------------------
+
+def test_the_planted_fixture_ingests_and_still_holds_its_six_pairs(tmp_path):
+    """The fixture is the denominator for M1 recall. A fixture nobody runs rots: this ingests it
+    (no model call) and checks the claims the answer key names are still in the files."""
+    import shutil
+    from pathlib import Path as _Path
+    fixture = _Path(__file__).parent / "fixtures" / "planted"
+    shutil.copytree(fixture / "sdd", tmp_path / "sdd")
+    init(tmp_path)
+    from sdd_compiler.ingest.pipeline import ingest as ingest_only
+    result = ingest_only(tmp_path, command="ingest")
+    assert result.counts["new"] == 28
+
+    # The sources are hard-wrapped, so compare on words, not on layout (the F3 D9 lesson).
+    text = " ".join(" ".join((fixture / "sdd" / "specs" / p).read_text(encoding="utf-8").split())
+                    for p in ("F1_exports/spec.md", "F1_exports/sharing.md", "F2_retention/spec.md"))
+    for claim in ("kept for 30 days", "7 days after it was created",       # P1
+                  "at most 5 GB", "at most 5 GiB",                          # P2, P5
+                  "must never contain the owner's email address",           # P3
+                  "email address of the member who uploaded it",
+                  "Every export must be encrypted", "should be encrypted",  # P4
+                  "A shared link expires 30 days"):                         # P6
+        assert claim in text, claim

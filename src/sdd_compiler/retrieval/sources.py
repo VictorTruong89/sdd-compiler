@@ -32,8 +32,9 @@ def evidence_for(a: Mapping[str, Any], b: Mapping[str, Any], *,
         ("S3", *_constraint_scope(a, b)),
         ("S4", *_adjacent_layer(a, b)),
         ("S5", *_shared_keywords(a, b, settings.min_shared_keywords)),
-        ("S6", *_same_measured_property(a, b)),
+        ("S6", *_same_measured_property(a, b, settings)),
         ("S7", *_same_block(a, b)),
+        ("S8", *_sibling_terms(a, b, terms)),
     ):
         if detail is not None:
             evidence.append({"source": source, "detail": detail, "points": points_for(source, count)})
@@ -48,12 +49,65 @@ def _same_family(a, b):
 
 
 def _shared_subject_terms(a, b, registry):
+    """A shared term, or one that is **a kind of** the other (F5 D11, R15).
+
+    `broader` (F2 D16) is already recorded by Q-TERM, and without it the two sides of a real
+    conflict — "download link" and "share link" — look like strangers (M4 gate, I-73).
+    """
     def subjects(node):
         return {t["term"] for t in node["terms"]
                 if (registry.get(t["term"], {}) or {}).get("kind") in SUBJECT_KINDS}
 
-    shared = sorted(subjects(a) & subjects(b))
-    return ({"terms": shared}, len(shared)) if shared else (None, 0)
+    mine, theirs = subjects(a), subjects(b)
+    matched = sorted(mine & theirs)
+    for term in sorted(mine ^ theirs):
+        for ancestor in _ancestors(term, registry):
+            if ancestor in (theirs if term in mine else mine):
+                matched.append(f"{term} → {ancestor}")
+                break
+    return ({"terms": sorted(matched)}, len(matched)) if matched else (None, 0)
+
+
+def _ancestors(term: str, registry: Mapping[str, Mapping[str, Any]]) -> list[str]:
+    """The `broader` chain above a term, shallowest first; cycles stop it."""
+    found, seen = [], {term}
+    current = (registry.get(term) or {}).get("broader")
+    while current and current not in seen:
+        found.append(current)
+        seen.add(current)
+        current = (registry.get(current) or {}).get("broader")
+    return found
+
+
+def _sibling_terms(a, b, registry):
+    """Two terms that are kinds of the same thing (F5 D12, I-76).
+
+    Q-TERM files "export archive" and "workspace export" as narrower than "export" — and then
+    nothing paired the claims about them, because neither term is the other's ancestor. A shared
+    parent is a weaker signal than a shared term, and it is scored that way.
+    """
+    def subjects(node):
+        return {t["term"] for t in node["terms"]
+                if (registry.get(t["term"], {}) or {}).get("kind") in SUBJECT_KINDS}
+
+    mine, theirs = subjects(a), subjects(b)
+    if mine & theirs:
+        return None, 0                      # an exact match is S2's, not ours
+    shared, matched = set(), set()
+    for term in mine:
+        line = set(_ancestors(term, registry))
+        if term in {t for other in theirs for t in _ancestors(other, registry)}:
+            return None, 0                  # one is above the other: S2's case (R15)
+        for other in theirs:
+            if other in line:
+                return None, 0
+            common = line & set(_ancestors(other, registry))
+            if common:
+                shared |= common
+                matched |= {term, other}
+    if not shared:
+        return None, 0
+    return {"shared": sorted(shared), "terms": sorted(matched)}, 1
 
 
 def _constraint_scope(a, b):
@@ -78,10 +132,17 @@ def _shared_keywords(a, b, minimum):
     return ({"keywords": shared}, len(shared)) if len(shared) >= minimum else (None, 0)
 
 
-def _same_measured_property(a, b):
-    """A shared term **and** a quantity of the same dimension on both (F5 D1: the
-    "30 days versus 1 hour" shape, the most common real contradiction)."""
-    if not {t["term"] for t in a["terms"]} & {t["term"] for t in b["terms"]}:
+def _same_measured_property(a, b, settings):
+    """A quantity of the same dimension on both, in claims that are **about the same words**
+    (F5 D1: the "30 days versus 1 hour" shape, the most common real contradiction).
+
+    ⚑ F5 D11 (R15, M4 gate I-73): "about the same words" means a shared term **or** a shared
+    keyword. Requiring a shared *term* lost "at most 5 GB" against "at most 5 GiB", because the
+    atomizer had named one an export archive and the other a workspace export. Requiring nothing
+    would pair every number in the corpus with every other.
+    """
+    shared_terms = {t["term"] for t in a["terms"]} & {t["term"] for t in b["terms"]}
+    if not shared_terms and not (set(a["keywords"]) & set(b["keywords"])):
         return None, 0
     for dimension, first in _dimensions(a):
         for other_dimension, second in _dimensions(b):

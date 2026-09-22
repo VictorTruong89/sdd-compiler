@@ -517,6 +517,14 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   path directly — placed by its first yes, flagged `mixed_layers` — decided in the first pass, so it
   also saves a model call. AC-3.12 still governs every other block.
 
+- **D37 — ⚑ An unusable answer is rejected, not fatal** (C, the dogfood run: I-79). A Q-ATOM call
+  over 20 dense spec blocks returned no `structured_output`, and the backend raised it as "the model
+  backend is unavailable" (exit `6`), ending a 173-block compile after 19 blocks. One call producing
+  nothing usable is the same event as an answer failing a guard: `AnswerRejected` now travels to the
+  batch layer, which re-asks **each item alone** — a far smaller prompt, and usually enough. A dead
+  backend, a missing binary and a 429 stay exit `6`. *Why it matters at scale:* on 733 blocks, one
+  unlucky call in fifty would otherwise stop every long compile.
+
 ## 8. Open questions
 
 - **Q1 — Default `max_calls_per_run`** (200 here) and `timeout_s` (120 here): set from the first real
@@ -538,6 +546,7 @@ change of alias is visible.*
 | AC-3.6 … AC-3.8, AC-3.10 · D9 | `tests/test_atomize_qatom.py` (20) | `src/sdd_compiler/atomize/qatom.py` · `guards.py` |
 | AC-3.9 *(flag and ambiguity; node status and review item with T10)*, AC-3.11, AC-3.13 · D10–D14 | `tests/test_atomize_qdesc.py` (22) · `tests/test_quantities.py` (25) · `tests/test_llm_backend.py` (+2) | `src/sdd_compiler/atomize/describe.py` · `quantities.py` · `batch.py` · `llm/claude_code.py` |
 | AC-3.5 *(pending half)*, AC-3.9 *(node and review item)*, AC-3.12, AC-3.14 … AC-3.16 · D15 … D20, D25 … D31 | `tests/test_atomize_pipeline.py` (52) | `src/sdd_compiler/atomize/pipeline.py` · `forming.py` · `terms.py` · `batch.py` |
+| D37 *(an unusable answer is re-asked)* | `tests/test_llm_backend.py::test_i79_…`, `::test_a_missing_structured_output_rejects_…` | `src/sdd_compiler/llm/base.py` · `claude_code.py` · `atomize/batch.py` |
 | D36 *(a one-claim block is never split)* | `tests/test_atomize_pipeline.py::test_r16_a_table_row_is_never_split_into_its_cells` | `src/sdd_compiler/atomize/pipeline.py::one_claim_block` · `_describe_and_place` |
 | D34 *(a row is one claim)* | `tests/test_atomize_pipeline.py::test_r15_a_table_row_becomes_one_claim` · `tests/test_atomize_qatom.py::test_the_prompt_forbids_quoting_the_context_lines` | `src/sdd_compiler/atomize/pipeline.py::one_criterion` · `qatom.py` |
 | D35 *(a dropped annotation never stops a run)* | `tests/test_atomize_pipeline.py::test_r16_a_rationale_quote_…` | `src/sdd_compiler/atomize/forming.py::block_annotations` |

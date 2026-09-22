@@ -26,7 +26,7 @@ import time
 from typing import Any
 
 from ..errors import ExitCode, SddcError
-from .base import Answer, Question
+from .base import Answer, AnswerRejected, Question
 
 EXECUTABLE = "claude"
 DEFAULT_TIMEOUT_S = 120
@@ -113,11 +113,11 @@ class ClaudeCodeBackend:
             ) from exc
 
         if "structured_output" not in payload:
-            raise SddcError(
+            # I-79: this call produced nothing usable; the backend is fine. The batch layer
+            # re-asks each item alone, which is both smaller and usually enough.
+            raise AnswerRejected(
                 f"{EXECUTABLE} returned no structured_output — the answer did not match the "
-                f"schema, or --json-schema was rejected",
-                ExitCode.BACKEND,
-            )
+                f"schema, or --json-schema was rejected")
 
         usage = payload.get("usage") or {}
         return Answer(

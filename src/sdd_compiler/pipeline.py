@@ -63,6 +63,8 @@ class CompileResult:
             "stop_reason": draft.stop_reason,
             "conflicts": {**(self.check.counts if self.check else {}),
                           "unjudged": self.check.unjudged if self.check else 0,
+                          "stopped": self.check.stopped if self.check else None,
+                          "stop_reason": self.check.stop_reason if self.check else None,
                           "open": self.open_conflicts},
         }
 
@@ -164,10 +166,11 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             write_graph(store, graph, transaction=transaction, sources=sources, other_counters=others,
                         staged_judgments=lock.records)
 
-    if draft.stopped == "call_cap" or (result.check is not None and result.check.incomplete):
+    stopped = draft.stopped or (result.check.stopped if result.check is not None else None)
+    if stopped == "call_cap":
         result.exit_code = ExitCode.CALL_CAP
-    elif draft.stopped == "backend":
-        result.exit_code = ExitCode.BACKEND
+    elif stopped == "backend":
+        result.exit_code = ExitCode.BACKEND          # a 429 is not a cap: I-72
     elif result.open_conflicts:
         result.exit_code = ExitCode.CONFLICTS          # F6 §4.8, AC-6.10
     return result

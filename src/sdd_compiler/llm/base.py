@@ -14,6 +14,15 @@ from typing import Any, Protocol
 from ..errors import ExitCode, SddcError
 
 
+class AnswerRejected(Exception):
+    """One answer came back unusable — not the backend failing (I-79).
+
+    A call that returns nothing matching its schema is the same kind of event as an answer that
+    fails a guard: the batch layer re-asks each item alone, with a far smaller prompt. Treating it
+    as a dead backend ended a 173-block compile after 19 blocks.
+    """
+
+
 @dataclass(frozen=True)
 class Question:
     """One closed question. `schema` is the JSON Schema the answer must satisfy."""

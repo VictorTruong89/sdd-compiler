@@ -7,6 +7,7 @@ from pathlib import Path
 from .errors import ExitCode, SddcError
 from .ingest import pipeline
 from .pipeline import compile_graph
+from .conflicts.adjudicate import record_adjudication, verdicts_for
 from .report import conflict_groups, render_report
 from .store.graph import load_graph, registry_of
 from .store.index import GraphIndex, counts as graph_counts
@@ -96,20 +97,38 @@ def family(root: Path, name: str, as_json: bool = False) -> int:
     return ExitCode.OK
 
 
-def conflicts(root: Path, as_json: bool = False) -> int:
+def conflicts(root: Path, as_json: bool = False, judge: str | None = None,
+              verdict: str | None = None, note: str | None = None) -> int:
     """T18 — every open conflict (F4 §4.6, F6 §4.8): grouped, contradictions first.
-    Exit `3` while any is open, so a CI step can gate on it."""
-    graph = load_graph(Path(root) / STORE_DIR)
+    T19 — `sddc conflicts judge CF-… --verdict real|false` records a human verdict (G4 §4).
+    Exit `3` while any conflict is open, so a CI step can gate on it."""
+    store = Path(root) / STORE_DIR
+    if judge is not None:
+        if verdict is None:
+            raise SddcError("judging a conflict needs --verdict real|false", ExitCode.USAGE)
+        record = record_adjudication(store, judge, verdict, note=note)
+        _say(f"{record['id']}: {record['conflict']} judged {record['verdict']}"
+             + (f" — {record['note']}" if record["note"] else ""), record, as_json)
+        return ExitCode.OK
+
+    graph = load_graph(store)
     groups = conflict_groups(graph)
+    judged = verdicts_for(store)
     if as_json:
         print(json.dumps({
             "registry": registry_of(graph),
             "groups": [[{"id": r["id"], "kind": r["kind"], "members": r["members"]} for r in group]
                        for group in groups],
-            "conflicts": [record for group in groups for record in group],
+            "conflicts": [{**record, "adjudication": judged.get(record["id"])}
+                          for group in groups for record in group],
         }, ensure_ascii=False))
     else:
-        print(conflicts_list(graph), end="")
+        text = conflicts_list(graph)
+        for conflict_id, state in sorted(judged.items()):
+            mark = f" — judged {state['verdict']}" + (" (stale: judged again since)"
+                                                      if state["stale"] else "")
+            text = text.replace(f"**{conflict_id}**", f"**{conflict_id}**{mark}", 1)
+        print(text, end="")
     return ExitCode.CONFLICTS if groups else ExitCode.OK
 
 

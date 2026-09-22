@@ -31,7 +31,7 @@ DEFAULT_ATOMIZER: dict[str, Any] = {
 
 #: F5 CT-5.2 — retrieval settings. Starting values to tune with measurement (F5 D6).
 DEFAULT_RETRIEVAL: dict[str, Any] = {
-    "max_pairs_per_node": 10,
+    "max_pairs_per_node": 6,      # F5 D13 (R20): 10 cost 58 % more pairs and found nothing more
     "min_score": 1.0,
     "min_shared_keywords": 2,
 }

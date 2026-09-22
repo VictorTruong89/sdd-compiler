@@ -205,15 +205,18 @@ def test_output_that_is_not_json_is_a_backend_error(monkeypatch):
     assert excinfo.value.exit_code is ExitCode.BACKEND
 
 
-def test_a_missing_structured_output_is_a_backend_error(monkeypatch):
+def test_a_missing_structured_output_rejects_the_answer_not_the_backend(monkeypatch):
+    """I-79: it used to raise `SddcError(BACKEND)`, which ends the run."""
     monkeypatch.setattr("sdd_compiler.llm.claude_code.shutil.which", lambda _: "/usr/bin/claude")
     monkeypatch.setattr(ClaudeCodeBackend, "_read_cli_version", lambda self: "2.1.300")
     payload = json.dumps({"type": "result", "result": "text only", "usage": {}})
     monkeypatch.setattr("sdd_compiler.llm.claude_code.subprocess.run",
                         lambda argv, **kw: FakeProcess(stdout=payload))
-    with pytest.raises(SddcError) as excinfo:
+    from sdd_compiler.llm import AnswerRejected
+    with pytest.raises(AnswerRejected) as excinfo:
         ClaudeCodeBackend(model="haiku").ask(QUESTION)
     assert "structured_output" in str(excinfo.value)
+    assert not isinstance(excinfo.value, SddcError)
 
 
 # -- AC-3.5 the call cap ----------------------------------------------------
@@ -259,3 +262,40 @@ def test_the_fake_backend_runs_out_loudly():
 def test_get_backend_picks_from_the_profile():
     settings = AtomizerSettings(backend="claude-code", model="haiku")
     assert isinstance(get_backend(settings), ClaudeCodeBackend)
+
+
+def test_i79_an_answer_with_no_structured_output_is_rejected_not_fatal():
+    """Dogfood run (I-79): one Q-ATOM call over 20 dense spec blocks came back without
+    `structured_output`, and the run ended — 173 blocks, 19 done. One answer failing is what the
+    batch layer already handles: it re-asks each item alone, with a much smaller prompt."""
+    from sdd_compiler.atomize.batch import ask_each
+    from sdd_compiler.llm import AnswerRejected, Answer
+    from sdd_compiler.llm.base import Question
+
+    schema = {"type": "object", "properties": {"items": {"type": "array"}}}
+
+    class Flaky:
+        name = "flaky"
+
+        def __init__(self):
+            self.asked = []
+
+        def ask(self, question):
+            self.asked.append(question)
+            if len(self.asked) == 1:
+                raise AnswerRejected("claude returned no structured_output")
+            return Answer(data={"items": [{"id": i} for i in question.payload["ids"]]},
+                          backend="flaky", model="fake", usage={}, cost_usd=0.0)
+
+    backend = Flaky()
+    seen = []
+    result = ask_each(
+        ["a", "b"], item_id=lambda i: i, backend=backend,
+        build_question=lambda items, note: Question(
+            kind="q-test", schema_version="t/1", schema=schema, prompt="p",
+            payload={"ids": [i for i in items]}),
+        list_key="items", id_key="id", accept=lambda item, payload: seen.append(item))
+
+    assert result.failures == {}
+    assert seen == ["a", "b"]                       # both recovered, asked alone
+    assert len(backend.asked) == 3                  # the batch, then one call each

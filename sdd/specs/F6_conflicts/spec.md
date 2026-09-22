@@ -135,13 +135,15 @@ usage. These extend the run record (CT-6.2) and are the raw material for measuri
 
 ## 5. Contracts
 
-**CT-6.1 — Q-PAIR answer schema `q-pair/1`**
+**CT-6.1 — Q-PAIR answer schema `q-pair/2`** (`/2` asks about a batch, D18)
 ```json
-{ "relation": "none | refines | depends_on | duplicates | subsumes | contradicts",
+{ "pairs": [ {
+  "pair_id": "N-000017|N-000042",
+  "relation": "none | refines | depends_on | duplicates | subsumes | contradicts",
   "direction": "a_to_b | b_to_a | symmetric",
   "rationale": "one sentence",
   "quotes": {"a": "verbatim from A", "b": "verbatim from B"},
-  "confidence": "high | low" }
+  "confidence": "high | low" } ] }
 ```
 Rules: `direction` must be `symmetric` for `none`, `duplicates` and `contradicts`. `confidence: low`
 adds ambiguity `low_confidence_verdict` to both nodes rather than suppressing the verdict.
@@ -190,6 +192,16 @@ conflicts:
   is rejected by the schema check. → *contract.*
 - **AC-6.8** *(low confidence)* — **Given** a `contradicts` answer with `confidence: low`, **then** the
   record is created **and** both nodes gain ambiguity `low_confidence_verdict`. → *unit.*
+
+- **AC-6.21** *(a criterion does not duplicate its requirement; D16)* — **Given** a `V` node whose
+  `verifies` lists node B, **when** the judge answers `duplicates` or `subsumes`, **then** no conflict
+  record and no link are made and the run counts one `suppressed`; **when** it answers `contradicts`,
+  **then** the record is opened as usual. → *unit.*
+- **AC-6.20** *(a human verdict is recorded; G4 §4, D14)* — **Given** an open conflict, **when**
+  `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, **then** `.sdd/adjudications.jsonl`
+  gains a record naming the conflict, the verdict, the note, the members and the `judgment` it
+  answered; **when** the pair is judged again, **then** that verdict reads `stale`; **given** an
+  unknown conflict id, **then** exit `2`. → *unit.*
 
 **Batch behaviour**
 - **AC-6.9** *(never stops)* — **Given** five candidate pairs where the second and fourth contradict,
@@ -258,6 +270,42 @@ conflicts:
   ignoring one of the two lists. Sorting solves the "40 duplicates bury 3 contradictions" problem
   without hiding anything. The counts per kind are in the report header, so a large duplication count is
   visible at a glance.
+- **D16 — ⚑ A criterion never duplicates or subsumes what it verifies — checked in code** (R17,
+  I-77). D15 says it in the prompt and the judge opened CF-000002 for exactly that case, so the graph
+  settles it: when one node's `verifies` holds the other's id (resolved from the criterion's own
+  citation, F2 D13), a `duplicates` or `subsumes` verdict records nothing and is counted as
+  `suppressed` (CT-6.2). A **contradiction** between a test and its rule is still reported: a test that
+  denies its requirement is a real defect. *Why in code:* a prompt rule is a request, and this one was
+  refused; `verifies` is a fact the graph already holds.
+- **D18 — ⚑ Q-PAIR is batched: 8 pairs per call** (R21; rel01 D30's lever, applied to the phase that
+  now dominates a compile). §4.2 said "one Q-PAIR call judges one pair", and the M4 gate showed what
+  that costs: 159 calls for 159 pairs, $2.35 on 28 blocks, and ≈ $55–70 extrapolated to this
+  repository (I-75). A headless call carries ≈ 22k tokens of harness prompt whatever it asks, so the
+  call count *is* the cost. **The condition F3 §4.3 rule 4 puts on batching holds here too:** each
+  pair's answer is validated on its own, and a failure re-asks **that pair alone**. With D13's cap,
+  the same corpus needs **15 calls instead of 159**. *Rejected:* a larger batch — Q-DESC settled on 8
+  (rel01 S21) because a longer call risks the timeout, and a timeout costs the whole batch.
+- **D17 — ⚑ The judge is shown the terms, and how they relate** (after R17: I-76). Retrieval delivered
+  the 5 GB / 5 GiB pair and the judge answered `none` — *"the two claims govern different export types
+  (export archive vs workspace export)"* — while the graph held both as kinds of `export`. Each claim
+  now lists its terms, the question states how the two sets relate (same term, a kind of, or two kinds
+  of one thing), and the instructions say a different name is not a different object. *Rejected:*
+  renaming nodes' text to a canonical term — the verbatim span is the evidence a person checks.
+- **D15 — ⚑ Q-PAIR is told when two numbers are *not* a contradiction** (R16, after the M4 gate:
+  I-74). Eight of eleven reported conflicts were false, and five were one mistake: a 24-hour link
+  inside a 30-day archive, a 13-day restore inside a 14-day window, read as contradictions — and once
+  the judge computed "day 30 versus day 31", arithmetic the text does not do. The prompt now states
+  that two claims contradict only if both must hold for the same thing at the same time, gives the
+  three consistent shapes (a limit inside a longer one, a window and what follows it, a rule and its
+  clarification), forbids calculating, and says that an acceptance criterion restating its requirement
+  is design, not duplication. *Rejected:* a code-side numeric check — the relation between two
+  quantities is exactly the judgement the model is asked for.
+- **D14 — ⚑ An adjudication answers one model verdict, not a conflict id** (T19, G4 §4). The record
+  keeps the `judgment` it answered and the members at the time, so a pair judged again marks the human
+  verdict **stale** instead of carrying it forward — the person answered about the old text. Records
+  are appended, never rewritten, so a change of mind stays visible and M2 can be recounted at any time.
+  *Rejected:* a `human_verdict` field on the conflict record — it would be overwritten by the next
+  re-judgement, which is exactly the history M2 needs.
 - **D13 — ⚑ A node the check phase looked at loses the stale reasons that scheduled it** (T17), and
   records the run in `last_checked_run`. *Why:* `stale` means "needs re-checking" (F2 §4.6); keeping the
   reason after the re-check would leave the node stale for ever and re-judge it every run. The reason
@@ -282,10 +330,12 @@ conflicts:
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-6.2 … AC-6.8 · CT-6.1, CT-6.3 (T16) | `tests/test_conflicts_judge.py` (18) | `src/sdd_compiler/conflicts/judge.py` · `records.py` · `src/sdd_compiler/profile.py` |
+| AC-6.2 … AC-6.8 · CT-6.1, CT-6.3 · D15 (T16, R16) | `tests/test_conflicts_judge.py` (19) | `src/sdd_compiler/conflicts/judge.py` · `records.py` · `src/sdd_compiler/profile.py` |
 | AC-6.1 *(partial: the record and links a contradiction produces; writing them through a transaction and deriving status is T17)* | `tests/test_conflicts_judge.py::test_ac_6_1_…` | `src/sdd_compiler/conflicts/records.py` |
-| AC-6.9, AC-6.12 · CT-6.2 · D5, D12 (T17) | `tests/test_conflicts_pipeline.py` (13) · `tests/test_compile.py::test_ac_6_12_…` | `src/sdd_compiler/conflicts/pipeline.py` · `src/sdd_compiler/pipeline.py` |
+| AC-6.9, AC-6.12 · CT-6.1, CT-6.2 · D5, D12, D18 (T17, R21) | `tests/test_conflicts_pipeline.py` (18) · `tests/test_compile.py::test_ac_6_12_…` | `src/sdd_compiler/conflicts/pipeline.py` · `src/sdd_compiler/pipeline.py` |
 | AC-6.1, AC-6.11, AC-6.13, AC-6.16, AC-6.17 *(through `compile`)* | `tests/test_compile.py` (6) | `src/sdd_compiler/pipeline.py::compile_graph` · `_apply_check` |
 | AC-6.14, AC-6.15, AC-6.18 · D4, D13 | `tests/test_conflicts_pipeline.py::test_ac_6_14_…`, `::test_ac_6_15_…`, `::test_ac_6_18_…` | `src/sdd_compiler/conflicts/pipeline.py` |
 | AC-6.19 *(counts add up)* | `tests/test_conflicts_pipeline.py::test_ac_6_19_…` | `src/sdd_compiler/conflicts/pipeline.py` |
+| AC-6.21 · D16, D17 (R19) | `tests/test_conflicts_judge.py::test_i77_…`, `::test_r19_…` · `tests/test_conflicts_pipeline.py::test_r19_…` | `src/sdd_compiler/conflicts/records.py` · `judge.py` · `pipeline.py` |
+| AC-6.20 · D14 (T19) | `tests/test_adjudicate.py` (9) | `src/sdd_compiler/conflicts/adjudicate.py` · `commands.py` · `cli.py` |
 | AC-6.10, AC-6.11 · D9 (T18) | `tests/test_report.py` (12), goldens `tests/golden/report_*.md` | `src/sdd_compiler/report.py` · `src/sdd_compiler/commands.py` |

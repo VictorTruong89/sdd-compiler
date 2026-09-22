@@ -32,12 +32,20 @@ class Outcome:
     links: list[dict[str, Any]] = field(default_factory=list)
     conflict: dict[str, Any] | None = None
     ambiguity: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
+    suppressed: str | None = None          # a verdict the graph itself refutes (F6 D16)
 
 
 def outcome_for(verdict: Verdict, a: Mapping[str, Any], b: Mapping[str, Any], *,
                 settings: Any, run_id: str, conflict_id: str, judgment: str) -> Outcome:
     link_type, conflict_kind = EFFECTS[verdict.relation]
     outcome = Outcome()
+    if conflict_kind in ("duplication", "subsumption") and _verifies_each_other(a, b):
+        # ⚑ F6 D16 (R17, I-77): a criterion restating the requirement it verifies is the
+        # specification's design. F6 D15 says so in the prompt and the judge did it anyway, so the
+        # graph settles it: `verifies` was resolved from the criterion's own citation (F2 D13).
+        # A *contradiction* between a test and its rule is left alone — that one is a real defect.
+        outcome.suppressed = "verifies_its_own_requirement"
+        return outcome
     if link_type is None:
         return outcome                                   # `none`: only the judgment is kept
 
@@ -65,6 +73,10 @@ def outcome_for(verdict: Verdict, a: Mapping[str, Any], b: Mapping[str, Any], *,
                  "detail": f"the judge was unsure: {verdict.rationale}"}
         outcome.ambiguity = {a["id"]: [dict(entry)], b["id"]: [dict(entry)]}
     return outcome
+
+
+def _verifies_each_other(a: Mapping[str, Any], b: Mapping[str, Any]) -> bool:
+    return b["id"] in (a.get("verifies") or []) or a["id"] in (b.get("verifies") or [])
 
 
 def _differ(a: Mapping[str, Any], b: Mapping[str, Any]) -> bool:
