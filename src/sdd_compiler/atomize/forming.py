@@ -22,7 +22,7 @@ from ..model.layers import LAYERS, QUESTIONS
 from ..model.schema import FLAGS
 from ..model.status import derive_status
 from .describe import Description
-from .guards import locate_quote
+from .guards import GuardFailure, locate_quote
 from .placement_types import PlacedAtom
 
 _CITATION = re.compile(r"(?<![\w.-])((?:AC|CT)-\d+\.\d+|N-\d{6,})(?!\w|\.\d)")
@@ -177,9 +177,25 @@ def _file(node: Mapping[str, Any]) -> str | None:
     return (node.get("source") or {}).get("file")
 
 
-def block_annotations(block: Mapping[str, Any], pairs: Sequence[tuple[str, str]]) -> list[dict[str, Any]]:
-    return [{"role": role, "text": quote, "spans": [list(locate_quote(quote, block["text"]))]}
-            for role, quote in pairs]
+def block_annotations(
+    block: Mapping[str, Any], pairs: Sequence[tuple[str, str]]
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """The block's rationale and example spans, and the ones that could not be located.
+
+    ⚑ F3 D35 (R16, I-67): an annotation is context, never a claim, so a quote that is not in the
+    block is **dropped and reported**, not raised. It used to raise here, after every model call
+    of the run had been paid for, and one merged rationale sentence lost a whole compile.
+    """
+    kept, dropped = [], []
+    for role, quote in pairs:
+        try:
+            span = locate_quote(quote, block["text"])
+        except GuardFailure:
+            dropped.append({"block": block["id"], "file": block["source"],
+                            "lines": list(block["lines"]), "role": role, "quote": quote})
+            continue
+        kept.append({"role": role, "text": quote, "spans": [list(span)]})
+    return kept, dropped
 
 
 def layer_hint(heading_path: Sequence[str], hints: Mapping[str, Mapping[str, Any]] | None) -> str | None:

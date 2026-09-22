@@ -47,6 +47,8 @@ class GraphDraft:
     completed: dict[str, str] = field(default_factory=dict)              # block id -> atomized_hash
     alignments: list[dict[str, Any]] = field(default_factory=list)       # F3 §4.6, for the report
     failed: dict[str, str] = field(default_factory=dict)                 # block id -> reason
+    empty: dict[str, dict[str, Any]] = field(default_factory=dict)       # completed, formed no node (D33)
+    annotations_dropped: list[dict[str, Any]] = field(default_factory=list)   # F3 D35 (I-67)
     stopped: str | None = None                                            # "call_cap" | "backend"
     stop_reason: str | None = None
     counters: dict[str, int] = field(default_factory=dict)
@@ -57,6 +59,7 @@ class _Chunk:
     placed: dict[str, list[PlacedAtom]] = field(default_factory=dict)    # good blocks, in order
     annotations: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
     failed: dict[str, str] = field(default_factory=dict)
+    empty: dict[str, list[str]] = field(default_factory=dict)            # block id -> sentence roles
     terms: TermResolution = field(default_factory=TermResolution)
 
 
@@ -113,6 +116,11 @@ def atomize_pending(
         for block_id, placed in chunk.placed.items():
             good_blocks[block_id] = by_id[block_id]
             atom_counts[block_id] = len(placed)
+            if not placed:                           # F3 D33: completed, but nothing in it was a claim
+                block = by_id[block_id]
+                draft.empty[block_id] = {
+                    "block": block_id, "file": block["source"], "lines": list(block["lines"]),
+                    "roles": chunk.empty.get(block_id, [])}
         labels = human_labels(good_blocks, atom_counts)          # a duplicate label fails the build
         adopted = adopt_human_ids({b: good_blocks[b] for b in chunk.placed}, atom_counts)
 
@@ -124,7 +132,8 @@ def atomize_pending(
 
         for block_id, placed in chunk.placed.items():
             block = by_id[block_id]
-            annotations = block_annotations(block, chunk.annotations.get(block_id, []))
+            annotations, unlocatable = block_annotations(block, chunk.annotations.get(block_id, []))
+            draft.annotations_dropped += unlocatable
             olds = list((previous or {}).get(block_id, []))
             aligned = align(olds, [
                 NewAtom(n, " … ".join(block["text"][s:e] for s, e in piece.atom.spans),
@@ -183,6 +192,7 @@ def _run_chunk(
     atomized = atomize_blocks(list(blocks), backend, lock=lock)
     chunk.failed.update(atomized.failures)
     chunk.annotations.update(atomized.annotations)
+    chunk.empty.update(atomized.empty)
 
     atoms_by_block = {block["id"]: [] for block in blocks if block["id"] not in chunk.failed}
     for atom in atomized.atoms:
@@ -195,7 +205,10 @@ def _run_chunk(
     by_id = {block["id"]: block for block in blocks}
     atom_judgments = dict(atomized.judgments)
     placed = _describe_and_place(atoms_by_block, by_id, backend, weak_words, aliases, chunk.failed,
-                                 lock, atom_judgments, names=names)
+                                 lock, atom_judgments, names=names,
+                                 # F3 D36 (R16, I-70): these blocks hold one claim by their own form,
+                                 # so they are placed by the first yes and flagged, never re-asked.
+                                 never_split={b for b in atoms_by_block if one_claim_block(by_id[b])})
 
     for block_id, split in list(placed.items()):
         if not isinstance(split, dict):
@@ -239,6 +252,7 @@ def _describe_and_place(
     atom_judgments: Mapping[str, str] | None = None,
     accept_mixed: bool = False,
     names: Sequence[str] = (),
+    never_split: set[str] | None = None,
 ) -> dict[str, Any]:
     """Block id → its placed atoms, or the split that stopped it. Failed blocks go to `failed`."""
     items = [
@@ -260,7 +274,7 @@ def _describe_and_place(
         for item in mine:
             description = described.descriptions[item.atom_id]
             placement = place(description.kind, description.layer_answers)
-            if placement.split_required and accept_mixed:
+            if placement.split_required and (accept_mixed or block_id in (never_split or set())):
                 split = placement.split_required
                 placement = Placement(layer=LAYER_OF_QUESTION[split["first"]["question"]], ambiguity=[{
                     "kind": "mixed_layers", "quote": split["second"]["quote"],
@@ -278,19 +292,33 @@ def _describe_and_place(
     return result
 
 
-def one_criterion(block: Mapping[str, Any], atoms: Sequence[Atom]) -> list[Atom]:
-    """R8 (rel01 D32, F3 D28): a block labelled `AC-…` is one verification atom.
+def one_claim_block(block: Mapping[str, Any]) -> bool:
+    """A block whose own form says it holds exactly one claim: a table row (F3 D34) or a block
+    labelled `AC-…` (F3 D28)."""
+    label = find_human_id(block)
+    return block.get("kind") == "table_row" or bool(label and label.startswith("AC-"))
 
-    Enforced in code, not left to the prompt: in the gate, criteria came back as
-    Given / When / Then fragments plus a stray atom made from the tier tag. The
-    fragments' quotes are kept, in block order, so the node covers the criterion.
+
+def one_criterion(block: Mapping[str, Any], atoms: Sequence[Atom]) -> list[Atom]:
+    """One claim per block where the source's own form says so — enforced in code, not left to
+    the prompt (the fragments' quotes are kept, in block order, so the node covers the whole):
+
+    - a block labelled `AC-…` is one verification atom (R8, rel01 D32, F3 D28): in the M2 gate,
+      criteria came back as Given / When / Then fragments plus a stray atom from the tier tag;
+    - a **table row** is one atom of its own kind (R15, F3 D34): in R15, F5's `S3` row came back
+      as one atom per cell, so one rule became three fragments in three families.
     """
     label = find_human_id(block)
-    if not label or not label.startswith("AC-") or len(atoms) <= 1 and all(
-            a.kind == "verification" for a in atoms):
+    criterion = bool(label and label.startswith("AC-"))
+    row = block.get("kind") == "table_row"
+    if criterion:
+        if len(atoms) <= 1 and all(atom.kind == "verification" for atom in atoms):
+            return list(atoms)
+    elif not row or len(atoms) <= 1:
         return list(atoms)
+    kind = "verification" if criterion else atoms[0].kind
     pairs = sorted({(span, quote) for atom in atoms for span, quote in zip(atom.spans, atom.quotes)})
-    return [Atom(block_id=block["id"], kind="verification",
+    return [Atom(block_id=block["id"], kind=kind,
                  quotes=[quote for _, quote in pairs], spans=[span for span, _ in pairs])]
 
 

@@ -258,7 +258,8 @@ Sorted by id. Derived on every transaction; never edited.
   family, or any member's layer, term or category (T14). A constraint with an empty selector is not
   listed on every card. Found by reviewing the first golden file: a layer-scoped constraint was
   missing.
-- **D12 — ⚑ A card line drops inline `*` and backtick marks** (T14, from reviewing R12's real cards).
+- **D12 — ⚑ A card line drops inline `*` and backtick marks, and reads a table row as cells**
+  separated by `·` (T14, from reviewing R12's real cards; extended in R15, where rows became nodes).
   A node's `text` is the verbatim span and may begin inside `**Given**`; the human view shows the words.
 - **D13 — ⚑ Card lines follow the source** — file, first line, id (M3 gate review). Sorting by id put
   `AC-5.13` before `AC-5.2` once criteria nodes carry their labels as ids (F2 D12).
@@ -293,5 +294,5 @@ Sorted by id. Derived on every transaction; never edited.
 | AC-4.15 · D10 … D17 · `sddc family` (T14) | `tests/test_views.py` (19 in the file) · `tests/test_model_scope.py` (4, D11), goldens in `tests/golden/` | `src/sdd_compiler/views/render.py` · `commands.py` · `cli.py` |
 | AC-4.14, AC-4.17 *(partial: `views/map.md` only; the `sddc map` command is deferred, B2)* | `tests/test_views.py::test_ac_4_14_…`, `::test_ac_4_17_…` | `src/sdd_compiler/views/render.py` |
 | AC-4.18 *(partial: the rendered map against the records; `query map` is deferred, B2)* | `tests/test_views.py::test_ac_4_18_map_counts_equal_the_records_on_random_graphs` | `src/sdd_compiler/views/render.py` |
-| AC-4.16 *(interlinked conflicts grouped)* | *(T18)* | `src/sdd_compiler/views/render.py` |
+| AC-4.16 *(interlinked conflicts grouped)* · `sddc conflicts` (T18) | `tests/test_report.py::test_ac_4_16_…`, `::test_sddc_conflicts_…` | `src/sdd_compiler/report.py::conflict_groups` · `views/render.py` · `commands.py` |
 | AC-4.9 … AC-4.13 | *(deferred: `query` is M5, build plan B2)* | `src/sdd_compiler/query/` |

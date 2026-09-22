@@ -35,6 +35,7 @@ from ..store.transaction import Transaction
 
 LOCK_DIR = "lock"
 RECORD_KEYS = ("id", "kind", "schema_version", "input_hash", "backend", "model", "cli_version",
+               "provisional",      # F6 §4.4: the verdict touched an ambiguous node
                "answer", "attempts", "usage", "batch_of", "duration_ms", "confirmed", "run")
 
 
@@ -74,13 +75,15 @@ class JudgmentLock:
         return self.records[found] if found else None
 
     def record(self, kind: str, schema_version: str, input_hash: str, answer_entry: Mapping[str, Any],
-               answer: Answer, attempts: int, batch_of: str | None) -> str:
+               answer: Answer, attempts: int, batch_of: str | None,
+               provisional: bool | None = None) -> str:
         self.counter += 1
         identifier = f"J-{self.counter:06d}"
         first_of_call = batch_of is None
         record = {
             "id": identifier, "kind": kind, "schema_version": schema_version,
             "input_hash": input_hash, "backend": answer.backend, "model": answer.model,
+            "provisional": provisional,
             "cli_version": answer.cli_version, "answer": dict(answer_entry), "attempts": attempts,
             "usage": ({"input_tokens": answer.usage.get("input_tokens", 0),
                        "output_tokens": answer.usage.get("output_tokens", 0),

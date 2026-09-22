@@ -112,6 +112,8 @@ def dispatch(args: argparse.Namespace) -> int:
         return commands.family(root, args.name, as_json=as_json)
     if args.command == "status":
         return commands.status(root, as_json=as_json)
+    if args.command == "conflicts":
+        return commands.conflicts(root, as_json=as_json)
 
     print(
         f"sddc: `{args.command}` is not built yet — it arrives with milestone "

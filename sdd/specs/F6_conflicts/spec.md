@@ -148,7 +148,8 @@ adds ambiguity `low_confidence_verdict` to both nodes rather than suppressing th
 
 **CT-6.2 — Run record additions**
 ```json
-{ "conflicts": {"pairs_judged": 0, "pairs_replayed": 0,
+{ "conflicts": {"candidates": 0, "pairs_judged": 0, "pairs_replayed": 0, "unjudged_failed": 0,
+                "provisional": 0, "retrieval": {},
                 "by_relation": {"none": 0, "refines": 0, "depends_on": 0, "duplicates": 0,
                                 "subsumes": 0, "contradicts": 0},
                 "opened": 0, "closed": {"rejudged": 0, "member_deleted": 0},
@@ -257,6 +258,22 @@ conflicts:
   ignoring one of the two lists. Sorting solves the "40 duplicates bury 3 contradictions" problem
   without hiding anything. The counts per kind are in the report header, so a large duplication count is
   visible at a glance.
+- **D13 — ⚑ A node the check phase looked at loses the stale reasons that scheduled it** (T17), and
+  records the run in `last_checked_run`. *Why:* `stale` means "needs re-checking" (F2 §4.6); keeping the
+  reason after the re-check would leave the node stale for ever and re-judge it every run. The reason
+  is still written by whatever caused it — a deleted neighbour, an edited counterpart — so a node is
+  never silently dropped from the queue; it is discharged only by the phase that honours it.
+  *Rejected:* clearing it when the graph is written, which would discharge reasons nobody acted on.
+- **D12 — ⚑ CT-6.2 also counts what was *not* judged** (T17): `candidates` (how many pairs retrieval
+  proposed), `unjudged_failed` (answers that failed their checks twice), `provisional` (§4.4), and F5's
+  own `retrieval` counts. *Why:* AC-6.19's identity reads "judged + replayed = candidate pairs", and a
+  pair that failed twice would otherwise break it silently — the I-59 lesson, that a zero with no
+  reason is a failure the report must show.
+- **D11 — ⚑ The direction rule is in the schema, not in a later check** (T16). CT-6.1 says `none`,
+  `duplicates` and `contradicts` are symmetric; the JSON Schema now says so too (`if`/`then`), so
+  AC-6.7's answer is rejected before anything reads it, and the re-ask carries the reason. *Rejected:*
+  silently normalising the direction to `symmetric` — that would hide a judge that did not understand
+  the question.
 - **D10 — `confidence` is recorded and flagged, never acted on** (resolves Q3). rel01 stores it and
   raises ambiguity `low_confidence_verdict`; nothing filters or re-ranks by it until G4 has compared it
   with human labels.
@@ -265,6 +282,10 @@ conflicts:
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-6.1 … AC-6.8 | *(to be written)* | `src/sdd_compiler/conflicts/judge.py` |
-| AC-6.9 … AC-6.12 | *(to be written)* | `src/sdd_compiler/conflicts/pipeline.py` · `src/sdd_compiler/report.py` |
-| AC-6.13 … AC-6.19 | *(to be written)* | `src/sdd_compiler/conflicts/lifecycle.py` |
+| AC-6.2 … AC-6.8 · CT-6.1, CT-6.3 (T16) | `tests/test_conflicts_judge.py` (18) | `src/sdd_compiler/conflicts/judge.py` · `records.py` · `src/sdd_compiler/profile.py` |
+| AC-6.1 *(partial: the record and links a contradiction produces; writing them through a transaction and deriving status is T17)* | `tests/test_conflicts_judge.py::test_ac_6_1_…` | `src/sdd_compiler/conflicts/records.py` |
+| AC-6.9, AC-6.12 · CT-6.2 · D5, D12 (T17) | `tests/test_conflicts_pipeline.py` (13) · `tests/test_compile.py::test_ac_6_12_…` | `src/sdd_compiler/conflicts/pipeline.py` · `src/sdd_compiler/pipeline.py` |
+| AC-6.1, AC-6.11, AC-6.13, AC-6.16, AC-6.17 *(through `compile`)* | `tests/test_compile.py` (6) | `src/sdd_compiler/pipeline.py::compile_graph` · `_apply_check` |
+| AC-6.14, AC-6.15, AC-6.18 · D4, D13 | `tests/test_conflicts_pipeline.py::test_ac_6_14_…`, `::test_ac_6_15_…`, `::test_ac_6_18_…` | `src/sdd_compiler/conflicts/pipeline.py` |
+| AC-6.19 *(counts add up)* | `tests/test_conflicts_pipeline.py::test_ac_6_19_…` | `src/sdd_compiler/conflicts/pipeline.py` |
+| AC-6.10, AC-6.11 · D9 (T18) | `tests/test_report.py` (12), goldens `tests/golden/report_*.md` | `src/sdd_compiler/report.py` · `src/sdd_compiler/commands.py` |

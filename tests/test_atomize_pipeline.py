@@ -248,6 +248,27 @@ def test_ac_3_12_split_required_re_asks_q_atom_with_both_quotes():
     assert sorted(n["layer"] for n in draft.nodes.values()) == ["L2", "L3"]
 
 
+def test_r16_a_table_row_is_never_split_into_its_cells():
+    """R16 (I-70): F3 D34 folds a row's atoms into one — but only on the first pass. The split
+    re-ask (AC-3.12) then asked the model to separate the row's rule from its evidence column,
+    and it obliged: every one of F5's seven source rows became two nodes, one of them a bare
+    fragment ("the term ids", "the block id"). A row is one claim, so it is placed by its first
+    yes and flagged, never re-asked (F3 D36)."""
+    row = "| **S2 shared subject term** | Shares a term of kind `entity` | the term ids |"
+    cells = ["Shares a term of kind `entity`", "the term ids"]
+    split = q_desc_entry("B-000001#1", subject="the pair",
+                         q_yes={"Q4": cells[0], "Q5": cells[1]},
+                         terms=[{"name": "term", "kind": "entity", "role": "response", "quote": "term"}])
+    draft, backend = run([block("B-000001", row, kind="table_row")], [
+        q_atom(("B-000001", [("requirement", [cells[0]]), ("requirement", [cells[1]])])),
+        q_desc(split),
+    ])
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc"]      # no second Q-ATOM
+    [node] = draft.nodes.values()                                      # one node, not one per cell
+    assert "Shares a term of kind" in node["text"] and "the term ids" in node["text"]
+    assert [a["kind"] for a in node["ambiguity"] if a["kind"] == "mixed_layers"] == ["mixed_layers"]
+
+
 def test_i42_a_refused_split_forms_the_node_with_the_first_layer_flagged_mixed():
     """F3 D23: two refusals to split are evidence of one claim — form it, flag it, never fail it."""
     split = q_desc_entry("B-000001#1", subject="the service",
@@ -329,6 +350,19 @@ def test_ac_2_24_a_constraint_scoped_to_one_family_joins_it():
     assert node["layer"] == "C"
     assert node["scope_selector"]["families"] == ["term:upload"]
     assert (node["family"], node["family_rule"]) == ("term:upload", "constraint")
+
+
+def test_f3_d33_a_block_whose_sentences_are_all_context_is_completed_and_recorded_empty():
+    """The block is not a failure — nothing in it is a claim — but the run must say so (I-59)."""
+    heading = "**Source | Rule | Evidence recorded**"
+    draft, _ = run([block("B-000001", heading, kind="table_row")], [
+        {"blocks": [{"block_id": "B-000001", "sentences": [{"quote": heading, "role": "definition"}],
+                     "atoms": []}]},
+    ])
+    assert draft.nodes == {} and draft.failed == {}
+    assert "B-000001" in draft.completed
+    assert draft.empty == {"B-000001": {"block": "B-000001", "file": "sdd/specs/F9_demo/spec.md",
+                                        "lines": [3, 3], "roles": ["definition"]}}
 
 
 def node_stub(node_id, label=None, family=None, layer="L1", text="", file="a.md", block_id=None):
@@ -578,6 +612,48 @@ def test_r8_an_acceptance_criterion_becomes_one_verification_node():
     [node] = draft.nodes.values()
     assert node["id"] == "AC-1.5" and node["label"] == "AC-1.5"
     assert (node["kind"], node["layer"]) == ("verification", "V")
+    assert [q.payload["atom_ids"] for q in backend.asked if q.kind == "q-desc"] == [["B-000001#1"]]
+
+
+def test_r16_a_rationale_quote_that_is_not_verbatim_drops_the_annotation_not_the_run():
+    """R16 (I-67): a run died after every model call was paid for. Q-ATOM had merged two source
+    sentences into one `rationale` quote; `block_annotations` located quotes with a guard that
+    raises, outside the re-ask path, so one decoration killed a $1.20 compile. An annotation is
+    context, never a claim: an unlocatable one is dropped and counted (F3 D35)."""
+    text = f"{EXPIRY} *Rejected:* a shorter life. That would break sharing."
+    draft, _ = run([block("B-000001", text)], [
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": EXPIRY, "role": "requirement"},
+                                   {"quote": "a shorter life would break sharing", "role": "rationale"},
+                                   {"quote": "That would break sharing.", "role": "rationale"}],
+                     "atoms": [{"kind": "requirement", "quotes": [EXPIRY]}]}]},
+        q_desc(q_desc_entry("B-000001#1")),
+    ])
+    [node] = draft.nodes.values()
+    assert [a["text"] for a in node["annotations"]] == ["That would break sharing."]
+    assert draft.annotations_dropped == [
+        {"block": "B-000001", "file": "sdd/specs/F9_demo/spec.md", "lines": [3, 3],
+         "role": "rationale", "quote": "a shorter life would break sharing"}]
+
+
+def test_r15_a_table_row_becomes_one_claim():
+    """R15 (I-64): F5's S3 row came back as three atoms, one per cell — "A `C` node whose
+    `scope_selector` covers the other node", "by the rule of D9", "the selector that matched" —
+    so a rule became three fragment nodes in three families. A row is one rule (F3 D34)."""
+    row = "| **S3 constraint scope** | A `C` node whose selector covers the other node | the selector |"
+    cells = ["A `C` node whose selector covers the other node", "the selector"]
+    draft, backend = run([block("B-000001", row, kind="table_row")], [
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": row, "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": [cells[0]]},
+                               {"kind": "requirement", "quotes": [cells[1]]}]}]},
+        q_desc(q_desc_entry("B-000001#1", subject="candidate", response="covers the other node", q_yes={},
+                            terms=[{"name": "candidate", "kind": "data", "role": "subject",
+                                    "quote": "covers"}])),
+    ])
+    [node] = draft.nodes.values()
+    assert node["label"] == "S3"
+    assert node["text"] == " … ".join(cells)                 # both cells, in row order
     assert [q.payload["atom_ids"] for q in backend.asked if q.kind == "q-desc"] == [["B-000001#1"]]
 
 

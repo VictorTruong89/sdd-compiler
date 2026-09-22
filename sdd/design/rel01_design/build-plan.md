@@ -150,16 +150,39 @@ proves almost nothing.
 | R6 re-measure | ✅ | — | [`M2-gate.md`](M2-gate.md) §B7: 60–61 of 63 completed, family null 0–7.5 %, criteria one `V` node each, 40–57 % cheaper, runs agree on node count 75 %; family targets unmet on a scattered sample (R12) |
 | T13 indexes, `status` graph counts | ✅ | 3 | §4.4 indexes in memory; `status` adds nodes, families, open conflicts, attention items |
 | T14 map, family cards, `.sdd/views/`, `sddc family` | ✅ | 15 (2 goldens) | F4 D10 … D16 · AC-4.14, AC-4.17, AC-4.18 partial: `sddc map` and `query map` are deferred (B2) |
-| **M3 gate** | ✅ view code passes · ❌ content, fixed in code, re-measure pending | — | [`measurements/R12_views_on.md`](measurements/R12_views_on.md): all 19 real cards; **owner approved the reading 2026-09-19**. Review fixes: 3 defects (I-51 … I-53), 4 card changes (F4 D13 … D16). Content: 3 of 19 cards (12 of 43 nodes) coherent (I-56) |
-| Gate follow-ups: I-56, I-57, F4 Q2, protocol | ✅ code · ⏳ R15 re-measure | +19 | I-56: F2 D18 … D20, F3 D32, AC-2.26 … AC-2.28. I-57: F5 D9, AC-5.3 amended — S3 pairs on R12 ≈ 60 → 16. Q2 → F4 D17 (full text in Markdown). Gate protocol in §3. **R15** (re-compile F5, re-read every card) decides whether M3's content passes |
-| M4 | ⬜ | | |
+| **M3 gate** | ✅ **closed 2026-09-21**: views pass; content fails, with a named cause for each part | — | [`measurements/R12_views_on.md`](measurements/R12_views_on.md): all 19 real cards; **owner approved the reading 2026-09-19**. Review fixes: 3 defects (I-51 … I-53), 4 card changes (F4 D13 … D16). Content: 3 of 19 cards (12 of 43 nodes) coherent (I-56) |
+| Gate follow-ups: I-56, I-57, F4 Q2, protocol, I-59 | ✅ code · ✅ measured (R15) | +21 | I-56: F2 D18 … D20, F3 D32, AC-2.26 … AC-2.28. I-57: F5 D9, AC-5.3 amended — S3 pairs on R12 ≈ 60 → 16. Q2 → F4 D17 (full text in Markdown). Gate protocol in §3. Also **F3 D33**: the report counts blocks that completed and formed no node |
+| **R15** re-measure — F5 recompiled, 64 nodes, $1.20 | ✅ measured and read | +3 | [`M3-gate.md`](M3-gate.md): criteria in the `node` grab-bag **9 → 4**; `verifies` resolved for **5 of 18** criteria (was 0); family null 3 → 1; S3 pairs on the same store **178 → 42** under F5 D9. Two new defects found and fixed: I-63, I-64 (**F3 D34**). Families still thin: 20 of 32 hold one node. **Blind reading** (a fresh agent, cards only): ✅ 10 of 34 cards, **30 of 64 nodes (47 %)**, against 12 of 43 (28 %) at R12; ❌ 15 nodes (23 %), was 42 %. Against the proposed pass line — largest family ✅, half the nodes in ✅ cards — R15 **fails both**, and 3 of the 6 ❌ cards are artefacts of I-63 and I-64, fixed after the run |
+| T15 retrieval S1 … S7, scoring, cap, `pair_key`, which nodes are checked | ✅ | 22 | F5 AC-5.1 … AC-5.14, CT-5.1 … CT-5.3 · **F5 D10** (the counts count proposals). AC-5.15 stays deferred (M5). No model call anywhere in F5 |
+| T16 Q-PAIR judgment; links and conflict records; direction and confidence | ✅ | 18 | F6 AC-6.2 … AC-6.8, AC-6.1 partial · CT-6.1, CT-6.3 · **F6 D11** (the direction rule lives in the schema). Writing them through a transaction is T17 |
+| T17 check phase inside `compile`; budget; conflict lifecycle | ✅ | 19 | F6 AC-6.9, AC-6.12 … AC-6.19, and AC-6.1, AC-6.11 end to end · **F6 D12, D13** · exit codes 3 and 5 wired. `compile` = ingest → atomize → **check** → write |
+| T18 end-of-run report; `sddc conflicts`; exit 3 | ✅ | 12 (2 goldens) | F6 AC-6.10, AC-6.11 · F4 AC-4.16 · **`compile` now prints the report**: what failed, what formed no node, what was dropped, every conflict grouped with contradictions first |
+| T19 adjudication record | ⬜ | | |
 
-Counts are tests per task's test files (T1's include 3 profile tests added in T6). Suite total: **517**. (T9's count is mostly the 128-case exhaustive placement test.)
+Counts are tests per task's test files (T1's include 3 profile tests added in T6). Suite total: **594**. (T9's count is mostly the 128-case exhaustive placement test.)
 
 ## 8. Issues found while building — log for the retrospective
 
 Each entry: what happened, how it was found, what was decided, and what it teaches. Numbered in the
 order found. Owner decisions are cited by their spec decision id.
+
+> **Where the retrospective material lives** (asked 2026-09-21). There is no single retrospective
+> document yet; it is written at release close from these seven places:
+>
+> | Where | What it holds |
+> |---|---|
+> | **§8 of this file** (I-1 … I-68) | Every defect and surprise found while building: what happened, how it was found, what was decided |
+> | **The patterns list**, end of §8 | The lessons drawn from those issues — the part a retrospective actually quotes |
+> | **§7 of this file** | Build progress: what each task cost in tests and where each gate landed |
+> | [`M2-gate.md`](M2-gate.md), [`M3-gate.md`](M3-gate.md) | The two gates in full: what was measured, every reading, the owner's verdict, and (M3 §4) where the gate broke its own protocol |
+> | [`measurements/`](measurements/) | Raw output and rendered cards from every measured run (R12, R15, R16) — durable, because a scratch store is one restart from gone (I-50) |
+> | [`../rel01_brainstorm.md`](../rel01_brainstorm.md) | Sessions S1 … S32, one entry per working session, and the owner's decision log (rel01 D1 … D33) |
+> | Each spec's §7 | The decisions that changed the product, with what was rejected and why (F1 D1 … F6 D13) |
+>
+> **At release close** they are summarised into `sdd/design/releases/rel01_closeout.md`, from
+> [`releases/_template_closeout.md`](../releases/_template_closeout.md): what shipped, what did not,
+> and "measured, not asserted" — every number with its sample size. Build-plan §5 lists what that file
+> must record. The template keeps it to one page: **these seven places stay the detailed record.**
 
 | # | Task | Issue | Found by | Resolution |
 |---|---|---|---|---|
@@ -237,6 +260,19 @@ order found. Owner decisions are cited by their spec decision id.
 | I-61 | I-56 fix | F2 D9 ("rules literally in order") was argued from a `C` example (files stay in `file`) and applied to `V` unexamined. For a criterion, the subject is the fixture | Tracing why nine criteria sat in `node` | **F2 D18** amends D9 for `V` nodes only |
 | I-62 | M3 gate | The gate's question ("describe a family from the view alone") had no pass line and was answered by the specs' author | Gate review | **Gate protocol** (§3): pass line first, every output or a blind sample, a first-time reader, one verdict per item, durable |
 
+| I-63 | R15 | 4 of 66 blocks failed, all one shape: the model quoted the `section` heading or the `table header` that the prompt gives as context. Three were the `S1`, `S2` and `S6` rows, so the criteria testing them stayed in the `node` grab-bag | R15's failure list | **F3 D34**: Q-ATOM is told never to quote the context lines — the rule Q-DESC has had since I-15. ⚠ The same fix was needed twice, in two prompts, 3 days apart |
+| I-64 | R15 | With rows atomized (D32), F5's `S3` row came back as **one atom per cell**: one rule became three fragment nodes in three families (`scope_selector`, `scope_selector_coverage`, `selector`) | Reading the nodes formed from lines 57–63 | **F3 D34**: a table row folds into one atom in code, as `AC-` blocks already did (D28). A prompt line says the same |
+| I-65 | R15 | Fixing the loss made the graph **wider, not denser**: 97 terms for 64 nodes (R12: 45 for 43), 58 % used once, and only 42 % of nodes in a family of three or more (was 56 %). 15 of 64 nodes are `C`, 13 scoped by layer alone | Comparing R15 with R12 | ⚠ **Open.** More content captured, spread over more names. F5 D9 contains the scope consequence, not its cause (Q-DESC's generous `scope_layers`). Judge at the M4 gate, against retrieval, not in isolation |
+
+| I-66 | R15 reading | The blind reader called the card's "In scope from elsewhere" list **boilerplate**: the same six constraints repeat on more than ten cards. F5 D9 cut the pairs from 178 to 42, and what survives is still noise on a card | The first-time reader's own observation | ⚠ **Open, small.** Options: list only constraints whose selector *names* the family (not a keyword match); or show a count with the ids behind a drill-down. Decide with the owner; it is a view change, not a graph one |
+
+| I-67 | R16 | **The run crashed after every model call was paid for.** Q-ATOM merged two of F5's sentences into one `rationale` quote; `block_annotations` located annotation quotes with the guard that *raises*, outside the re-ask path, at node-forming time. $1.20 and 25 minutes lost, and no lock record written, so nothing was replayable | R16's first attempt died with an uncaught `GuardFailure` | **F3 D35**: an annotation carries no claim, so an unlocatable one is dropped and reported (`annotations_dropped`). R16 re-run |
+| I-68 | R16 | **I-43's guarantee is narrower than it reads.** "A stop keeps finished work" covers the two expected stops, exit `5` (cap) and `6` (backend, F3 D24). Any *unexpected* exception — I-67's, or the next one — still discards every finished chunk **and its lock records**, because both are written in one transaction at the end | Tracing why I-67 cost the whole run | ⚠ **Open, owner.** Options: (a) write lock records per chunk, so a crash costs one chunk; (b) catch any exception in the chunk loop, write what finished, and exit with a new internal-error code — CT-1.6 has none, so it needs the owner. (a) is the cheaper half and helps every long compile |
+
+| I-69 | R16 | **The measurement has no still control.** R16 was launched as "same source, changed code" and was not: the copy of F5 was taken after T15 had added F5 D10 and filled its traceability table — 16 lines, ≈ 5 blocks. The corpus *is* this repository, and it is edited while it is measured | Diffing the two runs' sources after reading the numbers | ⚠ **Open, cheap.** Copy the corpus **and record its hash** in the measurement file before a run, and compare hashes before comparing numbers. Until then, every A/B on our own specs is a direction, not a controlled comparison |
+
+| I-70 | R16 reading | **The split re-ask undid F3 D34.** A table row's atoms are folded into one claim on the first pass, and then AC-3.12's re-ask asked the model to separate the row's rule from its evidence cell — and it did. All seven of F5's source rows became two nodes, one a bare fragment ("the term ids", "the block id"), which spawned five one-node families the blind reader called unintelligible | The R16 blind reading named the fragments; the store confirmed two nodes per row | **F3 D36**: a block that is one claim by its own form (a table row, an `AC-` block) is placed by its first yes and flagged `mixed_layers`, never asked to split. Decided in the first pass, so it also saves a call |
+
 **Patterns so far** (for the retrospective):
 - **Real data finds what specs miss.** I-3, I-6, I-8, I-9 all came from running on this repository's own
   specs or the live model, not from reading the spec. Run on the real corpus at every task, not only at
@@ -269,6 +305,29 @@ order found. Owner decisions are cited by their spec decision id.
 - **A property test must test the output, not a helper beside it** (I-52). Parse what the user sees.
 - **`None` as both "absent" and a real key is a trap** (I-51, I-53). The unplaced family's key is
   `None`, and two separate bugs came from it in one milestone.
+- **Two rules that never meet in one test can still contradict each other** (I-70). "A row is one
+  claim" and "a mixed-layer atom is re-asked to split" were each correct and tested; the second
+  silently undid the first on the only blocks where both applied.
+- **The mechanics can improve while the reading gets worse** (R16). Fixing what was dropped made the
+  graph wider before it made it denser. A metric set (build-plan G4) must include a human reading, or
+  the numbers will report progress the reader does not see.
+- **Measuring a moving corpus** (I-69). This project's test corpus is its own specs, which change
+  every session. A run is only comparable to another if the source is pinned and hashed; otherwise
+  "the code improved" and "the spec grew" are indistinguishable.
+- **One fix can unblock another's evidence** (I-63 → R16). Three source rows failing to atomize kept
+  three criteria in the grab-bag, which made the family fix look weaker than it was. A metric can be
+  held down by a defect that has nothing to do with it.
+- **A guard that raises must sit where a failure is handled** (I-67). The same check is a re-ask in
+  one place and a crash in another; what differs is not the check but where it runs.
+- **"Finished work is kept" is only true for the failures you predicted** (I-68). The guarantee held
+  for the cap and the backend, and not for the defect nobody had thought of.
+- **A first-time reader finds what a metric cannot** (I-66, R15 §3). Dangling pronouns, boilerplate
+  and a concept owned by two families were all invisible in the numbers and obvious in one reading.
+- **A prompt rule learned once must be applied to every prompt** (I-63). "Never quote the context
+  lines" was learned for Q-DESC in I-15 and missing from Q-ATOM three days later. Prompts are code:
+  a fix belongs wherever the same input shape appears.
+- **Unblocking content creates work downstream** (I-64, I-65). Seven rows became claims, and at once
+  they needed a splitting rule, a display rule and more terms than the graph could group.
 - **Check the records before building a fix read off a view** (I-60). The view showed where the
   criteria were; only the store showed that what they cite was never formed.
 - **A silent zero is a failure** (I-59). A block that forms no node counts as "completed". Seven rules
@@ -300,12 +359,17 @@ re-measured in R15.
 | ~~T14~~ `sddc family`; generated `views/` | ✅ + gate fixes I-51 … I-55 (F4 D13 … D16) | — | — |
 | ~~M3 gate~~ — owner verdict | ✅ approved 2026-09-19 | — | — |
 | ~~I-56~~ code · ~~I-57~~ · ~~F4 Q2~~ · ~~gate protocol~~ | ✅ built, 517 tests | — | — |
-| **R15** re-compile F5 in a fresh store (≈ the R12 cost, $0.69) and re-read every card by the gate protocol | measurement | small | trusting S1 and S3 in T15; closing M3's content |
-| I-59 open half: a producer for `definition` sentences, or a report count of blocks that formed no node | decision + small code | small | nothing (visibility) |
-| T15 retrieval S1–S7, scoring, `pair_key` (F5) | code (M4) | medium | T16 |
-| T16 Q-PAIR judgment; links and conflict records (F6) | code (M4) | medium | T17 |
-| T17 check phase: never stops, shared budget, conflict lifecycle | code (M4) | medium | T18 |
-| T18 end-of-run report; `sddc conflicts`; exit 3 | code (M4) | medium | **the release** |
+| ~~R15~~ re-compile F5 and re-read every card | ✅ done 2026-09-21, $1.20 — [`M3-gate.md`](M3-gate.md) | — | — |
+| **R16** — optional: re-compile F5 once more, now that I-63 and I-64 are fixed. ≈ $1.20, ~10 min. Three of R15's six ❌ cards are artefacts of those two defects, so R16 is the first fair reading | measurement | small | a clean gate number; **not** M4 |
+| Owner: confirm the M3 pass line, and the verdict on [`M3-gate.md`](M3-gate.md) §3 | decision | small | closing M3 |
+| I-66 the in-scope list reads as boilerplate | decision + small view change | small | nothing |
+| ~~I-59, the report half~~ blocks that formed no node are counted (F3 D33) | ✅ built, 2 tests | — | — |
+| I-59 open half: a producer for `definition` sentences (F2 §4.1 promises term entries; `defined_by` is always null) | decision + small code | small | nothing (visibility) |
+| ~~T15~~ retrieval S1–S7, scoring, `pair_key` (F5) | ✅ built — 22 tests | — | — |
+| ~~T16~~ Q-PAIR judgment; links and conflict records (F6) | ✅ built — 18 tests | — | — |
+| ~~T17~~ check phase, shared budget, conflict lifecycle | ✅ built — 19 tests | — | — |
+| ~~T18~~ report, `sddc conflicts`, exit 3 | ✅ built — 12 tests, 2 goldens | — | — |
+| ~~R16~~ re-measure after the I-63, I-64, I-67 fixes | ✅ $1.31 (+ $1.20 lost to the crash) — [`M3-gate.md`](M3-gate.md) §5 | — | — |
 | T19 adjudication record (G4) | code (M4) | small | G4 measurements M1–M2 |
 | M5 (optional) | exhaustive mode, `check`, `review`, `query`, `map`, `blocks`, `show`, `pairs`, `check-conflicts` | — | nothing in rel01 |
 

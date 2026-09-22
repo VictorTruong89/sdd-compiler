@@ -100,6 +100,12 @@ An acceptance criterion (labelled AC-..., or written as Given ... when ... then 
 atom of kind verification. Do not split its Given, When and Then: they are its setup and
 its expected outcome.
 
+The "section" and "table header" lines are context, to tell you what the block is about:
+never quote them. Every quote must come from the block's own "text".
+
+A table row is ONE claim: its cells are the parts of one rule, not separate claims. Quote the
+cells that carry the rule, and give them as ONE atom.
+
 Quote VERBATIM from the block: every quote must appear in the block character for
 character. Do not paraphrase, do not fix typos, do not add anything the block does
 not say. Answer for each block you are given, using its exact block_id.
@@ -126,6 +132,7 @@ class AtomizeOutcome:
     annotations: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
     failures: dict[str, str] = field(default_factory=dict)
     judgments: dict[str, str] = field(default_factory=dict)       # block id -> J id (with a lock)
+    empty: dict[str, list[str]] = field(default_factory=dict)     # block id -> its sentence roles (F3 D33)
 
 
 def build_question(blocks: list[dict[str, Any]], note: str | None = None) -> Question:
@@ -206,6 +213,8 @@ def _accept(block: dict[str, Any], payload: dict[str, Any], outcome: AtomizeOutc
     check_coverage(text, claimed, labelled)
 
     outcome.atoms.extend(atoms)
+    if not atoms:                                     # F3 D33 (I-59): a silent zero is reported
+        outcome.empty[block["id"]] = sorted({sentence["role"] for sentence in payload["sentences"]})
     annotations = [
         (sentence["role"], sentence["quote"])
         for sentence in payload["sentences"]

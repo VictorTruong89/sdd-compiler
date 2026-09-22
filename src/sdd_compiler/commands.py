@@ -7,9 +7,10 @@ from pathlib import Path
 from .errors import ExitCode, SddcError
 from .ingest import pipeline
 from .pipeline import compile_graph
-from .store.graph import load_graph
+from .report import conflict_groups, render_report
+from .store.graph import load_graph, registry_of
 from .store.index import GraphIndex, counts as graph_counts
-from .views.render import family_card, family_label
+from .views.render import conflicts_list, family_card, family_label
 from .profile import STORE_DIR, profile_path, render_default_profile
 
 
@@ -29,26 +30,14 @@ def init(root: Path, as_json: bool = False) -> int:
 
 def compile_(root: Path, paths: list[str] | None = None, as_json: bool = False,
              replay: bool = True) -> int:
-    """rel01's one command: ingest, atomize what is pending, write the graph (B1)."""
+    """rel01's one command: ingest, atomize what is pending, check for conflicts, report (B1)."""
     result = compile_graph(root, paths=paths, replay=replay)
-    s = result.summary()
-    counts = s["counts"]
-    _say(
-        f"{s['run']}: {len(s['files'])} file(s) · {counts['new']} new · {counts['changed']} changed · "
-        f"{counts['removed']} removed · {s['pending']} pending → {s['completed']} atomized, "
-        f"{s['failed']} failed · {s['nodes_formed']} node(s) formed, {s['nodes_deleted']} deleted · "
-        f"{s['attention_items']} attention item(s) · {s['model_calls']} model call(s), "
-        f"${s['cost_usd']:.2f}, {s['replayed']} answer(s) replayed from the lock"
-        + (f" · alignments: " + ", ".join(
-            f"{k} {n}" for k, n in sorted(
-                {k: sum(1 for a in s["alignments"] if a["kind"] == k)
-                 for k in {a["kind"] for a in s["alignments"]}}.items()))
-           if s["alignments"] else "")
-        + (f" · STOPPED ({s['stopped']}): {s['stop_reason']} — what finished is written, "
-           f"the rest stays pending" if s["stopped"] else ""),
-        s,
-        as_json,
-    )
+    summary = result.summary()
+    if as_json:
+        print(json.dumps(summary, ensure_ascii=False))
+    else:
+        graph = load_graph(Path(root) / STORE_DIR)
+        print(render_report(summary, graph, result.exit_code), end="")
     return result.exit_code
 
 
@@ -105,6 +94,23 @@ def family(root: Path, name: str, as_json: bool = False) -> int:
     else:
         print(family_card(graph, found, index=index), end="")
     return ExitCode.OK
+
+
+def conflicts(root: Path, as_json: bool = False) -> int:
+    """T18 — every open conflict (F4 §4.6, F6 §4.8): grouped, contradictions first.
+    Exit `3` while any is open, so a CI step can gate on it."""
+    graph = load_graph(Path(root) / STORE_DIR)
+    groups = conflict_groups(graph)
+    if as_json:
+        print(json.dumps({
+            "registry": registry_of(graph),
+            "groups": [[{"id": r["id"], "kind": r["kind"], "members": r["members"]} for r in group]
+                       for group in groups],
+            "conflicts": [record for group in groups for record in group],
+        }, ensure_ascii=False))
+    else:
+        print(conflicts_list(graph), end="")
+    return ExitCode.CONFLICTS if groups else ExitCode.OK
 
 
 def _say(text: str, payload: dict, as_json: bool) -> None:

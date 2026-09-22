@@ -257,6 +257,15 @@ def test_a_card_line_drops_stray_inline_markdown_marks():
     assert "- N-000002 ✓ Given a share link, then it expires" in family_card(g, "term:share_link")
 
 
+def test_a_card_line_reads_a_table_row_as_cells():
+    """R15: the S-rows are nodes now, and their text is the raw row (F4 D12)."""
+    g = graph()
+    g.nodes["N-000002"] = {**g.nodes["N-000002"],
+                           "text": "| **S4 adjacent layer** | Same family, layer distance ≤ 1 | both layers |"}
+    assert "- N-000002 ✓ S4 adjacent layer · Same family, layer distance ≤ 1 · both layers" in \
+        family_card(g, "term:share_link")
+
+
 def test_f4_q2_the_markdown_card_keeps_the_whole_claim_the_terminal_cuts_it(tmp_path):
     """F4 Q2 → D17: the 80-character cut hid R12's cap ("… the top max_pairs_per_node (…")."""
     g = graph()

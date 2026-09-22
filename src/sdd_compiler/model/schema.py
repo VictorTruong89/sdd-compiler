@@ -29,6 +29,7 @@ MODALITIES = ("MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "MAY")
 AMBIGUITY_KINDS = (
     "vague_term", "unbounded_quantity", "missing_actor", "missing_modality", "mixed_layers", "referential",
     "scope", "unresolved_term", "unplaceable", "inferred", "pending_review",
+    "low_confidence_verdict",        # F6 CT-6.1: a judged verdict the model was unsure of
 )
 FAMILY_RULES = ("subject", "response", "verification", "constraint", "mention", "component", "pinned", "fallback")  # F2 D19: component
 FLAGS = ("inferred", "pinned_family", "allocation_proposed", "family_disputed")

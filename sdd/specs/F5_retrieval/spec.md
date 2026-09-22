@@ -210,6 +210,12 @@ retrieval:
   process ("nodes unchanged since their last run are skipped" → L1, L4, L5). S3 then made about 60
   pairs among 43 nodes, each above `min_score` on S3 alone. With D9: 16. *Rejected:* lowering S3's weight
   below `min_score`. That would also weaken the constraints that name their scope.
+- **D10 — ⚑ The CT-5.3 counts count proposals, not distinct pairs** (T15). A pair both of whose ends
+  are checked is proposed twice, so AC-5.16's identity
+  (`proposed = capped + dropped_below_min_score + dropped_by_cap`) only holds if every number counts
+  proposals. The pairs handed to F6 hold each `pair_key` once (AC-5.13). *Rejected:* counting distinct
+  pairs everywhere — the identity would fail on any graph where both ends are checked, which is most of
+  a first compile.
 - **D5 — Deferred: `checked_against` per node** (conflict-list item 5.4). A batch run checks the whole
   graph, so the cheaper `last_checked_run` plus `stale_reasons` is enough for rel01. It returns with
   incremental checking.
@@ -222,6 +228,10 @@ retrieval:
 
 | AC | Test (file::test) | Code |
 |---|---|---|
-| AC-5.1 … AC-5.8 | *(to be written)* · the coverage rule of AC-5.3 and D9: `tests/test_model_scope.py` (4) | `src/sdd_compiler/retrieval/sources.py` · `src/sdd_compiler/model/scope.py` |
-| AC-5.9 … AC-5.11 | *(to be written)* | `src/sdd_compiler/retrieval/score.py` |
-| AC-5.12 … AC-5.16 | *(to be written)* | `src/sdd_compiler/retrieval/select.py` · `src/sdd_compiler/cli.py` |
+| AC-5.1 … AC-5.8 · D9 (T15) | `tests/test_retrieval_sources.py` (12) · `tests/test_model_scope.py` (4) | `src/sdd_compiler/retrieval/sources.py` · `src/sdd_compiler/model/scope.py` |
+| AC-5.9 *(points sum to the score, 200 random pairs)* · D2 | `tests/test_retrieval_sources.py::test_ac_5_9_…`, `::test_the_weights_are_the_ones_the_spec_prints` | `src/sdd_compiler/retrieval/score.py` |
+| AC-5.10, AC-5.11, AC-5.13, AC-5.14 · CT-5.1 · D10 | `tests/test_retrieval_select.py` (10) | `src/sdd_compiler/retrieval/select.py` |
+| AC-5.12 *(pair key)* · D4 | `tests/test_retrieval_select.py::test_ac_5_12_…` (2) | `src/sdd_compiler/retrieval/select.py::pair_key` |
+| CT-5.2 *(profile)* | `tests/test_retrieval_select.py` · `tests/test_profile.py` | `src/sdd_compiler/profile.py` |
+| CT-5.3, AC-5.16 *(counts; the run record is wired in T17/T18)* | `tests/test_retrieval_select.py::test_ct_5_3_…`, `::test_ac_5_10_…` | `src/sdd_compiler/retrieval/select.py` |
+| AC-5.15 *(exhaustive mode)* | *(deferred: `sddc pairs` is M5, build plan B2)* | `src/sdd_compiler/retrieval/select.py` · `cli.py` |

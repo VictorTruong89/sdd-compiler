@@ -63,9 +63,9 @@ node is formed, from node properties, and every later algorithm depends on it be
 | G3.3 traversal | [`rel01_design/G3-3-traversal.md`](rel01_design/G3-3-traversal.md) | design only · spec id `F7` reserved |
 | G4 measurement | [`rel01_design/G4-measurement.md`](rel01_design/G4-measurement.md) | ✅ outline approved (D29) |
 | — | [`rel01_design/build-plan.md`](rel01_design/build-plan.md) | ✅ approved (D29); B1–B3 decided |
-| — | `src/`, `tests/` | ✅ M1 complete · 🔨 **M2** — M2 done and gated (R1 … R14) · **M3 built; gate: view code ✅, content ❌** (owner 2026-09-19) · I-56, I-57 fixed in code · 517 tests · next: R15 re-measure, then M4 |
+| — | `src/`, `tests/` | ✅ M1, M2, M3 (gated) · 🔨 **M4** — T15 … T18 built; `compile` = ingest → atomize → **check** → report · 594 tests · next: T19, then the M4 gate |
 
-**Totals:** 6 specs · **125 acceptance criteria** (recounted 2026-09-19; the earlier 121 was 1 short) · 517 tests · M1, M2 built and gated; M3 built and gated (content re-measured in R15); remaining work: build-plan §9.
+**Totals:** 6 specs · **125 acceptance criteria** (recounted 2026-09-19; the earlier 121 was 1 short) · 594 tests · M1, M2 built and gated; M3 built and gated (content re-measured in R15); remaining work: build-plan §9.
 **Decisions:** rel01 D1–D33. **Question register:** 11 entries, all answered or closed.
 **Vision:** adopted 2026-09-17. **Constitution:** §1 and §6 written; §2–§5 still `TODO`.
 
@@ -265,6 +265,66 @@ use in a later release; rel01 wires none of them.
 - Deliberate: a registered but unimplemented command prints what it is and exits `1`, rather than
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
+
+### S34 — 2026-09-21 — R16 read; M3 gate closed; I-70 found and fixed
+
+- **R16** ($1.31, after $1.20 lost to I-67's crash): failures 4 → 1, all seven `S` rows labelled,
+  criteria resolving what they test **5 of 18 → 10 of 23**, S3 pairs 42 → 19. `M3-gate.md` §5.
+- ⚠ **I-69:** R16 was not the controlled A/B it was launched as — F5 had gained D10 and its
+  traceability rows between the two runs. The corpus is this repository, and it moves while it is
+  measured. Pin and hash the corpus before a measured run.
+- **The blind reading got worse, not better:** ✅ 10 of 34 cards → **4 of 35**, ❌ 6 → 12.
+- **I-70, the cause:** the split re-ask undid F3 D34. Every `S` row was split into its rule and its
+  evidence cell, making bare fragments ("the term ids", "the block id") and five unreadable one-node
+  families. **F3 D36**: a block that is one claim by its own form is never asked to split.
+- **M3 gate closed** (`M3-gate.md`): the views pass; the content fails with a named cause for each
+  part. Three readings, three real defects — each found by a person reading output, not by the suite.
+- **594 tests.** **Next:** T19, then the M4 gate.
+
+### S33 — 2026-09-21 — M4 built: T15 … T18. `compile` now reports conflicts
+
+- **T15 retrieval** (22 tests): S1 … S7 with their evidence, additive scoring with per-source caps,
+  ranking, the per-node cap, `pair_key`, and which nodes are checked. **F5 D10**: the CT-5.3 counts
+  count proposals, not distinct pairs, or AC-5.16's identity cannot hold.
+- **T16 the pair judge** (18 tests): Q-PAIR, its two guards, and what each verdict records.
+  **F6 D11**: the direction rule lives in the JSON Schema, so a symmetric relation carrying a
+  direction is rejected before anything reads it.
+- **T17 the check phase** (19 tests): `compile` = ingest → atomize → **check** → write. One budget for
+  the run (F6 D5), never stops at a conflict, exit 3 and 5 wired. **F6 D12** (the counts also record
+  what was *not* judged) and **F6 D13** (a node the phase looked at loses the stale reasons that
+  scheduled it).
+- **T18 the report** (12 tests, 2 goldens): `sddc compile` now prints what failed, what formed no node,
+  what was dropped, and every open conflict — grouped so interlinked records read together (F4 AC-4.16)
+  and contradictions first (F6 D9). `sddc conflicts` ships as the sixth command; exit 3 while any is open.
+- **R16 crashed and was re-run** (I-67, I-68): see S32's entry and `M3-gate.md`.
+- **593 tests.** **Next:** T19 (the adjudication record), then the M4 gate — the release.
+
+### S32 — 2026-09-21 — R15: the I-56 fixes measured; two more defects
+
+- **F3 D33 built first:** the run report now counts blocks that completed and formed **no** node, with
+  their lines and sentence roles. R15 found 15, every one `context` (headings, legends) — and none of
+  the seven rules that vanished silently in R12.
+- **R15** — F5 recompiled in a fresh store, $1.20, 64 nodes (R12: 43). Write-up:
+  [`rel01_design/M3-gate.md`](rel01_design/M3-gate.md); cards and raw output in
+  `rel01_design/measurements/`.
+  - **The I-56 fixes work.** The `node` grab-bag holds 4 criteria, not 9. Five criteria resolved
+    `verifies` and joined the family of the rule they test. `S3` … `S7` carry their local labels.
+    Family null 3 → 1.
+  - **The I-57 fix is confirmed on fresh data:** the same store gives 178 constraint-scope pairs under
+    the old rule and **42** under F5 D9.
+  - **Two new defects, both from rows becoming claims** (**F3 D34**): the model quoted the section and
+    table-header context lines, failing 4 blocks — the S1, S2 and S6 rows, which is why their criteria
+    stayed in `node` (I-63); and a row came back as one atom per cell, so one rule became three
+    fragments (I-64).
+  - **Open (I-65):** the graph is wider, not denser — 97 terms for 64 nodes, 58 % used once, 42 % of
+    nodes in families of three or more (was 56 %).
+- **The blind reading** (a fresh agent with the cards and nothing else): ✅ **10 of 34 cards, 30 of 64
+  nodes (47 %)**, against 3 of 19 cards and 28 % of nodes at R12; ❌ down from 42 % of nodes to 23 %.
+  Against the proposed pass line (largest family ✅, half the nodes in ✅ cards) R15 **fails both** —
+  but three of the six ❌ cards are artefacts of I-63 and I-64, fixed after the run. The reader also
+  found what the metrics missed: dangling pronouns, and the in-scope list reading as boilerplate (I-66).
+- **522 tests.** **Next:** the owner confirms the pass line and the §3 verdict; optionally R16 (a fair
+  reading, ≈ $1.20); then T15 — M4 is the release and has not started.
 
 ### S31 — 2026-09-19 — M3 gate closed; I-56, I-57, F4 Q2, gate protocol
 

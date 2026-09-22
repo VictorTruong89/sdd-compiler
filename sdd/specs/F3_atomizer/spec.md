@@ -179,7 +179,8 @@ When a `changed` block is re-atomized, new atoms are aligned to the block's exis
   live editing would hook checking back into atomization. ⚠ Not a Claude Code hook: rel01 has none.
 - **The run never stops at a conflict** (rel01 D26). Every conflict found is recorded on the nodes and
   in the graph's conflict records, and the run continues to the last pending block.
-- The run ends with one report (§4.10): blocks processed, nodes formed, model calls and usage, every
+- The run ends with one report (§4.10): blocks processed, nodes formed, **blocks that completed and
+  formed no node, with the roles their sentences were given** (D33), model calls and usage, every
   conflict found, and every attention item opened.
 
 ### 4.9 Attention list — items a person must decide
@@ -483,6 +484,39 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   null). A sentence labelled `definition` is dropped silently. This is the I-26 pattern again: a field
   with readers and no producer (build-plan I-59).
 
+- **D33 — ⚑ The report counts blocks that formed no node** (M3 gate review, I-59). A block whose
+  sentences are all `definition`, `context` or `rationale` is completed, correctly, and forms nothing;
+  until now the run said "65 of 65 completed" while seven of F5's rules vanished. The summary carries
+  `empty_blocks` and, per block, its file, lines and sentence roles. *Not* an attention item (§4.9):
+  most empty blocks are headings and legends, and a queue of them would bury the real items. ⚠ The
+  other half of I-59 — a producer for `definition` sentences (F2 §4.1) — is still open.
+
+- **D34 — ⚑ A table row is one claim, enforced in code** (R15, I-64). With D32 the rows became
+  claims, and F5's `S3` row came back as one atom per cell: "A `C` node whose `scope_selector` covers
+  the other node", "by the rule of D9", "the selector that matched" — one rule as three fragment nodes
+  in three families. A row's cells are the parts of one rule, so `one_criterion` now folds a row's
+  atoms into one, keeping every quote in row order, as it already did for `AC-` blocks (D28). The
+  prompt says the same, and adds the rule Q-DESC has had since I-15: **the "section" and "table header"
+  lines are context and are never quoted** (R15, I-63: 4 of 66 blocks failed on exactly that).
+
+- **D35 — ⚑ An annotation that cannot be located is dropped and reported, never raised** (R16, I-67).
+  Rationale and example sentences become annotations (F2 §4.1), and their quotes were located by the
+  same guard that anchors atoms — which *raises*. Q-ATOM merged two source sentences into one
+  `rationale` quote, and the exception escaped at node-forming time, **after every model call of the
+  run had been paid for**, losing the whole compile. An annotation carries no claim, so an unlocatable
+  one is dropped and listed in the run report (`annotations_dropped`), beside D33's empty blocks.
+  ⚠ **Open (build-plan I-68):** F3 D24 keeps finished work only for the two *expected* stops, exit `5`
+  and `6`. An unexpected exception anywhere after the first call still discards the run and its lock
+  records. The exit code for an internal error is not specified (CT-1.6 has none), so this is the
+  owner's call.
+
+- **D36 — ⚑ A block that is one claim by its own form is never asked to split** (R16, I-70). D34 folds
+  a table row's atoms into one, and D28 does the same for an `AC-` block — and then AC-3.12's split
+  re-ask asked the model to separate the row's rule from its evidence cell, and it obliged: all seven
+  of F5's source rows became two nodes, one of them a bare fragment. Such a block now takes D23's
+  path directly — placed by its first yes, flagged `mixed_layers` — decided in the first pass, so it
+  also saves a model call. AC-3.12 still governs every other block.
+
 ## 8. Open questions
 
 - **Q1 — Default `max_calls_per_run`** (200 here) and `timeout_s` (120 here): set from the first real
@@ -504,7 +538,10 @@ change of alias is visible.*
 | AC-3.6 … AC-3.8, AC-3.10 · D9 | `tests/test_atomize_qatom.py` (20) | `src/sdd_compiler/atomize/qatom.py` · `guards.py` |
 | AC-3.9 *(flag and ambiguity; node status and review item with T10)*, AC-3.11, AC-3.13 · D10–D14 | `tests/test_atomize_qdesc.py` (22) · `tests/test_quantities.py` (25) · `tests/test_llm_backend.py` (+2) | `src/sdd_compiler/atomize/describe.py` · `quantities.py` · `batch.py` · `llm/claude_code.py` |
 | AC-3.5 *(pending half)*, AC-3.9 *(node and review item)*, AC-3.12, AC-3.14 … AC-3.16 · D15 … D20, D25 … D31 | `tests/test_atomize_pipeline.py` (52) | `src/sdd_compiler/atomize/pipeline.py` · `forming.py` · `terms.py` · `batch.py` |
-| §4.8 run report (calls, cost) · §4.9 items closing themselves | `tests/test_compile.py` | `src/sdd_compiler/pipeline.py` |
+| D36 *(a one-claim block is never split)* | `tests/test_atomize_pipeline.py::test_r16_a_table_row_is_never_split_into_its_cells` | `src/sdd_compiler/atomize/pipeline.py::one_claim_block` · `_describe_and_place` |
+| D34 *(a row is one claim)* | `tests/test_atomize_pipeline.py::test_r15_a_table_row_becomes_one_claim` · `tests/test_atomize_qatom.py::test_the_prompt_forbids_quoting_the_context_lines` | `src/sdd_compiler/atomize/pipeline.py::one_criterion` · `qatom.py` |
+| D35 *(a dropped annotation never stops a run)* | `tests/test_atomize_pipeline.py::test_r16_a_rationale_quote_…` | `src/sdd_compiler/atomize/forming.py::block_annotations` |
+| §4.8 run report (calls, cost, empty blocks) · D33 · §4.9 items closing themselves | `tests/test_compile.py` · `tests/test_atomize_pipeline.py::test_f3_d33_…` | `src/sdd_compiler/pipeline.py` · `atomize/pipeline.py` · `atomize/qatom.py` |
 | AC-3.17 … AC-3.20 · D21, D22 | `tests/test_atomize_align.py` (9) · `tests/test_atomize_lock.py` (8) · `tests/test_compile.py` (+6) | `src/sdd_compiler/atomize/align.py` · `lock.py` · `batch.py` · `src/sdd_compiler/pipeline.py` |
 | AC-3.21 … AC-3.22 | *(to be written)* | `src/sdd_compiler/atomize/pipeline.py` · `src/sdd_compiler/report.py` |
 | AC-3.24 … AC-3.25 | *(to be written)* | `src/sdd_compiler/atomize/review.py` |

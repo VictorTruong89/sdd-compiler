@@ -28,6 +28,9 @@ from .ingest.identity import BLOCK_KEY_ORDER, is_live, pending_status
 from .ingest.pipeline import BLOCKS_FILE, RUNS_FILE, SOURCES_FILE, IngestResult, ingest, lock_wait_seconds
 from .llm import Backend, CallBudget, get_backend
 from .profile import STORE_DIR, load_profile
+from .conflicts.pipeline import check
+from .retrieval.select import needs_checking
+from .model.status import derive_status
 from .store.graph import delete_node, load_graph, write_graph
 from .store.jsonl import read_jsonl
 from .store.lock import StoreLock
@@ -42,6 +45,8 @@ class CompileResult:
     deleted: list[str] = field(default_factory=list)
     usage: dict[str, Any] = field(default_factory=lambda: {"calls": 0, "cost_usd": 0.0})
     replayed: int = 0
+    check: Any | None = None                       # the F6 check phase's result (T17)
+    open_conflicts: int = 0
     exit_code: ExitCode = ExitCode.OK
 
     def summary(self) -> dict[str, Any]:
@@ -50,10 +55,15 @@ class CompileResult:
             "run": self.ingest.run_id, "files": self.ingest.files, "counts": self.ingest.counts,
             "pending": self.pending, "completed": len(draft.completed), "failed": len(draft.failed),
             "nodes_formed": len(draft.nodes), "nodes_deleted": len(self.deleted),
+            "empty_blocks": len(draft.empty), "empty": [draft.empty[b] for b in sorted(draft.empty)],
+            "annotations_dropped": draft.annotations_dropped,
             "attention_items": len(draft.reviews), "stopped": draft.stopped,
             "model_calls": self.usage["calls"], "cost_usd": round(self.usage["cost_usd"], 4),
             "replayed": self.replayed, "alignments": draft.alignments,
             "stop_reason": draft.stop_reason,
+            "conflicts": {**(self.check.counts if self.check else {}),
+                          "unjudged": self.check.unjudged if self.check else 0,
+                          "open": self.open_conflicts},
         }
 
 
@@ -70,16 +80,20 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
     graph = load_graph(store)
     removed = {b["id"] for b in blocks if not is_live(b)}
     redo = {b["id"] for b in pending}
-    if not pending and not any(n["source"]["block_id"] in removed for n in graph.nodes.values()):
+    # Nothing to atomize is not nothing to do: the check phase still judges the nodes that need
+    # it (F6 §4.1) — replayed from the lock at no cost, or picked up after an earlier stop.
+    if (not pending
+            and not any(n["source"]["block_id"] in removed for n in graph.nodes.values())
+            and not any(needs_checking(n) for n in graph.nodes.values())):
         return result
 
     run_id = result.ingest.run_id
     draft = GraphDraft()
     lock = JudgmentLock(store, start=graph.counters["judgment"], replay=replay, run_id=run_id)
+    # One backend and one budget for the whole run: atomizing and judging share the cap (F6 D5).
+    backend = _Meter(backend or get_backend(
+        profile.atomizer, root, budget=CallBudget(profile.atomizer.max_calls_per_run)), result.usage)
     if pending:
-        backend = _Meter(backend or get_backend(
-            profile.atomizer, root, budget=CallBudget(profile.atomizer.max_calls_per_run)),
-            result.usage)
         draft = atomize_pending(
             pending, backend, run_id=run_id, weak_words=profile.weak_words,
             layer_hints=profile.layers, registry=graph.terms,
@@ -130,6 +144,17 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             if block["id"] in draft.completed:
                 block["atomized_hash"] = draft.completed[block["id"]]
 
+        # The check phase (F6 §4.1): after every node exists, before anything is written.
+        if draft.stopped is None:
+            result.check = check(graph, backend=backend, retrieval=profile.retrieval,
+                                 settings=profile.conflicts, run_id=run_id, lock=lock)
+            _apply_check(graph, result.check, run_id)
+        result.open_conflicts = sum(1 for c in graph.conflicts.values() if c["state"] == "open")
+        if result.check is not None:            # closed by F2 §4.9's cascade, before the phase ran
+            result.check.counts["closed"]["member_deleted"] = sum(
+                1 for c in graph.conflicts.values()
+                if c["resolved_reason"] == "member_deleted" and c["resolved_run"] == run_id)
+
         sources = {s["path"]: s["file_hash"] for s in read_jsonl(store / SOURCES_FILE)}
         others = {"block": _highest(b["id"] for b in blocks),
                   "run": _highest(r["id"] for r in read_jsonl(store / RUNS_FILE))}
@@ -139,11 +164,29 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             write_graph(store, graph, transaction=transaction, sources=sources, other_counters=others,
                         staged_judgments=lock.records)
 
-    if draft.stopped == "call_cap":
+    if draft.stopped == "call_cap" or (result.check is not None and result.check.incomplete):
         result.exit_code = ExitCode.CALL_CAP
     elif draft.stopped == "backend":
         result.exit_code = ExitCode.BACKEND
+    elif result.open_conflicts:
+        result.exit_code = ExitCode.CONFLICTS          # F6 §4.8, AC-6.10
     return result
+
+
+def _apply_check(graph: Any, result: Any, run_id: str) -> None:
+    """Put what the check phase found on the graph; F4 derives the rest (`conflict_ids`, status,
+    the registry). A node checked in this run records the run and loses the stale reasons that
+    scheduled it (F6 §4.5)."""
+    graph.links += result.links
+    graph.conflicts.update(result.conflicts)
+    graph.counters["conflict"] = max(graph.counters["conflict"], result.counter)
+    for node_id in result.checked:
+        node = graph.nodes.get(node_id)
+        if node is None:
+            continue
+        node = {**node, "ambiguity": [*node["ambiguity"], *result.ambiguity.get(node_id, [])],
+                "last_checked_run": run_id, "stale_reasons": []}
+        graph.nodes[node_id] = {**node, "status": derive_status(node)}
 
 
 class _Meter:

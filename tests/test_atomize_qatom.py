@@ -66,6 +66,13 @@ def test_the_prompt_keeps_a_rule_stated_in_a_table_row_as_a_claim():
     assert "table row" in prompt and "what a word means" in prompt
 
 
+def test_the_prompt_forbids_quoting_the_context_lines():
+    """R15 (I-63): 4 of 66 blocks failed because the model quoted the section heading or the table
+    header we give as context — the Q-DESC fix of I-15, missing from Q-ATOM."""
+    prompt = build_question([BLOCK_A]).prompt.lower()
+    assert "section" in prompt and "table header" in prompt and "never quote" in prompt
+
+
 # -- the happy path ---------------------------------------------------------
 
 def test_a_valid_batch_yields_atoms_per_block():

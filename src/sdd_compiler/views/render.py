@@ -122,7 +122,10 @@ def _line(node: dict[str, Any], links: bool, width: int | None) -> str:
         ident = f"[{ident}](../../../{file}#L{line})"
     # A human view: inline emphasis and code marks are dropped from the line. The node's
     # `text` stays verbatim; a span may begin inside `**Given**` (F4 D12, R12 review).
-    text = " ".join(node["text"].replace("*", "").replace("`", "").split())
+    text = node["text"].replace("*", "").replace("`", "")
+    if text.lstrip().startswith("|"):                 # a table row: cells read as one line (F4 D12)
+        text = " · ".join(cell.strip() for cell in text.strip().strip("|").split("|") if cell.strip())
+    text = " ".join(text.split())
     if width is not None and len(text) > width:
         text = text[:width - 1] + "…"
     # F4 D16: an ambiguous line says why, so `?` is something a reader can act on.
@@ -133,18 +136,26 @@ def _line(node: dict[str, Any], links: bool, width: int | None) -> str:
 
 
 def conflicts_list(graph: Any) -> str:
-    """The open conflicts, one line per record. Grouping of interlinked ones arrives with T18."""
+    """AC-4.16 — the open conflicts, interlinked records grouped and contradictions first.
+    One renderer for `sddc conflicts` and `views/conflicts.md`, so the two cannot disagree."""
+    from ..report import conflict_groups                # the report owns the grouping rule (F6 D9)
+
     index = GraphIndex.build(graph)
-    records = sorted((c for c in graph.conflicts.values() if c["state"] == "open"), key=lambda c: c["id"])
-    if not records:
+    groups = conflict_groups(graph)
+    if not groups:
         return "No open conflicts.\n"
     lines = []
-    for record in records:
-        members = ", ".join(
-            f"{m} ({index.by_id[m]['source']['file']}:{index.by_id[m]['source']['lines'][0]})"
-            for m in record["members"] if m in index.by_id)
-        lines.append(f"- **{record['id']}** {record['kind']}: {members} — {record['rationale']}")
-    return "\n".join(lines) + "\n"
+    for number, group in enumerate(groups, start=1):
+        if len(groups) > 1 or len(group) > 1:
+            lines.append(f"### Group {number} ({len(group)} record(s), "
+                         f"{len({m for r in group for m in r['members']})} node(s))")
+        for record in group:
+            members = ", ".join(
+                f"{m} ({index.by_id[m]['source']['file']}:{index.by_id[m]['source']['lines'][0]})"
+                if m in index.by_id else f"{m} (deleted)" for m in record["members"])
+            lines.append(f"- **{record['id']}** {record['kind']}: {members} — {record['rationale']}")
+        lines.append("")
+    return "\n".join(lines).rstrip("\n") + "\n"
 
 
 def stage_views(transaction: Any, store: Any, graph: Any) -> None:

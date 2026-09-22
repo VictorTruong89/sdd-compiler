@@ -40,6 +40,13 @@ def atom_answer(*pairs):
                         "atoms": [{"kind": "requirement", "quotes": [q]}]} for b, q in pairs]}
 
 
+def no_conflicts(count: int = 8):
+    """T17: `compile` now judges pairs too. These tests are about atomization, so every pair
+    comes back `none`; extra answers are never used."""
+    return [{"relation": "none", "direction": "symmetric", "rationale": "independent claims",
+             "quotes": {"a": "share link", "b": "share link"}, "confidence": "high"}] * count
+
+
 @pytest.fixture()
 def repo(tmp_path):
     spec = tmp_path / "sdd" / "specs" / "F9_demo" / "spec.md"
@@ -53,8 +60,7 @@ def first_compile(repo, **options):
     backend = FakeBackend([
         atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)),
         {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"),
-                   desc("B-000002#1", REVOKE, "be revocable")]},
-    ], **options)
+                   desc("B-000002#1", REVOKE, "be revocable")]}, *no_conflicts()], **options)
     return compile_graph(repo, backend=backend), backend
 
 
@@ -76,7 +82,7 @@ def test_compile_writes_a_checked_graph_and_empties_the_pending_set(repo):
 def test_a_second_compile_with_nothing_pending_asks_nothing_and_changes_nothing(repo):
     first_compile(repo)
     before = {p: p.read_bytes() for p in (repo / ".sdd").rglob("*.json*") if "runs" not in p.name}
-    backend = FakeBackend([])
+    backend = FakeBackend([*no_conflicts()])
     result = compile_graph(repo, backend=backend)
     assert backend.asked == [] and result.exit_code == ExitCode.OK
     after = {p: p.read_bytes() for p in (repo / ".sdd").rglob("*.json*") if "runs" not in p.name}
@@ -89,7 +95,7 @@ def test_an_edited_block_is_re_atomized_and_keeps_its_node_id(repo):
     edited = "A share link must be revocable by its owner."
     spec.write_text(spec.read_text().replace(REVOKE, edited), encoding="utf-8")
     backend = FakeBackend([atom_answer(("B-000002", edited)),
-                           {"atoms": [desc("B-000002#1", edited, "be revocable by its owner")]}])
+                           {"atoms": [desc("B-000002#1", edited, "be revocable by its owner")]}, *no_conflicts()])
     compile_graph(repo, backend=backend)
     graph = load_graph(repo / ".sdd")
     texts = sorted(n["text"] for n in graph.nodes.values())
@@ -103,12 +109,12 @@ def test_a_removed_block_takes_its_nodes_with_it(repo):
     first_compile(repo)
     spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
     spec.write_text(spec.read_text().replace(f"{REVOKE}\n", ""), encoding="utf-8")
-    compile_graph(repo, backend=FakeBackend([]))
+    compile_graph(repo, backend=FakeBackend([*no_conflicts()]))
     assert sorted(load_graph(repo / ".sdd").nodes) == ["N-000001"]
 
 
 def test_the_call_cap_writes_what_finished_and_exits_5(repo):
-    backend = FakeBackend([atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE))],
+    backend = FakeBackend([atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)), *no_conflicts()],
                           budget=CallBudget(max_calls=1))
     result = compile_graph(repo, backend=backend)
     assert result.exit_code == ExitCode.CALL_CAP
@@ -121,8 +127,7 @@ def test_a_failed_block_stays_pending_and_is_on_the_attention_list(repo):
     backend = FakeBackend([
         atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)),
         {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"), bad]},
-        {"atoms": [bad]},
-    ])
+        {"atoms": [bad]}, *no_conflicts()])
     result = compile_graph(repo, backend=backend)
     assert result.exit_code == ExitCode.OK
     reviews = read_jsonl(repo / ".sdd" / "review.jsonl")
@@ -137,15 +142,14 @@ def failing_compile(repo):
     return compile_graph(repo, backend=FakeBackend([
         atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)),
         {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"), bad]},
-        {"atoms": [bad]},
-    ]))
+        {"atoms": [bad]}, *no_conflicts()]))
 
 
 def test_a_block_failing_again_keeps_one_open_item(repo):
     failing_compile(repo)
     bad = desc("B-000002#1", "still not in the block", "be revocable")
     compile_graph(repo, backend=FakeBackend([atom_answer(("B-000002", REVOKE)),
-                                             {"atoms": [bad]}, {"atoms": [bad]}]))
+                                             {"atoms": [bad]}, {"atoms": [bad]}, *no_conflicts()]))
     items = [r for r in read_jsonl(repo / ".sdd" / "review.jsonl") if r["type"] == "atomize_failed"]
     assert [(r["id"], r["state"]) for r in items] == [("RV-000001", "open")]
     assert "still not in the block" in items[0]["detail"]
@@ -154,7 +158,7 @@ def test_a_block_failing_again_keeps_one_open_item(repo):
 def test_an_item_closes_when_its_block_completes(repo):
     failing_compile(repo)
     compile_graph(repo, backend=FakeBackend([atom_answer(("B-000002", REVOKE)),
-                                             {"atoms": [desc("B-000002#1", REVOKE, "be revocable")]}]))
+                                             {"atoms": [desc("B-000002#1", REVOKE, "be revocable")]}, *no_conflicts()]))
     [item] = read_jsonl(repo / ".sdd" / "review.jsonl")
     assert (item["state"], item["closed_run"]) == ("resolved", "R-000002")
 
@@ -164,8 +168,25 @@ def test_an_item_closes_when_its_block_completes(repo):
 def test_the_report_counts_model_calls_and_cost(repo):
     result, _ = first_compile(repo)
     summary = result.summary()
-    assert summary["model_calls"] == 2
+    assert summary["model_calls"] == 3          # 2 to atomize, 1 to judge the pair (T17)
     assert summary["cost_usd"] == 0.0
+
+
+def test_f3_d33_the_report_counts_blocks_that_formed_no_node(repo):
+    """I-59: F5's seven source rows were labelled `definition` and formed nothing, and the run
+    reported 65 of 65 completed. A silent zero is a failure the report must show."""
+    backend = FakeBackend([
+        {"blocks": [{"block_id": "B-000001", "sentences": [{"quote": EXPIRY, "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": [EXPIRY]}]},
+                    {"block_id": "B-000002", "sentences": [{"quote": REVOKE, "role": "definition"}],
+                     "atoms": []}]},
+        {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created")]}, *no_conflicts()])
+    result = compile_graph(repo, backend=backend)
+    summary = result.summary()
+    assert (summary["completed"], summary["failed"], summary["nodes_formed"]) == (2, 0, 1)
+    assert summary["empty_blocks"] == 1
+    assert summary["empty"] == [{"block": "B-000002", "file": "sdd/specs/F9_demo/spec.md",
+                                 "lines": [5, 5], "roles": ["definition"]}]
 
 
 # -- T12: identity across edits and the judgment lock (F3 AC-3.17 … AC-3.20) --------
@@ -191,7 +212,7 @@ def test_ac_3_17_an_edited_block_keeps_its_node_id_and_marks_the_neighbour_stale
     edited = "A share link must be revocable at any time."
     spec.write_text(spec.read_text().replace(REVOKE, edited), encoding="utf-8")
     result = compile_graph(repo, backend=FakeBackend([
-        atom_answer(("B-000002", edited)), {"atoms": [desc("B-000002#1", edited, "be revocable at any time")]}]))
+        atom_answer(("B-000002", edited)), {"atoms": [desc("B-000002#1", edited, "be revocable at any time")]}, *no_conflicts()]))
 
     graph = load_graph(repo / ".sdd")
     assert graph.nodes["N-000002"]["text"] == edited
@@ -214,8 +235,7 @@ def test_ac_3_18_a_split_keeps_one_id_and_adds_one(repo):
                      "atoms": [{"kind": "requirement", "quotes": [REVOKE]},
                                {"kind": "requirement", "quotes": [second]}]}]},
         {"atoms": [desc("B-000002#1", REVOKE, "be revocable"),
-                   desc("B-000002#2", second, "return 404")]},
-    ]))
+                   desc("B-000002#2", second, "return 404")]}, *no_conflicts()]))
     graph = load_graph(repo / ".sdd")
     assert graph.nodes["N-000002"]["text"] == REVOKE
     assert graph.nodes["N-000003"]["text"] == second
@@ -226,11 +246,16 @@ def test_ac_3_18_a_removed_block_deletes_its_nodes_and_stales_judged_neighbours(
     add_judged_link(repo, "N-000001", "N-000002")
     spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
     spec.write_text(spec.read_text().replace(f"{REVOKE}\n", ""), encoding="utf-8")
-    compile_graph(repo, backend=FakeBackend([]))
+    compile_graph(repo, backend=FakeBackend([*no_conflicts()]))
     graph = load_graph(repo / ".sdd")
     assert "N-000002" not in graph.nodes
     assert graph.links == [l for l in graph.links if "N-000002" not in (l["from"], l["to"])]
-    assert graph.nodes["N-000001"]["stale_reasons"][0]["link"] == ["N-000001", "refines", "N-000002"]
+    # The cascade records why N-000001 must be looked at again (F2 AC-2.23, tested on the store in
+    # `test_store_graph.py`); the check phase in the same run looks at it and discharges the reason
+    # (F6 D13). What must never happen is a node left stale with nobody scheduled to re-check it.
+    assert graph.nodes["N-000001"]["stale_reasons"] == []
+    assert graph.nodes["N-000001"]["last_checked_run"] == "R-000002"
+    assert graph.nodes["N-000001"]["status"] != "stale"
 
 
 def graph_bytes(repo):
@@ -247,7 +272,7 @@ def test_ac_3_19_the_same_sources_and_lock_rebuild_the_same_graph_with_no_calls(
     init(rebuilt)
     shutil.copytree(repo / ".sdd" / "lock", rebuilt / ".sdd" / "lock")
 
-    backend = FakeBackend([])                                  # any call fails the test
+    backend = FakeBackend([*no_conflicts()])                                  # any call fails the test
     result = compile_graph(rebuilt, backend=backend)
     assert backend.asked == []
     assert result.summary()["replayed"] == 4                    # 2 blocks (Q-ATOM) + 2 atoms (Q-DESC)
@@ -263,10 +288,9 @@ def test_ac_3_20_no_replay_asks_again(repo, tmp_path):
     backend = FakeBackend([
         atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)),
         {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"),
-                   desc("B-000002#1", REVOKE, "be revocable")]},
-    ])
+                   desc("B-000002#1", REVOKE, "be revocable")]}, *no_conflicts()])
     compile_graph(rebuilt, backend=backend, replay=False)
-    assert len(backend.asked) == 2
+    assert len(backend.asked) == 3          # 2 to atomize, 1 to judge: --no-replay asks everything
 
 
 def test_nodes_cite_the_judgments_that_formed_them(repo):
@@ -307,3 +331,103 @@ def test_i43_a_backend_failure_keeps_finished_chunks_and_their_answers(repo):
     assert sorted(load_graph(repo / ".sdd").nodes) == ["N-000001"]           # chunk 1 kept
     assert [p["id"] for p in status(repo)["pending"]] == ["B-000002"]       # chunk 2 still pending
     assert len((repo / ".sdd" / "lock" / "q-atom.jsonl").read_text().splitlines()) == 1
+
+
+# -- T17: the check phase inside compile (F6 §4.1, AC-6.1, AC-6.11, AC-6.13, AC-6.16) ---------
+
+def pair(relation="contradicts", quote_a="share link", quote_b="share link", direction="symmetric"):
+    return {"relation": relation, "direction": direction,
+            "rationale": "both set the lifetime of a share link, to different values",
+            "quotes": {"a": quote_a, "b": quote_b}, "confidence": "high"}
+
+
+def compile_two_nodes(repo, *pairs, **options):
+    """Both blocks atomize into one node each, then the single candidate pair is judged."""
+    backend = FakeBackend([
+        atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)),
+        {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"),
+                   desc("B-000002#1", REVOKE, "be revocable")]},
+        *pairs,
+    ], **options)
+    return compile_graph(repo, backend=backend), backend
+
+
+def test_ac_6_1_a_contradiction_is_written_with_its_members_and_the_registry(repo):
+    result, backend = compile_two_nodes(repo, pair())
+    graph = load_graph(repo / ".sdd")
+    [record] = graph.conflicts.values()
+
+    assert record["kind"] == "contradiction" and record["state"] == "open"
+    assert record["members"] == sorted(graph.nodes)
+    for node_id in record["members"]:
+        assert graph.nodes[node_id]["conflict_ids"] == [record["id"]]
+        assert graph.nodes[node_id]["status"] == "conflict"
+    registry = json.loads((repo / ".sdd" / "conflicted_nodes.json").read_text())
+    assert registry["count"] == 2
+    assert check_store(repo / ".sdd") == []
+    assert result.exit_code == ExitCode.CONFLICTS                      # AC-6.10: exit 3
+    assert result.summary()["conflicts"]["opened"] == 1
+    assert [l["type"] for l in graph.links if l["provenance"] == "judgment"] == ["conflicts_with"]
+
+
+def test_ac_6_11_a_clean_run_says_so_and_exits_zero(repo):
+    result, _ = compile_two_nodes(repo, pair(relation="none"))
+    graph = load_graph(repo / ".sdd")
+    assert graph.conflicts == {}
+    assert result.exit_code == ExitCode.OK
+    assert result.summary()["conflicts"]["by_relation"]["none"] == 1
+    assert all(n["status"] == "validated" for n in graph.nodes.values())    # checked, nothing found
+
+
+def test_ac_6_13_a_second_compile_judges_nothing_again(repo):
+    compile_two_nodes(repo, pair())
+    result, backend = compile_two_nodes(repo)                  # no pair answer scripted
+    assert [q.kind for q in backend.asked] == []
+    assert result.summary()["conflicts"]["pairs_replayed"] == 1
+    assert result.exit_code == ExitCode.CONFLICTS              # the record is still open
+
+
+def test_ac_6_16_a_re_judgement_that_says_none_closes_the_record_and_clears_the_nodes(repo):
+    compile_two_nodes(repo, pair())
+    spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.write_text(f"## Sharing\n\n{EXPIRY}\n\nA share link must be revocable by its owner.\n",
+                    encoding="utf-8")
+    revoke = "A share link must be revocable by its owner."
+    backend = FakeBackend([
+        atom_answer(("B-000002", revoke)),
+        {"atoms": [desc("B-000002#1", revoke, "be revocable by its owner")]},
+        pair(relation="none"), *no_conflicts()])
+    result = compile_graph(repo, backend=backend)
+    graph = load_graph(repo / ".sdd")
+    [record] = graph.conflicts.values()
+
+    assert (record["state"], record["resolved_reason"]) == ("resolved", "fixed")
+    assert all(n["conflict_ids"] == [] for n in graph.nodes.values())
+    assert all(n["status"] != "conflict" for n in graph.nodes.values())
+    assert json.loads((repo / ".sdd" / "conflicted_nodes.json").read_text())["count"] == 0
+    assert result.exit_code == ExitCode.OK
+    assert result.summary()["conflicts"]["closed"]["rejudged"] == 1
+
+
+def test_ac_6_12_a_cap_reached_in_the_check_phase_reports_incomplete_and_exits_five(repo):
+    result, backend = compile_two_nodes(repo, pair(), budget=CallBudget(2))   # 2 calls atomize
+    assert result.exit_code == ExitCode.CALL_CAP
+    summary = result.summary()
+    assert summary["conflicts"]["incomplete"] is True
+    assert summary["conflicts"]["unjudged"] == 1
+    assert load_graph(repo / ".sdd").conflicts == {}            # nothing judged, nothing invented
+
+
+def test_ac_6_17_deleting_a_member_closes_the_record_and_the_run_counts_it(repo):
+    compile_two_nodes(repo, pair())
+    spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.write_text(f"## Sharing\n\n{EXPIRY}\n", encoding="utf-8")        # REVOKE removed
+    result = compile_graph(repo, backend=FakeBackend([*no_conflicts()]))
+    graph = load_graph(repo / ".sdd")
+    [record] = graph.conflicts.values()
+
+    assert (record["state"], record["resolved_reason"]) == ("resolved", "member_deleted")
+    assert record["members"] == ["N-000001", "N-000002"]          # kept as history (F2 D14)
+    assert graph.nodes["N-000001"]["conflict_ids"] == []
+    assert result.summary()["conflicts"]["closed"]["member_deleted"] == 1
+    assert result.exit_code == ExitCode.OK

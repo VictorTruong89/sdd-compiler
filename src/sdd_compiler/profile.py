@@ -29,6 +29,19 @@ DEFAULT_ATOMIZER: dict[str, Any] = {
     "thinking": False,
 }
 
+#: F5 CT-5.2 — retrieval settings. Starting values to tune with measurement (F5 D6).
+DEFAULT_RETRIEVAL: dict[str, Any] = {
+    "max_pairs_per_node": 10,
+    "min_score": 1.0,
+    "min_shared_keywords": 2,
+}
+
+#: F6 CT-6.3 — the check phase.
+DEFAULT_CONFLICTS: dict[str, Any] = {
+    "judge_ambiguous": True,
+    "subsumption_conflict_only_when_differing": True,
+}
+
 DEFAULT_WEAK_WORDS = [
     "fast", "quickly", "appropriate", "user-friendly", "as needed", "etc", "robust", "simple",
 ]
@@ -38,6 +51,8 @@ DEFAULT_PROFILE: dict[str, Any] = {
     "exclude_globs": ["sdd/specs/_templates/**"],
     "include_code_blocks": False,
     "atomizer": dict(DEFAULT_ATOMIZER),
+    "retrieval": dict(DEFAULT_RETRIEVAL),
+    "conflicts": dict(DEFAULT_CONFLICTS),
     "weak_words": list(DEFAULT_WEAK_WORDS),
     "layers": {},
 }
@@ -59,6 +74,19 @@ atomizer:
   timeout_s: {timeout}
   thinking: false            # extended thinking; off for closed questions (F3 D10)
 
+# Read by retrieval (F5 CT-5.2): how many candidate pairs a node may propose, the
+# score a pair must reach, and how many keywords count as shared.
+retrieval:
+  max_pairs_per_node: {max_pairs_per_node}
+  min_score: {min_score}
+  min_shared_keywords: {min_shared_keywords}
+
+# Read by the check phase (F6 CT-6.3): whether an ambiguous node is judged at all,
+# and whether a subsumption is a conflict only when the two claims differ (F6 D2).
+conflicts:
+  judge_ambiguous: {judge_ambiguous}
+  subsumption_conflict_only_when_differing: {subsumption_conflict_only_when_differing}
+
 # Words that suggest a vague claim (F3 guard G6).
 weak_words: {weak_words}
 
@@ -79,11 +107,30 @@ class AtomizerSettings:
 
 
 @dataclass(frozen=True)
+class RetrievalSettings:
+    """F5 CT-5.2."""
+
+    max_pairs_per_node: int = 10
+    min_score: float = 1.0
+    min_shared_keywords: int = 2
+
+
+@dataclass(frozen=True)
+class ConflictSettings:
+    """F6 CT-6.3."""
+
+    judge_ambiguous: bool = True
+    subsumption_conflict_only_when_differing: bool = True
+
+
+@dataclass(frozen=True)
 class Profile:
     spec_globs: tuple[str, ...]
     exclude_globs: tuple[str, ...]
     include_code_blocks: bool
     atomizer: AtomizerSettings
+    retrieval: RetrievalSettings = field(default_factory=RetrievalSettings)
+    conflicts: ConflictSettings = field(default_factory=ConflictSettings)
     weak_words: tuple[str, ...] = ()
     layers: Mapping[str, Mapping[str, Any]] = field(default_factory=dict)
 
@@ -99,6 +146,8 @@ def render_default_profile() -> str:
         max_calls=DEFAULT_ATOMIZER["max_calls_per_run"],
         timeout=DEFAULT_ATOMIZER["timeout_s"],
         weak_words=DEFAULT_WEAK_WORDS,
+        **DEFAULT_RETRIEVAL,
+        **{key: str(value).lower() for key, value in DEFAULT_CONFLICTS.items()},
     )
 
 
@@ -160,9 +209,44 @@ def parse_profile(raw: Any, source: str = PROFILE_NAME) -> Profile:
         exclude_globs=exclude_globs,
         include_code_blocks=include_code_blocks,
         atomizer=_atomizer(raw.get("atomizer", DEFAULT_ATOMIZER), source),
+        retrieval=_retrieval(raw.get("retrieval", DEFAULT_RETRIEVAL), source),
+        conflicts=_conflicts(raw.get("conflicts", DEFAULT_CONFLICTS), source),
         weak_words=tuple(word.lower() for word in weak_words),
         layers=_layers(raw.get("layers", {}), source),
     )
+
+
+def _retrieval(value: Any, source: str) -> RetrievalSettings:
+    """F5 CT-5.2 — validated as strictly as the rest: a misspelled setting is a defect."""
+    if not isinstance(value, Mapping):
+        raise SddcError(f"{source}: retrieval must be a mapping", ExitCode.INPUT)
+    unknown = sorted(set(value) - set(DEFAULT_RETRIEVAL))
+    if unknown:
+        raise SddcError(f"{source}: retrieval has unknown key(s) {', '.join(unknown)}", ExitCode.INPUT)
+    settings = {**DEFAULT_RETRIEVAL, **value}
+    for key in ("max_pairs_per_node", "min_shared_keywords"):
+        if not isinstance(settings[key], int) or isinstance(settings[key], bool) or settings[key] < 1:
+            raise SddcError(f"{source}: retrieval.{key} must be a whole number ≥ 1", ExitCode.INPUT)
+    if not isinstance(settings["min_score"], (int, float)) or isinstance(settings["min_score"], bool) \
+            or settings["min_score"] < 0:
+        raise SddcError(f"{source}: retrieval.min_score must be a number ≥ 0", ExitCode.INPUT)
+    return RetrievalSettings(max_pairs_per_node=settings["max_pairs_per_node"],
+                             min_score=float(settings["min_score"]),
+                             min_shared_keywords=settings["min_shared_keywords"])
+
+
+def _conflicts(value: Any, source: str) -> ConflictSettings:
+    """F6 CT-6.3 — two switches, both booleans."""
+    if not isinstance(value, Mapping):
+        raise SddcError(f"{source}: conflicts must be a mapping", ExitCode.INPUT)
+    unknown = sorted(set(value) - set(DEFAULT_CONFLICTS))
+    if unknown:
+        raise SddcError(f"{source}: conflicts has unknown key(s) {', '.join(unknown)}", ExitCode.INPUT)
+    settings = {**DEFAULT_CONFLICTS, **value}
+    for key, setting in settings.items():
+        if not isinstance(setting, bool):
+            raise SddcError(f"{source}: conflicts.{key} must be true or false", ExitCode.INPUT)
+    return ConflictSettings(**settings)
 
 
 def _layers(value: Any, source: str) -> dict[str, dict[str, Any]]:
