@@ -201,6 +201,94 @@ rather than suspected. ⚠ The adjudications are Claude's, as at M3 — **owner 
 
 ---
 
+## 8. The full-corpus run — pass line, fixed 2026-09-22 before the run
+
+> Recorded **before** any of this run's output exists — gate protocol step 1 (build-plan §3), the step
+> the M3 gate failed (M3-gate §4). Procedure: [`HANDOVER_full_compile.md`](HANDOVER_full_compile.md).
+
+**Owner's pass line, confirmed 2026-09-22:**
+
+> *"The compile completes with a clean store, and at least a quarter of a sampled hundred conflicts
+> are judged real."*
+
+| # | Condition | Measured by |
+|---|---|---|
+| **F1** | The compile **completes**: `pending` 0, `conflicts.unjudged` 0, `incomplete` false | the last round's summary |
+| **F2** | The store is **clean**: `check_store` reports nothing | `check_store(.sdd)` |
+| **F3** | **≥ 25 of 100** sampled conflicts judged **real** (all of them, and a quarter of them, if fewer than 100 are reported) | `.sdd/adjudications.jsonl` (F6 AC-6.20) |
+
+**Sampling:** a seeded random draw over every reported conflict, made **before** any record is read,
+with the seed recorded. Claude adjudicates; the owner confirms; the verdict stands on the owner's
+confirmation.
+
+⚠ **This is a demanding bar on this corpus, knowingly set.** The same specs at 181 blocks scored
+≈ 10 % (M4-gate §7, I-81), and the cause is known: 65 of 70 conflicts there involved an acceptance
+criterion or a decision entry — the documents' own structure. Passing F3 without fixing I-81 would be
+a surprise; failing it while the machine works is the expected outcome, and is worth recording as
+precisely as a pass.
+
+### Results — the compile (2026-09-22 19:47 → 2026-09-23 23:46)
+
+**Corpus:** `sdd/specs/` copied to `~/sddc-runs/full-corpus/` and hashed before the run
+(`corpus.sha256`), identical at the end: **9 files, 845 blocks** — not the 733 of the M1 gate; the
+specs grew in between (I-69).
+
+```text
+360390f261dfcf48d72924ef2e4ec64dda27e06598f393d7ae9161f2ec53ed34  ./constitution.md
+bb2f1596037e4559cc5f32c46aa35f0d7551c454adc748a30bc951398eb95132  ./F1_ingest/spec.md
+dcbdfecbf508687609569a103347f6d11521654bc8d7ec6afb5064ac4e2ddf36  ./F2_node_model/spec.md
+0bac0f9f019008e02049136547bceaf799c595d4e117548ed1d108f8eb9f7c51  ./F3_atomizer/spec.md
+3913b4b6977ae194fbf09eda9bb63d168353897cfbf6b960b3478fe36205b3dc  ./F4_graph_store/spec.md
+577b59979b9e958e403ae64d908dc8fb50643c0dbb77b060fca8df32b1c04a2b  ./F5_retrieval/spec.md
+59c651d395a40c8b93c2426fb0dc5467e98b049e5e9526f06089ce378e0c148a  ./F6_conflicts/spec.md
+738109e7ff65a0743a3f5c2790040c62c86305e927c4c6b33e32490b3fdc7a1c  ./README.md
+0b49e91f42d6368f94662576c0c3c4c192e80c2a4ec5c97a101cd2ab9e8e02cd  ./vision.md
+```
+
+**Model:** `claude-code` + Haiku, thinking off, on the owner's subscription. No API key was set or
+used at any point. Raw output in [`measurements/`](measurements/): `R18_round1 … 16.json`,
+`R18_round7_crash.err`, `R18_report.txt`, `R18_conflicts.txt`, `R18_sample.txt`.
+
+| | Handover expected (§6) | **Measured** |
+|---|---|---|
+| Blocks · nodes | 733 · ≈ 800 | **845 · 950** (304 `ambiguous`, 451 `conflict`, 195 `validated`) |
+| Candidate pairs · verdicts | ≈ 3 000 · — | **4 268** at the widest round (R-000010) **· 4 251** (2 854 none · 425 subsumes · 396 depends_on · 306 refines · 167 contradicts · 103 duplicates) |
+| Conflicts reported | ≈ 150–190 | **381 open** — 167 contradiction, 157 subsumption, 57 duplication, in 95 groups |
+| Rounds | 4–6 | **16** — 10 call cap, 5 session limit, 1 complete |
+| Model calls · estimated API-equivalent | ≈ 850 · ≈ $26 | **2 673 · ≈ $54.94** (I-87) |
+| Compile wall time | — | **9.05 h** over 28 h elapsed |
+
+⚠ **Every `$` is Claude Code's own `total_cost_usd`, summed per call — an estimate of the equivalent
+API list price, not money billed** (G4 §2, I-82). The 2-minute run that crashed (I-83) wrote nothing,
+its usage included.
+
+**Three defects found by the run and fixed test-first mid-run** (build-plan I-83, I-85, I-86; suite
+623 → 628). Each would have made the number below wrong:
+
+- **I-83** — the judgment-id counter was saved before the check phase, so round 7 re-issued ids the
+  lock already held and crashed; `check_store` had been blind to that counter.
+- **I-85** — a check phase stopped by the cap marked every node checked, silently dropping its
+  unjudged pairs; round 7 then reported the compile **complete** with 1 866 pairs never judged. The
+  store was recovered (406 nodes' `last_checked_run` cleared through `write_graph`; backup kept) and
+  every judged pair replayed from the lock at no cost.
+- **I-86** — `ambiguous` nodes never proposed pairs of their own (44 % of the graph). Fixing it took
+  the candidate pairs from 2 418 to 4 268, and is most of why the conflict count and the cost are
+  twice the estimate.
+
+⚠ **The dogfood (§7) had I-86 too**, so its 70 conflicts on 181 blocks were an undercount.
+
+### Against the pass line
+
+| # | Condition | Result |
+|---|---|---|
+| **F1** | `pending` 0, `conflicts.unjudged` 0, `incomplete` false | ⚠ **`unjudged` 0 and `incomplete` false; `pending` is 1** — one block, B-000243 (F2 D12's `*Rejected:*` sentence), fails G3 on every retry (I-84; six others cleared on retry). Strictly **not met**; owner to rule whether one unatomizable block of 845 fails the line |
+| **F2** | `check_store` clean | ✅ **clean** — with the counters check that now covers `judgment` (I-83) |
+| **F3** | ≥ 25 of 100 sampled conflicts judged real | ⬜ **pending adjudication.** Sample drawn 2026-09-24: `random.Random(20260922).sample(sorted open ids, 100)` — seed = the pass-line date, fixed before drawing; population 381; ids in `measurements/R18_sample.txt`. ⚠ Disclosure: the first ~19 records of group 1 were displayed while saving `R18_conflicts.txt`, before the draw; the draw is mechanical and the seed was chosen a priori, so this cannot steer which records are sampled |
+
+*(M2 — adjudication of the 100, then the owner's confirmation.)*
+
+---
+
 ## 6. R18 — what it is, what it costs, and the cheaper ways to the same number
 
 ### What R18 is

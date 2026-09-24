@@ -362,3 +362,16 @@ def test_the_budget_is_shared_with_atomization(lock):
     assert error.value.exit_code == ExitCode.CALL_CAP
     result, backend = run_check(graph, [answer()], lock, budget=CallBudget(0))
     assert backend.asked == [] and result.incomplete is True
+
+
+def test_i85_a_stopped_phase_leaves_the_nodes_it_did_not_reach_unchecked(lock):
+    """AC-6.12's clause no test held: "unjudged nodes keep `unchecked` or `stale`". R18 round 6
+    stopped with 1 866 pairs unjudged and marked every node checked, so the next run never saw them."""
+    graph = graph_of(*many_nodes(6))                       # 15 pairs, two batches
+    budget = CallBudget(1)                                  # the first batch only
+    result, _ = run_check(graph, [answer(relation="none")] * 15, lock, budget=budget)
+    assert result.incomplete and result.unjudged == 7
+    unreached = {n for pair in result.unreached for n in pair}
+    assert unreached                                        # the second batch touched some nodes
+    assert not unreached & set(result.checked)             # … and none of them is discharged
+    assert set(result.checked) | unreached == set(graph.nodes)

@@ -307,7 +307,7 @@ def _checks(graph: Graph, placement: Iterable[tuple[str, str, str | None]] | Non
 
     counters = (meta or {}).get("id_counters") or graph.counters
     for key in COUNTER_KEYS:
-        highest = _highest(key, graph)
+        highest = _highest(key, graph, judgment_ids)
         value = counters.get(key, 0)
         if value < highest:
             problems.append(f"counters monotonic: id_counters.{key} is {value}, below the highest id issued ({highest})")
@@ -317,9 +317,10 @@ def _checks(graph: Graph, placement: Iterable[tuple[str, str, str | None]] | Non
     return problems
 
 
-def _highest(key: str, graph: Graph) -> int:
+def _highest(key: str, graph: Graph, judgment_ids: Iterable[str] = ()) -> int:
+    # Judgment ids live in the lock, not the graph (I-83: an empty stand-in hid a lagging counter).
     ids: Iterable[str] = {"node": graph.nodes, "conflict": graph.conflicts, "review": graph.reviews,
-                          "judgment": ()}[key]
+                          "judgment": judgment_ids}[key]
     pattern = re.compile(re.escape(_COUNTER_PREFIX[key]) + r"(\d+)$")
     return max((int(m.group(1)) for i in ids if (m := pattern.match(i))), default=0)
 

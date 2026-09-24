@@ -27,7 +27,14 @@ def test_ac_5_14_status_decides_what_is_checked():
     assert not needs_checking(node("N-4", status="validated"))
     ambiguous = node("N-5", status="ambiguous")
     assert needs_checking(ambiguous)                                  # never judged
-    assert not needs_checking({**ambiguous, "judgments": ["J-000001"]})
+    assert not needs_checking({**ambiguous, "last_checked_run": "R-000002"})
+
+
+def test_i86_an_ambiguous_node_formed_by_the_atomizer_is_still_never_judged():
+    """`judgments` lists the Q-ATOM/Q-DESC answers that formed the node, so it is never empty on a
+    real graph; "never judged" (F5 §4.1) is about the check phase. R18: 416 of 937 nodes skipped."""
+    formed = {**node("N-6", status="ambiguous"), "judgments": ["J-000001", "J-000002"]}
+    assert needs_checking(formed)
 
 
 def test_checking_order_is_source_then_line_then_id():

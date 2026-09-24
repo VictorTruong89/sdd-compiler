@@ -151,6 +151,8 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             result.check = check(graph, backend=backend, retrieval=profile.retrieval,
                                  settings=profile.conflicts, run_id=run_id, lock=lock)
             _apply_check(graph, result.check, run_id)
+        # Again after the check phase: its Q-PAIR records are judgments too (I-83).
+        graph.counters["judgment"] = max(graph.counters["judgment"], lock.counter)
         result.open_conflicts = sum(1 for c in graph.conflicts.values() if c["state"] == "open")
         if result.check is not None:            # closed by F2 §4.9's cascade, before the phase ran
             result.check.counts["closed"]["member_deleted"] = sum(

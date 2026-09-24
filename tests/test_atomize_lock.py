@@ -100,3 +100,14 @@ def test_saved_lock_files_are_sorted_json_lines_per_kind(tmp_path):
     lock.save_to(tmp_path)
     lines = (tmp_path / "lock" / "q-atom.jsonl").read_text().splitlines()
     assert [json.loads(l)["id"] for l in lines] == ["J-000001", "J-000002"]
+
+
+def test_i83_a_lock_never_reissues_an_id_it_already_holds(tmp_path):
+    """A counter that lags the lock (I-83) must not make a new record overwrite an old one of
+    another kind: the replay index would then serve that record's answer to the wrong question."""
+    lock = JudgmentLock(tmp_path, start=0)
+    atomize_blocks([BLOCK, OTHER], FakeBackend([answer(BLOCK, OTHER)]), lock=lock)
+    lock.save_to(tmp_path)
+
+    lagging = JudgmentLock(tmp_path, start=1)                  # the stored counter says 1, the lock holds 2
+    assert lagging.counter == 2

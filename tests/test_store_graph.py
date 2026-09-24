@@ -203,10 +203,10 @@ def test_ac_4_8_every_check_reports(store):
 
 def test_counters_never_decrease_between_transactions(store):
     write_graph(store, graph([node("N-000001")], [term("term:a")],
-                             counters={"node": 5, "conflict": 0, "judgment": 0, "review": 0}))
+                             counters={"node": 5, "conflict": 0, "judgment": 1, "review": 0}))
     with pytest.raises(SddcError) as error:
         write_graph(store, graph([node("N-000001")], [term("term:a")],
-                                 counters={"node": 4, "conflict": 0, "judgment": 0, "review": 0}))
+                                 counters={"node": 4, "conflict": 0, "judgment": 1, "review": 0}))
     assert "counters monotonic" in str(error.value)
 
 
@@ -241,3 +241,16 @@ def test_a_written_graph_loads_back_equal(store):
     loaded = load_graph(store)
     assert loaded.nodes == g.nodes and loaded.terms == g.terms and loaded.links == g.links
     assert check_store(store) == []
+
+
+def test_i83_the_judgment_counter_is_checked_against_the_lock(store):
+    """F4 §4.3 counters monotonic covers `judgment` too: its ids live in the lock, not the graph.
+    R18 round 7 found the counter 532 behind the lock and `check_store` silent (I-83)."""
+    (store / "lock" / "q-pair.jsonl").write_text('{"id": "J-000001"}\n{"id": "J-000012"}\n')
+    write_graph(store, graph([node("N-000001")], [term("term:a")],
+                             counters={"node": 9, "conflict": 0, "judgment": 12, "review": 0}))
+    meta = json.loads((store / "graph.meta.json").read_text())
+    meta["id_counters"]["judgment"] = 9
+    (store / "graph.meta.json").write_text(json.dumps(meta))
+    assert any(v.startswith("counters monotonic: id_counters.judgment is 9")
+               for v in check_store(store))

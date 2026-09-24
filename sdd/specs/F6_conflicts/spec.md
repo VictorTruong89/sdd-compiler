@@ -197,6 +197,15 @@ conflicts:
   `verifies` lists node B, **when** the judge answers `duplicates` or `subsumes`, **then** no conflict
   record and no link are made and the run counts one `suppressed`; **when** it answers `contradicts`,
   **then** the record is opened as usual. → *unit.*
+- **AC-6.22** *(a criterion does not duplicate its own spec; D19)* — **Given** a `V` node and a
+  non-`V` node from the **same file**, `verifies` empty, **when** the judge answers `duplicates` or
+  `subsumes`, **then** no record and no link are made and the run counts one `suppressed`; **when** it
+  answers `contradicts`, or the other node is in another file, or both are `V` nodes, **then** the
+  record is opened as usual. → *unit.*
+- **AC-6.23** *(one block does not duplicate itself; D19)* — **Given** two nodes with the same
+  `source.block_id`, **when** the judge answers `duplicates` or `subsumes`, **then** no record and no
+  link are made and the run counts one `suppressed`; **when** it answers `contradicts`, **then** the
+  record is opened as usual. → *unit.*
 - **AC-6.20** *(a human verdict is recorded; G4 §4, D14)* — **Given** an open conflict, **when**
   `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, **then** `.sdd/adjudications.jsonl`
   gains a record naming the conflict, the verdict, the note, the members and the `judgment` it
@@ -285,6 +294,23 @@ conflicts:
   pair's answer is validated on its own, and a failure re-asks **that pair alone**. With D13's cap,
   the same corpus needs **15 calls instead of 159**. *Rejected:* a larger batch — Q-DESC settled on 8
   (rel01 S21) because a longer call risks the timeout, and a timeout costs the whole batch.
+- **D19 — ⚑ The document's form settles two more non-conflicts, in code** (I-81, after the dogfood).
+  D16 fires only when a criterion cites its rule, and on this repository's own specs most criteria
+  cite nothing: precision there was ≈ 10 %, and 65 of 70 conflicts involved a criterion or a decision
+  entry. Two facts the graph already holds now settle a `duplicates` or `subsumes` verdict the same
+  way D16 does — nothing recorded, counted as `suppressed` (CT-6.2):
+  (a) **a criterion and a claim of its own spec file** — exactly one of the two is a `V` node and both
+  come from one file; a criterion restates its spec's rules by design;
+  (b) **two claims of one block** — the same `source.block_id`, as a decision entry's heading and
+  its body are.
+  **A contradiction is never suppressed by either**: all four real finds of the dogfood were
+  contradictions, one between a criterion and its own spec (CF-000038), one between two sentences of
+  one paragraph (CF-000001). Measured on the dogfood store before building: (a) removes 22 of the 70
+  records and (b) 5, none of them among the four real. *Given up:* a criterion that genuinely
+  duplicates prose of its own file is no longer reported; duplication **across** files, and between
+  two criteria, still is. *Rejected:* suppressing contradictions between criteria describing different
+  situations by label — CF-000038 is in that class; that one needs the judge to see the situation,
+  not a rule on the layout.
 - **D17 — ⚑ The judge is shown the terms, and how they relate** (after R17: I-76). Retrieval delivered
   the 5 GB / 5 GiB pair and the judge answered `none` — *"the two claims govern different export types
   (export archive vs workspace export)"* — while the graph held both as kinds of `export`. Each claim
@@ -337,5 +363,6 @@ conflicts:
 | AC-6.14, AC-6.15, AC-6.18 · D4, D13 | `tests/test_conflicts_pipeline.py::test_ac_6_14_…`, `::test_ac_6_15_…`, `::test_ac_6_18_…` | `src/sdd_compiler/conflicts/pipeline.py` |
 | AC-6.19 *(counts add up)* | `tests/test_conflicts_pipeline.py::test_ac_6_19_…` | `src/sdd_compiler/conflicts/pipeline.py` |
 | AC-6.21 · D16, D17 (R19) | `tests/test_conflicts_judge.py::test_i77_…`, `::test_r19_…` · `tests/test_conflicts_pipeline.py::test_r19_…` | `src/sdd_compiler/conflicts/records.py` · `judge.py` · `pipeline.py` |
+| AC-6.22, AC-6.23 · D19 (I-81) | `tests/test_conflicts_judge.py::test_ac_6_22_…` (3), `::test_ac_6_23_…` (3) | `src/sdd_compiler/conflicts/records.py::outcome_for` · `_criterion_in_its_own_spec` |
 | AC-6.20 · D14 (T19) | `tests/test_adjudicate.py` (9) | `src/sdd_compiler/conflicts/adjudicate.py` · `commands.py` · `cli.py` |
 | AC-6.10, AC-6.11 · D9 (T18) | `tests/test_report.py` (12), goldens `tests/golden/report_*.md` | `src/sdd_compiler/report.py` · `src/sdd_compiler/commands.py` |

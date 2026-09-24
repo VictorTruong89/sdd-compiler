@@ -55,6 +55,7 @@ class CheckResult:
     unjudged: int = 0
     counter: int = 0                                                     # highest conflict id used
     checked: list[str] = field(default_factory=list)                     # nodes this run looked at
+    unreached: list[tuple[str, str]] = field(default_factory=list)       # pairs a stop left unjudged
 
 
 def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id: str,
@@ -96,6 +97,11 @@ def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id
             result.stop_reason = str(error)
             counts["stopped"] = result.stopped
             result.unjudged = len(items) - start
+            # A node with a pair still to judge keeps `unchecked` or `stale` (§4.7, AC-6.12, I-85);
+            # discharging it would drop that pair from every later run.
+            result.unreached = [(item.a["id"], item.b["id"]) for item in items[start:]]
+            touched = {node_id for pair in result.unreached for node_id in pair}
+            result.checked = [node_id for node_id in result.checked if node_id not in touched]
             break
 
         replayed = lock.replayed - replayed_before

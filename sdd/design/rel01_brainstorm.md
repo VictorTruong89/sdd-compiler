@@ -266,6 +266,22 @@ use in a later release; rel01 wires none of them.
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
 
+### S39 — 2026-09-22 … 24 — R18: the full-corpus compile, and three defects it found
+
+- Ran [`HANDOVER_full_compile.md`](rel01_design/HANDOVER_full_compile.md): `sdd/specs/` copied and
+  hashed, compiled in **16 resumable rounds** on the subscription (10 call cap, 5 session limit),
+  **9.05 h** of compile, **2 673 calls, ≈ $54.94 estimated API-equivalent**. **845 blocks → 950 nodes →
+  4 251 verdicts → 381 conflicts open**; store clean; 1 block still pending (I-84).
+- **Three real defects, each fixed test-first mid-run** (suite 623 → 628): **I-83** the judgment-id
+  counter lagged the lock (round 7 crashed; `check_store` had been blind to it); **I-85** a cap stop
+  discharged nodes with unjudged pairs, so round 7 reported a false "complete" with 1 866 pairs never
+  judged — store recovered, judged pairs replayed free; **I-86** ambiguous nodes (44 %) never proposed
+  pairs of their own. I-86's fix is most of why the run cost twice its estimate (I-87).
+- Pass line (M4-gate §8): F2 ✅ clean; F1 ⚠ `pending` 1 — owner to rule; F3 pending — **sample of 100
+  drawn** with seed 20260922 (`measurements/R18_sample.txt`), not yet adjudicated.
+- **Next:** adjudicate the 100 with `sddc conflicts judge`; owner confirms; fix what is real in the
+  specs; decide I-84 and I-87's levers.
+
 ### S38 — 2026-09-22 — I-82: the money was never money; handover for the full-corpus run
 
 - **I-82, found by the owner:** the Console showed no credit deduction, and it never would. Every `$`

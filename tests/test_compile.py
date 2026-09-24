@@ -457,3 +457,14 @@ def test_the_planted_fixture_ingests_and_still_holds_its_six_pairs(tmp_path):
                   "Every export must be encrypted", "should be encrypted",  # P4
                   "A shared link expires 30 days"):                         # P6
         assert claim in text, claim
+
+
+def test_i83_the_judgment_counter_covers_the_check_phases_records(repo):
+    """The counter was saved before the check phase wrote its Q-PAIR records, so the next
+    compile re-issued their ids (R18 round 7, I-83)."""
+    compile_two_nodes(repo, pair())
+    meta = json.loads((repo / ".sdd" / "graph.meta.json").read_text())
+    issued = [json.loads(line)["id"] for path in (repo / ".sdd" / "lock").glob("*.jsonl")
+              for line in path.read_text().splitlines()]
+    assert meta["id_counters"]["judgment"] == max(int(i[2:]) for i in issued)
+    assert check_store(repo / ".sdd") == []

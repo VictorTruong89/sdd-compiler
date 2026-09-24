@@ -34,10 +34,11 @@ class Retrieval:
 
 def needs_checking(node: Mapping[str, Any]) -> bool:
     """F5 §4.1, AC-5.14. A `validated` node is skipped; an `ambiguous` one is checked until
-    it has been judged once, because nothing has yet looked at it."""
+    it has been judged once, because nothing has yet looked at it. "Judged" means by the check
+    phase: `judgments` lists the answers that formed the node, and is never empty (I-86)."""
     if node["status"] in CHECK_STATUSES:
         return True
-    return node["status"] == "ambiguous" and not node.get("judgments")
+    return node["status"] == "ambiguous" and node.get("last_checked_run") is None
 
 
 def checking_order(nodes: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:

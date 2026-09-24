@@ -21,12 +21,12 @@ B_TEXT = "A share link is valid for one hour."
 
 
 def node(node_id, text, *, layer="L1", family="term:share_link", status="unchecked",
-         modality="MUST", quantities=(), line=5):
+         modality="MUST", quantities=(), line=5, file="specs/sharing.md", block=None):
     return {
         "id": node_id, "text": text, "layer": layer, "family": family, "status": status,
         "canonical": {"state": None, "trigger": None, "scope": None, "subject": "share link",
                       "modality": modality, "response": text, "quantities": list(quantities)},
-        "source": {"file": "specs/sharing.md", "block_id": "B-000001", "lines": [line, line],
+        "source": {"file": file, "block_id": block or f"B-{node_id}", "lines": [line, line],
                    "heading_path": ["Sharing"]},
         "terms": [{"term": "term:share_link", "role": "subject", "quote": "share link"}],
         "keywords": [], "ambiguity": [], "conflict_ids": [], "judgments": [],
@@ -220,6 +220,58 @@ def test_i77_a_criterion_never_duplicates_the_requirement_it_verifies():
                        conflict_id="CF-000001", judgment="J-000400")
     assert kept.conflict["kind"] == "contradiction"          # a test that denies its rule is a defect
     assert kept.suppressed is None
+
+
+def _judged(relation, a, b):
+    verdict, _ = verdict_for(answer(relation=relation, quote_a=a["text"][:12], quote_b=b["text"][:12],
+                                    **({"direction": "a_to_b"} if relation == "subsumes" else {})),
+                             a=a, b=b)
+    return outcome_for(verdict, a, b, settings=SETTINGS, run_id="R-000001",
+                       conflict_id="CF-000001", judgment="J-000400")
+
+
+REQUIREMENT = node("N-000008", "A request whose archive would be larger is rejected when queued.")
+CRITERION = node("AC-1.1", "Given a project whose archive would exceed the limit, then it is "
+                           "rejected at queue time.", layer="V")          # cites nothing: verifies []
+
+
+@pytest.mark.parametrize("relation", ["duplicates", "subsumes"])
+def test_ac_6_22_a_criterion_never_duplicates_a_claim_of_its_own_spec(relation):
+    """I-81: on our own specs most criteria cite nothing, so D16 could not fire; 22 of 70 dogfood
+    conflicts were a criterion restating prose of its own file. The file is the fact (F6 D19)."""
+    outcome = _judged(relation, CRITERION, REQUIREMENT)
+    assert outcome.conflict is None and outcome.links == []
+    assert outcome.suppressed == "criterion_restates_its_own_spec"
+
+
+def test_ac_6_22_what_the_criterion_rule_leaves_alone():
+    # A criterion that contradicts its own spec's prose is a real defect (CF-000038 was one).
+    assert _judged("contradicts", CRITERION, REQUIREMENT).conflict["kind"] == "contradiction"
+    # Another spec's claim: duplication across files is what the compiler is for.
+    elsewhere = node("N-000009", REQUIREMENT["text"], file="specs/limits.md")
+    assert _judged("duplicates", CRITERION, elsewhere).conflict["kind"] == "duplication"
+    # Two criteria duplicating each other in one file are a copied test, not the spec's form.
+    twin = node("AC-1.2", CRITERION["text"], layer="V")
+    assert _judged("duplicates", CRITERION, twin).conflict["kind"] == "duplication"
+
+
+@pytest.mark.parametrize("relation", ["duplicates", "subsumes"])
+def test_ac_6_23_two_claims_of_one_block_never_duplicate_each_other(relation):
+    """I-81: a decision entry's heading summarises its body — one block, written to overlap."""
+    heading = node("N-000118", "Q-PAIR is batched: 8 pairs per call", block="B-000280")
+    body = node("N-000119", "each pair's answer is validated on its own", block="B-000280")
+    outcome = _judged(relation, heading, body)
+    assert outcome.conflict is None and outcome.links == []
+    assert outcome.suppressed == "same_block"
+
+
+def test_ac_6_23_a_contradiction_inside_one_block_is_still_reported():
+    """CF-000001 was two sentences of one paragraph, and real."""
+    first = node("N-000005", "A stale node needs checking.", block="B-000045")
+    second = node("N-000006", "Unchanged nodes are skipped.", block="B-000045")
+    assert _judged("contradicts", first, second).conflict["kind"] == "contradiction"
+    apart = node("N-000007", "Unchanged nodes are skipped.", block="B-000046")
+    assert _judged("duplicates", first, apart).conflict["kind"] == "duplication"
 
 
 def test_ac_6_8_a_low_confidence_verdict_is_recorded_and_flags_both_nodes():

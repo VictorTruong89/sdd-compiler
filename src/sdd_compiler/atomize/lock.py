@@ -51,6 +51,8 @@ class JudgmentLock:
             for path in sorted(folder.glob("*.jsonl")):
                 for record in read_jsonl(path):
                     self.records[record["id"]] = record
+        # Never re-issue an id the lock already holds, even if the stored counter lags (I-83).
+        self.counter = max([start, *(int(i[2:]) for i in self.records)])
         self.new_records: list[dict[str, Any]] = []
         self.replayed = 0
         self._indexed = -1

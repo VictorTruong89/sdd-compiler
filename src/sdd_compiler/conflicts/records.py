@@ -46,6 +46,15 @@ def outcome_for(verdict: Verdict, a: Mapping[str, Any], b: Mapping[str, Any], *,
         # A *contradiction* between a test and its rule is left alone — that one is a real defect.
         outcome.suppressed = "verifies_its_own_requirement"
         return outcome
+    if conflict_kind in ("duplication", "subsumption"):
+        # ⚑ F6 D19 (I-81): the same lever where no citation exists — the document's own form
+        # says these two were written to overlap. Contradictions are never suppressed here.
+        if _criterion_in_its_own_spec(a, b):
+            outcome.suppressed = "criterion_restates_its_own_spec"
+            return outcome
+        if a["source"]["block_id"] == b["source"]["block_id"]:
+            outcome.suppressed = "same_block"
+            return outcome
     if link_type is None:
         return outcome                                   # `none`: only the judgment is kept
 
@@ -77,6 +86,12 @@ def outcome_for(verdict: Verdict, a: Mapping[str, Any], b: Mapping[str, Any], *,
 
 def _verifies_each_other(a: Mapping[str, Any], b: Mapping[str, Any]) -> bool:
     return b["id"] in (a.get("verifies") or []) or a["id"] in (b.get("verifies") or [])
+
+
+def _criterion_in_its_own_spec(a: Mapping[str, Any], b: Mapping[str, Any]) -> bool:
+    """Exactly one of the two is a criterion (two criteria alike are a copied test), same file."""
+    return (a.get("layer") == "V") != (b.get("layer") == "V") \
+        and a["source"]["file"] == b["source"]["file"]
 
 
 def _differ(a: Mapping[str, Any], b: Mapping[str, Any]) -> bool:
