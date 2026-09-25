@@ -81,8 +81,8 @@ xdg-open graph.html           # or open it in any browser
   every relation.
 - **Find**: any claim by id or words. `graph.html#N-000008` opens straight on a claim.
 
-**The R18 graph of this repository's own specs** is in `build/full-corpus/`: open
-`build/full-corpus/graph.html` directly, or run `sddc --root build/full-corpus status`.
+**The R18 graph of this repository's own specs** is in `trial_01/full-corpus/`: open
+`trial_01/full-corpus/graph.html` directly, or run `sddc --root trial_01/full-corpus status`.
 
 ### Record what you think of a conflict
 
@@ -101,20 +101,47 @@ sample), so treat each one as a question, not a finding.
 This section is generic: it applies to any spec set compiled by `sddc`, fed to any LLM coding agent.
 The rel01 use case is **a new codebase from scratch**.
 
-### What the agent reads
+### The rule: the agent reads the graph, never the specs
 
-A compiled build directory (for example `build/full-corpus/`) holds the spec text and its graph:
+The point of the compiler is that its graph can stand in for the Markdown. So the agent **must not
+read the spec files**, **nor `.sdd/blocks.jsonl`** (it stores every paragraph's verbatim text, so it
+is the specs in another format), **nor any existing implementation**. It works from the compiled
+graph alone. Whatever the graph does not carry, the agent has to design itself and say so. That list
+of gaps is one of the results the experiment is for.
+
+### Is that enough to build from? Measured on `trial_01/full-corpus/` (R18)
+
+**Yes for behaviour, not for exact formats.** The graph holds 950 claims:
+
+- behaviour, structure, data rules and constraints;
+- 191 acceptance criteria that become tests;
+- 127 decisions with the options they rejected;
+- 421 rationale and example annotations;
+- the stack itself, because the constitution's claims are nodes ("Language: Python ≥ 3.11",
+  "tests with pytest").
+
+What it does **not** carry:
+
+| Gap | Measured | Consequence for the agent |
+|---|---|---|
+| **Contract formats** | All 25 fenced code blocks — every JSON record shape and file format in the specs' "Contracts" sections — form no node (the default profile does not atomize code) | Record and file schemas must be designed from the `L3`/`L4` claims about them. Record each invented format |
+| **Definitions** | 0 of 1 031 terms carry a definition; "what a word means" sentences form no node | Infer meanings from how terms are used; the vocabulary names are reliable, their meanings are not stated |
+| **Everything that is not a claim** | 183 of 845 paragraphs form no node; node spans cover 54 % of the spec text (rationale is partly kept as annotations) | Expect gaps in context, not in obligations |
+| **Fragments** | 82 nodes have text under 30 characters (`keep id, "unchanged"`) | Read `canonical`, `heading_path` and the node's annotations alongside `text` |
+| **Leakage** | 39 nodes come from the specs' *Traceability* tables and name the existing `src/` and `tests/` files | Skip them: they describe an earlier implementation, not a requirement |
+| **One missing paragraph** | 1 block never atomized (an open `atomize_failed` item in `review.jsonl`) | Its content is unavailable; note it as a known gap |
+| **Unsettled conflicts** | 381 open, unadjudicated; on an earlier sample about 1 in 10 was real | Treat each as a question (below) |
+
+### What the agent reads
 
 | Path | What it is | Use it to |
 |---|---|---|
-| `sdd/specs/**/*.md` | **The specifications — the source of truth** | Read `vision.md` and `constitution.md` in full first (purpose, stack, non-negotiable rules), then each feature spec |
 | `.sdd/nodes/*.jsonl` | Every atomic claim, one JSON record per line, one file per family | Your checklist: every non-`V` node must be satisfied by code, every `V` node by a test |
-| `.sdd/terms.jsonl` | The vocabulary: canonical names, aliases, `broader` (kind-of) | Name modules, classes and fields consistently; treat an alias as the same thing |
-| `.sdd/edges/*.jsonl` | Links: `depends_on`, `refines`, `subsumes`, `duplicates`, `conflicts_with` (judged), `verifies` (code) | Build order (`depends_on`), which test covers which rule (`verifies`) |
-| `.sdd/conflicts.jsonl` | Open contradictions, duplications and subsumptions, with rationale and quotes | Questions to settle before implementing either side |
-| `.sdd/graph.meta.json` | Counts and versions | Check you loaded everything (the node count must match) |
-| `.sdd/blocks.jsonl` | Every source paragraph with file, lines and text | Find the exact source of a claim; find **pending** blocks (below) |
-| `.sdd/review.jsonl` | Attention items; an **open** `atomize_failed` item = a paragraph that is in **no** node | Read those paragraphs straight from the spec. They are requirements the graph missed |
+| `.sdd/terms.jsonl` | The vocabulary: canonical names, aliases, `broader` (kind-of) | Name modules, classes and fields consistently; an alias is the same thing |
+| `.sdd/edges/*.jsonl` | Links: `depends_on`, `refines`, `subsumes`, `duplicates`, `conflicts_with` (judged), `verifies` (code) | Build order (`depends_on`), and which test covers which rule (`verifies`) |
+| `.sdd/conflicts.jsonl` | Open conflicts, each with the judge's rationale and a quote from both claims | Questions to settle before implementing either side |
+| `.sdd/graph.meta.json` | Counts and versions | Check you loaded everything: 950 nodes and 4 199 links in `trial_01` |
+| `.sdd/review.jsonl` | Attention items for people | Only to learn what is missing: an open `atomize_failed` item is a paragraph with no node |
 | `.sdd/adjudications.jsonl` *(if present)* | Human verdicts on conflicts | A conflict judged `false` is settled: ignore it |
 
 **The fields of a node that matter for code:**
@@ -123,85 +150,107 @@ A compiled build directory (for example `build/full-corpus/`) holds the spec tex
   outside; `L2` structure becomes a component or module; `L3` contract becomes an interface, CLI or
   file format; `L4` data becomes a schema or type; `L5` logic becomes an algorithm; `C` becomes a
   cross-cutting rule to enforce; `V` becomes a test.
-- `family` is the thing the claim is about. Group your design by family.
-- `canonical` gives state / trigger / scope / subject / **modality** / response. `MUST` and
-  `MUST NOT` are hard; `SHOULD` and `MAY` are softer.
-- `text` + `source.file` + `source.lines` are the claim's own words and where they are. Read the
-  source line, not only the node.
-- `status`: `conflict` means unsettled, `ambiguous` means vague (see `ambiguity`), `validated` means
-  clean.
+- `canonical` gives the claim in a fixed shape: state / trigger / scope / subject / **modality** /
+  response. `MUST` and `MUST NOT` are hard; `SHOULD` and `MAY` are softer. It is the easiest field
+  to build from.
+- `text` is the claim's own words, quoted from the spec. `annotations` holds the rationale and
+  examples written beside it. `decision` holds a decision's chosen and rejected options.
+- `family` is the thing the claim is about. `source.file` tells you which spec it came from (one
+  feature per spec). `source.heading_path` tells you its section. Use both to group your design.
+  **Never open `source.file`.**
 - `label` (`AC-1.4`, `CT-2.1`) is the spec's own id for an acceptance criterion or contract. Use it
   in test names.
-- `flags` containing `inferred` means the description holds something the source does not say. Trust
-  the source.
+- `status`: `conflict` means unsettled; `ambiguous` means vague (the `ambiguity` field says why);
+  `validated` means clean. `flags` containing `inferred` means the description added something the
+  spec did not say: trust `text` over `canonical` there.
 
-### What the agent ignores (for people only)
+### What the agent never reads
 
-| Path | Why ignore it |
+| Path | Why |
 |---|---|
+| `sdd/specs/**` | The specifications themselves. Reading them defeats the experiment |
+| `.sdd/blocks.jsonl` | The verbatim text of every spec paragraph: the specs in another format |
+| Any existing implementation (`src/`, `tests/` of this repository) | "From scratch" means from the graph |
 | `graph.html`, `.sdd/views/` | Human visualizations of the same data |
 | `.sdd/lock/` | Raw model answers and their cost: provenance, not requirements |
-| `.sdd/runs.jsonl`, `.sdd/profile.yaml`, `.sdd/conflicted_nodes.json`, `.sdd/sources.jsonl` | Compiler bookkeeping, or derived from files above |
-| `.sdd.bak-*/` | Backups taken during repairs |
-| `round-*`, `driver.*`, `summary.py`, `ingest.json`, `corpus.sha256` | Logs and scripts of the compile runs (`corpus.sha256` only proves which spec text was compiled) |
-| `sdd/specs/_templates/`, `sdd/specs/README.md` | A blank template and an index |
+| `.sdd/runs.jsonl`, `.sdd/sources.jsonl`, `.sdd/profile.yaml`, `.sdd/conflicted_nodes.json` | Compiler bookkeeping, or derived from the files above |
+| `.sdd.bak-*/`, `round-*`, `driver.*`, `summary.py`, `ingest.json`, `corpus.sha256` | Backups, logs and scripts of the compile runs |
 
 ### The procedure
 
-1. **Read the foundation.** `vision.md` and `constitution.md` in full. The constitution fixes the
-   stack and the rules every file must follow.
-2. **Load the graph.** All nodes, terms, links and open conflicts. Confirm the node count against
+1. **Load the graph.** All nodes, terms, links and open conflicts. Confirm the counts against
    `graph.meta.json`.
-3. **Collect what the graph missed.** Every open `atomize_failed` item in `review.jsonl` names a source
-   paragraph with no node. Read it from the spec and add it to your checklist by hand.
-4. **Design from the layers.** `L2` gives the components, `L3` the interfaces, `L4` the data, `L1`
-   the features, `L5` the algorithms, `C` the rules that cut across all of them. Name things with
-   the canonical term names.
-5. **Settle conflicts you touch, never silently.** For each open conflict involving a node you
-   implement, read both source lines. If they only look contradictory (different situations,
-   different components), note it and continue. If they are really contradictory, choose, and write
-   the choice and its reason in `OPEN_QUESTIONS.md`. Do the same for every `ambiguous` node: state
-   the assumption you made.
-6. **Implement test-first.** Each `V` node becomes a test named after its `label` (or its id). Write
+2. **Read the foundation first.** The nodes whose `source.file` is `vision.md` or `constitution.md`
+   state the purpose, the stack and the rules every file must follow (74 nodes in `trial_01`).
+3. **Drop what is not a requirement.** Skip nodes whose `source.heading_path` contains
+   *Traceability*: they list an earlier implementation's files.
+4. **Design from the layers, feature by feature.** Group nodes by the spec they came from, then by
+   family. `L2` gives the components, `L3` the interfaces, `L4` the data, `L1` the features, `L5` the
+   algorithms; `C` nodes are rules that cut across all of them. Name things with the canonical term
+   names.
+5. **Fill the gaps openly.** Where a format, a schema or a meaning is not in the graph — above all
+   the `CT-` contracts — design it from the claims that mention it, and list it under *Invented* in
+   `OPEN_QUESTIONS.md` with the node ids it rests on.
+6. **Settle conflicts you touch, never silently.** For each open conflict involving a node you
+   implement, compare the two claims (the record quotes both). If they only look contradictory
+   (different situations, different components), note it and continue. If they really contradict,
+   choose, and write the choice and its reason in `OPEN_QUESTIONS.md`. Do the same for every
+   `ambiguous` node: state the assumption you made.
+7. **Implement test-first.** Each `V` node becomes a test named after its `label` (or its id). Write
    the test, then the code that passes it.
-7. **Leave a trail.** Put `# spec: <node id>` beside the code that satisfies a node. Write
+8. **Leave a trail.** Put `# spec: <node id>` beside the code that satisfies a node. Write
    `TRACEABILITY.md`: every non-`V` node → the code that satisfies it, every `V` node → its test, and
-   a list of the nodes you did **not** implement, with the reason.
+   every node you did **not** implement, with the reason.
 
 ### A prompt to hand an agent
 
-Replace `<BUILD>` with the build directory (for this repository's own specs: `build/full-corpus`)
-and `<OUT>` with an empty directory for the new code.
+Replace `<BUILD>` with the compiled directory (for this repository's own specs:
+`trial_01/full-corpus`) and `<OUT>` with an empty directory for the new code.
 
 ```text
-You are generating a complete codebase from scratch, from a compiled spec graph.
+You are generating a complete codebase from scratch, using ONLY a compiled spec graph.
 
-Inputs (read only these):
-  <BUILD>/sdd/specs/**/*.md      the specifications — the source of truth
-  <BUILD>/.sdd/nodes/*.jsonl     every atomic claim (one JSON per line)
-  <BUILD>/.sdd/terms.jsonl       vocabulary: canonical names and aliases
+Read only these files:
+  <BUILD>/.sdd/nodes/*.jsonl     every atomic claim (one JSON record per line)
+  <BUILD>/.sdd/terms.jsonl       vocabulary: canonical names, aliases, kind-of links
   <BUILD>/.sdd/edges/*.jsonl     relations between claims
-  <BUILD>/.sdd/conflicts.jsonl   open conflicts between claims
-  <BUILD>/.sdd/review.jsonl      atomize_failed items = paragraphs with no node
+  <BUILD>/.sdd/conflicts.jsonl   open conflicts, with both claims quoted
   <BUILD>/.sdd/graph.meta.json   counts, to check you loaded everything
-Ignore graph.html, .sdd/views/, .sdd/lock/, .sdd.bak-*/, round-*, driver.*, and anything else
-in <BUILD>. Do not read any existing implementation of these specs; write everything in <OUT>.
+  <BUILD>/.sdd/review.jsonl      only to see which paragraphs never became claims
+Never read: <BUILD>/sdd/specs/ or any other Markdown spec, <BUILD>/.sdd/blocks.jsonl,
+the file named in a node's source.file, or any existing implementation. Ignore everything
+else in <BUILD>. Write everything in <OUT>.
 
 Steps:
-1. Read vision.md and constitution.md in full; follow the constitution's stack and rules.
-2. Load all nodes; confirm their count matches graph.meta.json. Read the source paragraph of
-   every open atomize_failed item and treat it as a requirement too.
-3. Plan components from L2 nodes, interfaces from L3, data from L4, features from L1,
-   algorithms from L5; enforce every C node everywhere its scope covers. Use term names.
-4. Before implementing a node with status "conflict", read both source lines of each conflict
-   it is in. Only an apparent contradiction: note it and go on. A real one: choose, and record
-   the choice and reason in OPEN_QUESTIONS.md. Do the same for "ambiguous" nodes (state the
-   assumption).
-5. Test-first: each V node becomes a test named after its label (e.g. test_AC_1_4_...).
-6. Mark code with "# spec: <node id>". Write TRACEABILITY.md mapping every node to code or test,
-   and list every node not implemented, with the reason.
+1. Load all nodes, terms, links and conflicts; check the counts against graph.meta.json.
+2. Read first the nodes whose source.file is vision.md or constitution.md: purpose, stack,
+   rules. Follow them everywhere.
+3. Skip nodes whose source.heading_path contains "Traceability".
+4. Design per source spec and family: L2 components, L3 interfaces, L4 data, L1 features,
+   L5 algorithms; enforce every C node where its scope applies. Use canonical term names.
+   Build from "canonical", "text", "annotations" and "decision".
+5. The graph has no exact record or file formats (CT- contracts) and no term definitions.
+   Design them from the claims that mention them, and list each one under "Invented" in
+   OPEN_QUESTIONS.md with the node ids it rests on.
+6. For a node with status "conflict", compare the two claims each of its conflicts quotes.
+   Only apparent: note it and go on. Real: choose, and record choice and reason in
+   OPEN_QUESTIONS.md. For "ambiguous" nodes, record the assumption you made.
+7. Test-first: each V node becomes a test named after its label (e.g. test_AC_1_4_...).
+8. Mark code with "# spec: <node id>". Write TRACEABILITY.md mapping every node to code or a
+   test, and list every node not implemented, with the reason.
 Finish with: the test suite passing, TRACEABILITY.md, OPEN_QUESTIONS.md.
 ```
+
+### Judging the result
+
+Compare the generated code with the specs **afterwards, as a person**. Useful measures:
+
+- how many `V` nodes became passing tests;
+- how many nodes `TRACEABILITY.md` leaves unimplemented;
+- how many *Invented* formats match the real contracts;
+- how many conflicts the agent settled correctly.
+
+Each gap you find is either a gap in the graph (a compiler finding) or a gap in the agent.
 
 ---
 
@@ -214,5 +263,5 @@ Finish with: the test suite passing, TRACEABILITY.md, OPEN_QUESTIONS.md.
 | `sdd/design/` | Release design, gates, measurements, the build plan and issue log |
 | `src/sdd_compiler/` · `tests/` | The Python CLI and its tests |
 | `docs/lectures/` | Lectures explaining the design, including the as-built beginner's guide |
-| `build/full-corpus/` | The R18 compile of this repository's own `sdd/specs/`: spec copy, graph, explorer |
+| `trial_01/full-corpus/` | The R18 compile of this repository's own `sdd/specs/`: spec copy, graph, explorer — the input to the first code-generation trial |
 | `sdd/archive/` | Superseded documents and pre-rel01 brainstorm exports |
