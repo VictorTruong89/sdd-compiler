@@ -1,0 +1,6 @@
+{"from": "N-000668", "type": "uses_term", "to": "term:build", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000668", "type": "uses_term", "to": "term:local_label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000668", "type": "uses_term", "to": "term:node_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000669", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000669", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000669", "type": "uses_term", "to": "term:local_label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,3 @@
+{"from": "N-000202", "type": "depends_on", "to": "N-000200", "provenance": "judgment", "judgment": "J-005517", "rationale": "N-000202 describes how to preserve the broader relation once it is recorded; N-000202 presupposes that a broader relation exists to preserve, which N-000200 permits to be recorded.", "quotes": ["A term may record the term it is a kind of (`broader`)", "the relation is kept for later views rather than lost in a merge"]}
+{"from": "N-000202", "type": "uses_term", "to": "term:broader_relation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000202", "type": "uses_term", "to": "term:merge", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,3 @@
+{"from": "N-000598", "type": "refines", "to": "N-000570", "provenance": "judgment", "judgment": "J-007054", "rationale": "Claim A specifies a user action to re-check using `sddc check-conflicts [--no-replay]`; Claim B clarifies what the `--no-replay` flag does. Claim B refines the behavior described in Claim A by specifying the flag's effect.", "quotes": ["`sddc check-conflicts [--no-replay]`", "`--no-replay` forces re-asking"]}
+{"from": "N-000598", "type": "uses_term", "to": "term:flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000598", "type": "uses_term", "to": "term:re_asking", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

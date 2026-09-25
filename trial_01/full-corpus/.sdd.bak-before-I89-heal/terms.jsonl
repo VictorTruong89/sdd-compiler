@@ -1,0 +1,1031 @@
+{"id": "term:ac_block", "canonical": "ac-block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ac_ct_label", "canonical": "ac-/ct- label", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:acceptance_criterion", "canonical": "acceptance criterion", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:criterion"}
+{"id": "term:acceptance_criterion_block", "canonical": "acceptance criterion block", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:atom_block"}
+{"id": "term:accepted_answer", "canonical": "accepted answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:actor", "canonical": "actor", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:actor_distinction", "canonical": "actor distinction", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:actor_flag", "canonical": "--actor flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:actor_stop_rule", "canonical": "--actor stop rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:verification_rule"}
+{"id": "term:actor_term", "canonical": "actor term", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:adjudication", "canonical": "adjudication", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:adjudication_component", "canonical": "adjudication component", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:pipeline_component"}
+{"id": "term:adjudications_jsonl", "canonical": "adjudications.jsonl", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:adopted_id", "canonical": "adopted id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:agent", "canonical": "agent", "aliases": ["ai agent"], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:agent_notification", "canonical": "agent notification", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:agent"}
+{"id": "term:ai_coding_agent", "canonical": "ai coding agent", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": "term:agent"}
+{"id": "term:ai_store", "canonical": "ai store", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:store"}
+{"id": "term:aliase", "canonical": "aliase", "aliases": ["alia", "registered alia"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:aligned_id", "canonical": "aligned id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:alignment", "canonical": "alignment", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:alignment_measure", "canonical": "alignment measure", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:allocated_to_link", "canonical": "allocated_to link", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:uses_term_link"}
+{"id": "term:allocation", "canonical": "allocation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:allocation_proposed_flag", "canonical": "allocation_proposed flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:per_run_flag"}
+{"id": "term:ambiguity", "canonical": "ambiguity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ambiguity_kind", "canonical": "ambiguity kind", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:ambiguity"}
+{"id": "term:ambiguous", "canonical": "ambiguous", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ambiguous_line", "canonical": "ambiguous line", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:line"}
+{"id": "term:ambiguous_node", "canonical": "ambiguous node", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:ambiguous_status", "canonical": "ambiguous status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:anchor", "canonical": "anchor", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:annotation", "canonical": "annotation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:answer", "canonical": "answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:answer_guard", "canonical": "answer guard", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:guard"}
+{"id": "term:answer_rejection", "canonical": "answer rejection", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:rejection"}
+{"id": "term:answer_schema", "canonical": "answer schema", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:schema"}
+{"id": "term:answerrejected_event", "canonical": "answerrejected event", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:event"}
+{"id": "term:anthropic_api", "canonical": "anthropic api", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:anthropic_api_backend", "canonical": "anthropic-api backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:backend"}
+{"id": "term:anthropic_api_key", "canonical": "anthropic_api_key", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:anthropic_sdk_call", "canonical": "anthropic sdk call", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": "term:model_call"}
+{"id": "term:anyone", "canonical": "anyone", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:api_key", "canonical": "api key", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:key"}
+{"id": "term:api_key_stripping", "canonical": "api-key stripping", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:append", "canonical": "append", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:approval", "canonical": "approval", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:arithmetic_computation", "canonical": "arithmetic computation", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:as_built_graph", "canonical": "as-built graph", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:graph"}
+{"id": "term:asking", "canonical": "asking", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:assumption", "canonical": "assumption", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:asterisk", "canonical": "asterisk", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atom", "canonical": "atom", "aliases": ["q-atom"], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atom_block", "canonical": "atom block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:atom_order", "canonical": "atom order", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atom_quote", "canonical": "atom quote", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atom_test", "canonical": "atom test", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atom_write", "canonical": "atom write", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:write_operation"}
+{"id": "term:atomic_node", "canonical": "atomic node", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:atomic_rename", "canonical": "atomic-rename", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atomic_spec", "canonical": "atomic spec", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:spec"}
+{"id": "term:atomic_write", "canonical": "atomic write", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atomization", "canonical": "atomization", "aliases": ["atomizing"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atomize_every_pending_block", "canonical": "atomize every pending block", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:pending_block"}
+{"id": "term:atomize_failed_review_item", "canonical": "atomize_failed review item", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:attention_list_item"}
+{"id": "term:atomized_hash", "canonical": "atomized_hash", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atomizer", "canonical": "atomizer", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atomizer_code", "canonical": "atomizer code", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:atomizer"}
+{"id": "term:atomizer_max_calls_per_run", "canonical": "atomizer.max_calls_per_run", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:atomizer_pass_api_key_profile_setting", "canonical": "atomizer.pass_api_key profile setting", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:profile"}
+{"id": "term:atomizer_s_decision", "canonical": "atomizer's decision", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:attention_list_item", "canonical": "attention list item", "aliases": ["attention item"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:list_item"}
+{"id": "term:attribute", "canonical": "attribute", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:author", "canonical": "author", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:backend", "canonical": "backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:backend_unavailable", "canonical": "backend unavailable", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:backtick", "canonical": "backtick", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:bare_flag", "canonical": "--bare flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:per_run_flag"}
+{"id": "term:bare_id", "canonical": "bare id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:batch_layer", "canonical": "batch layer", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:layer"}
+{"id": "term:batch_of", "canonical": "batch_of", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:batch_processing", "canonical": "batch processing", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:batch_run"}
+{"id": "term:batch_run", "canonical": "batch run", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:run"}
+{"id": "term:behavior_rule", "canonical": "behavior rule", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:best_overlapping_atom", "canonical": "best-overlapping atom", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:atom"}
+{"id": "term:best_overlapping_old_id", "canonical": "best-overlapping old id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:old_id"}
+{"id": "term:binary_unit", "canonical": "binary unit", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:size_unit"}
+{"id": "term:blank_line", "canonical": "blank line", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:block", "canonical": "block", "aliases": ["block record", "record", "whole record"], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:block_completion", "canonical": "block completion", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:block_edit"}
+{"id": "term:block_edit", "canonical": "block edit", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:block_id", "canonical": "block id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:block_identity", "canonical": "block identity", "aliases": ["node identity"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:block_level_write", "canonical": "block-level write", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:write_operation"}
+{"id": "term:block_split", "canonical": "block split", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:split"}
+{"id": "term:blockquote_marker", "canonical": "blockquote marker", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:content_inside_a_blockquote"}
+{"id": "term:blocks_command", "canonical": "blocks command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:blocks_jsonl", "canonical": "blocks.jsonl", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:bounding_word", "canonical": "bounding word", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:broader", "canonical": "broader", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:broader_family", "canonical": "broader family", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:broader_field", "canonical": "broader field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:broader_relation", "canonical": "broader relation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:build", "canonical": "build", "aliases": ["rebuild"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:build_artifact", "canonical": "build artifact", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:build"}
+{"id": "term:build_backend", "canonical": "build backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:backend"}
+{"id": "term:build_error", "canonical": "build error", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:error"}
+{"id": "term:build_plan", "canonical": "build plan", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:byte_quantity", "canonical": "byte quantity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:quantity"}
+{"id": "term:c_node", "canonical": "c node", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:cache_token", "canonical": "cache token", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:call_cap", "canonical": "call cap", "aliases": ["cap"], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:call_cap_exit", "canonical": "call-cap exit", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:call_cap_stop", "canonical": "call-cap stop", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:call_usage", "canonical": "call usage", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:usage"}
+{"id": "term:candidate", "canonical": "candidate", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:candidate_generation", "canonical": "candidate generation", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:candidate_kind", "canonical": "candidate kind", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node_kind"}
+{"id": "term:candidate_node", "canonical": "candidate node", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:candidate"}
+{"id": "term:candidate_pair", "canonical": "candidate pair", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:candidate_set"}
+{"id": "term:candidate_retrieval", "canonical": "candidate retrieval", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:retrieval"}
+{"id": "term:candidate_set", "canonical": "candidate set", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:candidate_source", "canonical": "candidate source", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:source"}
+{"id": "term:candidate_term", "canonical": "candidate term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:candidates_proposed", "canonical": "candidates proposed", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:candidate"}
+{"id": "term:canonical", "canonical": "canonical", "aliases": ["canonical form"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:canonical_content", "canonical": "canonical content", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:canonical_field", "canonical": "canonical field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:canonical"}
+{"id": "term:canonical_modality", "canonical": "canonical.modality", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:canonical_name", "canonical": "canonical name", "aliases": ["exact name", "name", "term id", "term name"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:canonical_response", "canonical": "canonical.response", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:canonical_subject", "canonical": "canonical.subject", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:capped", "canonical": "capped", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:capped_pair", "canonical": "capped pair", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:real_pair"}
+{"id": "term:card", "canonical": "card", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:card_line", "canonical": "card line", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:line"}
+{"id": "term:cascade", "canonical": "cascade", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:case", "canonical": "case", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:case_change", "canonical": "case change", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:change_detection"}
+{"id": "term:case_difference", "canonical": "case difference", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:case_change"}
+{"id": "term:category", "canonical": "category", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:category_term", "canonical": "category term", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:cell", "canonical": "cell", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:chain", "canonical": "chain", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:change", "canonical": "change", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:change_detection", "canonical": "change detection", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:change_report", "canonical": "change report", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:changed_node", "canonical": "changed node", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:changed_status", "canonical": "changed status", "aliases": ["changed"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:character_offset", "canonical": "character offset", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:check", "canonical": "check", "aliases": ["sddc check"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:check_conflicts_command", "canonical": "check-conflicts command", "aliases": ["check-conflict", "sddc conflicts command"], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:sddc_check_command"}
+{"id": "term:check_failure", "canonical": "check failure", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:check"}
+{"id": "term:check_immediately_and_re_ask_rule", "canonical": "check-immediately and re-ask rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:check_phase", "canonical": "check phase", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:check"}
+{"id": "term:check_state", "canonical": "check state", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:check_status", "canonical": "check_status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:checked_against_per_node", "canonical": "checked_against per node", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:checked_graph", "canonical": "checked graph", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:graph"}
+{"id": "term:checked_node", "canonical": "checked_node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:checking_order", "canonical": "checking order", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:order"}
+{"id": "term:child_environment", "canonical": "child environment", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:child_process"}
+{"id": "term:child_process", "canonical": "child process", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:child_process_marker", "canonical": "child-process marker", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:chosen", "canonical": "chosen", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:chunk", "canonical": "chunk", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:claim", "canonical": "claim", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:claim_a", "canonical": "claim a", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:claim"}
+{"id": "term:claim_b", "canonical": "claim b", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:claim"}
+{"id": "term:classification", "canonical": "classification", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:claude", "canonical": "claude", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:claude_code", "canonical": "claude code", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:claude_code_backend", "canonical": "claude-code backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:backend"}
+{"id": "term:claude_code_login", "canonical": "claude code login", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:claude_code_subprocess", "canonical": "claude code subprocess", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:claude"}
+{"id": "term:cli", "canonical": "cli", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:cli_module", "canonical": "cli module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:cli_text", "canonical": "cli text", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:cli_version", "canonical": "cli version", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:cli_module"}
+{"id": "term:code", "canonical": "code", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:code_generation", "canonical": "code generation", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:code_heuristic", "canonical": "code heuristic", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:coding", "canonical": "coding", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:collapsed_form", "canonical": "collapsed form", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:collapsed_form_command", "canonical": "collapsed-form command", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:command"}
+{"id": "term:colour", "canonical": "colour", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:command", "canonical": "command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:command_hook", "canonical": "command hook", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:command"}
+{"id": "term:command_line", "canonical": "command line", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:command_line_tool", "canonical": "command-line tool", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:commands_module", "canonical": "commands module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:ingest_pipeline_module"}
+{"id": "term:commit", "canonical": "commit", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:committed_change", "canonical": "committed change", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:change_report"}
+{"id": "term:committed_transaction", "canonical": "committed transaction", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:transaction"}
+{"id": "term:comparison_set", "canonical": "comparison set", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:compilation", "canonical": "compilation", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:compile_run", "canonical": "compile run", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:compiler", "canonical": "compiler", "aliases": ["compile", "sdd compiler", "sddc compile"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:compiler_code", "canonical": "compiler code", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:code"}
+{"id": "term:completed_block", "canonical": "completed block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:completed_check", "canonical": "completed check", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:check"}
+{"id": "term:component", "canonical": "component", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:component_rule", "canonical": "component rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:component_subject", "canonical": "component subject", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:component"}
+{"id": "term:component_term", "canonical": "component term", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:confidence", "canonical": "confidence", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:confirmed_field", "canonical": "confirmed field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:judgment_field"}
+{"id": "term:conflict", "canonical": "conflict", "aliases": ["query conflict"], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:conflict_detection_run", "canonical": "conflict detection run", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:conflict_id", "canonical": "conflict_id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:conflict_ids_entry", "canonical": "conflict_ids entry", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict_ids_field"}
+{"id": "term:conflict_ids_field", "canonical": "conflict_ids field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:conflict_kind", "canonical": "conflict kind", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:conflict_list", "canonical": "conflict list", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict_registry"}
+{"id": "term:conflict_record", "canonical": "conflict record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:conflict_registry", "canonical": "conflict registry", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:registry"}
+{"id": "term:conflict_report", "canonical": "conflict report", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:conflict_status", "canonical": "conflict status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:conflicted_node", "canonical": "conflicted node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:conflicted_node_registry", "canonical": "conflicted-node registry", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:registry"}
+{"id": "term:conflicted_nodes_json", "canonical": "conflicted_nodes.json", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:conflicts_jsonl", "canonical": "conflicts.jsonl", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:conflicts_view_file", "canonical": "conflicts view file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict_registry"}
+{"id": "term:conflicts_with_link", "canonical": "conflicts_with link", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:consistency_check", "canonical": "consistency check", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:check"}
+{"id": "term:constitution_file", "canonical": "constitution file", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:constraint", "canonical": "constraint", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:constraint_in_scope", "canonical": "constraint in scope", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:constraint"}
+{"id": "term:content_hash", "canonical": "content hash", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:content_inside_a_blockquote", "canonical": "content inside a blockquote", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:context_recipe", "canonical": "context recipe", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:continuation_paragraph_or_fence", "canonical": "continuation paragraph or fence", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:contract", "canonical": "contract", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:contract_tier", "canonical": "contract tier", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:tier"}
+{"id": "term:contradiction", "canonical": "contradiction", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:contradiction_answer", "canonical": "contradiction answer", "aliases": ["contradicts answer"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:cost", "canonical": "cost", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:count", "canonical": "count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:count_percent_normalization", "canonical": "count/percent normalization", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:quantity_normalization"}
+{"id": "term:crash", "canonical": "crash", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:criterion", "canonical": "criterion", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:criterion_fixture", "canonical": "criterion fixture", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:criterion"}
+{"id": "term:crlf_line_ending", "canonical": "crlf line ending", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:line_ending"}
+{"id": "term:ct_n_k_id", "canonical": "ct-<n>.<k> id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:node_id"}
+{"id": "term:data", "canonical": "data", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_contract", "canonical": "data contract", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_term", "canonical": "data term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:decimal_unit", "canonical": "decimal unit", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:size_unit"}
+{"id": "term:decision", "canonical": "decision", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:decision_entry", "canonical": "decision entry", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:decision_node"}
+{"id": "term:decision_node", "canonical": "decision node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:declaration", "canonical": "declaration", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:defect", "canonical": "defect", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:definition", "canonical": "definition", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:deleted_id", "canonical": "deleted id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:deleted_node", "canonical": "deleted node", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:deleted_prose", "canonical": "deleted prose", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:deletion", "canonical": "deletion", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:deletion_reason", "canonical": "deletion reason", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:deletion"}
+{"id": "term:delimiter_row", "canonical": "delimiter row", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:dependent_question", "canonical": "dependent question", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:question_kind"}
+{"id": "term:depends_on_link", "canonical": "depends_on link", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:derive_status", "canonical": "derive_status", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:derived_field", "canonical": "derived field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:derived_form", "canonical": "derived form", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:canonical"}
+{"id": "term:design_graph", "canonical": "design graph", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:graph"}
+{"id": "term:design_proposal", "canonical": "design proposal", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:proposal"}
+{"id": "term:design_vs_as_built_comparison", "canonical": "design-vs-as-built comparison", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:comparison_set"}
+{"id": "term:deterministic_generation", "canonical": "deterministic generation", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:deterministic_query", "canonical": "deterministic query", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:different", "canonical": "different", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:difflib_ratio", "canonical": "difflib ratio", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:direction_field", "canonical": "direction field", "aliases": ["direction"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:direction_rule", "canonical": "direction rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:directory_argument", "canonical": "directory argument", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:display_name", "canonical": "display name", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:draft_status", "canonical": "draft_status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:drill_down", "canonical": "drill-down", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:dropped_annotation", "canonical": "dropped annotation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:annotation"}
+{"id": "term:dropped_below_min_score", "canonical": "dropped_below_min_score", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:dropped_by_cap", "canonical": "dropped_by_cap", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:duplicate_human_id", "canonical": "duplicate human id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:human_id"}
+{"id": "term:duplicates_answer", "canonical": "duplicates answer", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:duplicates_link"}
+{"id": "term:duplicates_link", "canonical": "duplicates link", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:duplication", "canonical": "duplication", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:duration", "canonical": "duration", "aliases": ["duration_m"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:edge_list", "canonical": "edge list", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:edges_in", "canonical": "edges_in", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:edges_out", "canonical": "edges_out", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:edit", "canonical": "edit", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:editor_hook", "canonical": "editor hook", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:embedding", "canonical": "embedding", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:emphasis_mark", "canonical": "emphasis mark", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:empty_block", "canonical": "empty_block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:empty_selector", "canonical": "empty selector", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:selector"}
+{"id": "term:end_of_run_report", "canonical": "end-of-run report", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:run_report"}
+{"id": "term:entity", "canonical": "entity", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:entity_term", "canonical": "entity term", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:enum_value", "canonical": "enum value", "aliases": ["value"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:env_file", "canonical": ".env file", "aliases": ["git-ignored .env"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:error", "canonical": "error", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:estimated_cost", "canonical": "estimated cost", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:event", "canonical": "event", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:event_term", "canonical": "event term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:evidence", "canonical": "evidence", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:exhaustive_mode", "canonical": "exhaustive mode", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:existing_term", "canonical": "existing term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:exit_code", "canonical": "exit code", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:extended_thinking", "canonical": "extended thinking", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:external_system", "canonical": "external_system", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:f_n_identifier", "canonical": "f<n> identifier", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:numbers_inside_identifier"}
+{"id": "term:fact", "canonical": "fact", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:facts_recomputation", "canonical": "facts recomputation", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:failed_check", "canonical": "failed check", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:check"}
+{"id": "term:failure", "canonical": "failure", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:fake_backend", "canonical": "fake backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:backend"}
+{"id": "term:fake_response", "canonical": "fake response", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:response"}
+{"id": "term:families_markdown_file", "canonical": "families markdown file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:markdown_spec_file"}
+{"id": "term:family", "canonical": "family", "aliases": ["id family", "query family term"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:family_card", "canonical": "family card", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:family_constraint", "canonical": "family constraint", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:constraint"}
+{"id": "term:family_count", "canonical": "family count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:family_disputed_flag", "canonical": "family_disputed flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:family_id", "canonical": "family id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:family_module", "canonical": "family module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:family_name", "canonical": "family name", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:canonical_name"}
+{"id": "term:family_null", "canonical": "family null", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:family_rule", "canonical": "family_rule", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:feature_spec", "canonical": "feature spec", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:spec"}
+{"id": "term:fence", "canonical": "fence", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:fenced_code_block", "canonical": "fenced code block", "aliases": ["code block"], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:field", "canonical": "field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file", "canonical": "file", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file_flag", "canonical": "--file flag", "aliases": ["--no-replay flag"], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file_watching", "canonical": "file watching", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:finding", "canonical": "finding", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:finished_chunk", "canonical": "finished chunk", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:finished_work", "canonical": "finished work", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:first_conflict", "canonical": "first conflict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:first_verified_node_s_family", "canonical": "first verified node's family", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:five_planted_conflict", "canonical": "five planted conflict", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:planted_conflict"}
+{"id": "term:fix_loop", "canonical": "fix loop", "aliases": ["ai fix loop"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:fix_suggestion", "canonical": "fix suggestion", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:fixture_repository", "canonical": "fixture repository", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:repository"}
+{"id": "term:flag", "canonical": "flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:flagged", "canonical": "flagged", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:forming_module", "canonical": "forming module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:front_matter", "canonical": "front matter", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:full_detail_form", "canonical": "full-detail form", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:canonical"}
+{"id": "term:full_form_query", "canonical": "full-form query", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:deterministic_query"}
+{"id": "term:full_record", "canonical": "full record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:function", "canonical": "function", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:generated_input", "canonical": "generated input", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:generated_markdown_card", "canonical": "generated markdown card", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:card"}
+{"id": "term:git", "canonical": "git", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:given_clause", "canonical": "given clause", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:given_when_then_text", "canonical": "given/when/then text", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:verbatim_text"}
+{"id": "term:global", "canonical": "(global)", "aliases": ["family (global)"], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:global_constraint", "canonical": "global constraint", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:constraint"}
+{"id": "term:global_jsonl", "canonical": "_global.jsonl", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:golden_file", "canonical": "golden file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:golden_tier", "canonical": "golden tier", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:tier"}
+{"id": "term:graph", "canonical": "graph", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:graph_database", "canonical": "graph database", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:graph_hash", "canonical": "graph_hash", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:graph_meta_json", "canonical": "graph.meta.json", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:graph_record", "canonical": "graph record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:graph_store", "canonical": "graph store", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:store"}
+{"id": "term:guard", "canonical": "guard", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:haiku", "canonical": "haiku", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:hand_editing", "canonical": "hand editing", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:live_editing"}
+{"id": "term:header_row", "canonical": "header row", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:heading", "canonical": "heading", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:heading_path", "canonical": "heading path", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:headless_claude_code", "canonical": "headless claude code", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:claude"}
+{"id": "term:highest_id_ever_issued", "canonical": "highest id ever issued", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id_counter"}
+{"id": "term:hint", "canonical": "hint", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:history", "canonical": "history", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:horizontal_rule", "canonical": "horizontal rule", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:html_comment", "canonical": "html comment", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:html_viewer", "canonical": "html viewer", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:human", "canonical": "human", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:human_id", "canonical": "human id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:human_id_label", "canonical": "human id label", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:label"}
+{"id": "term:human_judgement", "canonical": "human judgement", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:judgment"}
+{"id": "term:human_label", "canonical": "human label", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:label"}
+{"id": "term:human_or_ci", "canonical": "human or ci", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:human_reading", "canonical": "human reading", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": "term:human"}
+{"id": "term:human_store", "canonical": "human store", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:store"}
+{"id": "term:human_verdict", "canonical": "human verdict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:verdict"}
+{"id": "term:human_view", "canonical": "human view", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:view"}
+{"id": "term:id", "canonical": "id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:id_counter", "canonical": "id counter", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:id_counters_node", "canonical": "id_counters.node", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:id_counters_value", "canonical": "id_counters value", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:return_value"}
+{"id": "term:identity", "canonical": "identity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ids_module", "canonical": "ids module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:if_then_rule", "canonical": "if/then rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:implementation", "canonical": "implementation", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:in_blockquote", "canonical": "in_blockquote", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:in_memory_index", "canonical": "in-memory index", "aliases": ["in-memory indexe"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:include_code_blocks_setting", "canonical": "include_code_blocks setting", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:incoming_and_outgoing_link", "canonical": "incoming and outgoing link", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:incomplete_report", "canonical": "incomplete report", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:report"}
+{"id": "term:index", "canonical": "index", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:inferred_flag", "canonical": "inferred flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:bare_flag"}
+{"id": "term:inferred_node", "canonical": "inferred node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:inferred_node_item", "canonical": "inferred_node item", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:item"}
+{"id": "term:inferred_node_review_item", "canonical": "inferred node review item", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ingest_command", "canonical": "ingest command", "aliases": ["ingest", "ingestion"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ingest_pipeline_module", "canonical": "ingest pipeline module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ingest_pipeline_test", "canonical": "ingest pipeline test", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:init_command", "canonical": "init command", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:sddc_init_command"}
+{"id": "term:inline_mark", "canonical": "inline mark", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:inner_whitespace", "canonical": "inner whitespace", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:input", "canonical": "input", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:input_error", "canonical": "input error", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:usage_error"}
+{"id": "term:input_token", "canonical": "input token", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:insertion_order", "canonical": "insertion order", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:order"}
+{"id": "term:instruction", "canonical": "instruction", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:integration_test", "canonical": "integration test", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:test"}
+{"id": "term:integrity", "canonical": "integrity", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:interactive_page", "canonical": "interactive page", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:interface", "canonical": "interface", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:interlinked_conflict", "canonical": "interlinked conflict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:interrupted_chunk", "canonical": "interrupted chunk", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:chunk"}
+{"id": "term:interruption", "canonical": "interruption", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:inventory", "canonical": "inventory", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:inventory_of_block", "canonical": "inventory of block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:item", "canonical": "item", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:item_cause", "canonical": "item cause", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:item"}
+{"id": "term:item_state", "canonical": "item state", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:item"}
+{"id": "term:json_flag", "canonical": "--json flag", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:json_object", "canonical": "json object", "aliases": ["object"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:json_schema", "canonical": "json schema", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:schema"}
+{"id": "term:jsonl_writer", "canonical": "jsonl writer", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:judge", "canonical": "judge", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:judge_command", "canonical": "judge command", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:command"}
+{"id": "term:judge_verdict", "canonical": "judge verdict", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:judged", "canonical": "judged", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:judged_content", "canonical": "judged content", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:judged_link", "canonical": "judged link", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:link"}
+{"id": "term:judged_pair", "canonical": "judged pair", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:pair_key"}
+{"id": "term:judgment", "canonical": "judgment", "aliases": ["judgement"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:judgment_field", "canonical": "judgment field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:judgment_id", "canonical": "judgment id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:judgment_lock", "canonical": "judgment lock", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:lock_file"}
+{"id": "term:judgment_lock_key", "canonical": "judgment lock key", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:judgment_lock"}
+{"id": "term:judgment_lock_record", "canonical": "judgment-lock record", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:lock_record"}
+{"id": "term:judgment_provenance_link", "canonical": "judgment-provenance link", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:link"}
+{"id": "term:judgment_record", "canonical": "judgment record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:key", "canonical": "key", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:key_order", "canonical": "key order", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:keyword", "canonical": "keyword", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:keywords_module", "canonical": "keywords module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:kind_field", "canonical": "kind field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:kind_relationship", "canonical": "kind relationship", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:label", "canonical": "label", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:labelled_block", "canonical": "labelled block", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:language_judgment", "canonical": "language judgment", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:last_checked_run", "canonical": "last_checked_run", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:last_run", "canonical": "last run", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:layer", "canonical": "layer", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:layer_answer", "canonical": "layer answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:layer_mapping", "canonical": "layer mapping", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:layer_only_selector", "canonical": "layer-only selector", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:selector"}
+{"id": "term:layers_module", "canonical": "layers module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:layout", "canonical": "layout", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:lecture", "canonical": "lecture", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:legend", "canonical": "legend", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:line", "canonical": "line", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:line_ending", "canonical": "line ending", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:line_range", "canonical": "line range", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:line_sort", "canonical": "line sort", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:link", "canonical": "link", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:link_file", "canonical": "link file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:link_path", "canonical": "link path", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:link_type", "canonical": "link type", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:list_item", "canonical": "list item", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:list_item_block", "canonical": "list_item block", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:live_block", "canonical": "live block", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:live_cli_input", "canonical": "live cli input", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:live_editing", "canonical": "live editing", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:live_input"}
+{"id": "term:live_input", "canonical": "live input", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:live_model", "canonical": "live model", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": "term:model"}
+{"id": "term:load_profile", "canonical": "load_profile", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:loader", "canonical": "loader", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:loading", "canonical": "loading", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:local_label", "canonical": "local label", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:local_ml_model", "canonical": "local ml model", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:model"}
+{"id": "term:lock", "canonical": "lock", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:lock_file", "canonical": "lock file", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:lock_hit", "canonical": "lock hit", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:lock_key", "canonical": "lock key", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:lock_record", "canonical": "lock record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:record_member"}
+{"id": "term:lock_wait", "canonical": "lock wait", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:low_confidence_verdict", "canonical": "low_confidence_verdict", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:manifest", "canonical": "manifest", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:map", "canonical": "map", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:markdown", "canonical": "markdown", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:markdown_file", "canonical": "markdown file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:markdown_segmentation", "canonical": "markdown segmentation", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:markdown_spec_file", "canonical": "markdown spec file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:markdown_view", "canonical": "markdown view", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:markdown_viewer", "canonical": "markdown viewer", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": "term:html_viewer"}
+{"id": "term:matching_file", "canonical": "matching file", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:max_calls_per_run", "canonical": "max_calls_per_run", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:max_pairs_per_node", "canonical": "max_pairs_per_node", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:mcp_server", "canonical": "mcp server", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:meaning", "canonical": "meaning", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:measured_property", "canonical": "measured property", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:measurement", "canonical": "measurement", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:member", "canonical": "member", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:member_deletion", "canonical": "member deletion", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:deletion"}
+{"id": "term:member_list", "canonical": "member list", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:list_item"}
+{"id": "term:member_node", "canonical": "member node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node_id"}
+{"id": "term:member_record", "canonical": "member record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:mention", "canonical": "mention", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:mentioned_entity", "canonical": "mentioned entity", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:entity"}
+{"id": "term:merge", "canonical": "merge", "aliases": ["term merge"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:meta_count", "canonical": "meta count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:min_score", "canonical": "min_score", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:min_shared_keyword", "canonical": "min_shared_keyword", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:missing_modality", "canonical": "missing_modality", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:mixed_layer", "canonical": "mixed_layer", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:mixed_layers_ambiguity", "canonical": "mixed layers ambiguity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:ambiguity"}
+{"id": "term:modality", "canonical": "modality", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:modality_set", "canonical": "modality set", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:model", "canonical": "model", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:model_access", "canonical": "model access", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:model_backend"}
+{"id": "term:model_answer", "canonical": "model answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:model_backend", "canonical": "model backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:backend"}
+{"id": "term:model_call", "canonical": "model call", "aliases": ["call"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:model_interface", "canonical": "model interface", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:model"}
+{"id": "term:model_output", "canonical": "model output", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:model_prompt", "canonical": "model prompt", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:prompt"}
+{"id": "term:model_refusal", "canonical": "model refusal", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:model_call"}
+{"id": "term:model_scope_py", "canonical": "model/scope.py", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:model_step", "canonical": "model step", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:model_call"}
+{"id": "term:model_usage", "canonical": "model usage", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:usage"}
+{"id": "term:model_verdict", "canonical": "model verdict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:verdict"}
+{"id": "term:module", "canonical": "module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:month", "canonical": "month", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:multi_author", "canonical": "multi-author", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:multi_span_text", "canonical": "multi-span text", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:multi_writer_merging", "canonical": "multi-writer merging", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:must_sentence", "canonical": "must sentence", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:sentence"}
+{"id": "term:narrow_question", "canonical": "narrow question", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:question"}
+{"id": "term:narrower", "canonical": "narrower", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:narrower_family", "canonical": "narrower family", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:neighbour", "canonical": "neighbour", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:neighbouring_claim", "canonical": "neighbouring claim", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:nested", "canonical": "nested", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:nested_claude_call", "canonical": "nested claude call", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:model_call"}
+{"id": "term:nested_item", "canonical": "nested item", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:list_item"}
+{"id": "term:new_atom", "canonical": "new atom", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:atom"}
+{"id": "term:new_block", "canonical": "new block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:new_id", "canonical": "new id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:new_ids", "canonical": "new ids", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:new_name", "canonical": "new name", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:canonical_name"}
+{"id": "term:new_status", "canonical": "new status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:new_term", "canonical": "new term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:no_family", "canonical": "(no family)", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:no_shared_term_conflict", "canonical": "no-shared-term conflict", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:node", "canonical": "node", "aliases": ["old node"], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:node_b", "canonical": "node b", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:node_count", "canonical": "node count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:node_deletion", "canonical": "node deletion", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:deletion"}
+{"id": "term:node_file", "canonical": "node file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:node_id", "canonical": "node id", "aliases": ["query node id"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:node_kind", "canonical": "node kind", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:node_record", "canonical": "node record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:node_status", "canonical": "node status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:node_term_link_contract", "canonical": "node, term, link contract", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:data_contract"}
+{"id": "term:node_text", "canonical": "node text", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:nodes_checked", "canonical": "nodes checked", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:non_deterministic_component", "canonical": "non-deterministic component", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:component"}
+{"id": "term:non_goal", "canonical": "non-goal", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:non_markdown_input", "canonical": "non-markdown input", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:none_answer", "canonical": "none answer", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:normalized_field", "canonical": "normalized field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:normalized_value", "canonical": "normalized value", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:enum_value"}
+{"id": "term:normative_word", "canonical": "normative word", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:note", "canonical": "note", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:null", "canonical": "null", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:numbers_inside_date", "canonical": "numbers inside date", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:numbers_inside_identifier"}
+{"id": "term:numbers_inside_identifier", "canonical": "numbers inside identifier", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:numbers_inside_version", "canonical": "numbers inside version", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:numbers_inside_identifier"}
+{"id": "term:occurrence", "canonical": "occurrence", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:offset", "canonical": "offset", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:old_block", "canonical": "old block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:old_id", "canonical": "old id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:id"}
+{"id": "term:old_n_node", "canonical": "old n- node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:one_claim_block", "canonical": "one-claim block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:one_criterion", "canonical": "one_criterion", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:criterion"}
+{"id": "term:open_conflict", "canonical": "open conflict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:open_conflict_record", "canonical": "open conflict record", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:conflict_record"}
+{"id": "term:open_contradiction", "canonical": "open contradiction", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:contradiction"}
+{"id": "term:open_question", "canonical": "open question", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:question"}
+{"id": "term:open_record", "canonical": "open record", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:order", "canonical": "order", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ordinal_position", "canonical": "ordinal position", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:orphan", "canonical": "orphan", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:outcome_function", "canonical": "outcome function", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:function"}
+{"id": "term:output_token", "canonical": "output token", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:outside_party", "canonical": "outside party", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:outsider", "canonical": "outsider", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:overview", "canonical": "overview", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:owner", "canonical": "owner", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ownership", "canonical": "ownership", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:package_sdd_compiler", "canonical": "package sdd_compiler", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:python_package"}
+{"id": "term:pair_dropped_by_cap", "canonical": "pair dropped by cap", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:capped_pair"}
+{"id": "term:pair_judging", "canonical": "pair judging", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:pair_judgment"}
+{"id": "term:pair_judgment", "canonical": "pair judgment", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:judgment"}
+{"id": "term:pair_key", "canonical": "pair key", "aliases": ["pair", "q-pair"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pair_question", "canonical": "pair question", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:question"}
+{"id": "term:pair_s_answer", "canonical": "pair's answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:pairs_after_the_cap", "canonical": "pairs after the cap", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:pair_key"}
+{"id": "term:pairs_dropped_by_min_score", "canonical": "pairs dropped by min_score", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:pair_key"}
+{"id": "term:pairs_judged", "canonical": "pairs_judged", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pairs_replayed", "canonical": "pairs_replayed", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:paragraph", "canonical": "paragraph", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:paragraph_block", "canonical": "paragraph block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:parent_block_field", "canonical": "parent_block field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:parent_entity_term", "canonical": "parent entity term", "aliases": ["shared parent"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:entity"}
+{"id": "term:parent_relation_field", "canonical": "parent_relation field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:parser", "canonical": "parser", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pass_api_key", "canonical": "pass_api_key", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:path", "canonical": "path", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pending", "canonical": "pending", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pending_block", "canonical": "pending block", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:pending_flag", "canonical": "--pending flag", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pending_review_status", "canonical": "pending_review status", "aliases": ["pending_review"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:pending_set", "canonical": "pending set", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:pending_block"}
+{"id": "term:pending_work", "canonical": "pending work", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:pending"}
+{"id": "term:people", "canonical": "people", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:per_atom_write", "canonical": "per-atom write", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:write_operation"}
+{"id": "term:per_node_cap", "canonical": "per-node cap", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:call_cap"}
+{"id": "term:per_run_flag", "canonical": "per-run flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:percent_quantity", "canonical": "percent quantity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:quantity"}
+{"id": "term:person", "canonical": "person", "aliases": [], "kind": "actor", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:phase", "canonical": "phase", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pin", "canonical": "pin", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pinned_family", "canonical": "pinned family", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:pinned_family_flag", "canonical": "pinned_family flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:per_run_flag"}
+{"id": "term:pipeline_component", "canonical": "pipeline component", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:component"}
+{"id": "term:pipeline_module", "canonical": "pipeline module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:placement", "canonical": "placement", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:placement_module", "canonical": "placement module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:plain_text", "canonical": "plain text", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:planted_conflict", "canonical": "planted conflict", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:point", "canonical": "point", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pointer", "canonical": "pointer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:posttooluse_hook_adapter", "canonical": "posttooluse hook adapter", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:primary_term", "canonical": "primary term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:principle", "canonical": "principle", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:profile", "canonical": "profile", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:profile_change", "canonical": "profile change", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:change"}
+{"id": "term:profile_exclude_glob", "canonical": "profile.exclude_glob", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:profile_model", "canonical": "profile model", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:model"}
+{"id": "term:profile_module", "canonical": "profile module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:profile"}
+{"id": "term:profile_spec_glob", "canonical": "profile.spec_glob", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:prompt", "canonical": "prompt", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:prompt_change", "canonical": "prompt change", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:source_change"}
+{"id": "term:prompt_hook", "canonical": "prompt hook", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:prompt"}
+{"id": "term:property", "canonical": "property", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:proposal", "canonical": "proposal", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:proposal_reason", "canonical": "proposal reason", "aliases": ["reason"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:proposed", "canonical": "proposed", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:proposed_name", "canonical": "proposed name", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:canonical_name"}
+{"id": "term:proposed_term", "canonical": "proposed term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:prose", "canonical": "prose", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:provenance", "canonical": "provenance", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:provenance_field", "canonical": "provenance field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:provisional_flag", "canonical": "provisional flag", "aliases": ["provisional"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:provisional_verdict", "canonical": "provisional verdict", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:verdict"}
+{"id": "term:punctuation", "canonical": "punctuation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:purpose", "canonical": "purpose", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pyproject_toml", "canonical": "pyproject.toml", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pytest", "canonical": "pytest", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:python", "canonical": "python", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:python_package", "canonical": "python package", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:q_atom_answer", "canonical": "q-atom answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:q_atom_call", "canonical": "q-atom call", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:model_call"}
+{"id": "term:q_desc", "canonical": "q-desc", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:q_desc_answer", "canonical": "q-desc answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:q_desc_prompt", "canonical": "q-desc prompt", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:prompt"}
+{"id": "term:q_pair_call", "canonical": "q-pair call", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:model_call"}
+{"id": "term:q_pair_question", "canonical": "q-pair question", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:pair_question"}
+{"id": "term:q_pair_schema_version", "canonical": "q-pair schema version", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:schema_version"}
+{"id": "term:q_term", "canonical": "q-term", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:q_term_narrower_verdict", "canonical": "q-term narrower verdict", "aliases": ["narrower verdict"], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:q_term_question", "canonical": "q-term question", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:q_term_verdict", "canonical": "q-term verdict", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:q_term"}
+{"id": "term:qr_n_id", "canonical": "qr-<n> id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:node_id"}
+{"id": "term:quantity", "canonical": "quantity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:quantity_normalization", "canonical": "quantity normalization", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:quantity"}
+{"id": "term:query", "canonical": "query", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:query_map", "canonical": "query map", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:query_neighbor", "canonical": "query neighbor", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:node_id"}
+{"id": "term:question", "canonical": "question", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:question_kind", "canonical": "question kind", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:node_kind"}
+{"id": "term:question_register_entry", "canonical": "question register entry", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:question"}
+{"id": "term:question_text", "canonical": "question text", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:question_kind"}
+{"id": "term:questions_md", "canonical": "questions.md", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:queue", "canonical": "queue", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:quote", "canonical": "quote", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:quote_location", "canonical": "quote location", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:quote"}
+{"id": "term:quote_overlap", "canonical": "quote overlap", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:rank_order", "canonical": "rank order", "aliases": ["rank"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:order"}
+{"id": "term:ranked_mode", "canonical": "ranked mode", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:rationale", "canonical": "rationale", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:rationale_field", "canonical": "rationale field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:raw_value", "canonical": "raw value", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:re_ask", "canonical": "re-ask", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:re_asking", "canonical": "re-asking", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:asking"}
+{"id": "term:re_checking", "canonical": "re-checking", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:re_ingestion", "canonical": "re-ingestion", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:ingest_command"}
+{"id": "term:re_judgement", "canonical": "re-judgement", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:judgment"}
+{"id": "term:re_judging", "canonical": "re-judging", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:real_pair", "canonical": "real pair", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:reasoning", "canonical": "reasoning", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:proposal_reason"}
+{"id": "term:record_contract", "canonical": "record contract", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:record_file", "canonical": "record file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:store_file"}
+{"id": "term:record_member", "canonical": "record member", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:member"}
+{"id": "term:recorded_answer", "canonical": "recorded answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:recorded_fake_backend", "canonical": "recorded fake backend", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:backend"}
+{"id": "term:recorded_judgment", "canonical": "recorded judgment", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:judgment"}
+{"id": "term:referent", "canonical": "referent", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:referential_ambiguity", "canonical": "referential ambiguity", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:ambiguity"}
+{"id": "term:refine", "canonical": "refine", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:refines_link", "canonical": "refines link", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:refusal_or_flagging", "canonical": "refusal or flagging", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:registry", "canonical": "registry", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:registry_file", "canonical": "registry file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:registry"}
+{"id": "term:rejected_option", "canonical": "rejected option", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:rejection", "canonical": "rejection", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:related_conflict_node", "canonical": "related_conflict_node", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:related_conflict_nodes_field", "canonical": "related_conflict_nodes field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:related_family", "canonical": "related family", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:related_node", "canonical": "related node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:related_node_retrieval", "canonical": "related-node retrieval", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:retrieval"}
+{"id": "term:relation_kind", "canonical": "relation kind", "aliases": ["relation"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:release", "canonical": "release", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:release_decision", "canonical": "release decision", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:decision"}
+{"id": "term:release_gate", "canonical": "release gate", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:release_goal", "canonical": "release goal", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:release_session", "canonical": "release session", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:release_gate"}
+{"id": "term:remaining_node", "canonical": "remaining node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:removed_block", "canonical": "removed block", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:removed_record", "canonical": "removed record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:removed_run", "canonical": "removed_run", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:removed_run_field", "canonical": "removed_run field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:removed_status", "canonical": "removed status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:rendered_map", "canonical": "rendered map", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:sddc_map"}
+{"id": "term:replay", "canonical": "replay", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:replayed", "canonical": "replayed", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:replay"}
+{"id": "term:report", "canonical": "report", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:report_component", "canonical": "report component", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:pipeline_component"}
+{"id": "term:reported_conflict", "canonical": "reported conflict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:repository", "canonical": "repository", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:repository_root", "canonical": "repository root", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:repository"}
+{"id": "term:required_field", "canonical": "required field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:requirement", "canonical": "requirement", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:resolved_run", "canonical": "resolved_run", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:resolved_status", "canonical": "resolved status", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:resolved_term", "canonical": "resolved term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:response", "canonical": "response", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:response_rule", "canonical": "response rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:result", "canonical": "result", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:resumed_run", "canonical": "resumed run", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:run"}
+{"id": "term:retrieval", "canonical": "retrieval", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:retrieval_count", "canonical": "retrieval count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:retrieval_signal", "canonical": "retrieval signal", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:retrieval"}
+{"id": "term:return_value", "canonical": "return value", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:returned_pair", "canonical": "returned pair", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:pair_key"}
+{"id": "term:review", "canonical": "review", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:review_command", "canonical": "review command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:command"}
+{"id": "term:review_item", "canonical": "review item", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:review_queue", "canonical": "review queue", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:rewrite", "canonical": "rewrite", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:write_operation"}
+{"id": "term:role_list", "canonical": "role list", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:role_scope", "canonical": "role scope", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:scope"}
+{"id": "term:root_flag", "canonical": "--root flag", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:row", "canonical": "row", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:row_s_node", "canonical": "row's node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:rule", "canonical": "rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:run", "canonical": "run", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:run_budget", "canonical": "run budget", "aliases": ["budget"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:run"}
+{"id": "term:run_count", "canonical": "run count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:run_lock", "canonical": "run lock", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:lock"}
+{"id": "term:run_output", "canonical": "run output", "aliases": ["byte output", "cli output", "output", "query output"], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:run"}
+{"id": "term:run_record", "canonical": "run record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:run_report", "canonical": "run report", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:run_output"}
+{"id": "term:run_s_delta", "canonical": "run's delta", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:runs_jsonl", "canonical": "runs.jsonl", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:runtime_dependency", "canonical": "runtime dependency", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:same", "canonical": "same", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:schema", "canonical": "schema", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:schema_bound_question", "canonical": "schema-bound question", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:schema_check", "canonical": "schema check", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:check"}
+{"id": "term:schema_module", "canonical": "schema module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:schema_version", "canonical": "schema version", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:schema"}
+{"id": "term:scope", "canonical": "scope", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:scope_description", "canonical": "scope description", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:scope"}
+{"id": "term:scope_layer", "canonical": "scope_layer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:scope_selector", "canonical": "scope_selector", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:score", "canonical": "score", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:score_module", "canonical": "score module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:scoring_mechanism", "canonical": "scoring mechanism", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:scripted_answer", "canonical": "scripted answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:sdd_compiler_child", "canonical": "sdd_compiler_child", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sdd_compiler_child_environment_variable", "canonical": "sdd_compiler_child environment variable", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sdd_compiler_model_scope_cover", "canonical": "sdd_compiler.model.scope.cover", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sdd_directory", "canonical": ".sdd/ directory", "aliases": [".sdd/"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sdd_layout", "canonical": ".sdd/ layout", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:layout"}
+{"id": "term:sdd_profile_yaml", "canonical": ".sdd/profile.yaml", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sdd_run_lock", "canonical": ".sdd/run.lock", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sdd_store", "canonical": ".sdd/ store", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:store"}
+{"id": "term:sddc", "canonical": "sddc", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_add_command", "canonical": "sddc add command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_atomize", "canonical": "sddc atomize", "aliases": ["atomize"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_atomize_command", "canonical": "sddc atomize command", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:sddc_atomize"}
+{"id": "term:sddc_check_command", "canonical": "sddc check command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:command"}
+{"id": "term:sddc_compile_command", "canonical": "sddc compile command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:command"}
+{"id": "term:sddc_compile_run", "canonical": "sddc compile run", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:compile_run"}
+{"id": "term:sddc_conflict", "canonical": "sddc conflict", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:conflict"}
+{"id": "term:sddc_family", "canonical": "sddc family", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:sddc"}
+{"id": "term:sddc_hook_post_edit", "canonical": "sddc hook post-edit", "aliases": ["post-edit hook trigger", "trigger"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_init_command", "canonical": "sddc init command", "aliases": ["sddc command"], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_map", "canonical": "sddc map", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:sddc"}
+{"id": "term:sddc_pair", "canonical": "sddc pair", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_pairs_exhaustive", "canonical": "sddc pairs --exhaustive", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:sddc_pair"}
+{"id": "term:sddc_query", "canonical": "sddc query", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:deterministic_query"}
+{"id": "term:sddc_review_accept", "canonical": "sddc review accept", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_review_list", "canonical": "sddc review list", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_review_reject", "canonical": "sddc review reject", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sddc_review_show", "canonical": "sddc review show", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:sddc_review_list"}
+{"id": "term:sddc_status", "canonical": "sddc status", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:sddc_view", "canonical": "sddc view", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:sddc"}
+{"id": "term:second_run", "canonical": "second run", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:run"}
+{"id": "term:second_yes", "canonical": "second yes", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:section_line", "canonical": "section line", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:line"}
+{"id": "term:selector", "canonical": "selector", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sentence", "canonical": "sentence", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:setuptool", "canonical": "setuptool", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:shard_file", "canonical": "shard file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:shared_keyword", "canonical": "shared keyword", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:shared_term", "canonical": "shared term", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:should_not", "canonical": "should not", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:show", "canonical": "show", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:show_command", "canonical": "show command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:silent_checking", "canonical": "silent checking", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:silent_failure", "canonical": "silent failure", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:failure"}
+{"id": "term:similar_name", "canonical": "similar name", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:size_normalization", "canonical": "size normalization", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:quantity_normalization"}
+{"id": "term:size_unit", "canonical": "size unit", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:unit"}
+{"id": "term:source", "canonical": "source", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_atom", "canonical": "source atom", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:source"}
+{"id": "term:source_block_id", "canonical": "source.block_id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_change", "canonical": "source change", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:change_detection"}
+{"id": "term:source_file", "canonical": "source file", "aliases": ["query source id"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_line", "canonical": "source.line", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_location", "canonical": "source location", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:source"}
+{"id": "term:source_of_truth", "canonical": "source of truth", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_offset", "canonical": "source offset", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:offset"}
+{"id": "term:source_record", "canonical": "source record", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_span", "canonical": "source.span", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_text", "canonical": "source text", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:source"}
+{"id": "term:sources_jsonl", "canonical": "sources.jsonl", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:span", "canonical": "span", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:span_overlap", "canonical": "span overlap", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:spec", "canonical": "spec", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:spec_file", "canonical": "spec file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:spec_folder", "canonical": "spec folder", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:spec"}
+{"id": "term:spec_glob", "canonical": "spec glob", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": "term:spec_source"}
+{"id": "term:spec_graph", "canonical": "spec graph", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:graph"}
+{"id": "term:spec_index", "canonical": "spec index", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:index"}
+{"id": "term:spec_set", "canonical": "spec set", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:spec_source", "canonical": "spec source", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:source"}
+{"id": "term:spec_tree", "canonical": "spec tree", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:specs_readme_md_file", "canonical": "specs/readme.md file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:markdown_spec_file"}
+{"id": "term:split", "canonical": "split", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:split_operation", "canonical": "split operation", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:write_operation"}
+{"id": "term:split_re_ask", "canonical": "split re-ask", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:split_request", "canonical": "split request", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:split"}
+{"id": "term:split_required", "canonical": "split_required", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:split_required_response", "canonical": "split_required response", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:splitting_blocks_into_claim", "canonical": "splitting blocks into claim", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sqlite_cache", "canonical": "sqlite cache", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:src", "canonical": "src/", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stale", "canonical": "stale", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stale_file", "canonical": "stale file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stale_marking", "canonical": "stale marking", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stale_read", "canonical": "stale read", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stale_reason", "canonical": "stale_reason", "aliases": ["stale_reasons entry"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:status", "canonical": "status", "aliases": ["exit status", "record status"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:status_and_process_note", "canonical": "status and process note", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:status_command", "canonical": "status command", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:status_count", "canonical": "status count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:status_field", "canonical": "status field", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:field"}
+{"id": "term:status_mark", "canonical": "status mark", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:status"}
+{"id": "term:status_module", "canonical": "status module", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:module"}
+{"id": "term:stdout", "canonical": "stdout", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stop_word", "canonical": "stop word", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stop_word_list", "canonical": "stop-word list", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:list_item"}
+{"id": "term:storage", "canonical": "storage", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:store", "canonical": "store", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:store_api", "canonical": "store api", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:store"}
+{"id": "term:store_error", "canonical": "store error", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:error"}
+{"id": "term:store_file", "canonical": "store file", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:store_graph", "canonical": "store/graph", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:store_id", "canonical": "store id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:bare_id"}
+{"id": "term:stored_answer", "canonical": "stored answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:stored_expectation", "canonical": "stored expectation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stored_node", "canonical": "stored node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:structural_check", "canonical": "structural check", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:structural_unit", "canonical": "structural unit", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:structure", "canonical": "structure", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:structured_judgment", "canonical": "structured judgment", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:judgment"}
+{"id": "term:structured_output", "canonical": "structured_output", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sub_goal", "canonical": "sub-goal", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:sub_item", "canonical": "sub-item", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:subject", "canonical": "subject", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:subject_rule", "canonical": "subject rule", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:subject_term", "canonical": "subject term", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:subsume", "canonical": "subsume", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:subsumes_link", "canonical": "subsumes link", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:subsumption", "canonical": "subsumption", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:success", "canonical": "success", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:summary", "canonical": "summary", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:suppressed", "canonical": "suppressed", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:suppressed_count", "canonical": "suppressed count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}
+{"id": "term:suppression_rule", "canonical": "suppression rule", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:symmetric_direction", "canonical": "symmetric direction", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:direction_field"}
+{"id": "term:system", "canonical": "system", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:t_n_id", "canonical": "t<n> id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:node_id"}
+{"id": "term:table", "canonical": "table", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:table_body_row", "canonical": "table body row", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:table_header", "canonical": "table_header", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:table_header_line", "canonical": "table header line", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:line"}
+{"id": "term:table_row", "canonical": "table row", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:table"}
+{"id": "term:tag", "canonical": "tag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:target", "canonical": "target", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:temporary_file", "canonical": "temporary file", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:term", "canonical": "term", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:term_file", "canonical": "term file", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:term_merge_rejection", "canonical": "term merge rejection", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": "term:rejection"}
+{"id": "term:term_name_list", "canonical": "term name list", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:member_list"}
+{"id": "term:term_same_item", "canonical": "term_same item", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:item"}
+{"id": "term:term_same_review_item", "canonical": "term_same review item", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:list_item"}
+{"id": "term:term_set", "canonical": "term set", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:term_tag", "canonical": "term tag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term"}
+{"id": "term:term_unsure_review_item", "canonical": "term_unsure review item", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:list_item"}
+{"id": "term:terminal", "canonical": "terminal", "aliases": [], "kind": "external_system", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:test", "canonical": "test", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:test_case", "canonical": "test case", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:test"}
+{"id": "term:test_file", "canonical": "test file", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:test_subject", "canonical": "test subject", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:subject"}
+{"id": "term:text_hash", "canonical": "text_hash", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:text_output", "canonical": "text output", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:run_output"}
+{"id": "term:text_overlap", "canonical": "text overlap", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:text_view", "canonical": "text view", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:view"}
+{"id": "term:thinking_token", "canonical": "thinking token", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:extended_thinking"}
+{"id": "term:threshold", "canonical": "threshold", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:tie", "canonical": "tie", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:tier", "canonical": "tier", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:tier_tag", "canonical": "tier tag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:term_tag"}
+{"id": "term:time_normalization", "canonical": "time normalization", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:quantity_normalization"}
+{"id": "term:time_quantity", "canonical": "time quantity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:quantity"}
+{"id": "term:timestamp", "canonical": "timestamp", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:title", "canonical": "title", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:trailing_whitespace", "canonical": "trailing whitespace", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:transaction", "canonical": "transaction", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:traversal_for_code_generation", "canonical": "traversal for code generation", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:two_form", "canonical": "two form", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unbounded_quantity", "canonical": "unbounded quantity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:quantity"}
+{"id": "term:unbounded_quantity_ambiguity", "canonical": "unbounded quantity ambiguity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:ambiguity"}
+{"id": "term:unchanged_node", "canonical": "unchanged node", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:undeclared_id_family", "canonical": "undeclared id family", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:family"}
+{"id": "term:under_specification", "canonical": "under-specification", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unexpected_exception", "canonical": "unexpected exception", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unit", "canonical": "unit", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unit_tier", "canonical": "unit tier", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:tier"}
+{"id": "term:unjudged_failed", "canonical": "unjudged_failed", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unjudged_pair", "canonical": "unjudged pair", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:candidate_pair"}
+{"id": "term:unknown_id", "canonical": "unknown id", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unplaced_jsonl", "canonical": "_unplaced.jsonl", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unprocessed_block", "canonical": "unprocessed block", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:block"}
+{"id": "term:unsure", "canonical": "unsure", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unusable_answer", "canonical": "unusable answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:upload", "canonical": "upload", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:usage", "canonical": "usage", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:usage_and_cost", "canonical": "usage and cost", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:usage_error", "canonical": "usage error", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": "term:error"}
+{"id": "term:uses_term_link", "canonical": "uses_term link", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:link"}
+{"id": "term:v", "canonical": "v", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:v_node", "canonical": "v node", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:vague_spec", "canonical": "vague spec", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:spec"}
+{"id": "term:vague_term", "canonical": "vague_term", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:vague_term_ambiguity", "canonical": "vague term ambiguity", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:ambiguity"}
+{"id": "term:vague_term_flag", "canonical": "vague_term flag", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:per_run_flag"}
+{"id": "term:validation", "canonical": "validation", "aliases": [], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:value_and_unit", "canonical": "value and unit", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:verbatim_span", "canonical": "verbatim span", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:span"}
+{"id": "term:verbatim_text", "canonical": "verbatim text", "aliases": ["block text", "text"], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:verdict", "canonical": "verdict", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:verification", "canonical": "verification", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:verification_atom", "canonical": "verification atom", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:atom"}
+{"id": "term:verification_rule", "canonical": "verification rule", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:rule"}
+{"id": "term:verified_node", "canonical": "verified node", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": "term:node"}
+{"id": "term:verifies_link", "canonical": "verifies link", "aliases": [], "kind": "entity", "defined_by": null, "status": "proposed", "broader": "term:link"}
+{"id": "term:verify", "canonical": "verify", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:versioning", "canonical": "versioning", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:view", "canonical": "view", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:views_map_md", "canonical": "views/map.md", "aliases": [], "kind": "external_reference", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:violation", "canonical": "violation", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:vs_code_extension", "canonical": "vs code extension", "aliases": [], "kind": "component", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:wait_timeout", "canonical": "wait timeout", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:weak_word", "canonical": "weak_word", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:weight", "canonical": "weight", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:whitespace", "canonical": "whitespace", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:word", "canonical": "word", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:word_meaning", "canonical": "word meaning", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:word_token", "canonical": "word token", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:worked_example_graph", "canonical": "worked-example graph", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:graph"}
+{"id": "term:write_operation", "canonical": "write operation", "aliases": ["write"], "kind": "event", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:year", "canonical": "year", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:yes_answer", "canonical": "yes answer", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:answer"}
+{"id": "term:yes_no_gate", "canonical": "yes/no gate", "aliases": [], "kind": "category", "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:zero_count", "canonical": "zero count", "aliases": [], "kind": "data", "defined_by": null, "status": "proposed", "broader": "term:count"}

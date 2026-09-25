@@ -1,0 +1,7081 @@
+{
+ "count": 451,
+ "nodes": [
+  {
+   "id": "AC-1.10",
+   "family": "term:block_id",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     213,
+     214
+    ]
+   },
+   "conflict_ids": [
+    "CF-000135",
+    "CF-000304"
+   ]
+  },
+  {
+   "id": "AC-1.12",
+   "family": "term:block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     221,
+     223
+    ]
+   },
+   "conflict_ids": [
+    "CF-000373"
+   ]
+  },
+  {
+   "id": "AC-1.25",
+   "family": "term:exit_code",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     236,
+     237
+    ]
+   },
+   "conflict_ids": [
+    "CF-000187"
+   ]
+  },
+  {
+   "id": "AC-1.31",
+   "family": "term:block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     217,
+     220
+    ]
+   },
+   "conflict_ids": [
+    "CF-000007",
+    "CF-000235"
+   ]
+  },
+  {
+   "id": "AC-1.6",
+   "family": "term:include_code_blocks_setting",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     196,
+     198
+    ]
+   },
+   "conflict_ids": [
+    "CF-000235"
+   ]
+  },
+  {
+   "id": "AC-1.9",
+   "family": "term:block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     210,
+     212
+    ]
+   },
+   "conflict_ids": [
+    "CF-000135"
+   ]
+  },
+  {
+   "id": "AC-2.1",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     265,
+     266
+    ]
+   },
+   "conflict_ids": [
+    "CF-000305"
+   ]
+  },
+  {
+   "id": "AC-2.10",
+   "family": "term:ambiguity",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     289,
+     290
+    ]
+   },
+   "conflict_ids": [
+    "CF-000227"
+   ]
+  },
+  {
+   "id": "AC-2.12",
+   "family": "term:status",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     297,
+     299
+    ]
+   },
+   "conflict_ids": [
+    "CF-000136",
+    "CF-000137",
+    "CF-000254"
+   ]
+  },
+  {
+   "id": "AC-2.13",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     300,
+     301
+    ]
+   },
+   "conflict_ids": [
+    "CF-000306"
+   ]
+  },
+  {
+   "id": "AC-2.14",
+   "family": "term:status",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     302,
+     303
+    ]
+   },
+   "conflict_ids": [
+    "CF-000274"
+   ]
+  },
+  {
+   "id": "AC-2.16",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     311,
+     313
+    ]
+   },
+   "conflict_ids": [
+    "CF-000070",
+    "CF-000136",
+    "CF-000181"
+   ]
+  },
+  {
+   "id": "AC-2.19",
+   "family": "term:node_id",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     344,
+     346
+    ]
+   },
+   "conflict_ids": [
+    "CF-000188",
+    "CF-000228"
+   ]
+  },
+  {
+   "id": "AC-2.2",
+   "family": "term:block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     267,
+     269
+    ]
+   },
+   "conflict_ids": [
+    "CF-000189"
+   ]
+  },
+  {
+   "id": "AC-2.20",
+   "family": "term:pending_block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     347,
+     349
+    ]
+   },
+   "conflict_ids": [
+    "CF-000190",
+    "CF-000191",
+    "CF-000229",
+    "CF-000307"
+   ]
+  },
+  {
+   "id": "AC-2.23",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     307,
+     310
+    ]
+   },
+   "conflict_ids": [
+    "CF-000115",
+    "CF-000275"
+   ]
+  },
+  {
+   "id": "AC-2.26",
+   "family": "term:subject_term",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     324,
+     327
+    ]
+   },
+   "conflict_ids": [
+    "CF-000227"
+   ]
+  },
+  {
+   "id": "AC-2.27",
+   "family": "term:subject",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     328,
+     331
+    ]
+   },
+   "conflict_ids": [
+    "CF-000374"
+   ]
+  },
+  {
+   "id": "AC-2.4",
+   "family": "term:layer",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     272,
+     273
+    ]
+   },
+   "conflict_ids": [
+    "CF-000305",
+    "CF-000308"
+   ]
+  },
+  {
+   "id": "AC-2.9",
+   "family": "term:c_node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     286,
+     287
+    ]
+   },
+   "conflict_ids": [
+    "CF-000276"
+   ]
+  },
+  {
+   "id": "AC-3.12",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     303,
+     305
+    ]
+   },
+   "conflict_ids": [
+    "CF-000022",
+    "CF-000230"
+   ]
+  },
+  {
+   "id": "AC-3.13",
+   "family": "term:time_quantity",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     307,
+     309
+    ]
+   },
+   "conflict_ids": [
+    "CF-000192"
+   ]
+  },
+  {
+   "id": "AC-3.14",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     312,
+     314
+    ]
+   },
+   "conflict_ids": [
+    "CF-000138"
+   ]
+  },
+  {
+   "id": "AC-3.15",
+   "family": "term:q_term_question",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     315,
+     317
+    ]
+   },
+   "conflict_ids": [
+    "CF-000350"
+   ]
+  },
+  {
+   "id": "AC-3.16",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     318,
+     319
+    ]
+   },
+   "conflict_ids": [
+    "CF-000116",
+    "CF-000182"
+   ]
+  },
+  {
+   "id": "AC-3.17",
+   "family": "term:block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     320,
+     322
+    ]
+   },
+   "conflict_ids": [
+    "CF-000277"
+   ]
+  },
+  {
+   "id": "AC-3.18",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     323,
+     326
+    ]
+   },
+   "conflict_ids": [
+    "CF-000008",
+    "CF-000009",
+    "CF-000060",
+    "CF-000063",
+    "CF-000109"
+   ]
+  },
+  {
+   "id": "AC-3.19",
+   "family": "term:model_call",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     327,
+     329
+    ]
+   },
+   "conflict_ids": [
+    "CF-000255"
+   ]
+  },
+  {
+   "id": "AC-3.20",
+   "family": "term:question",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     330,
+     331
+    ]
+   },
+   "conflict_ids": [
+    "CF-000083",
+    "CF-000084",
+    "CF-000278"
+   ]
+  },
+  {
+   "id": "AC-3.21",
+   "family": "term:pending_block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     334,
+     336
+    ]
+   },
+   "conflict_ids": [
+    "CF-000193"
+   ]
+  },
+  {
+   "id": "AC-3.22",
+   "family": "term:run",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     338,
+     340
+    ]
+   },
+   "conflict_ids": [
+    "CF-000017",
+    "CF-000023",
+    "CF-000110",
+    "CF-000139",
+    "CF-000140",
+    "CF-000141",
+    "CF-000194",
+    "CF-000279",
+    "CF-000309"
+   ]
+  },
+  {
+   "id": "AC-3.24",
+   "family": "term:proposed_name",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     343,
+     345
+    ]
+   },
+   "conflict_ids": [
+    "CF-000142"
+   ]
+  },
+  {
+   "id": "AC-3.25",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     346,
+     347
+    ]
+   },
+   "conflict_ids": [
+    "CF-000115",
+    "CF-000127"
+   ]
+  },
+  {
+   "id": "AC-3.4",
+   "family": "term:exit_code",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     283,
+     284
+    ]
+   },
+   "conflict_ids": [
+    "CF-000195",
+    "CF-000196",
+    "CF-000256"
+   ]
+  },
+  {
+   "id": "AC-3.5",
+   "family": "term:run",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     285,
+     286
+    ]
+   },
+   "conflict_ids": [
+    "CF-000017",
+    "CF-000024"
+   ]
+  },
+  {
+   "id": "AC-3.6",
+   "family": "term:question",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     289,
+     291
+    ]
+   },
+   "conflict_ids": [
+    "CF-000025"
+   ]
+  },
+  {
+   "id": "AC-4.11",
+   "family": "term:open_conflict",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     215,
+     216
+    ]
+   },
+   "conflict_ids": [
+    "CF-000205"
+   ]
+  },
+  {
+   "id": "AC-4.6",
+   "family": "term:conflicted_nodes_json",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     198,
+     200
+    ]
+   },
+   "conflict_ids": [
+    "CF-000143",
+    "CF-000144"
+   ]
+  },
+  {
+   "id": "AC-5.10",
+   "family": "term:max_pairs_per_node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     170,
+     173
+    ]
+   },
+   "conflict_ids": [
+    "CF-000010",
+    "CF-000039",
+    "CF-000231"
+   ]
+  },
+  {
+   "id": "AC-5.11",
+   "family": "term:result",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     174,
+     175
+    ]
+   },
+   "conflict_ids": [
+    "CF-000197"
+   ]
+  },
+  {
+   "id": "AC-5.15",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     186,
+     187
+    ]
+   },
+   "conflict_ids": [
+    "CF-000232",
+    "CF-000310",
+    "CF-000311"
+   ]
+  },
+  {
+   "id": "AC-5.6",
+   "family": "term:candidate",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     152,
+     156
+    ]
+   },
+   "conflict_ids": [
+    "CF-000375"
+   ]
+  },
+  {
+   "id": "AC-5.8",
+   "family": "term:candidate",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     163,
+     165
+    ]
+   },
+   "conflict_ids": [
+    "CF-000257"
+   ]
+  },
+  {
+   "id": "AC-5.9",
+   "family": "term:evidence",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     168,
+     169
+    ]
+   },
+   "conflict_ids": [
+    "CF-000257"
+   ]
+  },
+  {
+   "id": "AC-6.1",
+   "family": "term:candidate_pair",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     173,
+     176
+    ]
+   },
+   "conflict_ids": [
+    "CF-000143",
+    "CF-000145",
+    "CF-000198"
+   ]
+  },
+  {
+   "id": "AC-6.10",
+   "family": "term:report",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     219,
+     221
+    ]
+   },
+   "conflict_ids": [
+    "CF-000139",
+    "CF-000146",
+    "CF-000147"
+   ]
+  },
+  {
+   "id": "AC-6.11",
+   "family": "term:graph",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     222,
+     223
+    ]
+   },
+   "conflict_ids": [
+    "CF-000071",
+    "CF-000103",
+    "CF-000140",
+    "CF-000146",
+    "CF-000199"
+   ]
+  },
+  {
+   "id": "AC-6.12",
+   "family": "term:verdict",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     224,
+     226
+    ]
+   },
+   "conflict_ids": [
+    "CF-000141",
+    "CF-000147"
+   ]
+  },
+  {
+   "id": "AC-6.14",
+   "family": "term:pair_key",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     232,
+     233
+    ]
+   },
+   "conflict_ids": [
+    "CF-000200"
+   ]
+  },
+  {
+   "id": "AC-6.15",
+   "family": "term:conflict_record",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     235,
+     237
+    ]
+   },
+   "conflict_ids": [
+    "CF-000312"
+   ]
+  },
+  {
+   "id": "AC-6.16",
+   "family": "term:conflict_record",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     238,
+     240
+    ]
+   },
+   "conflict_ids": [
+    "CF-000053",
+    "CF-000054",
+    "CF-000137",
+    "CF-000201",
+    "CF-000313"
+   ]
+  },
+  {
+   "id": "AC-6.17",
+   "family": "term:conflict_record",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     241,
+     242
+    ]
+   },
+   "conflict_ids": [
+    "CF-000026"
+   ]
+  },
+  {
+   "id": "AC-6.19",
+   "family": "term:count",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     246,
+     247
+    ]
+   },
+   "conflict_ids": [
+    "CF-000233",
+    "CF-000258"
+   ]
+  },
+  {
+   "id": "AC-6.2",
+   "family": "term:link",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     177,
+     178
+    ]
+   },
+   "conflict_ids": [
+    "CF-000018"
+   ]
+  },
+  {
+   "id": "AC-6.21",
+   "family": "term:conflict_record",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     196,
+     199
+    ]
+   },
+   "conflict_ids": [
+    "CF-000040",
+    "CF-000041",
+    "CF-000042"
+   ]
+  },
+  {
+   "id": "AC-6.4",
+   "family": "term:conflict_record",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     182,
+     183
+    ]
+   },
+   "conflict_ids": [
+    "CF-000040"
+   ]
+  },
+  {
+   "id": "AC-6.5",
+   "family": "term:link",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     184,
+     187
+    ]
+   },
+   "conflict_ids": [
+    "CF-000018"
+   ]
+  },
+  {
+   "id": "AC-6.6",
+   "family": "term:question",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     188,
+     190
+    ]
+   },
+   "conflict_ids": [
+    "CF-000055"
+   ]
+  },
+  {
+   "id": "AC-6.7",
+   "family": "term:contradiction_answer",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     191,
+     192
+    ]
+   },
+   "conflict_ids": [
+    "CF-000280"
+   ]
+  },
+  {
+   "id": "AC-6.8",
+   "family": "term:contradiction_answer",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     193,
+     194
+    ]
+   },
+   "conflict_ids": [
+    "CF-000145",
+    "CF-000314"
+   ]
+  },
+  {
+   "id": "AC-6.9",
+   "family": "term:candidate_pair",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     216,
+     217
+    ]
+   },
+   "conflict_ids": [
+    "CF-000233"
+   ]
+  },
+  {
+   "id": "N-000001",
+   "family": "term:implementation",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     5,
+     6
+    ]
+   },
+   "conflict_ids": [
+    "CF-000056"
+   ]
+  },
+  {
+   "id": "N-000005",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     25,
+     26
+    ]
+   },
+   "conflict_ids": [
+    "CF-000011",
+    "CF-000064"
+   ]
+  },
+  {
+   "id": "N-000007",
+   "family": "term:pending_block",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     27,
+     28
+    ]
+   },
+   "conflict_ids": [
+    "CF-000315"
+   ]
+  },
+  {
+   "id": "N-000008",
+   "family": "term:model_call",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     28,
+     28
+    ]
+   },
+   "conflict_ids": [
+    "CF-000043",
+    "CF-000072",
+    "CF-000085"
+   ]
+  },
+  {
+   "id": "N-000009",
+   "family": null,
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     36,
+     36
+    ]
+   },
+   "conflict_ids": [
+    "CF-000259",
+    "CF-000316",
+    "CF-000351"
+   ]
+  },
+  {
+   "id": "N-000013",
+   "family": "term:profile",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     39,
+     39
+    ]
+   },
+   "conflict_ids": [
+    "CF-000202"
+   ]
+  },
+  {
+   "id": "N-000014",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     44,
+     45
+    ]
+   },
+   "conflict_ids": [
+    "CF-000352",
+    "CF-000376"
+   ]
+  },
+  {
+   "id": "N-000016",
+   "family": "term:repository",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     53,
+     53
+    ]
+   },
+   "conflict_ids": [
+    "CF-000317"
+   ]
+  },
+  {
+   "id": "N-000017",
+   "family": "term:inventory",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     55,
+     55
+    ]
+   },
+   "conflict_ids": [
+    "CF-000351",
+    "CF-000366"
+   ]
+  },
+  {
+   "id": "N-000023",
+   "family": "term:block",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     69,
+     69
+    ]
+   },
+   "conflict_ids": [
+    "CF-000011",
+    "CF-000091"
+   ]
+  },
+  {
+   "id": "N-000026",
+   "family": "term:block",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     72,
+     72
+    ]
+   },
+   "conflict_ids": [
+    "CF-000064"
+   ]
+  },
+  {
+   "id": "N-000028",
+   "family": "term:text_hash",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     75,
+     75
+    ]
+   },
+   "conflict_ids": [
+    "CF-000234",
+    "CF-000353"
+   ]
+  },
+  {
+   "id": "N-000029",
+   "family": "term:verbatim_text",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     75,
+     76
+    ]
+   },
+   "conflict_ids": [
+    "CF-000354"
+   ]
+  },
+  {
+   "id": "N-000030",
+   "family": "term:case",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     76,
+     77
+    ]
+   },
+   "conflict_ids": [
+    "CF-000203",
+    "CF-000353",
+    "CF-000354",
+    "CF-000373"
+   ]
+  },
+  {
+   "id": "N-000031",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     79,
+     79
+    ]
+   },
+   "conflict_ids": [
+    "CF-000100"
+   ]
+  },
+  {
+   "id": "N-000032",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     79,
+     79
+    ]
+   },
+   "conflict_ids": [
+    "CF-000012",
+    "CF-000061"
+   ]
+  },
+  {
+   "id": "N-000033",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     80,
+     81
+    ]
+   },
+   "conflict_ids": [
+    "CF-000100"
+   ]
+  },
+  {
+   "id": "N-000034",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     81,
+     81
+    ]
+   },
+   "conflict_ids": [
+    "CF-000012"
+   ]
+  },
+  {
+   "id": "N-000035",
+   "family": "term:new_block",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     82,
+     82
+    ]
+   },
+   "conflict_ids": [
+    "CF-000148"
+   ]
+  },
+  {
+   "id": "N-000036",
+   "family": "term:old_block",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     82,
+     83
+    ]
+   },
+   "conflict_ids": [
+    "CF-000033"
+   ]
+  },
+  {
+   "id": "N-000038",
+   "family": "term:run_s_delta",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     85,
+     85
+    ]
+   },
+   "conflict_ids": [
+    "CF-000318",
+    "CF-000319"
+   ]
+  },
+  {
+   "id": "N-000040",
+   "family": "term:store_file",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     91,
+     91
+    ]
+   },
+   "conflict_ids": [
+    "CF-000149",
+    "CF-000150"
+   ]
+  },
+  {
+   "id": "N-000041",
+   "family": "term:second_run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     92,
+     93
+    ]
+   },
+   "conflict_ids": [
+    "CF-000260",
+    "CF-000355"
+   ]
+  },
+  {
+   "id": "N-000043",
+   "family": "term:sources_jsonl",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     95,
+     95
+    ]
+   },
+   "conflict_ids": [
+    "CF-000320"
+   ]
+  },
+  {
+   "id": "N-000044",
+   "family": "term:timestamp",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     95,
+     96
+    ]
+   },
+   "conflict_ids": [
+    "CF-000151"
+   ]
+  },
+  {
+   "id": "N-000047",
+   "family": "term:store_file",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     98,
+     99
+    ]
+   },
+   "conflict_ids": [
+    "CF-000149",
+    "CF-000256"
+   ]
+  },
+  {
+   "id": "N-000052",
+   "family": "term:parent_relation_field",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     127,
+     129
+    ]
+   },
+   "conflict_ids": [
+    "CF-000002"
+   ]
+  },
+  {
+   "id": "N-000057",
+   "family": "term:status_field",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     165,
+     165
+    ]
+   },
+   "conflict_ids": [
+    "CF-000236"
+   ]
+  },
+  {
+   "id": "N-000064",
+   "family": "term:exit_code",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     175,
+     176
+    ]
+   },
+   "conflict_ids": [
+    "CF-000152",
+    "CF-000153",
+    "CF-000206"
+   ]
+  },
+  {
+   "id": "N-000067",
+   "family": "term:atomizer_s_decision",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     244,
+     245
+    ]
+   },
+   "conflict_ids": [
+    "CF-000321"
+   ]
+  },
+  {
+   "id": "N-000069",
+   "family": "term:block",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     248,
+     248
+    ]
+   },
+   "conflict_ids": [
+    "CF-000061",
+    "CF-000234"
+   ]
+  },
+  {
+   "id": "N-000071",
+   "family": "term:lock_wait",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     253,
+     253
+    ]
+   },
+   "conflict_ids": [
+    "CF-000260"
+   ]
+  },
+  {
+   "id": "N-000073",
+   "family": "term:deleted_prose",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     263,
+     264
+    ]
+   },
+   "conflict_ids": [
+    "CF-000154",
+    "CF-000155",
+    "CF-000190",
+    "CF-000281"
+   ]
+  },
+  {
+   "id": "N-000074",
+   "family": "term:parent_relation_field",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     268,
+     269
+    ]
+   },
+   "conflict_ids": [
+    "CF-000002",
+    "CF-000091"
+   ]
+  },
+  {
+   "id": "N-000075",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     279,
+     282
+    ]
+   },
+   "conflict_ids": [
+    "CF-000316",
+    "CF-000376"
+   ]
+  },
+  {
+   "id": "N-000076",
+   "family": "term:test",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     307,
+     307
+    ]
+   },
+   "conflict_ids": [
+    "CF-000370"
+   ]
+  },
+  {
+   "id": "N-000077",
+   "family": "term:ingest_pipeline_test",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     308,
+     308
+    ]
+   },
+   "conflict_ids": [
+    "CF-000371"
+   ]
+  },
+  {
+   "id": "N-000081",
+   "family": "term:term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     18,
+     19
+    ]
+   },
+   "conflict_ids": [
+    "CF-000156",
+    "CF-000157"
+   ]
+  },
+  {
+   "id": "N-000082",
+   "family": "term:status",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     19,
+     19
+    ]
+   },
+   "conflict_ids": [
+    "CF-000237",
+    "CF-000238",
+    "CF-000239",
+    "CF-000322"
+   ]
+  },
+  {
+   "id": "N-000084",
+   "family": "term:placement",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     22,
+     22
+    ]
+   },
+   "conflict_ids": [
+    "CF-000013"
+   ]
+  },
+  {
+   "id": "N-000086",
+   "family": "term:placement",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     25,
+     25
+    ]
+   },
+   "conflict_ids": [
+    "CF-000013",
+    "CF-000086",
+    "CF-000377"
+   ]
+  },
+  {
+   "id": "N-000095",
+   "family": "term:profile",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     68,
+     68
+    ]
+   },
+   "conflict_ids": [
+    "CF-000202"
+   ]
+  },
+  {
+   "id": "N-000096",
+   "family": "term:hint",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     69,
+     69
+    ]
+   },
+   "conflict_ids": [
+    "CF-000207",
+    "CF-000282"
+   ]
+  },
+  {
+   "id": "N-000097",
+   "family": "term:answer",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     73,
+     73
+    ]
+   },
+   "conflict_ids": [
+    "CF-000057",
+    "CF-000073"
+   ]
+  },
+  {
+   "id": "N-000098",
+   "family": "term:answer",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     75,
+     75
+    ]
+   },
+   "conflict_ids": [
+    "CF-000044",
+    "CF-000073",
+    "CF-000074",
+    "CF-000075",
+    "CF-000076",
+    "CF-000087"
+   ]
+  },
+  {
+   "id": "N-000099",
+   "family": "term:layer_mapping",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     76,
+     77
+    ]
+   },
+   "conflict_ids": [
+    "CF-000283"
+   ]
+  },
+  {
+   "id": "N-000100",
+   "family": "term:yes_answer",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     78,
+     79
+    ]
+   },
+   "conflict_ids": [
+    "CF-000104",
+    "CF-000283"
+   ]
+  },
+  {
+   "id": "N-000101",
+   "family": "term:yes_answer",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     80,
+     81
+    ]
+   },
+   "conflict_ids": [
+    "CF-000104"
+   ]
+  },
+  {
+   "id": "N-000102",
+   "family": "term:placement",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     81,
+     81
+    ]
+   },
+   "conflict_ids": [
+    "CF-000086",
+    "CF-000230"
+   ]
+  },
+  {
+   "id": "N-000107",
+   "family": "term:canonical_subject",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     92,
+     92
+    ]
+   },
+   "conflict_ids": [
+    "CF-000323"
+   ]
+  },
+  {
+   "id": "N-000108",
+   "family": "term:subject",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     93,
+     93
+    ]
+   },
+   "conflict_ids": [
+    "CF-000045"
+   ]
+  },
+  {
+   "id": "N-000109",
+   "family": "term:primary_term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     94,
+     94
+    ]
+   },
+   "conflict_ids": [
+    "CF-000240"
+   ]
+  },
+  {
+   "id": "N-000110",
+   "family": "term:v_node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     95,
+     95
+    ]
+   },
+   "conflict_ids": [
+    "CF-000208"
+   ]
+  },
+  {
+   "id": "N-000111",
+   "family": "term:first_verified_node_s_family",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     95,
+     96
+    ]
+   },
+   "conflict_ids": [
+    "CF-000324"
+   ]
+  },
+  {
+   "id": "N-000113",
+   "family": "term:subject",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     100,
+     100
+    ]
+   },
+   "conflict_ids": [
+    "CF-000045"
+   ]
+  },
+  {
+   "id": "N-000114",
+   "family": "term:ambiguity",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     101,
+     101
+    ]
+   },
+   "conflict_ids": [
+    "CF-000284"
+   ]
+  },
+  {
+   "id": "N-000116",
+   "family": "term:family",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     105,
+     106
+    ]
+   },
+   "conflict_ids": [
+    "CF-000323",
+    "CF-000325"
+   ]
+  },
+  {
+   "id": "N-000117",
+   "family": "term:category",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     106,
+     106
+    ]
+   },
+   "conflict_ids": [
+    "CF-000326"
+   ]
+  },
+  {
+   "id": "N-000118",
+   "family": "term:scope_selector",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     106,
+     107
+    ]
+   },
+   "conflict_ids": [
+    "CF-000241"
+   ]
+  },
+  {
+   "id": "N-000119",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     107,
+     107
+    ]
+   },
+   "conflict_ids": [
+    "CF-000356",
+    "CF-000357"
+   ]
+  },
+  {
+   "id": "N-000122",
+   "family": "term:node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     114,
+     115
+    ]
+   },
+   "conflict_ids": [
+    "CF-000112"
+   ]
+  },
+  {
+   "id": "N-000123",
+   "family": "term:node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     115,
+     115
+    ]
+   },
+   "conflict_ids": [
+    "CF-000112"
+   ]
+  },
+  {
+   "id": "N-000124",
+   "family": "term:uses_term_link",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     115,
+     116
+    ]
+   },
+   "conflict_ids": [
+    "CF-000046",
+    "CF-000088"
+   ]
+  },
+  {
+   "id": "N-000129",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     122,
+     123
+    ]
+   },
+   "conflict_ids": [
+    "CF-000117"
+   ]
+  },
+  {
+   "id": "N-000130",
+   "family": "term:c_node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     124,
+     124
+    ]
+   },
+   "conflict_ids": [
+    "CF-000276"
+   ]
+  },
+  {
+   "id": "N-000131",
+   "family": "term:node_status",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     133,
+     133
+    ]
+   },
+   "conflict_ids": [
+    "CF-000201"
+   ]
+  },
+  {
+   "id": "N-000132",
+   "family": "term:node_status",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     135,
+     135
+    ]
+   },
+   "conflict_ids": [
+    "CF-000158",
+    "CF-000159",
+    "CF-000254",
+    "CF-000277"
+   ]
+  },
+  {
+   "id": "N-000133",
+   "family": "term:node_status",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     136,
+     136
+    ]
+   },
+   "conflict_ids": [
+    "CF-000138",
+    "CF-000158",
+    "CF-000160"
+   ]
+  },
+  {
+   "id": "N-000134",
+   "family": "term:node_status",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     137,
+     137
+    ]
+   },
+   "conflict_ids": [
+    "CF-000159",
+    "CF-000160",
+    "CF-000306"
+   ]
+  },
+  {
+   "id": "N-000135",
+   "family": "term:fact",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     139,
+     139
+    ]
+   },
+   "conflict_ids": [
+    "CF-000327"
+   ]
+  },
+  {
+   "id": "N-000136",
+   "family": "term:status",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     139,
+     140
+    ]
+   },
+   "conflict_ids": [
+    "CF-000047"
+   ]
+  },
+  {
+   "id": "N-000137",
+   "family": "term:conflict_id",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     144,
+     144
+    ]
+   },
+   "conflict_ids": [
+    "CF-000118",
+    "CF-000183"
+   ]
+  },
+  {
+   "id": "N-000138",
+   "family": "term:related_conflict_nodes_field",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     147,
+     148
+    ]
+   },
+   "conflict_ids": [
+    "CF-000226",
+    "CF-000285"
+   ]
+  },
+  {
+   "id": "N-000139",
+   "family": "term:term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     155,
+     155
+    ]
+   },
+   "conflict_ids": [
+    "CF-000328"
+   ]
+  },
+  {
+   "id": "N-000141",
+   "family": "term:id",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     159,
+     159
+    ]
+   },
+   "conflict_ids": [
+    "CF-000329"
+   ]
+  },
+  {
+   "id": "N-000142",
+   "family": "term:node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     163,
+     164
+    ]
+   },
+   "conflict_ids": [
+    "CF-000008",
+    "CF-000116"
+   ]
+  },
+  {
+   "id": "N-000143",
+   "family": "term:node_record",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     166,
+     166
+    ]
+   },
+   "conflict_ids": [
+    "CF-000077",
+    "CF-000161"
+   ]
+  },
+  {
+   "id": "N-000146",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     170,
+     170
+    ]
+   },
+   "conflict_ids": [
+    "CF-000003",
+    "CF-000060"
+   ]
+  },
+  {
+   "id": "N-000147",
+   "family": "term:status",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     171,
+     171
+    ]
+   },
+   "conflict_ids": [
+    "CF-000111"
+   ]
+  },
+  {
+   "id": "N-000148",
+   "family": "term:id_counter",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     173,
+     173
+    ]
+   },
+   "conflict_ids": [
+    "CF-000162",
+    "CF-000261"
+   ]
+  },
+  {
+   "id": "N-000152",
+   "family": "term:verify",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     221,
+     221
+    ]
+   },
+   "conflict_ids": [
+    "CF-000163"
+   ]
+  },
+  {
+   "id": "N-000155",
+   "family": "term:broader_field",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     238,
+     238
+    ]
+   },
+   "conflict_ids": [
+    "CF-000262"
+   ]
+  },
+  {
+   "id": "N-000156",
+   "family": "term:term",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     238,
+     239
+    ]
+   },
+   "conflict_ids": [
+    "CF-000164"
+   ]
+  },
+  {
+   "id": "N-000159",
+   "family": "term:member",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     257,
+     258
+    ]
+   },
+   "conflict_ids": [
+    "CF-000119",
+    "CF-000184",
+    "CF-000285"
+   ]
+  },
+  {
+   "id": "N-000160",
+   "family": "term:status",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     357,
+     357
+    ]
+   },
+   "conflict_ids": [
+    "CF-000047"
+   ]
+  },
+  {
+   "id": "N-000162",
+   "family": "term:python_package",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     250,
+     251
+    ]
+   },
+   "conflict_ids": [
+    "CF-000358"
+   ]
+  },
+  {
+   "id": "N-000163",
+   "family": "term:command",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     250,
+     250
+    ]
+   },
+   "conflict_ids": [
+    "CF-000330"
+   ]
+  },
+  {
+   "id": "N-000167",
+   "family": "term:block",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F1_ingest/spec.md",
+    "lines": [
+     257,
+     259
+    ]
+   },
+   "conflict_ids": [
+    "CF-000007",
+    "CF-000033",
+    "CF-000048",
+    "CF-000078",
+    "CF-000105",
+    "CF-000148"
+   ]
+  },
+  {
+   "id": "N-000169",
+   "family": "term:node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     45,
+     45
+    ]
+   },
+   "conflict_ids": [
+    "CF-000106"
+   ]
+  },
+  {
+   "id": "N-000172",
+   "family": "term:node_id",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     108,
+     111
+    ]
+   },
+   "conflict_ids": [
+    "CF-000165"
+   ]
+  },
+  {
+   "id": "N-000176",
+   "family": "term:conflict_id",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     156,
+     156
+    ]
+   },
+   "conflict_ids": [
+    "CF-000209"
+   ]
+  },
+  {
+   "id": "N-000177",
+   "family": "term:label",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     225,
+     226
+    ]
+   },
+   "conflict_ids": [
+    "CF-000120"
+   ]
+  },
+  {
+   "id": "N-000180",
+   "family": "term:node_record",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     361,
+     363
+    ]
+   },
+   "conflict_ids": [
+    "CF-000027",
+    "CF-000183",
+    "CF-000204"
+   ]
+  },
+  {
+   "id": "N-000181",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     361,
+     361
+    ]
+   },
+   "conflict_ids": [
+    "CF-000028",
+    "CF-000063",
+    "CF-000065",
+    "CF-000121"
+   ]
+  },
+  {
+   "id": "N-000182",
+   "family": "term:id",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     366,
+     366
+    ]
+   },
+   "conflict_ids": [
+    "CF-000263"
+   ]
+  },
+  {
+   "id": "N-000183",
+   "family": "term:id_counter",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     366,
+     366
+    ]
+   },
+   "conflict_ids": [
+    "CF-000162",
+    "CF-000359"
+   ]
+  },
+  {
+   "id": "N-000184",
+   "family": "term:pending_block",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     367,
+     367
+    ]
+   },
+   "conflict_ids": [
+    "CF-000281"
+   ]
+  },
+  {
+   "id": "N-000185",
+   "family": "term:link",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     368,
+     369
+    ]
+   },
+   "conflict_ids": [
+    "CF-000019"
+   ]
+  },
+  {
+   "id": "N-000186",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     370,
+     370
+    ]
+   },
+   "conflict_ids": [
+    "CF-000003",
+    "CF-000009",
+    "CF-000065"
+   ]
+  },
+  {
+   "id": "N-000187",
+   "family": "term:node",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     373,
+     373
+    ]
+   },
+   "conflict_ids": [
+    "CF-000028"
+   ]
+  },
+  {
+   "id": "N-000188",
+   "family": "term:keyword",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     374,
+     374
+    ]
+   },
+   "conflict_ids": [
+    "CF-000034",
+    "CF-000079"
+   ]
+  },
+  {
+   "id": "N-000189",
+   "family": "term:ambiguity",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     376,
+     377
+    ]
+   },
+   "conflict_ids": [
+    "CF-000210"
+   ]
+  },
+  {
+   "id": "N-000191",
+   "family": "term:v_node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     378,
+     378
+    ]
+   },
+   "conflict_ids": [
+    "CF-000208",
+    "CF-000324"
+   ]
+  },
+  {
+   "id": "N-000193",
+   "family": "term:link",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     380,
+     381
+    ]
+   },
+   "conflict_ids": [
+    "CF-000029"
+   ]
+  },
+  {
+   "id": "N-000196",
+   "family": "term:verify",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     399,
+     400
+    ]
+   },
+   "conflict_ids": [
+    "CF-000163"
+   ]
+  },
+  {
+   "id": "N-000197",
+   "family": "term:conflict_record",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     407,
+     407
+    ]
+   },
+   "conflict_ids": [
+    "CF-000026",
+    "CF-000053",
+    "CF-000058",
+    "CF-000122",
+    "CF-000286"
+   ]
+  },
+  {
+   "id": "N-000198",
+   "family": "term:conflict_record",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     408,
+     409
+    ]
+   },
+   "conflict_ids": [
+    "CF-000067",
+    "CF-000123"
+   ]
+  },
+  {
+   "id": "N-000199",
+   "family": "term:conflict_record",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     409,
+     410
+    ]
+   },
+   "conflict_ids": [
+    "CF-000054",
+    "CF-000058",
+    "CF-000067",
+    "CF-000184"
+   ]
+  },
+  {
+   "id": "N-000200",
+   "family": "term:term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     414,
+     414
+    ]
+   },
+   "conflict_ids": [
+    "CF-000156"
+   ]
+  },
+  {
+   "id": "N-000201",
+   "family": "term:term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     415,
+     415
+    ]
+   },
+   "conflict_ids": [
+    "CF-000157",
+    "CF-000164"
+   ]
+  },
+  {
+   "id": "N-000206",
+   "family": "term:node",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     450,
+     450
+    ]
+   },
+   "conflict_ids": [
+    "CF-000275"
+   ]
+  },
+  {
+   "id": "N-000207",
+   "family": "term:uses_term_link",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     451,
+     451
+    ]
+   },
+   "conflict_ids": [
+    "CF-000287"
+   ]
+  },
+  {
+   "id": "N-000208",
+   "family": "term:status",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     452,
+     452
+    ]
+   },
+   "conflict_ids": [
+    "CF-000274"
+   ]
+  },
+  {
+   "id": "N-000214",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     5,
+     5
+    ]
+   },
+   "conflict_ids": [
+    "CF-000098",
+    "CF-000242",
+    "CF-000378",
+    "CF-000379"
+   ]
+  },
+  {
+   "id": "N-000215",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     11,
+     11
+    ]
+   },
+   "conflict_ids": [
+    "CF-000211"
+   ]
+  },
+  {
+   "id": "N-000217",
+   "family": "term:answer",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     18,
+     19
+    ]
+   },
+   "conflict_ids": [
+    "CF-000074",
+    "CF-000360"
+   ]
+  },
+  {
+   "id": "N-000218",
+   "family": "term:check",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     19,
+     20
+    ]
+   },
+   "conflict_ids": [
+    "CF-000321",
+    "CF-000367"
+   ]
+  },
+  {
+   "id": "N-000219",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     22,
+     22
+    ]
+   },
+   "conflict_ids": [
+    "CF-000377"
+   ]
+  },
+  {
+   "id": "N-000220",
+   "family": "term:model_interface",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     29,
+     29
+    ]
+   },
+   "conflict_ids": [
+    "CF-000331"
+   ]
+  },
+  {
+   "id": "N-000221",
+   "family": null,
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     30,
+     30
+    ]
+   },
+   "conflict_ids": [
+    "CF-000332"
+   ]
+  },
+  {
+   "id": "N-000222",
+   "family": "term:check_immediately_and_re_ask_rule",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     31,
+     31
+    ]
+   },
+   "conflict_ids": [
+    "CF-000361"
+   ]
+  },
+  {
+   "id": "N-000224",
+   "family": "term:quantity_normalization",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     33,
+     33
+    ]
+   },
+   "conflict_ids": [
+    "CF-000333",
+    "CF-000367"
+   ]
+  },
+  {
+   "id": "N-000226",
+   "family": "term:node",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     35,
+     35
+    ]
+   },
+   "conflict_ids": [
+    "CF-000101"
+   ]
+  },
+  {
+   "id": "N-000228",
+   "family": "term:schema",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     63,
+     63
+    ]
+   },
+   "conflict_ids": [
+    "CF-000264"
+   ]
+  },
+  {
+   "id": "N-000230",
+   "family": "term:anthropic_api_key",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     67,
+     68
+    ]
+   },
+   "conflict_ids": [
+    "CF-000264",
+    "CF-000362"
+   ]
+  },
+  {
+   "id": "N-000231",
+   "family": "term:bare_flag",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     69,
+     69
+    ]
+   },
+   "conflict_ids": [
+    "CF-000318"
+   ]
+  },
+  {
+   "id": "N-000233",
+   "family": "term:model_call",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     72,
+     73
+    ]
+   },
+   "conflict_ids": [
+    "CF-000043",
+    "CF-000089"
+   ]
+  },
+  {
+   "id": "N-000235",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     83,
+     83
+    ]
+   },
+   "conflict_ids": [
+    "CF-000095",
+    "CF-000096",
+    "CF-000241",
+    "CF-000308"
+   ]
+  },
+  {
+   "id": "N-000238",
+   "family": "term:schema",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     88,
+     88
+    ]
+   },
+   "conflict_ids": [
+    "CF-000334"
+   ]
+  },
+  {
+   "id": "N-000239",
+   "family": "term:answer",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     92,
+     92
+    ]
+   },
+   "conflict_ids": [
+    "CF-000087"
+   ]
+  },
+  {
+   "id": "N-000241",
+   "family": "term:question",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     93,
+     93
+    ]
+   },
+   "conflict_ids": [
+    "CF-000055",
+    "CF-000083",
+    "CF-000361"
+   ]
+  },
+  {
+   "id": "N-000245",
+   "family": "term:attention_list_item",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     97,
+     97
+    ]
+   },
+   "conflict_ids": [
+    "CF-000166"
+   ]
+  },
+  {
+   "id": "N-000247",
+   "family": "term:question",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     98,
+     99
+    ]
+   },
+   "conflict_ids": [
+    "CF-000025",
+    "CF-000078",
+    "CF-000084"
+   ]
+  },
+  {
+   "id": "N-000249",
+   "family": "term:quote",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     106,
+     106
+    ]
+   },
+   "conflict_ids": [
+    "CF-000004",
+    "CF-000080",
+    "CF-000092"
+   ]
+  },
+  {
+   "id": "N-000252",
+   "family": "term:canonical_name",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     109,
+     109
+    ]
+   },
+   "conflict_ids": [
+    "CF-000335"
+   ]
+  },
+  {
+   "id": "N-000253",
+   "family": "term:answer",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     110,
+     110
+    ]
+   },
+   "conflict_ids": [
+    "CF-000075",
+    "CF-000334"
+   ]
+  },
+  {
+   "id": "N-000254",
+   "family": "term:weak_word",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     111,
+     111
+    ]
+   },
+   "conflict_ids": [
+    "CF-000284",
+    "CF-000363"
+   ]
+  },
+  {
+   "id": "N-000256",
+   "family": "term:node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     114,
+     115
+    ]
+   },
+   "conflict_ids": [
+    "CF-000101"
+   ]
+  },
+  {
+   "id": "N-000257",
+   "family": "term:term_tag",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     126,
+     126
+    ]
+   },
+   "conflict_ids": [
+    "CF-000336"
+   ]
+  },
+  {
+   "id": "N-000259",
+   "family": "term:canonical_name",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     129,
+     130
+    ]
+   },
+   "conflict_ids": [
+    "CF-000081",
+    "CF-000337"
+   ]
+  },
+  {
+   "id": "N-000261",
+   "family": "term:proposed_term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     132,
+     133
+    ]
+   },
+   "conflict_ids": [
+    "CF-000167"
+   ]
+  },
+  {
+   "id": "N-000264",
+   "family": "term:uses_term_link",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     136,
+     136
+    ]
+   },
+   "conflict_ids": [
+    "CF-000046",
+    "CF-000287"
+   ]
+  },
+  {
+   "id": "N-000268",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     140,
+     141
+    ]
+   },
+   "conflict_ids": [
+    "CF-000107"
+   ]
+  },
+  {
+   "id": "N-000269",
+   "family": "term:block_completion",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     142,
+     142
+    ]
+   },
+   "conflict_ids": [
+    "CF-000182",
+    "CF-000212"
+   ]
+  },
+  {
+   "id": "N-000270",
+   "family": "term:block_identity",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     147,
+     147
+    ]
+   },
+   "conflict_ids": [
+    "CF-000093",
+    "CF-000288"
+   ]
+  },
+  {
+   "id": "N-000272",
+   "family": "term:node_record",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     152,
+     152
+    ]
+   },
+   "conflict_ids": [
+    "CF-000161",
+    "CF-000168"
+   ]
+  },
+  {
+   "id": "N-000273",
+   "family": "term:node_record",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     153,
+     153
+    ]
+   },
+   "conflict_ids": [
+    "CF-000027",
+    "CF-000077",
+    "CF-000168"
+   ]
+  },
+  {
+   "id": "N-000275",
+   "family": "term:node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     155,
+     155
+    ]
+   },
+   "conflict_ids": [
+    "CF-000113"
+   ]
+  },
+  {
+   "id": "N-000277",
+   "family": "term:node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     157,
+     157
+    ]
+   },
+   "conflict_ids": [
+    "CF-000113",
+    "CF-000121"
+   ]
+  },
+  {
+   "id": "N-000280",
+   "family": "term:alignment",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     160,
+     160
+    ]
+   },
+   "conflict_ids": [
+    "CF-000124"
+   ]
+  },
+  {
+   "id": "N-000283",
+   "family": "term:stored_answer",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     167,
+     168
+    ]
+   },
+   "conflict_ids": [
+    "CF-000169",
+    "CF-000278"
+   ]
+  },
+  {
+   "id": "N-000284",
+   "family": "term:asking",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     169,
+     169
+    ]
+   },
+   "conflict_ids": [
+    "CF-000265"
+   ]
+  },
+  {
+   "id": "N-000286",
+   "family": "term:pending_block",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     175,
+     175
+    ]
+   },
+   "conflict_ids": [
+    "CF-000035",
+    "CF-000048",
+    "CF-000108"
+   ]
+  },
+  {
+   "id": "N-000287",
+   "family": "term:check",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     176,
+     177
+    ]
+   },
+   "conflict_ids": [
+    "CF-000193"
+   ]
+  },
+  {
+   "id": "N-000288",
+   "family": "term:run",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     180,
+     180
+    ]
+   },
+   "conflict_ids": [
+    "CF-000170",
+    "CF-000194"
+   ]
+  },
+  {
+   "id": "N-000289",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     180,
+     181
+    ]
+   },
+   "conflict_ids": [
+    "CF-000020"
+   ]
+  },
+  {
+   "id": "N-000290",
+   "family": "term:run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     181,
+     181
+    ]
+   },
+   "conflict_ids": [
+    "CF-000024",
+    "CF-000289"
+   ]
+  },
+  {
+   "id": "N-000291",
+   "family": "term:run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     182,
+     184
+    ]
+   },
+   "conflict_ids": [
+    "CF-000049",
+    "CF-000171",
+    "CF-000243",
+    "CF-000290",
+    "CF-000338"
+   ]
+  },
+  {
+   "id": "N-000293",
+   "family": "term:finding",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     188,
+     188
+    ]
+   },
+   "conflict_ids": [
+    "CF-000291"
+   ]
+  },
+  {
+   "id": "N-000295",
+   "family": "term:attention_list_item",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     189,
+     189
+    ]
+   },
+   "conflict_ids": [
+    "CF-000213"
+   ]
+  },
+  {
+   "id": "N-000296",
+   "family": "term:attention_list_item",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     198,
+     198
+    ]
+   },
+   "conflict_ids": [
+    "CF-000166",
+    "CF-000213",
+    "CF-000243",
+    "CF-000279"
+   ]
+  },
+  {
+   "id": "N-000297",
+   "family": "term:node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     198,
+     199
+    ]
+   },
+   "conflict_ids": [
+    "CF-000020"
+   ]
+  },
+  {
+   "id": "N-000299",
+   "family": "term:merge",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     203,
+     203
+    ]
+   },
+   "conflict_ids": [
+    "CF-000172"
+   ]
+  },
+  {
+   "id": "N-000300",
+   "family": "term:node",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     204,
+     204
+    ]
+   },
+   "conflict_ids": [
+    "CF-000127"
+   ]
+  },
+  {
+   "id": "N-000301",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     206,
+     206
+    ]
+   },
+   "conflict_ids": [
+    "CF-000106"
+   ]
+  },
+  {
+   "id": "N-000304",
+   "family": "term:exit_code",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     217,
+     217
+    ]
+   },
+   "conflict_ids": [
+    "CF-000187",
+    "CF-000195",
+    "CF-000206"
+   ]
+  },
+  {
+   "id": "N-000305",
+   "family": "term:exit_code",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     219,
+     219
+    ]
+   },
+   "conflict_ids": [
+    "CF-000173",
+    "CF-000196"
+   ]
+  },
+  {
+   "id": "N-000307",
+   "family": "term:block",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     241,
+     241
+    ]
+   },
+   "conflict_ids": [
+    "CF-000214",
+    "CF-000332"
+   ]
+  },
+  {
+   "id": "N-000308",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     242,
+     243
+    ]
+   },
+   "conflict_ids": [
+    "CF-000030"
+   ]
+  },
+  {
+   "id": "N-000309",
+   "family": "term:test",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     270,
+     270
+    ]
+   },
+   "conflict_ids": [
+    "CF-000014",
+    "CF-000068"
+   ]
+  },
+  {
+   "id": "N-000310",
+   "family": "term:test",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     270,
+     271
+    ]
+   },
+   "conflict_ids": [
+    "CF-000015"
+   ]
+  },
+  {
+   "id": "N-000312",
+   "family": "term:node_id",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     154,
+     154
+    ]
+   },
+   "conflict_ids": [
+    "CF-000154",
+    "CF-000174",
+    "CF-000292"
+   ]
+  },
+  {
+   "id": "N-000315",
+   "family": "term:component_subject",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     426,
+     426
+    ]
+   },
+   "conflict_ids": [
+    "CF-000364"
+   ]
+  },
+  {
+   "id": "N-000317",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     428,
+     429
+    ]
+   },
+   "conflict_ids": [
+    "CF-000339",
+    "CF-000364"
+   ]
+  },
+  {
+   "id": "N-000319",
+   "family": "term:quantity",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     116,
+     117
+    ]
+   },
+   "conflict_ids": [
+    "CF-000097"
+   ]
+  },
+  {
+   "id": "N-000321",
+   "family": "term:month",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     119,
+     119
+    ]
+   },
+   "conflict_ids": [
+    "CF-000006",
+    "CF-000095",
+    "CF-000097"
+   ]
+  },
+  {
+   "id": "N-000323",
+   "family": "term:new_name",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     194,
+     194
+    ]
+   },
+   "conflict_ids": [
+    "CF-000005",
+    "CF-000081",
+    "CF-000244"
+   ]
+  },
+  {
+   "id": "N-000328",
+   "family": "term:graph",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     218,
+     218
+    ]
+   },
+   "conflict_ids": [
+    "CF-000103",
+    "CF-000215"
+   ]
+  },
+  {
+   "id": "N-000329",
+   "family": "term:finished_chunk",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     220,
+     220
+    ]
+   },
+   "conflict_ids": [
+    "CF-000266"
+   ]
+  },
+  {
+   "id": "N-000332",
+   "family": "term:test",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     353,
+     353
+    ]
+   },
+   "conflict_ids": [
+    "CF-000068",
+    "CF-000069"
+   ]
+  },
+  {
+   "id": "N-000333",
+   "family": "term:alignment",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     354,
+     354
+    ]
+   },
+   "conflict_ids": [
+    "CF-000124"
+   ]
+  },
+  {
+   "id": "N-000335",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     357,
+     358
+    ]
+   },
+   "conflict_ids": [
+    "CF-000171",
+    "CF-000267",
+    "CF-000291"
+   ]
+  },
+  {
+   "id": "N-000338",
+   "family": "term:exit_code",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     363,
+     363
+    ]
+   },
+   "conflict_ids": [
+    "CF-000173",
+    "CF-000175"
+   ]
+  },
+  {
+   "id": "N-000340",
+   "family": "term:quote",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     370,
+     372
+    ]
+   },
+   "conflict_ids": [
+    "CF-000004",
+    "CF-000050",
+    "CF-000293"
+   ]
+  },
+  {
+   "id": "N-000341",
+   "family": "term:word",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     372,
+     372
+    ]
+   },
+   "conflict_ids": [
+    "CF-000203"
+   ]
+  },
+  {
+   "id": "N-000345",
+   "family": "term:vague_term_flag",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     387,
+     387
+    ]
+   },
+   "conflict_ids": [
+    "CF-000319",
+    "CF-000363"
+   ]
+  },
+  {
+   "id": "N-000346",
+   "family": "term:month",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     390,
+     390
+    ]
+   },
+   "conflict_ids": [
+    "CF-000006",
+    "CF-000096"
+   ]
+  },
+  {
+   "id": "N-000350",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     398,
+     399
+    ]
+   },
+   "conflict_ids": [
+    "CF-000001",
+    "CF-000022",
+    "CF-000125",
+    "CF-000185",
+    "CF-000268"
+   ]
+  },
+  {
+   "id": "N-000354",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     405,
+     406
+    ]
+   },
+   "conflict_ids": [
+    "CF-000142",
+    "CF-000167",
+    "CF-000172"
+   ]
+  },
+  {
+   "id": "N-000356",
+   "family": "term:similar_name",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     409,
+     409
+    ]
+   },
+   "conflict_ids": [
+    "CF-000350"
+   ]
+  },
+  {
+   "id": "N-000357",
+   "family": "term:pending_block",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     412,
+     412
+    ]
+   },
+   "conflict_ids": [
+    "CF-000035"
+   ]
+  },
+  {
+   "id": "N-000358",
+   "family": "term:chunk",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     412,
+     413
+    ]
+   },
+   "conflict_ids": [
+    "CF-000245",
+    "CF-000255"
+   ]
+  },
+  {
+   "id": "N-000359",
+   "family": "term:call_cap_stop",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     413,
+     414
+    ]
+   },
+   "conflict_ids": [
+    "CF-000266"
+   ]
+  },
+  {
+   "id": "N-000360",
+   "family": "term:term",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     415,
+     415
+    ]
+   },
+   "conflict_ids": [
+    "CF-000176"
+   ]
+  },
+  {
+   "id": "N-000363",
+   "family": "term:canonical_name",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     420,
+     420
+    ]
+   },
+   "conflict_ids": [
+    "CF-000114"
+   ]
+  },
+  {
+   "id": "N-000364",
+   "family": "term:new_name",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     421,
+     421
+    ]
+   },
+   "conflict_ids": [
+    "CF-000005"
+   ]
+  },
+  {
+   "id": "N-000365",
+   "family": "term:tag",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     421,
+     421
+    ]
+   },
+   "conflict_ids": [
+    "CF-000365"
+   ]
+  },
+  {
+   "id": "N-000367",
+   "family": "term:canonical_name",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     422,
+     422
+    ]
+   },
+   "conflict_ids": [
+    "CF-000114",
+    "CF-000244",
+    "CF-000365"
+   ]
+  },
+  {
+   "id": "N-000368",
+   "family": "term:node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     422,
+     422
+    ]
+   },
+   "conflict_ids": [
+    "CF-000125",
+    "CF-000126"
+   ]
+  },
+  {
+   "id": "N-000370",
+   "family": "term:call_usage",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     429,
+     430
+    ]
+   },
+   "conflict_ids": [
+    "CF-000030"
+   ]
+  },
+  {
+   "id": "N-000371",
+   "family": "term:judgment_lock_key",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     430,
+     431
+    ]
+   },
+   "conflict_ids": [
+    "CF-000294"
+   ]
+  },
+  {
+   "id": "N-000374",
+   "family": "term:exit_code",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     446,
+     448
+    ]
+   },
+   "conflict_ids": [
+    "CF-000175",
+    "CF-000295"
+   ]
+  },
+  {
+   "id": "N-000375",
+   "family": "term:backtick",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     450,
+     451
+    ]
+   },
+   "conflict_ids": [
+    "CF-000092"
+   ]
+  },
+  {
+   "id": "N-000379",
+   "family": "term:term_name_list",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     457,
+     458
+    ]
+   },
+   "conflict_ids": [
+    "CF-000294"
+   ]
+  },
+  {
+   "id": "N-000382",
+   "family": "term:atom",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     461,
+     462
+    ]
+   },
+   "conflict_ids": [
+    "CF-000216"
+   ]
+  },
+  {
+   "id": "N-000383",
+   "family": "term:acceptance_criterion",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     463,
+     463
+    ]
+   },
+   "conflict_ids": [
+    "CF-000214"
+   ]
+  },
+  {
+   "id": "N-000385",
+   "family": "term:quote",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     464,
+     464
+    ]
+   },
+   "conflict_ids": [
+    "CF-000080"
+   ]
+  },
+  {
+   "id": "N-000386",
+   "family": "term:prompt",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     464,
+     465
+    ]
+   },
+   "conflict_ids": [
+    "CF-000315"
+   ]
+  },
+  {
+   "id": "N-000390",
+   "family": "term:candidate_term",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     475,
+     477
+    ]
+   },
+   "conflict_ids": [
+    "CF-000262"
+   ]
+  },
+  {
+   "id": "N-000391",
+   "family": "term:block",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     487,
+     488
+    ]
+   },
+   "conflict_ids": [
+    "CF-000066",
+    "CF-000212"
+   ]
+  },
+  {
+   "id": "N-000397",
+   "family": "term:finished_work",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     508,
+     509
+    ]
+   },
+   "conflict_ids": [
+    "CF-000295"
+   ]
+  },
+  {
+   "id": "N-000398",
+   "family": "term:run",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     509,
+     510
+    ]
+   },
+   "conflict_ids": [
+    "CF-000049"
+   ]
+  },
+  {
+   "id": "N-000399",
+   "family": "term:block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     513,
+     513
+    ]
+   },
+   "conflict_ids": [
+    "CF-000246"
+   ]
+  },
+  {
+   "id": "N-000402",
+   "family": "term:one_claim_block",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     550,
+     550
+    ]
+   },
+   "conflict_ids": [
+    "CF-000246"
+   ]
+  },
+  {
+   "id": "N-000410",
+   "family": "term:spec_graph",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     16,
+     17
+    ]
+   },
+   "conflict_ids": [
+    "CF-000247",
+    "CF-000340"
+   ]
+  },
+  {
+   "id": "N-000411",
+   "family": "term:node",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     19,
+     19
+    ]
+   },
+   "conflict_ids": [
+    "CF-000021",
+    "CF-000088"
+   ]
+  },
+  {
+   "id": "N-000414",
+   "family": "term:collapsed_form",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     21,
+     22
+    ]
+   },
+   "conflict_ids": [
+    "CF-000217"
+   ]
+  },
+  {
+   "id": "N-000415",
+   "family": "term:graph",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     24,
+     25
+    ]
+   },
+   "conflict_ids": [
+    "CF-000198"
+   ]
+  },
+  {
+   "id": "N-000418",
+   "family": "term:store_api",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     31,
+     31
+    ]
+   },
+   "conflict_ids": [
+    "CF-000340"
+   ]
+  },
+  {
+   "id": "N-000422",
+   "family": "term:full_form_query",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     35,
+     36
+    ]
+   },
+   "conflict_ids": [
+    "CF-000269"
+   ]
+  },
+  {
+   "id": "N-000423",
+   "family": "term:markdown_view",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     37,
+     37
+    ]
+   },
+   "conflict_ids": [
+    "CF-000380"
+   ]
+  },
+  {
+   "id": "N-000427",
+   "family": "term:sqlite_cache",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     45,
+     45
+    ]
+   },
+   "conflict_ids": [
+    "CF-000177"
+   ]
+  },
+  {
+   "id": "N-000429",
+   "family": null,
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     52,
+     52
+    ]
+   },
+   "conflict_ids": [
+    "CF-000341"
+   ]
+  },
+  {
+   "id": "N-000434",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     79,
+     79
+    ]
+   },
+   "conflict_ids": [
+    "CF-000248"
+   ]
+  },
+  {
+   "id": "N-000435",
+   "family": "term:write_operation",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     83,
+     83
+    ]
+   },
+   "conflict_ids": [
+    "CF-000248"
+   ]
+  },
+  {
+   "id": "N-000437",
+   "family": "term:derived_field",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     86,
+     86
+    ]
+   },
+   "conflict_ids": [
+    "CF-000051",
+    "CF-000070",
+    "CF-000226",
+    "CF-000236",
+    "CF-000327"
+   ]
+  },
+  {
+   "id": "N-000438",
+   "family": "term:file",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     90,
+     90
+    ]
+   },
+   "conflict_ids": [
+    "CF-000150"
+   ]
+  },
+  {
+   "id": "N-000439",
+   "family": "term:block",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     91,
+     91
+    ]
+   },
+   "conflict_ids": [
+    "CF-000320"
+   ]
+  },
+  {
+   "id": "N-000440",
+   "family": "term:timestamp",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     91,
+     92
+    ]
+   },
+   "conflict_ids": [
+    "CF-000151",
+    "CF-000359"
+   ]
+  },
+  {
+   "id": "N-000442",
+   "family": "term:node_id",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     98,
+     98
+    ]
+   },
+   "conflict_ids": [
+    "CF-000155"
+   ]
+  },
+  {
+   "id": "N-000443",
+   "family": "term:link",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     99,
+     99
+    ]
+   },
+   "conflict_ids": [
+    "CF-000019",
+    "CF-000029",
+    "CF-000342"
+   ]
+  },
+  {
+   "id": "N-000444",
+   "family": "term:node",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     100,
+     100
+    ]
+   },
+   "conflict_ids": [
+    "CF-000001",
+    "CF-000117",
+    "CF-000249"
+   ]
+  },
+  {
+   "id": "N-000445",
+   "family": "term:member",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     101,
+     101
+    ]
+   },
+   "conflict_ids": [
+    "CF-000118",
+    "CF-000119"
+   ]
+  },
+  {
+   "id": "N-000446",
+   "family": "term:conflicted_nodes_json",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     102,
+     102
+    ]
+   },
+   "conflict_ids": [
+    "CF-000181"
+   ]
+  },
+  {
+   "id": "N-000449",
+   "family": "term:id_counters_value",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     105,
+     105
+    ]
+   },
+   "conflict_ids": [
+    "CF-000261",
+    "CF-000292",
+    "CF-000307"
+   ]
+  },
+  {
+   "id": "N-000455",
+   "family": "term:conflict_registry",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     124,
+     124
+    ]
+   },
+   "conflict_ids": [
+    "CF-000144",
+    "CF-000178"
+   ]
+  },
+  {
+   "id": "N-000457",
+   "family": "term:run_output",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     127,
+     128
+    ]
+   },
+   "conflict_ids": [
+    "CF-000218"
+   ]
+  },
+  {
+   "id": "N-000462",
+   "family": "term:interlinked_conflict",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     143,
+     143
+    ]
+   },
+   "conflict_ids": [
+    "CF-000128",
+    "CF-000129",
+    "CF-000296"
+   ]
+  },
+  {
+   "id": "N-000463",
+   "family": "term:families_markdown_file",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     148,
+     149
+    ]
+   },
+   "conflict_ids": [
+    "CF-000343"
+   ]
+  },
+  {
+   "id": "N-000465",
+   "family": "term:registry",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     242,
+     243
+    ]
+   },
+   "conflict_ids": [
+    "CF-000178"
+   ]
+  },
+  {
+   "id": "N-000466",
+   "family": "term:sqlite_cache",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     244,
+     244
+    ]
+   },
+   "conflict_ids": [
+    "CF-000177"
+   ]
+  },
+  {
+   "id": "N-000467",
+   "family": "term:status_mark",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     247,
+     247
+    ]
+   },
+   "conflict_ids": [
+    "CF-000297"
+   ]
+  },
+  {
+   "id": "N-000470",
+   "family": "term:run_lock",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     250,
+     250
+    ]
+   },
+   "conflict_ids": [
+    "CF-000355"
+   ]
+  },
+  {
+   "id": "N-000474",
+   "family": "term:selector",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     256,
+     257
+    ]
+   },
+   "conflict_ids": [
+    "CF-000219"
+   ]
+  },
+  {
+   "id": "N-000475",
+   "family": "term:empty_selector",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     258,
+     259
+    ]
+   },
+   "conflict_ids": [
+    "CF-000219",
+    "CF-000356"
+   ]
+  },
+  {
+   "id": "N-000480",
+   "family": "term:card_line",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     264,
+     264
+    ]
+   },
+   "conflict_ids": [
+    "CF-000179"
+   ]
+  },
+  {
+   "id": "N-000481",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     266,
+     266
+    ]
+   },
+   "conflict_ids": [
+    "CF-000298"
+   ]
+  },
+  {
+   "id": "N-000485",
+   "family": "term:generated_markdown_card",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     273,
+     273
+    ]
+   },
+   "conflict_ids": [
+    "CF-000380"
+   ]
+  },
+  {
+   "id": "N-000486",
+   "family": "term:interlinked_conflict",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     276,
+     276
+    ]
+   },
+   "conflict_ids": [
+    "CF-000128"
+   ]
+  },
+  {
+   "id": "N-000493",
+   "family": "term:candidate",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     20,
+     21
+    ]
+   },
+   "conflict_ids": [
+    "CF-000381"
+   ]
+  },
+  {
+   "id": "N-000494",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     31,
+     31
+    ]
+   },
+   "conflict_ids": [
+    "CF-000344"
+   ]
+  },
+  {
+   "id": "N-000497",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     45,
+     46
+    ]
+   },
+   "conflict_ids": [
+    "CF-000036",
+    "CF-000126"
+   ]
+  },
+  {
+   "id": "N-000498",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     46,
+     47
+    ]
+   },
+   "conflict_ids": [
+    "CF-000036"
+   ]
+  },
+  {
+   "id": "N-000499",
+   "family": "term:verdict",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     47,
+     47
+    ]
+   },
+   "conflict_ids": [
+    "CF-000031",
+    "CF-000090"
+   ]
+  },
+  {
+   "id": "N-000503",
+   "family": "term:candidate",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     58,
+     58
+    ]
+   },
+   "conflict_ids": [
+    "CF-000102",
+    "CF-000325"
+   ]
+  },
+  {
+   "id": "N-000507",
+   "family": "term:candidate",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     62,
+     62
+    ]
+   },
+   "conflict_ids": [
+    "CF-000192"
+   ]
+  },
+  {
+   "id": "N-000509",
+   "family": "term:candidate",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     64,
+     64
+    ]
+   },
+   "conflict_ids": [
+    "CF-000102"
+   ]
+  },
+  {
+   "id": "N-000514",
+   "family": "term:key",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     90,
+     90
+    ]
+   },
+   "conflict_ids": [
+    "CF-000250"
+   ]
+  },
+  {
+   "id": "N-000517",
+   "family": "term:pair_key",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     95,
+     96
+    ]
+   },
+   "conflict_ids": [
+    "CF-000052",
+    "CF-000220",
+    "CF-000221"
+   ]
+  },
+  {
+   "id": "N-000518",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     100,
+     100
+    ]
+   },
+   "conflict_ids": [
+    "CF-000372",
+    "CF-000374",
+    "CF-000381"
+   ]
+  },
+  {
+   "id": "N-000521",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     135,
+     135
+    ]
+   },
+   "conflict_ids": [
+    "CF-000245",
+    "CF-000251",
+    "CF-000252",
+    "CF-000345"
+   ]
+  },
+  {
+   "id": "N-000524",
+   "family": "term:last_checked_run",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     137,
+     137
+    ]
+   },
+   "conflict_ids": [
+    "CF-000237"
+   ]
+  },
+  {
+   "id": "N-000527",
+   "family": "term:derived_field",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     172,
+     172
+    ]
+   },
+   "conflict_ids": [
+    "CF-000051"
+   ]
+  },
+  {
+   "id": "N-000541",
+   "family": "term:selector",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     214,
+     215
+    ]
+   },
+   "conflict_ids": [
+    "CF-000326"
+   ]
+  },
+  {
+   "id": "N-000542",
+   "family": "term:layer_only_selector",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     215,
+     216
+    ]
+   },
+   "conflict_ids": [
+    "CF-000357"
+   ]
+  },
+  {
+   "id": "N-000544",
+   "family": "term:max_pairs_per_node",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     221,
+     221
+    ]
+   },
+   "conflict_ids": [
+    "CF-000010",
+    "CF-000062"
+   ]
+  },
+  {
+   "id": "N-000545",
+   "family": "term:cost",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     221,
+     222
+    ]
+   },
+   "conflict_ids": [
+    "CF-000200",
+    "CF-000232"
+   ]
+  },
+  {
+   "id": "N-000549",
+   "family": "term:parent_entity_term",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     229,
+     230
+    ]
+   },
+   "conflict_ids": [
+    "CF-000299"
+   ]
+  },
+  {
+   "id": "N-000550",
+   "family": "term:parent_entity_term",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     230,
+     231
+    ]
+   },
+   "conflict_ids": [
+    "CF-000197"
+   ]
+  },
+  {
+   "id": "N-000552",
+   "family": "term:shared_keyword",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     233,
+     233
+    ]
+   },
+   "conflict_ids": [
+    "CF-000222"
+   ]
+  },
+  {
+   "id": "N-000553",
+   "family": "term:planted_conflict",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     234,
+     234
+    ]
+   },
+   "conflict_ids": [
+    "CF-000270"
+   ]
+  },
+  {
+   "id": "N-000554",
+   "family": "term:five_planted_conflict",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     234,
+     234
+    ]
+   },
+   "conflict_ids": [
+    "CF-000270"
+   ]
+  },
+  {
+   "id": "N-000555",
+   "family": "term:shared_term",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     238,
+     238
+    ]
+   },
+   "conflict_ids": [
+    "CF-000222",
+    "CF-000299"
+   ]
+  },
+  {
+   "id": "N-000557",
+   "family": "term:pair_key",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     244,
+     245
+    ]
+   },
+   "conflict_ids": [
+    "CF-000037",
+    "CF-000052"
+   ]
+  },
+  {
+   "id": "N-000559",
+   "family": "term:pair_key",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     247,
+     247
+    ]
+   },
+   "conflict_ids": [
+    "CF-000037"
+   ]
+  },
+  {
+   "id": "N-000565",
+   "family": "term:model_call",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     16,
+     17
+    ]
+   },
+   "conflict_ids": [
+    "CF-000085"
+   ]
+  },
+  {
+   "id": "N-000566",
+   "family": "term:fix_suggestion",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     32,
+     32
+    ]
+   },
+   "conflict_ids": [
+    "CF-000346",
+    "CF-000347"
+   ]
+  },
+  {
+   "id": "N-000567",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     33,
+     33
+    ]
+   },
+   "conflict_ids": [
+    "CF-000271",
+    "CF-000352",
+    "CF-000368",
+    "CF-000369"
+   ]
+  },
+  {
+   "id": "N-000569",
+   "family": "term:check_phase",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     40,
+     40
+    ]
+   },
+   "conflict_ids": [
+    "CF-000272"
+   ]
+  },
+  {
+   "id": "N-000570",
+   "family": "term:re_checking",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     41,
+     41
+    ]
+   },
+   "conflict_ids": [
+    "CF-000300"
+   ]
+  },
+  {
+   "id": "N-000571",
+   "family": "term:sddc_compile_run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     48,
+     48
+    ]
+   },
+   "conflict_ids": [
+    "CF-000272"
+   ]
+  },
+  {
+   "id": "N-000575",
+   "family": "term:pair_key",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     54,
+     54
+    ]
+   },
+   "conflict_ids": [
+    "CF-000038"
+   ]
+  },
+  {
+   "id": "N-000577",
+   "family": "term:relation_kind",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     55,
+     55
+    ]
+   },
+   "conflict_ids": [
+    "CF-000180"
+   ]
+  },
+  {
+   "id": "N-000581",
+   "family": "term:conflict_record",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     62,
+     62
+    ]
+   },
+   "conflict_ids": [
+    "CF-000041"
+   ]
+  },
+  {
+   "id": "N-000582",
+   "family": "term:conflict_record",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     63,
+     63
+    ]
+   },
+   "conflict_ids": [
+    "CF-000042"
+   ]
+  },
+  {
+   "id": "N-000584",
+   "family": "term:answer",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     66,
+     66
+    ]
+   },
+   "conflict_ids": [
+    "CF-000057",
+    "CF-000076",
+    "CF-000301"
+   ]
+  },
+  {
+   "id": "N-000588",
+   "family": "term:conflict_record",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     76,
+     76
+    ]
+   },
+   "conflict_ids": [
+    "CF-000296"
+   ]
+  },
+  {
+   "id": "N-000589",
+   "family": "term:interlinked_conflict",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     76,
+     76
+    ]
+   },
+   "conflict_ids": [
+    "CF-000129"
+   ]
+  },
+  {
+   "id": "N-000591",
+   "family": "term:verdict",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     81,
+     81
+    ]
+   },
+   "conflict_ids": [
+    "CF-000186"
+   ]
+  },
+  {
+   "id": "N-000592",
+   "family": "term:provisional_verdict",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     81,
+     82
+    ]
+   },
+   "conflict_ids": [
+    "CF-000223"
+   ]
+  },
+  {
+   "id": "N-000594",
+   "family": "term:lock_hit",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     87,
+     87
+    ]
+   },
+   "conflict_ids": [
+    "CF-000089",
+    "CF-000169",
+    "CF-000251"
+   ]
+  },
+  {
+   "id": "N-000595",
+   "family": "term:pair_key",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     88,
+     88
+    ]
+   },
+   "conflict_ids": [
+    "CF-000250"
+   ]
+  },
+  {
+   "id": "N-000597",
+   "family": "term:verdict",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     89,
+     89
+    ]
+   },
+   "conflict_ids": [
+    "CF-000031",
+    "CF-000082"
+   ]
+  },
+  {
+   "id": "N-000598",
+   "family": "term:flag",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     90,
+     90
+    ]
+   },
+   "conflict_ids": [
+    "CF-000265"
+   ]
+  },
+  {
+   "id": "N-000601",
+   "family": "term:verdict",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     98,
+     99
+    ]
+   },
+   "conflict_ids": [
+    "CF-000082",
+    "CF-000090"
+   ]
+  },
+  {
+   "id": "N-000604",
+   "family": "term:atomizer_max_calls_per_run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     104,
+     104
+    ]
+   },
+   "conflict_ids": [
+    "CF-000253",
+    "CF-000310"
+   ]
+  },
+  {
+   "id": "N-000605",
+   "family": "term:check_phase",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     104,
+     105
+    ]
+   },
+   "conflict_ids": [
+    "CF-000252"
+   ]
+  },
+  {
+   "id": "N-000607",
+   "family": "term:remaining_node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     107,
+     107
+    ]
+   },
+   "conflict_ids": [
+    "CF-000238",
+    "CF-000249"
+   ]
+  },
+  {
+   "id": "N-000608",
+   "family": "term:run",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     108,
+     108
+    ]
+   },
+   "conflict_ids": [
+    "CF-000023",
+    "CF-000071"
+   ]
+  },
+  {
+   "id": "N-000610",
+   "family": "term:resumed_run",
+   "layer": "L0",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     110,
+     110
+    ]
+   },
+   "conflict_ids": [
+    "CF-000289",
+    "CF-000304"
+   ]
+  },
+  {
+   "id": "N-000611",
+   "family": "term:exit_code",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     128,
+     128
+    ]
+   },
+   "conflict_ids": [
+    "CF-000152"
+   ]
+  },
+  {
+   "id": "N-000612",
+   "family": "term:run_output",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     129,
+     129
+    ]
+   },
+   "conflict_ids": [
+    "CF-000309"
+   ]
+  },
+  {
+   "id": "N-000613",
+   "family": "term:run_record",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     133,
+     134
+    ]
+   },
+   "conflict_ids": [
+    "CF-000231"
+   ]
+  },
+  {
+   "id": "N-000614",
+   "family": "term:direction_field",
+   "layer": "L3",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     148,
+     148
+    ]
+   },
+   "conflict_ids": [
+    "CF-000280"
+   ]
+  },
+  {
+   "id": "N-000617",
+   "family": "term:test",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     170,
+     170
+    ]
+   },
+   "conflict_ids": [
+    "CF-000014",
+    "CF-000015",
+    "CF-000069"
+   ]
+  },
+  {
+   "id": "N-000618",
+   "family": "term:relation_kind",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     251,
+     251
+    ]
+   },
+   "conflict_ids": [
+    "CF-000180"
+   ]
+  },
+  {
+   "id": "N-000619",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     254,
+     254
+    ]
+   },
+   "conflict_ids": [
+    "CF-000333"
+   ]
+  },
+  {
+   "id": "N-000620",
+   "family": "term:ambiguous_node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     257,
+     257
+    ]
+   },
+   "conflict_ids": [
+    "CF-000186",
+    "CF-000223"
+   ]
+  },
+  {
+   "id": "N-000621",
+   "family": "term:vague_spec",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     258,
+     258
+    ]
+   },
+   "conflict_ids": [
+    "CF-000346"
+   ]
+  },
+  {
+   "id": "N-000623",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     260,
+     260
+    ]
+   },
+   "conflict_ids": [
+    "CF-000286",
+    "CF-000311"
+   ]
+  },
+  {
+   "id": "N-000624",
+   "family": "term:run_budget",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     262,
+     262
+    ]
+   },
+   "conflict_ids": [
+    "CF-000016"
+   ]
+  },
+  {
+   "id": "N-000625",
+   "family": "term:exit_code",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     262,
+     262
+    ]
+   },
+   "conflict_ids": [
+    "CF-000153"
+   ]
+  },
+  {
+   "id": "N-000631",
+   "family": "term:criterion",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     282,
+     282
+    ]
+   },
+   "conflict_ids": [
+    "CF-000348"
+   ]
+  },
+  {
+   "id": "N-000634",
+   "family": "term:pair_key",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     289,
+     289
+    ]
+   },
+   "conflict_ids": [
+    "CF-000038"
+   ]
+  },
+  {
+   "id": "N-000645",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     318,
+     318
+    ]
+   },
+   "conflict_ids": [
+    "CF-000328",
+    "CF-000335",
+    "CF-000336",
+    "CF-000337"
+   ]
+  },
+  {
+   "id": "N-000647",
+   "family": null,
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     321,
+     322
+    ]
+   },
+   "conflict_ids": [
+    "CF-000375"
+   ]
+  },
+  {
+   "id": "N-000650",
+   "family": "term:acceptance_criterion",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     326,
+     327
+    ]
+   },
+   "conflict_ids": [
+    "CF-000348"
+   ]
+  },
+  {
+   "id": "N-000655",
+   "family": "term:node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     335,
+     335
+    ]
+   },
+   "conflict_ids": [
+    "CF-000109"
+   ]
+  },
+  {
+   "id": "N-000662",
+   "family": "term:confidence",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     351,
+     351
+    ]
+   },
+   "conflict_ids": [
+    "CF-000130",
+    "CF-000322"
+   ]
+  },
+  {
+   "id": "N-000663",
+   "family": "term:confidence",
+   "layer": "V",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     351,
+     352
+    ]
+   },
+   "conflict_ids": [
+    "CF-000130",
+    "CF-000131"
+   ]
+  },
+  {
+   "id": "N-000664",
+   "family": "term:confidence",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     352,
+     353
+    ]
+   },
+   "conflict_ids": [
+    "CF-000131",
+    "CF-000314"
+   ]
+  },
+  {
+   "id": "N-000665",
+   "family": "term:keyword",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     222,
+     222
+    ]
+   },
+   "conflict_ids": [
+    "CF-000034"
+   ]
+  },
+  {
+   "id": "N-000667",
+   "family": "term:keyword",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     223,
+     223
+    ]
+   },
+   "conflict_ids": [
+    "CF-000079"
+   ]
+  },
+  {
+   "id": "N-000668",
+   "family": "term:local_label",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     431,
+     433
+    ]
+   },
+   "conflict_ids": [
+    "CF-000174",
+    "CF-000228"
+   ]
+  },
+  {
+   "id": "N-000669",
+   "family": "term:local_label",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     433,
+     433
+    ]
+   },
+   "conflict_ids": [
+    "CF-000165"
+   ]
+  },
+  {
+   "id": "N-000672",
+   "family": "term:ambiguity",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     195,
+     195
+    ]
+   },
+   "conflict_ids": [
+    "CF-000210"
+   ]
+  },
+  {
+   "id": "N-000673",
+   "family": "term:block",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     196,
+     196
+    ]
+   },
+   "conflict_ids": [
+    "CF-000059",
+    "CF-000105",
+    "CF-000107"
+   ]
+  },
+  {
+   "id": "N-000674",
+   "family": "term:fix_loop",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     365,
+     365
+    ]
+   },
+   "conflict_ids": [
+    "CF-000132",
+    "CF-000133",
+    "CF-000271"
+   ]
+  },
+  {
+   "id": "N-000675",
+   "family": "term:fix_loop",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     365,
+     365
+    ]
+   },
+   "conflict_ids": [
+    "CF-000132",
+    "CF-000134",
+    "CF-000368"
+   ]
+  },
+  {
+   "id": "N-000676",
+   "family": "term:fix_loop",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     367,
+     368
+    ]
+   },
+   "conflict_ids": [
+    "CF-000133",
+    "CF-000134",
+    "CF-000369"
+   ]
+  },
+  {
+   "id": "N-000677",
+   "family": "term:child_process_marker",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     368,
+     369
+    ]
+   },
+   "conflict_ids": [
+    "CF-000362"
+   ]
+  },
+  {
+   "id": "N-000680",
+   "family": "term:deleted_node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     114,
+     114
+    ]
+   },
+   "conflict_ids": [
+    "CF-000338",
+    "CF-000342"
+   ]
+  },
+  {
+   "id": "N-000681",
+   "family": "term:pair_key",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     200,
+     200
+    ]
+   },
+   "conflict_ids": [
+    "CF-000220",
+    "CF-000372"
+   ]
+  },
+  {
+   "id": "N-000687",
+   "family": "term:status",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     27,
+     27
+    ]
+   },
+   "conflict_ids": [
+    "CF-000111"
+   ]
+  },
+  {
+   "id": "N-000689",
+   "family": "term:pair_key",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     27,
+     27
+    ]
+   },
+   "conflict_ids": [
+    "CF-000221"
+   ]
+  },
+  {
+   "id": "N-000691",
+   "family": "term:run_budget",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     28,
+     28
+    ]
+   },
+   "conflict_ids": [
+    "CF-000016"
+   ]
+  },
+  {
+   "id": "N-000692",
+   "family": "term:conflict_id",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     72,
+     72
+    ]
+   },
+   "conflict_ids": [
+    "CF-000209"
+   ]
+  },
+  {
+   "id": "N-000695",
+   "family": "term:conflict_record",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     96,
+     96
+    ]
+   },
+   "conflict_ids": [
+    "CF-000122",
+    "CF-000123"
+   ]
+  },
+  {
+   "id": "N-000702",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     3,
+     4
+    ]
+   },
+   "conflict_ids": [
+    "CF-000347"
+   ]
+  },
+  {
+   "id": "N-000703",
+   "family": "term:implementation",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     4,
+     4
+    ]
+   },
+   "conflict_ids": [
+    "CF-000056",
+    "CF-000098",
+    "CF-000099"
+   ]
+  },
+  {
+   "id": "N-000704",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     20,
+     20
+    ]
+   },
+   "conflict_ids": [
+    "CF-000259",
+    "CF-000269",
+    "CF-000300",
+    "CF-000317",
+    "CF-000330",
+    "CF-000341",
+    "CF-000366"
+   ]
+  },
+  {
+   "id": "N-000705",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     21,
+     22
+    ]
+   },
+   "conflict_ids": [
+    "CF-000205"
+   ]
+  },
+  {
+   "id": "N-000706",
+   "family": "term:id",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     27,
+     27
+    ]
+   },
+   "conflict_ids": [
+    "CF-000229",
+    "CF-000302"
+   ]
+  },
+  {
+   "id": "N-000708",
+   "family": "term:spec",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     32,
+     32
+    ]
+   },
+   "conflict_ids": [
+    "CF-000378"
+   ]
+  },
+  {
+   "id": "N-000709",
+   "family": "term:spec",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/README.md",
+    "lines": [
+     33,
+     33
+    ]
+   },
+   "conflict_ids": [
+    "CF-000379"
+   ]
+  },
+  {
+   "id": "N-000713",
+   "family": "term:spec",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     4,
+     4
+    ]
+   },
+   "conflict_ids": [
+    "CF-000224"
+   ]
+  },
+  {
+   "id": "N-000716",
+   "family": "term:undeclared_id_family",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     8,
+     8
+    ]
+   },
+   "conflict_ids": [
+    "CF-000329",
+    "CF-000339"
+   ]
+  },
+  {
+   "id": "N-000722",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     27,
+     27
+    ]
+   },
+   "conflict_ids": [
+    "CF-000188",
+    "CF-000191"
+   ]
+  },
+  {
+   "id": "N-000723",
+   "family": "term:store_id",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     27,
+     28
+    ]
+   },
+   "conflict_ids": [
+    "CF-000263",
+    "CF-000302"
+   ]
+  },
+  {
+   "id": "N-000731",
+   "family": "term:package_sdd_compiler",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     62,
+     63
+    ]
+   },
+   "conflict_ids": [
+    "CF-000358",
+    "CF-000370",
+    "CF-000371"
+   ]
+  },
+  {
+   "id": "N-000736",
+   "family": "term:model_access",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     65,
+     65
+    ]
+   },
+   "conflict_ids": [
+    "CF-000345"
+   ]
+  },
+  {
+   "id": "N-000740",
+   "family": "term:member_node",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     137,
+     138
+    ]
+   },
+   "conflict_ids": [
+    "CF-000297"
+   ]
+  },
+  {
+   "id": "N-000741",
+   "family": "term:line",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     138,
+     139
+    ]
+   },
+   "conflict_ids": [
+    "CF-000179",
+    "CF-000293"
+   ]
+  },
+  {
+   "id": "N-000742",
+   "family": "term:constraint_in_scope",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     139,
+     139
+    ]
+   },
+   "conflict_ids": [
+    "CF-000298"
+   ]
+  },
+  {
+   "id": "N-000745",
+   "family": "term:term",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/F4_graph_store/spec.md",
+    "lines": [
+     140,
+     141
+    ]
+   },
+   "conflict_ids": [
+    "CF-000176"
+   ]
+  },
+  {
+   "id": "N-000746",
+   "family": "term:max_pairs_per_node",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F5_retrieval/spec.md",
+    "lines": [
+     203,
+     204
+    ]
+   },
+   "conflict_ids": [
+    "CF-000039",
+    "CF-000062"
+   ]
+  },
+  {
+   "id": "N-000749",
+   "family": "term:coding",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     4,
+     4
+    ]
+   },
+   "conflict_ids": [
+    "CF-000099",
+    "CF-000242"
+   ]
+  },
+  {
+   "id": "N-000751",
+   "family": "term:result",
+   "layer": "L0",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     42,
+     42
+    ]
+   },
+   "conflict_ids": [
+    "CF-000313"
+   ]
+  },
+  {
+   "id": "N-000752",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F6_conflicts/spec.md",
+    "lines": [
+     341,
+     341
+    ]
+   },
+   "conflict_ids": [
+    "CF-000258"
+   ]
+  },
+  {
+   "id": "N-000759",
+   "family": "term:open_question",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     17,
+     17
+    ]
+   },
+   "conflict_ids": [
+    "CF-000225"
+   ]
+  },
+  {
+   "id": "N-000761",
+   "family": "term:node",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     24,
+     24
+    ]
+   },
+   "conflict_ids": [
+    "CF-000021"
+   ]
+  },
+  {
+   "id": "N-000766",
+   "family": "term:model_call",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     70,
+     70
+    ]
+   },
+   "conflict_ids": [
+    "CF-000072",
+    "CF-000331"
+   ]
+  },
+  {
+   "id": "N-000767",
+   "family": "term:api_key",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/constitution.md",
+    "lines": [
+     70,
+     72
+    ]
+   },
+   "conflict_ids": [
+    "CF-000349"
+   ]
+  },
+  {
+   "id": "N-000771",
+   "family": "term:atomic_spec",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     15,
+     16
+    ]
+   },
+   "conflict_ids": [
+    "CF-000224",
+    "CF-000273"
+   ]
+  },
+  {
+   "id": "N-000772",
+   "family": "term:prose",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     24,
+     25
+    ]
+   },
+   "conflict_ids": [
+    "CF-000032",
+    "CF-000094"
+   ]
+  },
+  {
+   "id": "N-000776",
+   "family": "term:graph",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     38,
+     39
+    ]
+   },
+   "conflict_ids": [
+    "CF-000094"
+   ]
+  },
+  {
+   "id": "N-000778",
+   "family": "term:compiler_code",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     40,
+     40
+    ]
+   },
+   "conflict_ids": [
+    "CF-000344"
+   ]
+  },
+  {
+   "id": "N-000780",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     43,
+     43
+    ]
+   },
+   "conflict_ids": [
+    "CF-000303",
+    "CF-000360"
+   ]
+  },
+  {
+   "id": "N-000781",
+   "family": "term:open_question",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     43,
+     45
+    ]
+   },
+   "conflict_ids": [
+    "CF-000216",
+    "CF-000225",
+    "CF-000303"
+   ]
+  },
+  {
+   "id": "N-000782",
+   "family": "term:answer",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     45,
+     46
+    ]
+   },
+   "conflict_ids": [
+    "CF-000044",
+    "CF-000207"
+   ]
+  },
+  {
+   "id": "N-000784",
+   "family": "term:model_answer",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     47,
+     48
+    ]
+   },
+   "conflict_ids": [
+    "CF-000282"
+   ]
+  },
+  {
+   "id": "N-000785",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     48,
+     48
+    ]
+   },
+   "conflict_ids": [
+    "CF-000301",
+    "CF-000312"
+   ]
+  },
+  {
+   "id": "N-000786",
+   "family": "term:graph",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     49,
+     49
+    ]
+   },
+   "conflict_ids": [
+    "CF-000247"
+   ]
+  },
+  {
+   "id": "N-000787",
+   "family": "term:collapsed_form",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     49,
+     50
+    ]
+   },
+   "conflict_ids": [
+    "CF-000217"
+   ]
+  },
+  {
+   "id": "N-000788",
+   "family": "term:markdown_spec_file",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     56,
+     56
+    ]
+   },
+   "conflict_ids": [
+    "CF-000343"
+   ]
+  },
+  {
+   "id": "N-000790",
+   "family": "term:run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     58,
+     58
+    ]
+   },
+   "conflict_ids": [
+    "CF-000267"
+   ]
+  },
+  {
+   "id": "N-000791",
+   "family": null,
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     59,
+     59
+    ]
+   },
+   "conflict_ids": [
+    "CF-000349"
+   ]
+  },
+  {
+   "id": "N-000792",
+   "family": "term:run_output",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     60,
+     60
+    ]
+   },
+   "conflict_ids": [
+    "CF-000199",
+    "CF-000215",
+    "CF-000218",
+    "CF-000290"
+   ]
+  },
+  {
+   "id": "N-000794",
+   "family": "term:graph",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     64,
+     65
+    ]
+   },
+   "conflict_ids": [
+    "CF-000273"
+   ]
+  },
+  {
+   "id": "N-000799",
+   "family": "term:offset",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     72,
+     73
+    ]
+   },
+   "conflict_ids": [
+    "CF-000239"
+   ]
+  },
+  {
+   "id": "N-000800",
+   "family": "(global)",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     74,
+     74
+    ]
+   },
+   "conflict_ids": [
+    "CF-000050",
+    "CF-000093"
+   ]
+  },
+  {
+   "id": "N-000801",
+   "family": "term:prose",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/vision.md",
+    "lines": [
+     75,
+     76
+    ]
+   },
+   "conflict_ids": [
+    "CF-000032"
+   ]
+  },
+  {
+   "id": "N-000807",
+   "family": "term:block",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     389,
+     390
+    ]
+   },
+   "conflict_ids": [
+    "CF-000059",
+    "CF-000066",
+    "CF-000120",
+    "CF-000189"
+   ]
+  },
+  {
+   "id": "N-000808",
+   "family": "term:run",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     75,
+     75
+    ]
+   },
+   "conflict_ids": [
+    "CF-000110",
+    "CF-000170",
+    "CF-000253"
+   ]
+  },
+  {
+   "id": "N-000809",
+   "family": "term:pending_block",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     75,
+     76
+    ]
+   },
+   "conflict_ids": [
+    "CF-000108",
+    "CF-000211"
+   ]
+  },
+  {
+   "id": "N-000811",
+   "family": "term:term",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     417,
+     418
+    ]
+   },
+   "conflict_ids": [
+    "CF-000240"
+   ]
+  },
+  {
+   "id": "N-000814",
+   "family": "term:canonical_modality",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     227,
+     228
+    ]
+   },
+   "conflict_ids": [
+    "CF-000268"
+   ]
+  },
+  {
+   "id": "N-000815",
+   "family": "term:canonical_modality",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F2_node_model/spec.md",
+    "lines": [
+     228,
+     228
+    ]
+   },
+   "conflict_ids": [
+    "CF-000185"
+   ]
+  },
+  {
+   "id": "N-000816",
+   "family": "term:text_overlap",
+   "layer": "C",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     433,
+     433
+    ]
+   },
+   "conflict_ids": [
+    "CF-000288"
+   ]
+  },
+  {
+   "id": "N-000820",
+   "family": "term:unchanged_node",
+   "layer": "L4",
+   "source": {
+    "file": "sdd/specs/F3_atomizer/spec.md",
+    "lines": [
+     437,
+     438
+    ]
+   },
+   "conflict_ids": [
+    "CF-000204"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"from": "N-000077", "type": "uses_term", "to": "term:cli_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000077", "type": "uses_term", "to": "term:commands_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000077", "type": "uses_term", "to": "term:ingest_pipeline_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000077", "type": "uses_term", "to": "term:ingest_pipeline_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000077", "type": "verifies", "to": "AC-1.21", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000077", "type": "verifies", "to": "AC-1.26", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000077", "type": "verifies", "to": "AC-1.8", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

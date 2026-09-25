@@ -1,0 +1,10 @@
+{"from": "N-000674", "type": "uses_term", "to": "term:actor_stop_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000674", "type": "uses_term", "to": "term:fix_loop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000674", "type": "uses_term", "to": "term:sddc_hook_post_edit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000675", "type": "uses_term", "to": "term:actor_stop_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000675", "type": "uses_term", "to": "term:fix_loop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000675", "type": "uses_term", "to": "term:sddc_hook_post_edit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:actor_stop_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:fix_loop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:live_editing", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:sddc_hook_post_edit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

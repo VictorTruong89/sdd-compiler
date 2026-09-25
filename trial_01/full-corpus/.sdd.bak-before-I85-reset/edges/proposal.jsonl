@@ -1,0 +1,4 @@
+{"from": "N-000558", "type": "uses_term", "to": "term:capped_pair", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000558", "type": "uses_term", "to": "term:pair_dropped_by_cap", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000558", "type": "uses_term", "to": "term:proposal", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000558", "type": "verifies", "to": "AC-5.16", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

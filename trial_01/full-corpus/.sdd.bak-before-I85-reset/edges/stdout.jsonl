@@ -1,0 +1,12 @@
+{"from": "AC-1.21", "type": "uses_term", "to": "term:json_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:json_object", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:pending_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:status_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:stdout", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:store", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:edge_list", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:full_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:incoming_and_outgoing_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:sddc_query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:stdout", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

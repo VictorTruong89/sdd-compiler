@@ -1,0 +1,4 @@
+{"from": "N-000237", "type": "uses_term", "to": "term:atom_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000237", "type": "uses_term", "to": "term:canonical", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000237", "type": "uses_term", "to": "term:question_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000237", "type": "uses_term", "to": "term:role_list", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

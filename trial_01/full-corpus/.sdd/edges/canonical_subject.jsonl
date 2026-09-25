@@ -1,0 +1,5 @@
+{"from": "N-000107", "type": "duplicates", "to": "N-000116", "provenance": "judgment", "judgment": "J-006378", "rationale": "Both claims state the same constraint: that the scope (canonical.subject or families) resolves to or comprises the same three kinds: entity, data, or event. They express the same requirement using different terminology.", "quotes": ["canonical.subject` resolves to a term of kind `entity`, `data` or `event", "families` = those of kind `entity`, `data` or `event"]}
+{"from": "N-000107", "type": "uses_term", "to": "term:canonical_subject", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000107", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000387", "type": "uses_term", "to": "term:canonical_response", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000387", "type": "uses_term", "to": "term:canonical_subject", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

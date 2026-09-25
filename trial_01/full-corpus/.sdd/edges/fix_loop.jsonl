@@ -1,0 +1,14 @@
+{"from": "N-000674", "type": "conflicts_with", "to": "N-000675", "provenance": "judgment", "judgment": "J-003919", "rationale": "N-000674 states the feature is 'withdrawn', while N-000675 states it is 'deferred, not deleted'—these are mutually exclusive states.", "quotes": ["Withdrawn by rel01 D26", "deferred, not deleted"]}
+{"from": "N-000674", "type": "conflicts_with", "to": "N-000676", "provenance": "judgment", "judgment": "J-003920", "rationale": "N-000674 states the feature is 'withdrawn', while N-000676 states 'they return'—a withdrawn feature cannot return.", "quotes": ["Withdrawn by rel01 D26", "They return with live editing"]}
+{"from": "N-000674", "type": "uses_term", "to": "term:actor_stop_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000674", "type": "uses_term", "to": "term:fix_loop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000674", "type": "uses_term", "to": "term:sddc_hook_post_edit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000675", "type": "conflicts_with", "to": "N-000676", "provenance": "judgment", "judgment": "J-003921", "rationale": "Claim A says the response is 'deferred, not deleted' while Claim B says it is 'return with live editing'. These are mutually exclusive outcomes for the same subject (post-edit hook trigger with AI fix loop).", "quotes": ["deferred, not deleted", "return with live editing"]}
+{"from": "N-000675", "type": "uses_term", "to": "term:actor_stop_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000675", "type": "uses_term", "to": "term:fix_loop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000675", "type": "uses_term", "to": "term:sddc_hook_post_edit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "refines", "to": "N-000014", "provenance": "judgment", "judgment": "J-006752", "rationale": "Claim B refines Claim A by specifying that the deferred features (including live editing with fix loops) return together with specific release dates, whereas Claim A only says they are deferred.", "quotes": ["deferred to the release that adds live editing", "They return with live editing, together with rel01 D13, D16, D18 and D25"]}
+{"from": "N-000676", "type": "uses_term", "to": "term:actor_stop_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:fix_loop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:live_editing", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000676", "type": "uses_term", "to": "term:sddc_hook_post_edit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

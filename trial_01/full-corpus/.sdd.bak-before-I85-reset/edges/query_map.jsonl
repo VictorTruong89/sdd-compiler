@@ -1,0 +1,13 @@
+{"from": "N-000456", "type": "uses_term", "to": "term:family_count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000456", "type": "uses_term", "to": "term:query_map", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000456", "type": "uses_term", "to": "term:status_count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000473", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000473", "type": "uses_term", "to": "term:global", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000473", "type": "uses_term", "to": "term:no_family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000473", "type": "uses_term", "to": "term:query_map", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000489", "type": "uses_term", "to": "term:sddc_family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000489", "type": "verifies", "to": "AC-4.15", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000489", "type": "verifies", "to": "N-000473", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000489", "type": "verifies", "to": "N-000474", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000489", "type": "verifies", "to": "N-000475", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000489", "type": "verifies", "to": "N-000485", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -40,9 +40,10 @@ aborts with exit `4`, names every problem, and leaves the old store untouched.
 
 | What | Where |
 |---|---|
-| **The full store** (17 MB; 950 nodes, 381 conflicts) | **`~/sddc-runs/full-corpus/.sdd/`** — outside the repository, not committed |
+| **The full store** (950 nodes, 381 conflicts) | **`~/sddc-runs/full-corpus/.sdd/`**, and a copy of the whole run directory in the repository at **`build/full-corpus/`** |
 | The spec text it was compiled from, frozen | `~/sddc-runs/full-corpus/sdd/specs/` and its hashes in `corpus.sha256` |
-| A backup taken before the I-85 repair | `~/sddc-runs/full-corpus/.sdd.bak-before-I85-reset/` |
+| Backups taken before the I-85 repair and the I-89 heal | `~/sddc-runs/full-corpus/.sdd.bak-before-I85-reset/`, `.sdd.bak-before-I89-heal/` |
+| **An interactive explorer** of this store | `~/sddc-runs/full-corpus/graph.html` (section 5 below) |
 | Per-round output, the report, the conflict list, the M2 sample | `sdd/design/rel01_design/measurements/R18_*` — in the repository |
 | The write-up | `sdd/design/rel01_design/M4-gate.md` §8 |
 
@@ -53,9 +54,10 @@ sddc --root ~/sddc-runs/full-corpus status
 sddc --root ~/sddc-runs/full-corpus family "model call"
 ```
 
-⚠ Known store defect (build-plan I-89): judged links repeat once per run in which their verdict was
-replayed — 9 682 link lines for 4 199 distinct links. Count links **de-duplicated** by
-`(from, type, to)`. Conflict records are unaffected.
+*Fixed 2026-09-24 (build-plan I-89):* judged links used to be stored again each time their verdict
+was replayed — R18 held 9 682 link lines for 4 199 distinct links. The store has been healed and a
+duplicate link key now fails the store checks. ⚠ Still open (I-91): when a re-judged pair's verdict
+changes, its old judged link stays beside the new one.
 
 ## How a person should look at it — from the top down
 
@@ -137,9 +139,37 @@ graph LR
 ```
 
 Dotted arrows are conflicts; solid arrows are ordinary relations. The script draws the family's nodes
-plus every node one judged link away, and de-duplicates links (I-89).
+plus every node one judged link away.
 
-### 5. Ask questions of the files directly
+### 5. The interactive explorer — `scripts/build_viewer.py`
+
+For browsing the whole graph, build a single self-contained HTML page from any store:
+
+```bash
+cd ~/sddc-runs/full-corpus
+PYTHONPATH=/path/to/sdd-compiler/src \
+  python /path/to/sdd-compiler/docs/lectures/sdd-compiler-as-built/scripts/build_viewer.py \
+  .sdd graph.html --label "R18 · sdd/specs · 2026-09-23"
+xdg-open graph.html        # or open it in any browser; it needs no server
+```
+
+It reads the store with the compiler's own loader and fills `viewer_template.html`. You get:
+
+- **Families** on the left, sorted by open conflicts, by size, or A–Z, with a filter that matches
+  aliases too;
+- **Graph**: the selected family's nodes, drawn with their layer inside each circle and their status
+  as its ring (✗ red conflict, ? amber ambiguous, ✓ green validated), plus nodes one judged relation
+  outside the family. Contradictions are dashed red. Each relation type can be switched off. Drag to
+  move, scroll to zoom, hover for the text;
+- **Map**: families × layers, each cell showing the count and the worst status. Click a row to open it;
+- **Conflicts**: all 381, filtered by kind or by the current family. Click a member to open it;
+- **Details**: the full node record (text, `file:line` with a copy button, canonical form, family and
+  the rule that chose it, terms, ambiguity, conflicts with rationale, every relation);
+- **Find**: any node by id or words. `graph.html#N-000008` opens straight on a node.
+
+The R18 build is at `~/sddc-runs/full-corpus/graph.html` (≈ 1.1 MB).
+
+### 6. Ask questions of the files directly
 
 The store is JSON Lines, so any tool reads it. Two useful one-liners:
 

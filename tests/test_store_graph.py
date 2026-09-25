@@ -254,3 +254,13 @@ def test_i83_the_judgment_counter_is_checked_against_the_lock(store):
     (store / "graph.meta.json").write_text(json.dumps(meta))
     assert any(v.startswith("counters monotonic: id_counters.judgment is 9")
                for v in check_store(store))
+
+
+def test_i89_a_duplicate_link_key_is_reported(store):
+    """F4 §4.3 unique ids, read with F2 §4.8: a link's id is its key `(from, type, to)`."""
+    write_graph(store, graph([node("N-000001"), node("N-000002")], [term("term:a")],
+                             [link("N-000001", "uses_term", "term:a")]))
+    shard = store / "edges" / "a.jsonl"
+    shard.write_text(shard.read_text() * 2)
+    assert any(v.startswith("unique ids: link N-000001 -uses_term-> term:a")
+               for v in check_store(store))

@@ -1,0 +1,4 @@
+{"from": "N-000534", "type": "depends_on", "to": "N-000535", "provenance": "judgment", "judgment": "J-006850", "rationale": "Claim A names the two extra sources but needs Claim B's temporal qualifier 'beyond the pre-rel01 rule' to convey the complete design decision about what changed.", "quotes": ["Two extra candidate sources, S5 keywords and S6 same measured property", "beyond the pre-rel01 rule"]}
+{"from": "N-000534", "type": "uses_term", "to": "term:candidate_source", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000534", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000534", "type": "uses_term", "to": "term:no_shared_term_conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,4 @@
+{"from": "N-000401", "type": "uses_term", "to": "term:answer_guard", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000401", "type": "uses_term", "to": "term:answerrejected_event", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000401", "type": "uses_term", "to": "term:batch_layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000401", "type": "uses_term", "to": "term:item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

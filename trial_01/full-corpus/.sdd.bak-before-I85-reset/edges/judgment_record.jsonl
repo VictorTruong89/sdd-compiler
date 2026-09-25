@@ -1,0 +1,3 @@
+{"from": "AC-3.3", "type": "uses_term", "to": "term:fake_response", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.3", "type": "uses_term", "to": "term:judgment_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.3", "type": "uses_term", "to": "term:usage_and_cost", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

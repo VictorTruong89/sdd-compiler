@@ -1,0 +1,16 @@
+{"from": "AC-5.16", "type": "refines", "to": "N-000519", "provenance": "judgment", "judgment": "J-003144", "rationale": "AC-5.16 refines N-000519 by specifying the exact arithmetic relationship among the run record counts: that proposed, capped, dropped_below_min_score, and dropped_by_cap have a specific sum relationship.", "quotes": ["proposed = capped + dropped_below_min_score + dropped_by_cap", "pairs after the cap, pairs dropped by `min_score`, pairs dropped by the cap"]}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:capped", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:compile_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:dropped_below_min_score", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:dropped_by_cap", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:proposed", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.16", "type": "uses_term", "to": "term:run_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000519", "type": "uses_term", "to": "term:candidates_proposed", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000519", "type": "uses_term", "to": "term:nodes_checked", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000519", "type": "uses_term", "to": "term:pairs_after_the_cap", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000519", "type": "uses_term", "to": "term:pairs_dropped_by_min_score", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000519", "type": "uses_term", "to": "term:run_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000613", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000613", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000613", "type": "uses_term", "to": "term:run_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

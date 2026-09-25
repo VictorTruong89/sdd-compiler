@@ -1,0 +1,3 @@
+{"from": "N-000117", "type": "subsumes", "to": "N-000541", "provenance": "judgment", "judgment": "J-006390", "rationale": "A establishes that categories are of kind `category`, which is presupposed by B's rule about selectors covering nodes matching a category; A provides the foundation for what B specifies.", "quotes": ["categories` = those of kind `category`", "A selector that names a family, term or category covers the nodes matching it"]}
+{"from": "N-000117", "type": "uses_term", "to": "term:category", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000117", "type": "uses_term", "to": "term:scope_selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

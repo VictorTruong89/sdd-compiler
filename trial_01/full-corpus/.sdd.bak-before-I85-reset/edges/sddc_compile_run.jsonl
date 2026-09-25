@@ -1,0 +1,5 @@
+{"from": "N-000571", "type": "uses_term", "to": "term:atomize_every_pending_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000571", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000571", "type": "uses_term", "to": "term:ingest_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000571", "type": "uses_term", "to": "term:report", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000571", "type": "uses_term", "to": "term:sddc_compile_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

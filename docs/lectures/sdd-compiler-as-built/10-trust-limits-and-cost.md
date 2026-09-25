@@ -31,8 +31,7 @@ author had introduced the same day (build-plan I-80).
 | **Criteria for different situations read as contradictions** | The main remaining false-positive class | I-81 |
 | **High ambiguity** | 628 of 950 R18 nodes (66 %) carry at least one ambiguity entry; 304 show status `ambiguous`, the other 324 are outranked by `conflict` | M4-gate §8 |
 | **A small residue of blocks that never atomize** | R18 ended with 1 block pending, retried every run | I-84 |
-| **Duplicate judged links** in the store | Link counts inflated until de-duplicated | I-89 (open) |
-| **`jsonschema` not declared** in `pyproject.toml` | A clean install fails on import | I-90 (open) |
+| **A re-judged pair keeps its old link** | After a verdict changes, the old `conflicts_with`/`refines` link stays beside the new one | I-91 (open) |
 | **No traversal/query command** | Agents read the store by hand (chapter 9) | F7 design only |
 
 Three defects that would each have made R18's numbers wrong were found by R18 itself and fixed before
@@ -77,4 +76,3 @@ promising a number.
 | The same blocks in "failed" every run | The model keeps paraphrasing a quote | See `.sdd/review.jsonl` → `atomize_failed`; rephrasing the sentence may help (unmeasured) |
 | A conflict you know is false | Judge limitations (above) | `sddc conflicts judge CF-… --verdict false --note "…"` |
 | A claim "in the wrong family" | It named the thing differently | Use the existing term name in the spec text (chapter 7) |
-| A `ModuleNotFoundError: jsonschema` | I-90 | `pip install jsonschema` |

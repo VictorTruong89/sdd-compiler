@@ -1,0 +1,3 @@
+{"from": "N-000682", "type": "depends_on", "to": "N-000665", "provenance": "judgment", "judgment": "J-003555", "rationale": "The stop-word list claim (B) specifies an implementation detail that must exist for the keyword computation claim (A) to function—keywords computed from text require a stop-word list to be effective.", "quotes": ["keywords are computed by code from text", "stop-word list in code for keywords"]}
+{"from": "N-000682", "type": "uses_term", "to": "term:keyword", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000682", "type": "uses_term", "to": "term:stop_word_list", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -468,3 +468,70 @@ def test_i83_the_judgment_counter_covers_the_check_phases_records(repo):
               for line in path.read_text().splitlines()]
     assert meta["id_counters"]["judgment"] == max(int(i[2:]) for i in issued)
     assert check_store(repo / ".sdd") == []
+
+
+def judged_keys(repo):
+    graph = load_graph(repo / ".sdd")
+    return [(l["from"], l["type"], l["to"]) for l in graph.links if l["provenance"] == "judgment"]
+
+
+def test_i89_a_replayed_verdict_does_not_store_its_link_again(repo):
+    """F2 §4.8: a link is unique per `(from, type, to)`. A `conflict` node is re-checked every run
+    and its verdict replays from the lock; R18 stored `AC-3.19 refines N-000008` nine times (I-89)."""
+    compile_two_nodes(repo, pair())
+    compile_two_nodes(repo)                                     # replayed, no call
+    compile_two_nodes(repo)
+    keys = judged_keys(repo)
+    assert len(keys) == len(set(keys)) == 1
+    assert check_store(repo / ".sdd") == []
+
+
+def test_i89_a_store_already_holding_duplicate_links_heals_on_the_next_compile(repo):
+    compile_two_nodes(repo, pair())
+    for shard in (repo / ".sdd" / "edges").glob("*.jsonl"):     # what an R18 store looks like
+        lines = shard.read_text().splitlines()
+        shard.write_text("\n".join(lines + [l for l in lines if '"judgment"' in l and '"J-' in l]) + "\n")
+    assert any(v.startswith("unique ids") for v in check_store(repo / ".sdd"))
+    compile_two_nodes(repo)
+    keys = judged_keys(repo)
+    assert len(keys) == len(set(keys)) == 1
+    assert check_store(repo / ".sdd") == []
+
+
+def test_i89_the_heal_also_happens_when_the_cap_stops_atomization(repo):
+    compile_two_nodes(repo, pair())
+    for shard in (repo / ".sdd" / "edges").glob("*.jsonl"):
+        lines = shard.read_text().splitlines()
+        shard.write_text("\n".join(lines + lines) + "\n")
+    spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.write_text(spec.read_text() + "\nA share link must be logged.\n", encoding="utf-8")
+    result = compile_graph(repo, backend=FakeBackend([], budget=CallBudget(0)))   # stops at once
+    assert result.exit_code == ExitCode.CALL_CAP
+    keys = [(l["from"], l["type"], l["to"]) for l in load_graph(repo / ".sdd").links]
+    assert len(keys) == len(set(keys))
+    assert check_store(repo / ".sdd") == []
+
+
+def rejudge(repo, verdict):
+    """Edit B so the pair's key changes and it is asked again, answered with `verdict`."""
+    spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
+    revoke = "A share link must be revocable by its owner."
+    spec.write_text(f"## Sharing\n\n{EXPIRY}\n\n{revoke}\n", encoding="utf-8")
+    compile_graph(repo, backend=FakeBackend([
+        atom_answer(("B-000002", revoke)),
+        {"atoms": [desc("B-000002#1", revoke, "be revocable by its owner")]},
+        verdict, *no_conflicts()]))
+
+
+def test_ac_6_24_a_pair_re_judged_none_keeps_no_judged_link(repo):
+    """F6 D20 (I-91): the record closed on re-judgment, but its `conflicts_with` link stayed."""
+    compile_two_nodes(repo, pair())
+    rejudge(repo, pair(relation="none"))
+    assert judged_keys(repo) == []
+    assert check_store(repo / ".sdd") == []
+
+
+def test_ac_6_24_a_changed_relation_replaces_the_old_link(repo):
+    compile_two_nodes(repo, pair(relation="refines", direction="a_to_b"))
+    rejudge(repo, pair(relation="depends_on", direction="b_to_a"))
+    assert [k[1] for k in judged_keys(repo)] == ["depends_on"]

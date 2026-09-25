@@ -1,0 +1,6 @@
+{"from": "AC-1.4", "type": "uses_term", "to": "term:delimiter_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:header_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:ingest_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:table", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:table_body_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:table_header", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

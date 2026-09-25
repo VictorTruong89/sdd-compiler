@@ -1,0 +1,23 @@
+{"from": "N-000252", "type": "uses_term", "to": "term:atom", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000252", "type": "uses_term", "to": "term:canonical_field", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000252", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000252", "type": "uses_term", "to": "term:quantity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000259", "type": "duplicates", "to": "N-000323", "provenance": "judgment", "judgment": "J-003433", "rationale": "Both claims state the same requirement: when a name is judged the same as an existing term, it becomes an alias, and the merge can be rejected. The phrasing and context differ slightly, but the core specification is identical.", "quotes": ["the name becomes an alias of that existing term, and a `term_same` review item lets a person reject the merge", "merged as an alias (D20) … rejecting the item splits the name back out"]}
+{"from": "N-000259", "type": "uses_term", "to": "term:aliase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000259", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000259", "type": "uses_term", "to": "term:person", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000259", "type": "uses_term", "to": "term:same", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000259", "type": "uses_term", "to": "term:term_same_review_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000362", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000362", "type": "uses_term", "to": "term:code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000363", "type": "uses_term", "to": "term:ambiguous_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000363", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000363", "type": "uses_term", "to": "term:existing_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000363", "type": "uses_term", "to": "term:person", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000363", "type": "uses_term", "to": "term:q_term_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000363", "type": "uses_term", "to": "term:term_same_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000367", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000367", "type": "uses_term", "to": "term:term_merge_rejection", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000377", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000377", "type": "uses_term", "to": "term:chunk", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000377", "type": "uses_term", "to": "term:q_desc", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

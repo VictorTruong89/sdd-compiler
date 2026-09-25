@@ -1,0 +1,10 @@
+{"from": "AC-1.22", "type": "refines", "to": "N-000047", "provenance": "judgment", "judgment": "J-003263", "rationale": "A specifies a concrete scenario where store files do not change (non-UTF-8 file failure); B states the general rule that no store file changes on failure. A provides a specific acceptance test case for B's general requirement.", "quotes": ["no store file changes", "No store file changes on failure"]}
+{"from": "AC-1.22", "type": "uses_term", "to": "term:exit_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.22", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.22", "type": "uses_term", "to": "term:ingest_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.22", "type": "uses_term", "to": "term:store_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "uses_term", "to": "term:store_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "uses_term", "to": "term:temporary_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:failure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:store_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,9 @@
+{"from": "AC-5.11", "type": "uses_term", "to": "term:candidate", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:graph", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:insertion_order", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:rank_order", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:check_conflicts_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:conflicts_view_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:person", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,3 @@
+{"from": "N-000163", "type": "refines", "to": "N-000058", "provenance": "judgment", "judgment": "J-007000", "rationale": "B identifies the command name; A specifies the full syntax including the command and its flags—B narrows A's scope to a single component.", "quotes": ["sddc [--root DIR] [--json] <command>", "Command name `sddc`"]}
+{"from": "N-000163", "type": "uses_term", "to": "term:command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000163", "type": "uses_term", "to": "term:sddc", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,11 @@
+{"from": "N-000274", "type": "uses_term", "to": "term:atom", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000274", "type": "uses_term", "to": "term:best_overlapping_atom", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000274", "type": "uses_term", "to": "term:new_ids", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000274", "type": "uses_term", "to": "term:old_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000274", "type": "uses_term", "to": "term:split_operation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000819", "type": "refines", "to": "AC-3.18", "provenance": "judgment", "judgment": "J-004731", "rationale": "CLAIM B specifies a particular alignment scenario (labelled block atom to old N-node) in which the general principle from CLAIM A (one node keeps the old id) is applied.", "quotes": ["one keeps the old id and one is new", "the old id is kept"]}
+{"from": "N-000819", "type": "refines", "to": "N-000274", "provenance": "judgment", "judgment": "J-004725", "rationale": "Claim B specifies a concrete scenario (labelled block aligning to an old N-node) where the general rule from Claim A (best-overlapping atom keeps old id in splits) applies and ensures old id retention.", "quotes": ["Old id kept by the best-overlapping atom; others get new ids", "When a labelled block's atom aligns to an old `N-` node, the old id is kept"]}
+{"from": "N-000819", "type": "uses_term", "to": "term:atom", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000819", "type": "uses_term", "to": "term:labelled_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000819", "type": "uses_term", "to": "term:old_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000819", "type": "uses_term", "to": "term:old_n_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

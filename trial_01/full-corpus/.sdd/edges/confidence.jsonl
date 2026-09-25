@@ -1,0 +1,7 @@
+{"from": "N-000662", "type": "conflicts_with", "to": "N-000663", "provenance": "judgment", "judgment": "J-003915", "rationale": "N-000662 states confidence is 'never acted on', while N-000663 states rel01 'raises ambiguity' based on confidence—both actions on the same entity at the same time.", "quotes": ["never acted on", "raises ambiguity `low_confidence_verdict`"]}
+{"from": "N-000662", "type": "uses_term", "to": "term:confidence", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000663", "type": "conflicts_with", "to": "N-000664", "provenance": "judgment", "judgment": "J-003917", "rationale": "N-000663 describes confidence being acted on immediately by rel01 (raising ambiguity), while N-000664 prohibits any action until G4's comparison—conflicting timelines for the same entity.", "quotes": ["rel01 stores it and raises ambiguity", "nothing filters or re-ranks by it until G4 has compared it"]}
+{"from": "N-000663", "type": "uses_term", "to": "term:confidence", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000663", "type": "uses_term", "to": "term:low_confidence_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000664", "type": "uses_term", "to": "term:confidence", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000664", "type": "uses_term", "to": "term:human_label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

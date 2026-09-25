@@ -1,0 +1,13 @@
+{"from": "N-000476", "type": "uses_term", "to": "term:card_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000476", "type": "uses_term", "to": "term:inline_mark", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000477", "type": "uses_term", "to": "term:card_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000477", "type": "uses_term", "to": "term:cell", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000477", "type": "uses_term", "to": "term:table_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000479", "type": "uses_term", "to": "term:human_view", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000479", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000479", "type": "uses_term", "to": "term:word", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000479", "type": "verifies", "to": "N-000476", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000479", "type": "verifies", "to": "N-000477", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000479", "type": "verifies", "to": "N-000478", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000480", "type": "uses_term", "to": "term:card_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000480", "type": "uses_term", "to": "term:source", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

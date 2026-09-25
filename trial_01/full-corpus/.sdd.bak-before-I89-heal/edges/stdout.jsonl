@@ -1,0 +1,16 @@
+{"from": "AC-1.21", "type": "depends_on", "to": "N-000058", "provenance": "judgment", "judgment": "J-006924", "rationale": "AC-1.21 specifies the output format of `sddc status --json` command; this presupposes N-000058's definition of the overall `sddc` command syntax with the `--json` flag that AC-1.21 uses.", "quotes": ["`sddc status --json` runs, **then** stdout is exactly one JSON object", "sddc [--root DIR] [--json] <command>"]}
+{"from": "AC-1.21", "type": "refines", "to": "N-000009", "provenance": "judgment", "judgment": "J-006728", "rationale": "Claim A specifies detailed behavior of the `status` command (JSON output format), refining the general requirement in Claim B that the F1 ingest feature must provide a `status` command.", "quotes": ["sddc status --json runs, then stdout is exactly one JSON object valid against CT-1.5", "status"]}
+{"from": "AC-1.21", "type": "refines", "to": "N-000009", "provenance": "judgment", "judgment": "J-006728", "rationale": "Claim A specifies detailed behavior of the `status` command (JSON output format), refining the general requirement in Claim B that the F1 ingest feature must provide a `status` command.", "quotes": ["sddc status --json runs, then stdout is exactly one JSON object valid against CT-1.5", "status"]}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:json_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:json_object", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:pending_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:status_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:stdout", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.21", "type": "uses_term", "to": "term:store", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "depends_on", "to": "N-000429", "provenance": "judgment", "judgment": "J-006978", "rationale": "AC-4.9 specifies detailed output format of `sddc query node ID`, which presupposes N-000429's requirement that the query command be available via `sddc query …`.", "quotes": ["`sddc query node ID` runs, then stdout is a CT-4.3 envelope", "`sddc query …`"]}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:edge_list", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:full_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:incoming_and_outgoing_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:sddc_query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.9", "type": "uses_term", "to": "term:stdout", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

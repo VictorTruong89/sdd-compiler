@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/__main__.py", line 9, in <module>
+    sys.exit(run())
+             ~~~^^
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/cli.py", line 100, in run
+    return dispatch(args)
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/cli.py", line 114, in dispatch
+    return commands.compile_(root, paths=args.paths, as_json=as_json, replay=not args.no_replay)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/commands.py", line 35, in compile_
+    result = compile_graph(root, paths=paths, replay=replay)
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/pipeline.py", line 151, in compile_graph
+    result.check = check(graph, backend=backend, retrieval=profile.retrieval,
+                   ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         settings=profile.conflicts, run_id=run_id, lock=lock)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/conflicts/pipeline.py", line 88, in check
+    outcome = judge_batch(chunk, counted, settings=settings, lock=lock)
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/conflicts/judge.py", line 196, in judge_batch
+    result = ask_each(
+        list(items),
+    ...<8 lines>...
+        lock_input=lambda item: {"pair_key": item.key or item.pair_id},
+    )
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/atomize/batch.py", line 67, in ask_each
+    accept(item, payload)
+    ~~~~~~^^^^^^^^^^^^^^^
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/conflicts/judge.py", line 194, in accept
+    outcome.verdicts[item.pair_id] = _verdict(payload, item)
+                                     ~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/victor/Workspace/sdd-compiler/src/sdd_compiler/conflicts/judge.py", line 214, in _verdict
+    if payload["relation"] in SYMMETRIC_ONLY and payload["direction"] != "symmetric":
+       ~~~~~~~^^^^^^^^^^^^
+KeyError: 'relation'

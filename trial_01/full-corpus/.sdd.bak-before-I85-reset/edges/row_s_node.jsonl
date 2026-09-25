@@ -1,0 +1,12 @@
+{"from": "AC-2.28", "type": "uses_term", "to": "term:criterion", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.28", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.28", "type": "uses_term", "to": "term:local_label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.28", "type": "uses_term", "to": "term:row_s_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.28", "type": "uses_term", "to": "term:table_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.28", "type": "uses_term", "to": "term:verification", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000212", "type": "uses_term", "to": "term:forming_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000212", "type": "uses_term", "to": "term:ids_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000212", "type": "uses_term", "to": "term:pipeline_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000212", "type": "uses_term", "to": "term:schema_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000212", "type": "uses_term", "to": "term:test_case", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000212", "type": "verifies", "to": "AC-2.28", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

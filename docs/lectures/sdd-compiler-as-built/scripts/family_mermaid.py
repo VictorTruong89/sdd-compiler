@@ -22,7 +22,7 @@ store, family = Path(sys.argv[1]), sys.argv[2]
 g = load_graph(store)
 family = resolve_family(g, family)
 core = {i for i, n in g.nodes.items() if n["family"] == family}
-# One entry per (from, type, to): the R18 store repeats replayed links (build-plan I-89).
+# One entry per (from, type, to) — defensive; a store written before the I-89 fix repeated links.
 links = list({(l["from"], l["type"], l["to"]): l for l in g.links
               if l["provenance"] == "judgment" and (l["from"] in core or l["to"] in core)}.values())
 shown = core | {l["from"] for l in links} | {l["to"] for l in links}

@@ -1,0 +1,7 @@
+{"from": "N-000131", "type": "uses_term", "to": "term:conflict_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000131", "type": "uses_term", "to": "term:node_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000132", "type": "uses_term", "to": "term:node_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000132", "type": "uses_term", "to": "term:stale_reason", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000133", "type": "uses_term", "to": "term:last_checked_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000133", "type": "uses_term", "to": "term:node_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000134", "type": "uses_term", "to": "term:node_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

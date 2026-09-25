@@ -1,0 +1,5 @@
+{"from": "N-000029", "type": "uses_term", "to": "term:blank_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000029", "type": "uses_term", "to": "term:line_ending", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000029", "type": "uses_term", "to": "term:trailing_whitespace", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000029", "type": "uses_term", "to": "term:verbatim_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "uses_term", "to": "term:verbatim_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,5 @@
+{"from": "N-000779", "type": "subsumes", "to": "AC-1.8", "provenance": "judgment", "judgment": "J-005979", "rationale": "N-000779's principle that identical inputs and recorded judgments produce identical bytes already implies AC-1.8's requirement that an unchanged file ingested twice produces byte-identical output files. The general principle subsumes the specific application.", "quotes": ["blocks.jsonl and sources.jsonl are byte-identical to the first run's", "Given the same inputs and the same recorded judgments, a build produces identical bytes"]}
+{"from": "N-000779", "type": "uses_term", "to": "term:build", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000779", "type": "uses_term", "to": "term:input", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000779", "type": "uses_term", "to": "term:recorded_judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000779", "type": "uses_term", "to": "term:run_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

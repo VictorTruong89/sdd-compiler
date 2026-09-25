@@ -262,6 +262,13 @@ def _checks(graph: Graph, placement: Iterable[tuple[str, str, str | None]] | Non
             registry: Mapping[str, Any] | None, meta: Mapping[str, Any] | None,
             previous_counters: Mapping[str, int] | None, judgment_ids: set[str]) -> list[str]:
     problems = [f"unique ids: {d}" for d in duplicates]
+    # F2 §4.8: a link's identity is its key; one key, one link (I-89).
+    seen: dict[tuple[str, str, str], int] = {}
+    for link in graph.links:
+        key = (link["from"], link["type"], link["to"])
+        seen[key] = seen.get(key, 0) + 1
+    problems += [f"unique ids: link {a} -{t}-> {b} appears {n} times"
+                 for (a, t, b), n in sorted(seen.items()) if n > 1]
 
     targets = set(graph.nodes) | set(graph.terms) | {"scope"}
     for link in graph.links:

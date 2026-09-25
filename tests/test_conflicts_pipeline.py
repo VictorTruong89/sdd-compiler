@@ -375,3 +375,14 @@ def test_i85_a_stopped_phase_leaves_the_nodes_it_did_not_reach_unchecked(lock):
     assert unreached                                        # the second batch touched some nodes
     assert not unreached & set(result.checked)             # … and none of them is discharged
     assert set(result.checked) | unreached == set(graph.nodes)
+
+
+def test_ac_6_24_a_pair_that_failed_twice_is_not_counted_as_judged(lock):
+    """Only a pair that received a verdict has its old links replaced (F6 D20)."""
+    graph = graph_of(node("N-000001", A, line=1), node("N-000002", B, line=2))
+    bad = answer(quote_a="this phrase is not in the node")
+    result, _ = run_check(graph, [bad, bad], lock)
+    assert result.counts["unjudged_failed"] == 1
+    assert result.judged_pairs == []
+    good, _ = run_check(graph, [answer()], JudgmentLock(lock.store, start=lock.counter, run_id="R-000003"))
+    assert good.judged_pairs == [("N-000001", "N-000002")]

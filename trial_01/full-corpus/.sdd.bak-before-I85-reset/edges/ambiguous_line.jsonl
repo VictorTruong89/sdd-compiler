@@ -1,0 +1,4 @@
+{"from": "N-000484", "type": "refines", "to": "N-000744", "provenance": "judgment", "judgment": "J-003048", "rationale": "Claim A provides the specific format that an ambiguous line uses to name its ambiguity kinds, refining the general requirement in Claim B that it must name its ambiguity kinds.", "quotes": ["An ambiguous line names why** — `? (referential, missing_actor)`", "an ambiguous line names its ambiguity kinds (D16)"]}
+{"from": "N-000484", "type": "uses_term", "to": "term:ambiguous_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000744", "type": "uses_term", "to": "term:ambiguity_kind", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000744", "type": "uses_term", "to": "term:ambiguous_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

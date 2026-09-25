@@ -1,0 +1,12 @@
+{"from": "N-000258", "type": "uses_term", "to": "term:different", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000258", "type": "uses_term", "to": "term:proposed_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000260", "type": "subsumes", "to": "N-000354", "provenance": "judgment", "judgment": "J-005528", "rationale": "N-000260 requires creating a proposed term and recording broader; N-000354 requires the node link that proposed term—the broader requirement of creating the term already encompasses linking it.", "quotes": ["a `proposed` term of its own, recording `broader`", "the node links the new `proposed` term"]}
+{"from": "N-000260", "type": "uses_term", "to": "term:broader", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000260", "type": "uses_term", "to": "term:narrower", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000260", "type": "uses_term", "to": "term:proposed_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000261", "type": "duplicates", "to": "N-000354", "provenance": "judgment", "judgment": "J-004229", "rationale": "Both claims state the same requirement: when a term is marked unsure/proposed, the node must link the new proposed term and carry pending_review status.", "quotes": ["a `proposed` term, a `term_unsure` review item, and ambiguity `pending_review` on the node until reviewed", "the node links the new `proposed` term and carries `pending_review"]}
+{"from": "N-000261", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000261", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000261", "type": "uses_term", "to": "term:proposed_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000261", "type": "uses_term", "to": "term:term_unsure_review_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000261", "type": "uses_term", "to": "term:unsure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

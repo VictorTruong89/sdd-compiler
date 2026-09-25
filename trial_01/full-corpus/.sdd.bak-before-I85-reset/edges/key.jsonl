@@ -1,0 +1,8 @@
+{"from": "N-000514", "type": "uses_term", "to": "term:key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000514", "type": "uses_term", "to": "term:node_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000514", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000515", "type": "uses_term", "to": "term:judgment_lock", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000515", "type": "uses_term", "to": "term:key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000516", "type": "uses_term", "to": "term:key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000516", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000516", "type": "uses_term", "to": "term:sddc_pair", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

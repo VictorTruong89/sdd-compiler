@@ -1,0 +1,42 @@
+{"from": "AC-2.12", "type": "refines", "to": "N-000160", "provenance": "judgment", "judgment": "J-003384", "rationale": "AC-2.12 specifies a concrete status derivation rule (priority ordering: conflict > ambiguous > stale > unchecked > validated), while N-000160 states the general principle that status is derived from facts and never stored independently.", "quotes": ["status follows conflict > ambiguous > stale > unchecked > validated", "Status is derived from facts, never stored independently"]}
+{"from": "AC-2.12", "type": "subsumes", "to": "N-000693", "provenance": "judgment", "judgment": "J-002965", "rationale": "A specifies the complete status hierarchy (conflict > ambiguous > stale > unchecked > validated) with specific conditions; B only states that status is derived to `conflict` in F6, which is one instance already covered by A's hierarchy.", "quotes": ["for every combination of the four facts, status follows conflict > ambiguous > stale > unchecked > validated", "which derives their status to `conflict`"]}
+{"from": "AC-2.12", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.12", "type": "uses_term", "to": "term:conflict_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.12", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.14", "type": "uses_term", "to": "term:derive_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.14", "type": "uses_term", "to": "term:node_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.14", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000082", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000082", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000136", "type": "refines", "to": "N-000687", "provenance": "judgment", "judgment": "J-003367", "rationale": "Claim A specifies concrete behavior about how status is maintained, while claim B merely lists status as a scope item; A provides the detailed specification of what B vaguely references.", "quotes": ["The status is recomputed whenever a fact changes, so it cannot disagree with them", "statuses and the registry"]}
+{"from": "N-000136", "type": "subsumes", "to": "N-000160", "provenance": "judgment", "judgment": "J-003205", "rationale": "Claim A states that status is recomputed whenever facts change and cannot disagree with them, which logically implies and is more specific than claim B's statement that status is derived from facts and never stored independently.", "quotes": ["recomputed whenever a fact changes, so it cannot disagree with them", "derived from facts, never stored independently"]}
+{"from": "N-000136", "type": "subsumes", "to": "N-000160", "provenance": "judgment", "judgment": "J-003205", "rationale": "Claim A states that status is recomputed whenever facts change and cannot disagree with them, which logically implies and is more specific than claim B's statement that status is derived from facts and never stored independently.", "quotes": ["recomputed whenever a fact changes, so it cannot disagree with them", "derived from facts, never stored independently"]}
+{"from": "N-000136", "type": "uses_term", "to": "term:fact", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000136", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000147", "type": "depends_on", "to": "N-000136", "provenance": "judgment", "judgment": "J-003488", "rationale": "B states the system must recompute statuses, which presupposes A's claim that status must be recomputed when facts change. B depends on the recomputation mechanism described in A.", "quotes": ["The status is recomputed whenever a fact changes", "recompute statuses, the registry and the counts"]}
+{"from": "N-000147", "type": "depends_on", "to": "N-000160", "provenance": "judgment", "judgment": "J-003490", "rationale": "A requires recomputing statuses, which presupposes B's principle that status is derived from facts and never stored independently. A's recomputation operation depends on B's derivation model.", "quotes": ["recompute statuses, the registry and the counts", "Status is derived from facts, never stored independently"]}
+{"from": "N-000147", "type": "uses_term", "to": "term:count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000147", "type": "uses_term", "to": "term:registry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000147", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000153", "type": "uses_term", "to": "term:derive_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000153", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000153", "type": "verifies", "to": "AC-2.14", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000160", "type": "uses_term", "to": "term:fact", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000160", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000208", "type": "uses_term", "to": "term:status_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000208", "type": "uses_term", "to": "term:test_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000208", "type": "verifies", "to": "AC-2.12", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000208", "type": "verifies", "to": "AC-2.16", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "uses_term", "to": "term:ids_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "uses_term", "to": "term:keywords_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "uses_term", "to": "term:schema_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "uses_term", "to": "term:test_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "verifies", "to": "AC-2.14", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "verifies", "to": "AC-2.17", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000209", "type": "verifies", "to": "AC-2.21", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000687", "type": "uses_term", "to": "term:registry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000687", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000693", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000693", "type": "uses_term", "to": "term:conflict_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000693", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000693", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

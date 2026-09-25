@@ -1,0 +1,41 @@
+{"from": "AC-6.22", "type": "refines", "to": "N-000631", "provenance": "judgment", "judgment": "J-004961", "rationale": "AC-6.22 specifies the exact conditions when a criterion that duplicates or subsumes another node must result in suppression; N-000631 states the general rule that a criterion never duplicates or subsumes what it verifies. AC-6.22 refines the enforcement mechanism for N-000631's principle.", "quotes": ["when the judge answers `duplicates` or `subsumes`, **then** no record and no link are made and the run counts one `suppressed`", "A criterion never duplicates or subsumes what it verifies"]}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:judge_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:suppressed_count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "uses_term", "to": "term:v_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "verifies", "to": "N-000637", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "verifies", "to": "N-000638", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "verifies", "to": "N-000639", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "verifies", "to": "N-000640", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.22", "type": "verifies", "to": "N-000641", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "depends_on", "to": "N-000631", "provenance": "judgment", "judgment": "J-005177", "rationale": "Claim A's procedural handling of detected duplicates/subsumption relationships presupposes Claim B's constraint that such relationships should not exist, providing the context for when A's rule becomes relevant.", "quotes": ["when the judge answers `duplicates` or `subsumes`, then no record and no link are made", "A criterion never duplicates or subsumes what it verifies"]}
+{"from": "AC-6.23", "type": "depends_on", "to": "N-000640", "provenance": "judgment", "judgment": "J-004082", "rationale": "AC-6.23 presupposes the definition in N-000640: it uses the condition 'two nodes with the same `source.block_id`', which N-000640 establishes as what it means for two claims of one block to have the same source.block_id.", "quotes": ["two nodes with the same `source.block_id`", "two claims of one block** — the same `source.block_id`"]}
+{"from": "AC-6.23", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "uses_term", "to": "term:judge_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "uses_term", "to": "term:link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "uses_term", "to": "term:source_block_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "uses_term", "to": "term:suppressed_count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "verifies", "to": "N-000637", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "verifies", "to": "N-000638", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "verifies", "to": "N-000639", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "verifies", "to": "N-000640", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.23", "type": "verifies", "to": "N-000641", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000631", "type": "conflicts_with", "to": "N-000650", "provenance": "judgment", "judgment": "J-006705", "rationale": "N-000631 states that criteria never duplicate or subsume what they verify; N-000650 explicitly states that acceptance criteria restating requirements is design, not duplication—these directly contradict regarding whether restating is duplication.", "quotes": ["A criterion never duplicates or subsumes what it verifies", "an acceptance criterion restating its requirement is design, not duplication"]}
+{"from": "N-000631", "type": "uses_term", "to": "term:criterion", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000637", "type": "uses_term", "to": "term:criterion", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000637", "type": "uses_term", "to": "term:rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "depends_on", "to": "N-000631", "provenance": "judgment", "judgment": "J-004943", "rationale": "The acceptance criteria in B must satisfy the constraint in A: they cannot duplicate or subsume what they verify. B's verification implementation presupposes A's rule about criterion structure.", "quotes": ["A criterion never duplicates or subsumes what it verifies", "tests/test_conflicts_judge.py::test_ac_6_22_…` (3), `::test_ac_6_23_…` (3) | `src/sdd_compiler/conflicts/records.py::outcome_for"]}
+{"from": "N-000699", "type": "uses_term", "to": "term:acceptance_criterion", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "uses_term", "to": "term:outcome_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "AC-6.22", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "AC-6.23", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "N-000637", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "N-000638", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "N-000639", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "N-000640", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000699", "type": "verifies", "to": "N-000641", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

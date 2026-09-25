@@ -1,0 +1,1 @@
+{"run": "R-000001", "files": ["sdd/specs/F1_ingest/spec.md", "sdd/specs/F2_node_model/spec.md", "sdd/specs/F3_atomizer/spec.md", "sdd/specs/F4_graph_store/spec.md", "sdd/specs/F5_retrieval/spec.md", "sdd/specs/F6_conflicts/spec.md", "sdd/specs/README.md", "sdd/specs/constitution.md", "sdd/specs/vision.md"], "counts": {"new": 845, "changed": 0, "unchanged": 0, "removed": 0}}

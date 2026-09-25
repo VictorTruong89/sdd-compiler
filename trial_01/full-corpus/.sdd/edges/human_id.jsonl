@@ -1,0 +1,4 @@
+{"from": "N-000805", "type": "depends_on", "to": "N-000312", "provenance": "judgment", "judgment": "J-005300", "rationale": "B specifies the allowed formats for human IDs (AC-<n>.<k> and CT-<n>.<k>), which A presupposes when stating that human IDs found in source must be unique and never reused.", "quotes": ["A human id found in the source is adopted if unique", "Only `AC-<n>.<k>` and `CT-<n>.<k>`"]}
+{"from": "N-000805", "type": "uses_term", "to": "term:human_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000805", "type": "uses_term", "to": "term:label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000805", "type": "uses_term", "to": "term:repository", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

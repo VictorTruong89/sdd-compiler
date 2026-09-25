@@ -1,0 +1,12 @@
+{"from": "N-000381", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000381", "type": "uses_term", "to": "term:outsider", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000622", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000622", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000640", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000640", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000640", "type": "uses_term", "to": "term:decision_entry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000640", "type": "uses_term", "to": "term:source_block_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000643", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000643", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000649", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000649", "type": "uses_term", "to": "term:contradiction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

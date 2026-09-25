@@ -1,0 +1,20 @@
+{"from": "AC-1.8", "type": "depends_on", "to": "N-000041", "provenance": "judgment", "judgment": "J-004735", "rationale": "The second run's output behavior (Claim A) presupposes successful lock acquisition (Claim B), making the output specification dependent on the locking mechanism.", "quotes": ["the second run completes, then it reports 0 new, 0 changed, 0 removed", "a second run waits up to 15 seconds, then fails"]}
+{"from": "AC-1.8", "type": "depends_on", "to": "N-000043", "provenance": "judgment", "judgment": "J-005013", "rationale": "AC-1.8 asserts that `blocks.jsonl` and `sources.jsonl` are byte-identical on re-ingest of unchanged files, which depends on N-000043's specification that these files use fixed key order and records sorted by id—without that ordering guarantee, byte-identity couldn't be assured.", "quotes": ["`blocks.jsonl` and `sources.jsonl` are byte-identical to the first run's", "JSON Lines, UTF-8, fixed key order, records sorted by id"]}
+{"from": "AC-1.8", "type": "refines", "to": "N-000045", "provenance": "judgment", "judgment": "J-003948", "rationale": "AC-1.8 is a specific application of N-000045's general requirement: when identical sources are ingested twice, the byte-identical property of blocks.jsonl and sources.jsonl must hold, which is what N-000045 states as a constraint.", "quotes": ["`blocks.jsonl` and `sources.jsonl` are byte-identical to the first run's", "byte-identical `sources.jsonl` and `blocks.jsonl`"]}
+{"from": "AC-1.8", "type": "uses_term", "to": "term:blocks_jsonl", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.8", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.8", "type": "uses_term", "to": "term:second_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.8", "type": "uses_term", "to": "term:sources_jsonl", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.4", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.4", "type": "uses_term", "to": "term:sdd_layout", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.4", "type": "uses_term", "to": "term:transaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:profile_exclude_glob", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:profile_spec_glob", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:spec_source", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000438", "type": "uses_term", "to": "term:atomic_rename", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000438", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000530", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000530", "type": "uses_term", "to": "term:transaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000530", "type": "verifies", "to": "AC-4.4", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000639", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

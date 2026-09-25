@@ -56,6 +56,7 @@ class CheckResult:
     counter: int = 0                                                     # highest conflict id used
     checked: list[str] = field(default_factory=list)                     # nodes this run looked at
     unreached: list[tuple[str, str]] = field(default_factory=list)       # pairs a stop left unjudged
+    judged_pairs: list[tuple[str, str]] = field(default_factory=list)    # pairs that got a verdict (D20)
 
 
 def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id: str,
@@ -113,6 +114,7 @@ def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id
             if verdict is None:
                 continue                  # checked twice and still wrong (§4.2); the phase goes on
             counts["by_relation"][verdict.relation] += 1
+            result.judged_pairs.append((item.a["id"], item.b["id"]))
             if verdict.provisional:
                 counts["provisional"] += 1
                 lock.mark_provisional(outcome.judgments.get(item.pair_id, ""))

@@ -1,0 +1,4 @@
+{"from": "AC-4.10", "type": "uses_term", "to": "term:chain", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.10", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.10", "type": "uses_term", "to": "term:query_neighbor", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.10", "type": "uses_term", "to": "term:refine", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

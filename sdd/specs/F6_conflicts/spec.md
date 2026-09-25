@@ -88,6 +88,10 @@ resolved, every provisional verdict touching that node is marked stale and re-ju
 - When a node's text changes, its `pair_key`s change, so every pair touching it is judged again, and
   the stale verdicts from the old text are discarded.
 - `--no-replay` forces re-asking.
+- **A pair holds only its latest verdict's links (⚑ D20).** Whenever a pair receives a verdict —
+  asked or replayed — every judged link between its two nodes, in either direction, is replaced by the
+  links that verdict makes: none for `none` or a suppressed verdict (D16, D19). A pair whose answer
+  failed its checks twice received no verdict, so its links stay as they were.
 
 ### 4.6 When a conflict closes (⚑ D4)
 
@@ -206,6 +210,10 @@ conflicts:
   `source.block_id`, **when** the judge answers `duplicates` or `subsumes`, **then** no record and no
   link are made and the run counts one `suppressed`; **when** it answers `contradicts`, **then** the
   record is opened as usual. → *unit.*
+- **AC-6.24** *(a re-judged pair keeps only its latest verdict's links; D20)* — **Given** a pair with a
+  judged link, **when** it is judged again and the answer is `none`, **then** no judged link remains
+  between the two nodes; **when** the answer is another relation, **then** only that relation's link
+  remains; **when** the answer fails its checks twice, **then** the old link stays. → *integration.*
 - **AC-6.20** *(a human verdict is recorded; G4 §4, D14)* — **Given** an open conflict, **when**
   `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, **then** `.sdd/adjudications.jsonl`
   gains a record naming the conflict, the verdict, the note, the members and the `judgment` it
@@ -294,6 +302,12 @@ conflicts:
   pair's answer is validated on its own, and a failure re-asks **that pair alone**. With D13's cap,
   the same corpus needs **15 calls instead of 159**. *Rejected:* a larger batch — Q-DESC settled on 8
   (rel01 S21) because a longer call risks the timeout, and a timeout costs the whole batch.
+- **D20 — ⚑ A re-judged pair keeps only its latest verdict's links** (I-91, found while fixing I-89).
+  §4.6 closed the record when a pair was re-judged `none`, but its `conflicts_with` link — with the
+  old judgment id — stayed in the graph, and a `refines` re-judged as `depends_on` left both links.
+  A graph that shows a relation the latest verdict denies misleads every reader of it, including a
+  code-generating agent. *Rejected:* keeping superseded links as history — the lock and the resolved
+  record already are the history; a link is a claim about now.
 - **D19 — ⚑ The document's form settles two more non-conflicts, in code** (I-81, after the dogfood).
   D16 fires only when a criterion cites its rule, and on this repository's own specs most criteria
   cite nothing: precision there was ≈ 10 %, and 65 of 70 conflicts involved a criterion or a decision
@@ -364,5 +378,6 @@ conflicts:
 | AC-6.19 *(counts add up)* | `tests/test_conflicts_pipeline.py::test_ac_6_19_…` | `src/sdd_compiler/conflicts/pipeline.py` |
 | AC-6.21 · D16, D17 (R19) | `tests/test_conflicts_judge.py::test_i77_…`, `::test_r19_…` · `tests/test_conflicts_pipeline.py::test_r19_…` | `src/sdd_compiler/conflicts/records.py` · `judge.py` · `pipeline.py` |
 | AC-6.22, AC-6.23 · D19 (I-81) | `tests/test_conflicts_judge.py::test_ac_6_22_…` (3), `::test_ac_6_23_…` (3) | `src/sdd_compiler/conflicts/records.py::outcome_for` · `_criterion_in_its_own_spec` |
+| AC-6.24 · D20 (I-91) | `tests/test_compile.py::test_ac_6_24_…` (2) · `tests/test_conflicts_pipeline.py::test_ac_6_24_…` | `src/sdd_compiler/conflicts/pipeline.py` (`judged_pairs`) · `src/sdd_compiler/pipeline.py::_apply_check` |
 | AC-6.20 · D14 (T19) | `tests/test_adjudicate.py` (9) | `src/sdd_compiler/conflicts/adjudicate.py` · `commands.py` · `cli.py` |
 | AC-6.10, AC-6.11 · D9 (T18) | `tests/test_report.py` (12), goldens `tests/golden/report_*.md` | `src/sdd_compiler/report.py` · `src/sdd_compiler/commands.py` |

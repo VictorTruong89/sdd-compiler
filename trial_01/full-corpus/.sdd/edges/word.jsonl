@@ -1,0 +1,8 @@
+{"from": "N-000341", "type": "refines", "to": "N-000218", "provenance": "judgment", "judgment": "J-005250", "rationale": "N-000341 specifies that source offsets must remain accurate between quotes and sources, which is a concrete requirement within the general checking of offsets in N-000218.", "quotes": ["offsets, quantities, placement and identity", "anchors stay true source offsets"]}
+{"from": "N-000341", "type": "subsumes", "to": "N-000030", "provenance": "judgment", "judgment": "J-004693", "rationale": "Claim B's requirement that case and punctuation must not differ from source already implies Claim A's statement that case and punctuation are preserved.", "quotes": ["Case, punctuation and inner whitespace are preserved", "words, order, case and punctuation may not"]}
+{"from": "N-000341", "type": "uses_term", "to": "term:anchor", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000341", "type": "uses_term", "to": "term:case", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000341", "type": "uses_term", "to": "term:order", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000341", "type": "uses_term", "to": "term:punctuation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000341", "type": "uses_term", "to": "term:source_offset", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000341", "type": "uses_term", "to": "term:word", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

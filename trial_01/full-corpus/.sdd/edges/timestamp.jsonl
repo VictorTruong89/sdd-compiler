@@ -1,0 +1,5 @@
+{"from": "N-000044", "type": "conflicts_with", "to": "N-000440", "provenance": "judgment", "judgment": "J-004118", "rationale": "N-000044 states timestamps appear only in runs.jsonl, while N-000440 states graph.meta.json holds no timestamps. Together these imply timestamps should appear only in runs.jsonl and nowhere else including graph.meta.json, but the claims directly contradict if timestamps exist anywhere other than runs.jsonl.", "quotes": ["Timestamps appear only in `runs.jsonl", "graph.meta.json` holds no timestamps."]}
+{"from": "N-000044", "type": "uses_term", "to": "term:runs_jsonl", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "uses_term", "to": "term:timestamp", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000440", "type": "uses_term", "to": "term:graph_meta_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000440", "type": "uses_term", "to": "term:timestamp", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

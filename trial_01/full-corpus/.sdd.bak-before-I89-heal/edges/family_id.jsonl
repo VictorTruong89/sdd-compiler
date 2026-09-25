@@ -1,0 +1,36 @@
+{"from": "AC-5.1", "type": "depends_on", "to": "N-000502", "provenance": "judgment", "judgment": "J-005106", "rationale": "Claim A invokes S1 evidence to establish that nodes are candidates for each other; Claim B defines what S1 evidence means (same family, not global), which A presupposes.", "quotes": ["each is a candidate for the other with S1 evidence", "Same `family` (not `(global)`)"]}
+{"from": "AC-5.1", "type": "depends_on", "to": "N-000502", "provenance": "judgment", "judgment": "J-005106", "rationale": "Claim A invokes S1 evidence to establish that nodes are candidates for each other; Claim B defines what S1 evidence means (same family, not global), which A presupposes.", "quotes": ["each is a candidate for the other with S1 evidence", "Same `family` (not `(global)`)"]}
+{"from": "AC-5.1", "type": "depends_on", "to": "N-000502", "provenance": "judgment", "judgment": "J-005106", "rationale": "Claim A invokes S1 evidence to establish that nodes are candidates for each other; Claim B defines what S1 evidence means (same family, not global), which A presupposes.", "quotes": ["each is a candidate for the other with S1 evidence", "Same `family` (not `(global)`)"]}
+{"from": "AC-5.1", "type": "depends_on", "to": "N-000502", "provenance": "judgment", "judgment": "J-005106", "rationale": "Claim A invokes S1 evidence to establish that nodes are candidates for each other; Claim B defines what S1 evidence means (same family, not global), which A presupposes.", "quotes": ["each is a candidate for the other with S1 evidence", "Same `family` (not `(global)`)"]}
+{"from": "AC-5.1", "type": "depends_on", "to": "N-000502", "provenance": "judgment", "judgment": "J-005106", "rationale": "Claim A invokes S1 evidence to establish that nodes are candidates for each other; Claim B defines what S1 evidence means (same family, not global), which A presupposes.", "quotes": ["each is a candidate for the other with S1 evidence", "Same `family` (not `(global)`)"]}
+{"from": "AC-5.1", "type": "depends_on", "to": "N-000502", "provenance": "judgment", "judgment": "J-005106", "rationale": "Claim A invokes S1 evidence to establish that nodes are candidates for each other; Claim B defines what S1 evidence means (same family, not global), which A presupposes.", "quotes": ["each is a candidate for the other with S1 evidence", "Same `family` (not `(global)`)"]}
+{"from": "AC-5.1", "type": "uses_term", "to": "term:candidate", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.1", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.1", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.1", "type": "verifies", "to": "N-000502", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000502", "type": "depends_on", "to": "N-000715", "provenance": "judgment", "judgment": "J-005891", "rationale": "A uses the term 'family' to exclude non-global families; B establishes that every id family must be declared before use—A presupposes that families are properly declared as B requires.", "quotes": ["Same `family` (not `(global)`)", "Every id family in use is declared here **before** it is used"]}
+{"from": "N-000502", "type": "depends_on", "to": "N-000715", "provenance": "judgment", "judgment": "J-005891", "rationale": "A uses the term 'family' to exclude non-global families; B establishes that every id family must be declared before use—A presupposes that families are properly declared as B requires.", "quotes": ["Same `family` (not `(global)`)", "Every id family in use is declared here **before** it is used"]}
+{"from": "N-000502", "type": "depends_on", "to": "N-000715", "provenance": "judgment", "judgment": "J-005891", "rationale": "A uses the term 'family' to exclude non-global families; B establishes that every id family must be declared before use—A presupposes that families are properly declared as B requires.", "quotes": ["Same `family` (not `(global)`)", "Every id family in use is declared here **before** it is used"]}
+{"from": "N-000502", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000502", "type": "uses_term", "to": "term:family_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000502", "type": "uses_term", "to": "term:global", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "uses_term", "to": "term:test_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "AC-5.1", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "AC-5.17", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "AC-5.8", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000541", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000542", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000543", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000549", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000550", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000551", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000552", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000553", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000554", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000561", "type": "verifies", "to": "N-000555", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000710", "type": "uses_term", "to": "term:acceptance_criterion", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000710", "type": "uses_term", "to": "term:approval", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000710", "type": "uses_term", "to": "term:related_node_retrieval", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000710", "type": "verifies", "to": "AC-5.1", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000710", "type": "verifies", "to": "AC-5.16", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

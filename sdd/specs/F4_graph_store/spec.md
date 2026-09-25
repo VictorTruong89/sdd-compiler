@@ -95,7 +95,7 @@ Because both forms are generated from the same records, they cannot disagree. Th
 
 | Check | Rule |
 |---|---|
-| Unique ids | No duplicate node, term, conflict or judgment id |
+| Unique ids | No duplicate node, term, conflict or judgment id, and no two links with one key `(from, type, to)` (F2 §4.8; I-89) |
 | Links resolve | Every link's `from` and `to` exist (a term, a node, or a scope) |
 | Status derived | Every node's `status` equals F2 `derive_status` |
 | Conflict membership | Every open conflict record's members list it in `conflict_ids`, and vice versa |

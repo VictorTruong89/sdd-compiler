@@ -1,0 +1,11 @@
+{"from": "N-000474", "type": "uses_term", "to": "term:constraint", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:family_card", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:sdd_compiler_model_scope_cover", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:category", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

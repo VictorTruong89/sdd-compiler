@@ -1,0 +1,7 @@
+{"from": "AC-2.18", "type": "uses_term", "to": "term:chosen", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.18", "type": "uses_term", "to": "term:decision", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.18", "type": "uses_term", "to": "term:requirement", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.18", "type": "uses_term", "to": "term:scope_selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.3", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.3", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.3", "type": "uses_term", "to": "term:requirement", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

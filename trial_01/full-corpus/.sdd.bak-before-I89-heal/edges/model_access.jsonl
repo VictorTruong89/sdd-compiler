@@ -1,0 +1,4 @@
+{"from": "N-000736", "type": "refines", "to": "N-000791", "provenance": "judgment", "judgment": "J-006906", "rationale": "Claim A specifies Claude Code with Haiku as the required model access method, which is a more specific instantiation of Claim B's broader statement that Haiku is available through Claude Code (default) or the API.", "quotes": ["Claude Code with **Haiku", "Haiku through headless Claude Code (default) or the Anthropic API"]}
+{"from": "N-000736", "type": "uses_term", "to": "term:claude_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000736", "type": "uses_term", "to": "term:haiku", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000736", "type": "uses_term", "to": "term:model_access", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

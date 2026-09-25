@@ -26,8 +26,9 @@ is labelled as such.
 | 10 | [Trust, limits and cost](10-trust-limits-and-cost.md) | What is measured, what is not, known defects, what a run costs |
 | 11 | [Glossary](11-glossary.md) | Every term in one place |
 
-`scripts/` holds two small helpers used in chapters 8 and 9, both tested on the R18 store:
-`context_pack.py` (the agent recipe) and `family_mermaid.py` (a diagram of one family).
+`scripts/` holds the helpers used in chapters 8 and 9, all tested on the R18 store:
+`context_pack.py` (the agent recipe), `family_mermaid.py` (a diagram of one family) and
+`build_viewer.py` + `viewer_template.html` (an interactive HTML explorer of a whole store).
 
 ## One running example
 

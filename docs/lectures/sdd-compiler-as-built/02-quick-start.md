@@ -2,15 +2,14 @@
 
 ## What you need
 
-- **Python ≥ 3.11** with `PyYAML`, `markdown-it-py` and **`jsonschema`**. ⚠ `pyproject.toml` declares
-  only the first two, but the code imports `jsonschema` (build-plan I-90), so install it yourself.
+- **Python ≥ 3.11** (dependencies `PyYAML`, `markdown-it-py`, `jsonschema` — installed with the package).
 - **Claude Code** installed and logged in (`claude` on your `PATH`). The default backend runs every
   model question through it, on your Claude subscription. No API key is needed or wanted: the child
   process has `ANTHROPIC_API_KEY` removed unless the profile says `pass_api_key: true`.
 
 ```bash
 cd /path/to/sdd-compiler
-pip install -e . jsonschema # installs the `sddc` command (jsonschema: see I-90)
+pip install -e .            # installs the `sddc` command and its dependencies
 # or, without installing:  PYTHONPATH=src python -m sdd_compiler <command>
 ```
 

@@ -1,0 +1,8 @@
+{"from": "N-000386", "type": "uses_term", "to": "term:given_when_then_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000386", "type": "uses_term", "to": "term:prompt", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000739", "type": "depends_on", "to": "N-000403", "provenance": "judgment", "judgment": "J-004481", "rationale": "Claim B describes the prompt requirement that rows/items stating behavior/decisions are claims, which is the underlying rule that Claim A (a row becomes one claim) presupposes and implements.", "quotes": ["a row is one claim", "a row or item stating how something behaves, is decided or is checked is a claim"]}
+{"from": "N-000739", "type": "uses_term", "to": "term:behavior_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000739", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000739", "type": "uses_term", "to": "term:item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000739", "type": "uses_term", "to": "term:prompt", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000739", "type": "uses_term", "to": "term:row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

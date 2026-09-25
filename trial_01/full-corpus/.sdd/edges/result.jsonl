@@ -1,0 +1,11 @@
+{"from": "AC-5.11", "type": "conflicts_with", "to": "N-000550", "provenance": "judgment", "judgment": "J-004630", "rationale": "AC-5.11 requires that results be identical including rank order when computed in different insertion orders, but N-000550 reports that a pair moves from rank 63 to rank 43 at 25 more candidates—different rank orders in the same store cannot both be true.", "quotes": ["the results are identical, including rank order", "the 5 GB/5 GiB pair moves from rank 63 to 43, at 25 more candidates"]}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:candidate", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:graph", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:insertion_order", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:rank_order", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-5.11", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "depends_on", "to": "AC-6.1", "provenance": "judgment", "judgment": "J-006153", "rationale": "Reading the conflict result via `sddc conflicts` or `.sdd/views/conflicts.md` (B) presupposes that a properly formed conflict record exists in the registry as specified by (A).", "quotes": ["the registry lists both", "A person reads the result | `sddc conflicts` (F4 §4.6), `.sdd/views/conflicts.md`"]}
+{"from": "N-000751", "type": "uses_term", "to": "term:check_conflicts_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:conflicts_view_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:person", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000751", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,12 @@
+{"from": "N-000227", "type": "uses_term", "to": "term:attention_list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000227", "type": "uses_term", "to": "term:person", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000227", "type": "uses_term", "to": "term:review_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000245", "type": "uses_term", "to": "term:attention_list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000245", "type": "uses_term", "to": "term:review_queue", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000295", "type": "uses_term", "to": "term:attention_list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000295", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000296", "type": "uses_term", "to": "term:attention_list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000296", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000302", "type": "uses_term", "to": "term:attention_list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000302", "type": "uses_term", "to": "term:item_cause", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000302", "type": "uses_term", "to": "term:item_state", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,7 @@
+{"from": "N-000668", "type": "refines", "to": "N-000172", "provenance": "judgment", "judgment": "J-004189", "rationale": "N-000668 refines N-000172 by clarifying that local labels are never adopted as node ids. N-000172 states that local labels resolve to nodes carrying them; N-000668 specifies the constraint that local labels cannot become node ids.", "quotes": ["each cited local label (`S4`, D20) to the nodes of the **same file** carrying it", "A local label is **never adopted** as a node id and never fails a build as a duplicate"]}
+{"from": "N-000668", "type": "uses_term", "to": "term:build", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000668", "type": "uses_term", "to": "term:local_label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000668", "type": "uses_term", "to": "term:node_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000669", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000669", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000669", "type": "uses_term", "to": "term:local_label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

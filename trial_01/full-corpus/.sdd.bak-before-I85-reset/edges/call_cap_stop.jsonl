@@ -1,0 +1,3 @@
+{"from": "N-000359", "type": "uses_term", "to": "term:call_cap_stop", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000359", "type": "uses_term", "to": "term:finished_chunk", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000359", "type": "uses_term", "to": "term:interrupted_chunk", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

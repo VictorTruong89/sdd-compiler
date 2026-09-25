@@ -1,0 +1,4 @@
+{"from": "N-000384", "type": "refines", "to": "N-000807", "provenance": "judgment", "judgment": "J-005319", "rationale": "N-000384 specifies that AC blocks fold into a single verification atom; N-000807 states the general rule that blocks form exactly one node when a human id is adopted. The AC block claim is a specific application of the broader block-to-node rule.", "quotes": ["A block labelled `AC-…` is folded by code into a single `verification` atom", "only when the block forms exactly one node"]}
+{"from": "N-000384", "type": "uses_term", "to": "term:acceptance_criterion_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000384", "type": "uses_term", "to": "term:atomizer_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000384", "type": "uses_term", "to": "term:verification_atom", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

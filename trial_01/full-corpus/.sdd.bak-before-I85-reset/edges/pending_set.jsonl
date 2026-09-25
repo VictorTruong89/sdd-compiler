@@ -1,0 +1,3 @@
+{"from": "N-000166", "type": "depends_on", "to": "N-000165", "provenance": "judgment", "judgment": "J-003301", "rationale": "Claim B depends on Claim A: deriving pending set from atomized_hash (B) requires that atomized_hash first be added to the block record (A).", "quotes": ["`atomized_hash` are added", "Deriving pending from `atomized_hash`"]}
+{"from": "N-000166", "type": "uses_term", "to": "term:atomized_hash", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000166", "type": "uses_term", "to": "term:pending_set", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

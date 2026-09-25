@@ -1,0 +1,5 @@
+{"from": "AC-4.13", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.13", "type": "uses_term", "to": "term:deleted_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.13", "type": "uses_term", "to": "term:id_counters_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.13", "type": "uses_term", "to": "term:link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.13", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

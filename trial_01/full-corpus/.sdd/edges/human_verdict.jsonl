@@ -1,0 +1,4 @@
+{"from": "N-000653", "type": "refines", "to": "AC-6.14", "provenance": "judgment", "judgment": "J-004438", "rationale": "N-000653 specifies the concrete mechanism (marking human verdict stale) by which AC-6.14's general requirement (previous verdict not reused) is implemented.", "quotes": ["the previous verdict is not reused", "marks the human verdict stale instead of carrying it forward"]}
+{"from": "N-000653", "type": "uses_term", "to": "term:human_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000653", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000653", "type": "uses_term", "to": "term:stale", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

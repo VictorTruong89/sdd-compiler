@@ -1,0 +1,6 @@
+{"from": "N-000003", "type": "uses_term", "to": "term:inventory_of_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000003", "type": "uses_term", "to": "term:markdown_spec_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000788", "type": "subsumes", "to": "N-000463", "provenance": "judgment", "judgment": "J-006645", "rationale": "B states that the system takes static Markdown spec files compiled in one batch run; A describes a specific output artifact (families markdown file) that is one instance of such compiled Markdown spec files, making B's general statement about input/compilation subsume A's specific output requirement.", "quotes": ["families/<family-file>.md` — the same content as `sddc family`, with node ids linking to their source file and line", "Several static Markdown spec files, compiled in one batch run"]}
+{"from": "N-000788", "type": "uses_term", "to": "term:batch_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000788", "type": "uses_term", "to": "term:markdown_spec_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000788", "type": "uses_term", "to": "term:spec_tree", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

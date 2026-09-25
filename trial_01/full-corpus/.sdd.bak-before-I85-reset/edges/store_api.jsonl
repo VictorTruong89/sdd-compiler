@@ -1,0 +1,2 @@
+{"from": "N-000418", "type": "uses_term", "to": "term:atomic_write", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000418", "type": "uses_term", "to": "term:store_api", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

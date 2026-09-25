@@ -1,0 +1,6 @@
+{"from": "N-000299", "type": "uses_term", "to": "term:inferred_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000299", "type": "uses_term", "to": "term:merge", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000299", "type": "uses_term", "to": "term:proposed_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000299", "type": "uses_term", "to": "term:sddc_review_accept", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000366", "type": "uses_term", "to": "term:merge", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000366", "type": "uses_term", "to": "term:term_same_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

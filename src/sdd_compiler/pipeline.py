@@ -159,6 +159,9 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
                 1 for c in graph.conflicts.values()
                 if c["resolved_reason"] == "member_deleted" and c["resolved_run"] == run_id)
 
+        # Before every write, not only after a check phase: a store written before the I-89 fix
+        # must heal even on a run the cap stops during atomization.
+        graph.links = list({_link_key(l): l for l in graph.links}.values())
         sources = {s["path"]: s["file_hash"] for s in read_jsonl(store / SOURCES_FILE)}
         others = {"block": _highest(b["id"] for b in blocks),
                   "run": _highest(r["id"] for r in read_jsonl(store / RUNS_FILE))}
@@ -182,7 +185,12 @@ def _apply_check(graph: Any, result: Any, run_id: str) -> None:
     """Put what the check phase found on the graph; F4 derives the rest (`conflict_ids`, status,
     the registry). A node checked in this run records the run and loses the stale reasons that
     scheduled it (F6 §4.5)."""
-    graph.links += result.links
+    # F6 D20 (I-91): a pair that received a verdict keeps only that verdict's links — whatever it was
+    # judged before, in either direction, goes. Then one link per `(from, type, to)` (F2 §4.8, I-89).
+    rejudged = {frozenset(pair) for pair in result.judged_pairs}
+    kept = [l for l in graph.links
+            if not (l["provenance"] == "judgment" and frozenset((l["from"], l["to"])) in rejudged)]
+    graph.links = list({_link_key(l): l for l in [*kept, *result.links]}.values())
     graph.conflicts.update(result.conflicts)
     graph.counters["conflict"] = max(graph.counters["conflict"], result.counter)
     for node_id in result.checked:
@@ -192,6 +200,10 @@ def _apply_check(graph: Any, result: Any, run_id: str) -> None:
         node = {**node, "ambiguity": [*node["ambiguity"], *result.ambiguity.get(node_id, [])],
                 "last_checked_run": run_id, "stale_reasons": []}
         graph.nodes[node_id] = {**node, "status": derive_status(node)}
+
+
+def _link_key(link: Any) -> tuple[str, str, str]:
+    return (link["from"], link["type"], link["to"])
 
 
 class _Meter:

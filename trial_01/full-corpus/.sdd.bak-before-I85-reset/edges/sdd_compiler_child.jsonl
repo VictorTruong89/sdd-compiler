@@ -1,0 +1,6 @@
+{"from": "AC-3.1", "type": "uses_term", "to": "term:anthropic_api_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.1", "type": "uses_term", "to": "term:child_environment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.1", "type": "uses_term", "to": "term:claude_code_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.1", "type": "uses_term", "to": "term:command_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.1", "type": "uses_term", "to": "term:pass_api_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.1", "type": "uses_term", "to": "term:sdd_compiler_child", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

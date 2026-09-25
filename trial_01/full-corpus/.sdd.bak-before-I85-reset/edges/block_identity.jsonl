@@ -1,0 +1,13 @@
+{"from": "N-000011", "type": "uses_term", "to": "term:block_identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000011", "type": "uses_term", "to": "term:change_detection", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:block_identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000063", "type": "uses_term", "to": "term:block_identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000063", "type": "uses_term", "to": "term:show_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000070", "type": "uses_term", "to": "term:block_identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000070", "type": "uses_term", "to": "term:content_hash", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000070", "type": "uses_term", "to": "term:history", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000270", "type": "depends_on", "to": "N-000249", "provenance": "judgment", "judgment": "J-003495", "rationale": "N-000270's method of determining block identity by span overlap of quotes presupposes N-000249's requirement that quotes occur verbatim in the block text.", "quotes": ["Every quote occurs verbatim in the block text", "by span overlap of quotes on the new block text with the old nodes"]}
+{"from": "N-000270", "type": "uses_term", "to": "term:block_identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000270", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000270", "type": "uses_term", "to": "term:quote", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000270", "type": "uses_term", "to": "term:verbatim_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
