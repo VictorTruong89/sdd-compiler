@@ -169,7 +169,7 @@ def resolve_terms(
         candidates = similar_terms(name, known)
         new_id = term_id(name)
         record = {"id": new_id, "canonical": name, "aliases": [], "kind": tag["kind"],
-                  "defined_by": None, "status": "proposed", "broader": None}
+                  "definition": None, "defined_by": None, "status": "proposed", "broader": None}
         result.new_terms[new_id] = record
         result.by_tag[name] = new_id
         known[new_id] = record

@@ -106,7 +106,7 @@ def test_a_block_with_no_atoms_completes_without_nodes():
 
 REGISTRY = {"term:share_link": {"id": "term:share_link", "canonical": "share link",
                                 "aliases": ["shared link"], "kind": "entity",
-                                "defined_by": None, "status": "confirmed", "broader": None}}
+                                "definition": None, "defined_by": None, "status": "confirmed", "broader": None}}
 
 
 def test_ac_3_15_an_alias_resolves_without_asking():
@@ -501,7 +501,7 @@ def test_a_plural_resolves_to_the_singular_term_without_asking():
     tags = [{"name": "blocks", "kind": "data", "role": "subject", "quote": "Blocks"},
             {"name": "AC-1.9", "kind": "external_reference", "role": "scope", "quote": "Blocks"}]
     registry = {"term:block": {"id": "term:block", "canonical": "block", "aliases": [],
-                               "kind": "data", "defined_by": None, "status": "proposed", "broader": None}}
+                               "kind": "data", "definition": None, "defined_by": None, "status": "proposed", "broader": None}}
     draft, backend = run([block("B-000001", text)], [
         q_atom(("B-000001", [("requirement", [text])])),
         q_desc(q_desc_entry("B-000001#1", subject="blocks", response="keep their ids",
@@ -533,7 +533,7 @@ def test_r1_a_narrower_term_stays_separate_and_records_its_broader_term():
     """Live gate: "review item" merged into "item" — 9 of 16 `same` verdicts were kinds of."""
     from sdd_compiler.atomize.terms import resolve_terms
     registry = {"term:item": {"id": "term:item", "canonical": "item", "aliases": [], "kind": "entity",
-                              "defined_by": None, "status": "confirmed", "broader": None}}
+                              "definition": None, "defined_by": None, "status": "confirmed", "broader": None}}
     backend = FakeBackend([{"terms": [{"term_key": "term:review_item", "verdict": "narrower",
                                        "target": "term:item", "reason": "a review item is a kind of item"}]}])
     result = resolve_terms([{"name": "review item", "kind": "entity"}], registry, backend)
@@ -572,7 +572,7 @@ def test_r2_the_vocabulary_is_not_part_of_the_lock_key():
 def test_r2_the_pipeline_offers_same_file_terms_first():
     from sdd_compiler.atomize.pipeline import vocabulary
     registry = {f"term:t{i}": {"id": f"term:t{i}", "canonical": f"t{i}", "aliases": [], "kind": "entity",
-                               "defined_by": None, "status": "proposed", "broader": None} for i in range(5)}
+                               "definition": None, "defined_by": None, "status": "proposed", "broader": None} for i in range(5)}
     usage_total = {"term:t0": 9, "term:t1": 1, "term:t2": 5}
     usage_by_file = {"a.md": {"term:t1": 1}}
     assert vocabulary(registry, usage_total, usage_by_file, ["a.md"], limit=3) == ["t1", "t0", "t2"]
@@ -663,7 +663,7 @@ def test_r14_a_reversed_narrower_is_refused_and_re_asked():
     """R6: "backend" was judged narrower than "claude code backend" — backwards."""
     from sdd_compiler.atomize.terms import resolve_terms
     registry = {"term:claude_code_backend": {"id": "term:claude_code_backend", "canonical": "claude code backend",
-                                             "aliases": [], "kind": "component", "defined_by": None,
+                                             "aliases": [], "kind": "component", "definition": None, "defined_by": None,
                                              "status": "proposed", "broader": None}}
     reversed_ = {"terms": [{"term_key": "term:backend", "verdict": "narrower",
                             "target": "term:claude_code_backend", "reason": "r"}]}

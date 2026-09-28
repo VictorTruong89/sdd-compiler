@@ -50,7 +50,9 @@ mapping rule · the family rule · component allocation · status derivation and
 ### 4.1 Node kinds (P-3)
 
 `requirement` · `constraint` · `assumption` · `verification` · `decision`.
-Definitions become term-registry entries. Rationale and examples become annotations. Neither is a node.
+Definitions become term-registry entries: a `definition` sentence is attached to the registered term it
+opens with, as that term's `definition` and `defined_by` (F3 §4.5 step 9, F3 D38). Rationale and
+examples become annotations. Neither is a node.
 
 ### 4.2 Layers — hardcoded (D8, P-7)
 
@@ -231,9 +233,15 @@ Rules:
 ```json
 { "id": "term:share_link", "canonical": "share link", "aliases": ["shared link"],
   "kind": "entity | data | event | actor | component | external_system | category | external_reference",
+  "definition": "A block is a structural unit found by code … | null",
   "defined_by": "N-000005 | B-000030 | null", "status": "confirmed | proposed",
   "broader": "term:item | null" }
 ```
+`definition` is the verbatim source slice of the sentence that defines the term, and `defined_by` the
+block it came from; both are null, or both are set (F3 D38). A store whose terms predate `definition`
+is refused by the schema check (F4) and must be rebuilt. ⚠ A rebuild is not free: on a copy of R18,
+re-atomizing replays most answers from the lock but still needs live questions (the first one missing
+was a split re-ask, F3 AC-3.12); its full cost is *to be measured*.
 Attributes (for example `expires_at`) resolve to their parent entity term in rel01. `broader` names the
 term this one is a kind of, as judged by Q-TERM's `narrower` verdict (D16); the terms keep separate
 families.

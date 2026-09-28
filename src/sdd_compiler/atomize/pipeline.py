@@ -27,6 +27,7 @@ from ..model.ids import IdCounter, adopt_human_ids, find_human_id, find_local_la
 from ..model.layers import LAYER_OF_QUESTION
 from ..model.placement import Placement, place
 from ..model.schema import validate
+from .definitions import Definition, block_definitions
 from .describe import DescribeItem, describe_atoms
 from .align import NewAtom, align
 from .forming import NodeDraft, block_annotations, layer_hint, resolve_verifies
@@ -49,6 +50,8 @@ class GraphDraft:
     failed: dict[str, str] = field(default_factory=dict)                 # block id -> reason
     empty: dict[str, dict[str, Any]] = field(default_factory=dict)       # completed, formed no node (D33)
     annotations_dropped: list[dict[str, Any]] = field(default_factory=list)   # F3 D35 (I-67)
+    definitions: list[Definition] = field(default_factory=list)          # F3 D38, completed blocks
+    definitions_dropped: list[dict[str, Any]] = field(default_factory=list)   # quote not in its block
     stopped: str | None = None                                            # "call_cap" | "backend"
     stop_reason: str | None = None
     counters: dict[str, int] = field(default_factory=dict)
@@ -60,6 +63,7 @@ class _Chunk:
     annotations: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
     failed: dict[str, str] = field(default_factory=dict)
     empty: dict[str, list[str]] = field(default_factory=dict)            # block id -> sentence roles
+    definitions: dict[str, list[str]] = field(default_factory=dict)      # block id -> quotes (F3 D38)
     terms: TermResolution = field(default_factory=TermResolution)
 
 
@@ -116,6 +120,9 @@ def atomize_pending(
         for block_id, placed in chunk.placed.items():
             good_blocks[block_id] = by_id[block_id]
             atom_counts[block_id] = len(placed)
+            found, dropped = block_definitions(by_id[block_id], chunk.definitions.get(block_id, []))
+            draft.definitions += found
+            draft.definitions_dropped += dropped
             if not placed:                           # F3 D33: completed, but nothing in it was a claim
                 block = by_id[block_id]
                 draft.empty[block_id] = {
@@ -193,6 +200,7 @@ def _run_chunk(
     chunk.failed.update(atomized.failures)
     chunk.annotations.update(atomized.annotations)
     chunk.empty.update(atomized.empty)
+    chunk.definitions.update(atomized.definitions)
 
     atoms_by_block = {block["id"]: [] for block in blocks if block["id"] not in chunk.failed}
     for atom in atomized.atoms:
@@ -223,6 +231,7 @@ def _run_chunk(
             del placed[block_id]
             continue
         chunk.annotations[block_id] = again.annotations.get(block_id, [])
+        chunk.definitions[block_id] = again.definitions.get(block_id, [])
         atom_judgments.update(again.judgments)
         # F3 D23 (I-42): this is the last chance. If the model again keeps one claim
         # across two layers — typically a bold title and its explanation — place it by

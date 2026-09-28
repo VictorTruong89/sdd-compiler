@@ -140,6 +140,15 @@ For each validated atom:
    what takes a block out of the pending set, so it is set **only** when the block completed: a block
    that failed its checks, hit the call cap, or was interrupted keeps its old value and stays pending.
    A block yielding zero atoms (all sentences non-normative) still completes.
+9. **Definitions** (D38), after every chunk, in the same write: a term whose `defined_by` block was
+   re-atomized, removed or skipped in this run loses its `definition`. Then each `definition` sentence
+   from this run's completed blocks — its quote located in the block (G2, layout-tolerant), stored as
+   the block's own text — is attached, in `(source, line)` order, to the registered term whose name or
+   alias the sentence **opens with**, followed by a definitional boundary (`is`, `are`, `means`, `=`,
+   `:`, `—`, `(`, or the end). A leading `a`/`an`/`the` and inline Markdown are ignored; a sentence
+   that is a table row is not matched. A term that already has a `definition` keeps it. A sentence
+   that matches no term, or whose term is already defined, is **reported, never dropped silently**
+   (§4.8).
 
 ### 4.6 Identity across edits (P-6)
 
@@ -157,6 +166,9 @@ When a `changed` block is re-atomized, new atoms are aligned to the block's exis
 | `removed` | Old node deleted (F2 §4.9) |
 
 - A `removed` block deletes all its nodes.
+- So does a block that is no longer pending by F1 D14 or `include_code_blocks: false` but still has
+  nodes (the profile changed after it was atomized): its nodes are deleted (F2 §4.9) and its
+  `atomized_hash` is cleared, so that naming the section again makes the block pending again.
 - Alignments are applied automatically, recorded with `confirmed: auto`, and listed in the run report
   (⚑ D3).
 
@@ -180,8 +192,9 @@ When a `changed` block is re-atomized, new atoms are aligned to the block's exis
 - **The run never stops at a conflict** (rel01 D26). Every conflict found is recorded on the nodes and
   in the graph's conflict records, and the run continues to the last pending block.
 - The run ends with one report (§4.10): blocks processed, nodes formed, **blocks that completed and
-  formed no node, with the roles their sentences were given** (D33), model calls and usage, every
-  conflict found, and every attention item opened.
+  formed no node, with the roles their sentences were given** (D33), **definitions attached and
+  definitions not attached, each with file and line** (D38), model calls and usage, every conflict
+  found, and every attention item opened.
 
 ### 4.9 Attention list — items a person must decide
 
@@ -345,6 +358,27 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   `pending_review`, and their status is re-derived. → *integration.*
 - **AC-3.25** *(reject inferred)* — **Given** an open `inferred_node` item, **when** rejected, **then**
   the node is deleted (F2 §4.9). → *integration.*
+
+**Definitions and skipped sections** (I-92)
+- **AC-3.31** *(a definition is attached; D38)* — **Given** a block whose fake Q-ATOM answer labels
+  "A **block** is a structural unit found by code." `definition`, and a registered term `block`,
+  **when** compiled, **then** `term:block` has that sentence, as it appears in the block, as its
+  `definition` and the block's id as its `defined_by`, and the run report counts 1 definition attached.
+  → *integration.*
+- **AC-3.32** *(unmatched and repeated definitions are reported; D38)* — **Given** definition sentences
+  "Both cannot hold.", "A block is not an atomic spec." (after the one in AC-3.31) and "A requirement
+  or constraint that states no modal verb has this ambiguity.", with terms `block` and `requirement`
+  registered, **when** compiled, **then** `term:block` keeps its first definition, `term:requirement`
+  gets none (the name is not followed by a definitional boundary), and all three sentences are listed
+  in the report as not attached, with file and line. → *unit.*
+- **AC-3.33** *(a re-atomized block re-derives its definitions; D38)* — **Given** AC-3.31's store,
+  **when** the defining block is edited so that its answer holds no definition, **then** `term:block`
+  has `definition` and `defined_by` null. → *integration.*
+- **AC-3.34** *(a newly skipped section loses its nodes; §4.6, F1 D14)* — **Given** a compiled store
+  with a node formed from a row under `## 9. Traceability` and `skip_headings: []`, **when** the
+  profile is changed to the default and compile runs, **then** the node is deleted with the F2 §4.9
+  cascade, the block's `atomized_hash` is null, no model call is made, and `check_store` is clean.
+  → *integration.*
 
 ## 7. Decisions
 
@@ -517,6 +551,24 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   path directly — placed by its first yes, flagged `mixed_layers` — decided in the first pass, so it
   also saves a model call. AC-3.12 still governs every other block.
 
+- **D38 — ⚑ A definition is attached by code, to the term it opens with** (I-92, closing I-59's open
+  half, 2026-09-27). Q-ATOM has always labelled `definition` sentences and F2 §4.1 always said they
+  become term entries, but nothing wrote them: on R18, 68 definition sentences were labelled and **0 of
+  1 031** terms had a definition. An agent building from the graph alone (the trial_01 README rule)
+  therefore saw no definitions at all, and `defined_by` alone would not help it — a block id points into
+  `blocks.jsonl`, the verbatim source it may not read — so the term carries the sentence itself.
+  *The match is by code, and strict on purpose.* Measured on R18's 68 sentences: matching a term name
+  anywhere at the start attaches 38, and reading them, many are wrong ("A requirement or constraint that
+  states no modal verb…" defines `missing_modality`, not `requirement`). Requiring the definitional
+  boundary, the shipped code attaches **15 sentences to 15 terms, all read and correct**; 2 more repeat
+  a term already defined, and 48 define things the registry does not hold (`inferred`, "Similar"), are
+  ID-family table rows, or gloss relations ("Both cannot hold") — reported, not guessed (67 distinct
+  sentences, 65 located in a block still atomized). ⚠ A small yield: the specs define few of their terms
+  in "X is Y" form, and the registry only holds names Q-DESC tagged on nodes. A wrong definition misleads a reader more than a missing one.
+  *Rejected:* (a) asking Q-ATOM to name the defined term — a schema change re-asks every block (D21);
+  (b) creating a term from an unmatched definition — its `kind` would have to be invented; (c) keeping
+  every definition of a term — the contract is one sentence, the first in reading order.
+
 - **D37 — ⚑ An unusable answer is rejected, not fatal** (C, the dogfood run: I-79). A Q-ATOM call
   over 20 dense spec blocks returned no `structured_output`, and the backend raised it as "the model
   backend is unavailable" (exit `6`), ending a 173-block compile after 19 blocks. One call producing
@@ -554,3 +606,4 @@ change of alias is visible.*
 | AC-3.17 … AC-3.20 · D21, D22 | `tests/test_atomize_align.py` (9) · `tests/test_atomize_lock.py` (8) · `tests/test_compile.py` (+6) | `src/sdd_compiler/atomize/align.py` · `lock.py` · `batch.py` · `src/sdd_compiler/pipeline.py` |
 | AC-3.21 … AC-3.22 | *(to be written)* | `src/sdd_compiler/atomize/pipeline.py` · `src/sdd_compiler/report.py` |
 | AC-3.24 … AC-3.25 | *(to be written)* | `src/sdd_compiler/atomize/review.py` |
+| AC-3.31 … AC-3.34 · D38 · §4.6 skipped sections | `tests/test_atomize_definitions.py` · `tests/test_compile.py::test_ac_3_31_*`, `::test_ac_3_33_*`, `::test_ac_3_34_*` | `src/sdd_compiler/atomize/definitions.py` · `qatom.py` · `src/sdd_compiler/pipeline.py` · `report.py` |

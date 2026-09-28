@@ -45,7 +45,7 @@ def node(node_id, family="term:a", **extra):
 
 def term(term_id):
     return {"id": term_id, "canonical": term_id[5:].replace("_", " "), "aliases": [],
-            "kind": "entity", "defined_by": None, "status": "proposed", "broader": None}
+            "kind": "entity", "definition": None, "defined_by": None, "status": "proposed", "broader": None}
 
 
 def link(a, kind, b, judged=False):

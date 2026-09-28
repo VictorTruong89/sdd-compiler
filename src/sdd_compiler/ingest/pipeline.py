@@ -139,7 +139,8 @@ def status(root: Path) -> dict[str, Any]:
     runs = read_jsonl(root / STORE_DIR / RUNS_FILE)
 
     # Derived, never stored (F1 D13).
-    marked = [(block, pending_status(block, profile.include_code_blocks)) for block in blocks]
+    marked = [(block, pending_status(block, profile.include_code_blocks, profile.skip_headings))
+              for block in blocks]
     pending = [(block, state) for block, state in marked if state is not None]
     return {
         "run": runs[-1]["id"] if runs else None,

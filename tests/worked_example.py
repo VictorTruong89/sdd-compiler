@@ -31,7 +31,7 @@ USES = {"N-000001": ["term:file", "term:owner"], "N-000005": ["term:file"], "N-0
 
 def term(term_id, kind, aliases=()):
     return {"id": term_id, "canonical": term_id[5:].replace("_", " "), "aliases": list(aliases),
-            "kind": kind, "defined_by": None, "status": "confirmed", "broader": None}
+            "kind": kind, "definition": None, "defined_by": None, "status": "confirmed", "broader": None}
 
 
 def node(node_id, line, layer, family, text):

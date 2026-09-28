@@ -91,7 +91,7 @@ def test_a_code_link_and_a_term_pass():
     validate("link", {"from": "N-000001", "type": "uses_term", "to": "term:file",
                       "provenance": "code", "judgment": None, "rationale": None, "quotes": []})
     validate("term", {"id": "term:share_link", "canonical": "share link", "aliases": [],
-                      "kind": "entity", "defined_by": None, "status": "proposed", "broader": None})
+                      "kind": "entity", "definition": None, "defined_by": None, "status": "proposed", "broader": None})
 
 
 def test_a_conflict_record_needs_two_sorted_members():

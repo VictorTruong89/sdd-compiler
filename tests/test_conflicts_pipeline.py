@@ -42,7 +42,7 @@ def node(node_id, text, *, status="unchecked", line=5, family="term:share_link",
 
 def term(term_id="term:share_link"):
     return {"id": term_id, "canonical": "share link", "aliases": [], "kind": "entity",
-            "defined_by": None, "status": "confirmed", "broader": None}
+            "definition": None, "defined_by": None, "status": "confirmed", "broader": None}
 
 
 def graph_of(*nodes, conflicts=()):
@@ -181,12 +181,12 @@ def test_r19_the_phase_tells_the_judge_how_the_two_namings_relate(lock):
     graph = graph_of(a_node, b_node)
     graph.terms = {
         "term:export": {"id": "term:export", "canonical": "export", "aliases": [], "kind": "entity",
-                        "defined_by": None, "status": "confirmed", "broader": None},
+                        "definition": None, "defined_by": None, "status": "confirmed", "broader": None},
         "term:export_archive": {"id": "term:export_archive", "canonical": "export archive",
-                                "aliases": [], "kind": "entity", "defined_by": None,
+                                "aliases": [], "kind": "entity", "definition": None, "defined_by": None,
                                 "status": "confirmed", "broader": "term:export"},
         "term:workspace_export": {"id": "term:workspace_export", "canonical": "workspace export",
-                                  "aliases": [], "kind": "entity", "defined_by": None,
+                                  "aliases": [], "kind": "entity", "definition": None, "defined_by": None,
                                   "status": "confirmed", "broader": "term:export"},
     }
     _, backend = run_check(graph, [answer()], lock)

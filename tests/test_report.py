@@ -140,6 +140,19 @@ def test_the_report_shows_what_formed_no_node_and_what_was_dropped():
     assert "1 annotation(s) dropped" in text
 
 
+def test_d38_the_report_counts_definitions_and_lists_the_unattached_ones():
+    """F3 §4.8, D38: a definition that matched no term is shown with file and line, never dropped."""
+    summary = {**SUMMARY, "definitions": {
+        "attached": [{"term": "term:block", "block": "B-000001", "file": "specs/a.md", "lines": [3, 3],
+                      "text": "A block is a unit."}],
+        "unattached": [{"block": "B-000002", "file": "specs/a.md", "lines": [9, 9],
+                        "text": "Both cannot hold.", "reason": "no_term"}]}}
+    text = render_report(summary, FakeGraph([], []), exit_code=0)
+    assert "1 definition(s) attached to terms · 1 not attached (F3 D38)" in text
+    assert "specs/a.md:9  no_term  Both cannot hold." in text
+    assert "definition" not in render_report(SUMMARY, FakeGraph([], []), exit_code=0)
+
+
 # -- the commands (F6 §4.8, F4 §4.6) ----------------------------------------------------------
 
 import json  # noqa: E402

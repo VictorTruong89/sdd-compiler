@@ -70,6 +70,7 @@ always reviewable, diffable and versioned.
   | Table | Block per **body row**, kind `table_row`, carrying the header row as `table_header` |
   | Content inside a blockquote | Keeps its own kind, with `in_blockquote: true` |
   | Fenced code | Block, kind `code`; pending only if `profile.include_code_blocks` is true |
+  | Anything under a heading named in `profile.skip_headings` | Stored as usual; never pending (D14) |
   | HTML comment, front matter, horizontal rule, blank lines | Skipped |
 
 - **Hashing:** `text_hash` = SHA-256 of the block text after normalizing line endings to `\n`,
@@ -84,8 +85,12 @@ always reviewable, diffable and versioned.
   `new · changed · unchanged · removed` is the **run's delta**. It is reported (CT-1.3 counts, the run
   output) and **not stored on the block** (D13): a stored per-run flag flips back on the next run.
 - **Pending set (D13), derived, never stored:** a block is pending when it is live (`removed_run` is
-  null), it is not a `code` block unless `include_code_blocks` is true, and its `text_hash` differs from
-  its `atomized_hash` (including when `atomized_hash` is null). A block therefore stays pending until
+  null), it is not a `code` block unless `include_code_blocks` is true, no heading in its
+  `heading_path` is named in `skip_headings` (D14), and its `text_hash` differs from its `atomized_hash`
+  (including when `atomized_hash` is null).
+- **Heading match (D14):** a heading matches a `skip_headings` entry when the two are equal after
+  lower-casing and removing a leading section number (`9.`, `4.10`) and surrounding whitespace, so
+  `9. Traceability` matches `Traceability`. A block therefore stays pending until
   the atomizer has actually processed its current text, however many runs that takes.
 - **Runs are atomic:**
   - every store file is written to a temporary file and renamed only after the whole run succeeds;
@@ -149,8 +154,11 @@ Rules:
 spec_globs: ["sdd/specs/**/*.md"]
 exclude_globs: ["sdd/specs/_templates/**"]
 include_code_blocks: false
+skip_headings: ["Traceability"]   # D14: stored, never atomized
 atomizer: { backend: claude-code, model: haiku }   # read by F3, not by F1
 ```
+`skip_headings` is a list of strings; any other type is an input error (exit `2`), like every profile
+key.
 
 **CT-1.5 — Pending output** (`sddc status --json`, stdout):
 ```json
@@ -196,6 +204,11 @@ reserved for "conflict" (F6).
 - **AC-1.6** *(code blocks)* — **Given** a fenced code block and `include_code_blocks: false`, **when**
   ingested, **then** it is stored with kind `code` and is not in the pending set; **and with**
   `include_code_blocks: true` it is pending. → *unit.*
+- **AC-1.32** *(skipped headings; D14)* — **Given** a table row under `## 9. Traceability` and a
+  paragraph under `## 4. Behaviour`, with the default profile, **when** ingested, **then** both are
+  stored and only the paragraph is pending; **and with** `skip_headings: []` both are pending; **and
+  given** `skip_headings: "Traceability"` (not a list), **then** the profile is rejected with exit `2`.
+  → *unit.*
 - **AC-1.30** *(a block belongs to its list item)* — **Given** a list item holding a second paragraph
   and a nested sub-item, **when** segmented, **then** the second paragraph is a `paragraph` block with
   `parent_block` naming the item and `parent_relation: continuation`, the sub-item is a `list_item`
@@ -283,6 +296,21 @@ reserved for "conflict" (F6).
   D25. The inbox, marker format and heading rules are recorded in
   [`../../design/rel01_design/G1-ingest.md`](../../design/rel01_design/G1-ingest.md) **Appendix A**.
 
+- **D14 — ⚑ Sections a person names are stored but never atomized** (I-92, 2026-09-27).
+  `skip_headings` (default `["Traceability"]`) takes every block under a matching heading out of the
+  pending set, the way `include_code_blocks: false` does for code. *Why:* measured on R18, the 54
+  Traceability rows of this repository's specs formed 39 nodes — 38 of them `V` — naming the existing
+  `tests/` and `src/` files. They are bookkeeping, not behaviour: they hand an agent building from the
+  graph the old implementation's layout, and they sat in 6 of the 381 open conflicts. The default names
+  the section the spec template (`sdd/specs/_templates/spec.md`) ships. A heading is matched after its
+  section number is removed, because numbered headings are the house style. *Rejected:* (a) a Q-ATOM
+  prompt rule labelling such rows `context` — the prompt is in the lock key (F3 D21), so it re-asks
+  every block of every store, and a prompt rule is only as reliable as the model (R16, I-77); (b)
+  detecting "a row of file paths" by form — a heuristic, where the section's own name is a fact the
+  author wrote. What happens to nodes already formed from such a block is F3 §4.6. *Cost on an existing
+  store,* measured on a copy of R18: the 39 nodes are deleted with no model call, and the neighbours
+  whose retrieval slots they held propose **43 new pairs** for Q-PAIR; the other 2 188 replay.
+
 ## 8. Open questions
 
 *Q6 was closed 2026-09-18 as D13. Q5 was closed 2026-09-18 as D11.*
@@ -302,6 +330,7 @@ reserved for "conflict" (F6).
 |---|---|---|
 | CT-1.4 profile · CT-1.6 CLI surface | `tests/test_profile.py::test_ct_1_4_*` (4) · `tests/test_cli_skeleton.py::test_ct_1_6_*` (4) | `src/sdd_compiler/profile.py` · `cli.py` · `errors.py` |
 | AC-1.1 … AC-1.7, AC-1.30 | `tests/test_segment.py` (16) | `src/sdd_compiler/ingest/segment.py` |
+| AC-1.32 · D14 | `tests/test_identity.py::test_ac_1_32_*` · `tests/test_profile.py::test_ac_1_32_*` | `src/sdd_compiler/ingest/identity.py` · `src/sdd_compiler/profile.py` |
 | AC-1.8 … AC-1.12 | `tests/test_identity.py` (14) | `src/sdd_compiler/ingest/identity.py` |
 | AC-1.26 *(partial: the lock itself)* | `tests/test_store_lock.py::test_ac_1_26_a_second_holder_waits_then_exits_4` (+3) | `src/sdd_compiler/store/lock.py` |
 | AC-1.24 *(partial: raised by `load_profile`)* | `tests/test_profile.py::test_ac_1_24_missing_store_is_a_store_error` | `src/sdd_compiler/profile.py` |

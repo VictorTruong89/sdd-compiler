@@ -135,3 +135,21 @@ def test_ac_2_22_a_profile_cannot_add_or_redefine_a_layer(tmp_path, body):
     with pytest.raises(SddcError) as error:
         load_profile(tmp_path)
     assert "layer" in str(error.value)
+
+
+def test_ac_1_32_skip_headings_defaults_to_the_traceability_section(tmp_path):
+    assert DEFAULT_PROFILE["skip_headings"] == ["Traceability"]
+    root = write(tmp_path, render_default_profile())
+    assert load_profile(root).skip_headings == ("Traceability",)
+
+
+def test_ac_1_32_skip_headings_may_be_empty(tmp_path):
+    assert load_profile(write(tmp_path, "skip_headings: []\n")).skip_headings == ()
+
+
+@pytest.mark.parametrize("text", ['skip_headings: "Traceability"\n', "skip_headings: [3]\n"])
+def test_ac_1_32_skip_headings_must_be_a_list_of_strings(tmp_path, text):
+    with pytest.raises(SddcError) as excinfo:
+        load_profile(write(tmp_path, text))
+    assert excinfo.value.exit_code is ExitCode.INPUT
+    assert "skip_headings" in str(excinfo.value)

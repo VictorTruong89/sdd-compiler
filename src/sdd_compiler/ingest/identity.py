@@ -102,11 +102,27 @@ def is_live(record: dict[str, Any]) -> bool:
     return record.get("removed_run") is None
 
 
-def pending_status(record: dict[str, Any], include_code: bool = False) -> str | None:
+_SECTION_NUMBER = re.compile(r"^\s*#*\s*\d+(\.\d+)*\.?\s+")
+
+
+def heading_skipped(heading_path: Sequence[str], skip_headings: Sequence[str]) -> bool:
+    """F1 D14 — a heading matches an entry ignoring case and a leading section number."""
+    wanted = {entry.strip().lower() for entry in skip_headings}
+    return any(_SECTION_NUMBER.sub("", heading).strip().lower() in wanted for heading in heading_path)
+
+
+def atomizable(record: dict[str, Any], include_code: bool = False,
+               skip_headings: Sequence[str] = ()) -> bool:
+    """A live block the profile lets the atomizer see (F1 D13, D14)."""
+    return (is_live(record)
+            and (record["kind"] != "code" or include_code)
+            and not heading_skipped(record.get("heading_path") or [], skip_headings))
+
+
+def pending_status(record: dict[str, Any], include_code: bool = False,
+                   skip_headings: Sequence[str] = ()) -> str | None:
     """F1 D13 — `new` or `changed` if the atomizer still owes this block work, else None."""
-    if not is_live(record):
-        return None
-    if record["kind"] == "code" and not include_code:
+    if not atomizable(record, include_code, skip_headings):
         return None
     atomized = record.get("atomized_hash")
     if atomized == record["text_hash"]:

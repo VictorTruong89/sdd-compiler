@@ -21,10 +21,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from .atomize.definitions import DefinitionOutcome, attach_definitions
 from .atomize.lock import JudgmentLock
 from .atomize.pipeline import GraphDraft, atomize_pending
 from .errors import ExitCode
-from .ingest.identity import BLOCK_KEY_ORDER, is_live, pending_status
+from .ingest.identity import BLOCK_KEY_ORDER, atomizable, is_live, pending_status
 from .ingest.pipeline import BLOCKS_FILE, RUNS_FILE, SOURCES_FILE, IngestResult, ingest, lock_wait_seconds
 from .llm import Backend, CallBudget, get_backend
 from .profile import STORE_DIR, load_profile
@@ -47,6 +48,7 @@ class CompileResult:
     replayed: int = 0
     check: Any | None = None                       # the F6 check phase's result (T17)
     open_conflicts: int = 0
+    definitions: DefinitionOutcome = field(default_factory=DefinitionOutcome)
     exit_code: ExitCode = ExitCode.OK
 
     def summary(self) -> dict[str, Any]:
@@ -57,6 +59,8 @@ class CompileResult:
             "nodes_formed": len(draft.nodes), "nodes_deleted": len(self.deleted),
             "empty_blocks": len(draft.empty), "empty": [draft.empty[b] for b in sorted(draft.empty)],
             "annotations_dropped": draft.annotations_dropped,
+            "definitions": {"attached": self.definitions.attached,
+                            "unattached": [*draft.definitions_dropped, *self.definitions.unattached]},
             "attention_items": len(draft.reviews), "stopped": draft.stopped,
             "model_calls": self.usage["calls"], "cost_usd": round(self.usage["cost_usd"], 4),
             "replayed": self.replayed, "alignments": draft.alignments,
@@ -76,16 +80,22 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
     store = root / STORE_DIR
     profile = load_profile(root)
     blocks = read_jsonl(store / BLOCKS_FILE)
-    pending = [b for b in blocks if pending_status(b, profile.include_code_blocks)]
+    pending = [b for b in blocks if pending_status(b, profile.include_code_blocks, profile.skip_headings)]
     result.pending = len(pending)
 
     graph = load_graph(store)
     removed = {b["id"] for b in blocks if not is_live(b)}
+    # F3 §4.6: live blocks the profile no longer lets the atomizer see (F1 D14, code blocks).
+    skipped = {b["id"] for b in blocks
+               if is_live(b) and not atomizable(b, profile.include_code_blocks, profile.skip_headings)}
+    gone = removed | skipped
     redo = {b["id"] for b in pending}
     # Nothing to atomize is not nothing to do: the check phase still judges the nodes that need
     # it (F6 §4.1) — replayed from the lock at no cost, or picked up after an earlier stop.
     if (not pending
-            and not any(n["source"]["block_id"] in removed for n in graph.nodes.values())
+            and not any(n["source"]["block_id"] in gone for n in graph.nodes.values())
+            and not any(b["id"] in skipped and b.get("atomized_hash") for b in blocks)
+            and not any(t.get("defined_by") in gone for t in graph.terms.values())
             and not any(needs_checking(n) for n in graph.nodes.values())):
         return result
 
@@ -100,7 +110,7 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             pending, backend, run_id=run_id, weak_words=profile.weak_words,
             layer_hints=profile.layers, registry=graph.terms,
             existing_nodes={i: n for i, n in graph.nodes.items()
-                            if n["source"]["block_id"] not in removed | redo},
+                            if n["source"]["block_id"] not in gone | redo},
             counters={"N": graph.counters["node"], "RV": graph.counters["review"]},
             previous={block_id: [n for n in graph.nodes.values() if n["source"]["block_id"] == block_id]
                       for block_id in redo},
@@ -113,9 +123,9 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
     with StoreLock(store, wait_seconds=lock_wait_seconds()):
         graph = load_graph(store)
         blocks = read_jsonl(store / BLOCKS_FILE)
-        # Old nodes of re-atomized blocks that no new atom kept, and nodes of removed blocks.
+        # Old nodes of re-atomized blocks that no new atom kept, and nodes of removed or skipped blocks.
         doomed = sorted(i for i, n in graph.nodes.items()
-                        if n["source"]["block_id"] in removed | set(draft.completed)
+                        if n["source"]["block_id"] in gone | set(draft.completed)
                         and i not in draft.nodes)
         for node_id in doomed:
             delete_node(graph, node_id, run_id)
@@ -137,6 +147,10 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
 
         graph.nodes.update(draft.nodes)
         graph.terms.update(draft.terms)
+        # F3 §4.5 step 9 (D38): what a changed, removed or skipped block defined is re-derived.
+        result.definitions = attach_definitions(graph.terms, draft.definitions,
+                                                invalidated=gone | set(draft.completed))
+        graph.terms.update(result.definitions.changed)
         graph.links += draft.links
         _merge_reviews(graph, draft, removed, doomed, run_id)
         graph.counters["node"] = max(graph.counters["node"], draft.counters.get("N", 0))
@@ -145,6 +159,8 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
         for block in blocks:
             if block["id"] in draft.completed:
                 block["atomized_hash"] = draft.completed[block["id"]]
+            elif block["id"] in skipped:
+                block["atomized_hash"] = None      # so that naming the section again re-atomizes it
 
         # The check phase (F6 §4.1): after every node exists, before anything is written.
         if draft.stopped is None:

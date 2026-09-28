@@ -535,3 +535,92 @@ def test_ac_6_24_a_changed_relation_replaces_the_old_link(repo):
     compile_two_nodes(repo, pair(relation="refines", direction="a_to_b"))
     rejudge(repo, pair(relation="depends_on", direction="b_to_a"))
     assert [k[1] for k in judged_keys(repo)] == ["depends_on"]
+
+
+# -- definitions and skipped sections (F3 D38, F1 D14; I-92) ----------------------
+
+DEFINES = "A **block** is a structural unit found by code."
+STORED = "A block must be stored verbatim."
+ROW = f"| AC-9.1 | {EXPIRY} | `src/x.py` |"
+
+
+def block_desc(atom_id, quote, response):
+    d = desc(atom_id, quote, response)
+    d["canonical"]["subject"] = "block"
+    d["terms"] = [{"name": "block", "kind": "entity", "role": "subject", "quote": "block"}]
+    return d
+
+
+def definition_answer(block_id, quote, role="definition"):
+    return {"block_id": block_id, "sentences": [{"quote": quote, "role": role}], "atoms": []}
+
+
+@pytest.fixture()
+def glossary_repo(tmp_path):
+    spec = tmp_path / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.parent.mkdir(parents=True)
+    spec.write_text(f"## Blocks\n\n{DEFINES}\n\n{STORED}\n", encoding="utf-8")
+    init(tmp_path)
+    return tmp_path
+
+
+def compile_glossary(repo):
+    backend = FakeBackend([
+        {"blocks": [definition_answer("B-000001", DEFINES),
+                    atom_answer(("B-000002", STORED))["blocks"][0]]},
+        {"atoms": [block_desc("B-000002#1", STORED, "be stored verbatim")]}, *no_conflicts()])
+    return compile_graph(repo, backend=backend)
+
+
+def test_ac_3_31_a_definition_sentence_becomes_the_terms_definition(glossary_repo):
+    result = compile_glossary(glossary_repo)
+    store = glossary_repo / ".sdd"
+    term = load_graph(store).terms["term:block"]
+    assert term["definition"] == DEFINES and term["defined_by"] == "B-000001"
+    summary = result.summary()
+    assert [a["term"] for a in summary["definitions"]["attached"]] == ["term:block"]
+    assert summary["definitions"]["unattached"] == []
+    assert json.loads((store / "terms.jsonl").read_text().splitlines()[0])["definition"] == DEFINES
+    assert check_store(store) == []
+
+
+def test_ac_3_33_an_edited_block_without_a_definition_clears_it(glossary_repo):
+    compile_glossary(glossary_repo)
+    spec = glossary_repo / "sdd" / "specs" / "F9_demo" / "spec.md"
+    edited = "Blocks come from F1."
+    spec.write_text(spec.read_text().replace(DEFINES, edited), encoding="utf-8")
+    backend = FakeBackend([{"blocks": [definition_answer("B-000001", edited, role="context")]},
+                           *no_conflicts()])
+    compile_graph(glossary_repo, backend=backend)
+    term = load_graph(glossary_repo / ".sdd").terms["term:block"]
+    assert term["definition"] is None and term["defined_by"] is None
+    assert check_store(glossary_repo / ".sdd") == []
+
+
+def test_ac_3_34_a_newly_skipped_section_loses_its_nodes_without_a_model_call(tmp_path):
+    spec = tmp_path / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.parent.mkdir(parents=True)
+    spec.write_text(f"## 4. Behaviour\n\n{EXPIRY}\n\n## 9. Traceability\n\n"
+                    f"| AC | Test | Code |\n|---|---|---|\n{ROW}\n", encoding="utf-8")
+    init(tmp_path)
+    profile = tmp_path / ".sdd" / "profile.yaml"
+    default = profile.read_text()
+    profile.write_text(default.replace('skip_headings: ["Traceability"]', "skip_headings: []"))
+    compile_graph(tmp_path, backend=FakeBackend([
+        atom_answer(("B-000001", EXPIRY), ("B-000002", ROW)),
+        {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"),
+                   desc("B-000002#1", EXPIRY, "expire 30 days after it is created")]}, *no_conflicts()]))
+    assert len(load_graph(tmp_path / ".sdd").nodes) == 2
+
+    profile.write_text(default)
+    backend = FakeBackend([])
+    result = compile_graph(tmp_path, backend=backend)
+    store = tmp_path / ".sdd"
+    graph = load_graph(store)
+    assert backend.asked == []
+    assert [n["source"]["block_id"] for n in graph.nodes.values()] == ["B-000001"]
+    assert result.deleted == ["N-000002"]
+    row = next(b for b in read_jsonl(store / "blocks.jsonl") if b["id"] == "B-000002")
+    assert row["atomized_hash"] is None
+    assert status(tmp_path)["counts"]["pending"] == 0
+    assert check_store(store) == []

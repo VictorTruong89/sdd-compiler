@@ -6,6 +6,7 @@ silently ignored looks exactly like a setting that does not work.
 """
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping
@@ -50,6 +51,7 @@ DEFAULT_PROFILE: dict[str, Any] = {
     "spec_globs": ["sdd/specs/**/*.md"],
     "exclude_globs": ["sdd/specs/_templates/**"],
     "include_code_blocks": False,
+    "skip_headings": ["Traceability"],
     "atomizer": dict(DEFAULT_ATOMIZER),
     "retrieval": dict(DEFAULT_RETRIEVAL),
     "conflicts": dict(DEFAULT_CONFLICTS),
@@ -64,6 +66,10 @@ exclude_globs: {exclude_globs}
 
 # Fenced code blocks are stored but not atomized unless this is true.
 include_code_blocks: {include_code_blocks}
+
+# Blocks under these headings are stored but never atomized (F1 D14). A heading
+# matches ignoring case and its section number: "9. Traceability" matches.
+skip_headings: {skip_headings}
 
 # Read by the atomizer (F3), recorded here so a run is reproducible.
 atomizer:
@@ -129,6 +135,7 @@ class Profile:
     exclude_globs: tuple[str, ...]
     include_code_blocks: bool
     atomizer: AtomizerSettings
+    skip_headings: tuple[str, ...] = ()
     retrieval: RetrievalSettings = field(default_factory=RetrievalSettings)
     conflicts: ConflictSettings = field(default_factory=ConflictSettings)
     weak_words: tuple[str, ...] = ()
@@ -141,6 +148,7 @@ def render_default_profile() -> str:
         spec_globs=DEFAULT_PROFILE["spec_globs"],
         exclude_globs=DEFAULT_PROFILE["exclude_globs"],
         include_code_blocks=str(DEFAULT_PROFILE["include_code_blocks"]).lower(),
+        skip_headings=json.dumps(DEFAULT_PROFILE["skip_headings"]),
         backend=DEFAULT_ATOMIZER["backend"],
         model=DEFAULT_ATOMIZER["model"],
         max_calls=DEFAULT_ATOMIZER["max_calls_per_run"],
@@ -200,6 +208,10 @@ def parse_profile(raw: Any, source: str = PROFILE_NAME) -> Profile:
             ExitCode.INPUT,
         )
 
+    skip_headings = raw.get("skip_headings", DEFAULT_PROFILE["skip_headings"])
+    if not isinstance(skip_headings, list) or not all(isinstance(h, str) for h in skip_headings):
+        raise SddcError(f"{source}: skip_headings must be a list of heading names", ExitCode.INPUT)
+
     weak_words = raw.get("weak_words", DEFAULT_WEAK_WORDS)
     if not isinstance(weak_words, list) or not all(isinstance(word, str) for word in weak_words):
         raise SddcError(f"{source}: weak_words must be a list of strings", ExitCode.INPUT)
@@ -208,6 +220,7 @@ def parse_profile(raw: Any, source: str = PROFILE_NAME) -> Profile:
         spec_globs=spec_globs,
         exclude_globs=exclude_globs,
         include_code_blocks=include_code_blocks,
+        skip_headings=tuple(skip_headings),
         atomizer=_atomizer(raw.get("atomizer", DEFAULT_ATOMIZER), source),
         retrieval=_retrieval(raw.get("retrieval", DEFAULT_RETRIEVAL), source),
         conflicts=_conflicts(raw.get("conflicts", DEFAULT_CONFLICTS), source),

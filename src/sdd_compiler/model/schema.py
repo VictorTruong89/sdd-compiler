@@ -120,7 +120,7 @@ NODE_SCHEMA = _obj({
 TERM_SCHEMA = _obj({
     "id": {"type": "string", "pattern": r"^term:[a-z0-9_]+$"},
     "canonical": _STR, "aliases": _STRS, "kind": _enum(TERM_KINDS),
-    "defined_by": _NSTR, "status": _enum(("confirmed", "proposed")),
+    "definition": _NSTR, "defined_by": _NSTR, "status": _enum(("confirmed", "proposed")),
     "broader": {"type": ["string", "null"], "pattern": r"^term:"},   # F2 D16: "a kind of"
 })
 

@@ -70,6 +70,12 @@ def render_report(summary: Mapping[str, Any], graph: Any, exit_code: int) -> str
     if summary.get("annotations_dropped"):
         lines.append(f"{len(summary['annotations_dropped'])} annotation(s) dropped: "
                      "a quote that is not in its block (F3 D35)")
+    definitions = summary.get("definitions") or {}
+    if definitions.get("attached") or definitions.get("unattached"):
+        lines.append(f"{len(definitions['attached'])} definition(s) attached to terms · "
+                     f"{len(definitions['unattached'])} not attached (F3 D38)")
+        lines += [f"  {item['file']}:{item['lines'][0]}  {item['reason']}  {item['text'][:80]}"
+                  for item in definitions["unattached"]]
     if conflicts.get("incomplete"):
         why = {"call_cap": "the call cap", "backend": "the model backend"}.get(
             conflicts.get("stopped"), "the run")

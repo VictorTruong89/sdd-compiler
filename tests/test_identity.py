@@ -5,7 +5,7 @@ Tier: unit, with one property test for id reuse.
 from __future__ import annotations
 
 from sdd_compiler.ingest.identity import (
-    IdAllocator, normalize, pending_status, reconcile, text_hash,
+    IdAllocator, heading_skipped, normalize, pending_status, reconcile, text_hash,
 )
 from sdd_compiler.ingest.segment import segment_markdown
 
@@ -212,3 +212,34 @@ def test_removed_and_code_blocks_are_not_pending():
     assert "B-000003" not in ids                              # removed
     assert by_text(second.records, "code")["id"] not in ids   # code, not opted in
     assert by_text(second.records, "code")["id"] in pending(second.records, include_code=True)
+
+
+# -- skipped headings (F1 D14) -------------------------------------------------
+
+TRACEABILITY_DOC = """\
+## 4. Behaviour
+A share link must expire.
+
+## 9. Traceability
+| AC | Test | Code |
+|---|---|---|
+| AC-9.1 | `tests/test_x.py` | `src/x.py` |
+"""
+
+
+def test_ac_1_32_a_block_under_a_skipped_heading_is_stored_but_never_pending():
+    records = compile_once(TRACEABILITY_DOC).records
+    row = by_text(records, "AC-9.1")
+    paragraph = by_text(records, "share link")
+    assert row["kind"] == "table_row"                           # stored as usual
+    assert pending_status(row, skip_headings=("Traceability",)) is None
+    assert pending_status(paragraph, skip_headings=("Traceability",)) == "new"
+    assert pending_status(row, skip_headings=()) == "new"
+
+
+def test_ac_1_32_a_heading_matches_without_its_section_number_or_case():
+    assert heading_skipped(["F1", "9. Traceability"], ("Traceability",))
+    assert heading_skipped(["F1", "4.10 traceability"], ("TRACEABILITY",))
+    assert heading_skipped(["Traceability", "Details"], ("Traceability",))     # any level
+    assert not heading_skipped(["F1", "9. Traceability matrix"], ("Traceability",))
+    assert not heading_skipped(["F1", "Behaviour"], ())
