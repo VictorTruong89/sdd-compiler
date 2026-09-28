@@ -266,6 +266,28 @@ use in a later release; rel01 wires none of them.
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
 
+### S41 — 2026-09-25 — D34: agent export in rel01; F7 drafted
+
+- Owner answered the design note's Q1–Q7 (**rel01 D34**): build in rel01; the rest as recommended.
+- [`F7_agent_export`](../specs/F7_agent_export/spec.md) written, 🟡 draft: 20 ACs, 11 decisions
+  (⚑ D3, D6, D7, D8, D10, D11 for review), 2 open questions. Wired in `ownership.yaml`
+  (`src/sdd_compiler/export/**`).
+- One measurement changed the design: in R18, 168 requirement and constraint nodes have no modality,
+  so the checklist lists every node, not only MUST (F7 D8).
+- Vision §4 amended for D34. Build-plan M6 (T20–T23) added. Coding waits for F7 approval.
+
+### S40 — 2026-09-25 — Code-ready graph: agent export proposed (E1–E6)
+
+- Owner direction: the compiler stops at the artifact; a separate agent generates code from it; the
+  graph must be code-ready for long-term use, not only for the MIA 5150 study.
+- Lecture [`lecture-agent-reads-spec-graph.html`](../../docs/lectures/lecture-agent-reads-spec-graph.html):
+  how an agent consumes specs, where missout and hallucination arise, how it would traverse a graph.
+- Measured on R18: the raw store is ≈ 21.6× the Markdown's bytes; 183 blocks (25 of them code) form
+  no node; 0 nodes allocated to a component; 246 of 375 families hold one node.
+- Proposed [`rel01_design/G3-3-agent-export.md`](rel01_design/G3-3-agent-export.md): a deterministic
+  export (map, unit packs, checklist, settled conflicts), ≈ 7–8 days (estimate). **No decision yet**:
+  Q1 … Q7 in its §8, starting with which release builds it.
+
 ### S39 — 2026-09-22 … 24 — R18: the full-corpus compile, and three defects it found
 
 - Ran [`HANDOVER_full_compile.md`](rel01_design/HANDOVER_full_compile.md): `sdd/specs/` copied and
@@ -970,6 +992,17 @@ planned because the backend could be measured before the pipeline exists.
   of X is not X*); the list is not part of the lock key. *Rejected for now:* a separate vocabulary pass
   (kept in reserve), code-side clustering (merges distinct things). Success targets for R6: terms used
   once ≤ 50 %, one-node families ≤ half, family null ≤ 10 %, no hyponym merges.
+
+- **rel01 D34 — 2026-09-25 — The agent export (design note G3-3-agent-export.md, E1–E6) is built in
+  rel01 as spec F7; Q2–Q7 as recommended.** Q1: **rel01**, alongside the owner's R18 review (owner
+  decision; recommended was rel02). Q2 blocks first, verbatim, with node tags. Q3 unadjudicated
+  contradictions block the export; `--allow-open` overrides visibly. Q4 units are
+  `(source, heading_path[:2])`. Q5 scoring generated code lives in the harness, not the compiler. Q6
+  F7 = *Agent export*, and G3-3's budgeted traversal is deferred. Q7 command `sddc export [--out DIR]
+  [--allow-open]`. **Consequence:** vision §4 moves "context packs for code generation" into rel01's
+  output. Code generation itself stays a separate step that the compiler never runs. Build-plan M6 is
+  added. *Rejected:* rel02 (the owner wants the code-ready graph in the first release); the other
+  rejected options are in the note's §8.
 
 ## Rejected alternatives
 

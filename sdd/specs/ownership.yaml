@@ -56,6 +56,13 @@ map:
     spec: sdd/specs/F6_conflicts/spec.md
     why: >
       F6 — the Q-PAIR judgment, links and conflict records, closing rules, and the end-of-run report.
+  - globs:
+      - "src/sdd_compiler/export/**"
+    spec: sdd/specs/F7_agent_export/spec.md
+    why: >
+      F7 — the agent export (rel01 D34): units, order, packs, MAP.md, CHECKLIST.md, the conflict gate
+      and the coverage check. Reads the store only; no model calls. Its profile keys (CT-7.2) are an F1
+      CT-1.4 addition, so profile.py stays under F1.
 
 # Template:
 #  - globs:

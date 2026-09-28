@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agents Reading Spec Graphs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#F6F7F9; --surface:#FFFFFF; --surface-2:#EEF1F5; --code-bg:#EDF0F4;
+  --ink:#141A24; --ink-soft:#57616F; --ink-faint:#828C9A;
+  --accent:#1F4E8C; --accent-soft:#E3EBF6;
+  --verd:#0E7C6B; --verd-soft:#DEEFEB;
+  --oxide:#A33A1E; --oxide-soft:#F7E4DE;
+  --plum:#6B3FA0; --plum-soft:#EDE5F6;
+  --rule:#DCE1E8; --rule-soft:#E9ECF1;
+  --fs-xs:.76rem; --fs-sm:.875rem; --fs-base:1.0625rem;
+  --fs-lg:1.22rem; --fs-xl:1.55rem; --fs-2xl:2.05rem; --fs-3xl:2.75rem;
+  --measure:68ch;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+    --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+    --accent:#77ADEB; --accent-soft:#17293F;
+    --verd:#3ECBB2; --verd-soft:#0F2C29;
+    --oxide:#E58A6D; --oxide-soft:#331E17;
+    --plum:#B99AE6; --plum-soft:#271D36;
+    --rule:#26313F; --rule-soft:#1D2531;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+  --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+  --accent:#77ADEB; --accent-soft:#17293F;
+  --verd:#3ECBB2; --verd-soft:#0F2C29;
+  --oxide:#E58A6D; --oxide-soft:#331E17;
+  --plum:#B99AE6; --plum-soft:#271D36;
+  --rule:#26313F; --rule-soft:#1D2531;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:var(--fs-base);line-height:1.7;-webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(1rem,4vw,2.5rem)}
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-block:clamp(2.5rem,7vw,4.5rem) clamp(2rem,5vw,3rem)}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.1rem}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,5.5vw,var(--fs-3xl));line-height:1.08;letter-spacing:-.015em;margin:0 0 1rem;text-wrap:balance}
+.standfirst{font-size:var(--fs-lg);color:var(--ink-soft);margin:0;max-width:62ch;text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);letter-spacing:.04em}
+.tocbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+.tocbar .wrap{display:flex;gap:.4rem;overflow-x:auto;padding-block:.5rem}
+.tocbar a{flex:0 0 auto;display:flex;align-items:baseline;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.45rem .7rem;border-radius:3px;white-space:nowrap}
+.tocbar a:hover{background:var(--surface-2);color:var(--ink)}
+.tocbar a b{font-weight:700}
+.tocbar a.l0 b{color:var(--ink-soft)} .tocbar a.l1 b{color:var(--accent)} .tocbar a.l2 b{color:var(--verd)} .tocbar a.l3 b{color:var(--plum)} .tocbar a.l4 b{color:var(--oxide)} .tocbar a.l5 b{color:var(--ink)}
+.lecture{padding-block:clamp(3rem,8vw,6rem) clamp(2rem,5vw,4rem);border-bottom:1px solid var(--rule)}
+.lechead{display:flex;gap:clamp(1rem,3vw,2rem);align-items:flex-start;margin-bottom:2.5rem}
+.lecnum{flex:0 0 auto;font-family:var(--mono);font-weight:700;font-size:var(--fs-sm);letter-spacing:.1em;padding:.35rem .6rem;border-radius:3px;line-height:1.2}
+.l0 .lecnum{background:var(--surface-2);color:var(--ink-soft)}
+.l1 .lecnum{background:var(--accent-soft);color:var(--accent)}
+.l2 .lecnum{background:var(--verd-soft);color:var(--verd)}
+.l3 .lecnum{background:var(--plum-soft);color:var(--plum)}
+.l4 .lecnum{background:var(--oxide-soft);color:var(--oxide)}
+.l5 .lecnum{background:var(--surface-2);color:var(--ink)}
+.lechead h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,var(--fs-2xl));line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance}
+.lechead p{margin:0;color:var(--ink-soft);max-width:58ch}
+h3{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:1.25;margin:3.2rem 0 1rem;text-wrap:balance;padding-top:1.2rem;border-top:1px solid var(--rule-soft)}
+h3 .sn{font-family:var(--mono);font-size:var(--fs-sm);color:var(--ink-faint);margin-right:.6rem;font-weight:500}
+h4{font-family:var(--display);font-weight:600;font-size:var(--fs-lg);margin:2rem 0 .6rem;line-height:1.3}
+p{margin:0 0 1.1rem;max-width:var(--measure);text-wrap:pretty}
+ul,ol{margin:0 0 1.2rem;padding-left:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.5rem}
+li::marker{color:var(--ink-faint)}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.1em .35em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:var(--fs-sm);line-height:1.62;background:var(--code-bg);border:1px solid var(--rule);border-radius:5px;padding:1.1rem 1.25rem;overflow-x:auto;margin:0 0 1.4rem;max-width:var(--measure)}
+pre code{background:none;padding:0;font-size:inherit}
+.cm{color:var(--ink-faint)} .kw{color:var(--accent);font-weight:500} .st{color:var(--verd)}
+.callout{border-left:3px solid var(--accent);background:var(--surface);padding:1.1rem 1.3rem;margin:0 0 1.5rem;max-width:var(--measure);border-radius:0 4px 4px 0}
+.callout.warn{border-left-color:var(--oxide)} .callout.key{border-left-color:var(--verd)} .callout.fresh{border-left-color:var(--plum)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout .lbl{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem;font-weight:700}
+.callout.warn .lbl{color:var(--oxide)} .callout.key .lbl{color:var(--verd)} .callout.fresh .lbl{color:var(--plum)}
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm);min-width:34rem}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td code{font-size:.82em}
+figure{margin:0 0 1.8rem}
+.figscroll{overflow-x:auto}
+figure svg{display:block;width:100%;min-width:680px;height:auto;background:var(--surface);border:1px solid var(--rule);border-radius:5px}
+figcaption{font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);margin-top:.6rem;letter-spacing:.02em;line-height:1.55;max-width:var(--measure)}
+.svg-ink{fill:var(--ink)} .svg-soft{fill:var(--ink-soft)} .svg-faint{fill:var(--ink-faint)}
+.svg-box{fill:var(--surface-2);stroke:var(--rule)}
+.svg-agent{fill:var(--plum-soft);stroke:var(--plum)}
+.svg-comp{fill:var(--verd-soft);stroke:var(--verd)}
+.svg-core{fill:var(--accent-soft);stroke:var(--accent)}
+.svg-line{stroke:var(--ink-faint);fill:none;stroke-width:1.2}
+.svg-head{fill:var(--ink-faint)}
+.t-plum{fill:var(--plum)} .t-verd{fill:var(--verd)} .t-acc{fill:var(--accent)}
+svg text{font-family:var(--mono);font-size:11px}
+.exercises{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.6rem;margin-top:2.5rem;max-width:var(--measure)}
+.exercises h4{margin-top:0} .exercises ol{margin-bottom:0}
+.pill{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.05em;padding:.12em .45em;border-radius:3px;background:var(--surface-2);color:var(--ink-soft);white-space:nowrap}
+.pill.ok{background:var(--verd-soft);color:var(--verd)} .pill.no{background:var(--oxide-soft);color:var(--oxide)} .pill.ag{background:var(--plum-soft);color:var(--plum)}
+.tierbanner{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--oxide);border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin:0 0 2rem;max-width:var(--measure)}
+.tierbanner p{margin-bottom:.6rem} .tierbanner p:last-child{margin-bottom:0}
+footer{padding-block:clamp(2.5rem,6vw,4rem) 5rem;color:var(--ink-soft)}
+footer p{font-size:var(--fs-sm)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.svg-bad{fill:var(--oxide-soft);stroke:var(--oxide)}
+.svg-warn{fill:#F6ECD2;stroke:#A77A12}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .svg-warn{fill:#33290F;stroke:#D9A93B}}
+:root[data-theme="dark"] .svg-warn{fill:#33290F;stroke:#D9A93B}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">SDD Compiler · Lecture · Design input for code-ready graphs</p>
+    <h1>How a coding agent reads specs, and what the spec graph must give it</h1>
+    <p class="standfirst">A frontier coding agent (Claude Code, driving Haiku, Sonnet or Opus) is handed a set of SDD spec files and asked to build the system. This lecture follows what it actually does with them, where that process drops requirements or invents behaviour, and then asks the same questions of the spec graph. It ends with a small, bounded set of changes to the compiler's output, so the graph gives an agent everything the Markdown gives, plus the structure the Markdown lacks.</p>
+    <div class="meta">
+      <span>Written 2026-09-25</span>
+      <span>Graph measured: trial_01/full-corpus (R18)</span>
+      <span>Sources opened 2026-09-25</span>
+      <span>Scope: compiler stops at the artifact; code generation is a separate step</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tocbar" aria-label="Parts">
+  <div class="wrap">
+    <a class="l0" href="#p0"><b>0</b> The frame</a>
+    <a class="l1" href="#p1"><b>1</b> How an agent reads spec files</a>
+    <a class="l4" href="#p2"><b>2</b> Where it goes wrong</a>
+    <a class="l2" href="#p3"><b>3</b> Reading a graph</a>
+    <a class="l3" href="#p4"><b>4</b> What to add</a>
+    <a class="l5" href="#p5"><b>5</b> Guardrails</a>
+    <a class="l0" href="#refs"><b>R</b> References</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============================================================ PART 0 -->
+<section class="lecture l0" id="p0">
+  <div style="padding-top:2.5rem">
+  <div class="tierbanner">
+    <p><strong>Lecture: for understanding, not binding.</strong> The proposals in Part 4 are inputs to a design note. They become rules only once they are recorded in <code>sdd/design/</code> and graduated into a spec. If this page and a Markdown file disagree, the Markdown wins.</p>
+    <p><strong>What is measured and what is not.</strong> Every graph figure was counted on <code>trial_01/full-corpus/</code> on 2026-09-25 and is given in bytes or counts. No token count appears. Claude's tokenizer is not public, and a bytes-to-tokens ratio would be an invented number. Risk ratings in Part 2 are <em>judgements with stated reasons</em>, not measurements. Effort figures in Part 4 are estimates.</p>
+  </div>
+  </div>
+
+  <div class="lechead">
+    <span class="lecnum">PART 0</span>
+    <div>
+      <h2>The frame: two steps, one boundary</h2>
+      <p>The compiler's job ends when the artifact is written. What an agent then does with that artifact is a separate step, run by a separate tool.</p>
+    </div>
+  </div>
+
+<pre><code>STEP 1: sdd-compiler                          STEP 2: any coding agent (separate)
+Markdown specs ──sddc compile──► artifact ──┬─► Claude Code · Haiku / Sonnet / Opus ──► code + tests
+                                 (frozen)   │
+                                            └─ the same artifact for every model and every run</code></pre>
+
+  <p>That boundary settles what "code-ready" means for the compiler. The compiler cannot make an agent write good code. <strong>It can only decide what the agent is given to read.</strong> So the whole lecture asks one question three times. First, what does an agent do with what it reads (Part 1)? Second, where does that go wrong (Part 2)? Third, what should the artifact contain so that less goes wrong (Parts 3–4)?</p>
+
+  <div class="callout key">
+    <span class="lbl">The one rule this lecture arrives at</span>
+    <p><strong>The artifact must never give the agent less than the Markdown did.</strong> Beyond that, it should add only what the Markdown cannot give: a map, a checklist, one place per unit of work, and settled conflicts. Every proposal in Part 4 either restores something the rel01 graph loses or adds one of those four things.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART 1 -->
+<section class="lecture l1" id="p1">
+  <div class="lechead">
+    <span class="lecnum">PART 1</span>
+    <div>
+      <h2>How a frontier agent consumes a folder of spec files</h2>
+      <p>The benchmark case: ten Markdown spec files, an empty output directory and a prompt that says "build this". Nothing below is specific to the SDD Compiler.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">1.1</span>First, where an agent can keep anything</h3>
+  <p>People say an agent "stores the specs internally". It does not, in any database sense. An agent built on a language model has exactly three places where information can live, and each behaves very differently:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Place</th><th>What is in it</th><th>How long it lasts</th><th>What that means for specs</th></tr></thead>
+    <tbody>
+      <tr><td><strong>The weights</strong></td><td>Everything learned in training: languages, libraries, common designs, typical CLI conventions</td><td>Fixed; your specs never enter it</td><td>This is the <em>prior</em>. When a spec is silent or vague, the gap is filled from here, and that is the root of most hallucination.</td></tr>
+      <tr><td><strong>The context window</strong></td><td>The system prompt, tool definitions, <code>CLAUDE.md</code>, your prompt, and every file read, command output and message so far <a href="#r4">[4]</a></td><td>One session; parts are cleared or summarized when it fills <a href="#r4">[4]</a></td><td>This is the <em>only working memory</em>. A spec sentence influences the code only if it is in here, as text, when the code is written.</td></tr>
+      <tr><td><strong>Files on disk</strong></td><td>The specs themselves, plus anything the agent writes: plans, notes, task lists, the code</td><td>Permanent</td><td>External memory. It helps only if the agent reads it back. Anthropic calls this "structured note-taking" <a href="#r3">[3]</a>.</td></tr>
+    </tbody>
+  </table></div>
+  <p>So "store internally" really means <strong>tokens sitting in the context window</strong>. While the model reads them, it computes internal representations (attention keys and values) over them. Those can be cached to save cost, but they are derived from the same text and add nothing to it. Each turn works from the text again. Everything else in this lecture follows from that.</p>
+
+  <h3><span class="sn">1.2</span>The eight stages of one build</h3>
+  <p>Claude Code describes its loop as three blended phases: <em>gather context, take action, verify results</em> <a href="#r4">[4]</a>. For a from-spec build it is useful to split them finer:</p>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 760 330" role="img" aria-label="The eight stages of an agent build, and the context window filling up underneath">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="svg-head"/></marker></defs>
+      <!-- row 1 -->
+      <rect x="20" y="24" width="160" height="58" rx="4" class="svg-core"/><text x="100" y="48" text-anchor="middle" class="svg-ink">S1 Orient</text><text x="100" y="66" text-anchor="middle" class="svg-soft">prompt · CLAUDE.md</text>
+      <rect x="205" y="24" width="160" height="58" rx="4" class="svg-core"/><text x="285" y="48" text-anchor="middle" class="svg-ink">S2 Discover</text><text x="285" y="66" text-anchor="middle" class="svg-soft">Glob · Grep · ls</text>
+      <rect x="390" y="24" width="160" height="58" rx="4" class="svg-core"/><text x="470" y="48" text-anchor="middle" class="svg-ink">S3 Read</text><text x="470" y="66" text-anchor="middle" class="svg-soft">file text → context</text>
+      <rect x="575" y="24" width="160" height="58" rx="4" class="svg-core"/><text x="655" y="48" text-anchor="middle" class="svg-ink">S4 Tokenize · attend</text><text x="655" y="66" text-anchor="middle" class="svg-soft">no index, only text</text>
+      <!-- row 2 -->
+      <rect x="575" y="122" width="160" height="58" rx="4" class="svg-agent"/><text x="655" y="146" text-anchor="middle" class="svg-ink">S5 Plan</text><text x="655" y="164" text-anchor="middle" class="svg-soft">task list · notes</text>
+      <rect x="390" y="122" width="160" height="58" rx="4" class="svg-agent"/><text x="470" y="146" text-anchor="middle" class="svg-ink">S6 Generate</text><text x="470" y="164" text-anchor="middle" class="svg-soft">token by token</text>
+      <rect x="205" y="122" width="160" height="58" rx="4" class="svg-comp"/><text x="285" y="146" text-anchor="middle" class="svg-ink">S7 Verify</text><text x="285" y="164" text-anchor="middle" class="svg-soft">run tests · read errors</text>
+      <rect x="20" y="122" width="160" height="58" rx="4" class="svg-warn"/><text x="100" y="146" text-anchor="middle" class="svg-ink">S8 Compact</text><text x="100" y="164" text-anchor="middle" class="svg-soft">when context fills</text>
+      <!-- arrows -->
+      <line x1="180" y1="53" x2="203" y2="53" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="365" y1="53" x2="388" y2="53" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="550" y1="53" x2="573" y2="53" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="655" y1="82" x2="655" y2="120" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="575" y1="151" x2="552" y2="151" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="390" y1="151" x2="367" y2="151" class="svg-line" marker-end="url(#ah)"/>
+      <path d="M285,122 C285,100 440,100 460,84" class="svg-line" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <text x="345" y="104" class="svg-faint">fail → re-read, fix</text>
+      <line x1="205" y1="151" x2="182" y2="151" class="svg-line" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <!-- context window bar -->
+      <text x="20" y="222" class="svg-soft">The context window during a long build (proportions illustrative, not measured)</text>
+      <rect x="20" y="232" width="60"  height="34" class="svg-box"/><text x="50"  y="253" text-anchor="middle" class="svg-faint">sys+tools</text>
+      <rect x="80" y="232" width="50"  height="34" class="svg-box"/><text x="105" y="253" text-anchor="middle" class="svg-faint">CLAUDE</text>
+      <rect x="130" y="232" width="50" height="34" class="svg-core"/><text x="155" y="253" text-anchor="middle" class="svg-faint">task</text>
+      <rect x="180" y="232" width="230" height="34" class="svg-core"/><text x="295" y="253" text-anchor="middle" class="svg-ink">spec text read in S3</text>
+      <rect x="410" y="232" width="50" height="34" class="svg-agent"/><text x="435" y="253" text-anchor="middle" class="svg-faint">plan</text>
+      <rect x="460" y="232" width="130" height="34" class="svg-agent"/><text x="525" y="253" text-anchor="middle" class="svg-faint">code written</text>
+      <rect x="590" y="232" width="110" height="34" class="svg-comp"/><text x="645" y="253" text-anchor="middle" class="svg-faint">test output</text>
+      <rect x="700" y="232" width="40" height="34" class="svg-warn"/><text x="720" y="253" text-anchor="middle" class="svg-faint">free</text>
+      <text x="20" y="292" class="svg-soft">When "free" runs out, S8 clears old tool outputs, then summarizes. The spec text read early</text>
+      <text x="20" y="310" class="svg-soft">is the oldest material in the window, so it is the first candidate for clearing or summarizing [4].</text>
+    </svg>
+    </div>
+    <figcaption>Fig. 1: One build as eight stages. Blue stages load the specs, purple ones turn them into a plan and code, and green checks the result. Amber is the lossy safety valve. The bar is a picture of what competes for the window, not a measurement.</figcaption>
+  </figure>
+
+  <h4>S1 Orient</h4>
+  <p>Before any file is opened, the window already holds the system prompt, the tool definitions, <code>CLAUDE.md</code> and the task prompt <a href="#r4">[4]</a>. Whatever these say about the specs ("the specs are in <code>sdd/specs/</code>, read the constitution first") is the agent's entire map at this point.</p>
+
+  <h4>S2 Discover</h4>
+  <p>The agent finds what to read with file tools: <code>Glob</code> for names (results capped at 100 files), <code>Grep</code> for content <a href="#r5">[5]</a>. It sees <em>file names and matching lines</em>, not meaning. File names, folder layout and headings are therefore doing real work. Anthropic describes agents navigating by exactly these signals: "file sizes suggest complexity; naming conventions hint at purpose" <a href="#r3">[3]</a>.</p>
+
+  <h4>S3 Read</h4>
+  <p><code>Read</code> returns file text with line numbers. If a file exceeds the tool's limit, the agent gets a first page and a <code>PARTIAL view</code> notice and must ask for more <a href="#r5">[5]</a>. Every read appends text to the window. Nothing is filed away anywhere else. Ten spec files read in full means all ten files' text sits in the window, in the order read.</p>
+
+  <h4>S4 Tokenize and attend</h4>
+  <p>The text is split into subword tokens, the approach introduced for translation as byte-pair encoding <a href="#r15">[15]</a>. Claude's own tokenizer is not published, so counts must come from the token-counting API, never from a ratio. Each generated token is then computed with attention over all tokens in the window <a href="#r14">[14]</a>. <strong>There is no index.</strong> The model does not build a table of requirements. When it writes line 300 of <code>store.py</code>, the only way AC-4.7 influences that line is by being attended to, among everything else in the window, at that moment.</p>
+  <p>Attention is not uniform in practice. Models use information at the start and end of a long input better than information in the middle <a href="#r6">[6]</a>. Performance degrades as input grows, often well before the advertised limit <a href="#r7">[7]</a><a href="#r8">[8]</a><a href="#r9">[9]</a>. Irrelevant text in the window lowers accuracy even when the relevant text is present <a href="#r10">[10]</a><a href="#r9">[9]</a>. Anthropic calls the context an "attention budget" with "diminishing marginal returns" <a href="#r3">[3]</a>.</p>
+
+  <h4>S5 Plan</h4>
+  <p>Good practice, and the agent's own habit on large tasks, is to explore, then plan, then code <a href="#r2">[2]</a>. The plan is a task list or a notes file. It is a <strong>compression</strong>: forty requirements become "implement the store module". From here on, the plan often steers more than the specs do, because it is shorter, more recent and phrased as instructions.</p>
+
+  <h4>S6 Generate</h4>
+  <p>Code is written one token at a time. Each token is predicted from the window plus the weights. Where the window states a precise answer (a function signature, a JSON field name, an exit code), the model can copy it. Where the window is silent or vague, the weights supply the most typical answer for that kind of program. That is usually plausible and often wrong for <em>this</em> spec.</p>
+
+  <h4>S7 Verify</h4>
+  <p>The agent runs tests, reads failures and edits. Claude Code's guidance is explicit that a runnable check is what lets the loop close without a human <a href="#r2">[2]</a>. But in a from-scratch build the tests are usually <em>written by the same agent</em> from the same reading of the specs. They confirm the agent's interpretation, not the spec.</p>
+
+  <h4>S8 Compact</h4>
+  <p>When the window fills, Claude Code "clears older tool outputs first, then summarizes the conversation if needed. … detailed instructions from early in the conversation may be lost" <a href="#r4">[4]</a>. Subagents are similar: they read in their own window and return only a summary <a href="#r4">[4]</a><a href="#r3">[3]</a>. Both are lossy by design, and the spec text, read early and never re-read, is the material most exposed.</p>
+
+  <h3><span class="sn">1.3</span>The same process at this repository's scale</h3>
+  <p>This repository's own spec set is 10 Markdown files, <strong>164,581 bytes</strong>, holding 191 acceptance criteria. How many tokens that is has not been measured. It is large enough that a full build reads a big share of the window with specs, then adds code and test output on top. Stages S3, S4 and S8 are therefore not edge cases at this size. They are the normal path.</p>
+</section>
+
+<!-- ============================================================ PART 2 -->
+<section class="lecture l4" id="p2">
+  <div class="lechead">
+    <span class="lecnum">PART 2</span>
+    <div>
+      <h2>Where specs are missed, behaviour is invented, and code gets worse</h2>
+      <p>The same eight stages, examined for the three failures the study will count. Ratings are judgements, with the reason and the evidence beside each.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">2.1</span>What the literature says the failures look like</h3>
+  <p>Liu et al. built a taxonomy of hallucinations in LLM-generated code with three primary categories <a href="#r11">[11]</a>. In their study the largest was <strong>requirement conflicting</strong> (39.6% of hallucinations): the code does something other than what was asked. Almost all of that was <em>behaviour conflicting</em> (35.4%). Next came <strong>knowledge</strong> hallucinations (34.9%), mostly wrong beliefs about libraries or the project (26.0%). Then <strong>code inconsistency</strong> (25.5%), such as undefined variables and useless statements. Those shares come from their setting, not ours. The shape still matters here: <em>the biggest single class is the one a spec is supposed to prevent.</em></p>
+  <p>A narrower, sharper case is invented dependencies. Across 16 models, Spracklen et al. found hallucinated package names in at least 5.2% of samples for commercial models on average, and 21.7% for open-source ones <a href="#r12">[12]</a>.</p>
+  <p>Size matters too. On ClassEval, every model tested did much worse on whole classes than on single functions. Generating a whole class at once was the best strategy only for the strongest models, while weaker models did better method by method <a href="#r13">[13]</a>. That is a direct hint for Haiku versus Opus. Smaller models are likely to benefit more from being handed <em>one unit at a time</em>, which is a prediction to test, not a result.</p>
+
+  <h3><span class="sn">2.2</span>Stage by stage</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Stage</th><th>What goes wrong</th><th>Missout</th><th>Halluc.</th><th>Poor code</th><th>Why, and evidence</th></tr></thead>
+    <tbody>
+      <tr><td>S1 Orient</td><td>The prompt names the wrong entry point or none; the constitution is read late or never</td><td><span class="pill">low</span></td><td><span class="pill">med</span></td><td><span class="pill">med</span></td><td>Stack and style rules missed at S1 are replaced by typical defaults (the prior). A cheap fix: say what to read first.</td></tr>
+      <tr><td>S2 Discover</td><td>Files or sections never opened; grep misses a requirement phrased with different words</td><td><span class="pill no">high</span></td><td><span class="pill">low</span></td><td><span class="pill">low</span></td><td>Discovery sees names and matching lines only <a href="#r5">[5]</a>. A requirement that no file name or keyword points to is invisible. Nothing in a folder of prose says "this is everything".</td></tr>
+      <tr><td>S3 Read</td><td>Partial reads; the long file read to page 1 only; the one paragraph that matters skipped</td><td><span class="pill no">high</span></td><td><span class="pill">low</span></td><td><span class="pill">low</span></td><td>Read truncates large files with a notice <a href="#r5">[5]</a>. The agent decides whether to continue, with no list of what is left.</td></tr>
+      <tr><td>S4 Attend</td><td>Mid-document requirements under-used; distractors pull attention; vague words resolved from the prior</td><td><span class="pill no">high</span></td><td><span class="pill no">high</span></td><td><span class="pill">med</span></td><td>Lost in the middle <a href="#r6">[6]</a>; degradation with length <a href="#r7">[7]</a><a href="#r8">[8]</a><a href="#r9">[9]</a>; distraction by irrelevant text <a href="#r10">[10]</a>. An undefined term is filled from the prior: "knowledge" hallucination in <a href="#r11">[11]</a>.</td></tr>
+      <tr><td>S5 Plan</td><td>The plan compresses away requirements, and later work follows the plan, not the spec</td><td><span class="pill no">high</span></td><td><span class="pill">med</span></td><td><span class="pill">med</span></td><td>A plan is a summary with no link back to spec ids. Nothing forces every obligation to appear in it.</td></tr>
+      <tr><td>S6 Generate</td><td>Invented formats, field names, error codes and packages; contradictory specs resolved silently</td><td><span class="pill">low</span></td><td><span class="pill no">high</span></td><td><span class="pill no">high</span></td><td>Where the window has no exact answer, the weights provide one. That is "behaviour conflicting" <a href="#r11">[11]</a> and package hallucination <a href="#r12">[12]</a>. Two conflicting specs give the model a coin toss it does not report.</td></tr>
+      <tr><td>S7 Verify</td><td>The agent's tests encode its own misreading, so they pass and confirm the error</td><td><span class="pill">med</span></td><td><span class="pill">med</span></td><td><span class="pill">med</span></td><td>Verification closes the loop only against the check it is given <a href="#r2">[2]</a>. Self-written tests check consistency, not conformance.</td></tr>
+      <tr><td>S8 Compact</td><td>Spec detail read early is cleared or summarized away mid-build</td><td><span class="pill no">high</span></td><td><span class="pill">med</span></td><td><span class="pill">low</span></td><td>Documented behaviour <a href="#r4">[4]</a>; Anthropic warns overly aggressive compaction loses "subtle but critical context" <a href="#r3">[3]</a>.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout warn">
+    <span class="lbl">Three root causes under the table</span>
+    <ol>
+      <li><strong>Nothing forces coverage.</strong> A folder of prose has no list of obligations the agent must account for. S2, S3, S5 and S8 all lose requirements silently. This is the <em>missout</em> cause.</li>
+      <li><strong>Gaps are filled from the prior.</strong> Missing formats, undefined words and unresolved contradictions reach S6 as silence, and the weights answer. This is the <em>hallucination</em> cause.</li>
+      <li><strong>Too much text, in the wrong order, at the wrong time.</strong> Everything is loaded early and competes for attention, then gets compacted. This drives both failures, and it gets worse as the spec set grows.</li>
+    </ol>
+  </div>
+  <p>A spec artifact can act on all three causes. It cannot change the model or the agent's loop. It <em>can</em> change what exists to be read, how it is split, and what it tells the agent it still owes.</p>
+</section>
+
+<!-- ============================================================ PART 3 -->
+<section class="lecture l2" id="p3">
+  <div class="lechead">
+    <span class="lecnum">PART 3</span>
+    <div>
+      <h2>When the specs are a graph: how an agent traverses it</h2>
+      <p>The agent never sees a graph. It sees text returned by tools. "Traversal" is a sequence of reads, and the design question is what each read returns.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">3.1</span>What traversal physically is</h3>
+  <p>An agent following an edge from node A to node B does this: it reads a record that mentions <code>B</code>, then decides to look B up, then issues a tool call (<code>Grep "N-000807"</code> or <code>Read</code> of the file that holds it), then gets text back that lands in the window. Each hop costs a round trip, adds tokens, and depends on the agent <em>choosing</em> to make it. SWE-agent's central result is that this interface matters: purpose-built commands for navigating and viewing changed how well the same model performed <a href="#r16">[16]</a>. For the compiler, <strong>the artifact's file layout and ids are the agent's interface to the graph</strong>, and they deserve the same design care as the node schema.</p>
+
+  <h3><span class="sn">3.2</span>What the rel01 store looks like to an agent (measured)</h3>
+  <p>Counted on <code>trial_01/full-corpus/.sdd/</code>, the store built from this repository's 164,581 bytes of specs:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Measure</th><th>Value</th><th>Consequence for an agent</th></tr></thead>
+    <tbody>
+      <tr><td>Bytes an agent would read (nodes + edges + terms + conflicts)</td><td><strong>3,553,487</strong>, about 21.6× the Markdown</td><td>Reading "the graph" in full puts far more text in the window than reading the specs did. Stage S4's problems get worse, not better.</td></tr>
+      <tr><td>Node files</td><td>375 (one per family); <strong>246 hold a single node</strong></td><td>No file name leads to "everything about the store". S2 discovery by name breaks down.</td></tr>
+      <tr><td>Nodes allocated to a component</td><td><strong>0 of 950</strong></td><td>The "implement component K" traversal in <code>G3-3-traversal.md</code> has nothing to start from.</td></tr>
+      <tr><td>Edges by type</td><td><code>uses_term</code> 2,819 of 4,199 (67%); <code>depends_on</code> 396; <code>refines</code> 306; <code>subsumes</code> 286; <code>verifies</code> 168; <code>conflicts_with</code> 167; <code>duplicates</code> 57</td><td>Two-thirds of the links are bookkeeping, noise for a coding agent.</td></tr>
+      <tr><td>Node text, all nodes</td><td>83,879 characters, 51% of the spec bytes</td><td>Obligations survive, but in fragments. The rest (context, contracts, definitions) is elsewhere or gone.</td></tr>
+      <tr><td>Fenced code blocks forming a node</td><td><strong>0 of 25</strong> (README)</td><td>Every record shape and file format is missing, so S6 must invent them.</td></tr>
+      <tr><td>Paragraphs forming no node</td><td>183 of 845 (README)</td><td>Rationale and context lost. Some rationale survives as annotations (36,243 characters).</td></tr>
+      <tr><td>Nodes with no modality</td><td>407 of 950 (43%)</td><td>The agent cannot tell a MUST from an explanation without reading the text.</td></tr>
+      <tr><td>Open conflicts, unadjudicated</td><td>381; about 1 in 10 real on an earlier sample</td><td>Hundreds of mostly-false "questions" in the window: distractors in the sense of <a href="#r10">[10]</a>.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">Plainly</span>
+    <p>The rel01 store is a <strong>database for the compiler</strong>, not a <strong>reading format for an agent</strong>. Handed to Claude Code as-is, it loses on all three root causes of Part 2: less information (contracts, context), more text (about 21.6× the bytes), and more distraction (conflict noise, bookkeeping edges). If the study compared "Markdown" with "the rel01 store", the graph would be expected to lose, and that result would describe the export format, not the idea.</p>
+  </div>
+
+  <h3><span class="sn">3.3</span>Does the agent need a map? Yes</h3>
+  <p>Three independent lines of evidence point the same way:</p>
+  <ul>
+    <li><strong>Aider's repository map</strong> gives the model a compact overview of the whole repository (files, key symbols and signatures), ranked by a graph algorithm and held to a token budget. Its purpose is to let the model "figure out which files it needs to look at" <a href="#r17">[17]</a>.</li>
+    <li><strong>GraphRAG</strong> pre-computes summaries of clusters in an entity graph because plain retrieval fails on questions about the whole corpus <a href="#r18">[18]</a>. "Build the whole system" is exactly such a question.</li>
+    <li><strong>Anthropic's context-engineering guidance</strong> recommends keeping "lightweight identifiers" in context and loading detail "just in time", while noting that a hybrid, with some data up front, works best <a href="#r3">[3]</a>.</li>
+  </ul>
+  <p>For a spec graph, a map fixes the two failures a folder cannot: it says <em>what exists</em> (stopping S2 and S3 losses) and <em>in what order to build</em> (giving S5 a spine). One caution from GraphRAG applies: its summaries are written by an LLM. A map written by a model is a new place to hallucinate. <strong>The spec map should be computed, not written</strong>: counts, ids, names and order, all deterministic.</p>
+
+  <h3><span class="sn">3.4</span>The traversal an agent should follow</h3>
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 760 270" role="img" aria-label="Traversal: map, foundation, then one unit pack at a time, with a checklist tick after each unit">
+      <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="svg-head"/></marker></defs>
+      <rect x="20" y="30" width="150" height="62" rx="4" class="svg-core"/><text x="95" y="56" text-anchor="middle" class="svg-ink">MAP.md</text><text x="95" y="74" text-anchor="middle" class="svg-soft">what exists · order</text>
+      <rect x="205" y="30" width="150" height="62" rx="4" class="svg-core"/><text x="280" y="56" text-anchor="middle" class="svg-ink">foundation pack</text><text x="280" y="74" text-anchor="middle" class="svg-soft">vision · constitution</text>
+      <rect x="390" y="30" width="150" height="62" rx="4" class="svg-comp"/><text x="465" y="56" text-anchor="middle" class="svg-ink">unit pack k</text><text x="465" y="74" text-anchor="middle" class="svg-soft">one work unit</text>
+      <rect x="575" y="30" width="165" height="62" rx="4" class="svg-agent"/><text x="657" y="56" text-anchor="middle" class="svg-ink">code + tests for k</text><text x="657" y="74" text-anchor="middle" class="svg-soft"># spec: N-… markers</text>
+      <line x1="170" y1="61" x2="203" y2="61" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="355" y1="61" x2="388" y2="61" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="540" y1="61" x2="573" y2="61" class="svg-line" marker-end="url(#ah2)"/>
+      <!-- hops -->
+      <rect x="360" y="140" width="95" height="40" rx="4" class="svg-box"/><text x="407" y="164" text-anchor="middle" class="svg-soft">a node by id</text>
+      <rect x="465" y="140" width="95" height="40" rx="4" class="svg-box"/><text x="512" y="164" text-anchor="middle" class="svg-soft">a contract</text>
+      <rect x="570" y="140" width="120" height="40" rx="4" class="svg-box"/><text x="630" y="164" text-anchor="middle" class="svg-soft">neighbour unit</text>
+      <line x1="440" y1="92" x2="410" y2="138" class="svg-line" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+      <line x1="470" y1="92" x2="510" y2="138" class="svg-line" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+      <line x1="510" y1="92" x2="610" y2="138" class="svg-line" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+      <text x="360" y="200" class="svg-faint">optional hops, only when the pack points there</text>
+      <!-- checklist loop -->
+      <rect x="20" y="140" width="150" height="62" rx="4" class="svg-warn"/><text x="95" y="166" text-anchor="middle" class="svg-ink">CHECKLIST</text><text x="95" y="184" text-anchor="middle" class="svg-soft">tick ids of unit k</text>
+      <path d="M657,92 C657,250 200,250 150,204" class="svg-line" marker-end="url(#ah2)"/>
+      <path d="M95,140 L95,94" class="svg-line" marker-end="url(#ah2)"/>
+      <text x="104" y="122" class="svg-faint">next unit in build order</text>
+    </svg>
+    </div>
+    <figcaption>Fig. 2: Map first, foundation once, then one unit at a time. Each unit's pack is small enough to read in full; ids let the agent hop out only when it needs to. The checklist closes each unit before the next begins, so coverage is checked per unit rather than hoped for at the end.</figcaption>
+  </figure>
+  <p>Set this against Part 2. The map answers S2 and S3 (what exists). The checklist answers S5 and S8: the obligations are on disk, with ids, so a compaction cannot lose them, and a plan cannot quietly drop them. One pack per unit answers S4, because the agent reads only what the current unit needs, while it needs it, and the pack is small enough to sit near the end of the window, where it is used best <a href="#r6">[6]</a><a href="#r1">[1]</a>. Contracts carried verbatim, and conflicts settled before export, answer S6.</p>
+</section>
+
+<!-- ============================================================ PART 4 -->
+<section class="lecture l3" id="p4">
+  <div class="lechead">
+    <span class="lecnum">PART 4</span>
+    <div>
+      <h2>What to add: six export changes, and nothing more</h2>
+      <p>The store stays as it is. What changes is a new, deterministic <strong>agent export</strong> written next to it. Everything below is bounded to what the failure analysis requires.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">4.1</span>Six principles for the export</h3>
+  <ol>
+    <li><strong>Never less than the Markdown.</strong> Every byte of spec text reaches the export somewhere, verbatim. This is checkable: coverage of spec bytes is 100% or the export fails loudly.</li>
+    <li><strong>Structure, never new words.</strong> The export contains spec text, ids, counts and links, and nothing written by a model. The canonical forms and verdicts that <em>are</em> model output stay labelled as such. The compiler must not become a new source of hallucination.</li>
+    <li><strong>Small entry point, detail on demand.</strong> One map, then packs <a href="#r3">[3]</a><a href="#r17">[17]</a>.</li>
+    <li><strong>One unit fits comfortably.</strong> A pack is sized in characters (the unit <code>G3-3-traversal.md</code> proposes) and should be no larger than the Markdown it replaces.</li>
+    <li><strong>Settled before served.</strong> No unadjudicated contradiction reaches the agent as a "question". Duplicates are shown once.</li>
+    <li><strong>Every obligation has an id to account for.</strong> The agent ends with a list, not a feeling.</li>
+  </ol>
+
+  <h3><span class="sn">4.2</span>The six changes</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Change</th><th>What it is</th><th>Stages fixed</th><th>Effort (estimate)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>E1</strong></td><td>Lossless export</td><td>Fenced code blocks (contracts, record shapes) attach verbatim to their section and to the nodes in it. Paragraphs that formed no node attach as <em>context</em> text to their section. A check that every spec byte appears in the export is also an acceptance criterion. Uses what F1 already stores; no model call. Also drop the 39 Traceability nodes.</td><td>S2, S3, S6</td><td>2–3 days</td></tr>
+      <tr><td><strong>E2</strong></td><td>Work units</td><td>The pack's grouping key: <em>source spec × second-level heading</em>. That is 68 sections across 9 spec files in R18, computed from <code>heading_path</code>. It replaces the 375 fragmented families as the <em>reading</em> unit. Families stay as a secondary index. The order between units comes from <code>depends_on</code> (155 of 396 cross spec boundaries).</td><td>S2, S5</td><td>1 day</td></tr>
+      <tr><td><strong>E3</strong></td><td><code>MAP.md</code></td><td>One small computed file: what to read first (vision and constitution), the units in build order with obligation counts, an index of every contract, the glossary pointer, and the list of settled decisions. Ids resolve to file paths by a fixed rule, so a hop needs no search.</td><td>S1, S2, S5</td><td>1 day</td></tr>
+      <tr><td><strong>E4</strong></td><td>Unit packs in Markdown</td><td>One file per unit, in reading order: obligations (MUST first, with ids), constraints in scope, acceptance criteria, contracts verbatim, decisions with rejected options, context paragraphs, and the terms used with the sentences that define them. Links appear as short id lists; <code>uses_term</code> is dropped. Markdown, not JSONL: repeated JSON keys cost text, and format affects models <a href="#r19">[19]</a>.</td><td>S3, S4, S8</td><td>2 days</td></tr>
+      <tr><td><strong>E5</strong></td><td>Settle before export</td><td>Export refuses while any <em>contradiction</em> is unadjudicated (override with a loud flag). Duplicates are merged into one entry listing both ids. Conflicts judged false are omitted. Real ones appear with the chosen side.</td><td>S4, S6</td><td>0.5 day of code, plus human adjudication time</td></tr>
+      <tr><td><strong>E6</strong></td><td><code>CHECKLIST.md</code> and trace convention</td><td>Every obligation id, grouped by unit, with a box to tick, and the convention <code># spec: N-…</code> in code and <code>test_AC_…</code> in tests. Scoring the checklist against generated code belongs to the harness (step 2), not the compiler.</td><td>S5, S7, S8</td><td>0.5 day</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Total: about 7–8 working days of code and tests</strong>, plus adjudication, which depends on the corpus. It is an estimate, calibrated only by how fast rel01 went.</p>
+
+  <h3><span class="sn">4.3</span>What one pack looks like</h3>
+<pre><code><span class="cm"># unit F4 · 4. Contracts   ·  from sdd/specs/F4_graph_store/spec.md  ·  23 obligations</span>
+<span class="cm">## Obligations  (tick in CHECKLIST.md)</span>
+- [N-000412] MUST  The store writes all files in one transaction ...        → depends on N-000118 (F2)
+- [N-000415] MUST NOT  A partial write ...
+<span class="cm">## Constraints in scope</span>
+- [N-000031] (constitution) Fail loud, never silent ...
+<span class="cm">## Acceptance criteria → tests</span>
+- [AC-4.7 · N-000431] Given ... When ... Then ...                              test_AC_4_7_*
+<span class="cm">## Contracts (verbatim)</span>
+- CT-4.1  node record
+  ```json
+  { "id": "N-000001", "kind": "requirement", ... }
+  ```
+<span class="cm">## Decisions</span>
+- [D24 · N-000219] removed nodes are deleted · rejected: tombstones (reason ...)
+<span class="cm">## Context (verbatim, formed no node)</span>
+&gt; ...
+<span class="cm">## Settled conflicts touching this unit</span>
+- CF-000043 judged false: different components.   CF-000101 real: N-000415 wins (note ...)</code></pre>
+  <p class="svg-faint" style="font-size:var(--fs-sm)">Illustrative shape, not real ids or text.</p>
+
+  <h3><span class="sn">4.4</span>Deliberately not built now</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Idea</th><th>Why not now</th></tr></thead>
+    <tbody>
+      <tr><td>A query server (MCP) over the graph</td><td>Files work with any agent, today, and are what the study can control. A query tool is a later interface on the same export.</td></tr>
+      <tr><td>Model-written summaries or term definitions</td><td>This breaks principle 2. Every model-written sentence in the export is a new hallucination source that the study would then attribute to the graph.</td></tr>
+      <tr><td>Budgeted F7 traversal</td><td>Packs per unit cover from-scratch builds. Budgets matter for editing large existing systems, which is out of scope.</td></tr>
+      <tr><td>Fixing term proliferation</td><td>Real, but E2 routes around it: reading units come from headings, not families.</td></tr>
+      <tr><td>Embeddings and vector retrieval</td><td>The agent does not need search when the map names everything. Similarity also misleads on negations, the design note's P2.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============================================================ PART 5 -->
+<section class="lecture l5" id="p5">
+  <div class="lechead">
+    <span class="lecnum">PART 5</span>
+    <div>
+      <h2>Guardrails: how the graph can win, and how not to fool ourselves</h2>
+      <p>The goal is a graph that does not produce worse code. The way to reach it is by design and pilot, never by how results are reported.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">5.1</span>Where the graph should win, and where it should only tie</h3>
+  <ul>
+    <li><strong>Clean, single-file specs:</strong> expect about a tie. With E1 the agent has the same information; the map and checklist may help coverage a little. Any loss here points to a format problem to fix, and is a reason to run the pilot below.</li>
+    <li><strong>Messy, multi-file specs</strong> (duplicates, refinements scattered across files, contradictions): this is where the export does work the Markdown cannot. It gathers every claim about a unit from every file, shows duplicates once and delivers contradictions already settled. The study's clearest positive result, if there is one, lives here.</li>
+    <li><strong>Smaller models:</strong> ClassEval's finding that incremental generation suits weaker models <a href="#r13">[13]</a> predicts a larger gain for Haiku than for Opus. That is worth stating as a hypothesis in the proposal.</li>
+  </ul>
+
+  <h3><span class="sn">5.2</span>Three checks before any study run</h3>
+  <ol>
+    <li><strong>Coverage check (E1):</strong> 100% of spec bytes appear in the export. If not, the run is invalid.</li>
+    <li><strong>Size check:</strong> total pack characters are no more than the Markdown's characters, and every pack is smaller than a set limit. This is measured, not assumed.</li>
+    <li><strong>Pilot A/B:</strong> one task, one model, Markdown versus export, before committing to the full grid. If the export loses, fix the export, <em>then</em> start the study. That is legitimate development, not tuning on the test set, provided the pilot task is excluded from the reported results.</li>
+  </ol>
+
+  <div class="callout">
+    <span class="lbl">Reporting</span>
+    <p>Whatever the full study finds is reported, including a tie or a loss on some condition. The course brief treats reporting only the runs that worked as misconduct. A controlled null result on clean specs, alongside a gain on messy ones, is also a stronger paper than an unexplained win.</p>
+  </div>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>Why does feeding the rel01 store to an agent make stage S4 worse even though the store holds the same obligations?</li>
+      <li>Which of the six changes protects against compaction (S8), and why does putting obligations on disk work where "reading carefully" does not?</li>
+      <li>Why must <code>MAP.md</code> be computed rather than summarised by a model?</li>
+      <li>On which kind of spec set should the graph be expected only to tie, and why is that not a failure?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ REFERENCES -->
+<section class="lecture l0" id="refs">
+  <div class="lechead">
+    <span class="lecnum">REFS</span>
+    <div>
+      <h2>References</h2>
+      <p>Each was opened on 2026-09-25: abstract or proceedings page, or the documentation page itself. For [11] the taxonomy figures were read from the full HTML text. Complete author lists from the papers before citing in the proposal.</p>
+    </div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Source</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr id="r1"><td>1</td><td>Anthropic. <em>Prompting best practices: long context prompting.</em> Claude Platform docs. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">platform.claude.com</a></td><td>Long documents at the top, query at the end ("up to 30 percent in tests"); XML-tagged documents with source metadata</td></tr>
+      <tr id="r2"><td>2</td><td>Anthropic. <em>Best practices for Claude Code.</em> <a href="https://code.claude.com/docs/en/best-practices">code.claude.com/docs/en/best-practices</a></td><td>Explore, plan, code; give the agent a check it can run; the context fills and performance degrades</td></tr>
+      <tr id="r3"><td>3</td><td>Anthropic (2025-09-29). <em>Effective context engineering for AI agents.</em> <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">anthropic.com/engineering</a></td><td>Attention budget; just-in-time identifiers; compaction risks; note-taking; subagents; progressive disclosure</td></tr>
+      <tr id="r4"><td>4</td><td>Anthropic. <em>How Claude Code works.</em> <a href="https://code.claude.com/docs/en/how-claude-code-works">code.claude.com/docs/en/how-claude-code-works</a></td><td>Agentic loop; what the context window holds; what compaction clears and loses; subagent summaries</td></tr>
+      <tr id="r5"><td>5</td><td>Anthropic. <em>Tools available to Claude.</em> <a href="https://code.claude.com/docs/en/tools-reference">code.claude.com/docs/en/tools-reference</a></td><td>Read partial views; Grep; Glob capped at 100; Agent returns only a final result</td></tr>
+      <tr id="r6"><td>6</td><td>Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, Liang (2024). <em>Lost in the Middle: How Language Models Use Long Contexts.</em> TACL. <a href="https://arxiv.org/abs/2307.03172">arXiv:2307.03172</a></td><td>Position effect in long inputs</td></tr>
+      <tr id="r7"><td>7</td><td>Levy, Jacoby, Goldberg (2024). <em>Same Task, More Tokens: the Impact of Input Length on the Reasoning Performance of Large Language Models.</em> ACL 2024. <a href="https://arxiv.org/abs/2402.14848">arXiv:2402.14848</a></td><td>Reasoning degrades with length, far below the maximum</td></tr>
+      <tr id="r8"><td>8</td><td>Hsieh et al. (2024). <em>RULER: What's the Real Context Size of Your Long-Context Language Models?</em> COLM 2024. <a href="https://arxiv.org/abs/2404.06654">arXiv:2404.06654</a></td><td>Effective context is shorter than claimed</td></tr>
+      <tr id="r9"><td>9</td><td>Hong, Troynikov, Huber (2025-07-14). <em>Context Rot: How Increasing Input Tokens Impacts LLM Performance.</em> Chroma. <a href="https://www.trychroma.com/research/context-rot">trychroma.com/research/context-rot</a></td><td>Non-uniform degradation; distractors compound with length</td></tr>
+      <tr id="r10"><td>10</td><td>Shi, Chen, Misra, Scales, Dohan, Chi, Schärli, Zhou (2023). <em>Large Language Models Can Be Easily Distracted by Irrelevant Context.</em> ICML 2023. <a href="https://arxiv.org/abs/2302.00093">arXiv:2302.00093</a></td><td>Irrelevant text lowers accuracy</td></tr>
+      <tr id="r11"><td>11</td><td>Liu, Liu, Shi, Yang, Zhang, Lian, Li, Ma (2024). <em>Beyond Functional Correctness: Exploring Hallucinations in LLM-Generated Code.</em> Accepted to IEEE TSE. <a href="https://arxiv.org/abs/2404.00971">arXiv:2404.00971</a></td><td>Code-hallucination taxonomy and shares</td></tr>
+      <tr id="r12"><td>12</td><td>Spracklen, Wijewickrama, Sakib, Maiti, Viswanath, Jadliwala (2025). <em>We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs.</em> USENIX Security 2025. <a href="https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen">usenix.org</a></td><td>Invented dependencies: 5.2% commercial, 21.7% open-source (averages, at least)</td></tr>
+      <tr id="r13"><td>13</td><td>Du et al. (2023). <em>ClassEval: A Manually-Crafted Benchmark for Evaluating LLMs on Class-level Code Generation.</em> <a href="https://arxiv.org/abs/2308.01861">arXiv:2308.01861</a></td><td>Class-level is harder; holistic vs incremental by model strength</td></tr>
+      <tr id="r14"><td>14</td><td>Vaswani et al. (2017). <em>Attention Is All You Need.</em> <a href="https://arxiv.org/abs/1706.03762">arXiv:1706.03762</a></td><td>The attention mechanism</td></tr>
+      <tr id="r15"><td>15</td><td>Sennrich, Haddow, Birch (2016). <em>Neural Machine Translation of Rare Words with Subword Units.</em> ACL 2016. <a href="https://arxiv.org/abs/1508.07909">arXiv:1508.07909</a></td><td>Subword (BPE) tokenization</td></tr>
+      <tr id="r16"><td>16</td><td>Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, Press (2024). <em>SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.</em> <a href="https://arxiv.org/abs/2405.15793">arXiv:2405.15793</a></td><td>Interface design changes agent performance</td></tr>
+      <tr id="r17"><td>17</td><td>Aider. <em>Repository map.</em> <a href="https://aider.chat/docs/repomap.html">aider.chat/docs/repomap.html</a></td><td>A ranked, budgeted map of a whole repository</td></tr>
+      <tr id="r18"><td>18</td><td>Edge et al. (2024). <em>From Local to Global: A Graph RAG Approach to Query-Focused Summarization.</em> <a href="https://arxiv.org/abs/2404.16130">arXiv:2404.16130</a></td><td>Pre-computed cluster summaries for whole-corpus questions</td></tr>
+      <tr id="r19"><td>19</td><td>He, Rungta, Koleczek, Sekhon, Wang, Hasan (2024). <em>Does Prompt Formatting Have Any Impact on LLM Performance?</em> <a href="https://arxiv.org/abs/2411.10541">arXiv:2411.10541</a></td><td>Plain text, Markdown, JSON or YAML changes results; larger models are more robust</td></tr>
+    </tbody>
+  </table></div>
+  <p>Related but not used above: RepoCoder (Zhang et al., EMNLP 2023, <a href="https://arxiv.org/abs/2303.12570">arXiv:2303.12570</a>), iterative retrieval for repository-level completion, relevant if the study later covers editing existing code.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Lecture, non-authoritative. Written 2026-09-25. Graph figures measured on <code>trial_01/full-corpus/</code> (R18). Proposals E1–E6 are design input, not decisions; they take effect only when recorded in <code>sdd/design/</code>.</p>
+  </div>
+</footer>

@@ -137,6 +137,12 @@ exit 3
 Pairs judged, replayed, by answer kind, conflicts opened, conflicts closed and their reasons, calls and
 usage. These extend the run record (CT-6.2) and are the raw material for measuring the compiler later.
 
+### 4.10 Adjudication ids (⚑ D21)
+
+| Record | Form | Rule |
+|---|---|---|
+| Adjudication | `ADJ-000001`… | Assigned once, sequential within this store's `adjudications.jsonl`, never reused |
+
 ## 5. Contracts
 
 **CT-6.1 — Q-PAIR answer schema `q-pair/2`** (`/2` asks about a batch, D18)
@@ -214,11 +220,12 @@ conflicts:
   judged link, **when** it is judged again and the answer is `none`, **then** no judged link remains
   between the two nodes; **when** the answer is another relation, **then** only that relation's link
   remains; **when** the answer fails its checks twice, **then** the old link stays. → *integration.*
-- **AC-6.20** *(a human verdict is recorded; G4 §4, D14)* — **Given** an open conflict, **when**
-  `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, **then** `.sdd/adjudications.jsonl`
-  gains a record naming the conflict, the verdict, the note, the members and the `judgment` it
-  answered; **when** the pair is judged again, **then** that verdict reads `stale`; **given** an
-  unknown conflict id, **then** exit `2`. → *unit.*
+- **AC-6.20** *(a human verdict is recorded; G4 §4, D14, D21)* — **Given** an open conflict,
+  **when** `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, **then**
+  `.sdd/adjudications.jsonl` gains a record with id `ADJ-000001`… (sequential within this store),
+  naming the conflict, the verdict, the note, the members and the `judgment` it answered, and the
+  confirmation printed names the file the record was written to; **when** the pair is judged again,
+  **then** that verdict reads `stale`; **given** an unknown conflict id, **then** exit `2`. → *unit.*
 
 **Batch behaviour**
 - **AC-6.9** *(never stops)* — **Given** five candidate pairs where the second and fourth contradict,
@@ -302,6 +309,19 @@ conflicts:
   pair's answer is validated on its own, and a failure re-asks **that pair alone**. With D13's cap,
   the same corpus needs **15 calls instead of 159**. *Rejected:* a larger batch — Q-DESC settled on 8
   (rel01 S21) because a longer call risks the timeout, and a timeout costs the whole batch.
+- **D21 — ⚑ An adjudication id is scoped to its store, like every other id in `.sdd/`, and the CLI
+  says so** (found reviewing `trial_01`, comparing `adjudications.jsonl` across several stores). F1
+  §4.8 and F2 §4.8 already scope `N-`, `CF-`, `J-`, `RV-`, `B-` and `R-` to one store; §4.9's ids
+  inherited the same rule in code (`ADJ-{n:06d}`, counted per file) without a spec ever saying so —
+  no table named the format at all, unlike every other record kind. Two unrelated `.sdd/` stores each
+  start their own `ADJ-000001`; seeing the same id in two files (e.g. two of this repository's own
+  measurement runs) means nothing without also naming which store. *Not a defect in the numbering
+  itself* — a global counter would need every store to agree on a starting point, which the design
+  explicitly avoids elsewhere (F1 D12). The one real gap was legibility: `sddc conflicts judge`'s
+  confirmation printed the bare id with no file, the one place a person meets it. Fixed: the
+  confirmation now names the file. *Rejected:* a globally-unique id (a UUID, or a hash of the store
+  path) — inconsistent with every other id kind, and adjudications are never compared *across* stores
+  by anything in rel01.
 - **D20 — ⚑ A re-judged pair keeps only its latest verdict's links** (I-91, found while fixing I-89).
   §4.6 closed the record when a pair was re-judged `none`, but its `conflicts_with` link — with the
   old judgment id — stayed in the graph, and a `refines` re-judged as `depends_on` left both links.
@@ -379,5 +399,5 @@ conflicts:
 | AC-6.21 · D16, D17 (R19) | `tests/test_conflicts_judge.py::test_i77_…`, `::test_r19_…` · `tests/test_conflicts_pipeline.py::test_r19_…` | `src/sdd_compiler/conflicts/records.py` · `judge.py` · `pipeline.py` |
 | AC-6.22, AC-6.23 · D19 (I-81) | `tests/test_conflicts_judge.py::test_ac_6_22_…` (3), `::test_ac_6_23_…` (3) | `src/sdd_compiler/conflicts/records.py::outcome_for` · `_criterion_in_its_own_spec` |
 | AC-6.24 · D20 (I-91) | `tests/test_compile.py::test_ac_6_24_…` (2) · `tests/test_conflicts_pipeline.py::test_ac_6_24_…` | `src/sdd_compiler/conflicts/pipeline.py` (`judged_pairs`) · `src/sdd_compiler/pipeline.py::_apply_check` |
-| AC-6.20 · D14 (T19) | `tests/test_adjudicate.py` (9) | `src/sdd_compiler/conflicts/adjudicate.py` · `commands.py` · `cli.py` |
+| AC-6.20 · D14, D21 (T19) | `tests/test_adjudicate.py` (11) | `src/sdd_compiler/conflicts/adjudicate.py` · `commands.py` · `cli.py` |
 | AC-6.10, AC-6.11 · D9 (T18) | `tests/test_report.py` (12), goldens `tests/golden/report_*.md` | `src/sdd_compiler/report.py` · `src/sdd_compiler/commands.py` |

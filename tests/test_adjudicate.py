@@ -128,3 +128,29 @@ def test_the_precision_numbers_are_countable_from_the_file(compiled):
     judged = verdicts_for(store)
     assert sum(1 for v in judged.values() if v["verdict"] == "real" and not v["stale"]) == 1
     assert len(load_graph(store).conflicts) == 1
+
+
+def test_d21_the_confirmation_names_the_file_the_record_was_written_to(compiled, capsys):
+    """F6 D21: the printed id is meaningless without the store — say where it landed."""
+    commands.conflicts(compiled, judge="CF-000001", verdict="real", note="both cannot hold")
+    out = capsys.readouterr().out
+    assert str(compiled / ".sdd" / "adjudications.jsonl") in out
+    assert "ADJ-000001" in out
+
+
+def test_d21_two_stores_each_start_their_own_counter(compiled, tmp_path_factory):
+    """Not a defect: adjudication ids are scoped to their store, like every other `.sdd/` id."""
+    other = tmp_path_factory.mktemp("other")
+    spec = other / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.parent.mkdir(parents=True)
+    spec.write_text(f"## Sharing\n\n{EXPIRY}\n\n{REVOKE}\n", encoding="utf-8")
+    commands.init(other)
+    compile_graph(other, backend=FakeBackend([
+        atom_answer(("B-000001", EXPIRY), ("B-000002", REVOKE)),
+        {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created"),
+                   desc("B-000002#1", REVOKE, "be revocable")]},
+        contradiction(),
+    ]))
+    a = record_adjudication(compiled / ".sdd", "CF-000001", "real")
+    b = record_adjudication(other / ".sdd", "CF-000001", "false")
+    assert a["id"] == b["id"] == "ADJ-000001"     # same id, unrelated stores — expected, not a clash

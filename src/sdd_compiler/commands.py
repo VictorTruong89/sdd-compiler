@@ -107,8 +107,11 @@ def conflicts(root: Path, as_json: bool = False, judge: str | None = None,
         if verdict is None:
             raise SddcError("judging a conflict needs --verdict real|false", ExitCode.USAGE)
         record = record_adjudication(store, judge, verdict, note=note)
-        _say(f"{record['id']}: {record['conflict']} judged {record['verdict']}"
-             + (f" — {record['note']}" if record["note"] else ""), record, as_json)
+        # F6 D21: the id alone means nothing outside its store — name the file (`sddc conflicts
+        # judge` is the one place a person meets an adjudication id).
+        _say(f"{store / 'adjudications.jsonl'}  {record['id']}: {record['conflict']} judged "
+             f"{record['verdict']}" + (f" — {record['note']}" if record["note"] else ""),
+             record, as_json)
         return ExitCode.OK
 
     graph = load_graph(store)

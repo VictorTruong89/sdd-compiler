@@ -283,9 +283,41 @@ its usage included.
 |---|---|---|
 | **F1** | `pending` 0, `conflicts.unjudged` 0, `incomplete` false | ⚠ **`unjudged` 0 and `incomplete` false; `pending` is 1** — one block, B-000243 (F2 D12's `*Rejected:*` sentence), fails G3 on every retry (I-84; six others cleared on retry). Strictly **not met**; owner to rule whether one unatomizable block of 845 fails the line |
 | **F2** | `check_store` clean | ✅ **clean** — with the counters check that now covers `judgment` (I-83) |
-| **F3** | ≥ 25 of 100 sampled conflicts judged real | ⬜ **pending adjudication.** Sample drawn 2026-09-24: `random.Random(20260922).sample(sorted open ids, 100)` — seed = the pass-line date, fixed before drawing; population 381; ids in `measurements/R18_sample.txt`. ⚠ Disclosure: the first ~19 records of group 1 were displayed while saving `R18_conflicts.txt`, before the draw; the draw is mechanical and the seed was chosen a priori, so this cannot steer which records are sampled |
+| **F3** | ≥ 25 of 100 sampled conflicts judged real | ❌ **0 of 100.** Sample drawn 2026-09-24: `random.Random(20260922).sample(sorted open ids, 100)` — seed = the pass-line date, fixed before drawing; population 381; ids in `measurements/R18_sample.txt`. ⚠ Disclosure: the first ~19 records of group 1 were displayed while saving `R18_conflicts.txt`, before the draw; the draw is mechanical and the seed was chosen a priori, so this cannot steer which records are sampled |
 
-*(M2 — adjudication of the 100, then the owner's confirmation.)*
+**M2 — full result, adjudicated 2026-09-27:** rather than stop at the 100-sample, every one of the
+**381 open conflicts** was adjudicated (`.sdd/adjudications.jsonl`, `check_store` clean throughout).
+**1 of 381 (0.26 %) judged real** — and it falls outside the drawn 100, so the sampled result and the
+full-population result agree: **0 real in the sample, 1 real overall.**
+
+| Verdict | Record | Why |
+|---|---|---|
+| **real** | **CF-000119** | F2 `N-159` and F4 `N-445` independently state the identical MUST-level fact — while a conflict record is open, every member lists it in `conflict_ids` — with no cross-reference between the two specs. A documentation-drift risk, not a functional bug |
+| false × 380 | — | Nine recurring atomization-artifact shapes account for the rest — see build-plan **I-93** for the taxonomy and its correction. The dominant one, by a wide margin: acceptance-criterion rows describing different situations (different exit codes, different table rows, different branches) read as if both held for one node at once |
+
+**Reader: Claude; owner confirms** (same protocol as M2 in §3 and §7).
+
+⚠ **F3 fails, decisively, not narrowly** — 0 of 25 needed, on both the drawn sample and the full
+population. §8's own warning at the top of this section said failing F3 "while the machine works is
+the expected outcome" on this corpus; that is what happened, more completely than the ≈10 % of the
+dogfood (§7) predicted. The cause is the same one §7 already named — acceptance criteria and decision
+entries read against their own restatements — now confirmed at full-corpus scale rather than a 39-item
+sample, with a complete taxonomy of the shapes it takes (build-plan I-93).
+
+### Verdict — the full-corpus M4 gate fails, against the pass line in §8
+
+| # | Condition | Result |
+|---|---|---|
+| **F1** | `pending` 0, `conflicts.unjudged` 0, `incomplete` false | ⚠ **Not met** — `pending` is 1 (B-000243, I-84); owner to rule whether one unatomizable block of 845 fails the line |
+| **F2** | `check_store` clean | ✅ **Met** |
+| **F3** | ≥ 25 of 100 sampled conflicts judged real | ❌ **Not met** — 0 of 100 sampled, 1 of 381 overall |
+
+**What this gate establishes:** F6's judgments are not the weak point — 4,251 verdicts and `check_store`
+clean across sixteen rounds says the pipeline is mechanically sound at this scale. The weak point is
+precision on dense, cross-referencing prose: the compiler cannot yet tell an acceptance criterion from
+the rule it verifies, or a decision heading from its own body, at the rate real spec documents produce
+those pairs. That is the same lever §7 pointed at (`verifies` resolution, decision-heading linkage) —
+this run turns it from a ≈10 % sample estimate into a measured, complete, full-corpus finding.
 
 ---
 

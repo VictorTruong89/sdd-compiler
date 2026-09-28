@@ -57,8 +57,8 @@ Purpose 1 comes first: an agent cannot be helped by a spec set nobody has checke
 | Trigger | One command, run by a person | Editor and agent hooks; compile on save |
 | Conflicts | Detected across the whole set, **recorded and reported together at the end of the run** | Immediate feedback while specs are being written; an agent that fixes its own conflict before continuing |
 | Model | Haiku through headless Claude Code (default) or the Anthropic API | Local models as assistants |
-| Output | The graph, a conflict report, and generated human views | Context packs for code generation; an interactive viewer |
-| Code generation | Designed, not built | Built |
+| Output | The graph, a conflict report, generated human views, and an **agent export**: map, context packs and checklist for code generation (rel01 D34, F7) | An interactive viewer; query interfaces over the export |
+| Code generation | **Not run by the compiler.** A separate agent builds code from the agent export (rel01 D34) | A harness that runs and scores that step |
 | Versioning, multi-author, design-vs-as-built comparison | Out | In |
 
 **rel01 in one sentence:** *point it at a folder of spec files, and get back a graph plus a list of
