@@ -153,7 +153,7 @@ never written independently.
 
 | Record | Form | Rule |
 |---|---|---|
-| Node | `N-000001`… · or an adopted human id (e.g. `AC-1.4`) | Assigned once, never reused. A human id found in the source is adopted if unique (P-12). A duplicate human id is a build error |
+| Node | `N-000001`… · or an adopted human id (e.g. `AC-1.4`, `CT-1.1`) | Assigned once, never reused. A human id found in the source is adopted if unique (P-12). A duplicate human id is a build error. A contract block (F3 D39) adopts the `CT-` id of its title paragraph (D21) |
 | Term | `term:<snake_case>` | Derived from the canonical name when created. Never renamed; renames become aliases |
 | Conflict | `CF-000001` | Assigned once |
 | Link | Key `(from, type, to)` | Unique per key |
@@ -352,6 +352,10 @@ record is `open`.
 - **AC-2.19** *(human id adoption)* — **Given** an atom whose source carries a unique human id
   `AC-1.4`, **then** the node id is `AC-1.4`; **given** two sources carrying `AC-1.4`, **then** the
   build fails naming both locations. → *unit.*
+- **AC-2.29** *(a contract takes its title's id; D21)* — **Given** a title paragraph
+  `**CT-1.1 — Block record** (one JSON object per line):` that forms one node, followed by a fenced
+  `json` block, **when** compiled, **then** the contract node's id is `CT-1.1`, the title's node has an
+  `N-` id and `label: "CT-1.1"`, and the build does not fail on a duplicate id. → *integration.*
 - **AC-2.20** *(deleted ids never reused)* — **Given** node `N-000007` is deleted, **when** later nodes
   are created, **then** the id counter continues past the highest id ever issued and `N-000007` is never
   issued again. → *property.*
@@ -404,6 +408,15 @@ record is `open`.
   acceptance criteria formed several nodes, so without the field the id survived only inside the
   text. *Rejected:* (a) text only — "which nodes came from AC-1.8" would need a text search; (b)
   suffixed ids (`AC-1.8.1`) — a new id form and a constitution change for what a field does.
+- **D21 — ⚑ A contract block takes its title's `CT-` id** (I-92 a, owner 2026-09-27). A fenced
+  contract block (F3 D39) has no id of its own: the id is in the paragraph directly before it —
+  `**CT-1.1 — Block record** (…)`. The block adopts that id, so the node is `CT-1.1`, and it is the
+  id's one carrier for the duplicate rule. The title paragraph's own nodes, if it forms any, carry
+  `label: "CT-1.1"` with `N-` ids. *Why:* the contract *is* what `CT-1.1` names, and a criterion that
+  cites `CT-1.4` then resolves `verifies` to it (D13). On R18 the 22 titled contract blocks each sit
+  directly after their title, and none of the 23 `CT-` titles formed a node. *Rejected:* `N-` ids with
+  the title as `label` only — "show me CT-2.1" would need a label lookup for the one id family made to
+  be adopted.
 - **D13 — Code fills `scope_selector` and `verifies` from answers already given** (closes Q3, option b;
   §4.4). *Why:* both fields feed placement (family rules 3, 4) and retrieval (F5 S3), and nothing
   produced them; the atomizer already tags scope terms, and the `label` field (D12) makes a cited

@@ -93,10 +93,10 @@ class Judge:
                       cost_usd=0.0, duration_ms=0, cli_version=None)
 
 
-def run_check(graph, answers, lock, *, budget=None, run_id="R-000002"):
+def run_check(graph, answers, lock, *, budget=None, run_id="R-000002", contracts=frozenset()):
     backend = Judge(list(answers), budget=budget)
     return check(graph, backend=backend, retrieval=RETRIEVAL, settings=CONFLICTS,
-                 run_id=run_id, lock=lock), backend
+                 run_id=run_id, lock=lock, contracts=contracts), backend
 
 
 @pytest.fixture()
@@ -334,9 +334,10 @@ def test_ac_6_19_judged_plus_replayed_equals_the_candidate_pairs(lock, tmp_path)
     second, _ = run_check(graph, [answer(relation="none")], again, run_id="R-000003")
     assert second.counts["pairs_replayed"] == 3
     assert second.counts["pairs_judged"] + second.counts["pairs_replayed"] == second.counts["candidates"]
-    assert sorted(second.counts) == ["by_relation", "calls", "candidates", "closed", "incomplete",
-                                     "opened", "pairs_judged", "pairs_replayed", "provisional",
-                                     "retrieval", "suppressed", "unjudged_failed"]   # F6 D12, D16
+    assert sorted(second.counts) == ["by_relation", "calls", "candidates", "closed", "failed",
+                                     "incomplete", "opened", "pairs_judged", "pairs_replayed",
+                                     "provisional", "quotes_replaced", "retrieval", "suppressed",
+                                     "unjudged_failed"]   # F6 D12, D16, D22, D23
 
 
 def test_a_guard_failure_on_one_pair_leaves_the_rest_judged(lock):
@@ -386,3 +387,70 @@ def test_ac_6_24_a_pair_that_failed_twice_is_not_counted_as_judged(lock):
     assert result.judged_pairs == []
     good, _ = run_check(graph, [answer()], JudgmentLock(lock.store, start=lock.counter, run_id="R-000003"))
     assert good.judged_pairs == [("N-000001", "N-000002")]
+
+
+def test_ac_6_25_the_reason_a_pair_failed_twice_is_kept(lock):
+    """F6 D22 (I-94): 67 pairs failed on the live contract run and nothing said why."""
+    graph = graph_of(node("N-000001", A, line=1), node("N-000002", B, line=2))
+    bad = answer(quote_a="this phrase is not in the node")
+    result, _ = run_check(graph, [bad, bad], lock)
+    assert result.counts["unjudged_failed"] == 1
+    [failure] = result.counts["failed"]
+    assert failure["pair"] == "N-000001|N-000002"
+    assert "this phrase is not in the node" in failure["problem"]
+
+
+CONTRACT = '{ "share link": "https://…",\n  "expires_at": "ISO-8601" }'
+
+
+def contract_node(node_id, *, file="specs/sharing.md", line=9):
+    record = node(node_id, CONTRACT, line=line)
+    record["source"] = {**record["source"], "file": file}
+    return record
+
+
+def test_ac_6_26_a_contracts_unfound_quote_is_replaced_not_re_asked(lock):
+    """F6 D23 (I-94): 102 contract pairs failed on the live run over quotes like key lists."""
+    graph = graph_of(contract_node("CT-9.1"), node("N-000002", A, line=2))
+    keys = answer(relation="none", quote_a='"share link", "expires_at"', quote_b="share link")
+    result, backend = run_check(graph, [keys], lock, contracts=frozenset({"CT-9.1"}))
+    assert len(backend.asked) == 1 and result.counts["unjudged_failed"] == 0
+    assert result.counts["quotes_replaced"] == 1
+    assert result.counts["pairs_judged"] == 1
+
+
+def test_ac_6_26_a_prose_nodes_unfound_quote_is_still_re_asked(lock):
+    graph = graph_of(contract_node("CT-9.1"), node("N-000002", A, line=2))
+    bad = answer(relation="none", quote_a="share link", quote_b="not in the prose node")
+    result, backend = run_check(graph, [bad, bad], lock, contracts=frozenset({"CT-9.1"}))
+    assert len(backend.asked) == 2 and result.counts["unjudged_failed"] == 1
+    assert result.counts["quotes_replaced"] == 0
+
+
+def test_ac_6_26_the_replaced_quote_is_the_contracts_text(lock):
+    graph = graph_of(contract_node("CT-9.1"), node("N-000002", A, line=2))
+    keys = answer(relation="duplicates", quote_a='"share link", "expires_at"', quote_b="share link")
+    other = {**graph.nodes["CT-9.1"], "source": {**graph.nodes["CT-9.1"]["source"], "file": "specs/b.md"}}
+    graph.nodes["CT-9.1"] = other                       # another file, so D24 does not apply
+    result, _ = run_check(graph, [keys], lock, contracts=frozenset({"CT-9.1"}))
+    [record] = result.conflicts.values()
+    assert record["quotes"]["CT-9.1"] == CONTRACT
+
+
+@pytest.mark.parametrize("relation, opened", [("duplicates", False), ("subsumes", False),
+                                              ("contradicts", True)])
+def test_ac_6_27_a_contract_does_not_duplicate_its_own_spec(lock, relation, opened):
+    graph = graph_of(contract_node("CT-9.1"), node("N-000002", A, line=2))
+    verdict = answer(relation=relation, direction="symmetric" if relation != "subsumes" else "a_to_b")
+    result, _ = run_check(graph, [verdict], lock, contracts=frozenset({"CT-9.1"}))
+    assert bool(result.conflicts) is opened
+    assert result.counts["suppressed"] == (0 if opened else 1)
+    if not opened:
+        assert result.links == []
+
+
+def test_ac_6_27_a_contract_in_another_file_can_duplicate(lock):
+    graph = graph_of(contract_node("CT-9.1", file="specs/other.md"), node("N-000002", A, line=2))
+    result, _ = run_check(graph, [answer(relation="duplicates")], lock,
+                          contracts=frozenset({"CT-9.1"}))
+    assert [r["kind"] for r in result.conflicts.values()] == ["duplication"]

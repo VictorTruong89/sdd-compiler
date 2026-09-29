@@ -111,18 +111,28 @@ def heading_skipped(heading_path: Sequence[str], skip_headings: Sequence[str]) -
     return any(_SECTION_NUMBER.sub("", heading).strip().lower() in wanted for heading in heading_path)
 
 
+def fence_language(record: dict[str, Any]) -> str | None:
+    """A code block's language: the first word after its opening fence, lower-cased (F1 D15)."""
+    if record.get("kind") != "code":
+        return None
+    first = record["text"].lstrip().split("\n", 1)[0].lstrip("`~").split()
+    return first[0].lower() if first else None
+
+
 def atomizable(record: dict[str, Any], include_code: bool = False,
-               skip_headings: Sequence[str] = ()) -> bool:
-    """A live block the profile lets the atomizer see (F1 D13, D14)."""
+               skip_headings: Sequence[str] = (), contract_languages: Sequence[str] = ()) -> bool:
+    """A live block the profile lets the atomizer see (F1 D13, D14, D15)."""
     return (is_live(record)
-            and (record["kind"] != "code" or include_code)
+            and (record["kind"] != "code" or include_code
+                 or fence_language(record) in {language.lower() for language in contract_languages})
             and not heading_skipped(record.get("heading_path") or [], skip_headings))
 
 
 def pending_status(record: dict[str, Any], include_code: bool = False,
-                   skip_headings: Sequence[str] = ()) -> str | None:
+                   skip_headings: Sequence[str] = (),
+                   contract_languages: Sequence[str] = ()) -> str | None:
     """F1 D13 — `new` or `changed` if the atomizer still owes this block work, else None."""
-    if not atomizable(record, include_code, skip_headings):
+    if not atomizable(record, include_code, skip_headings, contract_languages):
         return None
     atomized = record.get("atomized_hash")
     if atomized == record["text_hash"]:

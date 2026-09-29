@@ -64,7 +64,10 @@ family and source location, and it must answer with exactly one relation kind:
 | `contradicts` | Both cannot hold | Conflict record, kind `contradiction`, and a `conflicts_with` link |
 
 Every answer carries a `rationale` and a quote from each node. A quote that is not found verbatim in
-that node's text fails guard G2 and is re-asked once (F3 §4.3, §4.4).
+that node's text fails guard G2 and is re-asked once (F3 §4.3, §4.4). A pair whose answer fails
+twice is counted in `unjudged_failed` and listed in `failed` with the reason the last answer was
+rejected (D22). **Except for a contract** (F3 D39): a quote from a contract node that is not found
+becomes the contract's whole text, and the run counts one `quotes_replaced` (D23).
 
 ### 4.3 What a conflict record holds
 
@@ -161,6 +164,7 @@ adds ambiguity `low_confidence_verdict` to both nodes rather than suppressing th
 **CT-6.2 — Run record additions**
 ```json
 { "conflicts": {"candidates": 0, "pairs_judged": 0, "pairs_replayed": 0, "unjudged_failed": 0,
+                "failed": [{"pair": "N-000017|N-000042", "problem": "string"}], "quotes_replaced": 0,
                 "provisional": 0, "retrieval": {},
                 "by_relation": {"none": 0, "refines": 0, "depends_on": 0, "duplicates": 0,
                                 "subsumes": 0, "contradicts": 0},
@@ -220,6 +224,19 @@ conflicts:
   judged link, **when** it is judged again and the answer is `none`, **then** no judged link remains
   between the two nodes; **when** the answer is another relation, **then** only that relation's link
   remains; **when** the answer fails its checks twice, **then** the old link stays. → *integration.*
+- **AC-6.25** *(why a pair failed is kept; D22)* — **Given** a pair whose Q-PAIR answer fails G2
+  twice, **when** the check phase runs, **then** `unjudged_failed` is 1 and `failed` lists that pair
+  as `"<a>|<b>"` with the reason the second answer was rejected. → *unit.*
+- **AC-6.26** *(a contract's unfound quote is replaced; D23)* — **Given** a pair of a contract node and
+  a prose node, and a Q-PAIR answer whose quote for the contract is a key list not in its text, **then**
+  the verdict is accepted without a re-ask, its quote for the contract is the contract's text, and
+  `quotes_replaced` is 1; **given** the same bad quote for the prose node, **then** it is re-asked.
+  → *unit.*
+- **AC-6.27** *(a contract does not duplicate its own spec; D24)* — **Given** a contract node and a
+  prose node from the **same file**, **when** the judge answers `duplicates` or `subsumes`, **then** no
+  record and no link are made and the run counts one `suppressed`; **when** it answers `contradicts`,
+  **then** the record is opened; **given** the two are in different files, **then** a `duplicates`
+  verdict opens a record. → *unit.*
 - **AC-6.20** *(a human verdict is recorded; G4 §4, D14, D21)* — **Given** an open conflict,
   **when** `sddc conflicts judge CF-000001 --verdict real --note "…"` runs, **then**
   `.sdd/adjudications.jsonl` gains a record with id `ADJ-000001`… (sequential within this store),
@@ -309,6 +326,26 @@ conflicts:
   pair's answer is validated on its own, and a failure re-asks **that pair alone**. With D13's cap,
   the same corpus needs **15 calls instead of 159**. *Rejected:* a larger batch — Q-DESC settled on 8
   (rel01 S21) because a longer call risks the timeout, and a timeout costs the whole batch.
+- **D23 — ⚑ A contract's unfound quote is replaced in Q-PAIR too** (I-94 round 2, owner 2026-09-28).
+  F3 D40, applied to the judge: on the live run 110 pairs failed twice, 109 on "quote not verbatim",
+  102 of them touching a contract — key lists, "MUST conform to the JSON schema shown: …", `...`
+  elisions. A failed pair is never locked, so every later compile would ask it again. A quote from a
+  contract that is not found becomes the contract's whole text, which is verbatim by construction; the
+  other node's quote is still checked. *Rejected:* failing them — the cost recurs on every run and the
+  pairs are never judged.
+- **D24 — ⚑ A contract does not duplicate or subsume its own spec** (I-94, owner 2026-09-28). D19's
+  lever for contracts: a `duplicates` or `subsumes` verdict between a contract node (F3 D39) and a node
+  of the **same file** records nothing and is counted as `suppressed`. *Why:* a spec states a contract
+  and then writes rules about its fields; on the live runs all 12 such records were false (the
+  contract against a rule restating part of it). **Contradictions are still reported:** both real
+  finds of those runs were contradictions — CF-000384 (CT-5.1's example sums to 4.5, not its 5.5) and
+  CF-000387 (CT-6.2 has no `suppressed` field). A replayed verdict passes the same rule, so an old
+  record of this kind closes at no cost.
+- **D22 — ⚑ The run keeps why each unjudged pair failed** (I-94, owner 2026-09-28). The live contract
+  run left 67 of 149 asked pairs `unjudged_failed`, and nothing recorded why, so the cause could only
+  be guessed. `failed` lists each such pair and the reason its last answer was rejected. *Rejected:*
+  a log file — the run's JSON is where a count already lives, and a reason next to its count is read.
+
 - **D21 — ⚑ An adjudication id is scoped to its store, like every other id in `.sdd/`, and the CLI
   says so** (found reviewing `trial_01`, comparing `adjudications.jsonl` across several stores). F1
   §4.8 and F2 §4.8 already scope `N-`, `CF-`, `J-`, `RV-`, `B-` and `R-` to one store; §4.9's ids
@@ -399,5 +436,7 @@ conflicts:
 | AC-6.21 · D16, D17 (R19) | `tests/test_conflicts_judge.py::test_i77_…`, `::test_r19_…` · `tests/test_conflicts_pipeline.py::test_r19_…` | `src/sdd_compiler/conflicts/records.py` · `judge.py` · `pipeline.py` |
 | AC-6.22, AC-6.23 · D19 (I-81) | `tests/test_conflicts_judge.py::test_ac_6_22_…` (3), `::test_ac_6_23_…` (3) | `src/sdd_compiler/conflicts/records.py::outcome_for` · `_criterion_in_its_own_spec` |
 | AC-6.24 · D20 (I-91) | `tests/test_compile.py::test_ac_6_24_…` (2) · `tests/test_conflicts_pipeline.py::test_ac_6_24_…` | `src/sdd_compiler/conflicts/pipeline.py` (`judged_pairs`) · `src/sdd_compiler/pipeline.py::_apply_check` |
+| AC-6.26, AC-6.27 · D23, D24 (I-94) | `tests/test_conflicts_pipeline.py::test_ac_6_26_*`, `::test_ac_6_27_*` | `src/sdd_compiler/conflicts/judge.py::_verdict` · `records.py::outcome_for` · `pipeline.py` · `src/sdd_compiler/pipeline.py` |
+| AC-6.25 · D22 (I-94) | `tests/test_conflicts_pipeline.py::test_ac_6_25_*` | `src/sdd_compiler/conflicts/pipeline.py` |
 | AC-6.20 · D14, D21 (T19) | `tests/test_adjudicate.py` (11) | `src/sdd_compiler/conflicts/adjudicate.py` · `commands.py` · `cli.py` |
 | AC-6.10, AC-6.11 · D9 (T18) | `tests/test_report.py` (12), goldens `tests/golden/report_*.md` | `src/sdd_compiler/report.py` · `src/sdd_compiler/commands.py` |

@@ -27,12 +27,13 @@ from ..model.ids import IdCounter, adopt_human_ids, find_human_id, find_local_la
 from ..model.layers import LAYER_OF_QUESTION
 from ..model.placement import Placement, place
 from ..model.schema import validate
+from .contracts import annotate, contract_atom
 from .definitions import Definition, block_definitions
 from .describe import DescribeItem, describe_atoms
 from .align import NewAtom, align
 from .forming import NodeDraft, block_annotations, layer_hint, resolve_verifies
 from .placement_types import PlacedAtom
-from .qatom import Atom, atomize_blocks
+from .qatom import Atom, AtomizeOutcome, atomize_blocks
 from .terms import TermResolution, normalize_name, resolve_terms
 
 DEFAULT_BLOCK_BATCH = 20     # blocks per Q-ATOM call (measured, rel01 S20)
@@ -52,6 +53,7 @@ class GraphDraft:
     annotations_dropped: list[dict[str, Any]] = field(default_factory=list)   # F3 D35 (I-67)
     definitions: list[Definition] = field(default_factory=list)          # F3 D38, completed blocks
     definitions_dropped: list[dict[str, Any]] = field(default_factory=list)   # quote not in its block
+    quotes_replaced: list[dict[str, Any]] = field(default_factory=list)  # F3 D40, contract quotes
     stopped: str | None = None                                            # "call_cap" | "backend"
     stop_reason: str | None = None
     counters: dict[str, int] = field(default_factory=dict)
@@ -80,9 +82,13 @@ def atomize_pending(
     block_batch: int = DEFAULT_BLOCK_BATCH,
     previous: Mapping[str, Sequence[Mapping[str, Any]]] | None = None,
     lock: Any | None = None,
+    contract_languages: Sequence[str] = (),
+    all_blocks: Sequence[Mapping[str, Any]] | None = None,
 ) -> GraphDraft:
-    """`previous`: a changed block's old nodes, which its new atoms are aligned to (F3 §4.6)."""
+    """`previous`: a changed block's old nodes, which its new atoms are aligned to (F3 §4.6).
+    `all_blocks`: every live block, where a contract finds its lead (F3 §4.5a); default `blocks`."""
     draft = GraphDraft()
+    blocks = annotate(blocks, all_blocks if all_blocks is not None else blocks, contract_languages)
     node_ids = IdCounter("N-", start=(counters or {}).get("N", 0))
     review_ids = IdCounter("RV-", start=(counters or {}).get("RV", 0))
     known_terms: dict[str, Mapping[str, Any]] = dict(registry or {})
@@ -157,6 +163,7 @@ def atomize_pending(
                 if node_id in existing or any(d.node_id == node_id for d in node_drafts):
                     raise SddcError(f"node id {node_id} is already in use (F2 §4.8)", ExitCode.INPUT)
                 terms = _resolved_terms(piece, chunk.terms, known_terms)
+                draft.quotes_replaced += [{**r, "node": node_id} for r in piece.description.replaced]
                 node_drafts.append(NodeDraft(
                     node_id=node_id, placed=piece, block=block, terms=terms,
                     label=labels.get(block_id) or find_local_label(block),   # F2 D12, D20
@@ -196,7 +203,10 @@ def _run_chunk(
 ) -> _Chunk:
     chunk = _Chunk()
     aliases = {t["canonical"]: list(t.get("aliases", [])) for t in known_terms.values()}
-    atomized = atomize_blocks(list(blocks), backend, lock=lock)
+    # F3 §4.5a: a contract is formed whole by code; only prose goes to Q-ATOM.
+    prose = [block for block in blocks if "contract" not in block]
+    atomized = atomize_blocks(prose, backend, lock=lock) if prose else AtomizeOutcome()
+    atomized.atoms += [contract_atom(block) for block in blocks if "contract" in block]
     chunk.failed.update(atomized.failures)
     chunk.annotations.update(atomized.annotations)
     chunk.empty.update(atomized.empty)
@@ -265,7 +275,8 @@ def _describe_and_place(
 ) -> dict[str, Any]:
     """Block id → its placed atoms, or the split that stopped it. Failed blocks go to `failed`."""
     items = [
-        DescribeItem(f"{block_id}#{n}", atom, by_id[block_id])
+        DescribeItem(f"{block_id}#{n}", atom, by_id[block_id], contract="contract" in by_id[block_id],
+                     lead=(by_id[block_id].get("contract") or {}).get("lead"))
         for block_id, atoms in atoms_by_block.items()
         for n, atom in enumerate(atoms, start=1)
     ]
@@ -302,10 +313,11 @@ def _describe_and_place(
 
 
 def one_claim_block(block: Mapping[str, Any]) -> bool:
-    """A block whose own form says it holds exactly one claim: a table row (F3 D34) or a block
-    labelled `AC-…` (F3 D28)."""
+    """A block whose own form says it holds exactly one claim: a table row (F3 D34), a block
+    labelled `AC-…` (F3 D28) or a contract (F3 D39)."""
     label = find_human_id(block)
-    return block.get("kind") == "table_row" or bool(label and label.startswith("AC-"))
+    return (block.get("kind") == "table_row" or "contract" in block
+            or bool(label and label.startswith("AC-")))
 
 
 def one_criterion(block: Mapping[str, Any], atoms: Sequence[Atom]) -> list[Atom]:

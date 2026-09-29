@@ -624,3 +624,100 @@ def test_ac_3_34_a_newly_skipped_section_loses_its_nodes_without_a_model_call(tm
     assert row["atomized_hash"] is None
     assert status(tmp_path)["counts"]["pending"] == 0
     assert check_store(store) == []
+
+
+# -- contract blocks (F3 §4.5a, D39; F2 D21; I-92 a) ------------------------------
+
+CT_BODY = '{ "id": "B-000123",\n  "text": "exact source text" }'
+
+
+def contract_desc(atom_id, subject_quote, layer_quote, name="block record"):
+    answers = {f"Q{n}": dict(NO) for n in range(1, 8)}
+    answers["Q6"] = {"answer": "yes", "quote": layer_quote}
+    return {"atom_id": atom_id,
+            "canonical": {"state": None, "trigger": None, "scope": None, "subject": name,
+                          "modality": "MUST", "response": "have this shape"},
+            "layer_answers": answers,
+            "terms": [{"name": name, "kind": "data", "role": "subject", "quote": subject_quote}],
+            "ambiguity": [], "scope_layers": [], "scope_description": None,
+            "verifies_text": None, "decision": None}
+
+
+def contract_repo(tmp_path, text):
+    spec = tmp_path / "sdd" / "specs" / "F9_demo" / "spec.md"
+    spec.parent.mkdir(parents=True)
+    spec.write_text(text, encoding="utf-8")
+    init(tmp_path)
+    return tmp_path
+
+
+def test_ac_3_35_a_contract_block_is_one_node_named_by_its_title(tmp_path):
+    repo = contract_repo(tmp_path, "## 5. Contracts\n\n**CT-1.1 — Block record** (`.sdd/blocks.jsonl`):\n\n"
+                                   f"```json\n{CT_BODY}\n```\n")
+    backend = FakeBackend([
+        {"blocks": [{"block_id": "B-000001", "atoms": [],
+                     "sentences": [{"quote": "**CT-1.1 — Block record** (`.sdd/blocks.jsonl`):",
+                                    "role": "context"}]}]},
+        {"atoms": [contract_desc("B-000002#1", "Block record", '"id": "B-000123"')]}, *no_conflicts()])
+    result = compile_graph(repo, backend=backend)
+    assert result.exit_code == ExitCode.OK
+    atom_questions = [q.payload["block_ids"] for q in backend.asked if q.kind == "q-atom"]
+    assert atom_questions == [["B-000001"]]                          # the contract is never asked
+    node = load_graph(repo / ".sdd").nodes["CT-1.1"]
+    assert node["kind"] == "requirement" and node["text"] == CT_BODY
+    assert node["label"] == "CT-1.1" and node["source"]["block_id"] == "B-000002"
+    assert node["source"]["lines"] == [6, 7]
+    # AC-3.36: a subject named only in the title passes G2 and G4
+    assert node["family"] == "term:block_record" and "inferred" not in node["flags"]
+    assert check_store(repo / ".sdd") == []
+
+
+def test_ac_2_29_a_title_that_forms_a_node_keeps_the_label_and_gives_the_id(tmp_path):
+    title = "**CT-1.1 — Block record** (one JSON object per line):"
+    repo = contract_repo(tmp_path, f"## 5. Contracts\n\n{title}\n\n```json\n{CT_BODY}\n```\n")
+    rule = "one JSON object per line"
+    backend = FakeBackend([
+        {"blocks": [{"block_id": "B-000001", "sentences": [{"quote": title, "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": [rule]}]}]},
+        {"atoms": [contract_desc("B-000001#1", "Block record", rule),
+                   contract_desc("B-000002#1", "Block record", '"id": "B-000123"')]},
+        *no_conflicts()])
+    compile_graph(repo, backend=backend)
+    nodes = load_graph(repo / ".sdd").nodes
+    assert sorted(nodes) == ["CT-1.1", "N-000001"]
+    assert nodes["N-000001"]["label"] == "CT-1.1" and nodes["N-000001"]["source"]["block_id"] == "B-000001"
+    assert nodes["CT-1.1"]["source"]["block_id"] == "B-000002"
+    assert check_store(repo / ".sdd") == []
+
+
+def test_ac_3_38_a_text_block_that_opens_its_section_forms_an_unlabelled_node(tmp_path):
+    formula = "score = sum of points"
+    repo = contract_repo(tmp_path, f"## 4.3 Scoring\n\n```text\n{formula}\n```\n")
+    backend = FakeBackend([
+        {"atoms": [contract_desc("B-000001#1", "score", formula, name="score")]}, *no_conflicts()])
+    compile_graph(repo, backend=backend)
+    assert [q.kind for q in backend.asked] == ["q-desc"]
+    [node] = load_graph(repo / ".sdd").nodes.values()
+    assert node["id"] == "N-000001" and node["label"] is None and node["text"] == formula
+    assert check_store(repo / ".sdd") == []
+
+
+def test_ac_6_27_compile_tells_the_judge_which_nodes_are_contracts(tmp_path):
+    """F6 D23, D24 wired: a contract and a rule of its own spec — key-list quote, `duplicates`."""
+    rule = "A block record must have an id."
+    repo = contract_repo(tmp_path, "## 5. Contracts\n\n**CT-1.1 — Block record**\n\n"
+                                   f"```json\n{CT_BODY}\n```\n\n{rule}\n")
+    backend = FakeBackend([
+        {"blocks": [{"block_id": "B-000001", "atoms": [],
+                     "sentences": [{"quote": "**CT-1.1 — Block record**", "role": "context"}]},
+                    {"block_id": "B-000003", "sentences": [{"quote": rule, "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": [rule]}]}]},
+        {"atoms": [contract_desc("B-000002#1", "Block record", '"id": "B-000123"'),
+                   contract_desc("B-000003#1", "block record", rule)]},
+        {"relation": "duplicates", "direction": "symmetric", "rationale": "both give the id",
+         "quotes": {"a": "block record", "b": "block record"}, "confidence": "high"}])
+    result = compile_graph(repo, backend=backend)
+    counts = result.summary()["conflicts"]
+    assert counts["candidates"] == 1
+    assert counts["quotes_replaced"] == 1 and counts["suppressed"] == 1
+    assert load_graph(repo / ".sdd").conflicts == {}

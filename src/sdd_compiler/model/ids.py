@@ -61,6 +61,8 @@ def term_id(name: str) -> str:
 
 
 def find_human_id(block: Mapping[str, Any]) -> str | None:
+    if block.get("kind") == "code":                      # F2 D21: a contract's id is its title's
+        return (block.get("contract") or {}).get("id")
     if block.get("kind") not in _LABELLED_KINDS:
         return None
     match = _HUMAN_ID.match(block["text"].lstrip())
@@ -84,12 +86,15 @@ def human_labels(
     one claim.
     """
     carriers: dict[str, list[str]] = {}
+    labels: dict[str, str] = {}
     for block_id, block in blocks.items():
         if atoms_per_block.get(block_id, 0) < 1:
             continue
         human = find_human_id(block)
         if human is not None:
-            carriers.setdefault(human, []).append(block_id)
+            labels[block_id] = human
+            if not block.get("id_given_to"):             # F2 D21: the contract carries it
+                carriers.setdefault(human, []).append(block_id)
 
     duplicates = {human: ids for human, ids in carriers.items() if len(ids) > 1}
     if duplicates:
@@ -104,7 +109,7 @@ def human_labels(
             ExitCode.INPUT,
         )
 
-    return {ids[0]: human for human, ids in carriers.items()}
+    return labels
 
 
 def adopt_human_ids(
@@ -114,5 +119,5 @@ def adopt_human_ids(
     return {
         block_id: human
         for block_id, human in human_labels(blocks, atoms_per_block).items()
-        if atoms_per_block.get(block_id) == 1
+        if atoms_per_block.get(block_id) == 1 and not blocks[block_id].get("id_given_to")
     }

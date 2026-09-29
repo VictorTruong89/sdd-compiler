@@ -5,7 +5,7 @@ Tier: unit, with one property test for id reuse.
 from __future__ import annotations
 
 from sdd_compiler.ingest.identity import (
-    IdAllocator, heading_skipped, normalize, pending_status, reconcile, text_hash,
+    IdAllocator, fence_language, heading_skipped, normalize, pending_status, reconcile, text_hash,
 )
 from sdd_compiler.ingest.segment import segment_markdown
 
@@ -243,3 +243,36 @@ def test_ac_1_32_a_heading_matches_without_its_section_number_or_case():
     assert heading_skipped(["Traceability", "Details"], ("Traceability",))     # any level
     assert not heading_skipped(["F1", "9. Traceability matrix"], ("Traceability",))
     assert not heading_skipped(["F1", "Behaviour"], ())
+
+
+# -- contract languages (F1 D15) ------------------------------------------------
+
+FENCES_DOC = """\
+## 5. Contracts
+```json
+{"id": "B-000123"}
+```
+
+```YAML
+spec_globs: []
+```
+
+```text
+score = sum of points
+```
+
+```python
+print("not a contract")
+```
+"""
+
+CONTRACTS = ("json", "yaml", "text")
+
+
+def test_ac_1_33_fenced_blocks_in_a_contract_language_are_pending():
+    records = compile_once(FENCES_DOC).records
+    assert [r["kind"] for r in records] == ["code"] * 4
+    states = [pending_status(r, contract_languages=CONTRACTS) for r in records]
+    assert states == ["new", "new", "new", None]
+    assert [pending_status(r, contract_languages=()) for r in records] == [None] * 4
+    assert [fence_language(r) for r in records] == ["json", "yaml", "text", "python"]

@@ -69,7 +69,7 @@ always reviewable, diffable and versioned.
   | List item | Block per item, kind `list_item`. A sub-item is its own block with `parent_relation: nested`; a further paragraph or fence inside the same item keeps its own kind and gets `parent_relation: continuation` (D11) |
   | Table | Block per **body row**, kind `table_row`, carrying the header row as `table_header` |
   | Content inside a blockquote | Keeps its own kind, with `in_blockquote: true` |
-  | Fenced code | Block, kind `code`; pending only if `profile.include_code_blocks` is true |
+  | Fenced code | Block, kind `code`; pending only if `profile.include_code_blocks` is true, or its language (the first word after the opening fence) is in `profile.contract_languages` (D15) |
   | Anything under a heading named in `profile.skip_headings` | Stored as usual; never pending (D14) |
   | HTML comment, front matter, horizontal rule, blank lines | Skipped |
 
@@ -85,7 +85,8 @@ always reviewable, diffable and versioned.
   `new · changed · unchanged · removed` is the **run's delta**. It is reported (CT-1.3 counts, the run
   output) and **not stored on the block** (D13): a stored per-run flag flips back on the next run.
 - **Pending set (D13), derived, never stored:** a block is pending when it is live (`removed_run` is
-  null), it is not a `code` block unless `include_code_blocks` is true, no heading in its
+  null), it is not a `code` block unless `include_code_blocks` is true or its language is in
+  `contract_languages` (D15), no heading in its
   `heading_path` is named in `skip_headings` (D14), and its `text_hash` differs from its `atomized_hash`
   (including when `atomized_hash` is null).
 - **Heading match (D14):** a heading matches a `skip_headings` entry when the two are equal after
@@ -155,10 +156,11 @@ spec_globs: ["sdd/specs/**/*.md"]
 exclude_globs: ["sdd/specs/_templates/**"]
 include_code_blocks: false
 skip_headings: ["Traceability"]   # D14: stored, never atomized
+contract_languages: ["json", "yaml", "text"]   # D15: fenced blocks formed whole, as contracts (F3 D39)
 atomizer: { backend: claude-code, model: haiku }   # read by F3, not by F1
 ```
-`skip_headings` is a list of strings; any other type is an input error (exit `2`), like every profile
-key.
+`skip_headings` and `contract_languages` are lists of strings; any other type is an input error
+(exit `2`), like every profile key. Languages compare lower-cased.
 
 **CT-1.5 — Pending output** (`sddc status --json`, stdout):
 ```json
@@ -209,6 +211,9 @@ reserved for "conflict" (F6).
   stored and only the paragraph is pending; **and with** `skip_headings: []` both are pending; **and
   given** `skip_headings: "Traceability"` (not a list), **then** the profile is rejected with exit `2`.
   → *unit.*
+- **AC-1.33** *(contract languages; D15)* — **Given** fenced blocks tagged `json`, `YAML`, `text` and
+  `python`, with the default profile, **when** ingested, **then** the first three are pending and the
+  `python` block is not; **and with** `contract_languages: []` none is. → *unit.*
 - **AC-1.30** *(a block belongs to its list item)* — **Given** a list item holding a second paragraph
   and a nested sub-item, **when** segmented, **then** the second paragraph is a `paragraph` block with
   `parent_block` naming the item and `parent_relation: continuation`, the sub-item is a `list_item`
@@ -311,6 +316,15 @@ reserved for "conflict" (F6).
   store,* measured on a copy of R18: the 39 nodes are deleted with no model call, and the neighbours
   whose retrieval slots they held propose **43 new pairs** for Q-PAIR; the other 2 188 replay.
 
+- **D15 — ⚑ Fenced blocks in a contract language are pending** (I-92 a, owner 2026-09-27: node
+  design, `text` included). `contract_languages` (default `json`, `yaml`, `text`) makes such a block
+  pending whatever `include_code_blocks` says; F3 D39 forms it whole, as one node. *Why:* measured on
+  R18, all 25 fenced blocks of this repository's specs formed no node — 17 JSON, 5 YAML, 3 text — and
+  they are every record shape and file format the specs define, so a reader of the graph alone had to
+  invent them. `include_code_blocks` keeps its meaning (send other code to Q-ATOM). *Rejected:* a
+  separate `.sdd/contracts.jsonl` written by code — cheaper, but the contracts would sit outside
+  families and layers and never be checked against the rules written about them (owner's choice).
+
 ## 8. Open questions
 
 *Q6 was closed 2026-09-18 as D13. Q5 was closed 2026-09-18 as D11.*
@@ -330,6 +344,7 @@ reserved for "conflict" (F6).
 |---|---|---|
 | CT-1.4 profile · CT-1.6 CLI surface | `tests/test_profile.py::test_ct_1_4_*` (4) · `tests/test_cli_skeleton.py::test_ct_1_6_*` (4) | `src/sdd_compiler/profile.py` · `cli.py` · `errors.py` |
 | AC-1.1 … AC-1.7, AC-1.30 | `tests/test_segment.py` (16) | `src/sdd_compiler/ingest/segment.py` |
+| AC-1.33 · D15 | `tests/test_identity.py::test_ac_1_33_*` · `tests/test_profile.py::test_ac_1_33_*` | `src/sdd_compiler/ingest/identity.py` · `src/sdd_compiler/profile.py` |
 | AC-1.32 · D14 | `tests/test_identity.py::test_ac_1_32_*` · `tests/test_profile.py::test_ac_1_32_*` | `src/sdd_compiler/ingest/identity.py` · `src/sdd_compiler/profile.py` |
 | AC-1.8 … AC-1.12 | `tests/test_identity.py` (14) | `src/sdd_compiler/ingest/identity.py` |
 | AC-1.26 *(partial: the lock itself)* | `tests/test_store_lock.py::test_ac_1_26_a_second_holder_waits_then_exits_4` (+3) | `src/sdd_compiler/store/lock.py` |

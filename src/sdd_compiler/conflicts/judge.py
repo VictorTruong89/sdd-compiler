@@ -106,6 +106,7 @@ class Verdict:
     provisional: bool = False
     attempts: int = 1                 # 2 when the first answer failed a check (§4.2)
     answer: Answer | None = None
+    replaced: int = 0                 # F6 D23: contract quotes not found, replaced by its text
 
 
 @dataclass
@@ -116,6 +117,7 @@ class PairItem:
     b: Mapping[str, Any]
     related_terms: list[str] = field(default_factory=list)
     key: str = ""                     # F5's `pair_key`: what the judgment lock is keyed by
+    contracts: frozenset[str] = frozenset()     # which of the two is a contract (F3 D39)
 
     @property
     def pair_id(self) -> str:
@@ -215,14 +217,16 @@ def _verdict(payload: Mapping[str, Any], item: PairItem) -> Verdict:
         raise GuardFailure(
             f"{payload['relation']} is symmetric: direction must be 'symmetric', "
             f"not {payload['direction']!r}")
+    quotes, replaced = dict(payload["quotes"]), 0
     for label, node in (("a", item.a), ("b", item.b)):
-        quote = payload["quotes"][label]
         try:
-            anchor_quotes([quote], node["text"], [])
+            anchor_quotes([quotes[label]], node["text"], [])
         except GuardFailure as failure:
-            raise GuardFailure(
-                f"quotes.{label}: {failure} — quote {node['id']} verbatim") from failure
+            if node["id"] not in item.contracts:
+                raise GuardFailure(
+                    f"quotes.{label}: {failure} — quote {node['id']} verbatim") from failure
+            quotes[label], replaced = node["text"], replaced + 1      # F6 D23
     return Verdict(relation=payload["relation"], direction=payload["direction"],
-                   rationale=payload["rationale"], quotes=dict(payload["quotes"]),
+                   rationale=payload["rationale"], quotes=quotes,
                    confidence=payload["confidence"],
-                   provisional="ambiguous" in (item.a["status"], item.b["status"]))
+                   provisional="ambiguous" in (item.a["status"], item.b["status"]), replaced=replaced)

@@ -60,7 +60,8 @@ class CheckResult:
 
 
 def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id: str,
-          lock: Any) -> CheckResult:
+          lock: Any, contracts: frozenset[str] = frozenset()) -> CheckResult:
+    """`contracts`: ids of the nodes formed from contract blocks (F3 D39; F6 D23, D24)."""
     nodes = dict(graph.nodes)
     if not settings.judge_ambiguous:                       # CT-6.3: leave vague claims alone
         nodes = {i: n for i, n in nodes.items() if n["status"] != "ambiguous"}
@@ -71,7 +72,7 @@ def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id
         "by_relation": dict.fromkeys(
             ("none", "refines", "depends_on", "duplicates", "subsumes", "contradicts"), 0),
         "opened": 0, "closed": {"rejudged": 0, "member_deleted": 0}, "calls": 0,
-        "provisional": 0, "unjudged_failed": 0, "suppressed": 0, "incomplete": False,
+        "provisional": 0, "unjudged_failed": 0, "failed": [], "quotes_replaced": 0, "suppressed": 0, "incomplete": False,
         "retrieval": dict(proposal.counts),
     }
     result = CheckResult(counts=counts, counter=graph.counters.get("conflict", 0),
@@ -79,7 +80,8 @@ def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id
     open_records = {frozenset(record["members"]): record
                     for record in graph.conflicts.values() if record["state"] == "open"}
     items = [PairItem(a=nodes[c["a"]], b=nodes[c["b"]], key=c["pair_key"],
-                      related_terms=_term_relations(nodes[c["a"]], nodes[c["b"]], graph.terms))
+                      related_terms=_term_relations(nodes[c["a"]], nodes[c["b"]], graph.terms),
+                      contracts=frozenset({c["a"], c["b"]}) & contracts)
              for c in proposal.pairs]
     counted = _Counting(backend, counts)
 
@@ -109,18 +111,21 @@ def check(graph: Any, *, backend: Backend, retrieval: Any, settings: Any, run_id
         counts["pairs_replayed"] += replayed
         counts["pairs_judged"] += len(outcome.verdicts) - replayed
         counts["unjudged_failed"] += len(outcome.failures)
+        counts["failed"] += [{"pair": f"{item.a['id']}|{item.b['id']}", "problem": outcome.failures[item.pair_id]}
+                             for item in chunk if item.pair_id in outcome.failures]      # F6 D22
         for item in chunk:
             verdict = outcome.verdicts.get(item.pair_id)
             if verdict is None:
                 continue                  # checked twice and still wrong (§4.2); the phase goes on
             counts["by_relation"][verdict.relation] += 1
+            counts["quotes_replaced"] += verdict.replaced
             result.judged_pairs.append((item.a["id"], item.b["id"]))
             if verdict.provisional:
                 counts["provisional"] += 1
                 lock.mark_provisional(outcome.judgments.get(item.pair_id, ""))
             _apply(result, verdict, item.a, item.b, settings=settings, run_id=run_id,
                    judgment=outcome.judgments.get(item.pair_id, ""),
-                   open_records=open_records, counts=counts)
+                   open_records=open_records, counts=counts, contracts=item.contracts)
 
     return result
 
@@ -156,9 +161,10 @@ def _term_relations(a, b, registry: Mapping[str, Mapping[str, Any]]) -> list[str
 
 
 def _apply(result: CheckResult, verdict: Verdict, a, b, *, settings, run_id, judgment,
-           open_records, counts) -> None:
+           open_records, counts, contracts=frozenset()) -> None:
     outcome = outcome_for(verdict, a, b, settings=settings, run_id=run_id,
-                          conflict_id="CF-%06d" % (result.counter + 1), judgment=judgment)
+                          conflict_id="CF-%06d" % (result.counter + 1), judgment=judgment,
+                          contracts=contracts)
     if outcome.suppressed:
         counts["suppressed"] += 1
     result.links += outcome.links

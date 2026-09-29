@@ -70,6 +70,9 @@ def render_report(summary: Mapping[str, Any], graph: Any, exit_code: int) -> str
     if summary.get("annotations_dropped"):
         lines.append(f"{len(summary['annotations_dropped'])} annotation(s) dropped: "
                      "a quote that is not in its block (F3 D35)")
+    if summary.get("contract_quotes_replaced"):
+        lines.append(f"{len(summary['contract_quotes_replaced'])} contract quote(s) not in the source, "
+                     "replaced by code (F3 D40)")
     definitions = summary.get("definitions") or {}
     if definitions.get("attached") or definitions.get("unattached"):
         lines.append(f"{len(definitions['attached'])} definition(s) attached to terms · "

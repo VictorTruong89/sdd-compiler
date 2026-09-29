@@ -124,7 +124,7 @@ What it does **not** carry:
 
 | Gap | Measured | Consequence for the agent |
 |---|---|---|
-| **Contract formats** | All 25 fenced code blocks — every JSON record shape and file format in the specs' "Contracts" sections — form no node (the default profile does not atomize code) | Record and file schemas must be designed from the `L3`/`L4` claims about them. Record each invented format |
+| **Contract formats** | In `trial_01`, compiled before F3 D39, all 25 fenced blocks — every record shape and file format in the specs' "Contracts" sections — form no node. A store compiled now forms each as one node: id `CT-n.k` from its title (22 of them), `text` the JSON or YAML verbatim | Build to a `CT-` node's `text` exactly. Where none exists, design the format from the `L3`/`L4` claims about it and record it as invented |
 | **Definitions** | 0 of 1 031 terms in `trial_01`, compiled before F3 D38. A store compiled now gives a term the spec's own "X is Y" sentence as `definition` — measured on this corpus, 15 of 1 031 terms | Use `definition` where present; otherwise infer meanings from how terms are used |
 | **Everything that is not a claim** | 183 of 845 paragraphs form no node; node spans cover 54 % of the spec text (rationale is partly kept as annotations) | Expect gaps in context, not in obligations |
 | **Fragments** | 82 nodes have text under 30 characters (`keep id, "unchanged"`) | Read `canonical`, `heading_path` and the node's annotations alongside `text` |
@@ -229,9 +229,10 @@ Steps:
 4. Design per source spec and family: L2 components, L3 interfaces, L4 data, L1 features,
    L5 algorithms; enforce every C node where its scope applies. Use canonical term names.
    Build from "canonical", "text", "annotations" and "decision".
-5. The graph has no exact record or file formats (CT- contracts) and few term definitions
-   (a term's "definition", when present, is the spec's own sentence). Design what is missing
-   from the claims that mention it, and list each one under "Invented" in
+5. Nodes whose id starts with "CT-" are contracts: their "text" is the exact record shape
+   or file format, verbatim. Implement them exactly. Terms have few definitions (a term's
+   "definition", when present, is the spec's own sentence). Design what is missing from the
+   claims that mention it, and list each one under "Invented" in
    OPEN_QUESTIONS.md with the node ids it rests on.
 6. For a node with status "conflict", compare the two claims each of its conflicts quotes.
    Only apparent: note it and go on. Real: choose, and record choice and reason in

@@ -153,3 +153,13 @@ def test_ac_1_32_skip_headings_must_be_a_list_of_strings(tmp_path, text):
         load_profile(write(tmp_path, text))
     assert excinfo.value.exit_code is ExitCode.INPUT
     assert "skip_headings" in str(excinfo.value)
+
+
+def test_ac_1_33_contract_languages_default_and_validation(tmp_path):
+    assert DEFAULT_PROFILE["contract_languages"] == ["json", "yaml", "text"]
+    assert load_profile(write(tmp_path, render_default_profile())).contract_languages == (
+        "json", "yaml", "text")
+    assert load_profile(write(tmp_path, "contract_languages: [JSON]\n")).contract_languages == ("json",)
+    with pytest.raises(SddcError) as excinfo:
+        load_profile(write(tmp_path, "contract_languages: json\n"))
+    assert excinfo.value.exit_code is ExitCode.INPUT and "contract_languages" in str(excinfo.value)

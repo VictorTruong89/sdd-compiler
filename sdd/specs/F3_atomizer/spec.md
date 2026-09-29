@@ -150,6 +150,24 @@ For each validated atom:
    that matches no term, or whose term is already defined, is **reported, never dropped silently**
    (§4.8).
 
+### 4.5a Contract blocks (D39)
+
+A fenced block pending by F1 D15 is a **contract**: one record shape, file format or output, stated by
+its form. It is formed whole:
+1. **No Q-ATOM.** Code forms one `requirement` atom whose quote is the block's text between its fence
+   lines. It is one claim by its form, so it is never re-asked to split (D36).
+2. **Its lead** is the paragraph directly before it in the same file and section, if any: normally its
+   title, `**CT-1.1 — Block record** (…)`. The lead's `CT-` id becomes the node's id (F2 D21).
+3. **Q-DESC** describes the atom with the lead shown before the block's text; G2 and G4 read lead and
+   block together, so a subject named only in the title is quoted and grounded. The node's `text`,
+   `spans` and `lines` are still the block's own. The lead enters the lock key only for a contract, so
+   no other item's key changes (AC-3.37).
+4. **Quotes from a contract** (D40). The atom tells the model to quote only the title or one whole
+   line of the block, copied exactly. A quote that is still not found does not fail the answer:
+   a `yes` layer answer's quote becomes the whole contract, a term's quote becomes the first place
+   its name appears in lead or block (the tag is dropped if the name appears nowhere), and an
+   ambiguity's quote becomes null. Every replaced quote is listed in the run report (§4.8).
+
 ### 4.6 Identity across edits (P-6)
 
 When a `changed` block is re-atomized, new atoms are aligned to the block's existing active nodes:
@@ -193,7 +211,8 @@ When a `changed` block is re-atomized, new atoms are aligned to the block's exis
   in the graph's conflict records, and the run continues to the last pending block.
 - The run ends with one report (§4.10): blocks processed, nodes formed, **blocks that completed and
   formed no node, with the roles their sentences were given** (D33), **definitions attached and
-  definitions not attached, each with file and line** (D38), model calls and usage, every conflict
+  definitions not attached, each with file and line** (D38), **every contract quote replaced**
+  (D40), model calls and usage, every conflict
   found, and every attention item opened.
 
 ### 4.9 Attention list — items a person must decide
@@ -358,6 +377,29 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   `pending_review`, and their status is re-derived. → *integration.*
 - **AC-3.25** *(reject inferred)* — **Given** an open `inferred_node` item, **when** rejected, **then**
   the node is deleted (F2 §4.9). → *integration.*
+
+**Contract blocks** (I-92 a, D39)
+- **AC-3.35** *(formed whole, without Q-ATOM)* — **Given** `**CT-1.1 — Block record**` followed by a
+  fenced `json` block, **when** compiled with a fake backend scripted for Q-DESC only, **then** no
+  Q-ATOM is asked for the block, one node `CT-1.1` of kind `requirement` is formed whose `text` is the
+  JSON between the fences, verbatim, and whose `spans` address the block. → *integration.*
+- **AC-3.36** *(the lead grounds the description)* — **Given** AC-3.35, with a Q-DESC answer whose
+  subject term `block record` is quoted from the title, **then** the answer passes G2, the node is not
+  flagged `inferred`, and its family is `term:block_record`. → *integration.*
+- **AC-3.37** *(other lock keys are unchanged)* — **Given** an ordinary atom, **then** its Q-DESC lock
+  input has no lead, and equals the input computed before D39; **given** a contract atom, **then** the
+  lead is part of its input. → *unit.*
+- **AC-3.38** *(a text block without a title)* — **Given** a fenced `text` block that opens its section,
+  **when** compiled, **then** it forms one node with an `N-` id and no label, described with its
+  heading path as its only context. → *integration.*
+
+- **AC-3.39** *(a contract's unfound quote is replaced; D40)* — **Given** a contract whose Q-DESC
+  answer quotes `"id", "kind", "members"` (not contiguous in the block) for a `yes` layer answer, and a
+  term `block record` quoted as `the block record type`, **then** the answer is accepted without a
+  re-ask, the layer answer's span is the whole contract, the term's quote is `Block record` as the
+  title writes it, and both replaced quotes are listed; **given** the same bad quote on an ordinary
+  atom, **then** it is re-asked (G2). **And** no contract hint text appears in the question.
+  → *unit.*
 
 **Definitions and skipped sections** (I-92)
 - **AC-3.31** *(a definition is attached; D38)* — **Given** a block whose fake Q-ATOM answer labels
@@ -551,6 +593,33 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   path directly — placed by its first yes, flagged `mixed_layers` — decided in the first pass, so it
   also saves a model call. AC-3.12 still governs every other block.
 
+- **D40 — ⚑ A contract's unfound quote is replaced, not re-asked** (I-94, owner 2026-09-28, option
+  c). On the live run, Q-DESC failed G2 twice on 7 of 25 contracts: asked to quote JSON, Haiku gave key
+  lists pulled out of it, summaries, its own commentary, and once the hint this spec had added to the
+  atom's kind line — so the hint is gone. Two layers: the atom asks for the title or one whole line
+  (a request, which the model may ignore), and code no longer fails the answer when it does. *Why a
+  replacement is safe here:* a layer quote only lets placement compare spans (F2 §4.3), and a contract
+  is one claim that is never split (D36), so its whole span is the right one; a term keeps its tag
+  only where its name is really in the source, so G4 still holds. Nothing the node stores is model
+  text. *Rejected:* a whitespace-insensitive G2 alone — it would have rescued 1 of the 7; relaxing G2
+  for every atom — prose quotes fail rarely and a re-ask fixes them.
+
+- **D39 — ⚑ A contract block is one node, formed whole** (I-92 a, owner 2026-09-27: node design,
+  `text` blocks included, `CT-` ids). §4.5a. *Why:* the 25 fenced blocks are every contract the specs
+  define and formed no node (F1 D15). Q-ATOM cannot usefully split JSON into claims, so code forms the
+  one atom and saves the call; Q-DESC still places it, because code cannot tell an `L3` file format from
+  an `L4` data shape (F2 §4.2), and still tags its subject term, which puts `CT-1.1` in the family of the
+  rules written about it. The title is where the subject is named, so Q-DESC sees it; without it G2
+  would reject every subject quote. A contract states no modal verb, so a model answering modality null
+  flags `missing_modality` as for any requirement (D14) — code never supplies MUST. ⚠ Retrieval will
+  pair a contract with every claim sharing its field names (F5 S5) and may read its own rules as
+  duplicates (the I-93 pattern). *Measured on a copy of R18, with a stand-in Q-DESC answer (subject =
+  the title's name), so an estimate:* 25 contract nodes, 22 with their `CT-` id, none `inferred`;
+  4 Q-DESC calls; **191 new candidate pairs touch a contract** (≈ 8 each; S5 fired in 170, S3 in 76 —
+  criteria citing `CT-n.k` now resolve `verifies` to it, and D16 already suppresses those as
+  duplicates). What the judge makes of them is **to be measured** by a live run before any suppression
+  rule is added.
+
 - **D38 — ⚑ A definition is attached by code, to the term it opens with** (I-92, closing I-59's open
   half, 2026-09-27). Q-ATOM has always labelled `definition` sentences and F2 §4.1 always said they
   become term entries, but nothing wrote them: on R18, 68 definition sentences were labelled and **0 of
@@ -606,4 +675,6 @@ change of alias is visible.*
 | AC-3.17 … AC-3.20 · D21, D22 | `tests/test_atomize_align.py` (9) · `tests/test_atomize_lock.py` (8) · `tests/test_compile.py` (+6) | `src/sdd_compiler/atomize/align.py` · `lock.py` · `batch.py` · `src/sdd_compiler/pipeline.py` |
 | AC-3.21 … AC-3.22 | *(to be written)* | `src/sdd_compiler/atomize/pipeline.py` · `src/sdd_compiler/report.py` |
 | AC-3.24 … AC-3.25 | *(to be written)* | `src/sdd_compiler/atomize/review.py` |
+| AC-3.39 · D40 | `tests/test_atomize_contracts.py::test_ac_3_39_*` | `src/sdd_compiler/atomize/describe.py` · `pipeline.py` · `src/sdd_compiler/report.py` |
+| AC-3.35 … AC-3.38 · D39 · §4.5a · F2 AC-2.29, D21 | `tests/test_atomize_contracts.py` · `tests/test_compile.py::test_ac_3_35_*`, `::test_ac_3_38_*`, `::test_ac_2_29_*` | `src/sdd_compiler/atomize/contracts.py` · `describe.py` · `pipeline.py` · `src/sdd_compiler/model/ids.py` |
 | AC-3.31 … AC-3.34 · D38 · §4.6 skipped sections | `tests/test_atomize_definitions.py` · `tests/test_compile.py::test_ac_3_31_*`, `::test_ac_3_33_*`, `::test_ac_3_34_*` | `src/sdd_compiler/atomize/definitions.py` · `qatom.py` · `src/sdd_compiler/pipeline.py` · `report.py` |

@@ -36,7 +36,8 @@ class Outcome:
 
 
 def outcome_for(verdict: Verdict, a: Mapping[str, Any], b: Mapping[str, Any], *,
-                settings: Any, run_id: str, conflict_id: str, judgment: str) -> Outcome:
+                settings: Any, run_id: str, conflict_id: str, judgment: str,
+                contracts: frozenset[str] = frozenset()) -> Outcome:
     link_type, conflict_kind = EFFECTS[verdict.relation]
     outcome = Outcome()
     if conflict_kind in ("duplication", "subsumption") and _verifies_each_other(a, b):
@@ -54,6 +55,11 @@ def outcome_for(verdict: Verdict, a: Mapping[str, Any], b: Mapping[str, Any], *,
             return outcome
         if a["source"]["block_id"] == b["source"]["block_id"]:
             outcome.suppressed = "same_block"
+            return outcome
+        # ⚑ F6 D24 (I-94): a spec states a contract, then writes rules about its fields.
+        if ((a["id"] in contracts) != (b["id"] in contracts)
+                and a["source"]["file"] == b["source"]["file"]):
+            outcome.suppressed = "contract_restated_in_its_own_spec"
             return outcome
     if link_type is None:
         return outcome                                   # `none`: only the judgment is kept

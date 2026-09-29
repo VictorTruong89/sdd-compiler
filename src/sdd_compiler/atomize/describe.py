@@ -184,6 +184,17 @@ class DescribeItem:
     atom_id: str
     atom: Atom
     block: dict[str, Any]
+    contract: bool = False           # F3 §4.5a: a fenced contract block, formed whole
+    lead: str | None = None          # the paragraph before it, read with it (D39)
+
+    @property
+    def offset(self) -> int:
+        return len(self.lead) + 2 if self.lead else 0
+
+    @property
+    def text(self) -> str:
+        """What Q-DESC reads and G2/G4 check: the lead, then the block."""
+        return f"{self.lead}\n\n{self.block['text']}" if self.lead else self.block["text"]
 
 
 @dataclass
@@ -202,6 +213,7 @@ class Description:
     scope_layers: list[str] = field(default_factory=list)
     verifies_text: str | None = None
     decision: dict[str, Any] | None = None
+    replaced: list[dict[str, Any]] = field(default_factory=list)   # F3 D40: contract quotes not found
 
 
 @dataclass
@@ -230,17 +242,21 @@ def build_question(items: Sequence[DescribeItem], note: str | None = None,
     if note:
         parts.append(f"\nThe previous answer was rejected. {note}\nTry again, carefully.\n")
     # Each block's text is sent once, however many of its atoms are asked about.
-    blocks: dict[str, dict[str, Any]] = {}
+    blocks: dict[str, DescribeItem] = {}
     for item in items:
-        blocks.setdefault(item.block["id"], item.block)
-    for block in blocks.values():
+        blocks.setdefault(item.block["id"], item)
+    for first in blocks.values():
+        block = first.block
         heading = " > ".join(block.get("heading_path") or []) or "(no heading)"
-        parts.append(f"\n=== BLOCK {block['id']} ===\nsection: {heading}\ntext:\n{block['text']}\n")
+        parts.append(f"\n=== BLOCK {block['id']} ===\nsection: {heading}\ntext:\n{first.text}\n")
     for item in items:
         quotes = "".join(f"  - {quote}\n" for quote in item.atom.quotes)
+        # F3 D40: said per atom, never in the instructions, so no lock key changes.
+        rule = ("rule: every quote you give for this atom is either its title or one whole line "
+                "of its block, copied exactly\n") if item.contract else ""
         parts.append(
             f"\n--- ATOM {item.atom_id} (from block {item.block['id']}) ---\n"
-            f"kind: {item.atom.kind}\n"
+            f"kind: {item.atom.kind}\n{rule}"
             f"quotes:\n{quotes}"
         )
     return Question(
@@ -285,9 +301,12 @@ def describe_atoms(
 
 
 def lock_input(item: DescribeItem) -> dict[str, Any]:
-    return {"kind": item.atom.kind, "quotes": list(item.atom.quotes),
-            "block_text": item.block["text"],
-            "heading_path": list(item.block.get("heading_path") or [])}
+    key = {"kind": item.atom.kind, "quotes": list(item.atom.quotes),
+           "block_text": item.block["text"],
+           "heading_path": list(item.block.get("heading_path") or [])}
+    if item.contract:                     # AC-3.37: only a contract's key carries these
+        key.update(contract=True, lead=item.lead)
+    return key
 
 
 # -- checking one answer ------------------------------------------------------
@@ -299,9 +318,20 @@ def _describe(
     aliases: dict[str, list[str]],
 ) -> Description:
     """Apply G2 and the kind rules (re-ask on failure), then G4, G6 and quantities (facts)."""
-    text = item.block["text"]
-    own = list(item.atom.spans)
+    text = item.text
+    own = [(start + item.offset, end + item.offset) for start, end in item.atom.spans]
     slices = [text[start:end] for start, end in own]
+    replaced: list[dict[str, Any]] = []
+
+    def found(quote: str, what: str) -> tuple[int, int] | None:
+        """G2. For a contract (F3 D40) an unfound quote is listed and None returned, not raised."""
+        try:
+            return locate_quote(quote, text, own)
+        except GuardFailure:
+            if not item.contract:
+                raise
+            replaced.append({"atom": item.atom_id, "what": what, "quote": quote})
+            return None
 
     layer_answers = {}
     for key, _ in LAYER_QUESTIONS:
@@ -312,15 +342,22 @@ def _describe(
                     f"layer answer {key} is 'yes' but gives no quote; a yes must quote the "
                     f"words of the block that make it true"
                 )
-            span = locate_quote(answer["quote"], text, own)
-            layer_answers[key] = {"answer": "yes", "quote": answer["quote"].strip(), "span": span}
+            span = found(answer["quote"], f"layer {key}") or own[0]    # a contract is one span
+            layer_answers[key] = {"answer": "yes", "quote": text[span[0]:span[1]].strip()
+                                  if item.contract else answer["quote"].strip(), "span": span}
         else:
             layer_answers[key] = {"answer": "no", "quote": None, "span": None}
 
-    terms = [
-        {**term, "quote": term["quote"].strip(), "span": locate_quote(term["quote"], text, own)}
-        for term in payload["terms"]
-    ]
+    terms = []
+    for term in payload["terms"]:
+        span = found(term["quote"], f"term {term['name']}")
+        if span is None:                                   # a contract: its name, where it is written
+            try:
+                span = locate_quote(term["name"], text)
+            except GuardFailure:
+                continue                                    # nowhere in the source: dropped
+        quote = text[span[0]:span[1]] if item.contract else term["quote"].strip()
+        terms.append({**term, "quote": quote.strip(), "span": span})
 
     canonical = dict(payload["canonical"])
     if item.atom.kind == "decision" and payload["decision"] is None:
@@ -331,8 +368,8 @@ def _describe(
     ambiguity: list[dict[str, Any]] = []
     for candidate in payload["ambiguity"]:
         quote = (candidate["quote"] or "").strip() or None
-        if quote is not None:
-            locate_quote(quote, text, own)
+        if quote is not None and found(quote, f"ambiguity {candidate['kind']}") is None:
+            quote = None
         _add(ambiguity, candidate["kind"], quote, "proposed by the model")
 
     quantities = []
@@ -369,6 +406,7 @@ def _describe(
         scope_layers=list(payload["scope_layers"]),
         verifies_text=payload["verifies_text"],
         decision=payload["decision"],
+        replaced=replaced,
     )
 
 

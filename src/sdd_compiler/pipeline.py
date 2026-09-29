@@ -25,7 +25,7 @@ from .atomize.definitions import DefinitionOutcome, attach_definitions
 from .atomize.lock import JudgmentLock
 from .atomize.pipeline import GraphDraft, atomize_pending
 from .errors import ExitCode
-from .ingest.identity import BLOCK_KEY_ORDER, atomizable, is_live, pending_status
+from .ingest.identity import BLOCK_KEY_ORDER, atomizable, fence_language, is_live, pending_status
 from .ingest.pipeline import BLOCKS_FILE, RUNS_FILE, SOURCES_FILE, IngestResult, ingest, lock_wait_seconds
 from .llm import Backend, CallBudget, get_backend
 from .profile import STORE_DIR, load_profile
@@ -59,6 +59,7 @@ class CompileResult:
             "nodes_formed": len(draft.nodes), "nodes_deleted": len(self.deleted),
             "empty_blocks": len(draft.empty), "empty": [draft.empty[b] for b in sorted(draft.empty)],
             "annotations_dropped": draft.annotations_dropped,
+            "contract_quotes_replaced": draft.quotes_replaced,
             "definitions": {"attached": self.definitions.attached,
                             "unattached": [*draft.definitions_dropped, *self.definitions.unattached]},
             "attention_items": len(draft.reviews), "stopped": draft.stopped,
@@ -80,14 +81,16 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
     store = root / STORE_DIR
     profile = load_profile(root)
     blocks = read_jsonl(store / BLOCKS_FILE)
-    pending = [b for b in blocks if pending_status(b, profile.include_code_blocks, profile.skip_headings)]
+    pending = [b for b in blocks if pending_status(b, profile.include_code_blocks, profile.skip_headings,
+                                                   profile.contract_languages)]
     result.pending = len(pending)
 
     graph = load_graph(store)
     removed = {b["id"] for b in blocks if not is_live(b)}
     # F3 §4.6: live blocks the profile no longer lets the atomizer see (F1 D14, code blocks).
     skipped = {b["id"] for b in blocks
-               if is_live(b) and not atomizable(b, profile.include_code_blocks, profile.skip_headings)}
+               if is_live(b) and not atomizable(b, profile.include_code_blocks, profile.skip_headings,
+                                                profile.contract_languages)}
     gone = removed | skipped
     redo = {b["id"] for b in pending}
     # Nothing to atomize is not nothing to do: the check phase still judges the nodes that need
@@ -114,7 +117,8 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             counters={"N": graph.counters["node"], "RV": graph.counters["review"]},
             previous={block_id: [n for n in graph.nodes.values() if n["source"]["block_id"] == block_id]
                       for block_id in redo},
-            lock=lock,
+            lock=lock, contract_languages=profile.contract_languages,
+            all_blocks=[b for b in blocks if is_live(b)],
             **({"block_batch": block_batch} if block_batch else {}),
         )
     result.draft = draft
@@ -164,8 +168,11 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
 
         # The check phase (F6 §4.1): after every node exists, before anything is written.
         if draft.stopped is None:
+            contract_blocks = {b["id"] for b in blocks if fence_language(b) in profile.contract_languages}
             result.check = check(graph, backend=backend, retrieval=profile.retrieval,
-                                 settings=profile.conflicts, run_id=run_id, lock=lock)
+                                 settings=profile.conflicts, run_id=run_id, lock=lock,
+                                 contracts=frozenset(i for i, n in graph.nodes.items()
+                                                     if n["source"]["block_id"] in contract_blocks))
             _apply_check(graph, result.check, run_id)
         # Again after the check phase: its Q-PAIR records are judgments too (I-83).
         graph.counters["judgment"] = max(graph.counters["judgment"], lock.counter)

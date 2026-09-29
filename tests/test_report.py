@@ -220,3 +220,11 @@ def test_sddc_conflicts_on_a_clean_graph_exits_zero(tmp_path, capsys):
     commands.init(tmp_path)
     assert commands.conflicts(tmp_path) == ExitCode.OK
     assert "No open conflicts" in capsys.readouterr().out
+
+
+def test_d40_the_report_counts_replaced_contract_quotes():
+    summary = {**SUMMARY, "contract_quotes_replaced": [
+        {"atom": "B-000002#1", "what": "layer Q6", "quote": "x", "node": "CT-1.1"}]}
+    assert "1 contract quote(s) not in the source, replaced by code (F3 D40)" in render_report(
+        summary, FakeGraph([], []), exit_code=0)
+    assert "contract quote" not in render_report(SUMMARY, FakeGraph([], []), exit_code=0)
