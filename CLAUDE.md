@@ -1,6 +1,7 @@
 # SDD Compiler — working agreement
 
-> **Status:** opened 2026-09-14 · release **rel01** (target **2026-09-30**). Sections marked `TODO`
+> **Status:** opened 2026-09-14 · release **rel01** (target 2026-09-30, **slipped by rel01 D35**: it
+> closes when the first spec graph is usable for generating code). Sections marked `TODO`
 > are filled as rel01 decisions land.
 >
 > ★ **rel01 in one sentence (rel01 D26):** point `sddc compile` at a folder of static Markdown spec

@@ -266,6 +266,20 @@ use in a later release; rel01 wires none of them.
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
 
+### S42 — 2026-09-29 — I-92 built and run; pilot graph frozen; D35
+
+- **I-92 (a, b, c) built**, test-first: contract blocks become nodes with their `CT-` ids (F1 D15,
+  F2 D21, F3 D39, D40), terms carry definitions (F3 D38), Traceability sections are skipped (F1 D14);
+  Q-PAIR handles contract quotes and a contract never duplicates its own spec (F6 D22 … D24). 684 tests.
+- **Live runs on a copy of R18** (`~/sddc-runs/i92a-live`, R-000019 … R-000023): 834 calls, ≈ $15.12
+  estimated API-equivalent. Findings in build-plan I-94: 2 of 19 contract conflicts real; 8 blocks
+  still fail every retry.
+- **Frozen as the pilot graph:** `~/sddc-runs/pilot-graph-R000023/` (read-only; manifest
+  `pilot-graph-R000023.sha256`, itself sha256 `21376ada2faf8539…`), built by commit `acdada8`; its
+  specs copied beside it. 933 nodes, 25 contracts, 11 defined terms, 380 open conflicts.
+- **D35:** rel01 slips; it closes when the first graph is usable for generating code.
+- **Next:** the MIA 5150 proposal, from `docs/MIA5150-Project/HANDOVER_proposal.md`.
+
 ### S41 — 2026-09-25 — D34: agent export in rel01; F7 drafted
 
 - Owner answered the design note's Q1–Q7 (**rel01 D34**): build in rel01; the rest as recommended.
@@ -1003,6 +1017,13 @@ planned because the backend could be measured before the pipeline exists.
   output. Code generation itself stays a separate step that the compiler never runs. Build-plan M6 is
   added. *Rejected:* rel02 (the owner wants the code-ready graph in the first release); the other
   rejected options are in the note's §8.
+
+- **rel01 D35 — 2026-09-29 — rel01 slips past its 2026-09-30 target: it closes only when the first
+  spec graph is usable for generating code.** Owner decision. Rationale: rel01's purpose is the
+  code-ready graph (D34); closing on a date with the export unbuilt would release a graph no agent
+  can yet build from. Under D34 this means build-plan M6 (F7, the agent export) built on the pilot
+  graph, which is frozen (S42). The MIA 5150 proposal (due 2026-10-02) comes first; rel01 work
+  resumes after it. *Rejected:* closing on 2026-09-30 with I-92/I-93/I-94 logged as open (owner).
 
 ## Rejected alternatives
 

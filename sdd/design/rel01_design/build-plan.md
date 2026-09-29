@@ -439,6 +439,13 @@ order found. Owner decisions are cited by their spec decision id.
 
 ## 9. What remains — updated 2026-09-23
 
+> **2026-09-29 — pilot graph frozen; rel01 slips (D35).** `~/sddc-runs/pilot-graph-R000023/`
+> (read-only, manifest sha256 `21376ada2faf8539…`, commit `acdada8`) is the graph every study run reads
+> until a new one is frozen deliberately. rel01 closes when the first graph is usable for generating
+> code — M6 (F7, the agent export) is not built. Open: I-93 (precision), I-94 (8 blocks that always
+> fail; CF-000390, 397), and the two real spec defects CF-000384 (CT-5.1's example) and CF-000387
+> (CT-6.2 lacks `suppressed`).
+
 **Built: all four milestones.** M1 (T1–T5), M2 (T6–T12), M3 (T13, T14), M4 (T15–T19) — **628 tests** (617, then 6 from the M4 follow-ups and 5 from R18's I-83, I-85, I-86).
 `sddc init · ingest · compile · status · family · conflicts`, and `compile` = ingest → atomize →
 **check** → report. Both gates are run: M3 closed (views pass, content short of the line); M4 measured
