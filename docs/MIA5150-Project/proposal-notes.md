@@ -2,21 +2,21 @@
 
 Written 2026-09-29. Companion to `project-proposal.md`.
 
-## 1. Decisions needed from the owner
+## 1. Decisions needed from the owner (updated after your comments)
 
-1. **Team and category** — names, student numbers, 2–3 members (or instructor approval to work alone). Category drafted as *Benchmark and empirical study*.
-2. **Framing** — drafted as framing B: graph (G) vs the same unit as Markdown (M), Haiku and Sonnet, 3 repetitions. Say if you prefer a single-arm study (the backup) or a third arm.
-3. **Which artifact the agents read** — drafted as the raw `.sdd/` files of the frozen pilot graph (F7 `sddc export` is not built). ⚠ The pilot graph directory has `nodes/`, `terms.jsonl` … at its top level, not under `.sdd/`; the README prompt says `<BUILD>/.sdd/…`. The prompt paths need adapting, or the graph must be copied into a `.sdd/` folder. Not done, since the graph is read-only.
-4. **The unit** — drafted as F5 (80 nodes: 23 `V`, 3 `CT-`) + vision + constitution (77 nodes). Alternative: F4 (114 nodes) or F1 (108). F5 is the smallest spec.
+1. **Team and category** — Only 1 member: Victor Truong (student number 300264088). Approve category *Benchmark and empirical study*.
+2. **Which benchmark.** Your claim says "popular AI-coding benchmarks". HumanEval and SWE-bench give one fixed task text, not a specification that exists in flat, tiered and graph form. The only setting I have opened that is spec-like is Doc2Feat-Bench (abstract only; licence, size, how to run: unchecked). Two-day trial needed before committing.
+3. **Cost of the graph spec format.** Each task's spec must be compiled into a graph. The one full compile measured (845 blocks) took 2 673 calls; cost on benchmark-sized specs is to be measured.
+4. **Scale.** Design values 5 tasks × 3 spec formats × 3 models × 2 reps = 90 runs, with per-run cost to be measured (Opus unknown). The backup cuts to 36 runs.
 5. **Trial run** — see §2. Needs your approval.
-6. **Scoring** — human audit of a seeded sample of 20 nodes per run; B second-audits. Confirm you accept the audit load (240 checks for A).
+6. **Audit load** — 20 sampled claims per run by one member; second member on an overlap.
 
-## 2. Proposed trial (not run)
+## 2. Proposed Haiku trial (SUPERSEDED 2026-09-29: the proposal now uses the compiled graph of our own specs as its trial-run number; kept for reference, not planned)
 
-- **What:** one Claude Haiku run through headless Claude Code on the owner's subscription (no API key), arm G, unit F5 + vision + constitution, README "For AI agents" prompt, empty output directory outside the repo.
-- **One number:** of the unit's non-verification nodes, how many the generated code implements, judged against the node list (claimed coverage from the agent's `TRACEABILITY.md`, plus a hand audit of a seeded sample).
-- **What it takes:** number of model calls and time — *unknown, to be measured by this trial*; a call cap is needed. TODO(owner): pick the cap and the session-limit tolerance (compile rounds hit the limit 5 times in 16; M4-gate §8). Roughly 1 run, one sitting, plus about 1–2 h of your reading time for the audit (estimate, not measured).
-- **Approval needed to spend** estimated API-equivalent dollars; the per-run figure is to be measured.
+- **What:** one Claude Haiku run through headless Claude Code on the subscription (no API key), flat spec format, one benchmark task, empty output directory.
+- **One number:** share of the task's tests passed.
+- **What it takes:** calls and time unknown, to be measured; a call cap is needed. TODO(owner): pick the cap.
+- **Approval needed to spend** estimated API-equivalent dollars.
 - Until it is run, part 6 of the proposal says "trial pending — see Risks".
 
 ## 3. Citations — what was actually opened (2026-09-29)
