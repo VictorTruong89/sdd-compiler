@@ -1,0 +1,55 @@
+{
+ "schema_version": "export/1",
+ "compiler_version": "<version>",
+ "store_hash": "sha256:0dc535850c02efdd782e40bb56204bb6fe167d487840aea12cadd4f35cee8e7a",
+ "profile_export": {
+  "foundation_globs": [
+   "**/vision.md",
+   "**/constitution.md"
+  ],
+  "skip_headings": [
+   "Traceability"
+  ]
+ },
+ "allow_open": true,
+ "counts": {
+  "packs": 7,
+  "blocks": 12,
+  "blocks_omitted": 1,
+  "blocks_excluded": 1,
+  "blocks_no_node": 2,
+  "blocks_pending": 0,
+  "nodes": 9,
+  "nodes_omitted": 0,
+  "contracts": 1,
+  "checklist_items": 8,
+  "unsettled_contradictions": 1
+ },
+ "unsettled_ids": [
+  "CF-000003"
+ ],
+ "excluded_blocks": [
+  {
+   "block": "B-08",
+   "reason": "skip_heading"
+  },
+  {
+   "block": "B-10",
+   "reason": "real_duplicate"
+  }
+ ],
+ "backward_needs": [],
+ "chars": {
+  "source_markdown": 381,
+  "export_total": 4171,
+  "packs": {
+   "00-foundation.md": 467,
+   "01-f1-share--1-goal.md": 762,
+   "02-f1-share--2-rules.md": 508,
+   "03-f1-share--3-contracts.md": 542,
+   "04-f1-share--4-acceptance.md": 508,
+   "05-f2-keep--1-goal.md": 626,
+   "06-f2-keep--2-rules.md": 758
+  }
+ }
+}

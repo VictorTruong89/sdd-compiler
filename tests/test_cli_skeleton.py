@@ -12,7 +12,7 @@ import sys
 from sdd_compiler import __version__
 from sdd_compiler.cli import main
 
-REL01_COMMANDS = {"init", "compile", "ingest", "status", "conflicts", "family"}
+REL01_COMMANDS = {"init", "compile", "ingest", "status", "conflicts", "family", "export"}
 
 
 SRC = pathlib.Path(__file__).resolve().parents[1] / "src"

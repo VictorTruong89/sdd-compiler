@@ -24,6 +24,7 @@ COMMANDS: dict[str, str] = {
     "status": "show sources, blocks and what is pending",
     "conflicts": "list the open conflicts",
     "family": "show one family's nodes by layer",
+    "export": "write the agent export: a map, one pack per unit, a checklist (no model call)",
 }
 
 
@@ -81,6 +82,11 @@ def build_parser() -> argparse.ArgumentParser:
             sub.add_argument("conflict", nargs="?", metavar="CF-ID", help="the conflict judged")
             sub.add_argument("--verdict", choices=("real", "false"), help="is the conflict real?")
             sub.add_argument("--note", default=None, help="why, in one line")
+        if name == "export":
+            sub.add_argument("--out", type=Path, default=None, metavar="DIR",
+                             help="output directory; default .sdd/export/ (replaced whole)")
+            sub.add_argument("--allow-open", action="store_true", default=False,
+                             help="export even while contradictions have no human verdict")
         if name == "family":
             sub.add_argument("name", metavar="NAME", help="a family's term id, name or alias")
         if name == "compile":
@@ -114,6 +120,8 @@ def dispatch(args: argparse.Namespace) -> int:
         return commands.compile_(root, paths=args.paths, as_json=as_json, replay=not args.no_replay)
     if args.command == "ingest":
         return commands.ingest(root, paths=args.paths, as_json=as_json)
+    if args.command == "export":
+        return commands.export_(root, out=args.out, allow_open=args.allow_open, as_json=as_json)
     if args.command == "family":
         return commands.family(root, args.name, as_json=as_json)
     if args.command == "status":

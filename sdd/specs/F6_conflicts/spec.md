@@ -165,12 +165,15 @@ adds ambiguity `low_confidence_verdict` to both nodes rather than suppressing th
 ```json
 { "conflicts": {"candidates": 0, "pairs_judged": 0, "pairs_replayed": 0, "unjudged_failed": 0,
                 "failed": [{"pair": "N-000017|N-000042", "problem": "string"}], "quotes_replaced": 0,
-                "provisional": 0, "retrieval": {},
+                "suppressed": 0, "provisional": 0, "retrieval": {},
                 "by_relation": {"none": 0, "refines": 0, "depends_on": 0, "duplicates": 0,
                                 "subsumes": 0, "contradicts": 0},
                 "opened": 0, "closed": {"rejudged": 0, "member_deleted": 0},
                 "calls": 0, "incomplete": false} }
 ```
+Written as the run record's `conflicts` key (F1 CT-1.3). A run the cap or the backend stopped also
+carries `"stopped": "call_cap" | "backend"`. `suppressed` counts the verdicts D16/D19 refuse (I-97,
+CF-000387).
 
 **CT-6.3 — Profile additions**
 ```yaml

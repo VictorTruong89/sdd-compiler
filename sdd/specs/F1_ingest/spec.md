@@ -147,8 +147,11 @@ Rules:
 ```json
 { "id": "R-0009", "started_at": "ISO-8601 UTC", "command": "ingest | compile",
   "files": ["…"], "counts": {"new": 0, "changed": 0, "unchanged": 0, "removed": 0},
-  "cli_version": "string" }
+  "cli_version": "string", "conflicts": null }
 ```
+`counts` is ingest's own delta. `conflicts` holds the check phase's counts (F6 CT-6.2, with F5 CT-5.3
+inside) on a `compile` run that reached the check phase, and is `null` otherwise; a record written before
+the key existed reads as `null` (build-plan I-97).
 
 **CT-1.4 — Profile** (`.sdd/profile.yaml`, written by `sddc init`, then hand-edited):
 ```yaml
@@ -158,6 +161,7 @@ include_code_blocks: false
 skip_headings: ["Traceability"]   # D14: stored, never atomized
 contract_languages: ["json", "yaml", "text"]   # D15: fenced blocks formed whole, as contracts (F3 D39)
 atomizer: { backend: claude-code, model: haiku }   # read by F3, not by F1
+export: { foundation_globs: ["**/vision.md", "**/constitution.md"] }   # read by F7 (CT-7.2), not by F1
 ```
 `skip_headings` and `contract_languages` are lists of strings; any other type is an input error
 (exit `2`), like every profile key. Languages compare lower-cased.

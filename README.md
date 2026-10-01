@@ -101,6 +101,29 @@ sample), so treat each one as a question, not a finding.
 This section is generic: it applies to any spec set compiled by `sddc`, fed to any LLM coding agent.
 The rel01 use case is **a new codebase from scratch**.
 
+### Start here: read the export (F7)
+
+Run `sddc export` after a compile (`--out DIR`, default `.sdd/export/`; `--allow-open` only when you
+accept contradictions with no human verdict — the export is refused otherwise, exit 3). It writes the
+files an agent reads; it makes no model call and is byte-identical for the same store.
+
+| File | Read it to |
+|---|---|
+| `MAP.md` | Start here: banners, the units in build order, cycles, where each contract and decision lives, how to use the rest |
+| `packs/00-foundation.md` … | One pack per unit, in build order. **Text** (every block verbatim, tagged with its nodes) first; then the claims, acceptance criteria, constraints in scope, related claims elsewhere, settled conflicts and terms |
+| `CHECKLIST.md` | Every claim id. Each must end **implemented, tested, or listed as not done with a reason** |
+| `export.meta.json` | Counts, sizes, the excluded blocks and why, the store hash |
+
+The agent **never reads** `sdd/specs/**`, `.sdd/` (the store is the compiler's database, not a reading
+format), or any existing implementation. Mark code with `# spec: <id>`; name tests after the `AC-…`
+label or the node id. A contradiction the owner judged `real` appears as *Settled* with the owner's
+note; one judged `false` does not appear; with `--allow-open` an undecided one appears as `UNSETTLED`
+— state your choice in `OPEN_QUESTIONS.md`. A block the owner judged a real duplicate of an earlier one
+is left out (F7 D13). Scoring the code against the checklist is the harness's job, not the compiler's.
+
+*Everything below describes reading the raw `.sdd/` store. It predates the export (R18, `trial_01`) and
+remains as a fallback and as the record of what the graph carries.*
+
 ### The rule: the agent reads the graph, never the specs
 
 The point of the compiler is that its graph can stand in for the Markdown. So the agent **must not

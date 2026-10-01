@@ -103,13 +103,13 @@ Compilation never uses exhaustive mode: it is an offline measurement tool.
 
 Per run, for later measurement (G4): nodes checked, candidates proposed, pairs after the cap, pairs
 dropped by `min_score`, pairs dropped by the cap, pairs replayed from the lock. These go into the run
-record (F1 CT-1.3, extended by CT-5.3).
+record (F1 CT-1.3, extended by CT-5.3) at `conflicts.retrieval`, inside F6 CT-6.2's object (I-97).
 
 ## 5. Contracts
 
 **CT-5.1 — Candidate**
 ```json
-{ "pair_key": "sha256:<hex>", "a": "N-000042", "b": "N-000017", "score": 5.5,
+{ "pair_key": "sha256:<hex>", "a": "N-000042", "b": "N-000017", "score": 4.5,
   "evidence": [ {"source": "S2", "detail": {"terms": ["term:share_link"]}, "points": 2.0 },
                 {"source": "S6", "detail": {"dimension": "time", "values": ["30 d", "1 h"]}, "points": 2.5 } ],
   "rank": 1 }
@@ -124,7 +124,7 @@ retrieval:
   min_shared_keywords: 2
 ```
 
-**CT-5.3 — Run record additions** (F1 CT-1.3)
+**CT-5.3 — Run record additions** (F1 CT-1.3; written at `conflicts.retrieval`, F6 CT-6.2)
 ```json
 { "retrieval": {"nodes_checked": 0, "candidates_proposed": 0, "pairs_capped": 0,
                 "dropped_below_min_score": 0, "dropped_by_cap": 0, "replayed": 0} }
@@ -264,5 +264,5 @@ retrieval:
 | AC-5.10, AC-5.11, AC-5.13, AC-5.14 · CT-5.1 · D10 | `tests/test_retrieval_select.py` (10) | `src/sdd_compiler/retrieval/select.py` |
 | AC-5.12 *(pair key)* · D4 | `tests/test_retrieval_select.py::test_ac_5_12_…` (2) | `src/sdd_compiler/retrieval/select.py::pair_key` |
 | CT-5.2 *(profile)* | `tests/test_retrieval_select.py` · `tests/test_profile.py` | `src/sdd_compiler/profile.py` |
-| CT-5.3, AC-5.16 *(counts; the run record is wired in T17/T18)* | `tests/test_retrieval_select.py::test_ct_5_3_…`, `::test_ac_5_10_…` | `src/sdd_compiler/retrieval/select.py` |
+| CT-5.3, AC-5.16 *(counts; the run record wired by I-97, 2026-09-30)* | `tests/test_retrieval_select.py::test_ct_5_3_…`, `::test_ac_5_10_…`, `tests/test_compile.py::test_ac_5_16_ct_6_2_…` | `src/sdd_compiler/retrieval/select.py` |
 | AC-5.15 *(exhaustive mode)* | *(deferred: `sddc pairs` is M5, build plan B2)* | `src/sdd_compiler/retrieval/select.py` · `cli.py` |

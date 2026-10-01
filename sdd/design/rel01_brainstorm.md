@@ -266,6 +266,29 @@ use in a later release; rel01 wires none of them.
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
 
+### S45 — 2026-09-30 — Phase D prepared: F1 task, hidden tests, sandboxed harness
+
+- Owner: pilot task F1, model Sonnet, ceiling ≈ 2× the earlier Haiku ceiling (read as the 300-call Haiku compile round, ≈ $4.89 → **$10** estimated API-equivalent per run), build the harness and hidden tests.
+- Built in `docs/MIA5150-Project/` (study side, outside the compiler): `tasks/f1-ingest/` (task text, inputs for both formats, requirement list R1–R28 from the **frozen** F1, 26 black-box hidden tests) and `harness/` (run, score, bubblewrap sandbox). Frozen the gate-passed export as `~/sddc-runs/pilot-export-R000023` (+ sha256 manifest).
+- Checked, no model: hidden tests 26/26 on our implementation, 26/26 fail on a no-op.
+- ⚠ Blocked: Ubuntu 24.04's AppArmor userns restriction stops `bwrap`; both scripts refuse to run unsandboxed. Owner to apply the profile in `harness/README.md`, then a dry run, then (approved) the two Sonnet runs.
+
+### S44 — 2026-09-30 — I-95, I-96, I-97 fixed (D40)
+
+- Owner approved all three recommendations. Spec first (F7 §4.4, §4.5, D3, D14, AC-7.6/7/14/22, new AC-7.24; G3-3 §6; F1 CT-1.3, F5 CT-5.3, F6 CT-6.2, specs README), failing tests, then code. **Suite 754.**
+- Re-export of the pilot copy: 3.03× the Markdown (was 4.57×), largest pack 42.7 k, lists ÷ text 1.47, order F2 → F1 → README → F3 → F5 → F4 → F6 with 42 backward links listed.
+- I-97 corrected: not a wording gap but a run record that never stored the check counts; fixed.
+- Owner confirmed all 21 readings (**D41**); recorded on the copy as ADJ-000382 … 402. `sddc export` without `--allow-open`: exit 0, 0 unsettled, 59 packs, 2.94× the Markdown, largest pack 41.7 k; CF-000384 and 387 appear as *Settled* in their four packs. F5 CT-5.1's example fixed (score 4.5).
+- Next: Phase D — propose the one-task pilot (task, model, call cap, number to report); nothing spent until approved.
+
+### S43 — 2026-09-30 — F7 approved and built (M6 T20–T23); first export of the pilot graph
+
+- Owner answers: definitions shown verbatim (**D36**); one omit key, `skip_headings` (**D37**); D12 (contract fence printed once) confirmed; rule 1 relaxed, Q1/Q2 answered (**D38**); Q3 option a, real duplicates excluded, F7 approved 🟢 (**D39**).
+- Built test-first: `src/sdd_compiler/export/` (units, sources, model, gate, packs, files, pipeline), `sddc export`, profile key `export.foundation_globs`. 64 new tests, **suite 748**, no model call anywhere. AC-7.1 … AC-7.23 traced in F7 §9.
+- Measured on a copy of the pilot graph (`~/sddc-runs/export-trial-01`, code only, `--allow-open`, 1.1 s): 59 packs, 933 nodes, 932 checklist items, 54 blocks omitted (Traceability), 1 excluded (real duplicate), 142 blocks with no node, 1 pending, 22 contracts, **21 unsettled contradictions**. Findings: **I-95** (export 4.57× the Markdown), **I-96** (one 35-pack cycle), **I-97** (two wording gaps).
+- Phase C1 prepared: `pilot-unsettled-contradictions.md` — 21 records with my readings (2 real, 19 false); nothing recorded; owner confirms. README §2 now points agents at the export.
+- Next: owner rules on I-95 / I-96 and the 21 verdicts; then re-export, then Phase D (owner approves any spend).
+
 ### S42 — 2026-09-29 — I-92 built and run; pilot graph frozen; D35
 
 - **I-92 (a, b, c) built**, test-first: contract blocks become nodes with their `CT-` ids (F1 D15,
@@ -1024,6 +1047,34 @@ planned because the backend could be measured before the pipeline exists.
   can yet build from. Under D34 this means build-plan M6 (F7, the agent export) built on the pilot
   graph, which is frozen (S42). The MIA 5150 proposal (due 2026-10-02) comes first; rel01 work
   resumes after it. *Rejected:* closing on 2026-09-30 with I-92/I-93/I-94 logged as open (owner).
+- **rel01 D36 — 2026-09-30 — A pack's Terms list shows a term's verbatim `definition` when present.**
+  Owner decision (F7 D5). Rationale: F3 D38 definitions are the author's own sentences, so they meet
+  D5's reason; a term without one shows none. *Rejected:* names only.
+
+- **rel01 D37 — 2026-09-30 — F7 omits headings via F1's `skip_headings`; no `export.omit_headings`.**
+  Owner decision (F7 D11). Rationale: one key, so ingest and export never disagree. *Rejected:* two keys.
+
+
+- **rel01 D38 — 2026-09-30 — F7 D12 confirmed; rule 1 relaxed (F7 D13); Q1 and Q2 answered.** Owner.
+  The export may exclude duplicate and non-spec blocks for a recorded reason; retained blocks stay
+  verbatim. Global constraints once in pack 00; no pack size limit. Open: F7 Q3, how such blocks are
+  identified without a model call.
+
+- **rel01 D39 — 2026-09-30 — F7 approved 🟢; Q3 option a.** Owner. A block whose every node is the later
+  member of a `real`-adjudicated duplication is excluded from the export (reason `real_duplicate`), so
+  the coding agent reads a clean graph; the earlier member stays. AC-7.23 added; no open F7 questions.
+
+- **rel01 D40 — 2026-09-30 — I-95, I-96, I-97 resolved as recommended.** Owner. F7 D14: the pack lists
+  carry only what changes the build (named-selector constraints; broad ones once in pack 00; judged
+  links as ids; terms with a definition or aliases). F7 D3 revised: order the specs by the fewest
+  backward `depends_on` links, sections in source order, backward needs listed. G3-3 §6 check 2 records
+  the largest pack and the list-to-text ratio instead of gating on the total. I-97 is a code defect:
+  the run record now carries the check counts. *Rejected:* text prefixes (≈ 5 %), a cycle as one step.
+
+- **rel01 D41 — 2026-09-30 — The 21 pilot contradictions are settled: 2 real, 19 false.** Owner confirmed
+  `pilot-unsettled-contradictions.md`. Recorded on `~/sddc-runs/export-trial-01` (the frozen graph is
+  unchanged). CF-000384: AC-5.9 holds, CT-5.1's example fixed. CF-000387: AC-6.22 holds, CT-6.2 has
+  `suppressed` (I-97).
 
 ## Rejected alternatives
 

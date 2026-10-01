@@ -56,6 +56,18 @@ def ingest(root: Path, paths: list[str] | None = None, as_json: bool = False) ->
     return ExitCode.OK
 
 
+def export_(root: Path, out: Path | None = None, allow_open: bool = False,
+            as_json: bool = False) -> int:
+    """F7 — write the agent export from the compiled store. No model call."""
+    from .export.pipeline import export
+    result = export(root, out=out, allow_open=allow_open)
+    counts = result.meta["counts"]
+    _say(f"exported {counts['packs']} packs · {counts['nodes']} nodes · "
+         f"{counts['unsettled_contradictions']} unsettled contradiction(s) · {result.out}",
+         result.meta, as_json)
+    return ExitCode.OK
+
+
 def status(root: Path, as_json: bool = False) -> int:
     payload = pipeline.status(root)
     payload["graph"] = dict(graph_counts(load_graph(Path(root) / STORE_DIR)))   # T13 (F4 §4.4)

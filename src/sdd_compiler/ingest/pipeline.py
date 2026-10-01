@@ -32,7 +32,9 @@ SOURCES_FILE = "sources.jsonl"
 RUNS_FILE = "runs.jsonl"
 
 SOURCE_KEY_ORDER = ("path", "file_hash", "last_ingest_run")
-RUN_KEY_ORDER = ("id", "started_at", "command", "files", "counts", "cli_version")
+#: `conflicts` (F6 CT-6.2, with F5 CT-5.3 inside) is null until a check phase runs (I-97); records
+#: written before it existed read as null.
+RUN_KEY_ORDER = ("id", "started_at", "command", "files", "counts", "cli_version", "conflicts")
 
 
 @dataclass
@@ -112,6 +114,7 @@ def ingest(root: Path, paths: Sequence[str] | None = None, command: str = "compi
             "files": list(texts),
             "counts": counts,
             "cli_version": __version__,
+            "conflicts": None,
         }
 
         with Transaction(root / STORE_DIR) as transaction:
@@ -123,7 +126,7 @@ def ingest(root: Path, paths: Sequence[str] | None = None, command: str = "compi
                 sort_key=lambda record: record["path"],
             )
             transaction.write_jsonl(
-                RUNS_FILE, [*runs, run_record], RUN_KEY_ORDER,
+                RUNS_FILE, [*map(with_run_defaults, runs), run_record], RUN_KEY_ORDER,
                 sort_key=lambda record: record["id"],
             )
 
@@ -178,6 +181,11 @@ def _next_run_id(runs: Sequence[dict[str, Any]]) -> str:
         if identifier.startswith("R-") and identifier[2:].isdigit():
             highest = max(highest, int(identifier[2:]))
     return f"R-{highest + 1:06d}"
+
+
+def with_run_defaults(record: dict[str, Any]) -> dict[str, Any]:
+    """A run record from before I-97 has no `conflicts`; it reads as not recorded (null)."""
+    return {**record, "conflicts": record.get("conflicts")}
 
 
 def _read_text(path: Path) -> str:

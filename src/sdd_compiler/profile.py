@@ -43,6 +43,11 @@ DEFAULT_CONFLICTS: dict[str, Any] = {
     "subsumption_conflict_only_when_differing": True,
 }
 
+#: F7 CT-7.2 — the agent export. Omitted headings are `skip_headings` (F7 D11), not a key here.
+DEFAULT_EXPORT: dict[str, Any] = {
+    "foundation_globs": ["**/vision.md", "**/constitution.md"],
+}
+
 DEFAULT_WEAK_WORDS = [
     "fast", "quickly", "appropriate", "user-friendly", "as needed", "etc", "robust", "simple",
 ]
@@ -56,6 +61,7 @@ DEFAULT_PROFILE: dict[str, Any] = {
     "atomizer": dict(DEFAULT_ATOMIZER),
     "retrieval": dict(DEFAULT_RETRIEVAL),
     "conflicts": dict(DEFAULT_CONFLICTS),
+    "export": {"foundation_globs": list(DEFAULT_EXPORT["foundation_globs"])},
     "weak_words": list(DEFAULT_WEAK_WORDS),
     "layers": {},
 }
@@ -97,6 +103,11 @@ conflicts:
   judge_ambiguous: {judge_ambiguous}
   subsumption_conflict_only_when_differing: {subsumption_conflict_only_when_differing}
 
+# Read by `sddc export` (F7 CT-7.2): files whose blocks form pack 00, read first. [] = none.
+# Headings the export leaves out are skip_headings, above.
+export:
+  foundation_globs: {foundation_globs}
+
 # Words that suggest a vague claim (F3 guard G6).
 weak_words: {weak_words}
 
@@ -134,6 +145,13 @@ class ConflictSettings:
 
 
 @dataclass(frozen=True)
+class ExportSettings:
+    """F7 CT-7.2."""
+
+    foundation_globs: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class Profile:
     spec_globs: tuple[str, ...]
     exclude_globs: tuple[str, ...]
@@ -143,6 +161,7 @@ class Profile:
     contract_languages: tuple[str, ...] = ()
     retrieval: RetrievalSettings = field(default_factory=RetrievalSettings)
     conflicts: ConflictSettings = field(default_factory=ConflictSettings)
+    export: ExportSettings = field(default_factory=ExportSettings)
     weak_words: tuple[str, ...] = ()
     layers: Mapping[str, Mapping[str, Any]] = field(default_factory=dict)
 
@@ -160,6 +179,7 @@ def render_default_profile() -> str:
         max_calls=DEFAULT_ATOMIZER["max_calls_per_run"],
         timeout=DEFAULT_ATOMIZER["timeout_s"],
         weak_words=DEFAULT_WEAK_WORDS,
+        foundation_globs=json.dumps(DEFAULT_EXPORT["foundation_globs"]),
         **DEFAULT_RETRIEVAL,
         **{key: str(value).lower() for key, value in DEFAULT_CONFLICTS.items()},
     )
@@ -235,6 +255,7 @@ def parse_profile(raw: Any, source: str = PROFILE_NAME) -> Profile:
         atomizer=_atomizer(raw.get("atomizer", DEFAULT_ATOMIZER), source),
         retrieval=_retrieval(raw.get("retrieval", DEFAULT_RETRIEVAL), source),
         conflicts=_conflicts(raw.get("conflicts", DEFAULT_CONFLICTS), source),
+        export=_export(raw.get("export", DEFAULT_EXPORT), source),
         weak_words=tuple(word.lower() for word in weak_words),
         layers=_layers(raw.get("layers", {}), source),
     )
@@ -271,6 +292,20 @@ def _conflicts(value: Any, source: str) -> ConflictSettings:
         if not isinstance(setting, bool):
             raise SddcError(f"{source}: conflicts.{key} must be true or false", ExitCode.INPUT)
     return ConflictSettings(**settings)
+
+
+def _export(value: Any, source: str) -> ExportSettings:
+    """F7 CT-7.2 — strict like the rest; a foundation glob list, possibly empty."""
+    if not isinstance(value, Mapping):
+        raise SddcError(f"{source}: export must be a mapping", ExitCode.INPUT)
+    unknown = sorted(set(value) - set(DEFAULT_EXPORT))
+    if unknown:
+        raise SddcError(f"{source}: export has unknown key(s) {', '.join(unknown)}"
+                        + ("; omitted headings are skip_headings (F7 D11)" if "omit_headings" in unknown
+                           else ""), ExitCode.INPUT)
+    globs = value.get("foundation_globs", DEFAULT_EXPORT["foundation_globs"])
+    return ExportSettings(foundation_globs=_globs(globs, "export.foundation_globs", source,
+                                                  allow_empty=True))
 
 
 def _layers(value: Any, source: str) -> dict[str, dict[str, Any]]:

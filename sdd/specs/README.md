@@ -19,7 +19,8 @@ Status legend: 🔵 idea · 🟡 draft (has ACs) · 🟢 approved (coding may st
 
 **Shipping:** `sddc init · compile · status · conflicts · family`, plus `export` (rel01 D34, F7).
 **Specified but deferred out of rel01:** `ingest` (as its own command), `atomize`, `blocks`, `show`,
-`review`, `map`, `query`, `check`, `pairs`, `check-conflicts`, and F5's exhaustive mode. Their
+`review`, `map`, `query`, `check` (the standalone command — the check *phase* runs inside `compile`),
+`pairs`, `check-conflicts`, and F5's exhaustive mode. Their
 acceptance criteria stay in the specs, unbuilt; the release close-out lists them as deferred.
 
 ## Spec index
@@ -33,5 +34,5 @@ acceptance criteria stay in the specs, unbuilt; the release close-out lists them
 | **F3** | [Atomizer (Haiku + guards)](F3_atomizer/spec.md) | 🟢 approved · revised 2026-09-17 (rel01 D26) — 24 ACs, 3 open questions · ⛔ coding gated | AC-3.1 … AC-3.22, AC-3.24, AC-3.25 | ⛔ none |
 | **F5** | [Related-node retrieval](F5_retrieval/spec.md) | 🟢 approved 2026-09-18 — 16 ACs, 0 open questions · ⛔ coding gated | AC-5.1 … AC-5.16 | ⛔ none |
 | **F6** | [Conflict detection & report](F6_conflicts/spec.md) | 🟢 approved 2026-09-18 — 19 ACs, 0 open questions · ⛔ coding gated | AC-6.1 … AC-6.19 | ⛔ none |
-| **F7** | [Agent export: map, unit packs, checklist](F7_agent_export/spec.md) (rel01 D34; G3-3 budgeted traversal deferred) | 🟡 draft 2026-09-25 — 20 ACs, ⚑ D3, D6, D7, D8, D10, D11 for review, 2 open questions | AC-7.1 … AC-7.20 | ⛔ none |
+| **F7** | [Agent export: map, unit packs, checklist](F7_agent_export/spec.md) (rel01 D34; G3-3 budgeted traversal deferred) | 🟢 approved 2026-09-30, amended (D3, D14) — 24 ACs, built | AC-7.1 … AC-7.24 | ⛔ none |
 | **F4** | [Graph store & views](F4_graph_store/spec.md) | 🟢 approved 2026-09-15 — 18 ACs, ⚑ reviewed 2026-09-16 (all accepted), 2 open questions · ⛔ coding gated | AC-4.1 … AC-4.18 | ⛔ none |

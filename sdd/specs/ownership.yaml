@@ -20,6 +20,13 @@ map:
       ⚠ cli.py is shared with later specs (F3, F4, F6); re-split when those land. A hooks module is
       out of rel01 (D26). The paths do not exist yet: they govern nothing until code lands.
   - globs:
+      - "src/sdd_compiler/export/**"
+    spec: sdd/specs/F7_agent_export/spec.md
+    why: >
+      F7 — the agent export: units, packs, MAP.md, CHECKLIST.md, export.meta.json, the conflict gate.
+      Reads the store only; never a model. ⚑ cli.py and commands.py also carry `export`; profile.py
+      carries the `export` key (CT-7.2).
+  - globs:
       - "src/sdd_compiler/model/**"
     spec: sdd/specs/F2_node_model/spec.md
     why: >

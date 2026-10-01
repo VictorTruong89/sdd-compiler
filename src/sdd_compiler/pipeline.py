@@ -26,7 +26,8 @@ from .atomize.lock import JudgmentLock
 from .atomize.pipeline import GraphDraft, atomize_pending
 from .errors import ExitCode
 from .ingest.identity import BLOCK_KEY_ORDER, atomizable, fence_language, is_live, pending_status
-from .ingest.pipeline import BLOCKS_FILE, RUNS_FILE, SOURCES_FILE, IngestResult, ingest, lock_wait_seconds
+from .ingest.pipeline import (BLOCKS_FILE, RUN_KEY_ORDER, RUNS_FILE, SOURCES_FILE, IngestResult, ingest,
+                              lock_wait_seconds, with_run_defaults)
 from .llm import Backend, CallBudget, get_backend
 from .profile import STORE_DIR, load_profile
 from .conflicts.pipeline import check
@@ -193,6 +194,12 @@ def compile_graph(root: Path, paths: list[str] | None = None, backend: Backend |
             lock.stage(transaction)
             write_graph(store, graph, transaction=transaction, sources=sources, other_counters=others,
                         staged_judgments=lock.records)
+            if result.check is not None:     # I-97: F6 CT-6.2 (F5 CT-5.3 inside) on this run's record
+                runs = [with_run_defaults(r) for r in read_jsonl(store / RUNS_FILE)]
+                for record in runs:
+                    if record["id"] == run_id:
+                        record["conflicts"] = result.check.counts
+                transaction.write_jsonl(RUNS_FILE, runs, RUN_KEY_ORDER, sort_key=lambda r: r["id"])
 
     stopped = draft.stopped or (result.check.stopped if result.check is not None else None)
     if stopped == "call_cap":

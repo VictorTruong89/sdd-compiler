@@ -193,8 +193,11 @@ definitions; principle 2).
 ## 6. Checks before any code-generation study run
 
 1. **Coverage** (E-1) holds.
-2. **Size:** total pack characters and the largest pack are recorded against the Markdown's. A total
-   above the Markdown's is a finding to explain before the run.
+2. **Size** (revised 2026-09-30, owner, I-95): record the **largest pack** and the **ratio of list text
+   to block text**, and report the total against the Markdown's. The total is not a gate: the Text
+   sections alone carry every block plus its tag lines (≈ 1.18× the Markdown on the pilot), so the
+   total can never fall below 1×. What the agent feels is the pack it is reading and how much of it
+   repeats. F7 D14 cut the lists to what changes the build.
 3. **Pilot:** one task, one model, Markdown versus export. If the export loses, fix the export first.
    The pilot task is excluded from reported results. Whatever the study finds is reported.
 

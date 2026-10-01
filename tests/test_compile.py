@@ -721,3 +721,24 @@ def test_ac_6_27_compile_tells_the_judge_which_nodes_are_contracts(tmp_path):
     assert counts["candidates"] == 1
     assert counts["quotes_replaced"] == 1 and counts["suppressed"] == 1
     assert load_graph(repo / ".sdd").conflicts == {}
+
+
+# -- I-97: the run record carries the check phase's counts (F5 CT-5.3, F6 CT-6.2) ------------------
+
+def test_ac_5_16_ct_6_2_a_compile_run_record_carries_the_check_counts(repo):
+    """The counts were computed and reported but never written to `runs.jsonl` (I-97)."""
+    first_compile(repo)
+    [record] = [r for r in read_jsonl(repo / ".sdd" / "runs.jsonl") if r["command"] == "compile"]
+    counts = record["conflicts"]
+    assert counts["pairs_judged"] + counts["pairs_replayed"] >= 1
+    assert "suppressed" in counts                                    # AC-6.22, CF-000387
+    r = counts["retrieval"]
+    assert r["candidates_proposed"] == r["pairs_capped"] + r["dropped_below_min_score"] + r["dropped_by_cap"]
+    assert r["candidates_proposed"] > 0
+
+
+def test_an_ingest_only_run_records_no_check_counts(repo):
+    from sdd_compiler.ingest.pipeline import ingest as ingest_only
+    ingest_only(repo, command="ingest")
+    [record] = read_jsonl(repo / ".sdd" / "runs.jsonl")
+    assert record["conflicts"] is None
