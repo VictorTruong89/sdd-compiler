@@ -23,11 +23,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 from sandbox import bwrap_argv  # noqa: E402
 
 SCRIPT = """set -e
-python3 -m venv /work/venv
-/work/venv/bin/pip install -q -e /work/ws pytest pyyaml > /work/pip.log 2>&1 || { echo PIP_FAILED; exit 3; }
-/work/venv/bin/pip freeze > /work/freeze.txt
-cd /work && SDDC_CMD=/work/venv/bin/sddc PYTHONDONTWRITEBYTECODE=1 \\
-  /work/venv/bin/python -m pytest /hidden -q -p no:cacheprovider --junitxml /work/junit.xml || true
+python3 -m venv /home/work/venv
+/home/work/venv/bin/pip install -q -e /home/work/ws pytest pyyaml > /home/work/pip.log 2>&1 || { echo PIP_FAILED; exit 3; }
+/home/work/venv/bin/pip freeze > /home/work/freeze.txt
+cd /home/work && {cmd_env}=/home/work/venv/bin/{script} PYTHONDONTWRITEBYTECODE=1 \\
+  /home/work/venv/bin/python -m pytest /home/hidden -q -p no:cacheprovider --junitxml /home/work/junit.xml || true
 """
 
 
@@ -35,7 +35,7 @@ def requirement_map(task: Path) -> tuple[dict[str, str], list[str]]:
     """test-name prefix → R id, and the R ids scored by audit."""
     tests, audits = {}, []
     for line in (task / "requirements.md").read_text(encoding="utf-8").splitlines():
-        m = re.match(r"\| (R\d+) \|.*\| (.*) \|$", line)
+        m = re.match(r"\| ([RA]\d+) \|.*\| (.*) \|$", line)
         if not m:
             continue
         rid, scored = m.groups()
@@ -75,22 +75,24 @@ def referenced_ids(ws: Path) -> dict[str, set[str]]:
     return {"spec_marks": marks, "mentioned": mentioned}
 
 
-def f1_checklist_ids(spec: Path) -> set[str]:
+def checklist_ids(spec: Path, packs: str) -> set[str]:
     checklist = spec / "CHECKLIST.md"
     if not checklist.exists():
         return set()
     ids, inside = set(), False
     for line in checklist.read_text(encoding="utf-8").splitlines():
         if line.startswith("## Pack"):
-            inside = "f1-ingest" in line
+            inside = packs in line                       # "" = every pack
         elif inside and line.startswith("- [ ] "):
             ids.add(line.split()[3])
     return ids
 
 
-def f1_labels(task: Path) -> set[str]:
-    text = (task / "requirements.md").read_text(encoding="utf-8")
-    return set(re.findall(r"(?:AC|CT)-1\.\d+", text))
+def spec_labels(task: Path, pattern: str | None) -> set[str]:
+    """The spec's own ids for this task's scope (e.g. F1's AC-/CT- labels), as listed in requirements.md."""
+    if not pattern:
+        return set()
+    return set(re.findall(pattern, (task / "requirements.md").read_text(encoding="utf-8")))
 
 
 def main() -> int:
@@ -105,9 +107,11 @@ def main() -> int:
     (score_dir / "ws").mkdir(parents=True)
     shutil.copytree(run / "workspace", score_dir / "ws", dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns(".venv", "venv", "__pycache__", ".pytest_cache"))
+    scoring = json.loads((task / "inputs.json").read_text(encoding="utf-8"))["scoring"]
+    script = SCRIPT.replace("{cmd_env}", scoring["cmd_env"]).replace("{script}", scoring["console_script"])
     proc = subprocess.run([*bwrap_argv(score_dir, score_dir, with_claude=False,
-                                       extra_ro={str(task / "hidden_tests"): "/hidden"}),
-                           "sh", "-c", SCRIPT], capture_output=True, text=True, timeout=1800)
+                                       extra_ro={str(task / "hidden_tests"): "/home/hidden"}),
+                           "sh", "-c", script], capture_output=True, text=True, timeout=1800)
     (score_dir / "pytest.out").write_text(proc.stdout + proc.stderr, encoding="utf-8")
     if proc.returncode != 0 or not (score_dir / "junit.xml").exists():       # fail loud, never a silent 0
         reason = "the agent's package did not install" if "PIP_FAILED" in proc.stdout else \
@@ -125,8 +129,8 @@ def main() -> int:
     req_state = {rid: "passed" if all(s == "passed" for s in states) else "failed"
                  for rid, states in sorted(by_req.items())}
     refs = referenced_ids(score_dir / "ws")
-    labels = f1_labels(task)
-    checklist = f1_checklist_ids(run / "workspace" / "spec")
+    labels = spec_labels(task, scoring.get("label_pattern"))
+    checklist = checklist_ids(run / "workspace" / "spec", scoring.get("checklist_packs", ""))
     ws = run / "workspace"
     score = {
         "install": "ok",
@@ -137,9 +141,10 @@ def main() -> int:
                                  "of": len([r for r in req_state if r != "unmapped"]),
                                  "detail": req_state},
         "requirements_by_audit": {rid: "to be audited" for rid in audits},
-        "f1_labels_mentioned": {"count": len(refs["mentioned"] & labels), "of": len(labels)},
+        "spec_labels_mentioned": ({"count": len(refs["mentioned"] & labels), "of": len(labels)}
+                                  if labels else None),
         "spec_marks": len(refs["spec_marks"]),
-        "f1_checklist_ids_mentioned": ({"count": len(refs["mentioned"] & checklist), "of": len(checklist)}
+        "checklist_ids_mentioned": ({"count": len(refs["mentioned"] & checklist), "of": len(checklist)}
                                        if checklist else None),
         "deliverables": {name: (ws / name).exists()
                          for name in ("pyproject.toml", "OPEN_QUESTIONS.md", "IMPLEMENTATION_NOTES.md")},

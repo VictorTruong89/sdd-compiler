@@ -4,8 +4,9 @@
 > code from this file.** Ideas graduate into `../specs/F<n>_<slug>/spec.md` once their acceptance
 > criteria can be written. If this file and a spec disagree, the spec wins.
 >
-> **Status:** OPEN · **Opened:** 2026-09-14 · **Target close:** 2026-09-30 · **Previous release:** none
-> A living document: each session appends.
+> **Status:** FROZEN · **Opened:** 2026-09-14 · **Closed:** 2026-10-01 (target 2026-09-30, D35) ·
+> **Previous release:** none · Close-out: [`releases/rel01_closeout.md`](releases/rel01_closeout.md).
+> Frozen at the close: append nothing; rel02 opens its own brainstorm.
 
 ---
 
@@ -265,6 +266,13 @@ use in a later release; rel01 wires none of them.
 - Deliberate: a registered but unimplemented command prints what it is and exits `1`, rather than
   pretending to work.
 - **Next:** T2 store primitives, then T3 segmentation.
+
+### S46 — 2026-09-30 — Phase D pilot run: both formats 26/26
+
+- Owner applied the bwrap AppArmor profile and installed `python3.12-venv`/`python3-pip`. Dry run: six probes ok; scorer verified in the sandbox (26/26 on our implementation).
+- Sonnet, F1: **Markdown 26/26, $0.52, 12 turns, 182 s; export 26/26, $0.70, 15 turns, 186 s** (estimated API-equivalent). The export did not lose; it read ≈ 2.2× the cached input. Both hit the ceiling: F1 is a clean single-file spec, so the task cannot discriminate. Results: `docs/MIA5150-Project/pilot-F1-results.md`.
+- Incidents: first attempt aborted (web tools offered); audit false positive; harness crash after the export run (record rebuilt, marked `recovered`).
+- Next (owner): is the export usable, so rel01 can close (D35)? And a discriminating pilot task for Phase E — messy, multi-file.
 
 ### S45 — 2026-09-30 — Phase D prepared: F1 task, hidden tests, sandboxed harness
 
@@ -1075,6 +1083,10 @@ planned because the backend could be measured before the pipeline exists.
   `pilot-unsettled-contradictions.md`. Recorded on `~/sddc-runs/export-trial-01` (the frozen graph is
   unchanged). CF-000384: AC-5.9 holds, CT-5.1's example fixed. CF-000387: AC-6.22 holds, CT-6.2 has
   `suppressed` (I-97).
+
+- **rel01 D42 — 2026-10-01 — rel01 closes.** Owner. D35's condition holds: the pilot graph's export
+  passes the gate and Sonnet built F1 from it alone (26 / 26 hidden tests, `pilot-F1-results.md`).
+  Close-out: [`releases/rel01_closeout.md`](releases/rel01_closeout.md). This file is frozen.
 
 ## Rejected alternatives
 

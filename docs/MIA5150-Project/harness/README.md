@@ -10,7 +10,8 @@
 |---|---|
 | `harness/run_task.py` | One trial: copy the task's inputs for one spec format into an empty workspace, run Claude Code headless **in a sandbox**, with a $ ceiling and a wall-clock timeout; keep the transcript and a `run.json` |
 | `harness/score.py` | Install the agent's package and run the hidden tests **in the same sandbox**; map results to the requirement list; count the spec ids the agent accounted for |
-| `harness/sandbox.py` | The bubblewrap command: system read-only, `/home` and `/tmp` hidden, a fresh home, the workspace at `/work`, environment cleared (no `ANTHROPIC_API_KEY`) |
+| `harness/sandbox.py` | The bubblewrap command: system read-only, `/home` and `/tmp` hidden, a fresh home, the workspace at `/home/work`, environment cleared (no `ANTHROPIC_API_KEY`) |
+| `tasks/lend-messy/` | The second task (built 2026-10-01): a messy 7-file spec with 12 planted items; see its `DESIGN.md`. Scoring settings per task live in `inputs.json` → `scoring` |
 | `tasks/f1-ingest/` | The first task: `task.md` (the fixed task text), `inputs.json` (what each format gets), `requirements.md` (R1–R28), `hidden_tests/` (26 black-box tests) |
 
 ## The F1 pilot (approved by the owner 2026-09-30: task F1, model Sonnet)
@@ -31,6 +32,9 @@ python3 score.py --run ~/sddc-runs/study-runs/<run> --task ../tasks/f1-ingest
   ceiling. There was no Haiku *agent* ceiling; the nearest figures are the Haiku compile rounds capped
   at 200 and 300 calls, ≈ $3.88 and ≈ $4.89 (build-plan I-94). Twice the larger ≈ $9.78 → **$10**,
   enforced by `claude --max-budget-usd`. *What one Sonnet run actually takes is to be measured.*
+- **Tools: `Bash, Read, Write, Edit` only** (`claude --tools`), the same for both formats. The first
+  attempt (2026-09-30) offered every default tool, including web search; it was stopped after two spec
+  reads, kept as `…--ABORTED-web-tools`, and both runs restarted with this list.
 - **The pilot task is excluded from reported results** (G3-3 §6). If the export loses, the export is
   fixed first.
 
@@ -55,6 +59,13 @@ profile bwrap /usr/bin/bwrap flags=(unconfined) {
 }
 EOF
 sudo apparmor_parser -r /etc/apparmor.d/bwrap
+```
+
+The system Python must be able to make virtualenvs with pip (the agent and the scorer both run
+`pip install -e .`); Ubuntu ships that separately (found 2026-09-30, owner's choice):
+
+```bash
+sudo apt install python3.12-venv python3-pip
 ```
 
 Then `run_task.py --dry-run` must report every probe `ok`: home hidden, `~/sddc-runs` hidden, spec

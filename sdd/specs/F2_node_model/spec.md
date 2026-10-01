@@ -476,3 +476,4 @@ closed 2026-09-18 as D12. Q3 closed 2026-09-18 as D13.*
 | AC-2.24, AC-2.25 · D13 | `tests/test_atomize_pipeline.py` | `src/sdd_compiler/atomize/forming.py` · `pipeline.py` |
 | AC-2.28 · D20 | `tests/test_model_records.py::test_f2_d20_…` (8 cases) · `tests/test_atomize_pipeline.py::test_f2_d20_…` (3) | `src/sdd_compiler/model/ids.py` · `schema.py` · `atomize/forming.py` · `pipeline.py` |
 | AC-2.23 · D14 | `tests/test_store_graph.py::test_f2_ac_2_23_deleting_a_node_cascades` | `src/sdd_compiler/store/graph.py` |
+| AC-2.29 *(tier gap: specified integration, tested at unit level — added at the rel01 close)* | `tests/test_atomize_contracts.py::test_ac_2_29_the_contract_carries_the_id_and_the_title_only_the_label` | `src/sdd_compiler/atomize/contracts.py` |

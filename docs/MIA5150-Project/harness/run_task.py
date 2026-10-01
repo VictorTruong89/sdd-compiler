@@ -46,10 +46,15 @@ def copy_inputs(task: Path, fmt: str, spec_dir: Path) -> tuple[str, list[str]]:
     return entry["spec_line"], copied
 
 
+#: The agent's whole tool set, the same for every format. No web tools: the agent could otherwise
+#: search for this project's repository and copy it (found on the first, aborted run, 2026-09-30).
+TOOLS = "Bash,Read,Write,Edit"
+
+
 def claude_argv(prompt: str, model: str, budget: float) -> list[str]:
     return [CLAUDE_IN, "-p", prompt, "--model", model, "--output-format", "stream-json", "--verbose",
             "--max-budget-usd", f"{budget:.2f}", "--permission-mode", "bypassPermissions",
-            "--no-session-persistence", "--strict-mcp-config"]
+            "--no-session-persistence", "--strict-mcp-config", "--tools", TOOLS]
 
 
 def probe(run_dir: Path, work: Path) -> dict:
@@ -72,14 +77,18 @@ def probe(run_dir: Path, work: Path) -> dict:
 
 def audit(transcript: Path) -> list[str]:
     """Tool calls that reached for a path outside the sandbox's view of the task (contamination)."""
-    suspicious = re.compile(r"/home/(?!agent\b)|sdd-compiler|sddc-runs|hidden_tests")
+    # Host paths only: the spec itself names the package `sdd_compiler` / `sdd-compiler`, so the bare
+    # project name is not evidence (a false positive on the first run, 2026-09-30).
+    suspicious = re.compile(re.escape(str(Path.home())) + r"|sddc-runs|hidden_tests|Workspace/")
     hits = []
     for line in transcript.read_text(encoding="utf-8").splitlines():
         try:
             event = json.loads(line)
         except json.JSONDecodeError:
             continue
-        for block in (event.get("message") or {}).get("content") or []:
+        message = event.get("message") if isinstance(event, dict) else None
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
             if isinstance(block, dict) and block.get("type") == "tool_use":
                 text = json.dumps(block.get("input"))
                 if suspicious.search(text):
@@ -93,6 +102,8 @@ def summarise(transcript: Path) -> dict:
         try:
             event = json.loads(line)
         except json.JSONDecodeError:
+            continue
+        if not isinstance(event, dict):
             continue
         if event.get("type") == "system" and event.get("subtype") == "init":
             init = event

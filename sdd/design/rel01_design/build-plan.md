@@ -193,6 +193,7 @@ proves almost nothing.
 | I-95, I-96, I-97 fixes (rel01 D40) | ✅ | +6 | F7 D14 lists cut, D3 order by spec; run record carries `conflicts` · re-export 3.03× |
 | **21 contradictions settled** (rel01 D41) | ✅ owner | — | 2 real, 19 false, recorded on the copy; export passes the gate without `--allow-open`: 2.94×, largest pack 41.7 k. Frozen as `~/sddc-runs/pilot-export-R000023` (+ sha256) |
 | **Phase D prepared** — F1 task, hidden tests, harness (study side, `docs/MIA5150-Project/`) | ✅ built · ⛔ **blocked** | 26 hidden | Hidden tests 26/26 on our implementation, 26/26 fail on a no-op. The bubblewrap sandbox cannot start (Ubuntu 24.04 AppArmor userns restriction): owner action, `harness/README.md` |
+| **Phase D pilot run** (F1, Sonnet) | ✅ 2026-09-30 | — | Markdown 26/26, $0.52 · export 26/26, $0.70 (est. API-equivalent). The task hits the ceiling for both: `docs/MIA5150-Project/pilot-F1-results.md` |
 
 Counts are tests per task's test files (T1's include 3 profile tests added in T6). Suite total: **628** (2026-09-24); **754** (2026-09-30, after M6 and I-95 … I-97). (T9's count is mostly the 128-case exhaustive placement test.)
 

@@ -15,8 +15,8 @@ import shutil
 from pathlib import Path
 
 HOME_IN = "/home/agent"
-WORK_IN = "/work"
-CLAUDE_IN = "/opt/claude/claude"
+WORK_IN = "/home/work"
+CLAUDE_IN = "/home/bin/claude"
 
 
 def claude_binary() -> Path:
@@ -28,7 +28,7 @@ def claude_binary() -> Path:
 
 def bwrap_argv(run_dir: Path, work_dir: Path, with_claude: bool = True,
                extra_ro: dict[str, str] | None = None) -> list[str]:
-    """The bwrap prefix. `run_dir/home` becomes the fresh home; `work_dir` is mounted at /work."""
+    """The bwrap prefix. `run_dir/home` becomes the fresh home; `work_dir` is mounted at /home/work."""
     home = run_dir / "home"
     (home / ".claude").mkdir(parents=True, exist_ok=True)
     config = home / ".claude.json"
@@ -44,7 +44,7 @@ def bwrap_argv(run_dir: Path, work_dir: Path, with_claude: bool = True,
         "--chdir", WORK_IN,
         "--clearenv",
         "--setenv", "HOME", HOME_IN,
-        "--setenv", "PATH", "/opt/claude:/usr/local/bin:/usr/bin:/bin",
+        "--setenv", "PATH", "/home/bin:/usr/local/bin:/usr/bin:/bin",
         "--setenv", "LANG", os.environ.get("LANG", "C.UTF-8"),
         "--setenv", "TERM", "dumb",
         "--setenv", "DISABLE_AUTOUPDATER", "1",

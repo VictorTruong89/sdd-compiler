@@ -1,8 +1,8 @@
 # SDD Compiler — working agreement
 
-> **Status:** opened 2026-09-14 · release **rel01** (target 2026-09-30, **slipped by rel01 D35**: it
-> closes when the first spec graph is usable for generating code). Sections marked `TODO`
-> are filled as rel01 decisions land.
+> **Status:** opened 2026-09-14 · release **rel01 CLOSED 2026-10-01**
+> ([close-out](sdd/design/releases/rel01_closeout.md)); its brainstorm is frozen. The next release has no
+> brainstorm yet. Sections marked `TODO` are still open.
 >
 > ★ **rel01 in one sentence (rel01 D26):** point `sddc compile` at a folder of static Markdown spec
 > files and get back a spec graph plus a report of every conflict in it. No hooks, no live input, no
