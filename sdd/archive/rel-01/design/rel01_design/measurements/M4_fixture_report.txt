@@ -1,0 +1,41 @@
+R-000003: compiled 3 file(s) · 0 new · 0 changed · 0 removed
+atomized 28 of 28 pending block(s) · 0 failed · 4 formed no node · 34 node(s) formed, 0 deleted
+checked 123 pair(s) (72 judged, 0 replayed) · 93 model call(s) · $1.3009 · 0 answer(s) replayed from the lock
+⚠ CHECKING INCOMPLETE: the run stopped the check phase and 50 pair(s) were not judged; what was judged is written
+⚠ 1 pair(s) could not be judged: the answer failed its checks twice
+CONFLICTS: 11 open (6 contradiction, 2 duplication, 3 subsumption) in 3 group(s)
+  CF-000001 contradiction  N-000019 sdd/specs/F2_retention/spec.md:14 ↔ N-000027 sdd/specs/F2_retention/spec.md:31
+    "kept for 30 days after it is created" ↔ "removes an export archive 7 days after it was created"
+    rationale: Both claims specify different retention periods for export archives: one says 30 days, the other says 7 days—these cannot both be true simultaneously.
+  CF-000004 contradiction  AC-1.2 sdd/specs/F1_exports/spec.md:51 ↔ N-000019 sdd/specs/F2_retention/spec.md:14
+    "its download link stops working 24 hours after it was issued" ↔ "kept for 30 days after it is created, then deleted with its download link"
+    rationale: A specifies the download link stops working at 24 hours, while B indicates the export archive is retained for 30 days, implying the link should remain functional throughout that period; these timelines conflict.
+  CF-000007 contradiction  N-000014 sdd/specs/F1_exports/spec.md:38 ↔ N-000019 sdd/specs/F2_retention/spec.md:14
+    "valid for 24 hours" ↔ "deleted with its download link"
+    rationale: Claim A requires the download link to be "valid for 24 hours," while Claim B states the link is "deleted" after 30 days; a deleted link cannot remain valid, creating an unresolved temporal constraint about when the link's validity ends relative to its deletion.
+  CF-000009 contradiction  AC-2.1 sdd/specs/F2_retention/spec.md:38 ↔ N-000002 sdd/specs/F1_exports/sharing.md:10
+    "the archive and its link are gone" ↔ "A shared link expires 30 days after it is created"
+    rationale: The claims specify conflicting expiration timelines for the shared link: day 30 versus day 31.
+  CF-000002 duplication  AC-1.2 sdd/specs/F1_exports/spec.md:51 ↔ N-000014 sdd/specs/F1_exports/spec.md:38
+    "stops working 24 hours after it was issued" ↔ "valid for 24 hours"
+    rationale: Both claims state the identical requirement: download links must function for exactly 24 hours from issuance, expressed as either "stops working 24 hours after" (A) or "valid for 24 hours" (B).
+  CF-000005 subsumption  AC-2.1 sdd/specs/F2_retention/spec.md:38 ↔ N-000027 sdd/specs/F2_retention/spec.md:31
+    "the archive and its link are gone" ↔ "removes an export archive 7 days after it was created"
+    rationale: Claim B specifies the removal occurs at 7 days post-creation, which logically guarantees Claim A's outcome that the archive is gone by day 31; but Claim A only confirms the end state without specifying the removal timing.
+  CF-000011 subsumption  N-000019 sdd/specs/F2_retention/spec.md:14 ↔ N-000021 sdd/specs/F2_retention/spec.md:16
+    "kept for 30 days after it is created, then deleted" ↔ "does not extend its life"
+    rationale: Claim A establishes a fixed 30-day retention period from creation; Claim B clarifies that downloading on day 29 doesn't reset this timer — A's statement of a fixed deletion window already implies B's constraint that the life cannot be extended.
+  CF-000006 contradiction  AC-2.2 sdd/specs/F2_retention/spec.md:40 ↔ N-000029 sdd/specs/F2_retention/spec.md:32
+    "the project and its files come back" ↔ "a deleted project's files after the recovery window"
+    rationale: Claim A asserts project files "come back" upon restoration on day 13, while Claim B mandates the retention job "remove" deleted project files after the recovery window, creating an irreconcilable conflict about the final state of those files.
+  CF-000010 contradiction  AC-2.2 sdd/specs/F2_retention/spec.md:40 ↔ N-000025 sdd/specs/F2_retention/spec.md:26
+    "the project and its files come back" ↔ "its files, its exports and its audit events are removed by the retention job in one pass"
+    rationale: A claims project files are restored upon project recovery, while B claims files are permanently removed by the retention job; both states cannot occur for the same files.
+  CF-000008 subsumption  N-000024 sdd/specs/F2_retention/spec.md:26 ↔ N-000025 sdd/specs/F2_retention/spec.md:26
+    "deleted project is recoverable for 14 days" ↔ "After that its files, its exports and its audit events are removed"
+    rationale: Claim A establishes a 14-day recovery window for deleted projects; Claim B describes what happens after that window expires, so the recovery guarantee logically precedes and implies the cleanup mechanism.
+  CF-000003 duplication  N-000022 sdd/specs/F2_retention/spec.md:21 ↔ N-000028 sdd/specs/F2_retention/spec.md:31
+    "An audit event is kept for one year" ↔ "an audit event after one year"
+    rationale: Both claims assert the same retention period for audit events: one year. Claim A states the retention from the audit event's perspective (it "is kept for one year"), while Claim B states it from the retention job's action (it "removes an audit event after one year")—but both express the identical rule.
+ATTENTION: 3 item(s) — see .sdd/review.jsonl
+exit 6

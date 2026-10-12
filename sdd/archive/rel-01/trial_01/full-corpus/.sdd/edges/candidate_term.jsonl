@@ -1,0 +1,5 @@
+{"from": "N-000390", "type": "depends_on", "to": "N-000236", "provenance": "judgment", "judgment": "J-005521", "rationale": "Claim B (the narrower verdict edge case) presupposes the classification system defined in Claim A (same/narrower/different/unsure). The narrower verdict Claim B constrains is one of the classifications Claim A requires.", "quotes": ["`narrower` (a kind of a candidate)", "code refuses a `narrower` verdict"]}
+{"from": "N-000390", "type": "uses_term", "to": "term:candidate_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000390", "type": "uses_term", "to": "term:code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000390", "type": "uses_term", "to": "term:new_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000390", "type": "uses_term", "to": "term:q_term_narrower_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,4 @@
+{"from": "N-000115", "type": "refines", "to": "N-000081", "provenance": "judgment", "judgment": "J-006333", "rationale": "Claim A states that terms and links representation must be defined; Claim B specifies a particular representation detail (a scope_selector's terms field contains resolved terms with role scope)—B provides a concrete example of how terms are represented.", "quotes": ["how terms and links are represented", "terms` = its resolved terms with role `scope"]}
+{"from": "N-000115", "type": "uses_term", "to": "term:resolved_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000115", "type": "uses_term", "to": "term:role_scope", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000115", "type": "uses_term", "to": "term:scope_selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

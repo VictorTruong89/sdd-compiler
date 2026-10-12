@@ -1,0 +1,3 @@
+{"from": "N-000204", "type": "uses_term", "to": "term:criterion_fixture", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000204", "type": "uses_term", "to": "term:given_clause", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000204", "type": "uses_term", "to": "term:test_subject", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

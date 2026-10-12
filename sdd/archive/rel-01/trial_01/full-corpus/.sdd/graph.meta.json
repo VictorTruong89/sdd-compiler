@@ -1,0 +1,28 @@
+{
+ "schema_version": "graph/1",
+ "compiler_version": "0.1.0.dev0",
+ "question_schemas": {
+  "q-atom": "q-atom/1",
+  "q-desc": "q-desc/1",
+  "q-term": "q-term/1"
+ },
+ "layer_mapping_version": "layers/1",
+ "sources": {},
+ "counts": {
+  "nodes": 950,
+  "terms": 1031,
+  "links": 4199,
+  "open_conflicts": 381,
+  "by_status": {
+   "ambiguous": 304,
+   "conflict": 451,
+   "validated": 195
+  }
+ },
+ "id_counters": {
+  "node": 820,
+  "conflict": 381,
+  "judgment": 7062,
+  "review": 247
+ }
+}

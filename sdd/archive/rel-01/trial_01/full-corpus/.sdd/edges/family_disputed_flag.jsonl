@@ -1,0 +1,4 @@
+{"from": "AC-2.8", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.8", "type": "uses_term", "to": "term:family_disputed_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.8", "type": "uses_term", "to": "term:v_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.8", "type": "uses_term", "to": "term:verified_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

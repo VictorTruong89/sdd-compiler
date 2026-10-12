@@ -1,0 +1,7 @@
+{"from": "N-000578", "type": "subsumes", "to": "N-000599", "provenance": "judgment", "judgment": "J-005399", "rationale": "Claim A establishes the rule for what happens when claims are independent (record only the judgment), which is subsumed by Claim B's broader statement that when re-judged, the answer must be `none` or a non-conflicting relation—`none` is a specific case of that broader rule.", "quotes": ["The two claims are independent | Nothing recorded except the judgment", "the answer is `none` or a non-conflicting relation"]}
+{"from": "N-000578", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000578", "type": "uses_term", "to": "term:judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000578", "type": "uses_term", "to": "term:relation_kind", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000762", "type": "uses_term", "to": "term:judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000762", "type": "uses_term", "to": "term:review_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000762", "type": "uses_term", "to": "term:sdd_store", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

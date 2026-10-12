@@ -1,0 +1,3 @@
+{"from": "N-000284", "type": "duplicates", "to": "N-000598", "provenance": "judgment", "judgment": "J-005532", "rationale": "Both claims state that the --no-replay flag forces asking (re-asking is a kind of asking); they express the same requirement using slightly different terminology.", "quotes": ["sddc compile --no-replay` forces asking", "--no-replay` forces re-asking"]}
+{"from": "N-000284", "type": "uses_term", "to": "term:asking", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000284", "type": "uses_term", "to": "term:file_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

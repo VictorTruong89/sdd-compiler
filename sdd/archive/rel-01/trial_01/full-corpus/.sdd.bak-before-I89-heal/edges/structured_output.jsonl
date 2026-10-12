@@ -1,0 +1,4 @@
+{"from": "N-000670", "type": "uses_term", "to": "term:claude_code_login", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000670", "type": "uses_term", "to": "term:claude_code_subprocess", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000670", "type": "uses_term", "to": "term:profile_model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000670", "type": "uses_term", "to": "term:structured_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

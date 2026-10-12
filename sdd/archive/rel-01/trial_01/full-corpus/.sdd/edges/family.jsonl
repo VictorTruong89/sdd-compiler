@@ -1,0 +1,6 @@
+{"from": "N-000116", "type": "subsumes", "to": "N-000503", "provenance": "judgment", "judgment": "J-006387", "rationale": "A defines families as those of kind `entity`, `data` or `event`, which already implies what B requires (candidates must share a term of those kinds), making A's specification more fundamental.", "quotes": ["families` = those of kind `entity`, `data` or `event`", "Shares a term of kind `entity`, `data` or `event`"]}
+{"from": "N-000116", "type": "uses_term", "to": "term:data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000116", "type": "uses_term", "to": "term:entity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000116", "type": "uses_term", "to": "term:event", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000116", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000116", "type": "uses_term", "to": "term:scope_selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

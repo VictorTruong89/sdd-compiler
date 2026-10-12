@@ -1,0 +1,8 @@
+{"from": "AC-3.24", "type": "refines", "to": "N-000364", "provenance": "judgment", "judgment": "J-003400", "rationale": "Both claim the proposed/new name becomes an alias of the existing term. AC-3.24 provides additional specificity by stating the triggering condition (sddc review accept on open term_same item) and side effects (nodes lose pending_review, status re-derived), refining the core outcome stated in N-000364.", "quotes": ["the proposed name becomes an alias of the existing term, affected nodes lose `pending_review`, and their status is re-derived", "The new name becomes an alias of the existing term"]}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:aliase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:existing_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:pending_review_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:proposed_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:sddc_review_accept", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.24", "type": "uses_term", "to": "term:term_same_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

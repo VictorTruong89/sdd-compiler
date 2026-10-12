@@ -1,0 +1,8 @@
+{"from": "N-000453", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:heading_path", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:verbatim_span", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000564", "type": "uses_term", "to": "term:exhaustive_mode", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000564", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000564", "type": "verifies", "to": "AC-5.15", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

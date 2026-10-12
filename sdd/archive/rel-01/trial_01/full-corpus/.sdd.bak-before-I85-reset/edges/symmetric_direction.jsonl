@@ -1,0 +1,3 @@
+{"from": "N-000660", "type": "uses_term", "to": "term:if_then_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000660", "type": "uses_term", "to": "term:json_schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000660", "type": "uses_term", "to": "term:symmetric_direction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

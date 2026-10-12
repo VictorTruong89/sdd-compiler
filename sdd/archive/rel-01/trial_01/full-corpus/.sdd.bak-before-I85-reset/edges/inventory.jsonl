@@ -1,0 +1,4 @@
+{"from": "N-000017", "type": "uses_term", "to": "term:anyone", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:blocks_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:inventory", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:show_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

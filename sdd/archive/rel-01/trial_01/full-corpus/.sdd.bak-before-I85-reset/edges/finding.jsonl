@@ -1,0 +1,7 @@
+{"from": "N-000292", "type": "uses_term", "to": "term:code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000292", "type": "uses_term", "to": "term:finding", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000293", "type": "uses_term", "to": "term:batch_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000293", "type": "uses_term", "to": "term:finding", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000294", "type": "uses_term", "to": "term:attention_list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000294", "type": "uses_term", "to": "term:batch_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000294", "type": "uses_term", "to": "term:finding", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

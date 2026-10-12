@@ -1,0 +1,4 @@
+{"from": "N-000717", "type": "refines", "to": "AC-2.19", "provenance": "judgment", "judgment": "J-006406", "rationale": "Claim B specifies CT-<n>.<k> identifiers, which are a subtype of node_id; thus B refines the general node_id requirements stated in A.", "quotes": ["the node id is `AC-1.4`", "`CT-<n>.<k>` | Contract of spec F<n>"]}
+{"from": "N-000717", "type": "uses_term", "to": "term:contract", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000717", "type": "uses_term", "to": "term:ct_n_k_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000717", "type": "uses_term", "to": "term:spec", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

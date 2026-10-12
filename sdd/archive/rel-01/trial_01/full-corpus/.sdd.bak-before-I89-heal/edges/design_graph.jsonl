@@ -1,0 +1,3 @@
+{"from": "N-000568", "type": "refines", "to": "N-000813", "provenance": "judgment", "judgment": "J-007053", "rationale": "Claim A provides a specific requirement about comparing design and as-built graphs in conflict detection, while Claim B lists design-vs-as-built comparison as one feature among several in a vision statement.", "quotes": ["Comparing a design graph with an as-built graph", "design-vs-as-built comparison"]}
+{"from": "N-000568", "type": "uses_term", "to": "term:as_built_graph", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000568", "type": "uses_term", "to": "term:design_graph", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

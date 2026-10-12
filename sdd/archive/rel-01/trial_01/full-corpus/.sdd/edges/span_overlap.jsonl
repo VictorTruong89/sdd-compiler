@@ -1,0 +1,5 @@
+{"from": "N-000817", "type": "refines", "to": "N-000816", "provenance": "judgment", "judgment": "J-005935", "rationale": "Claim B refines Claim A by specifying the exact method for computing span overlap (difflib ratio ≥ 0.5) that Claim A describes more generally as text overlap measurement.", "quotes": ["Alignment measures text overlap", "span overlap\" is computed as a `difflib` ratio (≥ 0.5)"]}
+{"from": "N-000817", "type": "uses_term", "to": "term:difflib_ratio", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000817", "type": "uses_term", "to": "term:new_atom", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000817", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000817", "type": "uses_term", "to": "term:span_overlap", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,9 @@
+{"from": "N-000453", "type": "depends_on", "to": "AC-1.2", "provenance": "judgment", "judgment": "J-005592", "rationale": "The requirement that query output must include heading_path presupposes the definition of what heading_path is and how it is structured.", "quotes": ["its `heading_path` is `[\"A\", \"B\"]`", "heading path (level 3)"]}
+{"from": "N-000453", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:heading_path", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000453", "type": "uses_term", "to": "term:verbatim_span", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000564", "type": "uses_term", "to": "term:exhaustive_mode", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000564", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000564", "type": "verifies", "to": "AC-5.15", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

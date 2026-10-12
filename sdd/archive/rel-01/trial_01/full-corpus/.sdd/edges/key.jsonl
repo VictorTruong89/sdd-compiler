@@ -1,0 +1,9 @@
+{"from": "N-000514", "type": "duplicates", "to": "N-000595", "provenance": "judgment", "judgment": "J-005375", "rationale": "Both claims state that when a node's text changes, the pair key changes. Claim A says 'key changes when either node's text changes'; Claim B says 'when a node's text changes, its pair_keys change.' These are identical statements.", "quotes": ["The key changes when either node's text changes", "When a node's text changes, its `pair_key`s change"]}
+{"from": "N-000514", "type": "uses_term", "to": "term:key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000514", "type": "uses_term", "to": "term:node_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000514", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000515", "type": "uses_term", "to": "term:judgment_lock", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000515", "type": "uses_term", "to": "term:key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000516", "type": "uses_term", "to": "term:key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000516", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000516", "type": "uses_term", "to": "term:sddc_pair", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

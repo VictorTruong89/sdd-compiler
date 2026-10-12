@@ -1,0 +1,18 @@
+{"from": "AC-2.25", "type": "refines", "to": "N-000174", "provenance": "judgment", "judgment": "J-003116", "rationale": "AC-2.25 provides specific details about verifies links and family determination in two scenarios, refining the general N-000174 principle that nothing cited leads to empty verifies and family resolution.", "quotes": ["verifies lists both, two `verifies` links with provenance `code` exist, and the family is `term:table` by the verification rule … given a `V` node citing nothing, then `verifies` is `[]`", "Nothing cited → `verifies: []`, and the family falls to the subject rule or `unresolved_term`"]}
+{"from": "AC-2.25", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.25", "type": "uses_term", "to": "term:quote", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.25", "type": "uses_term", "to": "term:v_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.25", "type": "uses_term", "to": "term:verifies_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.25", "type": "uses_term", "to": "term:verify", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.25", "type": "verifies", "to": "AC-1.4", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000173", "type": "uses_term", "to": "term:verifies_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000174", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000174", "type": "uses_term", "to": "term:subject_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000174", "type": "uses_term", "to": "term:verifies_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000175", "type": "depends_on", "to": "N-000173", "provenance": "judgment", "judgment": "J-003065", "rationale": "N-000175 specifies that the verification rule is re-applied after citations create verifies links; the re-application presupposes that the links have been created as stated in N-000173.", "quotes": ["each creates a `verifies` link with provenance `code", "The verification rule is then re-applied"]}
+{"from": "N-000175", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000175", "type": "uses_term", "to": "term:verification_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000175", "type": "uses_term", "to": "term:verifies_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000203", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000203", "type": "uses_term", "to": "term:verification", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000203", "type": "uses_term", "to": "term:verifies_link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

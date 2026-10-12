@@ -1,0 +1,8 @@
+{"from": "AC-6.7", "type": "uses_term", "to": "term:contradiction_answer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.7", "type": "uses_term", "to": "term:direction_field", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.7", "type": "uses_term", "to": "term:schema_check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.8", "type": "uses_term", "to": "term:confidence", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.8", "type": "uses_term", "to": "term:conflict_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.8", "type": "uses_term", "to": "term:contradiction_answer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.8", "type": "uses_term", "to": "term:low_confidence_verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.8", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

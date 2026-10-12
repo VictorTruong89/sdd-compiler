@@ -1,0 +1,3 @@
+{"from": "N-000342", "type": "refines", "to": "N-000341", "provenance": "judgment", "judgment": "J-006811", "rationale": "Claim B clarifies that emphasis marks are layout elements and thus fall under the category of things that may differ per Claim A's matching rule.", "quotes": ["words, order, case and punctuation may not, and anchors stay true source offsets", "emphasis marks are also layout"]}
+{"from": "N-000342", "type": "uses_term", "to": "term:emphasis_mark", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000342", "type": "uses_term", "to": "term:layout", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,4 @@
+{"from": "AC-4.14", "type": "depends_on", "to": "AC-5.11", "provenance": "judgment", "judgment": "J-005682", "rationale": "A validates a specific graph instance; B's principle that identical results hold regardless of insertion order is presupposed for A's worked example to be valid.", "quotes": ["that row's L1 cell shows its count with ✗, and the row sorts first", "the results are identical, including rank order"]}
+{"from": "AC-4.14", "type": "uses_term", "to": "term:sddc_map", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.14", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.14", "type": "uses_term", "to": "term:worked_example_graph", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

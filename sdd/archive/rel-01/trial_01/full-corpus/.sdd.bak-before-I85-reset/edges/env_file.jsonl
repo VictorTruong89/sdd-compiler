@@ -1,0 +1,3 @@
+{"from": "AC-3.2", "type": "uses_term", "to": "term:anthropic_api_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.2", "type": "uses_term", "to": "term:claude_code_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.2", "type": "uses_term", "to": "term:env_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

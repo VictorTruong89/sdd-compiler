@@ -1,0 +1,3 @@
+{"from": "N-000435", "type": "subsumes", "to": "N-000434", "provenance": "judgment", "judgment": "J-005341", "rationale": "Claim B states all writes go through one transaction; Claim A specifies a particular write operation (node movement between files) occurs in one transaction, which is already implied by B's broader statement.", "quotes": ["moves between files in the same transaction", "All writes go through one transaction"]}
+{"from": "N-000435", "type": "uses_term", "to": "term:transaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000435", "type": "uses_term", "to": "term:write_operation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

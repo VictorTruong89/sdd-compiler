@@ -1,0 +1,3 @@
+{"from": "N-000607", "type": "refines", "to": "AC-5.14", "provenance": "judgment", "judgment": "J-005468", "rationale": "N-000607 specifies that remaining nodes keep status 'unchecked' or 'stale', which refines AC-5.14's broader statement about nodes with those statuses by clarifying what happens to those not checked.", "quotes": ["the first two are checked, the validated one is skipped", "the remaining nodes keep status unchecked or stale"]}
+{"from": "N-000607", "type": "uses_term", "to": "term:node_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000607", "type": "uses_term", "to": "term:remaining_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

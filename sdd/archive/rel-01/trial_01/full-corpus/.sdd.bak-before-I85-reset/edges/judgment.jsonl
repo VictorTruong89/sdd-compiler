@@ -1,0 +1,6 @@
+{"from": "N-000578", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000578", "type": "uses_term", "to": "term:judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000578", "type": "uses_term", "to": "term:relation_kind", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000762", "type": "uses_term", "to": "term:judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000762", "type": "uses_term", "to": "term:review_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000762", "type": "uses_term", "to": "term:sdd_store", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

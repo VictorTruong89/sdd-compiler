@@ -1,0 +1,7 @@
+{"from": "AC-4.17", "type": "uses_term", "to": "term:committed_transaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.17", "type": "uses_term", "to": "term:markdown_view", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.17", "type": "uses_term", "to": "term:member_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.17", "type": "uses_term", "to": "term:run_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.17", "type": "verifies", "to": "N-000485", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000485", "type": "uses_term", "to": "term:claim", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000485", "type": "uses_term", "to": "term:generated_markdown_card", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

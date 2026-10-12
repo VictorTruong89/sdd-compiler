@@ -1,0 +1,15 @@
+{"from": "AC-4.15", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.15", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.15", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.15", "type": "uses_term", "to": "term:sddc_family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000158", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000159", "type": "uses_term", "to": "term:conflict_ids_field", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000159", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000159", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000445", "type": "uses_term", "to": "term:conflict_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000445", "type": "uses_term", "to": "term:conflict_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000445", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000694", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000694", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000694", "type": "uses_term", "to": "term:registry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000694", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

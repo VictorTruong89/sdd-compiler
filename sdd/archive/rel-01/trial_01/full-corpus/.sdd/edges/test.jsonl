@@ -1,0 +1,48 @@
+{"from": "N-000076", "type": "uses_term", "to": "term:load_profile", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000076", "type": "uses_term", "to": "term:profile_module", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000076", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000076", "type": "verifies", "to": "AC-1.24", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000309", "type": "duplicates", "to": "N-000332", "provenance": "judgment", "judgment": "J-003307", "rationale": "Both claim the same requirement: tests use a fake backend. N-000309 adds detail (recorded, returns scripted answers) but the core claim is identical.", "quotes": ["Tests that need a model use a **recorded fake backend**", "Fake backend for tests"]}
+{"from": "N-000309", "type": "duplicates", "to": "N-000617", "provenance": "judgment", "judgment": "J-002906", "rationale": "Both state the same requirement: tests use a recorded/recorded-fake backend that returns scripted answers, and no test calls a live model. They use different terms but describe identical functionality.", "quotes": ["Tests that need a model use a **recorded fake backend** that returns scripted answers", "Tests use F3's recorded fake backend; no test calls a live model"]}
+{"from": "N-000309", "type": "uses_term", "to": "term:recorded_fake_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000309", "type": "uses_term", "to": "term:scripted_answer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000309", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000310", "type": "uses_term", "to": "term:live_model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000310", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000332", "type": "duplicates", "to": "N-000617", "provenance": "judgment", "judgment": "J-003377", "rationale": "Both claims state that tests use a fake backend from F3, describing the same design decision in equivalent ways.", "quotes": ["Fake backend for tests", "Tests use F3's recorded fake backend"]}
+{"from": "N-000332", "type": "subsumes", "to": "N-000076", "provenance": "judgment", "judgment": "J-004754", "rationale": "Claim B's statement that 'Fake backend is used for tests' is a general principle that already implies the specific test case named in Claim A (which references a test file), making the general rule subsume the specific instance.", "quotes": ["`tests/test_profile.py::test_ac_1_24_missing_store_is_a_store_error`", "Fake backend for tests"]}
+{"from": "N-000332", "type": "uses_term", "to": "term:fake_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000332", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000407", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000407", "type": "verifies", "to": "AC-3.21", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000407", "type": "verifies", "to": "AC-3.22", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000408", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000408", "type": "verifies", "to": "AC-3.24", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000408", "type": "verifies", "to": "AC-3.25", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000487", "type": "uses_term", "to": "term:jsonl_writer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000487", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000487", "type": "verifies", "to": "AC-4.3", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000617", "type": "subsumes", "to": "N-000310", "provenance": "judgment", "judgment": "J-002907", "rationale": "B states both that tests use a recorded fake backend AND that no test calls a live model; A states only the latter. B's full statement subsumes A's narrower claim.", "quotes": ["No test calls a live model", "Tests use F3's recorded fake backend; no test calls a live model"]}
+{"from": "N-000617", "type": "uses_term", "to": "term:fake_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000617", "type": "uses_term", "to": "term:live_model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000617", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000633", "type": "uses_term", "to": "term:contradiction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000633", "type": "uses_term", "to": "term:report", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000633", "type": "uses_term", "to": "term:rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000633", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000725", "type": "depends_on", "to": "N-000263", "provenance": "judgment", "judgment": "J-006798", "rationale": "Claim B describes a test tier whose layer placement is determined by F2 (which is the placement function named in Claim A); B presupposes A's function exists and is invoked.", "quotes": ["Call F2 placement (layer, family, components)", "Layer placement from seven answers (F2 AC-2.1)"]}
+{"from": "N-000725", "type": "uses_term", "to": "term:function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000725", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000725", "type": "uses_term", "to": "term:unit_tier", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000726", "type": "subsumes", "to": "N-000076", "provenance": "judgment", "judgment": "J-005165", "rationale": "Claim B defines a general testing pattern (validation of output against schema), while Claim A describes a specific test instance (AC-1.24 validation); the general definition subsumes the specific case.", "quotes": ["test_ac_1_24_missing_store_is_a_store_error", "A record or CLI output validated against its schema"]}
+{"from": "N-000726", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000726", "type": "uses_term", "to": "term:contract_tier", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000726", "type": "uses_term", "to": "term:run_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000726", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000726", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000727", "type": "uses_term", "to": "term:golden_tier", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000727", "type": "uses_term", "to": "term:stored_expectation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000727", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000727", "type": "uses_term", "to": "term:text_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000734", "type": "uses_term", "to": "term:pytest", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000734", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

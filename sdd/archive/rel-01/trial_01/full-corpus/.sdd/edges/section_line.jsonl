@@ -1,0 +1,4 @@
+{"from": "N-000395", "type": "depends_on", "to": "N-000262", "provenance": "judgment", "judgment": "J-005275", "rationale": "Claim B presupposes the line handling required by Claim A and adds a specific constraint: certain lines (section and table header) must never be quoted as part of that handling.", "quotes": ["Compute quantities, `keywords`, spans and lines.", "the \"section\" and \"table header\" lines are context and are never quoted"]}
+{"from": "N-000395", "type": "uses_term", "to": "term:quote", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000395", "type": "uses_term", "to": "term:section_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000395", "type": "uses_term", "to": "term:table_header_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

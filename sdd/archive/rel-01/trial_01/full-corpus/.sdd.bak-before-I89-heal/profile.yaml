@@ -1,0 +1,35 @@
+# SDD Compiler profile (F1 CT-1.4) — the only hand-edited file in .sdd/
+spec_globs: ['sdd/specs/**/*.md']
+exclude_globs: ['sdd/specs/_templates/**']
+
+# Fenced code blocks are stored but not atomized unless this is true.
+include_code_blocks: false
+
+# Read by the atomizer (F3), recorded here so a run is reproducible.
+atomizer:
+  backend: claude-code   # claude-code | anthropic-api
+  model: haiku
+  pass_api_key: false        # keep ANTHROPIC_API_KEY out of headless calls
+  max_calls_per_run: 200   # one budget, shared by atomizing and judging
+  timeout_s: 120
+  thinking: false            # extended thinking; off for closed questions (F3 D10)
+
+# Read by retrieval (F5 CT-5.2): how many candidate pairs a node may propose, the
+# score a pair must reach, and how many keywords count as shared.
+retrieval:
+  max_pairs_per_node: 6
+  min_score: 1.0
+  min_shared_keywords: 2
+
+# Read by the check phase (F6 CT-6.3): whether an ambiguous node is judged at all,
+# and whether a subsumption is a conflict only when the two claims differ (F6 D2).
+conflicts:
+  judge_ambiguous: true
+  subsumption_conflict_only_when_differing: true
+
+# Words that suggest a vague claim (F3 guard G6).
+weak_words: ['fast', 'quickly', 'appropriate', 'user-friendly', 'as needed', 'etc', 'robust', 'simple']
+
+# Layer display names and section-heading hints (F2 §4.2). The layers themselves
+# and their meanings are fixed; e.g.  L1: {display: Behaviour, hints: ["## Behaviour"]}
+layers: {}

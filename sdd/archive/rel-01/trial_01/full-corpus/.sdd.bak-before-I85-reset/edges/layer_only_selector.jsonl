@@ -1,0 +1,6 @@
+{"from": "N-000542", "type": "refines", "to": "N-000541", "provenance": "judgment", "judgment": "J-003251", "rationale": "Claim B refines Claim A by specifying that a layer-only selector (a kind of selector) must additionally satisfy the constraint that nodes share a term or keyword, narrowing the general selector coverage rule.", "quotes": ["A selector that names a family, term or category covers the nodes matching it, narrowed by its layers if it has any.", "A **layer-only** selector is a global constraint within those layers, so it takes D7's bar: the node must also share a term or keyword."]}
+{"from": "N-000542", "type": "uses_term", "to": "term:global_constraint", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000542", "type": "uses_term", "to": "term:keyword", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000542", "type": "uses_term", "to": "term:layer_only_selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000542", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000542", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

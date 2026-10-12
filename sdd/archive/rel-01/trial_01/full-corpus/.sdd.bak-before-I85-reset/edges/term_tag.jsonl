@@ -1,0 +1,6 @@
+{"from": "N-000257", "type": "subsumes", "to": "N-000364", "provenance": "judgment", "judgment": "J-003516", "rationale": "N-000257 establishes that aliases resolve directly against the registry; N-000364 specifies a particular case where a new name becomes an alias of an existing term, which is subsumed by the broader resolution rule.", "quotes": ["aliases resolve directly", "becomes an alias of the existing term"]}
+{"from": "N-000257", "type": "uses_term", "to": "term:aliase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000257", "type": "uses_term", "to": "term:canonical_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000257", "type": "uses_term", "to": "term:registry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000257", "type": "uses_term", "to": "term:term_tag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000378", "type": "uses_term", "to": "term:term_tag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

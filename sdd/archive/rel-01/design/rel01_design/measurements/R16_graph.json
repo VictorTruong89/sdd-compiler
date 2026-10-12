@@ -1,0 +1,97 @@
+{
+ "nodes": 73,
+ "terms": 88,
+ "terms_used_once": 46,
+ "families": 33,
+ "one_node_families": 19,
+ "nodes_in_families_of_3_plus": 35,
+ "family_null": 1,
+ "global": 4,
+ "largest": [
+  [
+   "term:node",
+   9
+  ],
+  [
+   "term:pair_key",
+   6
+  ],
+  [
+   "term:shared_keyword",
+   5
+  ],
+  [
+   "term:candidate",
+   4
+  ],
+  [
+   "term:family",
+   4
+  ],
+  [
+   "term:related_node_pair",
+   4
+  ],
+  [
+   "term:evidence",
+   3
+  ],
+  [
+   "term:atom",
+   2
+  ]
+ ],
+ "family_rules": {
+  "constraint": 6,
+  "fallback": 1,
+  "verification": 9,
+  "subject": 36,
+  "mention": 10,
+  "response": 11
+ },
+ "verifications_with_verifies": 10,
+ "verifications": 23,
+ "local_labels": [
+  "D1",
+  "D10",
+  "D2",
+  "D3",
+  "D4",
+  "D5",
+  "D6",
+  "D7",
+  "D8",
+  "D9",
+  "S1",
+  "S2",
+  "S3",
+  "S4",
+  "S5",
+  "S6",
+  "S7",
+  "T2"
+ ],
+ "status": {
+  "unchecked": 38,
+  "ambiguous": 35
+ },
+ "ambiguity": {
+  "referential": 27,
+  "missing_modality": 9,
+  "mixed_layers": 7,
+  "unresolved_term": 1,
+  "pending_review": 1,
+  "scope": 2,
+  "missing_actor": 1
+ },
+ "layers": {
+  "C": 13,
+  "L5": 6,
+  "V": 23,
+  "L4": 17,
+  "L1": 10,
+  "L2": 3,
+  "L0": 1
+ },
+ "s3_pairs": 19
+}

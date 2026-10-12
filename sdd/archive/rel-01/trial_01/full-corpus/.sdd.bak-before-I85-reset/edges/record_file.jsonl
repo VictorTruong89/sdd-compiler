@@ -1,0 +1,3 @@
+{"from": "AC-4.3", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.3", "type": "uses_term", "to": "term:graph_meta_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.3", "type": "uses_term", "to": "term:record_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

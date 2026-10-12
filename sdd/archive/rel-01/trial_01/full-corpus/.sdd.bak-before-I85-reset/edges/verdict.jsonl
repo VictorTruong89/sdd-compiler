@@ -1,0 +1,28 @@
+{"from": "AC-6.12", "type": "uses_term", "to": "term:call_cap", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.12", "type": "uses_term", "to": "term:exit_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.12", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.12", "type": "uses_term", "to": "term:report", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.12", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.18", "type": "refines", "to": "N-000601", "provenance": "judgment", "judgment": "J-003291", "rationale": "AC-6.18 specifies a particular trigger for a verdict becoming stale: when ambiguity in a node is resolved. N-000601 states the general rule that changing text makes a verdict stale. AC-6.18 is a specific case of the broader principle in N-000601.", "quotes": ["when the ambiguity is resolved, then that verdict is stale", "Changing the text makes the verdict stale"]}
+{"from": "AC-6.18", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.18", "type": "uses_term", "to": "term:ambiguous_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.18", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-6.18", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000499", "type": "conflicts_with", "to": "N-000597", "provenance": "judgment", "judgment": "J-003050", "rationale": "Claim A states verdicts are replayed from the judgment lock (implying they are retained and reused), while Claim B states stale verdicts from the old text are discarded; these cannot both hold for the same verdicts in the same scenario.", "quotes": ["their verdicts are replayed from the judgment lock (F3 §4.7)", "the stale verdicts from the old text are discarded"]}
+{"from": "N-000499", "type": "conflicts_with", "to": "N-000597", "provenance": "judgment", "judgment": "J-003050", "rationale": "Claim A states verdicts are replayed from the judgment lock (implying they are retained and reused), while Claim B states stale verdicts from the old text are discarded; these cannot both hold for the same verdicts in the same scenario.", "quotes": ["their verdicts are replayed from the judgment lock (F3 §4.7)", "the stale verdicts from the old text are discarded"]}
+{"from": "N-000499", "type": "conflicts_with", "to": "N-000601", "provenance": "judgment", "judgment": "J-003498", "rationale": "N-000499 states verdicts are replayed (not re-judged), while N-000601 states changing text makes the verdict stale and schedules re-judgement; both cannot simultaneously hold.", "quotes": ["verdicts are replayed from the judgment lock", "Changing the text makes the verdict stale and schedules a re-judgement"]}
+{"from": "N-000499", "type": "uses_term", "to": "term:judgment_lock", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000499", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000499", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000591", "type": "uses_term", "to": "term:ambiguous_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000591", "type": "uses_term", "to": "term:provisional_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000591", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000597", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000597", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000601", "type": "subsumes", "to": "N-000597", "provenance": "judgment", "judgment": "J-003455", "rationale": "B describes the trigger (changing text makes verdict stale) and consequence (schedules re-judgement), which subsumes A's narrower claim that stale verdicts are discarded. Discarding is the mechanism that implements the re-judgement scheduled by B.", "quotes": ["the stale verdicts from the old text are discarded", "Changing the text makes the verdict stale and schedules a re-judgement"]}
+{"from": "N-000601", "type": "uses_term", "to": "term:re_judgement", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000601", "type": "uses_term", "to": "term:verbatim_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000601", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000632", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000632", "type": "uses_term", "to": "term:suppressed_count", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000632", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

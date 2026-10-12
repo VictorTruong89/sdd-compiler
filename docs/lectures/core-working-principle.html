@@ -1,0 +1,972 @@
+<title>SDD Compiler — Core Working Principle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#F6F7F9; --surface:#FFFFFF; --surface-2:#EEF1F5; --code-bg:#EDF0F4;
+  --ink:#141A24; --ink-soft:#57616F; --ink-faint:#828C9A;
+  --accent:#1F4E8C; --accent-soft:#E3EBF6;
+  --verd:#0E7C6B; --verd-soft:#DEEFEB;
+  --oxide:#A33A1E; --oxide-soft:#F7E4DE;
+  --plum:#6B3FA0; --plum-soft:#EDE5F6;
+  --rule:#DCE1E8; --rule-soft:#E9ECF1;
+  --fs-xs:.76rem; --fs-sm:.875rem; --fs-base:1.0625rem;
+  --fs-lg:1.22rem; --fs-xl:1.55rem; --fs-2xl:2.05rem; --fs-3xl:2.75rem;
+  --measure:68ch;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+    --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+    --accent:#77ADEB; --accent-soft:#17293F;
+    --verd:#3ECBB2; --verd-soft:#0F2C29;
+    --oxide:#E58A6D; --oxide-soft:#331E17;
+    --plum:#B99AE6; --plum-soft:#271D36;
+    --rule:#26313F; --rule-soft:#1D2531;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+  --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+  --accent:#77ADEB; --accent-soft:#17293F;
+  --verd:#3ECBB2; --verd-soft:#0F2C29;
+  --oxide:#E58A6D; --oxide-soft:#331E17;
+  --plum:#B99AE6; --plum-soft:#271D36;
+  --rule:#26313F; --rule-soft:#1D2531;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:var(--fs-base);line-height:1.7;-webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(1rem,4vw,2.5rem)}
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-block:clamp(2.5rem,7vw,4.5rem) clamp(2rem,5vw,3rem)}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.1rem}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,5.5vw,var(--fs-3xl));line-height:1.08;letter-spacing:-.015em;margin:0 0 1rem;text-wrap:balance}
+.standfirst{font-size:var(--fs-lg);color:var(--ink-soft);margin:0;max-width:62ch;text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);letter-spacing:.04em}
+.tocbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+.tocbar .wrap{display:flex;gap:.4rem;overflow-x:auto;padding-block:.5rem}
+.tocbar a{flex:0 0 auto;display:flex;align-items:baseline;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.45rem .7rem;border-radius:3px;white-space:nowrap}
+.tocbar a:hover{background:var(--surface-2);color:var(--ink)}
+.tocbar a b{font-weight:700}
+.tocbar a.l0 b{color:var(--ink-soft)} .tocbar a.l1 b{color:var(--accent)} .tocbar a.l2 b{color:var(--verd)} .tocbar a.l3 b{color:var(--plum)} .tocbar a.l4 b{color:var(--oxide)} .tocbar a.l5 b{color:var(--ink)}
+.lecture{padding-block:clamp(3rem,8vw,6rem) clamp(2rem,5vw,4rem);border-bottom:1px solid var(--rule)}
+.lechead{display:flex;gap:clamp(1rem,3vw,2rem);align-items:flex-start;margin-bottom:2.5rem}
+.lecnum{flex:0 0 auto;font-family:var(--mono);font-weight:700;font-size:var(--fs-sm);letter-spacing:.1em;padding:.35rem .6rem;border-radius:3px;line-height:1.2}
+.l0 .lecnum{background:var(--surface-2);color:var(--ink-soft)}
+.l1 .lecnum{background:var(--accent-soft);color:var(--accent)}
+.l2 .lecnum{background:var(--verd-soft);color:var(--verd)}
+.l3 .lecnum{background:var(--plum-soft);color:var(--plum)}
+.l4 .lecnum{background:var(--oxide-soft);color:var(--oxide)}
+.l5 .lecnum{background:var(--surface-2);color:var(--ink)}
+.lechead h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,var(--fs-2xl));line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance}
+.lechead p{margin:0;color:var(--ink-soft);max-width:58ch}
+h3{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:1.25;margin:3.2rem 0 1rem;text-wrap:balance;padding-top:1.2rem;border-top:1px solid var(--rule-soft)}
+h3 .sn{font-family:var(--mono);font-size:var(--fs-sm);color:var(--ink-faint);margin-right:.6rem;font-weight:500}
+h4{font-family:var(--display);font-weight:600;font-size:var(--fs-lg);margin:2rem 0 .6rem;line-height:1.3}
+p{margin:0 0 1.1rem;max-width:var(--measure);text-wrap:pretty}
+ul,ol{margin:0 0 1.2rem;padding-left:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.5rem}
+li::marker{color:var(--ink-faint)}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.1em .35em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:var(--fs-sm);line-height:1.62;background:var(--code-bg);border:1px solid var(--rule);border-radius:5px;padding:1.1rem 1.25rem;overflow-x:auto;margin:0 0 1.4rem;max-width:var(--measure)}
+pre code{background:none;padding:0;font-size:inherit}
+.cm{color:var(--ink-faint)} .kw{color:var(--accent);font-weight:500} .st{color:var(--verd)}
+.callout{border-left:3px solid var(--accent);background:var(--surface);padding:1.1rem 1.3rem;margin:0 0 1.5rem;max-width:var(--measure);border-radius:0 4px 4px 0}
+.callout.warn{border-left-color:var(--oxide)} .callout.key{border-left-color:var(--verd)} .callout.fresh{border-left-color:var(--plum)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout .lbl{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem;font-weight:700}
+.callout.warn .lbl{color:var(--oxide)} .callout.key .lbl{color:var(--verd)} .callout.fresh .lbl{color:var(--plum)}
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm);min-width:34rem}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td code{font-size:.82em}
+figure{margin:0 0 1.8rem}
+.figscroll{overflow-x:auto}
+figure svg{display:block;width:100%;min-width:680px;height:auto;background:var(--surface);border:1px solid var(--rule);border-radius:5px}
+figcaption{font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);margin-top:.6rem;letter-spacing:.02em;line-height:1.55;max-width:var(--measure)}
+.svg-ink{fill:var(--ink)} .svg-soft{fill:var(--ink-soft)} .svg-faint{fill:var(--ink-faint)}
+.svg-box{fill:var(--surface-2);stroke:var(--rule)}
+.svg-agent{fill:var(--plum-soft);stroke:var(--plum)}
+.svg-comp{fill:var(--verd-soft);stroke:var(--verd)}
+.svg-core{fill:var(--accent-soft);stroke:var(--accent)}
+.svg-line{stroke:var(--ink-faint);fill:none;stroke-width:1.2}
+.svg-head{fill:var(--ink-faint)}
+.t-plum{fill:var(--plum)} .t-verd{fill:var(--verd)} .t-acc{fill:var(--accent)}
+svg text{font-family:var(--mono);font-size:11px}
+.exercises{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.6rem;margin-top:2.5rem;max-width:var(--measure)}
+.exercises h4{margin-top:0} .exercises ol{margin-bottom:0}
+.pill{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.05em;padding:.12em .45em;border-radius:3px;background:var(--surface-2);color:var(--ink-soft);white-space:nowrap}
+.pill.ok{background:var(--verd-soft);color:var(--verd)} .pill.no{background:var(--oxide-soft);color:var(--oxide)} .pill.ag{background:var(--plum-soft);color:var(--plum)}
+.tierbanner{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--oxide);border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin:0 0 2rem;max-width:var(--measure)}
+.tierbanner p{margin-bottom:.6rem} .tierbanner p:last-child{margin-bottom:0}
+footer{padding-block:clamp(2.5rem,6vw,4rem) 5rem;color:var(--ink-soft)}
+footer p{font-size:var(--fs-sm)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">SDD Compiler · Design tier · In progress</p>
+    <h1>The core working principle</h1>
+    <p class="standfirst">How a paragraph of free prose becomes atomic nodes, how each node finds its layer and its family, and how an AI agent later pulls exactly the nodes it needs — without ever reading the whole graph.</p>
+    <div class="meta">
+      <span>Opened 2026-09-13</span>
+      <span>Serves first release: U1 · U2 · U5</span>
+      <span>Designs for, does not build: U7</span>
+      <span>Binds to: vision.md O1 · O2 · O3</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tocbar" aria-label="Parts">
+  <div class="wrap">
+    <a class="l0" href="#p0"><b>0</b> The frame</a>
+    <a class="l1" href="#p1"><b>1</b> Atomize</a>
+    <a class="l2" href="#p2"><b>2</b> Place</a>
+    <a class="l3" href="#p3"><b>3</b> Retrieve</a>
+    <a class="l4" href="#p4"><b>4</b> What's missing</a>
+    <a class="l5" href="#p5"><b>5</b> Decisions &amp; open</a>
+    <a class="l1" href="#p6"><b>6</b> Worked example</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="lecture l0" id="p0" style="border-bottom:1px solid var(--rule)">
+  <div style="padding-top:2.5rem">
+  <div class="tierbanner">
+    <p><strong>Tier: design, NON-AUTHORITATIVE, in progress.</strong> Everything marked <span class="pill">P-n</span> is a <em>proposal</em> awaiting your accept / reject. Nothing here is adopted until it is recorded in <code>vision.md</code> or a spec.</p>
+    <p><strong>Fresh reconsideration.</strong> The two earlier discussions are used as reference only. Where this file departs from them, a <span class="pill ag">fresh</span> callout says what changed and why.</p>
+    <p><strong>Lecture, not working design.</strong> This page explains the reasoning. The working design that humans and AI build from is <code>core-working-principle.md</code>. Where the two differ, the Markdown wins and this page is corrected (vision §5).</p>
+    <p><strong>No invented numbers.</strong> Unlike the earlier discussions, this file states no accuracy, coverage or token figure. Every quantitative claim is written as a property <em>to be measured</em>. Named methods and papers are listed in §5.4 as <em>to verify</em>, not as citations.</p>
+  </div>
+  </div>
+
+  <div class="lechead">
+    <span class="lecnum">PART 0</span>
+    <div>
+      <h2>The frame: what is being compiled, and who does which half</h2>
+      <p>Before the three questions, two decisions shape every answer: what the source of truth is, and where the line between judgment and computation falls.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">0.1</span>The compiler analogy, made exact</h3>
+  <p>The word "compiler" has been used loosely. It is worth making precise, because the precise version dictates the architecture.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Program compiler</th><th>SDD Compiler</th><th>Who does it</th></tr></thead>
+    <tbody>
+      <tr><td>Source files</td><td>Spec documents in prose (markdown), written by one human or one AI at a time</td><td>Author</td></tr>
+      <tr><td>Lexing / parsing</td><td><strong>Atomization</strong> — prose → atomic nodes (Part 1)</td><td>Agent judges, compiler guards</td></tr>
+      <tr><td>Symbol table</td><td><strong>Term registry</strong> — canonical names of actors, entities, components (§2.5)</td><td>Agent proposes, compiler resolves</td></tr>
+      <tr><td>Semantic analysis</td><td><strong>Placement and linking</strong> — layer, family, typed edges, conflicts (Part 2)</td><td>Agent judges small questions, compiler maps</td></tr>
+      <tr><td>Intermediate representation</td><td><strong>The spec graph</strong></td><td>Compiler</td></tr>
+      <tr><td>Back ends</td><td>Context packs for code generation (U7) · diff against the as-built graph (U5)</td><td>Compiler</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout key">
+    <span class="lbl">P-0 · Prose is the source, the graph is compiled</span>
+    <p>The markdown spec files stay the source of truth. The graph is a build artifact derived from them, stored as plain text so it versions in git alongside the specs. Nobody edits the graph by hand.</p>
+    <p><strong>Why:</strong> U1 — every spec-driven project already has prose files, so adoption needs no new editor. Single writer — no concurrent graph editing to reconcile. U5 — an as-built spec set is also prose, so both sides enter by the same door. <strong>Cost:</strong> a change must always round-trip through prose; there is no "just fix the edge" shortcut. That cost is the discipline.</p>
+  </div>
+
+  <h3><span class="sn">0.2</span>The boundary: judgment belongs to the agent, structure to the compiler</h3>
+  <p>For release 1, <code>vision.md</code> O1 says the compiler's code is deterministic, and O2 says every language judgment is made by the user's own AI agent. Taken together they force a specific shape: <strong>the compiler never asks an open question.</strong> It asks the agent small, closed, schema-bound questions, <strong>checks each answer the moment it arrives</strong>, and does everything else itself. If a check fails, the compiler re-asks once, quoting the failed check. If it fails again, the item goes to the author with the failure shown. It is never accepted silently.</p>
+  <div class="callout">
+    <span class="lbl">O1 relaxes in later releases</span>
+    <p>Later releases may deploy local ML models, such as embedding or small classification models, to help build the graph. Nothing in this design stops that, provided two conditions hold. Such a model is <strong>pinned to a version</strong> and its outputs go into the same judgment lock. And it <strong>suggests</strong>: extra candidate pairs, alias proposals, a second opinion on layer answers. The design keeps family, layer and link decisions on answers that can be audited.</p>
+  </div>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 760 300" role="img" aria-label="Swimlane: the SDD compiler segments prose, the agent atomizes with verbatim quotes, the compiler guards spans and coverage, the agent describes canonical form, layer answers and terms, the compiler places nodes and generates candidate pairs, the agent judges only candidate pairs, and the compiler commits the graph together with a judgment lock.">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="svg-head"/></marker></defs>
+      <text x="24" y="52" class="t-plum" font-weight="700">AI AGENT — judgment (O2): closed questions, schema-bound answers</text>
+      <text x="24" y="270" class="t-verd" font-weight="700">SDD COMPILER — deterministic (O1): structure, checks, bookkeeping</text>
+      <!-- compiler boxes i=0,2,4,6 at y=180 ; agent boxes i=1,3,5 at y=70 -->
+      <rect x="24" y="180" width="92" height="64" rx="4" class="svg-comp"/>
+      <text x="32" y="198" class="svg-ink" font-weight="700">1 SEGMENT</text><text x="32" y="214" class="svg-soft">md blocks,</text><text x="32" y="229" class="svg-soft">list items</text>
+      <rect x="128" y="70" width="92" height="64" rx="4" class="svg-agent"/>
+      <text x="136" y="88" class="svg-ink" font-weight="700">2 ATOMIZE</text><text x="136" y="104" class="svg-soft">roles, atoms,</text><text x="136" y="119" class="svg-soft">exact quotes</text>
+      <rect x="232" y="180" width="92" height="64" rx="4" class="svg-comp"/>
+      <text x="240" y="198" class="svg-ink" font-weight="700">3 GUARD</text><text x="240" y="214" class="svg-soft">anchor spans</text><text x="240" y="229" class="svg-soft">cover+schema</text>
+      <rect x="336" y="70" width="92" height="64" rx="4" class="svg-agent"/>
+      <text x="344" y="88" class="svg-ink" font-weight="700">4 DESCRIBE</text><text x="344" y="104" class="svg-soft">canon form,</text><text x="344" y="119" class="svg-soft">layer answers</text>
+      <rect x="440" y="180" width="92" height="64" rx="4" class="svg-comp"/>
+      <text x="448" y="198" class="svg-ink" font-weight="700">5 PLACE</text><text x="448" y="214" class="svg-soft">layer·terms</text><text x="448" y="229" class="svg-soft">family·cands</text>
+      <rect x="544" y="70" width="92" height="64" rx="4" class="svg-agent"/>
+      <text x="552" y="88" class="svg-ink" font-weight="700">6 JUDGE</text><text x="552" y="104" class="svg-soft">candidate</text><text x="552" y="119" class="svg-soft">pairs only</text>
+      <rect x="648" y="180" width="92" height="64" rx="4" class="svg-comp"/>
+      <text x="656" y="198" class="svg-ink" font-weight="700">7 COMMIT</text><text x="656" y="214" class="svg-soft">graph +</text><text x="656" y="229" class="svg-soft">judgment lock</text>
+      <line x1="70" y1="180" x2="170" y2="136" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="178" y1="134" x2="274" y2="178" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="278" y1="180" x2="378" y2="136" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="386" y1="134" x2="482" y2="178" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="486" y1="180" x2="586" y2="136" class="svg-line" marker-end="url(#ah)"/>
+      <line x1="594" y1="134" x2="690" y2="178" class="svg-line" marker-end="url(#ah)"/>
+      <text x="24" y="292" class="svg-faint">Before step 7 the author confirms splits, layers and term merges — one writer, one button press.</text>
+    </svg>
+    </div>
+    <figcaption>One button press. Agent steps (purple) only ever answer closed questions. Compiler steps (green) are pure code and are the only steps that write the graph.</figcaption>
+  </figure>
+
+  <h4>The judgment lock — how O1 survives a non-deterministic agent</h4>
+  <p>An agent asked the same question twice may answer differently. If the graph were rebuilt by re-asking, it would drift on every build, and U5's comparison would measure that drift instead of real divergence. The fix is borrowed from package managers' lockfiles.</p>
+  <pre><code><span class="cm"># one record per agent judgment, stored beside the graph</span>
+judgment:
+  kind:        atomize | describe | judge_pair | ...
+  input_hash:  sha256(exact input text + question schema version)
+  agent:       claude-code
+  model:       <span class="st">&lt;as reported by the agent&gt;</span>
+  prompt_ver:  atomize/3
+  answer:      { ... schema-validated ... }
+  confirmed:   author | auto
+</code></pre>
+  <div class="callout key">
+    <span class="lbl">P-1 · Judgment lock</span>
+    <p>Rebuilding the graph <strong>replays locked judgments</strong>; the agent is asked again only when an input hash changes or a question schema version is bumped. Given the same sources and the same lock, the build is byte-identical. Determinism is achieved by <em>recording</em> the non-deterministic part, not by pretending it is absent.</p>
+  </div>
+
+  <h3><span class="sn">0.3</span>Every node must answer three questions — and you asked two and a half</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Question about a node</th><th>Operation</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>What exactly does it claim?</td><td>Atomize</td><td>Part 1 — your first question</td></tr>
+      <tr><td>What kind of claim is it, and what is it about?</td><td>Place — layer, family</td><td>Part 2 — your second question</td></tr>
+      <tr><td>What does it touch, refine, constrain, duplicate or contradict?</td><td><strong>Link</strong></td><td>§2.8 and §4 — <em>implied by your questions but not asked</em></td></tr>
+    </tbody>
+  </table></div>
+  <p>Your third question — how an agent finds the nodes it needs — is really a question about <em>the links</em>. Retrieval can only follow edges that placement and linking created. That is why linking is flagged as the first thing that might be missing.</p>
+</section>
+
+<!-- ===================================================== PART 1 -->
+<section class="lecture l1" id="p1">
+  <div class="lechead">
+    <span class="lecnum">PART 1</span>
+    <div>
+      <h2>Atomize: splitting prose into atomic specs</h2>
+      <p>The hardest step, and the one whose errors propagate everywhere. The principle: the agent proposes the split, but the compiler can mechanically catch most of the ways a split goes wrong.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">1.1</span>What an atom is — four tests</h3>
+  <p>An atomic spec is <strong>one claim that can be judged true or false on its own</strong>. "One sentence" is not the definition — a sentence can hold three claims, and one claim can need two sentences. Requirements-engineering standards describe a good requirement as <em>singular</em>, <em>unambiguous</em> and <em>verifiable</em> (ISO/IEC/IEEE 29148 — to verify). Those adjectives become operational tests:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Test</th><th>Question</th><th>If it fails</th></tr></thead>
+    <tbody>
+      <tr><td><strong>T1 · Single verdict</strong></td><td>Could one observation or one test decide pass/fail for the whole statement?</td><td>Split along the separate verdicts</td></tr>
+      <tr><td><strong>T2 · Independent change</strong></td><td>Could a stakeholder plausibly change or dispute one part while keeping the other?</td><td>Split — otherwise a later edit silently changes a claim nobody meant to touch</td></tr>
+      <tr><td><strong>T3 · Single layer</strong></td><td>Does the whole statement answer exactly one layer question (§2.3)?</td><td>Split — a statement that is both a contract and an architecture decision is two claims</td></tr>
+      <tr><td><strong>T4 · Stands alone</strong></td><td>After resolving pronouns and ellipsis, does each piece still mean something by itself?</td><td>Do <em>not</em> split — the fragment is not a claim</td></tr>
+    </tbody>
+  </table></div>
+  <p>T1–T3 push toward splitting; T4 is the brake. T3 is the interesting one: it makes atomization and placement <strong>check each other</strong>. If the layer questionnaire (§2.3) gets two "yes" answers at different layers, the atom was not atomic.</p>
+
+  <h4>Worked cases</h4>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Input</th><th>Atoms</th><th>Deciding test</th></tr></thead>
+    <tbody>
+      <tr><td>"Users can upload files and share them through a link."</td><td>2 — upload; share via link</td><td>T1: two verdicts</td></tr>
+      <tr><td>"Downloads are served through signed URLs that expire after one hour."</td><td>2 — delivery via signed URL; signed-URL lifetime is 1 h</td><td>T2: the 1 h can be disputed while signing is kept</td></tr>
+      <tr><td>"Admins and file owners can delete a file."</td><td>1 — subject is the set {admin, owner}</td><td>T4 + list rule (below)</td></tr>
+      <tr><td>"The total size of all files in a workspace must not exceed 5 GB."</td><td>1</td><td>Collective reading: the claim is about the total, not each file</td></tr>
+      <tr><td>"POST /files stores the binary in S3."</td><td>2 — contract of POST /files; binary storage is S3</td><td>T3: L3 and L2</td></tr>
+      <tr><td>"Shared links expire automatically for security compliance."</td><td>1 atom + 1 rationale annotation</td><td>"for security compliance" is a reason, not a claim (§1.2)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout fresh">
+    <span class="lbl">Fresh · differs from discussion 1</span>
+    <p>Discussion 1 kept "signed URLs that expire after 1 hour" as one node, calling it "a single mechanism". Under T2 it splits, and its own worked example showed why that matters: it later could not tell whether the <em>1-hour</em> part conflicted with a 30-day link validity. A claim that can be disputed on its own deserves its own identity.</p>
+  </div>
+  <div class="callout">
+    <span class="lbl">List rule</span>
+    <p>Split on <strong>distinct obligations</strong>, not on distinct list members. Members that share the same obligation under the same condition stay one node with a set-valued field. The moment one member gets a different condition ("admins always; owners only within 30 days"), it is two obligations and T2 splits it.</p>
+  </div>
+
+  <h3><span class="sn">1.2</span>Not every sentence is a requirement — sentence roles</h3>
+  <p>A spec document mixes claims with reasons, examples and context. Treating every sentence as a node floods the graph with things that can never be verified or conflict. The agent first labels each sentence with a <strong>role</strong>; the role decides what the compiler does with it.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Role</th><th>Example</th><th>Becomes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>requirement</strong></td><td>"The share link returns 404 once expired."</td><td>Node</td></tr>
+      <tr><td><strong>constraint</strong></td><td>"No endpoint may respond slower than 300 ms."</td><td>Node in C (cross-cutting, §2.2)</td></tr>
+      <tr><td><strong>assumption</strong></td><td>"Every user has a verified email address."</td><td>Node, kind <code>assumption</code> — ★ assumptions can be contradicted later, which is exactly the class discussion 1 called "undetectable"</td></tr>
+      <tr><td><strong>definition</strong></td><td>"A workspace is a set of files owned by one team."</td><td>Term registry entry (§2.5), not a node</td></tr>
+      <tr><td>rationale</td><td>"…because users rarely check email at once."</td><td>Annotation on the node it justifies</td></tr>
+      <tr><td>example</td><td>"e.g. a 2 GB video"</td><td>Annotation — useful later as a test seed</td></tr>
+      <tr><td>context / heading</td><td>"We are building a file sharing service."</td><td>Document context, not a node</td></tr>
+      <tr><td>open question</td><td>"TBD: do guests need accounts?"</td><td>Flag on the section; nearby nodes marked <code>ambiguous</code></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout fresh">
+    <span class="lbl">Fresh · assumptions are first-class</span>
+    <p>Neither earlier discussion gave assumptions a home. Writing them down as nodes converts "conflict with something never stated" into "conflict with a stated assumption" — a class the machinery can actually check.</p>
+  </div>
+
+  <h3><span class="sn">1.3</span>Canonical form — free prose in, comparable statement alongside</h3>
+  <p>Authors keep writing freely; that is the point of SDD. But two atoms can only be compared, matched across releases (U5) or checked for conflict (U2) if they are written in a comparable shape. So each atom carries a <strong>canonical form</strong> produced by the agent and confirmed by the author — never typed by the author.</p>
+  <p>A good template already exists: EARS, the <em>Easy Approach to Requirements Syntax</em> (to verify), which reduces most requirements to a handful of patterns built around an optional state, an optional trigger, a subject and a response. Combined with the RFC 2119 modal vocabulary (to verify), it gives:</p>
+  <pre><code>[<span class="kw">While</span> &lt;state&gt;] [<span class="kw">When</span> &lt;trigger&gt; | <span class="kw">If</span> &lt;unwanted condition&gt;] [<span class="kw">Where</span> &lt;feature/scope&gt;]
+the &lt;subject&gt; <span class="kw">MUST | MUST NOT | SHOULD | MAY</span> &lt;response&gt;
+
+<span class="cm"># stored as fields, not only as a sentence</span>
+subject:    term:share_link          <span class="cm"># resolved against the term registry</span>
+modality:   MUST
+response:   "respond 404 Not Found"
+trigger:    "an expired share link is requested"
+state:      —
+scope:      —
+quantities: []                        <span class="cm"># e.g. {value: 5, unit: GiB} normalized by code</span>
+</code></pre>
+  <ul>
+    <li><strong>The source text stays authoritative.</strong> The canonical form is a derived view with agent provenance. If they disagree, the source wins and the canonical form is re-derived.</li>
+    <li><strong>Quantities are normalized by code, not by the agent.</strong> "5 gigabytes", "5GB", "5120 MB" are parsed and converted deterministically, so a comparison never depends on the model doing arithmetic.</li>
+    <li>Discussion 1's tuple (entity, property, constraint, condition) is a subset of these fields. The additions — modality, trigger vs. state, scope — are what distinguish "must" from "may" and "when" from "while", which is where many real conflicts hide.</li>
+  </ul>
+
+  <h3><span class="sn">1.4</span>Deterministic guards around a non-deterministic atomizer</h3>
+  <p>This is where O1 earns its keep. The agent's split cannot be proven right, but many ways of being wrong are mechanically detectable.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Guard</th><th>What code checks</th><th>Catches</th></tr></thead>
+    <tbody>
+      <tr><td><strong>G1 · Pre-segmentation</strong></td><td>Markdown structure: headings, list items, numbered criteria become block boundaries before the agent sees anything</td><td>Atoms spanning unrelated sections</td></tr>
+      <tr><td><strong>G2 · Span anchoring</strong></td><td>The agent returns <em>verbatim quotes</em>; code finds each quote in the source and computes offsets. A quote not found verbatim is rejected. Offsets are never taken from the model.</td><td>Paraphrase passed off as source; hallucinated text</td></tr>
+      <tr><td><strong>G3 · Coverage</strong></td><td>Every sentence carrying a modal verb ("must", "shall", "should", "never"…) is covered by some atom or explicitly labelled non-normative</td><td>Silently dropped requirements</td></tr>
+      <tr><td><strong>G4 · No injection</strong></td><td>Every term and every quantity in the canonical form must appear in the atom's span (directly or as a registered alias). Otherwise the atom is marked <code>inferred</code> and needs explicit author acceptance.</td><td>The agent adding "best practice" requirements nobody wrote</td></tr>
+      <tr><td><strong>G5 · Schema</strong></td><td>Answer validates against the versioned JSON schema</td><td>Malformed output</td></tr>
+      <tr><td><strong>G6 · Weak-word lexicon</strong></td><td>A configurable list ("fast", "appropriate", "user-friendly", "as needed", "etc.") flags candidate ambiguity — the idea is known in the literature as <em>requirements smells</em> (to verify)</td><td>Vagueness the agent did not flag</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">What the guards cannot catch</span>
+    <p>A split that is well-anchored, fully covered and injection-free can still be <em>semantically</em> wrong — e.g. merging two obligations that T2 should have separated. That residue is what the author's confirmation at the button is for. The guards shrink what the author must look at; they do not remove the author.</p>
+  </div>
+
+  <h3><span class="sn">1.5</span>Ambiguity is a status, not a conversation (first release)</h3>
+  <p>Per <code>vision.md</code> §3, the first release asks no clarifying questions. An ambiguous atom is still created, placed and linked, with <code>check_status: ambiguous</code> and a typed reason:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Ambiguity kind</th><th>Example</th><th>Detectable by code?</th></tr></thead>
+    <tbody>
+      <tr><td>vague term</td><td>"uploads must be fast"</td><td>Partly — G6 lexicon</td></tr>
+      <tr><td>unbounded quantity</td><td>"large files", "many users"</td><td>Partly — quantity missing where a comparative adjective appears</td></tr>
+      <tr><td>missing actor</td><td>"files can be deleted"</td><td>Partly — passive voice with no agent</td></tr>
+      <tr><td>referential</td><td>"it retries three times" — which "it"?</td><td>No — agent</td></tr>
+      <tr><td>scope</td><td>"all users except guests on free plans" — (guests) on free plans, or guests (on free plans)?</td><td>No — agent</td></tr>
+      <tr><td>unresolved term</td><td>subject names no registered term and no new term was confirmed</td><td>Yes — registry lookup</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">1.6</span>Identity — the property U5 quietly depends on</h3>
+  <p>If editing one paragraph re-atomizes the whole document, every node gets a new identity and every comparison becomes noise. So:</p>
+  <ul>
+    <li>A node's id is <strong>assigned once and never recomputed</strong> from content.</li>
+    <li>When a source block changes (its hash changes), only that block is re-atomized. New atoms are <strong>aligned</strong> to old ones by span overlap, then by canonical-form match: <span class="pill">unchanged</span> <span class="pill">edited</span> <span class="pill">split</span> <span class="pill">merged</span> <span class="pill">new</span> <span class="pill">removed</span>. The author confirms the alignment.</li>
+    <li>Atomizer stability is a <em>measured</em> property: run the atomizer twice on the same block (without the lock) and record agreement. If it is low, T1–T4 or the prompt need work — that is a finding, not a failure to hide.</li>
+  </ul>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>"Guests may view but not download shared files." Apply T1–T4. How many atoms, and what is the modality of each?</li>
+      <li>Why does G2 require verbatim quotes instead of asking the agent for character offsets?</li>
+      <li>An atom says "Files are encrypted at rest using AES-256" but the source only says "files are encrypted at rest". Which guard fires, and what status does the atom get?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================================================== PART 2 -->
+<section class="lecture l2" id="p2">
+  <div class="lechead">
+    <span class="lecnum">PART 2</span>
+    <div>
+      <h2>Place: layers, families — and why they are different axes</h2>
+      <p>A layer says what <em>kind</em> of claim a node is. A family says what it is <em>about</em>. Conflating the two is the most common way spec graphs become unusable.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">2.1</span>What are layers actually for?</h3>
+  <p>Three jobs were attributed to layers in the earlier discussions. Only two of them hold up:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Job</th><th>Verdict</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td>Human orientation — "where does this sit, what does it refine?"</td><td><span class="pill ok">holds</span></td><td>People review specs by altitude.</td></tr>
+      <tr><td>Code generation — decompose and order work (U7)</td><td><span class="pill ok">holds</span></td><td>Contracts and data shapes must exist before the logic that uses them.</td></tr>
+      <tr><td>Blocking — only compare nodes within a layer</td><td><span class="pill no">weak</span></td><td>The costly conflicts cross layers: a storage choice (L2) against a throughput target (C). And a corpus of acceptance criteria sits almost entirely in one or two layers, so a layer fence skips almost nothing.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout fresh">
+    <span class="lbl">Fresh · differs from discussion 2</span>
+    <p>Discussion 2 made the layer "the blocking key". Here the layer is a <em>kind</em>, used for orientation and ordering; candidate generation for comparisons uses terms, families and edges instead (§2.8).</p>
+  </div>
+
+  <h3><span class="sn">2.2</span>The layer set, reconsidered</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Layer</th><th>The claim is about…</th><th>Verified by</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L0 · Intent</strong></td><td>Why the system exists; the outcome it serves</td><td>Business outcome or stakeholder judgment — not by testing software</td></tr>
+      <tr><td><strong>L1 · Behavior</strong></td><td>What is observable at the system boundary</td><td>Black-box test</td></tr>
+      <tr><td><strong>L2 · Structure</strong></td><td>Which components exist, what each owns, where they run</td><td>Inspection of structure / deployment</td></tr>
+      <tr><td><strong>L3 · Contract</strong></td><td>The agreement between two named parties: API, event, message, file format</td><td>Contract test at that boundary</td></tr>
+      <tr><td><strong>L4 · Data</strong></td><td>Shape, type, identity, lifecycle of data — independent of who handles it</td><td>Schema / data inspection</td></tr>
+      <tr><td><strong>L5 · Logic</strong></td><td>Internal rules and algorithms of one component</td><td>White-box test</td></tr>
+      <tr><td><strong>C · Constraints</strong></td><td>Rules that quantify over many nodes: non-functional budgets, invariants, policies</td><td>A check applied across every node in its scope</td></tr>
+    </tbody>
+  </table></div>
+  <p>Two things are deliberately <em>not</em> layers:</p>
+  <ul>
+    <li><strong>Verification (V)</strong> — a test spec is a node <em>kind</em> connected by a <code>verifies</code> edge to what it checks. It checks L1 and L5 and L3 alike; it refines none of them. <span class="pill ag">fresh</span> Discussion 2 kept L6 as a layer "for the visual"; removing it removes the temptation to draw a refinement edge from L5 to L6.</li>
+    <li><strong>Terms (T)</strong> — the vocabulary plane: actors, entities, components, data types. Every node points into it. It is the backbone of families and retrieval (§2.5), and it had no home in either earlier design.</li>
+  </ul>
+
+  <h3><span class="sn">2.3</span>The placement procedure — ask the verifier, not the vocabulary</h3>
+  <p>Keyword rules ("contains POST → L3") are brittle, and asking an agent "which layer is this?" produces answers that cannot be audited. The proposal instead asks the agent a <strong>fixed, ordered questionnaire of yes/no questions</strong>, each answer backed by a quote. The compiler maps the answers to a layer with a fixed rule.</p>
+  <pre><code>Q1  Does it restrict MANY nodes or the whole system, rather than
+    describe one behaviour?                                      yes → C
+Q2  Can it only be judged by a business outcome, not by testing?  yes → L0
+Q3  Can an outside observer verify it WITHOUT naming a protocol
+    artefact (path, method, status code, field, event)?          yes → L1
+Q4  Is it about which component exists, owns, or runs something? yes → L2
+Q5  Is it about an agreement between two named parties?          yes → L3
+Q6  Is it about data shape/type/identity/lifecycle?              yes → L4
+Q7  Is it an internal rule verifiable only white-box?            yes → L5
+
+<span class="cm"># all seven are asked, every time. mapping rule (code):
+#  1. precedence  : the FIRST yes (Q1 → Q7) gives the layer
+#  2. same claim  : a later yes whose quote OVERLAPS an earlier yes quote is ignored
+#  3. two claims  : a later yes with a NON-overlapping quote on another layer → T3 fails → split
+#  4. all no      : ambiguous (unplaceable) → author</span></code></pre>
+  <p>Rules 2 and 3 explain how a node ends up in one layer <em>and not the others</em>. Many statements can honestly be read two ways: "a share link expires after 30 days" is observable behaviour <em>and</em> a data lifecycle. When both yes answers rest on the same words, it is one claim with two readings, and precedence decides. When the second yes rests on <em>different words</em>, the sentence is carrying a second claim, and it has to be split. Part 6 walks through this on real examples.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Atom</th><th>First yes</th><th>Layer</th></tr></thead>
+    <tbody>
+      <tr><td>"Teams can share files with external partners."</td><td>Q2 no · Q3 yes</td><td>L1</td></tr>
+      <tr><td>"Reduce support tickets about lost files."</td><td>Q2 yes</td><td>L0</td></tr>
+      <tr><td>"FileService owns all file operations."</td><td>Q4 yes</td><td>L2</td></tr>
+      <tr><td>"POST /files returns 201 with the file id."</td><td>Q3 no (names a method, path and status code) · Q5 yes</td><td>L3</td></tr>
+      <tr><td>"A share link has an expiry timestamp."</td><td>Q6 yes</td><td>L4</td></tr>
+      <tr><td>"Every endpoint must respond within 300 ms."</td><td>Q1 yes</td><td>C</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">Caveat · the L1 / L3 overlap is real, and Q3's wording absorbs it</span>
+    <p>An API response is both externally observable (L1) and a contract (L3). Instead of a separate tie rule, Q3 is worded so that it excludes protocol artefacts. A statement that names a path, method, status code, field or event name answers Q3 "no" and lands in L3. A statement describing the effect a person or external party experiences stays in L1. Expect more tie cases to emerge from real corpora. Each fix is a versioned change to the question wording or the mapping, and past answers stay recorded.</p>
+  </div>
+  <div class="callout key">
+    <span class="lbl">P-8 · Why a questionnaire</span>
+    <ul>
+      <li><strong>Auditable</strong> — the recorded answers <em>are</em> the explanation.</li>
+      <li><strong>Cheap to change</strong> — if layer definitions change, re-run the mapping over locked answers; nothing is re-asked.</li>
+      <li><strong>Self-checking</strong> — contradictory answers expose non-atomic input (T3).</li>
+      <li><strong>Hypothesis, not fact:</strong> that small closed questions are more stable than one open question is plausible, and must be measured on a real corpus.</li>
+    </ul>
+  </div>
+
+  <h3><span class="sn">2.4</span>How generic can layers be? (U1)</h3>
+  <p>A generic tool is tempted to let each project define its own layers. Resist it: two graphs built with different layer semantics cannot be compared (U5), and every downstream recipe (§3.4) would need per-project rewriting.</p>
+  <div class="callout key">
+    <span class="lbl">P-7 · Fixed semantics, configurable surface</span>
+    <p>The layer <em>meanings</em> are fixed by the compiler. A project profile may: rename layers for display; leave layers empty; and give <strong>hints</strong> — "sections titled <em>Acceptance criteria</em> are usually L1". Hints are priors recorded with the answer; they never override a questionnaire answer.</p>
+  </div>
+
+  <h3><span class="sn">2.5</span>Terms — the backbone nobody drew</h3>
+  <p>Families, conflict candidates, retrieval and U5 matching all depend on one question: <em>are these two nodes talking about the same thing?</em> Text similarity answers a different question — "do these read alike?" — so the graph needs an explicit vocabulary.</p>
+  <pre><code>term:
+  id:        term:share_link
+  canonical: "share link"
+  aliases:   ["shared link", "public link", "download link"]
+  kind:      entity | actor | component | data | external_system | event
+  defined_by: node or definition span, if any
+</code></pre>
+  <ul>
+    <li>The agent <strong>tags</strong> each atom's subject and other referenced terms, proposing either an existing term or a new one.</li>
+    <li>The compiler resolves exact names and registered aliases <strong>deterministically</strong>.</li>
+    <li>A proposed alias merge ("download link" = "share link"?) always goes to the author.</li>
+  </ul>
+  <div class="callout warn">
+    <span class="lbl">The asymmetry that justifies author confirmation</span>
+    <p>A wrong <strong>merge</strong> of two terms fabricates conflicts between unrelated features. A wrong <strong>split</strong> of one term into two hides real conflicts. The first is noisy; the second is silent — and silent is worse. When in doubt the compiler should propose a merge for review rather than quietly keep the terms apart.</p>
+  </div>
+
+  <h3><span class="sn">2.6</span>Families — a vertical slice, not a similarity cluster</h3>
+  <p><strong>A family is everything about one subject, across all layers</strong>: the intent, behaviors, contracts, data, logic and constraints concerning <em>share links</em>. It is a vertical slice through the layer stack.</p>
+  <ul>
+    <li><strong>Why vertical:</strong> code is written per capability and reviewed per capability. A horizontal "similar text" cluster puts <em>upload size limit</em> next to <em>download rate limit</em> because they read alike, and separates <em>share link expiry</em> (L1) from <em>the expiry timestamp field</em> (L4), which must be built together.</li>
+    <li><strong>How derived (deterministic):</strong> each node has exactly one <strong>primary term</strong>, chosen by a fixed rule. If the canonical subject is an entity, that entity is the primary term. If the subject is an actor, a component or "the system", the primary term is the first entity in the response. A test node takes the family of what it verifies, and a constraint takes the family its scope selects. The family name <em>is</em> the term name, with no naming call to a model.</li>
+    <li><strong>Actors and components never seed a family.</strong> Otherwise "user" or "the service" would swallow half the graph. Components get their own coordinate (§2.7).</li>
+    <li><strong>Mentioning is not membership.</strong> "When a file is deleted, its share links stop working" mentions files, but the obligation falls on share links. It joins the share-link family and gets a <code>uses_term</code> link to <em>file</em>, which retrieval can still follow.</li>
+    <li><strong>Not by embeddings:</strong> similarity is the wrong question (above). In later releases a pinned local embedding model may <em>suggest</em> alias merges. It still would not assign families.</li>
+    <li><strong>Overrides allowed, recorded:</strong> an author may pin a node to a family; the pin is stored and shown, so derived and hand-made grouping never mix silently. Hand-maintained family lists as the <em>primary</em> mechanism are rejected — they rot.</li>
+  </ul>
+  <div class="callout fresh">
+    <span class="lbl">Fresh · differs from discussion 1</span>
+    <p>Discussion 1 formed families by entity match plus embedding threshold, and named new families with an LLM call. Its own example then hesitated over whether "download" belonged to "File Sharing" at a similarity of 0.62. With families seeded from the term registry, that question becomes: <em>is the subject term the same, or an alias?</em> — a registry lookup, and a merge proposal if unsure.</p>
+  </div>
+
+  <h3><span class="sn">2.7</span>A node's address has three coordinates</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Coordinate</th><th>Answers</th><th>Comes from</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Layer</strong></td><td>What kind of claim?</td><td>Questionnaire → mapping (§2.3)</td></tr>
+      <tr><td><strong>Family</strong></td><td>What is it about?</td><td>Primary term → derivation (§2.6)</td></tr>
+      <tr><td><strong>Component</strong></td><td>Where will it live in code?</td><td><code>allocated_to</code> edges to L2 component terms — may be empty until architecture is written</td></tr>
+    </tbody>
+  </table></div>
+  <p>The component coordinate matters most for U7: code is organised by component, specs by family, reviews by layer. A graph that records all three can be sliced whichever way the task needs.</p>
+
+  <h3><span class="sn">2.8</span>Placement is not linking</h3>
+  <p>An address tells you where a node sits. Edges tell you what it touches. Retrieval (Part 3), conflict detection (U2) and comparison (U5) all run on edges.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Edge</th><th>From → to</th><th>Produced by</th></tr></thead>
+    <tbody>
+      <tr><td><code>uses_term</code></td><td>node → term</td><td>Agent tag, compiler resolution</td></tr>
+      <tr><td><code>refines</code></td><td>lower-layer node → higher-layer node it details</td><td>Agent judgment on candidates</td></tr>
+      <tr><td><code>allocated_to</code></td><td>L1/L3/L4/L5 node → component term</td><td>Agent judgment; explicit when an L2 node names the owner</td></tr>
+      <tr><td><code>constrains</code></td><td>C node → scope (expressed as a term, family or layer selector)</td><td>Scope resolved by code</td></tr>
+      <tr><td><code>verifies</code></td><td>V node → node it checks</td><td>Agent judgment</td></tr>
+      <tr><td><code>depends_on</code></td><td>node → node it presupposes</td><td>Agent judgment</td></tr>
+      <tr><td><code>duplicates</code> · <code>subsumes</code> · <code>conflicts_with</code></td><td>node ↔ node</td><td>Agent judgment on candidates, with kind and rationale</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Candidate generation is deterministic:</strong> the compiler proposes which pairs the agent should judge — same term, same family, a constraint whose scope covers the node, refinement neighbours. The agent judges only those. Whether this candidate set contains the true relations is the single most important measured risk of the whole design, because <em>a pair never proposed is a relation never found</em>.</p>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>"Share links must never expose the file owner's email." Run Q1–Q7. Which layer? Which family? Is there a <code>constrains</code> scope?</li>
+      <li>Why would a family assigned by embedding similarity be wrong for "upload size limit" and "download rate limit", even with an excellent embedding model?</li>
+      <li>Give a real conflict that a layer-only blocking rule would never propose as a candidate pair.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================================================== PART 3 -->
+<section class="lecture l3" id="p3">
+  <div class="lechead">
+    <span class="lecnum">PART 3</span>
+    <div>
+      <h2>Retrieve: the agent asks the graph, it never reads it</h2>
+      <p>Designed now so the first release stores what U7 will need. The mechanism itself ships later.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">3.1</span>The principle</h3>
+  <p>An agent reading a markdown spec set has one tool: search for words. Words find mentions, not relations — grep cannot answer "which constraints apply to this component?" or "what else breaks if this contract changes?". The graph's value to an agent is exactly that it can answer <strong>relational questions directly</strong>.</p>
+  <div class="callout key">
+    <span class="lbl">P-10 · Query, don't read</span>
+    <p>The compiler exposes a small, fixed vocabulary of deterministic queries through the agent integration (O3): <code>node</code>, <code>neighbors(type, depth)</code>, <code>family</code>, <code>component</code>, <code>layer</code>, <code>impact(node)</code>, <code>context_pack(recipe, target, budget)</code>. The agent's context grows with the <em>task</em>, not with the size of the graph.</p>
+  </div>
+
+  <h3><span class="sn">3.2</span>Indexes — all deterministic</h3>
+  <ul>
+    <li><strong>By id, term (including aliases), family, layer, component, status, source file/span.</strong> Plain inverted indexes; rebuilt from the graph.</li>
+    <li><strong>Adjacency per edge type</strong>, in both directions — "what refines X" and "what does X refine" are equally common questions.</li>
+    <li><strong>Optional lexical search</strong> over canonical forms, for when the agent has only a phrase.</li>
+    <li><strong>Embeddings: optional recall aid only.</strong> If used, the model id is recorded and results are suggestions, never edges. Nothing the graph asserts may depend on them.</li>
+  </ul>
+
+  <h3><span class="sn">3.3</span>Progressive disclosure — maps before territory</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Level</th><th>What the agent sees</th><th>Size depends on</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0 · Project map</strong></td><td>Families × layers counts; one line per family; open conflicts and ambiguities count</td><td>Number of families</td></tr>
+      <tr><td><strong>1 · Family card</strong></td><td>Node ids and one-line titles; contracts; constraints in scope; component allocation</td><td>Size of one family</td></tr>
+      <tr><td><strong>2 · Node</strong></td><td>Canonical form, status, edges, annotations</td><td>One node</td></tr>
+      <tr><td><strong>3 · Source</strong></td><td>The exact source span and surrounding section</td><td>One passage</td></tr>
+    </tbody>
+  </table></div>
+  <p>Family one-line summaries are <em>agent judgments</em>, so they go in the judgment lock, keyed by the hash of the family's member nodes. When a member changes, the summary is stale — the make rule, applied to summaries. The idea of hierarchical summaries over a corpus appears in recent retrieval work such as GraphRAG and RAPTOR (both to verify); the difference here is that the hierarchy is given by families and layers, not discovered by clustering.</p>
+
+  <h3><span class="sn">3.4</span>Context recipes — a traversal, not a search</h3>
+  <p>For each kind of coding task, a <strong>recipe</strong> states which edges to follow and what to include. Recipes are code: the same graph and the same target always give the same pack.</p>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 760 290" role="img" aria-label="Context recipe for implementing component K: core nodes allocated to K, contracts K provides or consumes, constraints whose scope covers the core, data nodes reached through shared terms, verification nodes, and titles of refinement ancestors for orientation, all packed together with a manifest listing what was included, cut and flagged.">
+      <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="svg-head"/></marker></defs>
+      <rect x="290" y="112" width="180" height="56" rx="4" class="svg-core"/>
+      <text x="304" y="136" class="t-acc" font-weight="700">TARGET: COMPONENT K</text>
+      <text x="304" y="154" class="svg-soft">recipe: implement</text>
+
+      <rect x="20" y="20" width="240" height="52" rx="4" class="svg-box"/>
+      <text x="32" y="41" class="svg-ink" font-weight="700">ORIENTATION</text>
+      <text x="32" y="58" class="svg-soft">L0/L1 ancestors via refines · titles</text>
+
+      <rect x="500" y="20" width="240" height="52" rx="4" class="svg-box"/>
+      <text x="512" y="41" class="svg-ink" font-weight="700">CONSTRAINTS (C)</text>
+      <text x="512" y="58" class="svg-soft">scope covers any core node · full</text>
+
+      <rect x="20" y="114" width="240" height="52" rx="4" class="svg-comp"/>
+      <text x="32" y="135" class="svg-ink" font-weight="700">CORE</text>
+      <text x="32" y="152" class="svg-soft">L1 · L5 nodes allocated_to K · full</text>
+
+      <rect x="500" y="114" width="240" height="52" rx="4" class="svg-comp"/>
+      <text x="512" y="135" class="svg-ink" font-weight="700">CONTRACTS (L3)</text>
+      <text x="512" y="152" class="svg-soft">K provides · full / consumes · sig.</text>
+
+      <rect x="20" y="208" width="240" height="52" rx="4" class="svg-box"/>
+      <text x="32" y="229" class="svg-ink" font-weight="700">DATA (L4)</text>
+      <text x="32" y="246" class="svg-soft">via terms used by core · full</text>
+
+      <rect x="500" y="208" width="240" height="52" rx="4" class="svg-box"/>
+      <text x="512" y="229" class="svg-ink" font-weight="700">VERIFICATION (V)</text>
+      <text x="512" y="246" class="svg-soft">verifies a core node · full</text>
+
+      <rect x="290" y="212" width="180" height="48" rx="4" class="svg-agent"/>
+      <text x="304" y="233" class="t-plum" font-weight="700">MANIFEST</text>
+      <text x="304" y="250" class="svg-soft">included · cut · flagged</text>
+
+      <line x1="290" y1="126" x2="262" y2="72" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="470" y1="126" x2="498" y2="72" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="290" y1="140" x2="262" y2="140" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="470" y1="140" x2="498" y2="140" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="290" y1="160" x2="262" y2="212" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="470" y1="160" x2="498" y2="212" class="svg-line" marker-end="url(#ah2)"/>
+      <line x1="380" y1="168" x2="380" y2="210" class="svg-line" marker-end="url(#ah2)"/>
+      <text x="20" y="282" class="svg-faint">Conflicted or ambiguous nodes are included and flagged in the manifest, never silently dropped.</text>
+    </svg>
+    </div>
+    <figcaption>Recipe "implement component K". Green groups are always included in full; grey groups are included at the stated resolution; the manifest is part of the pack.</figcaption>
+  </figure>
+
+  <p>Other recipes follow the same pattern with different edges:</p>
+  <ul>
+    <li><strong>change node N</strong> — N; everything that <code>refines</code>, <code>verifies</code> or <code>depends_on</code> N, transitively; the components those are allocated to.</li>
+    <li><strong>review conflict</strong> — the two nodes; their sources; their refinement ancestors; constraints covering either.</li>
+    <li><strong>compare to as-built</strong> (U5) — one family on both graphs, aligned by address.</li>
+  </ul>
+
+  <h3><span class="sn">3.5</span>Budgets and declared omissions</h3>
+  <p>A pack must fit a context budget. The cut rule is deterministic: tiers in priority order (core → contracts → constraints → data → verification → orientation), within a tier by edge distance then id; a node is never truncated mid-text. The essential part is the <strong>manifest</strong>: every node the recipe reached is listed as included, cut for budget, or flagged. An agent that knows its context is partial behaves differently from one that believes it is complete.</p>
+
+  <h3><span class="sn">3.6</span>Trace-back links — free now, valuable later</h3>
+  <p>If generated code and tests carry the node ids they implement (a comment convention, a test-name convention), then later U3 (agent reports), U5 (as-built comparison) and impact analysis can cross the spec–code boundary without guessing. The first release only needs to <em>define</em> the id format and convention; nothing has to consume it yet.</p>
+
+  <h3><span class="sn">3.7</span>Honest limits</h3>
+  <ul>
+    <li><strong>Missing edge = missing context, silently.</strong> A recipe cannot follow a relation nobody recorded. Mitigation: the manifest also lists <em>nodes in the same family that the recipe did not reach</em>, so gaps are visible.</li>
+    <li><strong>Small spec sets may not need any of this.</strong> A project with a few dozen specs can put everything in context. Where the crossover lies is a question to measure, not a number to assume — and discussion 1's crossover figures were invented.</li>
+    <li><strong>The fair baseline is not "one prompt with the whole markdown".</strong> It is a capable agent that can grep and plan over markdown. U7's value has to be shown against that.</li>
+  </ul>
+</section>
+
+<!-- ===================================================== PART 4 -->
+<section class="lecture l4" id="p4">
+  <div class="lechead">
+    <span class="lecnum">PART 4</span>
+    <div>
+      <h2>What else belongs to the core working principle</h2>
+      <p>Your three questions cover how a node is made and found. These are the parts of the principle that those three questions rely on without naming.</p>
+    </div>
+  </div>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Missing piece</th><th>Why it is core, not detail</th><th>Serves</th></tr></thead>
+    <tbody>
+      <tr><td>M1</td><td><strong>Linking and the consolidation judgment</strong> — which relations exist, how candidates are generated, how the agent judges a pair (§2.8)</td><td>U2 <em>is</em> this. Placement without linking is a filing system, not a compiler. It is also what retrieval traverses.</td><td>U2 · U7</td></tr>
+      <tr><td>M2</td><td><strong>Source of truth</strong> — prose vs. graph (P-0)</td><td>Decides whether the tool is a compiler or an editor, and how versioning works at all.</td><td>U1 · U5</td></tr>
+      <tr><td>M3</td><td><strong>Identity and change alignment</strong> (§1.6)</td><td>Without stable ids, every edit looks like delete-plus-add and U5 compares noise.</td><td>U5 · U4 later</td></tr>
+      <tr><td>M4</td><td><strong>Judgment lock</strong> (P-1)</td><td>The only way O1 (deterministic) and O2 (agent judges) are both true.</td><td>O1 · U5</td></tr>
+      <tr><td>M5</td><td><strong>Term registry</strong> (§2.5)</td><td>Families, candidates, retrieval and matching all rest on it.</td><td>U2 · U5 · U7</td></tr>
+      <tr><td>M6</td><td><strong>The U5 comparison principle</strong> — see below</td><td>U5 is in the first release, and its correctness depends on choices made in atomization and placement.</td><td>U5</td></tr>
+      <tr><td>M7</td><td><strong>Non-normative content</strong> — rationale, examples, assumptions (§1.2)</td><td>Decides what becomes a node; assumptions in particular make a class of conflicts checkable.</td><td>U2</td></tr>
+      <tr><td>M8</td><td><strong>Status model</strong> — <code>draft_status</code> × <code>check_status</code> {unchecked, clean, conflicted, ambiguous, stale} + <code>inferred</code> flag</td><td>Every other part reads and writes it; it must be one model.</td><td>all</td></tr>
+      <tr><td>M9</td><td><strong>The confirmation protocol</strong> — what the single writer confirms at the button, and what is auto-accepted</td><td>The author is part of the algorithm; an unspecified author step is an unspecified algorithm.</td><td>U2</td></tr>
+      <tr><td>M10</td><td><strong>Incremental invalidation</strong> — which verdicts go stale when a node changes</td><td>Keeps each press proportional to the change, not to the graph.</td><td>U2</td></tr>
+      <tr><td>M11</td><td><strong>How we will know it works</strong> — atomizer stability, placement agreement, candidate completeness, context-pack sufficiency</td><td>A principle that cannot be measured cannot be corrected. Each proposal above names what to measure.</td><td>all</td></tr>
+      <tr><td>M12</td><td><strong>Project profile</strong> — what U1 lets a project configure (P-7)</td><td>Too little and the tool is not generic; too much and graphs stop being comparable.</td><td>U1</td></tr>
+      <tr><td>M13</td><td><strong>Storage layout</strong> — one file per node, per family, or per source document</td><td>Determines git diff noise, merge pain later, and how readable a review is.</td><td>U1 · U5</td></tr>
+      <tr><td>M14</td><td><strong>External references</strong> — specs that point to standards, third-party APIs, other projects</td><td>They are terms and constraints the author did not write; they need a node kind or an external-term marker.</td><td>U2</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">4.1</span>M6 in detail — comparing pre-built and as-built graphs</h3>
+  <p>U5 compares a spec graph written before building with one written (by another agent or a human) after. The trap: if the two sides were atomized, named or placed differently, the diff reports <em>method differences</em> as <em>system differences</em>.</p>
+  <div class="callout key">
+    <span class="lbl">P-11 · Same compiler, same registry, both sides</span>
+    <ul>
+      <li>Both graphs are compiled with the <strong>same atomization rules, question schemas and layer mapping version</strong>, recorded in each graph's header.</li>
+      <li>Both resolve against the <strong>same term registry</strong>; terms new on the as-built side enter as proposals, not silently.</li>
+      <li>Matching order: <strong>trace link</strong> (§3.6) if present → <strong>address</strong> (family, layer, component) → <strong>canonical form</strong> fields → agent judgment on what remains.</li>
+    </ul>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Outcome</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill ok">matched · equal</span></td><td>Built as specified</td></tr>
+      <tr><td><span class="pill">matched · diverged</span></td><td>Same claim, different value or condition — e.g. 30 days specified, 7 days built</td></tr>
+      <tr><td><span class="pill no">matched · contradicted</span></td><td>Built behaviour contradicts the design</td></tr>
+      <tr><td><span class="pill">pre-built only</span></td><td>Specified, not (yet) built</td></tr>
+      <tr><td><span class="pill">as-built only</span></td><td>Built behaviour nobody specified — often the most valuable finding</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <span class="lbl">Granularity mismatch</span>
+    <p>Specs written from code tend to be finer-grained than design specs ("returns 413 when the body exceeds 100 MB" vs. "large uploads are rejected"). Matching must allow <strong>one-to-many</strong>, which is exactly the <code>refines</code> relation — so the comparison is really "does the as-built graph refine the pre-built one?". This is an open design question, not solved here.</p>
+  </div>
+</section>
+
+<!-- ===================================================== PART 5 -->
+<section class="lecture l5" id="p5">
+  <div class="lechead">
+    <span class="lecnum">PART 5</span>
+    <div>
+      <h2>Proposals, open questions, references to verify</h2>
+      <p>Accept, reject or amend each proposal. Accepted proposals graduate to <code>vision.md</code> or a spec.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">5.1</span>Proposals awaiting decision</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Id</th><th>Proposal</th><th>Section</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>P-0</td><td>Prose is the source of truth; the graph is a compiled, git-versioned artifact</td><td>0.1</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-1</td><td>Judgment lock: agent answers recorded by input hash; rebuilds replay them</td><td>0.2</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-2</td><td>Atom definition by tests T1–T4, with the list rule</td><td>1.1</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-3</td><td>Sentence roles; assumptions are nodes; definitions go to the term registry</td><td>1.2</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-4</td><td>EARS-style canonical form + modality as derived fields; quantities normalized by code</td><td>1.3</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-5</td><td>Guards G1–G6 around atomization</td><td>1.4</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-6</td><td>Stable node ids; block-level re-atomization with alignment</td><td>1.6</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-7</td><td>Layers L0–L5 + C; V is a node kind; Terms is a plane. Fixed semantics, configurable surface</td><td>2.2 · 2.4</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-8</td><td>Placement by ordered yes/no questionnaire mapped by code</td><td>2.3</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-9</td><td>Families are vertical slices derived from primary terms; pins recorded</td><td>2.6</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-10</td><td>Agents query the graph through fixed deterministic queries and context recipes with a manifest</td><td>3.1–3.5</td><td><span class="pill">proposed</span></td></tr>
+      <tr><td>P-11</td><td>U5: same compiler versions and registry on both sides; ordered matching</td><td>4.1</td><td><span class="pill">proposed</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">5.2</span>Open questions</h3>
+  <ol>
+    <li>Do <code>ambiguous</code> nodes take part in conflict judgment, or wait until resolved? (Participating finds more; waiting avoids verdicts on unclear text.)</li>
+    <li>Where are architecture <em>decisions</em> and their rejected alternatives recorded — L2 nodes with rationale annotations, or a separate decision kind?</li>
+    <li>Tie rules for the questionnaire beyond L1 / L3 — collect from a real corpus before fixing.</li>
+    <li>The pair-judgment question itself: which relation kinds, what schema, and how candidate completeness is measured (M1).</li>
+    <li>Storage layout (M13) and graph file format.</li>
+    <li>Which Claude Code integration carries which step — hook for the button, MCP tools for queries, headless invocation for batch? (<code>vision.md</code> §4)</li>
+    <li>U5 granularity mismatch — is "as-built refines pre-built" the right comparison model?</li>
+    <li>What the single writer must confirm at each press, and what may be auto-accepted (M9).</li>
+  </ol>
+
+  <h3><span class="sn">5.3</span>Rejected in this file</h3>
+  <ul>
+    <li><strong>Keyword rules as the layer classifier.</strong> Brittle; kept at most as project-profile hints.</li>
+    <li><strong>Layer as the blocking key.</strong> Misses cross-layer conflicts and degenerates on single-layer corpora.</li>
+    <li><strong>Embedding similarity <em>deciding</em> families or links.</strong> It answers "reads alike", not "about the same thing". In later releases it may act as a pinned, locked <em>suggestion</em> source.</li>
+    <li><strong>LLM-named families.</strong> The term already is the name.</li>
+    <li><strong>Per-project layer definitions.</strong> Breaks comparability (U5) and recipes (U7).</li>
+    <li><strong>Offsets supplied by the model.</strong> Code computes them from verbatim quotes.</li>
+  </ul>
+
+  <h3><span class="sn">5.4</span>References — named from working knowledge, NOT verified</h3>
+  <div class="callout warn">
+    <span class="lbl">To verify before relying on any of them</span>
+    <p>None of these has been retrieved in this session. Authors, years and venues below are recollections and may be wrong. They are search starting points, not citations.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Topic</th><th>Starting point</th><th>Used in</th></tr></thead>
+    <tbody>
+      <tr><td>Requirement quality characteristics (singular, unambiguous, verifiable)</td><td>ISO/IEC/IEEE 29148</td><td>1.1</td></tr>
+      <tr><td>Structured requirement templates</td><td>EARS — Mavin et al., around 2009</td><td>1.3</td></tr>
+      <tr><td>Modal keywords</td><td>RFC 2119, clarified by RFC 8174</td><td>1.3</td></tr>
+      <tr><td>Weak words / requirements smells</td><td>Femmer et al., around 2017</td><td>1.4</td></tr>
+      <tr><td>Traceability</td><td>Gotel &amp; Finkelstein, "the requirements traceability problem", around 1994</td><td>3.6</td></tr>
+      <tr><td>Hierarchical summaries for retrieval</td><td>GraphRAG (Microsoft, 2024) · RAPTOR (2024)</td><td>3.3</td></tr>
+      <tr><td>Candidate-pair generation and its metrics</td><td>Record linkage / blocking literature</td><td>2.8</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ===================================================== PART 6 -->
+<section class="lecture l1" id="p6">
+  <div class="lechead">
+    <span class="lecnum">PART 6</span>
+    <div>
+      <h2>Worked example: one small spec file, all the way through</h2>
+      <p>Twenty-three lines of prose become fourteen nodes. For each one we trace why it lands in one layer and one family and not the others, then how indexes, progressive disclosure and a context recipe let an agent use the result. The same example, in compact form, is the test fixture in <code>core-working-principle.md</code> §9.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">6.1</span>The source</h3>
+  <pre><code> 1  # Sharing
+ 3  ## Share links
+ 4  Owners can create a share link for a file they own.
+ 5  A share link expires 30 days after it is created.
+ 6  Visitors who open an expired share link see a "link expired" page.
+ 7  Share links must never reveal the owner's email address.
+ 8  When a file is deleted, its share links must stop working.
+10  ## Files
+11  Owners can delete a file they own.
+13  ## Architecture
+14  LinkService owns share links. FileService owns files.
+15  GET /s/{token} returns 200 with the file stream when the token is valid,
+    and 404 when it is expired or unknown.
+16  A share link record stores token, file_id, created_at and expires_at.
+17  expires_at is set to created_at plus 30 days when the link is created.
+19  ## Tests
+20  Test: a link created 31 days ago returns 404.
+22  ## Cross-cutting
+23  Every public endpoint must respond within 300 ms.</code></pre>
+  <p>Atomization gives fourteen nodes. Line 14 holds two sentences, so it gives two nodes (G1). Line 15 is one sentence with two verdicts, 200 when valid and 404 otherwise, so T1 splits it. Every other line gives one node.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Node</th><th>Line</th><th>Claim</th><th>Layer</th><th>Family</th></tr></thead>
+    <tbody>
+      <tr><td>N-1</td><td>4</td><td>create share link for own file</td><td>L1</td><td>share_link</td></tr>
+      <tr><td>N-2</td><td>5</td><td>expires 30 days after creation</td><td>L1</td><td>share_link</td></tr>
+      <tr><td>N-3</td><td>6</td><td>expired link → "link expired" page</td><td>L1</td><td>share_link</td></tr>
+      <tr><td>N-4</td><td>7</td><td>never reveal owner's email</td><td>C</td><td>share_link</td></tr>
+      <tr><td>N-5</td><td>8</td><td>file deleted → its links stop working</td><td>L1</td><td>share_link</td></tr>
+      <tr><td>N-6</td><td>11</td><td>owner can delete own file</td><td>L1</td><td>file</td></tr>
+      <tr><td>N-7</td><td>14a</td><td>LinkService owns share links</td><td>L2</td><td>share_link</td></tr>
+      <tr><td>N-8</td><td>14b</td><td>FileService owns files</td><td>L2</td><td>file</td></tr>
+      <tr><td>N-9</td><td>15a</td><td>GET /s/{token} → 200 + stream when valid</td><td>L3</td><td>share_link</td></tr>
+      <tr><td>N-10</td><td>15b</td><td>GET /s/{token} → 404 when expired/unknown</td><td>L3</td><td>share_link</td></tr>
+      <tr><td>N-11</td><td>16</td><td>record fields</td><td>L4</td><td>share_link</td></tr>
+      <tr><td>N-12</td><td>17</td><td>expires_at = created_at + 30 d</td><td>L5</td><td>share_link</td></tr>
+      <tr><td>N-13</td><td>20</td><td>31-day-old link → 404</td><td>V</td><td>share_link</td></tr>
+      <tr><td>N-14</td><td>23</td><td>public endpoints within 300 ms</td><td>C</td><td>(global)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">6.2</span>Why a node lands in this layer and not another</h3>
+  <p>The agent answers all seven questions for every node. The compiler applies precedence, then the overlap rule. What matters is less the yes that places a node than the <em>other</em> yes answers, and why they don't move it.</p>
+
+  <h4>N-2 · "A share link expires 30 days after it is created."</h4>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Question</th><th>Answer · quote</th><th>What the compiler does</th></tr></thead>
+    <tbody>
+      <tr><td>Q1 restricts many nodes?</td><td>no</td><td>It concerns one entity's behaviour</td></tr>
+      <tr><td>Q2 business outcome only?</td><td>no</td><td>You can test it</td></tr>
+      <tr><td>Q3 outside observer, no protocol artefact?</td><td><strong>yes</strong> · "expires 30 days after it is created"</td><td><strong>First yes → L1</strong></td></tr>
+      <tr><td>Q6 data lifecycle?</td><td>yes · "expires 30 days after it is created"</td><td>Same words as the Q3 quote → one claim, two readings → ignored</td></tr>
+      <tr><td>Q7 internal algorithm?</td><td>no</td><td>It describes an outcome, not how it is computed</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Why not L4:</strong> the only L4 reading rests on the same words as the L1 reading, and L1 has precedence. That precedence is deliberate: if the outside world can see it, the code must honour it at the boundary. <strong>Why not L5:</strong> the algorithm lives on line 17 (N-12), which <code>refines</code> N-2. Now suppose line 5 had said "expires, computed as created_at + 30 days". Q7 would get a yes backed by <em>different</em> words ("computed as created_at + 30 days"). That is a second claim, so the compiler sends the atom back to be split into N-2 plus an L5 node.</p>
+
+  <h4>N-10 · "…and 404 when it is expired or unknown."</h4>
+  <p>Q3 says <strong>no</strong>: the statement names a status code on a path, which is a protocol artefact. Q5 says <strong>yes</strong>, because it is the agreement between the client and the service at <code>GET /s/{token}</code>. So it lands in L3. <strong>Why not L1:</strong> the observable effect a visitor experiences is already N-3 (line 6). N-10 is the contract that realizes it, so the graph records <code>N-10 refines N-3</code> instead of filing two L1 nodes that say nearly the same thing.</p>
+
+  <h4>N-4 · "Share links must never reveal the owner's email address."</h4>
+  <p>Q1 says <strong>yes</strong>, quote "must never reveal": it restricts every page and response that involves a share link. Q3 also says yes, quote "never reveal the owner's email address". That quote overlaps the Q1 quote, so it is the same claim, and precedence places N-4 in <strong>C</strong>. <strong>Why not L1:</strong> as one L1 behaviour, it would reach code only where someone happened to link it. As C, its scope <code>family:share_link</code> guarantees that every recipe touching share links includes it (§6.6, tier 3).</p>
+
+  <h4>N-11 · "A share link record stores token, file_id, created_at and expires_at."</h4>
+  <p>Q3 no, because no outside observer sees stored fields. Q4 no, because "record" is data, not a component. Q6 yes. So it is <strong>L4</strong>, and nothing else is a candidate.</p>
+
+  <h3><span class="sn">6.3</span>Why a node joins this family and not another</h3>
+  <p>Every node below mentions more than one term. Membership comes from one fixed choice, the <em>primary term</em>. Every other term becomes a <code>uses_term</code> link.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Node</th><th>Terms mentioned</th><th>Primary term, by rule</th><th>Family</th><th>Why not the other</th></tr></thead>
+    <tbody>
+      <tr><td>N-1 "Owners can create a share link for a file they own."</td><td>owner, share_link, file</td><td>Subject is "the system", so the <em>response rule</em> applies. First entity in the response: share_link</td><td><strong>share_link</strong></td><td><em>file</em> is what the link points to, not what the obligation creates</td></tr>
+      <tr><td>N-5 "When a file is deleted, its share links must stop working."</td><td>file, share_link</td><td>Subject "share links" is an entity, so the <em>subject rule</em> applies</td><td><strong>share_link</strong></td><td>File deletion is the <em>trigger</em>. The cross-family fact survives as <code>N-5 depends_on N-6</code></td></tr>
+      <tr><td>N-7 "LinkService owns share links."</td><td>LinkService, share_link</td><td>Subject is a component, which never seeds a family, so the response rule gives share_link</td><td><strong>share_link</strong></td><td><em>LinkService</em> becomes the component coordinate, not a family</td></tr>
+      <tr><td>N-13 "a link created 31 days ago returns 404"</td><td>share_link</td><td>Test node, so the <em>verification rule</em> gives the family of N-10 and N-2</td><td><strong>share_link</strong></td><td>—</td></tr>
+      <tr><td>N-14 "Every public endpoint must respond within 300 ms."</td><td>public_endpoint (category)</td><td>Constraint whose scope is "layer L3 ∩ public endpoints", not one family</td><td><strong>(global)</strong></td><td>It would be wrong to file a system-wide budget under whichever family was seen first</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout key">
+    <span class="lbl">The one-line rule</span>
+    <p>A node is a <strong>member</strong> of exactly one family and <strong>mentions</strong> any number of terms. A family card shows its members. It also shows, separately, the nodes elsewhere that mention it. Nothing is lost, and nothing is filed twice.</p>
+  </div>
+
+  <h3><span class="sn">6.4</span>Indexes — the back-of-the-book idea</h3>
+  <p>An index is what a textbook has at the back: instead of reading every page to find "expiry", you look up the word and jump to the page numbers. The compiler builds several such lookups from the graph. None of them involves a model.</p>
+  <pre><code>by_family   share_link → N-1 N-2 N-3 N-4 N-5 N-7 N-9 N-10 N-11 N-12 N-13
+            file       → N-6 N-8
+            (global)   → N-14
+by_term     file       → N-1 N-5 N-6 N-8 N-9
+by_layer    L1 → N-1 N-2 N-3 N-5 N-6     L3 → N-9 N-10     C → N-4 N-14
+by_component LinkService → N-1 N-2 N-3 N-5 N-7 N-9 N-10 N-11 N-12
+edges_in    N-2 → refined by N-12 · verified by N-13</code></pre>
+  <p><strong>Two lookups, two different questions.</strong> <code>by_family[file]</code> answers <em>"what is about files?"</em> with N-6 and N-8. <code>by_term[file]</code> answers <em>"what mentions files?"</em> with five nodes. The three extra, N-1, N-5 and N-9, are exactly the share-link nodes an agent should glance at before changing how files work. Grep over the Markdown finds the word "file" in far more places, and cannot tell a member from a mention.</p>
+  <p><strong>A question grep cannot answer:</strong> <em>"If I change the 30-day expiry, what else changes?"</em> <code>edges_in[N-2]</code> answers in one lookup: the algorithm N-12 and the test N-13. Nobody wrote "see also line 17 and line 20" in the prose. The links exist because placement and linking made them.</p>
+
+  <h3><span class="sn">6.5</span>Progressive disclosure — zooming in only where needed</h3>
+  <p>Think of a map application: the country first, then a city, then a street, then a single building. An agent does the same with four levels, and at each level decides whether it needs to zoom further.</p>
+  <h4>Level 0 · the project map</h4>
+  <pre><code>family        L0 L1 L2 L3 L4 L5  C  V   total
+share_link     0  4  1  2  1  1  1  1    11
+file           0  1  1  0  0  0  0  0     2
+(global)       0  0  0  0  0  0  1  0     1
+open: conflicted 0 · ambiguous 0 · stale 0</code></pre>
+  <p>A few lines, however large the spec set. The agent learns which subjects exist, how much is specified at each layer, and whether anything is currently broken.</p>
+  <h4>Level 1 · one family card</h4>
+  <pre><code>family share_link   (components: LinkService)
+L1  N-1  create share link for own file
+    N-2  expires 30 days after creation
+    N-3  expired link → "link expired" page
+    N-5  file deleted → links stop working       depends_on → N-6 (file)
+L2  N-7  LinkService owns share links
+L3  N-9  GET /s/{token} → 200 + stream
+    N-10 GET /s/{token} → 404                    refines → N-3
+L4  N-11 record fields
+L5  N-12 expires_at = created_at + 30 d          refines → N-2
+V   N-13 31-day-old link → 404                   verifies → N-10, N-2
+constraints in scope: N-4 · N-14 (covers N-9, N-10)
+related families via uses_term: file (N-1, N-5, N-9)</code></pre>
+  <p>Titles only, with the links visible. From here the agent knows <em>which</em> nodes to open, and it has read no node in full yet.</p>
+  <h4>Levels 2 and 3 · one node, then its source</h4>
+  <p><code>node(N-10)</code> returns the canonical form, status and links. <code>source(N-10)</code> returns the exact words from line 15 and the heading they sit under. The agent reaches for level 3 only if it doubts the canonical form.</p>
+  <div class="callout">
+    <span class="lbl">An agent's reading path for "change link expiry to 7 days"</span>
+    <p><code>map()</code> → sees <em>share_link</em> → <code>family(share_link)</code> → spots N-2 → <code>impact(N-2)</code> → opens N-2, N-12 and N-13 at level 2. It reads three nodes in full, not the whole document, and it has not missed the test that encodes "31 days".</p>
+  </div>
+
+  <h3><span class="sn">6.6</span>A context recipe — "implement LinkService", tier by tier</h3>
+  <p>A recipe is like a pre-written shopping list for one dish. Every time you cook it, you walk the same aisles in the same order. The graph is the store, and the recipe says which links to follow.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tier</th><th>Rule it follows</th><th>What it picks up</th><th>Why an implementer needs it</th></tr></thead>
+    <tbody>
+      <tr><td>0 header</td><td>L2 node establishing ownership</td><td>N-7</td><td>States what this component is responsible for</td></tr>
+      <tr><td>1 core</td><td>L1 and L5 nodes allocated to LinkService</td><td>N-1 N-2 N-3 N-5 N-12</td><td>The behaviour and the rules to implement</td></tr>
+      <tr><td>2 contracts</td><td>L3 nodes allocated to LinkService</td><td>N-9 N-10</td><td>The exact API surface</td></tr>
+      <tr><td>3 constraints</td><td>C nodes whose scope covers tiers 1–2</td><td>N-4 · N-14</td><td>The privacy rule and the latency budget. Easy to forget; impossible to skip here</td></tr>
+      <tr><td>4 data</td><td>L4 nodes in the same families</td><td>N-11</td><td>The record shape</td></tr>
+      <tr><td>5 verification</td><td>V nodes verifying tiers 1–2</td><td>N-13</td><td>The test the code must pass</td></tr>
+      <tr><td>6 orientation</td><td><code>refines</code> ancestors not yet included</td><td>— (already in core; no L0)</td><td>The "why", when it exists</td></tr>
+      <tr><td>7 boundary</td><td><code>depends_on</code> into other components</td><td>N-6, title only</td><td>LinkService must react to FileService deleting a file</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>What is left out, and why:</strong> N-8 ("FileService owns files") is not allocated to LinkService, and no link reaches it from tiers 1–2. The manifest records the pack:</p>
+  <pre><code>recipe: implement   target: component:LinkService   budget: generous
+included full : N-7 N-1 N-2 N-3 N-5 N-12 N-9 N-10 N-4 N-14 N-11 N-13
+included title: N-6
+cut           : —
+flagged       : —
+family members not reached: —</code></pre>
+  <p>Now shrink the budget. The same rule, fill tiers in order and try titles before cutting, gives:</p>
+  <pre><code>included full : N-7 N-1 N-2 N-3 N-5 N-12 N-9 N-10 N-4 N-14
+included title: N-11 N-13
+cut           : N-6</code></pre>
+  <div class="callout key">
+    <span class="lbl">The point of the manifest</span>
+    <p>With the smaller pack, the agent <strong>knows</strong> that it has the record shape and the test only as titles, and that the file-deletion dependency was cut. It can ask <code>node(N-11)</code> for the fields. An agent that knows its context is partial asks. An agent that believes it is complete guesses.</p>
+  </div>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>Add line 9: "Share links can be revoked by the owner at any time." Run Q1–Q7, pick the family by rule, and say which tiers of the LinkService recipe now include it.</li>
+      <li>Rewrite line 7 as "The share page must not show the owner's email." Does it still land in C? What changes in the recipe if it does not?</li>
+      <li>Which index answers "which constraints could slow down <code>GET /s/{token}</code>?" Which link gives the answer?</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Design tier — non-authoritative, in progress. Opened 2026-09-13. Companion: <code>../vision.md</code>. Reference only: <code>../chat_history/sdd-compiler-design.html</code> and the generic discussion export.</p>
+  </div>
+</footer>

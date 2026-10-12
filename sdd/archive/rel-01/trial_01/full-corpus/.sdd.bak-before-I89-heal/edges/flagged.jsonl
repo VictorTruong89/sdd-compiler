@@ -1,0 +1,5 @@
+{"from": "N-000192", "type": "depends_on", "to": "N-000191", "provenance": "judgment", "judgment": "J-006787", "rationale": "Claim B ('is flagged') presupposes the context established by Claim A: that a V node is verifying nodes in several families. B describes a property of the same subject and is incomplete without A's context.", "quotes": ["A `V` node verifying nodes in several families takes the first verified node's family", "is flagged"]}
+{"from": "N-000192", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000192", "type": "uses_term", "to": "term:flagged", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000192", "type": "uses_term", "to": "term:v_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000192", "type": "uses_term", "to": "term:verified_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

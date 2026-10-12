@@ -1,0 +1,7 @@
+{"from": "N-000177", "type": "conflicts_with", "to": "N-000807", "provenance": "judgment", "judgment": "J-003832", "rationale": "A requires every node of a block carry a label (whether or not the id was adopted); B restricts the block to form exactly one node only when a human id is adopted. These cannot both hold: if a block forms multiple nodes (not adopting the id), A requires all of them carry the label, contradicting B's condition.", "quotes": ["on **every** node of that block, whether or not the id was adopted", "only when the block forms exactly one node"]}
+{"from": "N-000177", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000177", "type": "uses_term", "to": "term:human_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000177", "type": "uses_term", "to": "term:label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000177", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000178", "type": "uses_term", "to": "term:label", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000178", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

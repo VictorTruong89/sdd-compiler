@@ -1,0 +1,3 @@
+{"from": "N-000012", "type": "subsumes", "to": "N-000045", "provenance": "judgment", "judgment": "J-006196", "rationale": "Claim A requires all storage under `.sdd/`; Claim B requires specific files to be byte-identical, which presupposes storage. Claim A's requirement already implies the location constraint Claim B depends on.", "quotes": ["Storage under `.sdd/", "`sources.jsonl` and `blocks.jsonl"]}
+{"from": "N-000012", "type": "uses_term", "to": "term:sdd_directory", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000012", "type": "uses_term", "to": "term:storage", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

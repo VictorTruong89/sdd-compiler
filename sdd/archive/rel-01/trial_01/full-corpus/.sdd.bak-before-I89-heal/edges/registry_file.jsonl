@@ -1,0 +1,4 @@
+{"from": "N-000529", "type": "refines", "to": "N-000528", "provenance": "judgment", "judgment": "J-006849", "rationale": "N-000529 describes registry files that correspond to families (global) and null, while N-000528 specifies the concrete files (_global.jsonl and _unplaced.jsonl) that implement this correspondence.", "quotes": ["_global.jsonl` and `_unplaced.jsonl", "for family `(global)` and `null"]}
+{"from": "N-000529", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000529", "type": "uses_term", "to": "term:global", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000529", "type": "uses_term", "to": "term:registry_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

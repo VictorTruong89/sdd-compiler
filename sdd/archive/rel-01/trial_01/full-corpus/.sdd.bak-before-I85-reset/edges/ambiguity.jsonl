@@ -1,0 +1,26 @@
+{"from": "AC-2.10", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.10", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.10", "type": "uses_term", "to": "term:pin", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.10", "type": "uses_term", "to": "term:pinned_family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.10", "type": "uses_term", "to": "term:pinned_family_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.10", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000103", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000103", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000114", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000114", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000189", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000189", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000189", "type": "uses_term", "to": "term:contradiction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000189", "type": "uses_term", "to": "term:duplication", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000189", "type": "uses_term", "to": "term:subsumption", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000314", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000314", "type": "uses_term", "to": "term:mixed_layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000314", "type": "uses_term", "to": "term:second_yes", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000615", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000615", "type": "uses_term", "to": "term:confidence", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000615", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000616", "type": "refines", "to": "N-000615", "provenance": "judgment", "judgment": "J-003086", "rationale": "N-000616 clarifies the design choice of N-000615 by explaining that ambiguity is added (rather than suppressed), which is a more specific explanation of what it means to add the verdict to both nodes.", "quotes": ["adds ambiguity `low_confidence_verdict` to both nodes", "rather than suppressing the verdict"]}
+{"from": "N-000616", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000616", "type": "uses_term", "to": "term:verdict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000672", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000672", "type": "uses_term", "to": "term:q_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

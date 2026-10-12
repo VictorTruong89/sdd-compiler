@@ -1,0 +1,3 @@
+{"from": "N-000043", "type": "duplicates", "to": "N-000439", "provenance": "judgment", "judgment": "J-006240", "rationale": "Both claims specify the same formatting requirements for records: UTF-8 encoding, fixed key order, and lines sorted by id; they are equivalent specifications of the same constraint.", "quotes": ["JSON Lines, UTF-8, fixed key order, records sorted by id", "UTF-8, fixed key order, lines sorted by id"]}
+{"from": "N-000043", "type": "uses_term", "to": "term:blocks_jsonl", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:sources_jsonl", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

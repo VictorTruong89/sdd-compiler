@@ -1,0 +1,3 @@
+{"from": "N-000448", "type": "depends_on", "to": "N-000225", "provenance": "judgment", "judgment": "J-007017", "rationale": "Claim B (judgment id references must exist in the lock) presupposes Claim A's definition that a judgment lock exists and is in scope.", "quotes": ["Judgment lock", "Every `judgment` id referenced exists in the lock"]}
+{"from": "N-000448", "type": "uses_term", "to": "term:judgment_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000448", "type": "uses_term", "to": "term:lock", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

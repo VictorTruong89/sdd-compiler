@@ -1,0 +1,5 @@
+{"from": "N-000719", "type": "depends_on", "to": "AC-2.19", "provenance": "judgment", "judgment": "J-006407", "rationale": "QR-<n> ids are defined as a kind of node_id, so the specification of how QR-<n> ids work presupposes the node id framework and validation rules established in AC-2.19.", "quotes": ["the node id is `AC-1.4`", "QR-<n> | Question register entry"]}
+{"from": "N-000719", "type": "depends_on", "to": "AC-2.19", "provenance": "judgment", "judgment": "J-006407", "rationale": "QR-<n> ids are defined as a kind of node_id, so the specification of how QR-<n> ids work presupposes the node id framework and validation rules established in AC-2.19.", "quotes": ["the node id is `AC-1.4`", "QR-<n> | Question register entry"]}
+{"from": "N-000719", "type": "uses_term", "to": "term:qr_n_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000719", "type": "uses_term", "to": "term:question_register_entry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000719", "type": "uses_term", "to": "term:questions_md", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

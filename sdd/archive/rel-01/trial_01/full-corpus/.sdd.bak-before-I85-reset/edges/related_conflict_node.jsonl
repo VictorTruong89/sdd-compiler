@@ -1,0 +1,4 @@
+{"from": "AC-2.15", "type": "uses_term", "to": "term:conflict_id", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.15", "type": "uses_term", "to": "term:conflict_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.15", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.15", "type": "uses_term", "to": "term:related_conflict_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

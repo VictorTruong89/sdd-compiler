@@ -1,0 +1,7 @@
+{"from": "N-000814", "type": "uses_term", "to": "term:assumption", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000814", "type": "uses_term", "to": "term:canonical_modality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000814", "type": "uses_term", "to": "term:decision", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000814", "type": "uses_term", "to": "term:verification", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000815", "type": "uses_term", "to": "term:ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000815", "type": "uses_term", "to": "term:canonical_modality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000815", "type": "uses_term", "to": "term:missing_modality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

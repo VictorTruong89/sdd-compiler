@@ -1,0 +1,6 @@
+{"from": "AC-3.13", "type": "uses_term", "to": "term:byte_quantity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.13", "type": "uses_term", "to": "term:normalized_value", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.13", "type": "uses_term", "to": "term:percent_quantity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.13", "type": "uses_term", "to": "term:time_quantity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.13", "type": "uses_term", "to": "term:unbounded_quantity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.13", "type": "uses_term", "to": "term:unbounded_quantity_ambiguity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

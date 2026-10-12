@@ -1,0 +1,3 @@
+{"from": "N-000020", "type": "uses_term", "to": "term:directory_argument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:matching_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:path", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,623 @@
+<title>R18 Spec Graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  --bg: #f3f4f7;
+  --surface: #ffffff;
+  --surface-2: #eceef3;
+  --ink: #161922;
+  --ink-2: #4c5263;
+  --ink-3: #7a8091;
+  --line: #d8dbe3;
+  --accent: #2a78d6;
+  --accent-soft: #dbe8f8;
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --neutral: #9aa0ae;
+  --edge: #8d93a3;
+  --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #101217; --surface: #181b22; --surface-2: #21252e;
+    --ink: #eef0f4; --ink-2: #b3b8c4; --ink-3: #868c9a; --line: #2d323c;
+    --accent: #5b9ef0; --accent-soft: #1d3150; --neutral: #6f7584; --edge: #6d7383;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101217; --surface: #181b22; --surface-2: #21252e;
+  --ink: #eef0f4; --ink-2: #b3b8c4; --ink-3: #868c9a; --line: #2d323c;
+  --accent: #5b9ef0; --accent-soft: #1d3150; --neutral: #6f7584; --edge: #6d7383;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 var(--font); }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+.app { display: grid; grid-template-rows: auto minmax(0, 1fr); height: 100%; padding-inline: 16px; padding-block: 12px 16px; gap: 12px; }
+header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; }
+header.top h1 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--ink-2); font-size: 13px; }
+.stats b { color: var(--ink); font-weight: 600; font-family: var(--mono); }
+.store { color: var(--ink-3); font-size: 12px; font-family: var(--mono); margin-left: auto; }
+.find { position: relative; flex: 1 1 260px; max-width: 420px; }
+.find input { width: 100%; padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.find ul { position: absolute; z-index: 10; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px; list-style: none;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px; max-height: 320px; overflow: auto; box-shadow: 0 8px 24px rgb(0 0 0 / .12); }
+.find li button { width: 100%; text-align: left; border: 0; background: none; padding: 6px 8px; border-radius: 4px; display: grid; gap: 2px; }
+.find li button:hover, .find li button:focus-visible { background: var(--surface-2); }
+.find small { color: var(--ink-3); }
+
+.panes { display: grid; grid-template-columns: 250px minmax(0, 1fr) 360px; grid-template-rows: minmax(0, 1fr); gap: 12px; min-height: 0; }
+.pane { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; min-height: 0; display: flex; flex-direction: column; }
+.pane > .head { padding: 10px 12px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pane > .body { overflow: auto; min-height: 0; flex: 1; }
+.eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); font-weight: 600; }
+
+/* families */
+.fam-tools { display: grid; gap: 6px; width: 100%; }
+.fam-tools input, .fam-tools select { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.fam-list { list-style: none; margin: 0; padding: 4px; }
+.fam-list button { width: 100%; display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; text-align: left;
+  border: 0; background: none; padding: 6px 8px; border-radius: 5px; }
+.fam-list button:hover { background: var(--surface-2); }
+.fam-list button[aria-current="true"] { background: var(--accent-soft); }
+.fam-list .n { color: var(--ink-3); font-size: 12px; }
+.fam-list .x { font-size: 12px; min-width: 2.6em; text-align: right; color: var(--ink-2); }
+.fam-list .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* tabs */
+.tabs { display: flex; gap: 2px; background: var(--surface-2); padding: 3px; border-radius: 7px; }
+.tabs button { border: 0; background: none; padding: 4px 12px; border-radius: 5px; color: var(--ink-2); font-weight: 500; }
+.tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .08); }
+.center-title { font-weight: 600; font-size: 15px; }
+.center-title small { color: var(--ink-3); font-weight: 400; margin-left: 6px; }
+.spacer { flex: 1; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); font-size: 12px; color: var(--ink-2); }
+button.chip[aria-pressed="false"] { opacity: .45; }
+button.chip[aria-pressed="true"] { color: var(--ink); }
+.swatch { width: 18px; height: 8px; display: inline-block; }
+
+/* graph */
+.graph-wrap { position: relative; flex: 1; min-height: 0; }
+.graph-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.note { padding: 8px 12px; color: var(--ink-3); font-size: 12px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; border: 3px solid; display: inline-block; background: var(--surface); }
+.tip { position: absolute; pointer-events: none; z-index: 5; max-width: 320px; padding: 8px 10px; border-radius: 6px;
+  background: var(--ink); color: var(--surface); font-size: 12px; line-height: 1.4; box-shadow: 0 6px 18px rgb(0 0 0 / .2); }
+.tip b { font-family: var(--mono); font-weight: 500; }
+svg text { font-family: var(--mono); }
+
+/* map + conflicts */
+.table-wrap { overflow: auto; }
+table.map { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 12px; }
+table.map th, table.map td { padding: 5px 8px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
+table.map th { position: sticky; top: 0; background: var(--surface); z-index: 1; color: var(--ink-3); font-weight: 600; }
+table.map td:first-child, table.map th:first-child { text-align: left; }
+table.map tbody tr { cursor: pointer; }
+table.map tbody tr:hover td { background: var(--surface-2); }
+.cell { font-family: var(--mono); display: inline-flex; gap: 4px; align-items: center; }
+.cell i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.cf-list { list-style: none; margin: 0; padding: 0; }
+.cf-list li { padding: 10px 14px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.cf-list .row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+.cf-list p { margin: 0; color: var(--ink-2); max-width: 72ch; }
+.link { border: 0; background: none; padding: 0; color: var(--accent); font-family: var(--mono); font-size: 13px; text-decoration: underline; text-underline-offset: 2px; }
+.kind { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; color: var(--ink-2); }
+.kind::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+.kind.contradiction::before { background: var(--critical); }
+.kind.duplication::before { background: var(--serious); }
+.kind.subsumption::before { background: var(--warning); }
+
+/* details */
+.detail { padding: 14px; display: grid; gap: 14px; }
+.detail h2 { margin: 0; font-size: 18px; font-family: var(--mono); font-weight: 500; }
+.detail h3 { margin: 0 0 6px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px 2px 7px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--line); background: var(--surface-2); }
+.pill i { width: 9px; height: 9px; border-radius: 50%; }
+.row-wrap { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+blockquote { margin: 0; padding: 10px 12px; background: var(--surface-2); border-radius: 6px; font-size: 14px; line-height: 1.55; }
+.src { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12px; }
+.src code { font-family: var(--mono); color: var(--ink-2); word-break: break-all; }
+.small-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 5px; padding: 1px 8px; font-size: 12px; }
+.canon { font-size: 13px; color: var(--ink-2); }
+.canon b { color: var(--ink); font-weight: 600; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 13px; }
+.kv dt { color: var(--ink-3); }
+.kv dd { margin: 0; }
+.rel { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.rel li { font-size: 13px; display: grid; gap: 2px; }
+.rel .why { color: var(--ink-3); font-size: 12px; }
+.empty { color: var(--ink-3); padding: 20px 14px; }
+
+@media (max-width: 1100px) {
+  .app { height: auto; }
+  .panes { grid-template-columns: 230px minmax(0, 1fr); grid-template-rows: 600px auto; }
+  .pane.details { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .panes { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 560px auto; }
+  .pane.families .body { max-height: 260px; }
+  .store { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <h1>R18 Spec Graph</h1>
+    <div class="stats" id="stats"></div>
+    <div class="find">
+      <label class="eyebrow" for="find" hidden>Find a node</label>
+      <input id="find" type="search" placeholder="Find a node — id, word or phrase" autocomplete="off" aria-label="Find a node">
+      <ul id="findResults" hidden></ul>
+    </div>
+    <div class="store" id="store"></div>
+  </header>
+
+  <div class="panes">
+    <section class="pane families" aria-label="Families">
+      <div class="head">
+        <div class="fam-tools">
+          <span class="eyebrow">Families</span>
+          <input id="famFilter" type="search" placeholder="Filter families" aria-label="Filter families">
+          <select id="famSort" aria-label="Sort families">
+            <option value="conflicts">Most conflicts</option>
+            <option value="size">Most nodes</option>
+            <option value="name">A–Z</option>
+          </select>
+        </div>
+      </div>
+      <div class="body"><ul class="fam-list" id="famList"></ul></div>
+    </section>
+
+    <section class="pane center" aria-label="Graph">
+      <div class="head">
+        <div class="tabs" role="tablist">
+          <button role="tab" id="tab-graph" aria-selected="true">Graph</button>
+          <button role="tab" id="tab-map" aria-selected="false">Map</button>
+          <button role="tab" id="tab-conflicts" aria-selected="false">Conflicts</button>
+        </div>
+        <div class="center-title" id="centerTitle"></div>
+      </div>
+
+      <div id="view-graph" class="body" style="display:flex;flex-direction:column;overflow:hidden">
+        <div class="head" style="border-bottom:1px solid var(--line)">
+          <div class="row-wrap" id="relFilters"></div>
+          <span class="spacer"></span>
+          <label class="chip"><input type="checkbox" id="neigh" checked> One step outside the family</label>
+        </div>
+        <div class="graph-wrap" id="graphWrap"><svg id="graph" role="img" aria-label="Nodes of the selected family and their relations"></svg><div class="tip" id="tip" hidden></div></div>
+        <div class="note">
+          <div class="legend" id="statusLegend"></div>
+          <span id="graphNote"></span>
+        </div>
+      </div>
+
+      <div id="view-map" class="body" hidden>
+        <div class="table-wrap"><table class="map" id="mapTable"></table></div>
+      </div>
+
+      <div id="view-conflicts" class="body" hidden>
+        <div class="head" style="border-bottom:1px solid var(--line)">
+          <div class="row-wrap" id="cfFilters"></div>
+          <span class="spacer"></span>
+          <label class="chip"><input type="checkbox" id="cfFamilyOnly"> Only this family</label>
+        </div>
+        <ul class="cf-list" id="cfList"></ul>
+      </div>
+    </section>
+
+    <section class="pane details" aria-label="Details">
+      <div class="head"><span class="eyebrow" id="detailEyebrow">Details</span></div>
+      <div class="body" id="detail"></div>
+    </section>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const DATA = /*__DATA__*/null;
+
+const STATUS = {
+  conflict:  { label: "conflict",  mark: "✗", color: "var(--critical)" },
+  ambiguous: { label: "ambiguous", mark: "?", color: "var(--warning)" },
+  stale:     { label: "stale",     mark: "~", color: "var(--serious)" },
+  unchecked: { label: "unchecked", mark: "·", color: "var(--neutral)" },
+  validated: { label: "validated", mark: "✓", color: "var(--good)" },
+};
+const RANK = { conflict: 0, ambiguous: 1, stale: 2, unchecked: 3, validated: 4 };
+const LAYERS = ["L0", "L1", "L2", "L3", "L4", "L5", "C", "V", null];
+const LAYER_NAME = { L0: "Intent", L1: "Behaviour", L2: "Structure", L3: "Contract", L4: "Data", L5: "Logic",
+  C: "Constraint", V: "Verification", null: "no layer" };
+const REL = {
+  conflicts_with: { label: "contradicts", color: "var(--critical)", dash: "6 4", width: 2.2 },
+  duplicates:     { label: "duplicates",  color: "var(--serious)",  dash: "6 4", width: 2 },
+  subsumes:       { label: "subsumes",    color: "var(--warning)",  dash: null,  width: 1.8 },
+  refines:        { label: "refines",     color: "var(--edge)",     dash: null,  width: 1.4 },
+  depends_on:     { label: "depends on",  color: "var(--edge)",     dash: "2 3", width: 1.4 },
+  verifies:       { label: "verifies",    color: "var(--accent)",   dash: "1 4", width: 1.6 },
+};
+const MAX_NEIGHBOURS = 120;
+
+// ---- index -------------------------------------------------------------------------------
+const byId = new Map(DATA.nodes.map(n => [n.id, n]));
+const famKey = f => f === null ? "__none" : f;
+const famName = key => key === "__none" ? "(no family)" : key === "(global)" ? "(global)"
+  : (DATA.terms[key]?.n ?? key.replace(/^term:/, "").replace(/_/g, " "));
+const families = new Map();
+for (const n of DATA.nodes) {
+  const k = famKey(n.f);
+  if (!families.has(k)) families.set(k, { key: k, nodes: [], conflicts: new Set() });
+  families.get(k).nodes.push(n);
+}
+const linksOf = new Map();
+for (const l of DATA.links) {
+  for (const id of [l.a, l.b]) { if (!linksOf.has(id)) linksOf.set(id, []); linksOf.get(id).push(l); }
+}
+const conflictsOf = new Map();
+for (const c of DATA.conflicts) for (const m of c.m) {
+  if (!conflictsOf.has(m)) conflictsOf.set(m, []); conflictsOf.get(m).push(c);
+  const n = byId.get(m); if (n) families.get(famKey(n.f)).conflicts.add(c.id);
+}
+const worst = nodes => nodes.reduce((w, n) => RANK[n.s] < RANK[w] ? n.s : w, "validated");
+
+// ---- state -------------------------------------------------------------------------------
+const state = { family: null, node: null, tab: "graph", rels: new Set(Object.keys(REL)), cfKind: "all" };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const $ = id => document.getElementById(id);
+
+// ---- header ------------------------------------------------------------------------------
+function renderHeader() {
+  const byStatus = {};
+  for (const n of DATA.nodes) byStatus[n.s] = (byStatus[n.s] || 0) + 1;
+  const kinds = {};
+  for (const c of DATA.conflicts) kinds[c.k] = (kinds[c.k] || 0) + 1;
+  $("stats").innerHTML =
+    `<span><b>${DATA.nodes.length}</b> nodes</span>` +
+    `<span><b>${[...families.keys()].filter(k => k.startsWith("term:")).length}</b> families</span>` +
+    `<span><b>${DATA.links.length}</b> relations</span>` +
+    `<span><b>${DATA.conflicts.length}</b> open conflicts</span>`;
+  $("store").textContent = DATA.meta.label;
+  $("statusLegend").innerHTML = Object.entries(STATUS).map(([k, s]) =>
+    `<span><i class="dot" style="border-color:${s.color}"></i>${s.mark} ${s.label} <span class="mono">${byStatus[k] || 0}</span></span>`).join("");
+}
+
+// ---- families ----------------------------------------------------------------------------
+function renderFamilies() {
+  const q = $("famFilter").value.trim().toLowerCase();
+  const sort = $("famSort").value;
+  let list = [...families.values()].filter(f => {
+    if (!q) return true;
+    const t = DATA.terms[f.key];
+    return famName(f.key).toLowerCase().includes(q) || (t?.a || []).some(a => a.toLowerCase().includes(q));
+  });
+  list.sort(sort === "size" ? (a, b) => b.nodes.length - a.nodes.length || famName(a.key).localeCompare(famName(b.key))
+    : sort === "name" ? (a, b) => famName(a.key).localeCompare(famName(b.key))
+    : (a, b) => b.conflicts.size - a.conflicts.size || b.nodes.length - a.nodes.length);
+  $("famList").innerHTML = list.map(f =>
+    `<li><button data-fam="${esc(f.key)}" aria-current="${f.key === state.family}">
+      <span class="name">${esc(famName(f.key))}</span>
+      <span class="n mono">${f.nodes.length}</span>
+      <span class="x mono" title="open conflicts touching this family">${f.conflicts.size ? "✗ " + f.conflicts.size : ""}</span>
+    </button></li>`).join("") || `<li class="empty">No family matches “${esc(q)}”.</li>`;
+}
+$("famList").addEventListener("click", e => {
+  const b = e.target.closest("button[data-fam]"); if (!b) return;
+  selectFamily(b.dataset.fam); setTab("graph");
+});
+$("famFilter").addEventListener("input", renderFamilies);
+$("famSort").addEventListener("change", renderFamilies);
+
+// ---- tabs --------------------------------------------------------------------------------
+function setTab(tab) {
+  state.tab = tab;
+  for (const t of ["graph", "map", "conflicts"]) {
+    $("tab-" + t).setAttribute("aria-selected", t === tab);
+    $("view-" + t).hidden = t !== tab;
+  }
+  if (tab === "graph") renderGraph();
+  if (tab === "map") renderMap();
+  if (tab === "conflicts") renderConflicts();
+}
+for (const t of ["graph", "map", "conflicts"]) $("tab-" + t).addEventListener("click", () => setTab(t));
+
+function selectFamily(key) {
+  state.family = key;
+  const f = families.get(key);
+  $("centerTitle").innerHTML = `${esc(famName(key))}<small class="mono">${f.nodes.length} nodes · ${f.conflicts.size} conflicts</small>`;
+  renderFamilies();
+  if (state.tab === "graph") renderGraph();
+  if (state.tab === "conflicts") renderConflicts();
+  if (!state.node || famKey(byId.get(state.node)?.f) !== key) { state.node = null; renderDetail(); }
+}
+function openNode(id) {
+  const n = byId.get(id); if (!n) return;
+  state.node = id;
+  if (state.family !== famKey(n.f)) selectFamily(famKey(n.f));
+  renderDetail();
+  if (state.tab === "graph") highlight();
+  try { history.replaceState(null, "", "#" + id); } catch (e) {}
+}
+
+// ---- graph -------------------------------------------------------------------------------
+function renderRelFilters() {
+  $("relFilters").innerHTML = Object.entries(REL).map(([k, r]) =>
+    `<button class="chip" data-rel="${k}" aria-pressed="${state.rels.has(k)}">
+       <svg class="swatch" viewBox="0 0 18 8"><line x1="0" y1="4" x2="18" y2="4" style="stroke:${r.color}" stroke-width="2" ${r.dash ? `stroke-dasharray="${r.dash}"` : ""}/></svg>${r.label}</button>`).join("");
+}
+$("relFilters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-rel]"); if (!b) return;
+  const k = b.dataset.rel;
+  state.rels.has(k) ? state.rels.delete(k) : state.rels.add(k);
+  renderRelFilters(); renderGraph();
+});
+$("neigh").addEventListener("change", renderGraph);
+
+let sim = null, gSel = null;
+function renderGraph() {
+  if (!state.family) return;
+  const svg = d3.select("#graph"); svg.selectAll("*").remove();
+  if (sim) sim.stop();
+  const core = families.get(state.family).nodes;
+  const coreIds = new Set(core.map(n => n.id));
+  const links = [];
+  const outside = new Map();
+  for (const n of core) for (const l of linksOf.get(n.id) || []) {
+    if (!state.rels.has(l.r)) continue;
+    const other = l.a === n.id ? l.b : l.a;
+    if (!coreIds.has(other)) {
+      if (!$("neigh").checked) continue;
+      const score = (outside.get(other) || 0) + (l.r === "conflicts_with" ? 10 : l.r === "duplicates" ? 5 : 1);
+      outside.set(other, score);
+    }
+    links.push(l);
+  }
+  const kept = new Set([...outside.entries()].sort((a, b) => b[1] - a[1]).slice(0, MAX_NEIGHBOURS).map(e => e[0]));
+  const shown = new Set([...coreIds, ...kept]);
+  const uniq = new Map();
+  for (const l of links) if (shown.has(l.a) && shown.has(l.b)) uniq.set(l.a + "|" + l.r + "|" + l.b, l);
+  const nodes = [...shown].map(id => ({ id, n: byId.get(id), core: coreIds.has(id) }));
+  const edges = [...uniq.values()].map(l => ({ source: l.a, target: l.b, l }));
+  $("graphNote").textContent = `${core.length} in the family` +
+    (kept.size ? ` · ${kept.size} one step outside` : "") +
+    (outside.size > kept.size ? ` (${outside.size - kept.size} more not drawn)` : "") +
+    ` · ${edges.length} relations drawn · drag to move, scroll to zoom`;
+
+  const box = $("graphWrap").getBoundingClientRect();
+  const W = Math.max(320, box.width), H = Math.max(360, box.height);
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  const defs = svg.append("defs");
+  for (const [k, r] of Object.entries(REL)) {
+    defs.append("marker").attr("id", "arrow-" + k).attr("viewBox", "0 -4 8 8").attr("refX", 8).attr("refY", 0)
+      .attr("markerWidth", 7).attr("markerHeight", 7).attr("orient", "auto")
+      .append("path").attr("d", "M0,-4L8,0L0,4").style("fill", r.color);
+  }
+  const root = svg.append("g");
+  svg.call(d3.zoom().scaleExtent([0.25, 4]).on("zoom", ev => root.attr("transform", ev.transform)));
+
+  const R = d => d.core ? 17 : 9;
+  sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(edges).id(d => d.id).distance(e => (e.source.core && e.target.core) ? 70 : 95).strength(0.5))
+    .force("charge", d3.forceManyBody().strength(d => d.core ? -320 : -120))
+    .force("collide", d3.forceCollide().radius(d => R(d) + 6))
+    .force("x", d3.forceX(W / 2).strength(0.05)).force("y", d3.forceY(H / 2).strength(0.07))
+    .stop();
+  for (let i = 0; i < 320; i++) sim.tick();
+
+  const edge = root.append("g").selectAll("line").data(edges).join("line")
+    .style("stroke", e => REL[e.l.r].color).attr("stroke-width", e => REL[e.l.r].width)
+    .attr("stroke-dasharray", e => REL[e.l.r].dash).attr("stroke-opacity", 0.85)
+    .attr("marker-end", e => ["refines", "depends_on", "subsumes", "verifies"].includes(e.l.r) ? `url(#arrow-${e.l.r})` : null);
+  const node = root.append("g").selectAll("g").data(nodes).join("g").attr("class", "node")
+    .attr("tabindex", 0).attr("role", "button").attr("aria-label", d => `${d.id}, ${d.n.l || "no layer"}, ${d.n.s}`)
+    .style("cursor", "pointer");
+  node.append("circle").attr("r", R)
+    .style("fill", d => d.core ? "var(--surface)" : "var(--surface-2)")
+    .style("stroke", d => STATUS[d.n.s].color).attr("stroke-width", d => d.core ? 3.5 : 2.5)
+    .attr("opacity", d => d.core ? 1 : 0.9);
+  node.filter(d => d.core).append("text").text(d => d.n.l || "—")
+    .attr("text-anchor", "middle").attr("dy", "0.35em").attr("font-size", 11).style("fill", "var(--ink)");
+  node.append("text").attr("class", "idl").text(d => d.id).attr("text-anchor", "middle")
+    .attr("dy", d => R(d) + 12).attr("font-size", d => d.core ? 10 : 9).style("fill", "var(--ink-3)");
+
+  const place = () => {
+    edge.each(function (e) {
+      const dx = e.target.x - e.source.x, dy = e.target.y - e.source.y, len = Math.hypot(dx, dy) || 1;
+      const r = R(e.target) + 3;
+      d3.select(this).attr("x1", e.source.x).attr("y1", e.source.y)
+        .attr("x2", e.target.x - dx / len * r).attr("y2", e.target.y - dy / len * r);
+    });
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  };
+  place();
+  sim.on("tick", place);
+  node.call(d3.drag()
+    .on("start", (ev, d) => { if (!ev.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+    .on("drag", (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
+    .on("end", (ev, d) => { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+  node.on("click", (ev, d) => openNode(d.id))
+    .on("keydown", (ev, d) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openNode(d.id); } })
+    .on("mouseenter", (ev, d) => showTip(ev, `<b>${esc(d.id)}</b> · ${esc(d.n.l || "no layer")} · ${STATUS[d.n.s].mark} ${d.n.s}<br>${esc(d.n.t.slice(0, 160))}${d.n.t.length > 160 ? "…" : ""}` +
+      (d.core ? "" : `<br><span style="opacity:.7">family: ${esc(famName(famKey(d.n.f)))}</span>`)))
+    .on("mousemove", moveTip).on("mouseleave", hideTip);
+  edge.on("mouseenter", (ev, e) => showTip(ev, `<b>${esc(e.l.a)}</b> ${REL[e.l.r].label} <b>${esc(e.l.b)}</b>` + (e.l.why ? `<br>${esc(e.l.why)}` : "")))
+    .on("mousemove", moveTip).on("mouseleave", hideTip).style("cursor", "help");
+  gSel = { node, edge };
+  highlight();
+}
+function highlight() {
+  if (!gSel) return;
+  gSel.node.select("circle").attr("stroke-width", d => d.id === state.node ? 6 : d.core ? 3.5 : 2.5);
+  gSel.node.select(".idl").style("fill", d => d.id === state.node ? "var(--accent)" : "var(--ink-3)")
+    .attr("font-weight", d => d.id === state.node ? 600 : 400);
+}
+function showTip(ev, html) { const t = $("tip"); t.innerHTML = html; t.hidden = false; moveTip(ev); }
+function moveTip(ev) {
+  const t = $("tip"), box = $("graphWrap").getBoundingClientRect();
+  let x = ev.clientX - box.left + 14, y = ev.clientY - box.top + 14;
+  if (x + t.offsetWidth > box.width) x = ev.clientX - box.left - t.offsetWidth - 14;
+  if (y + t.offsetHeight > box.height) y = ev.clientY - box.top - t.offsetHeight - 14;
+  t.style.left = Math.max(4, x) + "px"; t.style.top = Math.max(4, y) + "px";
+}
+function hideTip() { $("tip").hidden = true; }
+let resizeTimer;
+window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => state.tab === "graph" && renderGraph(), 200); });
+
+// ---- map ---------------------------------------------------------------------------------
+function renderMap() {
+  const rows = [...families.values()].sort((a, b) =>
+    (a.key.startsWith("term:") ? 0 : 1) - (b.key.startsWith("term:") ? 0 : 1) ||
+    b.conflicts.size - a.conflicts.size || b.nodes.length - a.nodes.length);
+  $("mapTable").innerHTML =
+    `<thead><tr><th>Family</th>${LAYERS.map(l => `<th title="${LAYER_NAME[l]}">${l || "—"}</th>`).join("")}<th>✗</th></tr></thead><tbody>` +
+    rows.map(f => `<tr data-fam="${esc(f.key)}"><td>${esc(famName(f.key))}</td>${LAYERS.map(l => {
+      const ns = f.nodes.filter(n => n.l === l);
+      if (!ns.length) return "<td></td>";
+      const w = worst(ns);
+      return `<td><span class="cell" title="${ns.length} ${LAYER_NAME[l]} · worst: ${w}"><i style="background:${STATUS[w].color}"></i>${ns.length}</span></td>`;
+    }).join("")}<td class="mono">${f.conflicts.size || ""}</td></tr>`).join("") + "</tbody>";
+}
+$("mapTable").addEventListener("click", e => {
+  const tr = e.target.closest("tr[data-fam]"); if (!tr) return;
+  selectFamily(tr.dataset.fam); setTab("graph");
+});
+
+// ---- conflicts ---------------------------------------------------------------------------
+function renderConflicts() {
+  const counts = { all: DATA.conflicts.length };
+  for (const c of DATA.conflicts) counts[c.k] = (counts[c.k] || 0) + 1;
+  $("cfFilters").innerHTML = ["all", "contradiction", "duplication", "subsumption"].map(k =>
+    `<button class="chip" data-kind="${k}" aria-pressed="${state.cfKind === k}">${k} <span class="mono">${counts[k] || 0}</span></button>`).join("");
+  const onlyFam = $("cfFamilyOnly").checked;
+  const list = DATA.conflicts.filter(c => (state.cfKind === "all" || c.k === state.cfKind) &&
+    (!onlyFam || c.m.some(m => famKey(byId.get(m)?.f) === state.family)));
+  $("cfList").innerHTML = list.map(c => `<li>
+      <div class="row"><span class="mono">${c.id}</span><span class="kind ${c.k}">${c.k}</span>
+        ${c.m.map(m => `<button class="link" data-node="${esc(m)}">${esc(m)}</button>`).join(" ↔ ")}</div>
+      <p>${esc(c.why)}</p></li>`).join("") || `<li class="empty">No open conflict matches this filter.</li>`;
+}
+$("cfFilters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-kind]"); if (!b) return;
+  state.cfKind = b.dataset.kind; renderConflicts();
+});
+$("cfFamilyOnly").addEventListener("change", renderConflicts);
+document.addEventListener("click", e => {
+  const b = e.target.closest("button[data-node]"); if (!b) return;
+  openNode(b.dataset.node);
+  if (b.closest("#cfList")) setTab("graph");
+});
+
+// ---- details -----------------------------------------------------------------------------
+function statusPill(s) { return `<span class="pill"><i style="background:${STATUS[s].color}"></i>${STATUS[s].mark} ${s}</span>`; }
+function canonical(c) {
+  const [st, tr, sc, subj, mod, resp] = c;
+  return [st && `While <b>${esc(st)}</b>,`, tr && `when <b>${esc(tr)}</b>,`, sc && `where <b>${esc(sc)}</b>,`,
+    `the <b>${esc(subj)}</b>`, `<b>${esc(mod || "(no modality)")}</b>`, esc(resp)].filter(Boolean).join(" ");
+}
+function renderDetail() {
+  const el = $("detail");
+  if (!state.node) {
+    if (!state.family) { el.innerHTML = `<p class="empty">Pick a family or a node.</p>`; return; }
+    const f = families.get(state.family), t = DATA.terms[state.family];
+    const byLayer = LAYERS.map(l => [l, f.nodes.filter(n => n.l === l)]).filter(([, ns]) => ns.length);
+    $("detailEyebrow").textContent = "Family";
+    el.innerHTML = `<div class="detail">
+      <h2>${esc(famName(state.family))}</h2>
+      <dl class="kv">
+        <dt>Id</dt><dd class="mono">${esc(state.family === "__none" ? "null" : state.family)}</dd>
+        ${t?.a?.length ? `<dt>Also called</dt><dd>${t.a.map(esc).join(", ")}</dd>` : ""}
+        ${t?.b ? `<dt>Kind of</dt><dd><button class="link" data-fam-go="${esc(t.b)}">${esc(famName(t.b))}</button></dd>` : ""}
+        <dt>Nodes</dt><dd class="mono">${f.nodes.length}</dd>
+        <dt>Open conflicts</dt><dd class="mono">${f.conflicts.size}</dd>
+      </dl>
+      <div><h3 class="eyebrow">Nodes by layer</h3><ul class="rel">${byLayer.map(([l, ns]) =>
+        `<li><span class="eyebrow">${l || "—"} ${LAYER_NAME[l]} · ${ns.length}</span>${ns.map(n =>
+          `<span><button class="link" data-node="${esc(n.id)}">${esc(n.id)}</button> ${STATUS[n.s].mark} ${esc(n.t.slice(0, 90))}${n.t.length > 90 ? "…" : ""}</span>`).join("")}</li>`).join("")}</ul></div>
+      <p class="empty" style="padding:0">Click a node in the graph for its full record.</p></div>`;
+    return;
+  }
+  const n = byId.get(state.node);
+  $("detailEyebrow").textContent = "Node";
+  const rels = (linksOf.get(n.id) || []).slice().sort((a, b) => Object.keys(REL).indexOf(a.r) - Object.keys(REL).indexOf(b.r));
+  const cfs = conflictsOf.get(n.id) || [];
+  const where = `${n.file}:${n.ln}`;
+  el.innerHTML = `<div class="detail">
+    <div class="row-wrap"><h2>${esc(n.id)}</h2>${statusPill(n.s)}</div>
+    <div class="row-wrap">
+      <span class="chip" title="${LAYER_NAME[n.l]}">${esc(n.l || "no layer")} · ${LAYER_NAME[n.l]}</span>
+      <span class="chip">${esc(n.k)}</span>
+      ${n.label ? `<span class="chip mono">${esc(n.label)}</span>` : ""}
+    </div>
+    <blockquote>${esc(n.t)}</blockquote>
+    <div class="src"><code>${esc(where)}</code><button class="small-btn" id="copySrc">Copy</button></div>
+    ${n.h ? `<div class="canon">Section: ${esc(n.h)}</div>` : ""}
+    <div><h3 class="eyebrow">Canonical form</h3><div class="canon">${canonical(n.c)}${n.q.length ? ` · quantities: ${n.q.map(esc).join(", ")}` : ""}</div></div>
+    <dl class="kv">
+      <dt>Family</dt><dd><button class="link" data-fam-go="${esc(famKey(n.f))}">${esc(famName(famKey(n.f)))}</button> <span style="color:var(--ink-3)">by rule “${esc(n.rule)}”</span></dd>
+      <dt>Terms</dt><dd>${n.terms.map(t => families.has(t) ? `<button class="link" data-fam-go="${esc(t)}">${esc(famName(t))}</button>` : esc(famName(t))).join(", ") || "—"}</dd>
+      ${n.amb.length ? `<dt>Ambiguity</dt><dd>${[...new Set(n.amb)].map(esc).join(", ")}</dd>` : ""}
+      ${n.flags.length ? `<dt>Flags</dt><dd>${n.flags.map(esc).join(", ")}</dd>` : ""}
+    </dl>
+    ${cfs.length ? `<div><h3 class="eyebrow">Open conflicts · ${cfs.length}</h3><ul class="rel">${cfs.map(c => {
+      const other = c.m.filter(m => m !== n.id);
+      return `<li><span><span class="mono">${c.id}</span> <span class="kind ${c.k}">${c.k}</span> with ${other.map(o => `<button class="link" data-node="${esc(o)}">${esc(o)}</button>`).join(", ")}</span><span class="why">${esc(c.why)}</span></li>`;
+    }).join("")}</ul></div>` : ""}
+    <div><h3 class="eyebrow">Relations · ${rels.length}</h3>${rels.length ? `<ul class="rel">${rels.map(l => {
+      const out = l.a === n.id, other = out ? l.b : l.a, o = byId.get(other);
+      const phrase = out ? `${REL[l.r].label} →` : `← ${REL[l.r].label}`;
+      return `<li><span>${phrase} <button class="link" data-node="${esc(other)}">${esc(other)}</button> ${o ? STATUS[o.s].mark + " " + esc(o.t.slice(0, 80)) + (o.t.length > 80 ? "…" : "") : ""}</span>${l.why ? `<span class="why">${esc(l.why)}</span>` : ""}</li>`;
+    }).join("")}</ul>` : `<p class="empty" style="padding:0">No judged relations.</p>`}</div>
+  </div>`;
+  $("copySrc").addEventListener("click", ev => {
+    const btn = ev.currentTarget;
+    const done = () => { btn.textContent = "Copied"; setTimeout(() => btn.textContent = "Copy", 1500); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(btn.previousElementSibling);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; };
+    try { navigator.clipboard.writeText(where).then(done, fallback); } catch (e) { fallback(); }
+  });
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-fam-go]"); if (!b) return;
+  state.node = null; selectFamily(b.dataset.famGo); renderDetail(); setTab("graph");
+});
+
+// ---- find --------------------------------------------------------------------------------
+$("find").addEventListener("input", () => {
+  const q = $("find").value.trim().toLowerCase(), ul = $("findResults");
+  if (q.length < 2) { ul.hidden = true; return; }
+  const hits = DATA.nodes.filter(n => n.id.toLowerCase().includes(q) || n.t.toLowerCase().includes(q)).slice(0, 30);
+  ul.innerHTML = hits.map(n => `<li><button data-find="${esc(n.id)}"><span><span class="mono">${esc(n.id)}</span> ${STATUS[n.s].mark} ${esc(famName(famKey(n.f)))}</span><small>${esc(n.t.slice(0, 110))}</small></button></li>`).join("")
+    || `<li class="empty">Nothing matches “${esc(q)}”.</li>`;
+  ul.hidden = false;
+});
+$("findResults").addEventListener("click", e => {
+  const b = e.target.closest("button[data-find]"); if (!b) return;
+  $("findResults").hidden = true; $("find").value = "";
+  openNode(b.dataset.find); setTab("graph");
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("findResults").hidden = true; });
+
+// ---- start -------------------------------------------------------------------------------
+renderHeader();
+renderRelFilters();
+const fromHash = decodeURIComponent(location.hash.slice(1));
+const start = byId.get(fromHash) ? fromHash : (byId.has("N-000008") ? "N-000008" : DATA.nodes[0].id);
+selectFamily(famKey(byId.get(start).f));
+openNode(start);
+setTab("graph");
+</script>

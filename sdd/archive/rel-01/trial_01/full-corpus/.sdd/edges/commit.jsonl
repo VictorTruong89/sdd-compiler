@@ -1,0 +1,5 @@
+{"from": "N-000769", "type": "uses_term", "to": "term:agent", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000769", "type": "uses_term", "to": "term:commit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000770", "type": "uses_term", "to": "term:commit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000770", "type": "uses_term", "to": "term:owner", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000770", "type": "uses_term", "to": "term:review", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

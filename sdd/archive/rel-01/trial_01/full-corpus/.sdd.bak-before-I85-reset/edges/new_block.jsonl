@@ -1,0 +1,3 @@
+{"from": "N-000035", "type": "uses_term", "to": "term:block_identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:new_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:new_status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

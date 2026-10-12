@@ -1,0 +1,3 @@
+{"from": "N-000714", "type": "depends_on", "to": "N-000713", "provenance": "judgment", "judgment": "J-006883", "rationale": "Claim B (Change the Constitution file first) presupposes Claim A (a spec may never contradict the Constitution file)—you can only obey the rule in A by following the process in B.", "quotes": ["A spec may add constraints; it may never contradict this file", "Change it first, in its own change"]}
+{"from": "N-000714", "type": "uses_term", "to": "term:change", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000714", "type": "uses_term", "to": "term:constitution_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,3 @@
+{"from": "N-000685", "type": "depends_on", "to": "N-000593", "provenance": "judgment", "judgment": "J-005931", "rationale": "Claim A references the Q-PAIR schema version as part of its storage key mechanism, presupposing the Q-PAIR schema defined in Claim B exists and has a versioning scheme.", "quotes": ["plus the Q-PAIR schema version", "the Q-PAIR question and its answer schema"]}
+{"from": "N-000685", "type": "uses_term", "to": "term:answer_schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000685", "type": "uses_term", "to": "term:q_pair_question", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

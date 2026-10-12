@@ -1,0 +1,7 @@
+{"from": "N-000110", "type": "subsumes", "to": "N-000191", "provenance": "judgment", "judgment": "J-004779", "rationale": "Claim A states a general rule that V nodes take the family of verified node(s); Claim B specifies a particular case (multiple families) where V nodes take the first verified node's family, which is subsumed by the general rule.", "quotes": ["a `V` node takes the family of the node(s) it verifies", "A `V` node verifying nodes in several families takes the first verified node's family"]}
+{"from": "N-000110", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000110", "type": "uses_term", "to": "term:v_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000110", "type": "uses_term", "to": "term:verified_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000191", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000191", "type": "uses_term", "to": "term:v_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000191", "type": "uses_term", "to": "term:verified_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

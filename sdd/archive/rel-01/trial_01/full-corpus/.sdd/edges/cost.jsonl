@@ -1,0 +1,6 @@
+{"from": "N-000545", "type": "refines", "to": "N-000764", "provenance": "judgment", "judgment": "J-006680", "rationale": "Claim A describes a specific instance of structured judgments (one judgment per pair in the check phase); Claim B is the general requirement that headless Claude Code runs structured judgments. A is a more specific instantiation of what B requires.", "quotes": ["the check phase makes one judgement per pair", "runs structured judgments"]}
+{"from": "N-000545", "type": "uses_term", "to": "term:call_cap", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000545", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000545", "type": "uses_term", "to": "term:cost", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000545", "type": "uses_term", "to": "term:judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000545", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

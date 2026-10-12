@@ -1,0 +1,21 @@
+{"from": "AC-4.7", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.7", "type": "uses_term", "to": "term:conflict_ids_entry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.7", "type": "uses_term", "to": "term:exit_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.7", "type": "uses_term", "to": "term:open_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.7", "type": "uses_term", "to": "term:stored_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.7", "type": "uses_term", "to": "term:violation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.8", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.8", "type": "uses_term", "to": "term:store", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.8", "type": "uses_term", "to": "term:violation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "depends_on", "to": "N-000084", "provenance": "judgment", "judgment": "J-003510", "rationale": "B describes code checking and recording answers as a prerequisite; A describes how placement's layer and family are then determined from those recorded answers—B's recording action must happen before A's determination can occur.", "quotes": ["decided by code from recorded answers", "Code checks every answer before accepting it, records it"]}
+{"from": "N-000218", "type": "subsumes", "to": "N-000799", "provenance": "judgment", "judgment": "J-003071", "rationale": "Claim A requires code to check answers and handle offsets and quantities; Claim B specifies that offsets and quantities are computed by code. A's broader requirement of handling these items subsumes B's narrower requirement about computation.", "quotes": ["does everything else: offsets, quantities, placement and identity", "Offsets, quantities, counts and statuses are computed by code"]}
+{"from": "N-000218", "type": "uses_term", "to": "term:answer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "uses_term", "to": "term:code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "uses_term", "to": "term:identity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "uses_term", "to": "term:offset", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "uses_term", "to": "term:placement", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000218", "type": "uses_term", "to": "term:quantity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000287", "type": "uses_term", "to": "term:atomization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000287", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000287", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

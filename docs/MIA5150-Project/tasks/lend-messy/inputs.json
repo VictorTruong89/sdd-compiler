@@ -1,0 +1,32 @@
+{
+  "task": "lend-messy",
+  "formats": {
+    "markdown": {
+      "source": "~/Workspace/sdd-compiler/docs/MIA5150-Project/tasks/lend-messy/spec",
+      "include": [
+        "vision.md",
+        "glossary.md",
+        "loans/spec.md",
+        "loans/fees.md",
+        "reports/spec.md",
+        "ops/notes.md",
+        "CHANGELOG.md"
+      ],
+      "spec_line": "The specification is the Markdown files in `spec/`. Start with `spec/vision.md`."
+    },
+    "export": {
+      "source": "~/sddc-runs/lend-export",
+      "include": [
+        "**"
+      ],
+      "spec_line": "The specification is the compiled export in `spec/`. Start with `spec/MAP.md`; account for every id in `spec/CHECKLIST.md`."
+    }
+  },
+  "scoring": {
+    "cmd_env": "LEND_CMD",
+    "console_script": "lend",
+    "checklist_packs": "",
+    "label_pattern": null
+  },
+  "note": "The export source does not exist until the owner approves the compile (DESIGN.md §6 step 3). Contradictions are not settled: the export is made with --allow-open (owner, 2026-10-01)."
+}

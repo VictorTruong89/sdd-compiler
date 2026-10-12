@@ -1,0 +1,129 @@
+{
+ "measurement": "R12 dense A/B",
+ "date": "2026-09-19",
+ "spec": "F5_retrieval",
+ "arm": "on",
+ "vocabulary_shown": true,
+ "seconds": 357,
+ "exit": 0,
+ "summary": {
+  "pending": 65,
+  "completed": 64,
+  "failed": 1,
+  "nodes_formed": 43,
+  "model_calls": 21,
+  "cost_usd": 0.6906,
+  "stop_reason": null
+ },
+ "check_store": "clean",
+ "nodes": 43,
+ "terms": 45,
+ "terms_used_once": 19,
+ "families": 18,
+ "one_node_families": 12,
+ "nodes_in_families_of_3_plus": 24,
+ "family_null": 3,
+ "global": 0,
+ "family_sizes": [
+  12,
+  6,
+  3,
+  3,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "largest": [
+  [
+   "term:node",
+   12
+  ],
+  [
+   "term:candidate",
+   6
+  ],
+  [
+   null,
+   3
+  ],
+  [
+   "term:evidence",
+   3
+  ],
+  [
+   "term:pair_key",
+   3
+  ],
+  [
+   "term:node_selection",
+   2
+  ],
+  [
+   "term:pair",
+   2
+  ],
+  [
+   "term:checked_node",
+   1
+  ]
+ ],
+ "ambiguity": {
+  "unresolved_term": 3,
+  "scope": 1,
+  "referential": 8,
+  "missing_modality": 3,
+  "unplaceable": 1,
+  "mixed_layers": 1,
+  "missing_actor": 3
+ },
+ "status": {
+  "ambiguous": 18,
+  "unchecked": 25
+ },
+ "layers": {
+  "L1": 7,
+  "L5": 4,
+  "V": 16,
+  "C": 5,
+  "None": 1,
+  "L4": 7,
+  "L0": 3
+ },
+ "narrower": [
+  [
+   "checked node",
+   "term:node"
+  ],
+  [
+   "node id",
+   "term:node"
+  ],
+  [
+   "node text",
+   "term:node"
+  ],
+  [
+   "other node",
+   "term:node"
+  ],
+  [
+   "pair key",
+   "term:pair"
+  ]
+ ],
+ "term_same": [
+  "Q-TERM merged \"min_score\" into term:min_score_threshold as an alias — min_score and min_score threshold name the same thing—a lower bound on acceptable scores; ",
+  "Q-TERM merged \"max_pairs_per_node\" into term:max_pairs_per_node_cap as an alias — max_pairs_per_node and max_pairs_per_node cap name the same thing—an upper lim"
+ ]
+}

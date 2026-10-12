@@ -1,0 +1,3 @@
+{"from": "N-000424", "type": "uses_term", "to": "term:context_recipe", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000424", "type": "uses_term", "to": "term:manifest", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000424", "type": "uses_term", "to": "term:traversal_for_code_generation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

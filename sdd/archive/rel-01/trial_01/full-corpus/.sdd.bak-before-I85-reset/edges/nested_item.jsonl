@@ -1,0 +1,5 @@
+{"from": "AC-1.3", "type": "uses_term", "to": "term:block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.3", "type": "uses_term", "to": "term:ingest_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.3", "type": "uses_term", "to": "term:list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.3", "type": "uses_term", "to": "term:nested_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.3", "type": "uses_term", "to": "term:parent_block_field", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

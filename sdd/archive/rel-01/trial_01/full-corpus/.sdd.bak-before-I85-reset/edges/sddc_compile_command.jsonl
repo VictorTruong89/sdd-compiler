@@ -1,0 +1,5 @@
+{"from": "N-000324", "type": "uses_term", "to": "term:sddc_compile_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000324", "type": "uses_term", "to": "term:spec_source", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000325", "type": "uses_term", "to": "term:sddc_atomize", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000325", "type": "uses_term", "to": "term:sddc_compile_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000326", "type": "uses_term", "to": "term:sddc_compile_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

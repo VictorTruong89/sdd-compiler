@@ -1,0 +1,919 @@
+<title>The SDD Compiler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  --ground:#F6F7F9;
+  --surface:#FFFFFF;
+  --surface-2:#EEF1F5;
+  --code-bg:#EDF0F4;
+  --ink:#141A24;
+  --ink-soft:#57616F;
+  --ink-faint:#828C9A;
+  --accent:#1F4E8C;
+  --accent-soft:#E3EBF6;
+  --verd:#0E7C6B;
+  --verd-soft:#DEEFEB;
+  --oxide:#A33A1E;
+  --oxide-soft:#F7E4DE;
+  --rule:#DCE1E8;
+  --rule-soft:#E9ECF1;
+
+  --fs-xs:.76rem; --fs-sm:.875rem; --fs-base:1.0625rem;
+  --fs-lg:1.22rem; --fs-xl:1.55rem; --fs-2xl:2.05rem; --fs-3xl:2.75rem;
+  --measure:68ch;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+    --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+    --accent:#77ADEB; --accent-soft:#17293F;
+    --verd:#3ECBB2; --verd-soft:#0F2C29;
+    --oxide:#E58A6D; --oxide-soft:#331E17;
+    --rule:#26313F; --rule-soft:#1D2531;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+  --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+  --accent:#77ADEB; --accent-soft:#17293F;
+  --verd:#3ECBB2; --verd-soft:#0F2C29;
+  --oxide:#E58A6D; --oxide-soft:#331E17;
+  --rule:#26313F; --rule-soft:#1D2531;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:var(--body); font-size:var(--fs-base); line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+.col{max-width:var(--measure)}
+
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-top:clamp(2.5rem,7vw,4.5rem);padding-bottom:clamp(2rem,5vw,3rem)}
+.eyebrow{
+  font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.1rem
+}
+h1{
+  font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,5.5vw,var(--fs-3xl));
+  line-height:1.08;letter-spacing:-.015em;margin:0 0 1rem;text-wrap:balance
+}
+.standfirst{font-size:var(--fs-lg);color:var(--ink-soft);margin:0;max-width:60ch;text-wrap:pretty}
+.meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.8rem;
+  font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);
+  letter-spacing:.04em
+}
+
+.tocbar{
+  position:sticky;top:0;z-index:20;background:var(--surface);
+  border-bottom:1px solid var(--rule)
+}
+.tocbar .wrap{display:flex;gap:.4rem;overflow-x:auto;padding-top:.5rem;padding-bottom:.5rem}
+.tocbar a{
+  flex:0 0 auto;display:flex;align-items:baseline;gap:.5rem;
+  font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.06em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+  padding:.45rem .7rem;border-radius:3px;white-space:nowrap
+}
+.tocbar a:hover{background:var(--surface-2);color:var(--ink)}
+.tocbar a b{font-weight:700}
+.tocbar a.l1 b{color:var(--accent)} .tocbar a.l2 b{color:var(--verd)} .tocbar a.l3 b{color:var(--oxide)}
+
+.lecture{padding:clamp(3rem,8vw,6rem) 0 clamp(2rem,5vw,4rem);border-bottom:1px solid var(--rule)}
+.lechead{display:flex;gap:clamp(1rem,3vw,2rem);align-items:flex-start;margin-bottom:2.5rem}
+.lecnum{
+  flex:0 0 auto;font-family:var(--mono);font-weight:700;font-size:var(--fs-sm);
+  letter-spacing:.1em;padding:.35rem .6rem;border-radius:3px;line-height:1.2
+}
+.l1 .lecnum{background:var(--accent-soft);color:var(--accent)}
+.l2 .lecnum{background:var(--verd-soft);color:var(--verd)}
+.l3 .lecnum{background:var(--oxide-soft);color:var(--oxide)}
+.lechead h2{
+  font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,var(--fs-2xl));
+  line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance
+}
+.lechead p{margin:0;color:var(--ink-soft);max-width:58ch}
+
+h3{
+  font-family:var(--display);font-weight:600;font-size:var(--fs-xl);
+  line-height:1.25;margin:3.2rem 0 1rem;text-wrap:balance;
+  padding-top:1.2rem;border-top:1px solid var(--rule-soft)
+}
+h3 .sn{font-family:var(--mono);font-size:var(--fs-sm);color:var(--ink-faint);margin-right:.6rem;font-weight:500}
+h4{font-family:var(--display);font-weight:600;font-size:var(--fs-lg);margin:2rem 0 .6rem;line-height:1.3}
+p{margin:0 0 1.1rem;max-width:var(--measure);text-wrap:pretty}
+ul,ol{margin:0 0 1.2rem;padding-left:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.5rem}
+li::marker{color:var(--ink-faint)}
+strong{font-weight:700}
+em{font-style:italic}
+a{color:var(--accent)}
+
+code{
+  font-family:var(--mono);font-size:.86em;background:var(--code-bg);
+  padding:.1em .35em;border-radius:3px;color:var(--ink)
+}
+pre{
+  font-family:var(--mono);font-size:var(--fs-sm);line-height:1.62;
+  background:var(--code-bg);border:1px solid var(--rule);border-radius:5px;
+  padding:1.1rem 1.25rem;overflow-x:auto;margin:0 0 1.4rem
+}
+pre code{background:none;padding:0;font-size:inherit}
+.cm{color:var(--ink-faint)}
+.kw{color:var(--accent);font-weight:500}
+.st{color:var(--verd)}
+
+.callout{
+  border-left:3px solid var(--accent);background:var(--surface);
+  padding:1.1rem 1.3rem;margin:0 0 1.5rem;max-width:var(--measure);border-radius:0 4px 4px 0
+}
+.callout.warn{border-left-color:var(--oxide)}
+.callout.key{border-left-color:var(--verd)}
+.callout p:last-child{margin-bottom:0}
+.callout .lbl{
+  font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:.5rem;font-weight:700
+}
+.callout.warn .lbl{color:var(--oxide)}
+.callout.key .lbl{color:var(--verd)}
+
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm);min-width:34rem}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{
+  font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700;background:var(--surface-2);white-space:nowrap
+}
+tr:last-child td{border-bottom:none}
+td code{font-size:.82em}
+
+figure{margin:0 0 1.8rem}
+figure svg{display:block;width:100%;height:auto;background:var(--surface);border:1px solid var(--rule);border-radius:5px}
+figcaption{
+  font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);
+  margin-top:.6rem;letter-spacing:.02em;line-height:1.55;max-width:var(--measure)
+}
+.svg-ink{fill:var(--ink)} .svg-soft{fill:var(--ink-soft)} .svg-faint{fill:var(--ink-faint)}
+.svg-box{fill:var(--surface-2);stroke:var(--rule)}
+.svg-line{stroke:var(--ink-faint);fill:none}
+text{font-family:var(--mono);font-size:11px}
+
+.exercises{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.6rem;margin-top:2.5rem;max-width:var(--measure)}
+.exercises h4{margin-top:0}
+.exercises ol{margin-bottom:0}
+
+.pill{
+  font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.05em;
+  padding:.12em .45em;border-radius:3px;background:var(--surface-2);color:var(--ink-soft);
+  white-space:nowrap
+}
+.pill.ok{background:var(--verd-soft);color:var(--verd)}
+.pill.no{background:var(--oxide-soft);color:var(--oxide)}
+
+.tierbanner{
+  background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--oxide);
+  border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin:0 0 2rem;max-width:var(--measure)
+}
+.tierbanner p{margin-bottom:.6rem}
+.tierbanner p:last-child{margin-bottom:0}
+
+.att{border-left-color:var(--verd)}
+.attmark{
+  font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--verd-soft);color:var(--verd);padding:.15em .5em;border-radius:3px;
+  font-weight:700;margin-left:.5rem;white-space:nowrap
+}
+.attmark.no{background:var(--oxide-soft);color:var(--oxide)}
+
+footer{padding:clamp(2.5rem,6vw,4rem) 0 5rem;color:var(--ink-soft)}
+footer .col{font-size:var(--fs-sm)}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">SDD · Design tier · Brainstorm</p>
+    <h1>The SDD Compiler</h1>
+    <p class="standfirst">A background graph builder for spec-driven development: atomize each spec as it is written, place it in a layered graph, and surface the conflict it creates while the author still remembers why they wrote it.</p>
+    <div class="meta">
+      <span>Design tier — NON-AUTHORITATIVE</span>
+      <span>Opened 2026-09-10</span>
+      <span>Dev-time tool — not <code>src/</code>, no seat, no AC</span>
+      <span>Doubles as MIA 5150 course project</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tocbar" aria-label="Parts">
+  <div class="wrap">
+    <a class="l1" href="#part-1"><b>1</b> Idea &amp; Painpoints</a>
+    <a class="l2" href="#part-2"><b>2</b> The Design</a>
+    <a class="l3" href="#part-3"><b>3</b> The Course Project</a>
+    <a href="#governance"><b>4</b> Governance &amp; Logs</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ PART 1 ══════════════════════════ -->
+<section class="lecture l1" id="part-1">
+<div class="wrap">
+
+  <div class="tierbanner">
+    <p><strong>SDD role: <code>design/</code> tier — NON-AUTHORITATIVE.</strong> This is brainstorm, rationale and decision log, not a contract. <strong>Do not code from this file.</strong> Ideas here graduate into a spec only when their acceptance criteria can be written. If this document and a spec ever disagree, <strong>the spec wins</strong>.</p>
+    <p><strong>Status:</strong> OPEN · <strong>Opened:</strong> 2026-09-10 · <strong>Subject:</strong> a dev-time tool that governs nothing in <code>src/</code> — see <a href="#governance">§4.1</a> for why it lives outside the seat model.</p>
+  </div>
+
+  <div class="lechead">
+    <span class="lecnum">1</span>
+    <div>
+      <h2>The idea, and the five painpoints it exists to answer</h2>
+      <p>Spec-driven development lets a human describe a system in ordinary language. That is its whole advantage, and the source of every problem below.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">1.1</span> What this is <span class="attmark">attachment</span></h3>
+
+  <div class="col">
+  <p>Spec-driven development lets a person describe a system in <strong>normal but highly ambiguous vocabulary</strong> rather than in a strict, structured, skill-gated programming language. That is the point of it. A specification written in English can be read by anyone, argued with by anyone, and changed without a compiler's permission.</p>
+
+  <p>The cost is that English has no type checker. Two specifications written three weeks apart can contradict each other completely and nothing anywhere will notice. The larger the spec set becomes, the less likely a human is to notice either — and the more expensive the eventual discovery.</p>
+
+  <p>The <strong>SDD compiler</strong> is a background process that watches a specification set the way <code>make</code> watches a source tree: it maintains a graph of the specification, knows what each change invalidates, and reports what no longer holds.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">What it is not</span>
+    <p>⛔ <strong>This is not an attempt to turn SDD into a programming language.</strong> There is no grammar to learn, no syntax to satisfy, and no failed build. The borrowed idea from <code>make</code> / <code>cmake</code> is narrower and specific: <em>a dependency graph over units of work, plus a rule for deciding what a change invalidates.</em> The units here are sentences, not object files, and the judge is a language model, not a timestamp.</p>
+  </div>
+
+  <h3><span class="sn">1.2</span> The five painpoints <span class="attmark">attachment</span></h3>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>#</th><th>Painpoint</th><th>Why it resists a plain LLM prompt</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>★ <strong>P1</strong></td>
+        <td><strong>Consolidation and conflict resolution across spec sets.</strong> Module A has 5 atomic specs, module B has 5. Comparing them honestly is 25 pairwise judgments.</td>
+        <td>Asked in one prompt, the model does not perform 25 comparisons — it performs an impression of them. Hallucination, positional bias and silently skipped pairs all follow. The pair count grows as <em>n²</em>; attention does not.</td>
+      </tr>
+      <tr>
+        <td>★ <strong>P2</strong></td>
+        <td><strong>The comparison is semantic, not structural.</strong> Two specs conflict by <em>meaning</em>, not by differing on a field. There is no key to join on.</td>
+        <td>String matching cannot see it and embedding similarity actively misleads: a requirement and its negation are near-identical vectors. The judgment has to be an entailment decision made by a model.</td>
+      </tr>
+      <tr>
+        <td><strong>P3</strong></td>
+        <td><strong>As-built code versus the full spec set.</strong> The same n² shape, with the ambiguity halved — code is unambiguous, the spec is not.</td>
+        <td>Same explosion, same blocking problem. Half the ambiguity does not halve the pair count.</td>
+      </tr>
+      <tr>
+        <td><strong>P4</strong></td>
+        <td><strong>Carrying a spec set forward across releases</strong> while keeping relationships and history intact.</td>
+        <td>Requires versioned identity for every unit of specification, which prose files in git do not provide at the granularity that matters.</td>
+      </tr>
+      <tr>
+        <td><strong>P5</strong></td>
+        <td><strong>Progressive checking during authoring</strong> — surface the conflict now, not at the end of the session.</td>
+        <td>A conflict found five minutes after writing is a two-minute fix. The same conflict found across a finished spec set is an archaeology problem.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout key">
+    <span class="lbl">The through-line</span>
+    <p><strong>P1 and P2 are the same problem</strong> — too many pairs, each requiring a semantic judgment — and they are the only two the first build addresses. P3 is the same machinery pointed at a second corpus. <strong>P4 and P5 are product features, not research questions</strong>, and §3.4 argues for cutting both out of the first build.</p>
+  </div>
+
+  <h3><span class="sn">1.3</span> Why this problem already has a literature</h3>
+
+  <div class="col">
+  <p>P1 is not novel, which is good news: it is the <strong>blocking</strong> problem, known for decades in record linkage and entity resolution. When you cannot afford to compare every pair, you generate a smaller <em>candidate set</em> and compare only those — and you measure the tradeoff with three established quantities:</p>
+
+  <ul>
+    <li><strong>Pair completeness</strong> — of the true conflict pairs, what fraction survived into the candidate set? (Recall.)</li>
+    <li><strong>Pair quality</strong> — of the candidate pairs, what fraction were real conflicts? (Precision.)</li>
+    <li><strong>Reduction ratio</strong> — what fraction of the <em>n²</em> pairs never had to be judged at all?</li>
+  </ul>
+
+  <p>Two further literatures meet it here. <strong>Requirements engineering</strong> has studied inconsistency detection in natural-language requirements for a long time, mostly with pre-LLM techniques. And the pairwise judgment itself is <strong>natural language inference</strong> — entailment, contradiction, neutral — which is one of the best-studied tasks in NLP.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ PG-11 applies and is not yet discharged</span>
+    <p>The three literatures above are named from working knowledge, <strong>not from retrieved sources</strong>. No DOI in this document has been verified, because none has been fetched. Before any method here is adopted, the <code>PG-11</code> table in <a href="#references">§4.5</a> must be filled by an actual search — primary source, regime, and one limiting or dissenting paper each. <strong>An invented citation in a course submission is academic fraud regardless of what produced it</strong>, and the same standard applies here.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ PART 2 ══════════════════════════ -->
+<section class="lecture l2" id="part-2">
+<div class="wrap">
+
+  <div class="lechead">
+    <span class="lecnum">2</span>
+    <div>
+      <h2>The design</h2>
+      <p>A layered graph, an incremental insertion loop with a human in it, and an invalidation rule borrowed from <code>make</code>.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">2.1</span> The insertion loop <span class="attmark">attachment</span></h3>
+
+  <div class="col">
+  <p>The author writes one or two specs in ordinary prose and <strong>presses a button</strong>. Nothing runs while they type. Two deliberate exclusions define the interaction:</p>
+
+  <ul>
+    <li>★ <strong>No typing-time analysis.</strong> Checking on every keystroke is technically harder and, more importantly, interrupts the thought being written down. The button is the commit point.</li>
+    <li>★ <strong>No spec recommendation.</strong> The tool does not suggest what to write next. It reports conflicts with what already exists. Suggestion is a different and much harder product, and it would compete with the author's own thinking at exactly the wrong moment.</li>
+  </ul>
+
+  <p>What the button does:</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 760 300" role="img" aria-label="Diagram: the insertion pipeline — source text is atomized into nodes, checked against invariants, blocked into candidate pairs, judged, and alerted; a feedback arrow marks invalidation of previously clean nodes">
+      <defs><marker id="arA" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="var(--ink-faint)"/></marker>
+      <marker id="arB" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="var(--oxide)"/></marker></defs>
+
+      <rect class="svg-box" x="16" y="40" width="120" height="52" rx="4"/>
+      <text class="svg-ink" x="76" y="62" text-anchor="middle" font-weight="700">SOURCE TEXT</text>
+      <text class="svg-faint" x="76" y="79" text-anchor="middle" font-size="10">1–2 specs, prose</text>
+
+      <rect class="svg-box" x="158" y="40" width="120" height="52" rx="4"/>
+      <text class="svg-ink" x="218" y="62" text-anchor="middle" font-weight="700">ATOMIZE</text>
+      <text class="svg-faint" x="218" y="79" text-anchor="middle" font-size="10">LLM · human reviews</text>
+
+      <rect x="300" y="40" width="120" height="52" rx="4" fill="var(--verd-soft)" stroke="var(--verd)" stroke-width="1.5"/>
+      <text x="360" y="62" text-anchor="middle" font-weight="700" fill="var(--verd)">C-CHECK</text>
+      <text class="svg-soft" x="360" y="79" text-anchor="middle" font-size="10">node × invariants</text>
+
+      <rect x="442" y="40" width="120" height="52" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="502" y="62" text-anchor="middle" font-weight="700" fill="var(--accent)">BLOCK</text>
+      <text class="svg-soft" x="502" y="79" text-anchor="middle" font-size="10">candidate pairs</text>
+
+      <rect class="svg-box" x="584" y="40" width="120" height="52" rx="4"/>
+      <text class="svg-ink" x="644" y="62" text-anchor="middle" font-weight="700">JUDGE</text>
+      <text class="svg-faint" x="644" y="79" text-anchor="middle" font-size="10">entailment, typed</text>
+
+      <line class="svg-line" x1="136" y1="66" x2="154" y2="66" stroke-width="1.5" marker-end="url(#arA)"/>
+      <line class="svg-line" x1="278" y1="66" x2="296" y2="66" stroke-width="1.5" marker-end="url(#arA)"/>
+      <line class="svg-line" x1="420" y1="66" x2="438" y2="66" stroke-width="1.5" marker-end="url(#arA)"/>
+      <line class="svg-line" x1="562" y1="66" x2="580" y2="66" stroke-width="1.5" marker-end="url(#arA)"/>
+
+      <rect class="svg-box" x="584" y="146" width="120" height="52" rx="4"/>
+      <text class="svg-ink" x="644" y="168" text-anchor="middle" font-weight="700">ALERT</text>
+      <text class="svg-faint" x="644" y="185" text-anchor="middle" font-size="10">author adjudicates</text>
+      <line class="svg-line" x1="644" y1="92" x2="644" y2="142" stroke-width="1.5" marker-end="url(#arA)"/>
+
+      <rect class="svg-box" x="300" y="146" width="262" height="52" rx="4"/>
+      <text class="svg-ink" x="431" y="168" text-anchor="middle" font-weight="700">TRACE RECORD — every press</text>
+      <text class="svg-faint" x="431" y="185" text-anchor="middle" font-size="10">nodes · pairs judged · verdicts · human ruling</text>
+      <line class="svg-line" x1="584" y1="172" x2="566" y2="172" stroke-width="1.5" marker-end="url(#arA)"/>
+
+      <path d="M300,172 L218,172 L218,100" stroke="var(--oxide)" fill="none" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arB)"/>
+      <text x="150" y="130" font-size="10" fill="var(--oxide)" font-weight="700">INVALIDATION</text>
+      <text class="svg-soft" x="150" y="145" font-size="10">a resolved conflict</text>
+      <text class="svg-soft" x="150" y="158" font-size="10">makes earlier clean</text>
+      <text class="svg-soft" x="150" y="171" font-size="10">nodes STALE</text>
+
+      <rect x="16" y="230" width="688" height="48" rx="4" fill="var(--surface-2)" stroke="var(--rule)"/>
+      <text class="svg-soft" x="360" y="250" text-anchor="middle" font-size="10">The trace record is not instrumentation — it is the labelled dataset. Nine weeks of ordinary spec writing</text>
+      <text class="svg-soft" x="360" y="266" text-anchor="middle" font-size="10">deposits a human-adjudicated conflict corpus as a by-product of doing the work.</text>
+    </svg>
+    <figcaption>One button press. The C-check is cheap and runs first; blocking is what keeps the pairwise stage affordable; the trace record is what makes the whole thing measurable later.</figcaption>
+  </figure>
+
+  <div class="callout key">
+    <span class="lbl">Why the button design earns its place</span>
+    <p>Incremental insertion with a human at the commit point <strong>closes the atomization-error risk</strong>. If the atomizer splits a spec badly, the author sees it immediately, while the source text is still in their head. Batch atomization of a hundred specs hides the same error under a hundred others.</p>
+  </div>
+
+  <h3><span class="sn">2.2</span> The layers <span class="attmark">attachment</span></h3>
+
+  <div class="col">
+  <p>Layers exist for <strong>human cognition</strong> — so the author can see where a statement sits and what it refines — and they do a second job the design depends on: <strong>the layer is the blocking key</strong>. Conflicts cluster within a layer and along refinement paths; they are rare between an unrelated business goal and an unrelated data model. That is what makes the candidate set small.</p>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Layer</th><th>Holds</th><th>Analogue in this repo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L0 · Business</strong></td><td>Why the system exists; what it is for</td><td><code>sdd/specs/vision.md</code></td></tr>
+      <tr><td><strong>L1 · Functional</strong></td><td>What it must do, observably</td><td>Feature spec bodies, acceptance criteria</td></tr>
+      <tr><td><strong>L2 · Architecture</strong></td><td>Components, boundaries, authority</td><td>The seat model; <code>ownership.yaml</code></td></tr>
+      <tr><td><strong>L3 · Interface</strong></td><td>Ports, contracts between components</td><td>Port definitions</td></tr>
+      <tr><td><strong>L4 · Data Models</strong></td><td>Shapes, types, invariants of data</td><td>Data contracts in the constitution</td></tr>
+      <tr><td><strong>L5 · Logic</strong></td><td>Rules, algorithms, decision procedures</td><td>Module logic</td></tr>
+      <tr><td><strong>L6 · Test</strong></td><td>How a claim is verified</td><td>Traceability tables</td></tr>
+      <tr><td>★ <strong>C · Invariants</strong><br><span class="pill">cross-cutting</span></td><td><strong>Global rules that bind every layer.</strong> Not a tier in the stack — a set every node is checked against</td><td><code>constitution.md</code> principles; the <code>PG-</code> rules</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 760 268" role="img" aria-label="Diagram: layers L0 to L6 stacked as a refinement path, with a cross-cutting invariants band C touching every layer">
+      <defs><marker id="arC" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="var(--ink-faint)"/></marker></defs>
+
+      <rect x="470" y="24" width="110" height="212" rx="4" fill="var(--verd-soft)" stroke="var(--verd)" stroke-width="1.5"/>
+      <text x="525" y="48" text-anchor="middle" font-weight="700" fill="var(--verd)">C</text>
+      <text x="525" y="66" text-anchor="middle" font-size="10" fill="var(--verd)">INVARIANTS</text>
+      <text class="svg-soft" x="525" y="92" text-anchor="middle" font-size="10">no arithmetic</text>
+      <text class="svg-soft" x="525" y="106" text-anchor="middle" font-size="10">inside a prompt</text>
+      <text class="svg-soft" x="525" y="126" text-anchor="middle" font-size="10">fail loud,</text>
+      <text class="svg-soft" x="525" y="140" text-anchor="middle" font-size="10">never silent</text>
+      <text class="svg-soft" x="525" y="160" text-anchor="middle" font-size="10">PG-8 superset</text>
+      <text class="svg-soft" x="525" y="186" text-anchor="middle" font-size="10">k rules, small</text>
+      <text class="svg-soft" x="525" y="206" text-anchor="middle" font-size="10">cost: O(n·k)</text>
+      <text class="svg-soft" x="525" y="220" text-anchor="middle" font-size="10">not O(n²)</text>
+
+      <rect class="svg-box" x="40" y="24" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="41" font-weight="700">L0 · BUSINESS</text>
+      <rect class="svg-box" x="40" y="54" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="71" font-weight="700">L1 · FUNCTIONAL</text>
+      <rect class="svg-box" x="40" y="84" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="101" font-weight="700">L2 · ARCHITECTURE</text>
+      <rect class="svg-box" x="40" y="114" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="131" font-weight="700">L3 · INTERFACE</text>
+      <rect class="svg-box" x="40" y="144" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="161" font-weight="700">L4 · DATA MODELS</text>
+      <rect class="svg-box" x="40" y="174" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="191" font-weight="700">L5 · LOGIC</text>
+      <rect class="svg-box" x="40" y="204" width="300" height="26" rx="3"/><text class="svg-ink" x="52" y="221" font-weight="700">L6 · TEST</text>
+
+      <line class="svg-line" x1="360" y1="37" x2="466" y2="37" stroke-width="1" stroke-dasharray="2 3"/>
+      <line class="svg-line" x1="360" y1="67" x2="466" y2="67" stroke-width="1" stroke-dasharray="2 3"/>
+      <line class="svg-line" x1="360" y1="97" x2="466" y2="97" stroke-width="1" stroke-dasharray="2 3"/>
+      <line class="svg-line" x1="360" y1="127" x2="466" y2="127" stroke-width="1" stroke-dasharray="2 3"/>
+      <line class="svg-line" x1="360" y1="157" x2="466" y2="157" stroke-width="1" stroke-dasharray="2 3"/>
+      <line class="svg-line" x1="360" y1="187" x2="466" y2="187" stroke-width="1" stroke-dasharray="2 3"/>
+      <line class="svg-line" x1="360" y1="217" x2="466" y2="217" stroke-width="1" stroke-dasharray="2 3"/>
+
+      <path d="M24,30 L24,224" class="svg-line" stroke-width="1.5" marker-end="url(#arC)"/>
+      <text class="svg-faint" x="18" y="124" text-anchor="middle" font-size="10" transform="rotate(-90 18 124)">refines</text>
+
+      <text class="svg-soft" x="620" y="41" font-size="10">L6 VERIFIES an L1</text>
+      <text class="svg-soft" x="620" y="55" font-size="10">criterion — it does</text>
+      <text class="svg-soft" x="620" y="69" font-size="10">not refine L5.</text>
+      <text class="svg-soft" x="620" y="88" font-size="10">Give it its own</text>
+      <text class="svg-soft" x="620" y="102" font-size="10">edge type or the</text>
+      <text class="svg-soft" x="620" y="116" font-size="10">refinement path</text>
+      <text class="svg-soft" x="620" y="130" font-size="10">through the graph</text>
+      <text class="svg-soft" x="620" y="144" font-size="10">will be wrong.</text>
+    </svg>
+    <figcaption>Layers are a refinement path, and a blocking key. The invariant set C is not a tier — it is checked against every node on insertion, at O(n·k) rather than O(n²), which is why it is the cheapest useful check and the first one to build.</figcaption>
+  </figure>
+
+  <div class="callout">
+    <span class="lbl">Two gaps in the original seven-layer list</span>
+    <p><strong>1 · Invariants had no home.</strong> Rules like <em>no arithmetic inside a prompt</em> or <em>fail loud, never silent</em> are neither business goals nor architecture; they bind everything. Hence the C set — and it is the first thing to build, because it is cheap, needs no labelled data, and produces value on real specs immediately.</p>
+    <p><strong>2 · <code>tests</code> is a different relation from <code>refines</code>.</strong> An L6 node verifies an L1 acceptance criterion. Keep L6 as a layer for the visual if you like, but its edges must be typed separately.</p>
+    <p><strong>Non-functional requirements</strong> — cost ceilings, latency budgets — fold into C.</p>
+  </div>
+
+  <h3><span class="sn">2.3</span> Node schema <span class="attmark">attachment</span></h3>
+
+  <div class="col">
+  <p>The original field list, with six changes marked ★.</p>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>node_id</code></td><td>stable id</td><td>Immutable for the life of the node.</td></tr>
+      <tr><td><code>content</code></td><td>text</td><td>The atomic spec, one claim.</td></tr>
+      <tr><td><code>layer</code></td><td>L0–L6</td><td>Blocking key. See §2.2.</td></tr>
+      <tr><td>★ <code>draft_status</code></td><td>enum</td><td><code>drafting</code> · <code>ready</code>. <strong>Authoring state.</strong></td></tr>
+      <tr><td>★ <code>check_status</code></td><td>enum</td><td><code>unchecked</code> · <code>clean</code> · <code>conflicted</code> · <code>ambiguous</code> · <code>stale</code>. <strong>Verification state.</strong> The original single <code>status</code> field conflated these two axes — a node can be authored-complete and simultaneously out of date, which is exactly <code>make</code>'s distinction between a finished target and an up-to-date one.</td></tr>
+      <tr><td><code>author</code></td><td>enum</td><td><code>victor</code> · <code>ai</code> · <code>colleague</code>. Provenance of the claim.</td></tr>
+      <tr><td><code>source_text</code></td><td>text + offsets</td><td>The original prose. ★ Store <strong>character offsets computed in code</strong>, never offsets asked of the model.</td></tr>
+      <tr><td>★ <code>atomizer</code></td><td>record</td><td><code>{model, prompt_version}</code>. Without it the graph cannot be rebuilt when the atomizer changes — and it will change.</td></tr>
+      <tr><td>★★ <code>checked_against</code></td><td>set</td><td><code>{(node_id, judge_version)}</code>. <strong>The field the whole incremental design rests on.</strong> Without it, "what is now stale?" is unanswerable and every insertion degenerates into a full re-check.</td></tr>
+      <tr><td>★ <code>conflicts</code></td><td>list of records</td><td>Not bare ids. <code>{node_id, kind, judge_version, rationale}</code> — see the conflict kinds below.</td></tr>
+      <tr><td><code>depends_on</code></td><td>edge</td><td>★ Promote to a first-class typed edge — see §2.4.</td></tr>
+      <tr><td>★ <code>family</code></td><td>derived</td><td><strong>Computed, not authored.</strong> A hand-maintained grouping rots within weeks. Derive it (connected components over <code>refines</code> + <code>depends_on</code>, or a clustering) and cache it with the version that produced it.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Conflict kinds — because one aggregate number hides the interesting failures</h4>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Kind</th><th>Meaning</th><th>Why it earns its own row</th></tr></thead>
+    <tbody>
+      <tr><td><strong>contradiction</strong></td><td>A and B cannot both hold</td><td>The obvious case; the one humans do catch.</td></tr>
+      <tr><td><strong>duplication</strong></td><td>A and B say the same thing twice</td><td>Harmless until they drift apart in a later edit.</td></tr>
+      <tr><td>★ <strong>subsumption</strong></td><td>A already implies B</td><td><strong>The class humans miss most.</strong> Nothing looks wrong; the spec set is just quietly redundant, and a change to A silently changes B.</td></tr>
+      <tr><td><strong>ambiguity</strong></td><td>A admits two readings that differ materially</td><td>Not a conflict between nodes — a defect in one. Needs a different alert.</td></tr>
+      <tr><td><strong>orphan</strong></td><td><code>depends_on</code> points nowhere</td><td>Structural, detectable without a model, free.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3><span class="sn">2.4</span> Edges are first-class</h3>
+
+  <div class="col">
+  <p>In the original sketch, relationships lived as node fields (<code>depend_on</code>, <code>conflicts</code>). They should be edges with their own type and their own provenance, because an edge produced by a model judgment needs to record <em>which</em> judgment produced it and when it was last confirmed.</p>
+
+  <ul>
+    <li><code>refines</code> — crosses layers downward; the backbone of the graph</li>
+    <li><code>depends_on</code> — within or across layers</li>
+    <li><code>constrains</code> — from C to any node</li>
+    <li><code>tests</code> — L6 to the L1 criterion it verifies</li>
+    <li><code>duplicates</code> / <code>conflicts_with</code> — judged edges, carrying <code>kind</code>, <code>judge_version</code> and a rationale</li>
+  </ul>
+  </div>
+
+  <h3><span class="sn">2.5</span> Invalidation — the part borrowed from <code>make</code> that was missing</h3>
+
+  <div class="col">
+  <p>The <code>make</code> analogy was invoked for the graph. The more valuable half is the <strong>invalidation rule</strong>: when a target changes, which dependents become out of date? Translated here, insertion of node N into a graph of 200 raises two questions:</p>
+
+  <ol>
+    <li><strong>Which existing nodes must be judged against N?</strong> Not all 200 — the blocking claim.</li>
+    <li>★ <strong>Which previously <code>clean</code> nodes are now <code>stale</code>?</strong> When N resolves a conflict, or changes a dependency, earlier verdicts stop being trustworthy.</li>
+  </ol>
+
+  <p>The second question is what <code>checked_against</code> exists to answer, and it is the one almost nobody implements. It also yields the two measurable claims in §3.2.</p>
+  </div>
+
+  <h3><span class="sn">2.6</span> Infrastructure — and why the plugin is built last</h3>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ The VS Code extension is a scope hazard</span>
+    <p>An extension means TypeScript, an extension host, a webview for graph rendering, and diagnostics plumbing — real work that produces <strong>no evidence</strong>, in a second language, for a repository that is Python.</p>
+    <p><strong>Decision: engine in Python, with a CLI and a JSON protocol. The extension is a thin client that shells out.</strong> Three reasons: the batch evaluation harness (§3.4) then comes nearly free; the engine is importable from this repository as a <code>tools/</code> module; and if December gets tight the extension can be cut without losing the claim. Roughly 200 lines of TypeScript at the end, not 2,000 at the start.</p>
+  </div>
+
+  <div class="col">
+  <p>The button and the batch runner <strong>must call the same function</strong>. That single constraint is what keeps the demo and the experiment honest about being the same system.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ PART 3 ══════════════════════════ -->
+<section class="lecture l3" id="part-3">
+<div class="wrap">
+
+  <div class="lechead">
+    <span class="lecnum">3</span>
+    <div>
+      <h2>The course project — MIA 5150</h2>
+      <p>The same engine, framed as a claim that can be tested rather than a tool that can be demonstrated.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">3.0</span> Eligibility — is this a foundation-models project? <span class="attmark">attachment</span></h3>
+
+  <div class="col">
+  <p>The brief admits any topic <em>"as long as it works with generative models or foundation models."</em> Nothing in this project trains, fine-tunes or modifies a model, so the question deserves a direct answer rather than an assumption. Three lines in the brief settle it.</p>
+
+  <ol>
+    <li><strong>"Novel application. Foundation models in a field that has not used them much, with an evaluation built for that field."</strong> — Requirements consistency checking is a largely pre-LLM literature. This is close to a textbook instance of the category.</li>
+    <li>★ <strong>"If your project uses an LLM as part of the method, describe that in the Method section instead."</strong> — The decisive line. The brief explicitly anticipates projects where the model <em>is</em> the method rather than a writing aid, and says where to describe it. A rule excluding such projects would not need that sentence to exist.</li>
+    <li><strong>"Workable: … inference up to about 8B in 4-bit … retrieval over corpora up to about 10 GB."</strong> — Inference-only work is listed as workable. No training requirement appears anywhere in the document.</li>
+  </ol>
+
+  <p>In this project a foundation model performs the atomization and renders <em>every</em> pairwise entailment judgment. All three results are statements about model behaviour, not about a tool:</p>
+
+  <ul>
+    <li><strong>Single-shot whole-corpus comparison silently drops true conflicts</strong> — a measured failure mode of long-context generative models, adjacent to the <em>Lost in the Middle</em> finding.</li>
+    <li><strong>Verdicts shift with insertion order</strong> — LLM-as-judge reliability: positional bias, self-consistency, verdict stability.</li>
+    <li>★ <strong>A small open model with structured decomposition versus a large model with one prompt</strong> — a capability-versus-scaffolding claim, which is squarely a foundation-models result.</li>
+  </ul>
+
+  <p>The graph is the <em>instrument</em>. The study is about what the instrument measures.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ The real risk is framing, not eligibility</span>
+    <p>The brief's own contrast: <em>"'We built a chatbot for X' describes something you made; 'we show that retrieval quality matters more than model size for question answering over X' is a claim you can test."</em></p>
+    <p>A proposal that opens with <em>a VS Code plugin that builds a graph of your specs</em> reads as a software-engineering tool, and a reader starts hunting for the model. A proposal that opens with <em>foundation-model conflict detection degrades as the specification set grows, and structured decomposition recovers it</em> never raises the question, because the abstract is entirely about model behaviour.</p>
+  </div>
+
+  <div class="col">
+  <p><strong>Consequence for naming.</strong> The tool keeps its name in this repository; the paper gets a title about models.</p>
+  <ul>
+    <li>✗ <em>An SDD compiler for spec-driven development</em></li>
+    <li>✗ <em>A VS Code plugin for specification conflict detection</em></li>
+    <li>✓ <em>Structured decomposition for foundation-model consistency checking over natural-language specifications</em></li>
+    <li>✓ <em>Does decomposition beat context? Measuring LLM conflict detection as specification sets grow</em></li>
+  </ul>
+  </div>
+
+  <h3><span class="sn">3.1</span> The claim <span class="attmark">attachment</span></h3>
+
+  <div class="col">
+  <p>The brief requires a project shaped as a testable claim, not a built artifact. Filled into its four blanks:</p>
+  </div>
+
+  <div class="callout key">
+    <span class="lbl">The one-sentence test</span>
+    <p>We claim that <strong>graph-structured candidate-pair generation over atomized specifications recovers most true specification conflicts while judging only a small fraction of all pairs</strong>, and we will show it by measuring <strong>pair completeness, pair quality and reduction ratio, per conflict type</strong> against <strong>(a) single-shot whole-corpus LLM comparison and (b) exhaustive pairwise LLM judgment</strong> on <strong>a labelled conflict corpus drawn from a live spec-driven repository and a public requirements corpus</strong>.</p>
+  </div>
+
+  <div class="col">
+  <p><strong>Category: novel application.</strong> Benchmark and empirical study also fits; novel application reads better, because the evaluation is built for a field — requirements engineering — that has not had one. The brief states that a carefully controlled study which finds no improvement still scores well, which is the right frame for a measurement whose outcome is not known in advance.</p>
+
+  <p>The claim above is crossed with a second factor — <strong>which model renders the judgment</strong> — giving three arms × two judges. See §3.2.</p>
+  </div>
+
+  <h3><span class="sn">3.2</span> The arms, and the second claim incrementality unlocks <span class="attmark">attachment</span></h3>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Arm</th><th>What it is</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><strong>(a) Single-shot</strong></td><td>Paste both spec sets into one prompt and ask what conflicts — <strong>current practice</strong></td><td>The honest baseline. This is where hallucination, positional bias and skipped pairs actually come from.</td></tr>
+      <tr><td><strong>(b) Exhaustive pairwise</strong></td><td>All n(n−1)/2 pairs judged independently</td><td>The recall ceiling. Expensive, but affordable at this n.</td></tr>
+      <tr><td>★ <strong>(c) Graph-blocked</strong></td><td>Atomize → layer → edge → candidate pairs → judge only those</td><td>The contribution. Claim: approaches (b)'s recall while judging a small fraction of the pairs.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>★ The crossed factor: which model renders the judgment</h4>
+
+  <div class="col">
+  <p>Each arm runs under two judges — <strong>a large hosted model</strong> and <strong>a 7–8B open-weights model in 4-bit, run locally</strong>. Three arms × two judges is a proper factorial and it buys three things that a hosted-only design cannot:</p>
+
+  <ol>
+    <li><strong>The compute budget becomes a real budget.</strong> A hosted-only project consumes roughly zero GPU-hours, which sits oddly in a course whose hardware guidance is entirely about GPU memory. The local arm produces genuine GPU-hour arithmetic, comfortably inside the ~20-hour ceiling and squarely inside the brief's "workable" list.</li>
+    <li><strong>Reproducibility stops depending on anyone's API credits.</strong> The brief requires a code link whose README reproduces the main table. A reader with a consumer GPU can run the open-weights half end to end.</li>
+    <li>★ <strong>It adds the most interesting result in the study.</strong> <em>Does graph-structured decomposition let a small open model match a large hosted one at conflict detection?</em> That finding is worth reporting in either direction, and it is unambiguously a foundation-models finding rather than a tooling one.</li>
+  </ol>
+
+  <p>Cost: one extra column in the main table. It closes the eligibility question in §3.0 permanently.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ Do not lead with cost savings</span>
+    <p>At 137 acceptance criteria the exhaustive arm is 9,316 pairs — on a small fast model at roughly 500 tokens per judgment, that is a low-double-digit dollar figure for a full run. A headline of <em>"$15 reduced to $2"</em> persuades nobody. The result that lands is <strong>(a) versus (b)/(c)</strong>: that one-shot comparison over a whole corpus silently drops most true conflicts. That is the painpoint, stated as a number, and it is rarely measured.</p>
+  </div>
+
+  <h4>★ The second claim: incremental insertion is the contribution, not the UX</h4>
+
+  <div class="col">
+  <p>Because insertion is incremental and every press is traced, two further properties become measurable — and neither is available to a batch-only system:</p>
+
+  <ul>
+    <li><strong>Invalidation efficiency</strong> — does incremental checking with dependency-based invalidation reach the same conflict recall as a full re-check, at a fraction of the judgments?</li>
+    <li>★ <strong>Order independence (confluence)</strong> — does the final conflict set depend on the order the specs were entered? Replay the same node set under ~20 shuffled insertion orders and measure set agreement. If it is order-dependent, that is a real and honest finding about incremental model-judged graphs.</li>
+  </ul>
+  </div>
+
+  <div class="callout">
+    <span class="lbl">Why this forces the batch harness to exist</span>
+    <p>Order independence <strong>can only be measured offline, by replay</strong>. The live button can never produce that number. This is the technical reason the demo and the experiment must be two entry points into one engine, and it is worth stating in the proposal.</p>
+  </div>
+
+  <h3><span class="sn">3.3</span> Metrics</h3>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Metric</th><th>Asks</th><th>Reported</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pair completeness</strong></td><td>Of true conflict pairs, how many entered the candidate set?</td><td>Per conflict kind, with n</td></tr>
+      <tr><td><strong>Pair quality</strong></td><td>Of candidate pairs, how many were real?</td><td>Per conflict kind, with n</td></tr>
+      <tr><td><strong>Reduction ratio</strong></td><td>What fraction of n² was never judged?</td><td>Headline efficiency number</td></tr>
+      <tr><td><strong>Judgment count / cost</strong></td><td>Calls, tokens, dollars (hosted) and GPU-seconds (open weights) per arm</td><td>Secondary, not the headline</td></tr>
+      <tr><td>★ <strong>Judge agreement</strong></td><td>Where do the hosted and open-weights judges disagree, and on which conflict kind?</td><td>The capability-versus-scaffolding result</td></tr>
+      <tr><td>★ <strong>Order agreement</strong></td><td>Jaccard over final conflict sets across shuffled insertion orders</td><td>The confluence result</td></tr>
+      <tr><td><strong>Stale-detection rate</strong></td><td>Of nodes a full re-check finds newly conflicted, how many did invalidation flag?</td><td>The invalidation result</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3><span class="sn">3.4</span> ★★ Demo and experiment are different artifacts</h3>
+
+  <div class="callout warn">
+    <span class="lbl">The single largest risk to the mark</span>
+    <p>A live demonstration over 10–20 atomic specs is the right thing to <em>show</em> — legible, kinetic, lands the idea in ninety seconds. It is <strong>not evidence</strong>. The brief marks quality of evidence at 30% of the presentation and evaluation rigour at 25% of the report, and at n = 15 there are roughly 105 pairs and perhaps three to six true conflicts: one missed conflict swings recall by twenty points. There is no statistical power at that size.</p>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Harness</th><th>What runs</th><th>Produces</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Demo</strong></td><td>Plugin, 10–20 specs, live, conflicts surfacing on the button</td><td>Two minutes of the talk; one figure in the report</td></tr>
+      <tr><td>★ <strong>Batch</strong></td><td>Same engine, headless, over the full labelled corpus; replays insertion orders</td><td><strong>The main table.</strong> All three arms, all metrics, all seeds</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="col"><p>One engine, two entry points. The batch harness is roughly a day of work <em>if the engine has a clean API from the start</em>, and it is the difference between a demonstration and a study.</p></div>
+
+  <h4>What to cut from the first build</h4>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Painpoint</th><th>In the course project?</th><th>Reasoning</th></tr></thead>
+    <tbody>
+      <tr><td><strong>P1</strong> consolidation / n² conflicts</td><td class="pill ok">KEEP — the whole project</td><td>Claim, baseline, metrics, literature.</td></tr>
+      <tr><td><strong>P2</strong> linguistic ambiguity</td><td class="pill ok">KEEP</td><td>Inseparable from P1; it is why the judge must be a language model, which also satisfies the brief's requirement that the project use generative models.</td></tr>
+      <tr><td><strong>P3</strong> code vs specs</td><td class="pill">CUT → Future Work</td><td>Same machinery, doubles the labelling burden. The natural sequel.</td></tr>
+      <tr><td><strong>P4</strong> cross-release history</td><td class="pill no">CUT</td><td>Version control for a graph. Weeks of engineering, no measurable claim.</td></tr>
+      <tr><td><strong>P5</strong> live highlighting</td><td class="pill no">CUT HARDEST</td><td>The product's best feature and the paper's worst. Latency demos are not evidence. Build it in January.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="col"><p>P4 and P5 are what make the project "very demanding". Removing them turns a nine-month build into a nine-week one.</p></div>
+
+  <h3><span class="sn">3.5</span> Ground truth — three sources</h3>
+
+  <div class="col">
+  <p>Someone must decide that two specs conflict. Incremental checking does not answer this; it changes <em>when</em> you look, not <em>whether you know the right answer</em>. Three sources together:</p>
+
+  <ol>
+    <li>★ <strong>Adjudication log.</strong> Every button press records source text, atomizer version, nodes created, pairs judged, verdicts raised, <strong>and the author's ruling on each alert</strong>. Nine weeks of ordinary spec writing deposits a human-labelled corpus as a by-product. This is the primary source and it costs nothing beyond logging.</li>
+    <li><strong>Injected conflicts.</strong> Take a clean spec set, mutate criteria into known contradictions, measure detection. Gives controlled recall. ⚠ Design the mutations so they are not trivially recognisable as mutations.</li>
+    <li><strong>A public requirements corpus.</strong> External validity, so the main table is not single-source.</li>
+  </ol>
+  </div>
+
+  <h3><span class="sn">3.6</span> Risk register</h3>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Risk</th><th>Status</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Atomizer error corrupts the graph</strong></td><td class="pill ok">closed</td><td>Human reviews the split at the button, while the source text is fresh. Alternatively hold atomization fixed by using existing acceptance criteria as the atoms — they already are atomic spec nodes.</td></tr>
+      <tr><td><strong>Layer taxonomy is an uncontrolled variable</strong></td><td class="pill ok">closed</td><td>L0–L6 + C, fixed before Week 5, never varied. Layer design is design-tier work; the study only needs it stated and held constant.</td></tr>
+      <tr><td><strong>No ground truth</strong></td><td class="pill">managed</td><td>§3.5 — adjudication log plus injected conflicts plus a public corpus. ⚠ Logging must start on day one or the corpus does not exist by November.</td></tr>
+      <tr><td>★ <strong>n too small for any conclusion</strong></td><td class="pill no">open — the live risk</td><td>The demo corpus cannot be the evaluation corpus. §3.4. Needs a decision on the public corpus by early October.</td></tr>
+      <tr><td><strong>Scope creep into the plugin</strong></td><td class="pill">managed</td><td>§2.6 — Python engine first, thin client last, cuttable.</td></tr>
+      <tr><td>★ <strong>Reads as a software-engineering tool, not a foundation-models project</strong></td><td class="pill">managed</td><td>§3.0 — the eligibility argument is explicit, the title is about models rather than about the tool, and the open-weights arm puts a foundation model visibly at the centre of the method and the compute table.</td></tr>
+      <tr><td><strong>Prior-work disclosure</strong></td><td class="pill">managed</td><td>State plainly in the proposal what existed before September (the repository, 11 specs, 137 criteria) and what the project adds. Originality is 25% of both marks; the disclosure protects it rather than threatening it.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3><span class="sn">3.7</span> Dates and budget</h3>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Date</th><th>Obligation</th><th>What must be true</th></tr></thead>
+    <tbody>
+      <tr><td><strong>18 Sep</strong></td><td>Team registration; solo work needs approval by email</td><td>★ Email sent. Topic not required yet.</td></tr>
+      <tr><td><strong>~28 Sep</strong></td><td>Two-day trial run</td><td>C-layer check running on real specs; one number printed — e.g. invariant violations found across the existing criteria.</td></tr>
+      <tr><td><strong>2 Oct</strong></td><td>Proposal, 15%, 2–3 pages, NeurIPS LaTeX</td><td>Claim, 5–8 positioned papers, baseline number, evaluation plan, compute arithmetic, weekly plan, risks, backup project.</td></tr>
+      <tr><td><strong>6 Nov</strong></td><td>Progress check-in, ungraded</td><td>Honest status. Nothing here is marked — say what is actually blocked.</td></tr>
+      <tr><td><strong>27 Nov / 4 Dec</strong></td><td>Presentation, 20%, 10 min + 5</td><td>Claim in the first two minutes; demo ≤ 2 min; results 4–5 min.</td></tr>
+      <tr><td><strong>4 Dec</strong></td><td>Final report, 25%, 6 pages + code link</td><td>Reproducible main table, README, seeds.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ Two constraints to settle before the proposal</span>
+    <p><strong>Compute — two currencies, and the proposal must show both.</strong> The hosted judge is billed in tokens: <strong>per-judgment token cost × pair count × arms × repeats</strong>. The open-weights judge is billed in GPU-hours: <strong>pair count × arms × repeats × seconds per judgment ÷ 3600</strong>, on a 7–8B model in 4-bit inside the ~15 GB envelope. The second figure is what the brief's compute section is actually asking for, and the exhaustive arm is what makes it non-trivial — 137 criteria is 9,316 pairs, so the replay factor for the order-independence experiment must be chosen with the ceiling in mind, not discovered against it. ⚠ Every paid run needs explicit approval before it executes.</p>
+    <p><strong>Code disclosure.</strong> The brief requires a public code link with a README and seeds. That is in direct tension with keeping the product private. <strong>Resolve it by splitting:</strong> publish the evaluation harness and the measured blocking component — enough to reproduce the main table — and keep the shipped layer schema, the editor integration and the product surface out of it. Decide this before the proposal, because it changes what is promised in it.</p>
+  </div>
+
+  <h3><span class="sn">3.8</span> Working alone <span class="attmark no">not for the attachment</span></h3>
+
+  <div class="col">
+  <p>Two reasons hold up, and one does not.</p>
+
+  <ul>
+    <li>★ <strong>Commercial intent.</strong> Intended for commercial use after the course; sole authorship keeps ownership unambiguous. Joint authorship on a three-person course project creates real ambiguity under university IP policy. This is the strongest available reason and the only one that cannot be argued with.</li>
+    <li><strong>Unequal prior context.</strong> The project builds on an existing personal repository — 11 specifications, 137 acceptance criteria, a governance process — which supplies the labelled corpus but would put teammates at an unequal starting point and make the contributions appendix lopsided.</li>
+    <li>⛔ <strong>Do not write: "meetings waste time and I cannot control others' progress."</strong> It reads as impatience with collaborators and invites the reply that coordination is part of the exercise. The same underlying fact is stated correctly as the second bullet.</li>
+  </ul>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ PART 4 ══════════════════════════ -->
+<section class="lecture" id="governance">
+<div class="wrap">
+
+  <div class="lechead">
+    <span class="lecnum">4</span>
+    <div>
+      <h2>Governance, decisions, and what is still open</h2>
+      <p>Where the tool lives in this repository, what has been settled, and what has not.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">4.1</span> Where this lives — and why not in <code>src/</code></h3>
+
+  <div class="col">
+  <p>The same three reasons that keep the literature loop out of <code>src/</code> apply here without modification:</p>
+
+  <ul>
+    <li><strong><code>PG-8</code></strong> — this repository's tree must remain a superset of the pipeline's <code>src/**</code> so absorption is a merge and not a restructuring. A spec tool under <code>src/</code> pollutes that merge for zero benefit.</li>
+    <li><strong>No seat, no domain.</strong> It produces nothing anyone would trade on, so it sits outside the authority model entirely — which is precisely why it needs no governance.</li>
+    <li><strong>Vision §7</strong> lists durable non-goals about the <em>product</em>. A dev-time tool does not violate them, but placing it in <code>src/</code> would make it look as though it did, to a future reader who has only the tree.</li>
+  </ul>
+
+  <p><strong>So: <code>tools/sdd_compiler/</code>, or a skill wrapping it</strong> — the same category as <code>fmp-api</code>: hand-built, dev-time, authoritative about something external, governing nothing. Its outputs land in <code>sdd/design/</code>.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ The drift to guard against</span>
+    <p>This tool has commercial intent and will grow. <strong>Do not let it acquire tendrils into governed paths.</strong> If any part of it is ever consumed by something on the path to a number someone trades on, it enters under a spec with acceptance criteria, a trace and evaluation — not as a <code>tools/</code> import.</p>
+  </div>
+
+  <h3><span class="sn">4.2</span> Decisions log</h3>
+
+  <div class="col">
+  <p>Append-only. Each entry is dated and carries the reasoning that makes it re-checkable later.</p>
+
+  <ul>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Build the SDD compiler; it is the course project.</strong> Rationale: it beats the retrieval/literature-loop alternative on both intentions — a commercial-IP solo justification that an instructor cannot dispute, and painpoints that are live and measurable in this repository today.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Scope to P1 + P2 only.</strong> P3 becomes Future Work; P4 and P5 are cut. Rationale: they are the two that make the project a nine-month build, and neither carries a measurable claim.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Layers fixed at L0–L6 plus a cross-cutting C invariant set.</strong> Rationale: invariants had no home in the original seven; and a taxonomy that is varied during the study makes the study uncontrolled.</li>
+    <li>★ <strong>2026-09-10 (S1)</strong> — <strong>Demo corpus ≠ evaluation corpus.</strong> One engine, two harnesses. Rationale: n = 15 has no statistical power, and evidence is 30% of the presentation mark.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong><code>checked_against</code> is mandatory from the first build.</strong> Rationale: without it, staleness is not computable and incremental checking degenerates into full re-checking, which removes the contribution.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Status splits into <code>draft_status</code> × <code>check_status</code>.</strong> Rationale: authoring state and verification state are independent; <code>make</code>'s own distinction.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Python engine, CLI + JSON protocol; VS Code extension is a thin client built last.</strong> Rationale: the batch harness comes free, the engine stays importable here, and the extension is cuttable if December tightens.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Build order: C-layer invariant checking first.</strong> Rationale: cheap, O(n·k), needs no labelled data, and produces value on real specs before the expensive machinery exists. It is also the trial-run number for the 2 Oct proposal.</li>
+    <li>★ <strong>2026-09-10 (S2)</strong> — <strong>Eligibility argued explicitly, not assumed (§3.0).</strong> Rationale: the brief admits any topic that "works with generative models or foundation models", and this project neither trains nor modifies one. The model is nonetheless the method — it atomizes and it judges every pair — and the brief's own line <em>"if your project uses an LLM as part of the method, describe that in the Method section"</em> shows such projects are anticipated. The exposure is framing, not eligibility, so the title and abstract are about model behaviour and the tool is named only in the method.</li>
+    <li>★ <strong>2026-09-10 (S2)</strong> — <strong>Judge model becomes a crossed factor: hosted × 7–8B open weights in 4-bit.</strong> Rationale: three payoffs for one extra table column — a compute budget denominated in GPU-hours rather than "almost none", reproducibility that does not depend on the reader holding API credits, and a capability-versus-scaffolding result that is interesting in either direction.</li>
+    <li><strong>2026-09-10 (S2)</strong> — <strong>Category is novel application</strong>, not benchmark study. Rationale: both fit; novel application is the honest description of building an evaluation for a field that lacks one, and it frames the contribution as the evaluation rather than the leaderboard.</li>
+    <li><strong>2026-09-10 (S1)</strong> — <strong>Lives in <code>tools/</code>, never <code>src/</code>.</strong> Rationale: <code>PG-8</code>, no seat, and the appearance of violating vision §7.</li>
+  </ul>
+  </div>
+
+  <h3><span class="sn">4.3</span> Rejected alternatives</h3>
+
+  <div class="col">
+  <p>Rejections are worth as much as decisions — they stop the next session re-proposing them.</p>
+
+  <ul>
+    <li><strong>Rejected — typing-time analysis.</strong> ✗ Technically harder and it interrupts the thought being written. The button is the commit point.</li>
+    <li><strong>Rejected — spec recommendation / autocomplete.</strong> ✗ A different and much harder product, competing with the author's own thinking at the worst moment.</li>
+    <li><strong>Rejected — embedding similarity as the blocking key.</strong> ✗ A requirement and its negation embed near-identically. Layer and edge structure are the blocking signal; similarity may supplement but must never be the only one.</li>
+    <li><strong>Rejected — turning SDD into a formal specification language.</strong> ✗ Destroys the one advantage SDD has. The ambiguity is the feature; the tool exists to survive it, not to remove it.</li>
+    <li><strong>Rejected — the live demo as the evaluation.</strong> ✗ §3.4. It is a demonstration, which the brief explicitly names as the wrong shape of project.</li>
+    <li><strong>Rejected — leading the course claim with cost reduction.</strong> ✗ The absolute dollar figures are too small to impress. The accuracy gap between single-shot and pairwise is the finding.</li>
+    <li><strong>Rejected — hand-authored <code>family</code> groupings.</strong> ✗ Rots. Derive and cache.</li>
+  </ul>
+  </div>
+
+  <h3><span class="sn">4.4</span> Open questions</h3>
+
+  <div class="col">
+  <ul>
+    <li>★ <strong>Which public requirements corpus?</strong> Blocks the n-too-small risk and the proposal's evaluation plan. Needs an answer by late September.</li>
+    <li><strong>Which specific open-weights model?</strong> Settled in principle as a crossed factor (§3.2); the remaining question is which 7–8B model in 4-bit fits the ~15 GB envelope with a long enough context for two atomic specs plus instructions, and whether it is competent at <em>subsumption</em> rather than only at flat contradiction.</li>
+    <li><strong>How many replays for the order-independence experiment?</strong> Directly multiplies the GPU-hour budget. Needs a power argument, not a round number.</li>
+    <li><strong>Are the existing 137 acceptance criteria usable as atoms directly?</strong> If so, atomization is held fixed for the study and one whole error source leaves the experiment.</li>
+    <li><strong>What exactly makes two specs "conflict" for labelling purposes?</strong> The conflict kinds in §2.3 are a first cut; the adjudication log will pressure-test them.</li>
+    <li><strong>How is the C set authored?</strong> Extracted from <code>constitution.md</code> automatically, or hand-written once? Affects week-one effort.</li>
+    <li><strong>Does the published code split (§3.7) satisfy the brief's reproducibility requirement?</strong> Worth asking the instructor directly rather than assuming.</li>
+  </ul>
+  </div>
+
+  <h3><span class="sn">4.5</span> References — <code>PG-11</code> table, not yet discharged</h3>
+  <a id="references"></a>
+
+  <div class="callout warn">
+    <span class="lbl">⚠ Deliberately empty</span>
+    <p>No source below has been retrieved or verified. The literatures are named from working knowledge so the search has a starting point — <strong>they are not citations and must not be used as citations</strong>. Fill this table from primary sources before adopting any method, per <code>PG-11</code>: primary source by DOI, the regime the result was established in, and at least one limiting or dissenting work. Where a search runs and finds nothing, record <em>"no dissent found"</em> — never "undisputed".</p>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Literature</th><th>What it supplies</th><th>Primary source (DOI)</th><th>Dissent</th><th>Venue tier</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Blocking / record linkage / entity resolution</strong></td><td>The candidate-pair framing and all three headline metrics</td><td><em>to retrieve</em></td><td><em>to retrieve</em></td><td>—</td></tr>
+      <tr><td><strong>Inconsistency detection in NL requirements</strong></td><td>Prior art on the exact task, mostly pre-LLM; the comparison the project must position against</td><td><em>to retrieve</em></td><td><em>to retrieve</em></td><td>—</td></tr>
+      <tr><td><strong>Natural language inference</strong></td><td>The pairwise judgment itself — entailment / contradiction / neutral</td><td><em>to retrieve</em></td><td><em>to retrieve</em></td><td>—</td></tr>
+      <tr><td><strong>LLM-as-judge reliability</strong></td><td>Positional bias, self-consistency, verdict stability — directly relevant to the confluence claim</td><td><em>to retrieve</em></td><td><em>to retrieve</em></td><td>—</td></tr>
+      <tr><td><strong>Incremental / online computation</strong></td><td>The invalidation rule; build-system dependency semantics</td><td><em>to retrieve</em></td><td><em>to retrieve</em></td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="exercises">
+    <h4>Preparing the reduced version for the professor</h4>
+    <p><strong>Keep</strong> the sections marked <span class="attmark">attachment</span>: §1.1, §1.2, §2.1, §2.2, §2.3, <strong>§3.0</strong>, §3.1, §3.2. Those describe the idea, the problem, the design and the claim.</p>
+    <p>★ <strong>§3.0 is the one to keep even if the attachment has to shrink further.</strong> It answers the first question a reader of this proposal will have — <em>where is the model?</em> — before they have to ask it.</p>
+    <p><strong>Drop</strong> everything else — in particular §3.8 (the reasoning about working alone belongs in the body of the email, in its own words, not in an appendix), §3.4's rubric arithmetic, §3.7's mark-by-mark timetable, and all of Part 4. A reader outside this repository has no use for the decisions log, and the mark strategy should not be visible to the person assigning the mark.</p>
+    <p>⚠ <strong>Strip §4.5 entirely</strong> rather than attaching it empty. An empty reference table is the right discipline internally and reads as an unfinished literature review externally.</p>
+  </div>
+
+</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="col">
+      <p><strong>Design tier — non-authoritative.</strong> Opened 2026-09-10. Nothing in this file binds. Anything here that still holds at release close must be promoted into a spec, a constitution amendment, or the vision — otherwise it freezes with this file and is lost.</p>
+      <p><strong>Companion reading:</strong> <code>docs/lectures/L4-6-retrieval-and-the-literature-loop.html</code> §6.8, for the argument about why a dev-time tool stays out of <code>src/</code> — applied here unchanged.</p>
+    </div>
+  </div>
+</footer>

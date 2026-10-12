@@ -1,0 +1,3 @@
+{"from": "N-000002", "type": "uses_term", "to": "term:actor_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:live_cli_input", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:posttooluse_hook_adapter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

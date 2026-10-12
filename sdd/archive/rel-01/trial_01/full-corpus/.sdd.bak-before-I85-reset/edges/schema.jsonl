@@ -1,0 +1,10 @@
+{"from": "N-000228", "type": "uses_term", "to": "term:anthropic_api_backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000228", "type": "uses_term", "to": "term:anthropic_api_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000228", "type": "uses_term", "to": "term:anthropic_sdk_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000228", "type": "uses_term", "to": "term:prompt", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000228", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000238", "type": "uses_term", "to": "term:question_kind", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000238", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000659", "type": "uses_term", "to": "term:check", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000659", "type": "uses_term", "to": "term:direction_rule", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000659", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

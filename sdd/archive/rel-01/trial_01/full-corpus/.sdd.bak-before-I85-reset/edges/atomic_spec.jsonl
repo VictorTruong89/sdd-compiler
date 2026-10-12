@@ -1,0 +1,7 @@
+{"from": "N-000771", "type": "uses_term", "to": "term:atomic_spec", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000771", "type": "uses_term", "to": "term:checked_graph", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000771", "type": "uses_term", "to": "term:compiler", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000771", "type": "uses_term", "to": "term:contradiction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000771", "type": "uses_term", "to": "term:duplication", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000771", "type": "uses_term", "to": "term:markdown_spec_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000771", "type": "uses_term", "to": "term:under_specification", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

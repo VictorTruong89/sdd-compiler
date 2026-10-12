@@ -1,0 +1,2 @@
+{"from": "N-000423", "type": "subsumes", "to": "N-000485", "provenance": "judgment", "judgment": "J-007042", "rationale": "Claim A states generated Markdown views are in scope; Claim B describes a specific implementation detail about how the generated Markdown card should behave, which is a particular instance of generated Markdown views.", "quotes": ["Generated Markdown views", "generated Markdown card"]}
+{"from": "N-000423", "type": "uses_term", "to": "term:markdown_view", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

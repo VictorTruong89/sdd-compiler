@@ -1,0 +1,5 @@
+{"from": "N-000003", "type": "uses_term", "to": "term:inventory_of_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000003", "type": "uses_term", "to": "term:markdown_spec_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000788", "type": "uses_term", "to": "term:batch_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000788", "type": "uses_term", "to": "term:markdown_spec_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000788", "type": "uses_term", "to": "term:spec_tree", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

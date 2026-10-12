@@ -1,0 +1,4562 @@
+===== Victor Truong =====
+2d0e59d9-4727-48e3-9b7b-694ef2b62482: brainstorm the working principle first.
+First problem is that SDD specs is vague, not concise by wording like coding strict vocabulary (if, else, for, while, function names, etc…). If enforce strict vocabulary, we likely develop a new programming language like Python.
+Second, are you aware of any previous attempt to enforce strict, systematic prompt before?
+Third, how can you reframe the requirements of this idea so that we can come up with technical solutions (just in fundamental ground)
+460d2251-1a0c-4dac-8b0a-09ad7dde8322: <details type="reasoning" done="true" duration="0" label="Thinking">
+<summary>Thinking for 0 seconds</summary>
+&gt; The user wants me to brainstorm the working principle of the Product Spec Compiler &amp; IDE. They raise three specific points:
+&gt;
+&gt; 1. The fundamental tension: specs are vague natural language vs. code has strict vocabulary. If you enforce strict vocabulary on specs, you end up just creating another programming language.
+&gt;
+&gt; 2. Are there previous attempts to enforce strict, systematic prompts?
+&gt;
+&gt; 3. How to reframe the requirements so we can think about technical solutions at a fundamental level.
+&gt;
+&gt; Let me think deeply about each.
+&gt;
+&gt; **Point 1: The Vocabulary Problem**
+&gt;
+&gt; This is a really sharp observation. There's a spectrum:
+&gt;
+&gt; - On one end: completely free-form natural language (vague, ambiguous, but easy to write)
+&gt; - On the other end: formal programming languages (precise, but hard to write)
+&gt;
+&gt; Forcing vocabulary onto specs just recreates a programming language, defeating the purpose of spec-driven development. Maybe the real fix isn't constraining the input but building a system that processes vague input and refines it iteratively through dialogue and validation — less like a compiler, more like an interpreter with a REPL that questions, reflects understanding back, and converges. This also echoes type inference systems, where the system deduces structure rather than demanding it upfront.
+&gt;
+&gt; I'm now cataloguing prior attempts at structured prompting: frameworks like CRISP, RACE, APE, prompt DSLs, schemas like function-calling formats, older formal methods like Z notation, VDM, TLA+, Alloy, plus UML and BDD's Gherkin syntax — most of these either got too rigid or too complex to gain traction.
+&gt;
+&gt; Then I start reframing the real problem: it's not the format of specs, but that humans don't fully know their own intent upfront, and there's no way to validate a spec matches intent until code actually exists.
+&gt;
+&gt; So I'm shifting the framing from &quot;compiling specs&quot; to &quot;converging on intent,&quot; and from &quot;strict vocabulary&quot; to &quot;constraint propagation and validation&quot; — building specs through dialogue and evidence rather than upfront documents. This points toward approaches like conversational refinement, where the system asks clarifying questions, and executable specifications that give instant feedback through tests or simulations.
+&gt;
+&gt; I'm also thinking of specs as a knowledge graph rather than a linear document — capturing requirements, constraints, dependencies, and decisions as connected nodes — combined with progressive formalization that guides someone from a vague idea to a precise, formal spec through iteration. Now I want to organize these ideas into a coherent brainstorm.
+&gt;
+&gt;
+</details>
+# Brainstorming the Working Principle
+
+---
+
+## Problem 1: The Vocabulary Spectrum Trap
+
+Your observation is extremely sharp. Let me formalize it.
+
+### The Spectrum
+
+There is a fundamental spectrum in how humans express intent to machines:
+
+```
+VAGUE                                                    PRECISE
+  ←─────────────────────────────────────────────────────────→
+
+  Natural Language          Constrained NL        Programming Language
+  (Markdown specs)          (???)                 (Python, Rust, etc.)
+
+  ✅ Easy to write          ???                   ✅ Unambiguous
+  ✅ Accessible                                   ✅ Machine-executable
+  ❌ Ambiguous                                    ❌ Hard to write
+  ❌ No validation                                ❌ Requires expertise
+  ❌ No compiler                                  ✅ Has compiler
+```
+
+Your point is that if we try to solve ambiguity by enforcing strict vocabulary and rigid structure on specifications, we inevitably **slide toward the right end of the spectrum** — and at some point, we've just invented another programming language.
+
+And if we invent another programming language, we've **defeated the entire purpose of SDD**, which was to let people express intent *without* needing to write code.
+
+### The Trap Stated Formally
+
+> **The Vocabulary Trap:** Any attempt to make specifications precise enough for machines to compile will, if taken to its logical conclusion, converge toward a programming language — thereby recreating the exact problem SDD was designed to solve.
+
+This is not a new trap. It has been sprung many times before, which leads to your second question.
+
+---
+
+## Problem 2: Previous Attempts at Strict, Systematic Specification
+
+Yes — there is a **long history** of attempts. Almost all of them fell into the vocabulary trap to varying degrees. Studying them is instructive because it shows us what works, what fails, and why.
+
+### Attempt 1: Formal Specification Languages (1970s–2000s)
+
+Languages like **Z Notation, VDM, TLA+, Alloy, and B Method** attempted to create mathematically rigorous specification languages.
+
+```
+Example (Z Notation):
+┌─ AddUser ─────────────────────┐
+│ ΔUserDatabase                  │
+│ name?: USERNAME                │
+│ name? ∉ registered             │
+│ registered' = registered ∪ {name?} │
+└────────────────────────────────┘
+```
+
+**What happened:**
+- Extremely precise and verifiable
+- Almost nobody used them outside academia and safety-critical systems
+- Too hard to write, too hard to read for non-specialists
+- **Verdict: Fell fully into the vocabulary trap.** Became a programming language for mathematicians.
+
+### Attempt 2: UML and Model-Driven Architecture (1990s–2010s)
+
+The OMG (Object Management Group) pushed **UML** as a visual specification language, with the dream that you could generate code directly from diagrams.
+
+**What happened:**
+- Sequence diagrams, class diagrams, state machines — rich visual vocabulary
+- In practice, diagrams became as complex as the code they described
+- Maintaining diagram-code synchronization was a nightmare
+- **Verdict: Shifted complexity from text to diagrams.** Did not reduce it.
+
+### Attempt 3: BDD / Gherkin Syntax (2000s–present)
+
+**Behavior-Driven Development** introduced **Gherkin**, a constrained natural language for writing executable specifications:
+
+```gherkin
+Feature: User Login
+  Scenario: Successful login with valid credentials
+    Given a registered user with email "alice@test.com"
+    And the user's password is "secure123"
+    When the user submits the login form with correct credentials
+    Then the user should be redirected to the dashboard
+    And a session token should be created
+```
+
+**What happened:**
+- This is probably the **most successful** attempt at constrained specification language
+- It occupies a genuine **middle ground** on the spectrum
+- But in practice, writing good Gherkin still requires skill
+- Gherkin scenarios proliferate and become their own maintenance burden
+- The `Given/When/Then` structure can't capture all types of requirements (architecture, performance, data models)
+- **Verdict: Partial success.** Found a useful niche but couldn't generalize to full product specification.
+
+### Attempt 4: Design by Contract — Eiffel (1986–present)
+
+Bertrand Meyer's **Eiffel** language embedded specifications directly into code via preconditions, postconditions, and invariants:
+
+```eiffel
+deposit (amount: INTEGER)
+    require
+        positive_amount: amount > 0
+    do
+        balance := balance + amount
+    ensure
+        balance_increased: balance = old balance + amount
+    end
+```
+
+**What happened:**
+- Elegant idea — the spec IS the code
+- But it still requires you to write code to write the spec
+- **Verdict: Made code more self-documenting, but didn't help non-coders specify intent.**
+
+### Attempt 5: Structured Prompt Engineering (2023–present)
+
+In the AI era, several frameworks have tried to systematize prompt writing:
+
+| Framework | Approach |
+|-----------|----------|
+| **CRISP** | Context, Role, Intent, Specifics, Presentation |
+| **RACE** | Role, Action, Context, Expectation |
+| **CO-STAR** | Context, Objective, Style, Tone, Audience, Response |
+| **LMQL** | Programming language for LLM queries with constraints |
+| **Guidance (Microsoft)** | Templating language for constrained LLM generation |
+| **BAML (Boundary)** | Typed function signatures for AI calls |
+| **Instructor** | Pydantic-based structured output extraction |
+
+**What happened:**
+- These help with **individual prompt quality** but don't solve **product-level specification**
+- They're focused on shaping AI output format, not on discovering and validating human intent
+- LMQL and Guidance are sliding toward the programming language end again
+- **Verdict: Useful tools, wrong level of abstraction.** They optimize the AI interface, not the human intent discovery process.
+
+### The Pattern Across All Attempts
+
+```
+Every attempt falls on the same spectrum:
+
+  Too Loose                                    Too Strict
+  (nobody validates)                           (nobody writes)
+      ↑                                             ↑
+  Markdown specs                              Formal methods
+  Free-form prompts                           LMQL / TLA+
+                          ↑
+                    The Sweet Spot?
+                    BDD/Gherkin got closest
+                    but couldn't generalize
+```
+
+### The Key Lesson
+
+> **No fixed point on the vocabulary spectrum works for all situations.** The right level of precision depends on the context, the domain, the team, and the specific requirement being expressed.
+
+This is the critical insight we need for reframing.
+
+---
+
+## Problem 3: Reframing the Requirements
+
+Here is where we need to think differently. Let me challenge the assumptions embedded in the original idea and propose a different framing.
+
+### Assumption Challenge
+
+The original idea says **"Product Spec Compiler."** The word **"compiler"** implies:
+
+```
+Input Document (spec) → Compilation → Output (validated spec / code)
+```
+
+But a compiler requires **well-defined input syntax**. And we just established that enforcing well-defined syntax leads to the vocabulary trap.
+
+So the metaphor of a **compiler** may be misleading. Let's look for a better metaphor.
+
+### Reframing: What Are We Actually Trying to Do?
+
+Strip away all the implementation assumptions. What is the **fundamental problem**?
+
+> **A human has a vague, incomplete, partially contradictory mental model of what they want. We need a process that converges this fuzzy intent into a precise, validated, implementation-ready specification — without requiring the human to learn a formal language.**
+
+Let's decompose this:
+
+```
+FUNDAMENTAL REQUIREMENTS:
+
+R1: INTENT DISCOVERY
+    Humans don't fully know what they want.
+    The system must help them DISCOVER their intent,
+    not just DOCUMENT it.
+
+R2: AMBIGUITY RESOLUTION
+    Natural language is inherently ambiguous.
+    The system must DETECT ambiguity and RESOLVE it
+    through interaction, not vocabulary enforcement.
+
+R3: CONSISTENCY VALIDATION
+    New specs must not contradict existing product behavior,
+    previous decisions, or each other.
+    The system must CHECK consistency against product history.
+
+R4: PROGRESSIVE FORMALIZATION
+    Start vague, get precise incrementally.
+    Don't demand precision upfront.
+    Let the human move at their own pace from fuzzy to formal.
+
+R5: EXECUTABLE FEEDBACK
+    The only way to truly validate a spec is to SEE its
+    consequences. The system must be able to generate
+    tangible artifacts (tests, prototypes, simulations)
+    that the human can evaluate.
+
+R6: LEARNING / MEMORY
+    Each completed cycle should make the system smarter
+    about THIS specific product. The system should build
+    a growing model of the product's patterns, constraints,
+    and vocabulary.
+```
+
+### The Better Metaphor: Not a Compiler, But a Dialogue System with Memory
+
+Instead of thinking **compiler**, think about these alternative metaphors:
+
+#### Metaphor A: The Senior Engineer Pair Partner
+
+When a junior developer has a vague idea, they don't write a formal spec. They talk to a senior engineer who:
+
+- Asks probing questions: *"What happens if the user is logged out?"*
+- Points out contradictions: *"But last sprint we decided X, this conflicts"*
+- Suggests patterns: *"We usually handle this with a queue"*
+- Sketches quick prototypes: *"Let me show you what that would look like"*
+- Remembers everything: *"We tried that in Q2, here's why it didn't work"*
+
+The specification **emerges from dialogue**, not from a document.
+
+#### Metaphor B: The Type Inference Engine
+
+In TypeScript or Haskell, you don't always write types explicitly. The compiler **infers** types from context and tells you when something doesn't make sense.
+
+Similarly, a spec system could:
+- Let humans express intent loosely
+- **Infer** the detailed requirements from context and product history
+- **Flag** when inferred requirements conflict
+- **Ask** the human to disambiguate only when necessary
+
+#### Metaphor C: The Test-Driven Spec
+
+In TDD, you write a test before you write code. The test is a **concrete, executable example** of what the code should do.
+
+What if specs worked the same way?
+- Instead of writing abstract requirements, you provide **concrete examples**
+- The system **generalizes** from your examples to infer the broader requirement
+- The system generates **counter-examples** to probe edge cases
+- You confirm or deny the counter-examples, progressively refining the spec
+
+---
+
+### The Reframed Technical Problem
+
+Now let me restate the problem in terms that point toward **technical solutions**:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│          THE REFRAMED PROBLEM STATEMENT                  │
+│                                                          │
+│  Build a system that:                                    │
+│                                                          │
+│  1. ACCEPTS vague natural language input                 │
+│     (no strict vocabulary required)                      │
+│                                                          │
+│  2. CONVERGES toward precise specifications through      │
+│     multi-turn interaction (not single-pass compilation) │
+│                                                          │
+│  3. GROUNDS every specification element in something     │
+│     verifiable:                                          │
+│     - A test case                                        │
+│     - A code sketch                                      │
+│     - A counter-example                                  │
+│     - A reference to existing product behavior           │
+│                                                          │
+│  4. VALIDATES consistency against a growing knowledge    │
+│     base of the product's history, decisions, and        │
+│     constraints                                          │
+│                                                          │
+│  5. LEARNS from each completed cycle to become more      │
+│     effective at intent discovery for THIS product       │
+│                                                          │
+│  The output is NOT a markdown document.                  │
+│  The output is a VALIDATED SPECIFICATION GRAPH:          │
+│  a structured, interconnected, tested set of             │
+│  requirements with full traceability.                    │
+└──────────────────────────────────────────────────────────┘
+```
+
+### The Three Fundamental Technical Pillars
+
+From this reframing, three core technical challenges emerge:
+
+```
+PILLAR 1: INTERACTIVE CONVERGENCE ENGINE
+├── How do you systematically narrow vague intent
+│   into precise specification through dialogue?
+├── What questions should be asked and in what order?
+├── When is a specification "converged enough"?
+└── Technical territory: dialogue systems, active learning,
+    information-theoretic question selection
+
+PILLAR 2: GROUNDING & VALIDATION MECHANISM
+├── How do you check that a spec element is meaningful
+│   and consistent?
+├── Can you generate executable artifacts (tests, code
+│   sketches) from partial specs to provide feedback?
+├── Can you detect conflicts with existing product state?
+└── Technical territory: constraint satisfaction, SAT solvers,
+    knowledge graphs, code generation, test generation
+
+PILLAR 3: PRODUCT-SPECIFIC LEARNING LOOP
+├── How does the system accumulate knowledge about
+│   THIS product over time?
+├── How do real-world outcomes feed back into the system?
+├── How do you represent product knowledge for retrieval
+│   and reasoning?
+└── Technical territory: RAG, episodic memory, knowledge
+    graphs, fine-tuning, in-context learning
+```
+
+### What This Reframing Changes
+
+The critical shift is:
+
+| Original Framing | Reframed |
+|---|---|
+| Write better specs | Discover intent through dialogue |
+| Enforce strict vocabulary | Accept vague input, resolve ambiguity interactively |
+| Compile a document | Converge a conversation into a validated graph |
+| Review markdown | Review executable artifacts (tests, prototypes) |
+| Static spec document | Living, evolving specification with history |
+| Generic tool | Product-specific system that learns over time |
+
+---
+
+### The Fundamental Ground Truth
+
+If I had to reduce the entire working principle to one sentence, it would be:
+
+> **Don't make humans write better specifications. Build a system that asks better questions — grounded in product knowledge and validated by executable evidence — until the specification emerges as a byproduct of the conversation.**
+
+---
+
+Shall we now dig into one of the three pillars and explore concrete technical architectures for a hackathon MVP?
+
+
+
+===== Victor Truong =====
+c8903256-4b36-4bbb-a4fc-a6d7ae35b728: let’s call this project as a SDD-compiler.
+Assumption #1 : SDD specs start from scratch. Assumption #2 : Multiple people contribute to the SDD specs, and coordination is a major requirement. Assumption #3 : this SSD-compiler is for coding only, not for business or other general purposes.
+My naive solution is that agentic-AI will build an interactive graph from the specs. This graph should be similar to how CMake and Make graph the code base before compilation. The graph is a network with each node is a single requirement.
+Second, all the nodes are meant for the AI-agents. For human interface, to reduce complexity, nodes should be grouped into big chunks or families.
+Third, by SSD popular techniques, business requirements always come first. Then comes the engineering / technical requirements. Then down the road, what next? I don’t know. But treat them as formal layers. Business requirements form the root / first layer of graph (containing multiple nodes). Engineering/technical requirements form the 2nd layer. Test, etc. form subsequent layers. The layers are arranged to support code generation. Suggest what are the formal layers required in generic code generating.
+3 points above are meant for architecture.
+
+Fourth, for multi-people collaboration, assume that all people work on the same version, each person work in series, for simplicity. Ignore all versioning conflict resolve at this moment.
+Fifth, SSD-compiler let human users write the sentences, vocabularies freely. But enforce that after each specs or each idea, user needs to press the button to generate the new graph-nodes, processing the nodes.
+Sixth, highlight immediately spec-conflict after each interactive nodes. But do not suggest how to fix, unless user explicitly ask for help. Because human user may already has some idea, or they don’t want to be disturbed the flow of thinking.
+
+These are some of my initial ideas. I’ll brainstorm more. But now, you consolidate the idea into solid structure and represent it to me.
+Then are you aware of any established methods, products, etc. that are similar to my idea.
+3a82f235-9120-4a48-87ae-99fcd1254e66: <details type="reasoning" done="true" duration="0" label="Thinking">
+<summary>Thinking for 0 seconds</summary>
+&gt; The user wants me to:
+&gt;
+&gt; 1. Consolidate their ideas into a solid structure
+&gt; 2. Identify the formal layers required for generic code generation
+&gt; 3. Research and present similar established methods/products
+&gt;
+&gt; Let me organize this carefully.
+&gt;
+&gt; Their key ideas:
+&gt; - Graph-based representation (like CMake/Make dependency graphs)
+&gt; - Each node = single requirement
+&gt; - Nodes grouped into families for human interface
+&gt; - Layered architecture: Business → Engineering → ... → Code generation
+&gt; - Serial collaboration (one person at a time, no version conflicts)
+&gt; - Free-form input, but explicit &quot;compile&quot; button to generate/process nodes
+&gt; - Immediate conflict highlighting, no unsolicited fix suggestions
+&gt;
+&gt; Let me think about the formal layers for code generation. In a typical SDD workflow that targets code generation, you'd need:
+&gt; I'm sketching out a layered pipeline running from business requirements down through functional specs, architecture, API contracts, data models, logic rules, test specs, implementation constraints, and finally the generated code itself, but I'm second-guessing whether this ordering fully captures the dependencies between layers.
+&gt;
+&gt; Layer 8 would map WHAT to generate—file structure, tech stack mapping, dependency wiring—feeding into actual code generation. For comparable tools and methods, I'm thinking of requirements management platforms like IBM DOORS, Jama Connect, and Polarion, constrained-language approaches like EARS, model-based engineering with SysML, and newer spec-to-code tools like Replit Agent or Cursor Composer, though none are as structured as what I'm envisioning.
+&gt;
+&gt; I'm also considering domain discovery and design methods—Event Storming, Domain-Driven Design, Specification by Example, ATDD—plus build systems like CMake and Bazel that use dependency graphs, which mirrors the user's analogy. Knowledge graph tools like Neo4j could represent requirement relationships, while flat tools like Notion, Linear, or Jira lack that graph structure. I'm also recalling AI-era tools like Sweep that attempt similar automation.
+&gt;
+&gt; I'm noting AI-native development tools like Factory AI, Devin, GPT Engineer, and Smol Developer that go from spec to code, along with MetaGPT, which is especially relevant since it simulates a software company with PM, architect, and engineer agents producing intermediate artifacts like PRDs before generating code. I'm also thinking about traceability and MBSE tools like Reqtify, Capella, and Enterprise Architect that handle graph-based requirement modeling, which could inform how conflict detection between requirements might work.
+&gt;
+&gt; For conflict detection specifically, constraint programming and SAT solvers seem relevant, as does ontology reasoning through OWL and description logic for catching logical conflicts. Now I want to pull all of this together into a coherent structure.
+&gt;
+&gt;
+</details>
+# SDD-Compiler: Consolidated Architecture
+
+---
+
+## 1. Core Concept: The Specification Graph
+
+### The Metaphor Made Concrete
+
+Just as `CMake` parses `CMakeLists.txt` files and builds a **dependency graph** of targets, sources, and build rules before any compilation happens, the SDD-Compiler parses free-form human input and builds a **specification graph** of requirements, dependencies, and constraints before any code generation happens.
+
+```
+CMake Analogy:
+
+  CMakeLists.txt → cmake → Dependency Graph → make → Compiled Binary
+       ↕                        ↕                         ↕
+  Free-form Spec → SDD-Compiler → Spec Graph → AI Agent → Generated Code
+```
+
+### Graph Structure
+
+```
+SPECIFICATION GRAPH (Directed Acyclic Graph)
+
+  Nodes  = Individual atomic requirements
+  Edges  = Dependencies, derivations, and constraints between requirements
+  Layers = Formal strata that organize nodes by abstraction level
+
+  Properties of each node:
+  ┌─────────────────────────────────────┐
+  │  id:          unique identifier     │
+  │  content:     the requirement text  │
+  │  layer:       which formal layer    │
+  │  status:      draft|validated|conflict│
+  │  author:      who wrote it          │
+  │  source_text: original free-form    │
+  │  depends_on:  [node_ids]            │
+  │  conflicts:   [node_ids]            │
+  │  family:      grouping cluster      │
+  └─────────────────────────────────────┘
+```
+
+---
+
+## 2. Dual-View Architecture
+
+### The Two Audiences
+
+The graph serves two fundamentally different consumers. This is a critical design decision.
+
+```
+┌──────────────────────────────────────────────────────┐
+│                 SPECIFICATION GRAPH                   │
+│            (full node-level resolution)               │
+│                                                      │
+│    ┌──────────┐  ┌──────────┐  ┌──────────┐         │
+│    │ Node 1.1 │→ │ Node 2.1 │→ │ Node 3.1 │         │
+│    │ Node 1.2 │→ │ Node 2.2 │→ │ Node 3.2 │         │
+│    │ Node 1.3 │↗ │ Node 2.3 │→ │ Node 3.3 │         │
+│    │   ...    │  │   ...    │  │   ...    │         │
+│    └──────────┘  └──────────┘  └──────────┘         │
+│                                                      │
+├──────────────────────┬───────────────────────────────┤
+│                      │                               │
+│  HUMAN VIEW          │  AGENT VIEW                   │
+│  (Collapsed)         │  (Expanded)                   │
+│                      │                               │
+│  ┌────────────┐      │  Every individual node        │
+│  │ Family A   │      │  with full dependency edges,  │
+│  │ (12 nodes) │      │  conflict markers, and        │
+│  ├────────────┤      │  traceability links.          │
+│  │ Family B   │      │                               │
+│  │ (8 nodes)  │      │  AI agents consume this       │
+│  ├────────────┤      │  for code generation,         │
+│  │ Family C   │      │  conflict detection,          │
+│  │ (15 nodes) │      │  and test synthesis.          │
+│  └────────────┘      │                               │
+│                      │                               │
+│  Humans see grouped  │                               │
+│  summaries. Can      │                               │
+│  drill down on       │                               │
+│  demand.             │                               │
+└──────────────────────┴───────────────────────────────┘
+```
+
+### Family Grouping Strategy
+
+Families are not arbitrary. They are formed by:
+
+```
+GROUPING CRITERIA (in priority order):
+
+1. Functional Cohesion  — nodes describing the same feature/capability
+2. Layer Proximity      — nodes in the same formal layer
+3. Dependency Clusters  — nodes that heavily depend on each other
+4. Author Proximity     — nodes written by the same person in the same session
+```
+
+---
+
+## 3. The Formal Layers for Code Generation
+
+This is a critical design question. Here are the formal layers, ordered as a pipeline that progressively adds the detail an AI code-generation agent needs.
+
+```
+LAYER 0 ──── BUSINESS REQUIREMENTS
+│             WHY does this exist? WHAT value does it deliver?
+│
+│             Node examples:
+│             • "Users need to reset passwords without contacting support"
+│             • "System must handle 10,000 concurrent checkouts"
+│             • "GDPR compliance is mandatory for EU users"
+│
+LAYER 1 ──── FUNCTIONAL SPECIFICATIONS
+│             WHAT exactly should the system do?
+│
+│             Node examples:
+│             • "User clicks 'forgot password' → receives email within 30s"
+│             • "Email contains one-time link valid for 15 minutes"
+│             • "After 3 failed reset attempts, account is locked for 1 hour"
+│
+LAYER 2 ──── SYSTEM ARCHITECTURE
+│             HOW is the system structured at component level?
+│
+│             Node examples:
+│             • "Password reset is handled by AuthService microservice"
+│             • "Email delivery delegated to NotificationService via async queue"
+│             • "Rate limiting enforced at API Gateway level"
+│
+LAYER 3 ──── INTERFACE CONTRACTS
+│             HOW do components communicate?
+│
+│             Node examples:
+│             • "POST /auth/reset-password {email: string} → 202 Accepted"
+│             • "ResetRequestedEvent {userId, token, expiresAt} published to auth.events"
+│             • "NotificationService consumes ResetRequestedEvent"
+│
+LAYER 4 ──── DATA MODELS
+│             WHAT data exists and how is it structured?
+│
+│             Node examples:
+│             • "PasswordResetToken {id, userId, token, expiresAt, usedAt}"
+│             • "User.failedResetAttempts: integer, default 0"
+│             • "User.resetLockedUntil: timestamp, nullable"
+│
+LAYER 5 ──── BEHAVIORAL LOGIC
+│             HOW does the internal logic work?
+│
+│             Node examples:
+│             • "On reset request: if failedAttempts >= 3 AND now < lockedUntil → reject"
+│             • "Token generation: 32-byte cryptographically random, base64url encoded"
+│             • "On successful reset: invalidate ALL existing sessions for user"
+│
+LAYER 6 ──── TEST SPECIFICATIONS
+│             HOW do we verify correctness?
+│
+│             Node examples:
+│             • "Test: valid token resets password → 200, password changed"
+│             • "Test: expired token → 410 Gone"
+│             • "Test: 4th attempt within lockout → 429 Too Many Requests"
+│             • "Test: reset clears all active sessions"
+│
+LAYER 7 ──── IMPLEMENTATION PLAN
+│             WHAT files, modules, dependencies to generate?
+│
+│             Node examples:
+│             • "Generate: src/services/auth/resetPassword.ts"
+│             • "Generate: src/models/PasswordResetToken.ts"
+│             • "Generate: tests/auth/resetPassword.test.ts"
+│             • "Dependency: crypto (node built-in), nodemailer"
+│
+▼
+CODE GENERATION (by AI agents consuming the full graph)
+```
+
+### Why These Layers and This Order?
+
+```
+Layer  What it determines               What it constrains below
+─────  ────────────────────────────────  ─────────────────────────────
+  0    Why we're building this           Scopes everything below
+  1    What users experience             Constrains architecture choices
+  2    What components exist             Constrains interface design
+  3    How components talk               Constrains data model design
+  4    What data is stored               Constrains logic implementation
+  5    How logic works                   Constrains what tests are needed
+  6    How to verify correctness         Constrains what files to generate
+  7    What artifacts to produce         Direct input to code generation
+```
+
+Each layer **constrains** the layers below it. This is exactly analogous to how in a build system, a library target constrains the compilation of binaries that depend on it.
+
+### Cross-Layer Dependency Edges
+
+Importantly, dependencies are **not only vertical** (between layers). They can be **horizontal** (within a layer) and **diagonal** (skipping layers):
+
+```
+     Layer 0:  [B1] ─── [B2] ─── [B3]          Horizontal
+                │         │         │
+     Layer 1:  [F1] ─── [F2]     [F3]          Vertical
+                │         │ ╲       │
+     Layer 2:  [A1] ─── [A2] ── [A3]          Diagonal (F2→A3)
+                          │
+     Layer 3:            [I1] ─── [I2]
+```
+
+---
+
+## 4. The Interaction Model
+
+### The Write → Compile → Inspect Cycle
+
+```
+╔═══════════════════════════════════════════════════════════════╗
+║                    USER INTERACTION LOOP                      ║
+║                                                               ║
+║   ┌─────────────────────────────────────────────────────┐     ║
+║   │  1. WRITE FREELY                                    │     ║
+║   │     User types specs in natural language.           │     ║
+║   │     No vocabulary restrictions.                     │     ║
+║   │     Can write one sentence or a full paragraph.     │     ║
+║   │     Can specify which layer they're targeting       │     ║
+║   │     or let the system infer it.                     │     ║
+║   └──────────────────────┬──────────────────────────────┘     ║
+║                          │                                     ║
+║                    [ COMPILE BUTTON ]                          ║
+║                    User explicitly triggers                    ║
+║                          │                                     ║
+║   ┌──────────────────────▼──────────────────────────────┐     ║
+║   │  2. GRAPH GENERATION (automatic)                    │     ║
+║   │     AI agent processes free-form text:              │     ║
+║   │     • Extracts atomic requirements → new nodes      │     ║
+║   │     • Classifies each node into a formal layer      │     ║
+║   │     • Infers dependency edges to existing nodes     │     ║
+║   │     • Assigns to families (new or existing)         │     ║
+║   │     • Runs conflict detection against full graph    │     ║
+║   └──────────────────────┬──────────────────────────────┘     ║
+║                          │                                     ║
+║   ┌──────────────────────▼──────────────────────────────┐     ║
+║   │  3. FEEDBACK DISPLAY (immediate)                    │     ║
+║   │     System shows:                                   │     ║
+║   │     • New nodes created (with layer assignments)    │     ║
+║   │     • Edges inferred                                │     ║
+║   │     • 🔴 CONFLICTS highlighted (no fix suggested    │     ║
+║   │          unless user asks)                          │     ║
+║   │     • 🟡 AMBIGUITIES flagged (possible multiple     │     ║
+║   │          interpretations noted)                     │     ║
+║   │     • 🟢 VALIDATED nodes (consistent with graph)    │     ║
+║   └──────────────────────┬──────────────────────────────┘     ║
+║                          │                                     ║
+║                  User decides next action:                     ║
+║                  • Write more specs → loop back to 1           ║
+║                  • Fix conflicts → loop back to 1              ║
+║                  • Ask for help → system suggests fixes        ║
+║                  • Trigger code generation → exit to codegen   ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+```
+
+### The Conflict Highlighting Philosophy
+
+This deserves emphasis because it encodes an important UX principle:
+
+```
+CONFLICT DETECTION RULES:
+
+✅ DO: Highlight the conflicting nodes immediately
+✅ DO: Show WHY they conflict (which constraints are violated)
+✅ DO: Show the dependency path that creates the conflict
+
+❌ DON'T: Auto-suggest fixes
+❌ DON'T: Block the user from continuing
+❌ DON'T: Require resolution before adding more specs
+
+RATIONALE:
+• User may have context the system doesn't
+• User may be mid-thought and doesn't want interruption
+• Premature fix suggestions can anchor thinking in wrong direction
+• User explicitly asks for help when ready
+
+EXCEPTION:
+• If user presses a "Help me resolve" button on a specific
+  conflict, THEN the system provides fix suggestions
+```
+
+---
+
+## 5. Multi-Person Collaboration Model
+
+### Serial Collaboration (Simplified)
+
+```
+COLLABORATION MODEL v1 (Serial, No Conflict Resolution)
+
+  ┌─────────┐     ┌─────────┐     ┌─────────┐
+  │ User A  │ ──→ │ User B  │ ──→ │ User C  │
+  │ (active)│     │ (waits) │     │ (waits) │
+  └─────────┘     └─────────┘     └─────────┘
+       │
+       ▼
+  ┌──────────────────────────────────────┐
+  │         SHARED SPEC GRAPH            │
+  │                                      │
+  │  Single source of truth.             │
+  │  One writer at a time.               │
+  │  All others see real-time updates.   │
+  │  Turn-based or lock-based access.    │
+  └──────────────────────────────────────┘
+
+  WHAT EACH USER SEES:
+  • Full graph (collapsed into families by default)
+  • Nodes authored by others are visible but read-only
+  • Nodes they authored are editable
+  • Conflicts between their nodes and others' are highlighted
+  • Each node shows author attribution
+```
+
+---
+
+## 6. Complete System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        SDD-COMPILER                             │
+│                                                                 │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                    HUMAN INTERFACE LAYER                   │  │
+│  │                                                           │  │
+│  │  ┌─────────────┐  ┌──────────────┐  ┌────────────────┐   │  │
+│  │  │ Free-form   │  │ Family View  │  │  Conflict      │   │  │
+│  │  │ Text Editor │  │ (collapsed   │  │  Dashboard     │   │  │
+│  │  │             │  │  graph)      │  │  (🔴🟡🟢)      │   │  │
+│  │  └──────┬──────┘  └──────────────┘  └────────────────┘   │  │
+│  │         │                                                 │  │
+│  │    [ COMPILE ]                                            │  │
+│  └─────────┼─────────────────────────────────────────────────┘  │
+│            │                                                     │
+│  ┌─────────▼─────────────────────────────────────────────────┐  │
+│  │                   PROCESSING PIPELINE                      │  │
+│  │                                                           │  │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐   │  │
+│  │  │ NL Parser   │→ │ Layer       │→ │ Dependency      │   │  │
+│  │  │ & Node      │  │ Classifier  │  │ Inference       │   │  │
+│  │  │ Extractor   │  │             │  │ Engine          │   │  │
+│  │  └─────────────┘  └─────────────┘  └────────┬────────┘   │  │
+│  │                                              │            │  │
+│  │                                     ┌────────▼────────┐   │  │
+│  │                                     │ Conflict        │   │  │
+│  │                                     │ Detector        │   │  │
+│  │                                     └────────┬────────┘   │  │
+│  │                                              │            │  │
+│  │                                     ┌────────▼────────┐   │  │
+│  │                                     │ Family          │   │  │
+│  │                                     │ Clusterer       │   │  │
+│  │                                     └─────────────────┘   │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                   GRAPH STORAGE LAYER                      │  │
+│  │                                                           │  │
+│  │  ┌──────────────────────────────────────────────────┐     │  │
+│  │  │              SPECIFICATION GRAPH                  │     │  │
+│  │  │                                                  │     │  │
+│  │  │  Layer 0: [B1]──[B2]──[B3]                       │     │  │
+│  │  │            │     │                               │     │  │
+│  │  │  Layer 1: [F1]──[F2]──[F3]──[F4]                 │     │  │
+│  │  │            │     │     │                         │     │  │
+│  │  │  Layer 2: [A1]──[A2]  [A3]                       │     │  │
+│  │  │                  │     │                         │     │  │
+│  │  │  Layer 3:       [I1]──[I2]──[I3]                 │     │  │
+│  │  │                  │           │                   │     │  │
+│  │  │  Layer 4:       [D1]──[D2]  [D3]                 │     │  │
+│  │  │                  │     │                         │     │  │
+│  │  │  Layer 5:       [L1]──[L2]──[L3]                 │     │  │
+│  │  │                  │     │     │                   │     │  │
+│  │  │  Layer 6:       [T1]  [T2]  [T3]──[T4]           │     │  │
+│  │  │                  │     │     │     │             │     │  │
+│  │  │  Layer 7:       [P1]──[P2]──[P3]  [P4]           │     │  │
+│  │  └──────────────────────────────────────────────────┘     │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                   CODE GENERATION LAYER                    │  │
+│  │                                                           │  │
+│  │  AI Agents consume the validated graph and generate:      │  │
+│  │  • Source code files                                      │  │
+│  │  • Test files                                             │  │
+│  │  • Configuration files                                    │  │
+│  │  • Documentation                                          │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 7. Prior Art & Similar Approaches
+
+### Category A: Requirements Management Tools (Closest Lineage)
+
+| Tool | Similarity | Key Difference |
+|------|-----------|----------------|
+| **IBM DOORS / DOORS Next** | Graph-based requirements traceability, layers of requirements linked by dependencies | No AI processing, no free-form input, very manual node creation. Heavy enterprise tool. No code generation. |
+| **Jama Connect** | Requirements traceability matrices, impact analysis when requirements change, collaborative | No AI, no conflict auto-detection, no layered graph model |
+| **Polarion (Siemens)** | Full ALM with requirements linked to tests linked to code | Enterprise-grade but no free-form-to-graph pipeline |
+| **Reqtify (Dassault Systèmes)** | Traceability across requirement documents, impact analysis | Focused on document linking, not graph construction |
+
+**Your idea differs from all of these because**: they require humans to manually create and link requirements in structured forms. Your idea lets humans write freely and the AI builds the graph.
+
+---
+
+### Category B: Model-Based Systems Engineering (MBSE)
+
+| Tool/Method | Similarity | Key Difference |
+|-------------|-----------|----------------|
+| **SysML / Capella** | Formal layered models: requirements → functional → logical → physical architecture | Visual modeling language, requires expertise, no NL input |
+| **Enterprise Architect (Sparx)** | UML/SysML modeling with traceability | Manual model creation, no AI, steep learning curve |
+| **ARCADIA Method** | Formal layers: operational → system → logical → physical | Method for systems engineering, not software spec-to-code |
+
+**Your idea differs because**: MBSE requires learning a formal modeling language. Your approach accepts natural language and infers the formal structure.
+
+---
+
+### Category C: AI-Powered Spec-to-Code (Modern)
+
+| Tool | Similarity | Key Difference |
+|------|-----------|----------------|
+| **MetaGPT** | Multi-agent framework that generates PRD → Design Doc → Tasks → Code. Has formal layers. | Fully automated pipeline — human doesn't interactively build the graph. No conflict detection. No collaboration model. |
+| **GPT Engineer** | Takes a spec prompt, asks clarifying questions, generates code | Single-pass, no persistent graph, no layered architecture, no multi-user |
+| **Sweep AI** | Converts GitHub issues to PRs with code | Issue-level granularity, no requirement decomposition |
+| **Factory AI / Devin** | AI agent that plans and writes code from descriptions | Agent-oriented, no visible spec graph, no human-in-the-loop graph building |
+| **Cursor / Windsurf** | IDE with AI that takes specs in context files | No graph structure, no conflict detection, single-user mental model |
+
+**Your idea differs because**: these tools treat specification as an input to be consumed once, not as a living, growing, validated graph that multiple people build incrementally.
+
+---
+
+### Category D: Formal Specification & Constraint Systems
+
+| Method/Tool | Similarity | Key Difference |
+|-------------|-----------|----------------|
+| **Alloy Analyzer** | Builds a model, automatically finds constraint violations and counter-examples | Requires formal language (Alloy), not natural language |
+| **TLA+ / PlusCal** | Formal specification with model checking for conflict/invariant violation detection | Requires mathematical specification language |
+| **Specification by Example (Gojko Adzic)** | Collaborative specification through concrete examples, bridges business and technical | Method, not a tool. No graph, no AI, no automation |
+| **Event Storming (Alberto Brandolini)** | Collaborative domain discovery using sticky notes, natural grouping into aggregates | Workshop method. Physical sticky notes on wall. Your idea is essentially a **digital, AI-powered Event Storming** with persistent graph structure |
+
+---
+
+### Category E: Build Systems (Your Explicit Analogy)
+
+| Tool | What you're borrowing |
+|------|----------------------|
+| **CMake** | Dependency graph construction before compilation, target-level nodes |
+| **Make** | Directed acyclic graph of dependencies, incremental rebuilding |
+| **Bazel** | Hermetic builds, dependency graph with strict layering, visibility rules between targets |
+| **Gradle** | Task dependency graph, configuration phases before execution |
+| **Nx (Monorepo)** | Project graph with affected-target detection — knows what to rebuild when something changes |
+
+**The borrowed principle**: separate the **graph construction phase** (understanding dependencies) from the **execution phase** (compilation/generation). Your SDD-Compiler does exactly this for specifications.
+
+---
+
+### The Closest Known Analog
+
+The single closest thing to your idea is probably a combination of:
+
+> **MetaGPT's layered agent pipeline**
+> \+
+> **IBM DOORS' traceability graph**
+> \+
+> **Event Storming's collaborative discovery**
+> \+
+> **Alloy's automatic conflict detection**
+> \+
+> **CMake's dependency graph model**
+
+**No existing product combines all five of these characteristics.** That is where your idea lives — in the intersection.
+
+```
+                    MetaGPT
+                  (AI layers)
+                      ╲
+       IBM DOORS       ╲        Event Storming
+      (req graph)  ─────╳───── (collaborative
+                        ╱       discovery)
+              Alloy    ╱
+         (conflict    ╱
+         detection)  ╱
+                    ╱
+              CMake
+         (build graph)
+
+              ╳ = SDD-Compiler lives here
+```
+
+---
+
+Shall we now scope a **hackathon MVP** — deciding which layers, which features, and which corners to cut for a working demo?
+
+
+
+===== Victor Truong =====
+f8e5eccf-0e68-4fba-978f-5446733730a0: your consolidation above looks good.
+next, brainstorm how we can implement this idea, build a basic, simple working demo. Given that Hackathon allows 1 day of coding and 1 day presenting. We need to solidify all ideas and coding plan before that day.
+The available AI-infrastructure is VS code and devin CLI terminal.
+We can prepare a set of SDD specs as a working example.
+But how can we build a poc software, or IDE, or anything that allows : First, type some specs. Second, has a interactive-consolidating button to press as explained earlier. Third, show an interactive graph of the ongoing specs. For simplicity, just print the interactive graph like a python matplotlib. Assume specs in step #1 above has conflict, and the graph should show the conflicted chunks in red, and good chunks in green. Fourth, another button that show conflict recommended solution. Fifth, user type the solution to solve the conflicted specs. Sixth, press the interactive-consolidating button and it shows a green graph (no conflict).
+Do I miss any proof-of-concept requirement as discussed earlier?
+9d9ab229-5b03-4f57-a9c4-f3ecff4816d3: <details type="reasoning" done="true" duration="0" label="Thinking">
+<summary>Thinking for 0 seconds</summary>
+&gt; The user wants me to brainstorm how to build a working demo/POC for the SDD-Compiler within hackathon constraints (1 day coding, 1 day presenting). Let me think through what they need:
+&gt;
+&gt; 1. A UI where users can type specs
+&gt; 2. A &quot;compile&quot; button that processes specs into graph nodes
+&gt; 3. An interactive graph visualization (matplotlib-like) showing nodes with colors (red=conflict, green=valid)
+&gt; 4. A button to show conflict resolution suggestions
+&gt; 5. User types solution to fix conflicts
+&gt; 6. Re-compile to show updated green graph
+&gt;
+&gt; Available tools: VS Code, Devin CLI terminal
+&gt;
+&gt; Let me think about:
+&gt; - What's missing from the POC requirements
+&gt; - I should still show a few of the L0-L7 layers even if simplified, and can probably skip multi-user collaboration and family grouping for now, though the dual human/agent view is worth including if time allows.
+&gt; - For the build itself, I'm leaning toward a Python CLI or lightweight web app, calling an LLM API for parsing specs into nodes, classifying layers, and detecting conflicts, then using NetworkX for the graph structure and something like matplotlib for rendering it visually.
+&gt;
+&gt; Streamlit seems like the fastest path to a working interactive demo with buttons, text input, and graph rendering. Checking their requirements against this plan, the type specs, compile button, colored interactive graph, conflict resolution, typed solution, and green re-compile are all covered—what's still missing is layer visualization across L0-L7, family grouping in the human view, the dual-view concept itself, and dependency edges connecting the nodes.
+&gt;
+&gt; I also need node metadata display so clicking a node reveals its details, plus a pre-prepared example spec set I still need to define. Now I'm putting together a full implementation plan.
+&gt;
+&gt;
+</details>
+# SDD-Compiler: Hackathon Implementation Plan
+
+---
+
+## 1. POC Gap Analysis — What's Missing?
+
+Let me audit your six steps against the architecture we consolidated.
+
+```
+YOUR POC STEPS              ARCHITECTURE COVERAGE         VERDICT
+─────────────────────────── ───────────────────────────── ─────────
+1. Type specs               ✅ Free-form text editor       Covered
+2. Compile button           ✅ Processing pipeline          Covered
+3. Interactive graph         ✅ Graph with conflict colors   Partial ⚠️
+4. Conflict solution button  ✅ Help-on-demand principle     Covered
+5. Type fix                 ✅ Write freely                 Covered
+6. Re-compile → green       ✅ Feedback loop                Covered
+```
+
+### What's Missing for a Convincing POC
+
+```
+MISSING ITEM                    WHY IT MATTERS                    DIFFICULTY
+────────────────────────────── ─────────────────────────────────  ──────────
+A. LAYER VISUALIZATION          Core differentiator.              Easy
+   Graph must show nodes         Without layers, it's just a
+   organized by formal layers    generic node graph.
+   (L0-L7 or at least L0-L4)    Judges need to SEE the layers.
+
+B. DEPENDENCY EDGES             Without visible edges, graph      Easy
+   Show arrows between nodes     is just colored dots.
+   across layers                 Edges prove the system
+                                 understands relationships.
+
+C. NODE INSPECTION              User needs to click/hover a       Medium
+   Click a node to see its       node and see what requirement
+   content, layer, status,       it represents. Otherwise graph
+   and source text               is unreadable.
+
+D. FAMILY GROUPING              The dual-view concept is a        Medium
+   Show collapsed families       key differentiator. At least
+   that expand on click          show grouped labels on graph.
+
+E. MULTI-NODE EXTRACTION        One free-form paragraph should    Easy
+   From one paragraph,           produce MULTIPLE nodes across     (LLM does
+   extract multiple nodes        MULTIPLE layers. This is the      this)
+   across multiple layers        "compiler" magic moment.
+
+F. PRE-LOADED EXAMPLE           Cold-start demo is awkward.       Easy
+   Start with a partially        Show graph already populated,     (just prep
+   built graph so the demo       then ADD conflicting spec.        a JSON)
+   shows the conflict flow
+   immediately
+```
+
+### Revised POC Flow (8 Steps)
+
+```
+DEMO SCRIPT (5 minutes):
+
+Step 1: SHOW pre-loaded graph
+        "Here's a product spec we've been building — a user
+        authentication system. 35 nodes across 5 layers."
+        → Graph displays with all green nodes, organized by layer.
+
+Step 2: CLICK a family cluster
+        "Let me zoom into the Password Reset family."
+        → Family expands to show individual nodes.
+
+Step 3: CLICK a node
+        "This node says: 'Reset token expires after 15 minutes.'"
+        → Node detail panel shows content, layer, dependencies.
+
+Step 4: TYPE a new conflicting spec
+        "Product just decided: 'For security, reset tokens
+         should be valid for 24 hours to improve user experience.'"
+        → User types this in the free-form editor.
+
+Step 5: PRESS COMPILE
+        → System extracts nodes, classifies layers, detects
+          conflict with existing "15 minute" node.
+        → Graph updates: new nodes appear, conflicting nodes
+          turn RED, dependency edges shown.
+
+Step 6: INSPECT CONFLICT
+        "I see red nodes. Let me click on the conflict."
+        → Conflict detail: "Node F7 says '24 hours' but
+          Node F3 says '15 minutes'. These specify the same
+          property: reset token TTL."
+
+Step 7: PRESS "HELP ME RESOLVE"
+        → System suggests: "Options: (a) Keep 15min,
+          (b) Change to 24hr and update dependent security
+          nodes, (c) Make configurable per security tier."
+
+Step 8: TYPE resolution, RE-COMPILE
+        → User types resolution, presses compile.
+        → Graph updates: all green.
+        → "Spec is consistent. Ready for code generation."
+```
+
+---
+
+## 2. Technology Stack Decision
+
+Given constraints of **VS Code + Devin CLI + 1 day of coding**, here's the optimal stack.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    TECHNOLOGY STACK                          │
+│                                                             │
+│  UI FRAMEWORK:     Streamlit                                │
+│  WHY: Fastest path from Python to interactive web UI.       │
+│  Buttons, text areas, session state, re-rendering —         │
+│  all built in. No frontend code needed.                     │
+│                                                             │
+│  GRAPH LIBRARY:    NetworkX + Pyvis (or Streamlit-agraph)   │
+│  WHY: NetworkX handles graph data structure.                │
+│  Pyvis renders interactive HTML graph (zoom, click, hover). │
+│  streamlit-agraph is a Streamlit-native alternative.        │
+│                                                             │
+│  LLM BACKEND:     Claude API (via Anthropic SDK)            │
+│  WHY: Handles all NL processing —                           │
+│  node extraction, layer classification, conflict detection. │
+│  Accessible from Devin CLI.                                 │
+│                                                             │
+│  DATA STORAGE:     JSON file (graph state)                  │
+│  WHY: Simple, human-readable, no database needed.           │
+│  Serializes/deserializes the full spec graph.               │
+│                                                             │
+│  LANGUAGE:         Python 3.11+                             │
+│  WHY: All libraries above are Python-native.                │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Why NOT Other Options
+
+```
+Option              Why Not
+──────────────────  ───────────────────────────────────────
+React + D3.js       Too much frontend work for 1 day
+Jupyter Notebook    Not interactive enough, no buttons
+CLI-only            Can't show graph visually
+Gradio              Good alternative but Streamlit has
+                    better graph component ecosystem
+Flask + matplotlib  Too much plumbing code
+Electron app        Way too much work for hackathon
+```
+
+---
+
+## 3. System Architecture for POC
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                     SDD-COMPILER POC                           │
+│                                                                │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │                 STREAMLIT UI (app.py)                     │  │
+│  │                                                          │  │
+│  │  ┌─────────────────┐  ┌─────────────────────────────┐    │  │
+│  │  │  LEFT PANEL     │  │  MAIN AREA                   │    │  │
+│  │  │                 │  │                               │    │  │
+│  │  │  Free-form      │  │  Interactive Graph            │    │  │
+│  │  │  Text Editor    │  │  (Pyvis / streamlit-agraph)   │    │  │
+│  │  │  ┌───────────┐  │  │                               │    │  │
+│  │  │  │           │  │  │  Nodes colored by status:     │    │  │
+│  │  │  │  User     │  │  │  🟢 Green = validated         │    │  │
+│  │  │  │  types    │  │  │  🔴 Red = conflict            │    │  │
+│  │  │  │  here     │  │  │  🟡 Yellow = ambiguous        │    │  │
+│  │  │  │           │  │  │  🔵 Blue = newly added        │    │  │
+│  │  │  └───────────┘  │  │                               │    │  │
+│  │  │                 │  │  Rows organized by layer:     │    │  │
+│  │  │  [🔨 COMPILE]   │  │  L0: Business  ── top row     │    │  │
+│  │  │                 │  │  L1: Functional ── 2nd row     │    │  │
+│  │  │  [❓ HELP ME    │  │  L2: Architecture ── ...       │    │  │
+│  │  │   RESOLVE]      │  │  L3: Interfaces               │    │  │
+│  │  │                 │  │  L4: Data Models               │    │  │
+│  │  │  ┌───────────┐  │  │  L5: Logic                    │    │  │
+│  │  │  │ Conflict  │  │  │  L6: Tests ── bottom row      │    │  │
+│  │  │  │ Details   │  │  │                               │    │  │
+│  │  │  │ Panel     │  │  │  Edges = dependency arrows    │    │  │
+│  │  │  └───────────┘  │  │                               │    │  │
+│  │  └─────────────────┘  └─────────────────────────────────┘  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                              │                                  │
+│  ┌───────────────────────────▼──────────────────────────────┐  │
+│  │              PROCESSING ENGINE (engine.py)                │  │
+│  │                                                          │  │
+│  │  parse_specs(text) → list[RawNode]                       │  │
+│  │  classify_layers(nodes) → list[ClassifiedNode]           │  │
+│  │  infer_dependencies(new_nodes, graph) → list[Edge]       │  │
+│  │  detect_conflicts(new_nodes, graph) → list[Conflict]     │  │
+│  │  suggest_resolution(conflict) → list[Suggestion]         │  │
+│  │  apply_resolution(text, graph) → UpdatedGraph            │  │
+│  │                                                          │  │
+│  │  ALL functions call Claude API with structured prompts   │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                              │                                  │
+│  ┌───────────────────────────▼──────────────────────────────┐  │
+│  │              GRAPH STATE (graph_store.py)                  │  │
+│  │                                                          │  │
+│  │  SpecGraph:                                              │  │
+│  │    nodes: dict[str, SpecNode]                            │  │
+│  │    edges: list[SpecEdge]                                 │  │
+│  │    conflicts: list[Conflict]                             │  │
+│  │                                                          │  │
+│  │  load_graph(path) → SpecGraph                            │  │
+│  │  save_graph(graph, path) → None                          │  │
+│  │  add_nodes(graph, nodes) → SpecGraph                     │  │
+│  │  get_family_view(graph) → dict[str, list[SpecNode]]      │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                              │                                  │
+│  ┌───────────────────────────▼──────────────────────────────┐  │
+│  │              VISUALIZATION (viz.py)                        │  │
+│  │                                                          │  │
+│  │  render_graph(graph) → Pyvis HTML / agraph component     │  │
+│  │  Positions nodes by layer (Y-axis)                       │  │
+│  │  Colors nodes by status                                  │  │
+│  │  Draws directed edges with labels                        │  │
+│  │  Highlights conflict edges in red dashed lines           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 4. File Structure
+
+```
+sdd-compiler/
+│
+├── app.py                    # Streamlit main app (UI)
+├── engine.py                 # LLM-powered processing pipeline
+├── graph_store.py            # Graph data structures & persistence
+├── viz.py                    # Graph visualization
+├── prompts.py                # All LLM prompt templates
+├── models.py                 # Pydantic data models
+│
+├── examples/
+│   └── auth_system.json      # Pre-loaded example spec graph
+│
+├── requirements.txt          # Dependencies
+└── README.md
+```
+
+---
+
+## 5. Data Models
+
+```python
+# models.py
+from pydantic import BaseModel
+from enum import Enum
+from typing import Optional
+
+class Layer(str, Enum):
+    BUSINESS = "L0_business"
+    FUNCTIONAL = "L1_functional"
+    ARCHITECTURE = "L2_architecture"
+    INTERFACES = "L3_interfaces"
+    DATA_MODELS = "L4_data_models"
+    LOGIC = "L5_logic"
+    TESTS = "L6_tests"
+
+class NodeStatus(str, Enum):
+    VALIDATED = "validated"       # green
+    CONFLICT = "conflict"         # red
+    AMBIGUOUS = "ambiguous"       # yellow
+    NEW = "new"                   # blue
+    DRAFT = "draft"               # grey
+
+class SpecNode(BaseModel):
+    id: str                       # e.g., "F3", "B1", "T7"
+    content: str                  # the requirement text
+    layer: Layer
+    status: NodeStatus
+    author: str
+    source_text: str              # original free-form input
+    family: str                   # grouping label
+    depends_on: list[str]         # node IDs
+    conflicts_with: list[str]     # node IDs
+
+class SpecEdge(BaseModel):
+    source: str                   # node ID
+    target: str                   # node ID
+    edge_type: str                # "depends_on" | "conflicts" | "derives"
+
+class Conflict(BaseModel):
+    id: str
+    node_a: str                   # node ID
+    node_b: str                   # node ID
+    reason: str                   # why they conflict
+    severity: str                 # "hard" | "soft"
+    resolved: bool
+
+class SpecGraph(BaseModel):
+    nodes: dict[str, SpecNode]
+    edges: list[SpecEdge]
+    conflicts: list[Conflict]
+```
+
+---
+
+## 6. The LLM Prompts (Core Intelligence)
+
+Everything the SDD-Compiler "knows" comes from well-structured prompts. This is the brain.
+
+```python
+# prompts.py
+
+PARSE_AND_EXTRACT_PROMPT = """
+You are the parsing engine of an SDD-Compiler.
+
+Given the following free-form specification text written by a human,
+extract individual atomic requirements as separate nodes.
+
+Each node should be:
+- ONE single, specific requirement (not compound)
+- Classified into exactly one layer:
+  L0_business, L1_functional, L2_architecture,
+  L3_interfaces, L4_data_models, L5_logic, L6_tests
+- Assigned a suggested family grouping name
+
+EXISTING GRAPH CONTEXT:
+{existing_graph_summary}
+
+FREE-FORM INPUT:
+{user_text}
+
+Respond in this JSON format:
+{{
+  "extracted_nodes": [
+    {{
+      "content": "...",
+      "layer": "L1_functional",
+      "family": "Password Reset",
+      "suggested_dependencies": ["F3", "B1"]
+    }}
+  ]
+}}
+"""
+
+CONFLICT_DETECTION_PROMPT = """
+You are the conflict detection engine of an SDD-Compiler.
+
+Given the EXISTING specification graph and NEWLY ADDED nodes,
+identify any conflicts.
+
+A conflict exists when:
+1. Two nodes specify contradictory behavior for the same feature
+2. A node violates a constraint established by another node
+3. A node's requirements are logically impossible given dependencies
+4. A data model conflicts with an interface contract
+5. A test expectation contradicts the behavioral logic
+
+EXISTING GRAPH:
+{existing_graph_json}
+
+NEW NODES:
+{new_nodes_json}
+
+For each conflict found, respond:
+{{
+  "conflicts": [
+    {{
+      "node_a": "F3",
+      "node_b": "F12",
+      "reason": "F3 specifies token TTL of 15 minutes,
+                 F12 specifies token TTL of 24 hours.
+                 These are mutually exclusive values for
+                 the same property.",
+      "severity": "hard"
+    }}
+  ]
+}}
+
+If no conflicts exist, return {{"conflicts": []}}
+"""
+
+RESOLUTION_SUGGESTION_PROMPT = """
+You are the resolution advisor of an SDD-Compiler.
+
+The user has asked for help resolving this conflict:
+
+CONFLICT:
+Node A ({node_a_id}): {node_a_content}
+Node B ({node_b_id}): {node_b_content}
+Reason: {conflict_reason}
+
+FULL GRAPH CONTEXT:
+{graph_context}
+
+Suggest 2-3 concrete resolution options. For each option,
+explain what nodes would need to change and why.
+
+Format:
+{{
+  "options": [
+    {{
+      "label": "Option A: ...",
+      "description": "...",
+      "nodes_affected": ["F3", "T2", "L1"],
+      "trade_offs": "..."
+    }}
+  ]
+}}
+"""
+```
+
+---
+
+## 7. Visualization Strategy
+
+```python
+# viz.py — Core visualization logic
+
+"""
+LAYOUT STRATEGY:
+
+Y-axis = Layer (L0 at top, L6 at bottom)
+X-axis = Spread nodes horizontally within each layer
+
+    Y=0  ── L0: Business ──     [B1]  [B2]  [B3]
+    Y=1  ── L1: Functional ──   [F1]  [F2]  [F3]  [F4]
+    Y=2  ── L2: Architecture ── [A1]  [A2]
+    Y=3  ── L3: Interfaces ──   [I1]  [I2]  [I3]
+    Y=4  ── L4: Data Models ──  [D1]  [D2]
+    Y=5  ── L5: Logic ──        [L1]  [L2]  [L3]
+    Y=6  ── L6: Tests ──        [T1]  [T2]  [T3]  [T4]
+
+COLOR SCHEME:
+    validated  → #4CAF50 (green)
+    conflict   → #F44336 (red)
+    ambiguous  → #FF9800 (yellow/orange)
+    new        → #2196F3 (blue)
+    draft      → #9E9E9E (grey)
+
+EDGE STYLES:
+    depends_on → solid grey arrow
+    derives    → solid blue arrow
+    conflicts  → dashed red line (no arrow, bidirectional)
+
+NODE SHAPE:
+    All nodes are circles or boxes with label = node ID
+    Hover tooltip shows full content text
+
+FAMILY INDICATION:
+    Nodes in same family have a subtle shared background
+    or border color
+"""
+```
+
+### Pyvis vs Streamlit-Agraph Decision
+
+```
+PYVIS (recommended):
+  ✅ Interactive (drag, zoom, hover, click)
+  ✅ Physics-based layout (can override with fixed positions)
+  ✅ Renders as HTML embedded in Streamlit via st.components
+  ✅ Hover tooltips built-in
+  ✅ Edge styling (dashed, colored, arrows)
+  ❌ Requires HTML component embedding (minor friction)
+
+STREAMLIT-AGRAPH:
+  ✅ Native Streamlit component
+  ✅ Click events return node ID to Streamlit
+  ✅ Simpler API
+  ❌ Less visual customization
+  ❌ Harder to control layer-based layout
+
+RECOMMENDATION: Use streamlit-agraph for tighter Streamlit
+integration and click-event handling. Fall back to Pyvis
+if visual quality is insufficient.
+```
+
+---
+
+## 8. Coding Plan — Hour by Hour
+
+```
+PREPARATION (Before Hackathon Day)
+═══════════════════════════════════
+
+PREP-1: Design & finalize the example spec (auth_system.json)
+        Create 20-30 nodes across layers L0-L5
+        Include clear dependency edges
+        All nodes validated (green)
+        Time: 2 hours
+
+PREP-2: Write all LLM prompt templates (prompts.py)
+        Test them individually with Claude API
+        Iterate until extraction/classification is reliable
+        Time: 3 hours
+
+PREP-3: Set up project skeleton
+        requirements.txt, folder structure, boilerplate
+        Test Streamlit + Pyvis/agraph integration
+        Time: 1 hour
+
+PREP-4: Prepare the demo script
+        Write the exact conflicting spec to type during demo
+        Know what the expected output graph looks like
+        Time: 1 hour
+
+        Total prep: ~7 hours (do this over 2-3 days before)
+
+
+HACKATHON DAY — CODING (8 hours)
+═══════════════════════════════════
+
+HOUR 1-2: DATA LAYER (models.py + graph_store.py)
+──────────────────────────────────────────────────
+  • Implement Pydantic models
+  • JSON load/save for SpecGraph
+  • Helper functions: add_nodes, find_node,
+    get_nodes_by_layer, get_families
+  • Load pre-built auth_system.json
+  • Unit test: load graph, verify node count
+
+HOUR 3-4: ENGINE LAYER (engine.py)
+──────────────────────────────────────────────────
+  • Implement parse_specs() — calls Claude API
+    with PARSE_AND_EXTRACT_PROMPT
+  • Implement classify_and_link() — assigns layers,
+    infers edges
+  • Implement detect_conflicts() — calls Claude API
+    with CONFLICT_DETECTION_PROMPT
+  • Implement suggest_resolution() — calls Claude API
+    with RESOLUTION_SUGGESTION_PROMPT
+  • Test each function independently via CLI
+
+HOUR 5-6: VISUALIZATION (viz.py)
+──────────────────────────────────────────────────
+  • Build render_graph() function
+  • Implement layer-based Y positioning
+  • Implement color mapping by status
+  • Implement edge styling (solid vs dashed)
+  • Implement hover tooltips with node content
+  • Test rendering with pre-loaded graph
+
+HOUR 7-8: UI INTEGRATION (app.py)
+──────────────────────────────────────────────────
+  • Build Streamlit layout (sidebar + main area)
+  • Wire text input → COMPILE button → engine → graph update
+  • Wire graph update → re-render visualization
+  • Wire conflict click → detail panel
+  • Wire HELP button → resolution suggestions
+  • Wire resolution input → re-compile → updated graph
+  • End-to-end test of full demo flow
+
+BUFFER (if time allows):
+──────────────────────────────────────────────────
+  • Polish: Add layer labels as horizontal bands
+  • Polish: Add node count badges per layer
+  • Polish: Add animation when new nodes appear
+  • Polish: Add "spec history" sidebar showing all inputs
+```
+
+---
+
+## 9. The Pre-Built Example: Auth System
+
+```json
+{
+  "nodes": {
+    "B1": {
+      "id": "B1",
+      "content": "Users must be able to reset their password without contacting support",
+      "layer": "L0_business",
+      "status": "validated",
+      "author": "product_manager",
+      "family": "Password Reset",
+      "depends_on": [],
+      "conflicts_with": []
+    },
+    "B2": {
+      "id": "B2",
+      "content": "System must comply with OWASP authentication security guidelines",
+      "layer": "L0_business",
+      "status": "validated",
+      "author": "product_manager",
+      "family": "Security",
+      "depends_on": [],
+      "conflicts_with": []
+    },
+    "F1": {
+      "id": "F1",
+      "content": "User clicks forgot password link and enters their email address",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "product_manager",
+      "family": "Password Reset",
+      "depends_on": ["B1"],
+      "conflicts_with": []
+    },
+    "F2": {
+      "id": "F2",
+      "content": "System sends password reset email within 30 seconds",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "product_manager",
+      "family": "Password Reset",
+      "depends_on": ["B1", "F1"],
+      "conflicts_with": []
+    },
+    "F3": {
+      "id": "F3",
+      "content": "Reset token expires after 15 minutes for security",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "security_lead",
+      "family": "Password Reset",
+      "depends_on": ["B2"],
+      "conflicts_with": []
+    }
+  }
+}
+```
+
+The **demo conflict** would be typing:
+
+> *"To improve user experience, password reset links should remain valid for 24 hours. Many users don't check email immediately."*
+
+This directly conflicts with node F3 (15 minutes). The system should detect this, turn the relevant nodes red, and show the conflict reasoning.
+
+---
+
+## 10. Risk Mitigation for Hackathon
+
+```
+RISK                          MITIGATION
+────────────────────────────  ──────────────────────────────────
+LLM returns malformed JSON    Use Pydantic validation + retry
+                              logic. Wrap all LLM calls with
+                              try/except and JSON repair.
+
+LLM misclassifies layers      Pre-test prompts with 10+ examples.
+                              Include few-shot examples in prompt.
+                              Accept "good enough" for demo.
+
+Graph visualization is ugly   Pre-compute node positions manually
+                              if physics layout fails. Hard-code
+                              coordinates for the demo example.
+
+Streamlit re-renders break    Use st.session_state extensively
+graph state                   to persist graph between re-renders.
+
+Conflict detection misses     For the demo, design the conflicting
+the planted conflict          spec to be OBVIOUSLY contradictory.
+                              If LLM still misses, have a fallback
+                              rule-based detector for token TTL.
+
+API rate limits / latency     Cache LLM responses during demo.
+                              Pre-compute results for known demo
+                              inputs as fallback.
+
+Demo goes over time           Rehearse 5+ times. Have a 3-minute
+                              short version and a 5-minute full
+                              version ready.
+```
+
+---
+
+## 11. What Makes This Demo Compelling to Judges
+
+```
+DEMO MOMENT                    WHY IT'S IMPRESSIVE
+─────────────────────────────  ──────────────────────────────────
+Free text → structured graph    "I typed English and got a formal
+                                spec graph. No templates, no forms."
+
+Automatic layer classification  "The system KNEW that 'reset token
+                                expires in 15 min' is a functional
+                                requirement, not a business one."
+
+Instant conflict detection      "I added ONE sentence and the system
+                                immediately found it contradicts an
+                                existing requirement from a DIFFERENT
+                                person written weeks ago."
+
+On-demand resolution            "It didn't force a solution on me.
+                                It waited until I asked. Then it gave
+                                me 3 options with trade-off analysis."
+
+Green graph after resolution    "Clean compile. Spec is consistent.
+                                Ready for code generation."
+
+THE NARRATIVE:
+"We didn't build another markdown template. We built a COMPILER
+for human intent. Just like gcc catches type errors before runtime,
+SDD-Compiler catches specification conflicts before code generation."
+```
+
+---
+
+Shall we now write the actual pre-built example spec in full, or dive into coding the engine.py prompt logic first?
+
+
+
+===== Victor Truong =====
+cbceadf7-ec73-45a3-ad6c-4203d10db6fc: Your solution got stuck because I don’t have any Claude or LLM API key in my company. All licensed AI-applications are wrapped inside windsurf devin.
+A very simple approach is to use devin CLI entirely.
+All of the logics above can be noted down in SKILLS.md and WORKFLOW.md and AGENT.md for this proof of concept.
+Type some specs in the console line. Press enter to replace the interactive-graph-button. Devin can generate very basic text-formatted graph to console.
+Prepare the a specific skill.md file for “/resolve” . So that we type /resolve onto Devin CLI, and it will give suggested solution for the spec-conflicts.
+Evaluate my poc idea using devin CLI solely above.
+00ccf603-4fc6-4016-8c28-e1b86eb47436: <details type="reasoning" done="true" duration="0" label="Thinking">
+<summary>Thinking for 0 seconds</summary>
+&gt; The user is pivoting the entire implementation approach. Instead of building a Streamlit app with Claude API calls, they want to use Devin CLI as the entire platform. This is actually quite clever - use the AI tool they already have access to as the runtime engine itself.
+&gt;
+&gt; Let me evaluate this approach carefully.
+&gt;
+&gt; The key insight is: Devin CLI IS the LLM. The markdown files (SKILLS.md, WORKFLOW.md, AGENT.md) act as the &quot;program&quot; that instructs Devin how to behave. The console is the UI. Text-based graph output replaces Pyvis.
+&gt;
+&gt; Let me think through what this means:
+&gt;
+&gt; 1. No API key needed - Devin is the LLM
+&gt; 2. No Streamlit needed since the console itself is the UI, and no Pyvis needed since I can render an ASCII graph directly in text. The markdown files become the configuration for the SDD-compiler, with /resolve set up as a custom slash command.
+&gt;
+&gt; This is a pragmatic hackathon approach worth weighing carefully - it needs zero infrastructure, costs nothing extra since Devin is already licensed, can be demoed immediately, and there's something meta about the markdown files literally being the product. I'm now weighing the downsides of relying on Devin CLI itself.
+&gt;
+&gt; On the con side, persistent state across interactions is uncertain and needs testing, text-based graph rendering is inherently limited, there's no real interactive &quot;button&quot; beyond pressing Enter, and success depends heavily on Devin consistently following instructions - plus it's visually less impressive than a proper demo unless I persist the graph to files between sessions.
+&gt;
+&gt; I'm sketching out the practical implementation: storing the graph as a JSON file Devin reads and writes, rendering it as ASCII art in the console, with WORKFLOW.md defining the compile cycle, SKILLS.md defining /resolve and other commands, and AGENT.md establishing Devin's persona as the SDD-Compiler. Now I'm working through the actual mechanics of how Devin CLI operates - the user typing, Devin responding, and Devin's ability to read and write files.
+&gt;
+&gt; The full workflow crystallizes: the user types spec text into Devin CLI, Devin follows WORKFLOW.md to parse the text and extract nodes into a spec_graph.json file, then prints an ASCII graph to the console. If conflicts arise, Devin highlights them in its text output, the user types /resolve to get suggested fixes, and the cycle continues as fixes are applied. This feels elegant - the entire SDD-Compiler reduces to a set of well-crafted markdown instructions that transform Devin into a functioning compiler. Now I want to evaluate this whole approach comprehensively.
+&gt;
+&gt;
+</details>
+# Evaluating the Devin-CLI-Only Approach
+
+---
+
+## 1. The Fundamental Realization
+
+Your pivot reveals something important that I missed.
+
+```
+WHAT I WAS BUILDING:
+  A software application that WRAPS an LLM to act as a compiler.
+
+  Human → Streamlit UI → Python Engine → Claude API → Graph
+                ↑                            ↑
+           We built this              We need API key
+           (unnecessary)              (unavailable)
+
+WHAT YOU'RE PROPOSING:
+  Devin CLI IS the LLM. Devin CLI IS the UI.
+  The .md files ARE the program.
+
+  Human → Devin CLI → (reads .md files) → responds as SDD-Compiler
+              ↑               ↑
+        Already exists   We write these
+        Already licensed  (this IS the product)
+```
+
+You're essentially saying: **the SDD-Compiler is not a software application. It's a set of instructions that turn an existing AI agent into a specification compiler.** The deliverable is the `.md` files themselves, plus the demonstrated workflow.
+
+This is architecturally elegant. The `.md` instruction files are the equivalent of a compiler's source code, and Devin is the runtime.
+
+---
+
+## 2. Honest Evaluation — Strengths
+
+```
+STRENGTH                              WHY IT MATTERS
+────────────────────────────────────  ──────────────────────────────
+Zero infrastructure                   No API keys, no deployment,
+                                      no server, no dependencies.
+                                      Works in 5 minutes.
+
+Already licensed                      No procurement, no legal,
+                                      no security review needed.
+
+The .md files ARE the product         Judges can read the product.
+                                      The deliverable is self-
+                                      documenting. Very hackathon
+                                      friendly.
+
+Devin handles all NL processing       Node extraction, layer
+                                      classification, conflict
+                                      detection — all done by Devin
+                                      following your instructions.
+
+File-based persistence                Devin can read/write a
+                                      spec_graph.json file.
+                                      Graph state survives across
+                                      interactions.
+
+Faster to build                       Writing .md files is faster
+                                      than writing Python code.
+                                      More time for refinement.
+
+Meta-narrative for presentation       "We used SDD techniques to
+                                      build an SDD compiler."
+                                      The .md files themselves are
+                                      specs that instruct an AI.
+                                      Recursive and compelling.
+
+Reproducible                          Anyone with Devin access can
+                                      clone the repo and immediately
+                                      have the SDD-Compiler working.
+```
+
+---
+
+## 3. Honest Evaluation — Weaknesses & Risks
+
+```
+WEAKNESS                      SEVERITY    MITIGATION
+────────────────────────────  ──────────  ─────────────────────────
+Devin may not follow .md      HIGH        Test extensively during prep.
+instructions consistently.                Use very explicit, step-by-
+Output format may vary                    step instructions with exact
+between runs.                             output format templates.
+                                          Include examples in .md files.
+
+No real interactive graph     MEDIUM      Use ASCII art graph with
+visualization. Text-only                  box-drawing characters.
+console is less visually                  It's less pretty but the
+impressive.                               STRUCTURE is what matters,
+                                          not the pixels.
+
+Console text graph has         MEDIUM     Keep demo example small
+limited real estate.                      (15-20 nodes max). Use
+Large graphs won't display                abbreviated node IDs.
+well.                                     Show family-collapsed view
+                                          by default.
+
+No click-to-inspect            LOW        Replace with typed commands:
+interaction on nodes.                     "/inspect F3" shows node
+                                          detail. Judges will
+                                          understand this is a POC.
+
+Devin response latency         MEDIUM     Pre-test the exact demo
+may be slow during live                   inputs. Know the expected
+demo.                                     response time. Have
+                                          screenshots as backup.
+
+State consistency across       MEDIUM     Use a single spec_graph.json
+multiple Devin interactions.              file as source of truth.
+Devin might "forget" the                  Every instruction in .md
+graph state.                              says "ALWAYS read
+                                          spec_graph.json first."
+
+No real multi-user             LOW        Acceptable for POC. Just
+collaboration demo.                       demonstrate single-user
+                                          flow. Mention multi-user
+                                          as future work.
+```
+
+---
+
+## 4. The Revised Architecture
+
+```
+SDD-COMPILER (Devin CLI Edition)
+
+PROJECT FILES:
+─────────────────────────────────────────────────
+  .devin/
+  ├── AGENT.md              ← Devin's identity and core behavior
+  ├── WORKFLOW.md           ← The compile cycle logic
+  ├── SKILLS.md             ← Slash commands (/resolve, etc.)
+  │
+  specs/
+  ├── spec_graph.json       ← Persistent graph state (source of truth)
+  ├── input_history.md      ← Log of all user inputs
+  │
+  examples/
+  └── auth_system.json      ← Pre-loaded demo example
+```
+
+### How It Works — Data Flow
+
+```
+USER TYPES SPEC TEXT IN DEVIN CLI
+         │
+         ▼
+DEVIN READS:
+  1. AGENT.md    → "I am the SDD-Compiler. Here's how I behave."
+  2. WORKFLOW.md → "On receiving spec text, follow these steps."
+  3. spec_graph.json → "Here's the current graph state."
+         │
+         ▼
+DEVIN EXECUTES WORKFLOW:
+  Step 1: Parse user text into atomic nodes
+  Step 2: Classify each node into a layer
+  Step 3: Infer dependencies to existing nodes
+  Step 4: Detect conflicts against existing graph
+  Step 5: Update spec_graph.json with new nodes
+  Step 6: Print ASCII graph to console
+  Step 7: Highlight conflicts in red (ANSI) or [!!!]
+         │
+         ▼
+USER SEES GRAPH IN CONSOLE
+         │
+         ├─→ Types more specs → loop back
+         ├─→ Types "/resolve" → Devin reads SKILLS.md → suggests fix
+         ├─→ Types "/inspect B3" → Devin shows node detail
+         └─→ Types "/generate" → Devin outputs code-ready spec
+```
+
+---
+
+## 5. The .md File Designs
+
+### AGENT.md — Identity & Core Behavior
+
+```markdown
+# SDD-Compiler Agent
+
+## Identity
+You are the **SDD-Compiler**, a specification compiler that turns
+free-form human intent into a structured, validated specification
+graph for code generation.
+
+## Core Behavior Rules
+
+1. **You are NOT a chatbot.** Do not make conversation. Do not
+   say "Sure!" or "Great question!" You are a compiler.
+   Compilers output structured results, not pleasantries.
+
+2. **Every user input is treated as specification text** unless
+   it starts with "/" (a command).
+
+3. **Always read `specs/spec_graph.json` first** before processing
+   any input. This is your source of truth for the current state
+   of the specification graph.
+
+4. **After processing, always update `specs/spec_graph.json`**
+   with any new nodes, edges, or status changes.
+
+5. **After updating the graph, always print the ASCII graph**
+   following the format defined in WORKFLOW.md.
+
+6. **Highlight conflicts immediately but do NOT suggest fixes**
+   unless the user explicitly types `/resolve`.
+
+7. **Never invent requirements.** Only extract what the user
+   actually wrote. If something is ambiguous, mark the node
+   as status "ambiguous" but do not fill in assumptions.
+
+## Node ID Convention
+- Business requirements: B1, B2, B3...
+- Functional specs: F1, F2, F3...
+- Architecture: A1, A2, A3...
+- Interfaces: I1, I2, I3...
+- Data models: D1, D2, D3...
+- Logic: LG1, LG2, LG3...
+- Tests: T1, T2, T3...
+
+## Layer Definitions
+
+| Layer | Code | Contains |
+|-------|------|----------|
+| Business Requirements | L0 | WHY. Business value, compliance, user needs. |
+| Functional Specs | L1 | WHAT users experience. Features, behaviors, rules. |
+| Architecture | L2 | HOW system is structured. Services, components. |
+| Interface Contracts | L3 | HOW components communicate. APIs, events, schemas. |
+| Data Models | L4 | WHAT data exists. Entities, fields, relationships. |
+| Behavioral Logic | L5 | HOW internal logic works. Algorithms, rules. |
+| Test Specs | L6 | HOW to verify. Test cases, acceptance criteria. |
+
+## Conflict Detection Rules
+Two nodes conflict when:
+- They specify contradictory values for the same property
+- One node's requirement makes another node impossible
+- A constraint in one layer violates a constraint in another
+- Data model cannot support the interface contract
+- Test expectation contradicts behavioral logic
+```
+
+---
+
+### WORKFLOW.md — The Compile Cycle
+
+```markdown
+# SDD-Compiler Workflow
+
+## On Receiving Spec Text (non-command input)
+
+Execute these steps IN ORDER. Do not skip steps.
+
+### Step 1: Read Current State
+- Read `specs/spec_graph.json`
+- Count existing nodes per layer
+- Note existing families
+
+### Step 2: Parse Input
+- Break the user's free-form text into ATOMIC requirements
+- Each atomic requirement = ONE specific, testable statement
+- One sentence may yield multiple nodes
+- A paragraph may yield 3-10 nodes
+
+### Step 3: Classify Each Node
+For each extracted node:
+- Assign a layer (L0-L6) based on Layer Definitions in AGENT.md
+- Assign a node ID following the convention
+- Assign to an existing family or create a new one
+- Set status to "new"
+
+### Step 4: Infer Dependencies
+For each new node:
+- Identify which existing nodes it depends on
+- Identify which existing nodes depend on concepts it affects
+- Create directed edges (dependency flows top-down, L0→L6)
+
+### Step 5: Detect Conflicts
+For each new node, compare against ALL existing nodes:
+- Check for contradictory specifications
+- Check for impossible constraint combinations
+- Check for data model / interface mismatches
+- If conflict found: set BOTH nodes' status to "conflict"
+- Record conflict with reason in the conflicts array
+
+### Step 6: Update Graph File
+- Add new nodes to `specs/spec_graph.json`
+- Add new edges
+- Add any conflicts
+- Update statuses
+- Save file
+
+### Step 7: Print ASCII Graph
+Print the graph using this EXACT format:
+
+--- SDD SPECIFICATION GRAPH ---
+
+LAYER 0 - BUSINESS REQUIREMENTS
+  [B1 ✅] User password reset without support
+  [B2 ✅] OWASP compliance mandatory
+
+LAYER 1 - FUNCTIONAL SPECIFICATIONS
+  [F1 ✅] Forgot password → enter email
+  [F2 ✅] Reset email sent within 30s
+  [F3 ❌] Reset token expires in 15 minutes ←┐ CONFLICT
+  [F7 ❌] Reset token valid for 24 hours    ←┘ CONFLICT
+
+LAYER 2 - ARCHITECTURE
+  [A1 ✅] AuthService handles password reset
+
+DEPENDENCIES:
+  B1 ──→ F1 ──→ F2
+  B2 ──→ F3
+  F1 ──→ A1
+
+CONFLICTS DETECTED: 1
+  ❌ F3 ↔ F7: Token TTL contradiction (15min vs 24hr)
+     Type /resolve to get resolution suggestions.
+
+--- END GRAPH ---
+
+### Status Icons
+- ✅ = validated (no conflicts, consistent)
+- ❌ = conflict (contradicts another node)
+- ⚠️ = ambiguous (multiple interpretations possible)
+- 🆕 = newly added (not yet validated)
+
+### Step 8: Append to History
+Append the user's original input to `specs/input_history.md`
+with timestamp.
+```
+
+---
+
+### SKILLS.md — Slash Commands
+
+```markdown
+# SDD-Compiler Skills (Slash Commands)
+
+## /resolve
+
+### Trigger
+User types `/resolve` in the CLI.
+
+### Behavior
+1. Read `specs/spec_graph.json`
+2. Find all unresolved conflicts
+3. For EACH conflict, provide 2-3 resolution options
+4. Format response as:
+
+CONFLICT RESOLUTION SUGGESTIONS
+================================
+
+❌ Conflict: F3 ↔ F7
+   F3: "Reset token expires in 15 minutes"
+   F7: "Reset token valid for 24 hours"
+   Reason: Contradictory TTL values.
+
+   Option A: Keep 15 minutes (security-first)
+     → Remove F7
+     → Rationale: OWASP recommends short-lived tokens.
+     → Impact: Users must check email quickly.
+
+   Option B: Change to 24 hours (UX-first)
+     → Update F3 to 24 hours
+     → ⚠️ May conflict with B2 (OWASP compliance)
+     → Impact: Weaker security posture.
+
+   Option C: Tiered approach
+     → Update F3: "Default 15min, configurable up to 24hr
+       based on account security tier"
+     → Add new node F8: "Premium accounts get extended
+       token validity"
+     → Impact: More complex but balances both concerns.
+
+Type your resolution as a new spec, then press Enter
+to re-compile.
+================================
+
+### Rules
+- Present options neutrally
+- Always note trade-offs
+- Always note impact on other nodes
+- Do NOT auto-apply any resolution
+- Wait for user to type their chosen resolution as spec text
+
+
+## /inspect [NODE_ID]
+
+### Trigger
+User types `/inspect F3` (or any valid node ID).
+
+### Behavior
+1. Read `specs/spec_graph.json`
+2. Find the node with matching ID
+3. Display full detail:
+
+NODE DETAIL: F3
+═══════════════════════════════════
+Content:    Reset token expires in 15 minutes
+Layer:      L1 - Functional Specification
+Family:     Password Reset
+Status:     ❌ conflict
+Author:     security_lead
+Source:     "For security, reset tokens should expire
+            after 15 minutes per OWASP guidelines"
+
+Depends on: B2 (OWASP compliance mandatory)
+Depended by: T3 (Test: expired token returns 410)
+Conflicts:  F7 (Reset token valid for 24 hours)
+═══════════════════════════════════
+
+
+## /graph
+
+### Trigger
+User types `/graph`.
+
+### Behavior
+Re-print the full ASCII graph from spec_graph.json
+without making any changes. This is a read-only view.
+
+
+## /families
+
+### Trigger
+User types `/families`.
+
+### Behavior
+Show collapsed family view:
+
+SPECIFICATION FAMILIES
+═══════════════════════════════════
+📁 Password Reset (7 nodes: 5 ✅, 2 ❌)
+   Layers: L0(1), L1(3), L2(1), L4(1), L6(1)
+
+📁 Security (4 nodes: 4 ✅)
+   Layers: L0(1), L1(1), L2(1), L5(1)
+
+📁 User Session (3 nodes: 3 ✅)
+   Layers: L1(1), L4(1), L6(1)
+═══════════════════════════════════
+
+
+## /status
+
+### Trigger
+User types `/status`.
+
+### Behavior
+Show compilation summary:
+
+SDD COMPILATION STATUS
+═══════════════════════════════════
+Total nodes:    18
+Validated:      15 ✅
+Conflicts:       2 ❌
+Ambiguous:       1 ⚠️
+
+Unresolved conflicts: 1
+  ❌ F3 ↔ F7: Token TTL contradiction
+
+Ready for code generation: NO
+  Resolve all conflicts first.
+═══════════════════════════════════
+
+
+## /export
+
+### Trigger
+User types `/export`.
+
+### Behavior
+Output the full spec_graph.json content formatted
+for code generation handoff. This is the "compiled
+output" of the SDD-Compiler.
+
+
+## /help
+
+### Trigger
+User types `/help`.
+
+### Behavior
+List all available commands with one-line descriptions.
+
+Available commands:
+  /resolve    — Get conflict resolution suggestions
+  /inspect ID — View full detail of a specific node
+  /graph      — Re-print the specification graph
+  /families   — Show collapsed family groupings
+  /status     — Show compilation summary
+  /export     — Export graph for code generation
+  /help       — Show this help message
+
+To add specs: just type freely and press Enter.
+```
+
+---
+
+## 6. The Pre-Loaded Example
+
+```json
+// specs/spec_graph.json (pre-loaded before demo)
+{
+  "meta": {
+    "project": "User Authentication System",
+    "created": "2025-01-15",
+    "last_compiled": "2025-01-15T10:30:00Z"
+  },
+  "nodes": {
+    "B1": {
+      "id": "B1",
+      "content": "Users must be able to reset their password without contacting support",
+      "layer": "L0_business",
+      "status": "validated",
+      "author": "product_manager",
+      "source_text": "Users need self-service password reset capability",
+      "family": "Password Reset",
+      "depends_on": [],
+      "conflicts_with": []
+    },
+    "B2": {
+      "id": "B2",
+      "content": "System must comply with OWASP authentication security guidelines",
+      "layer": "L0_business",
+      "status": "validated",
+      "author": "security_lead",
+      "source_text": "All auth must follow OWASP",
+      "family": "Security",
+      "depends_on": [],
+      "conflicts_with": []
+    },
+    "F1": {
+      "id": "F1",
+      "content": "User clicks forgot password link and enters their email address",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "product_manager",
+      "source_text": "Standard forgot password flow starting with email input",
+      "family": "Password Reset",
+      "depends_on": ["B1"],
+      "conflicts_with": []
+    },
+    "F2": {
+      "id": "F2",
+      "content": "System sends password reset email within 30 seconds of request",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "product_manager",
+      "source_text": "Reset email must be fast, within 30s",
+      "family": "Password Reset",
+      "depends_on": ["B1", "F1"],
+      "conflicts_with": []
+    },
+    "F3": {
+      "id": "F3",
+      "content": "Password reset token expires after 15 minutes for security",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "security_lead",
+      "source_text": "Tokens expire in 15min per OWASP guidelines",
+      "family": "Password Reset",
+      "depends_on": ["B2"],
+      "conflicts_with": []
+    },
+    "F4": {
+      "id": "F4",
+      "content": "After 3 failed reset attempts account is locked for 1 hour",
+      "layer": "L1_functional",
+      "status": "validated",
+      "author": "security_lead",
+      "source_text": "Rate limit reset attempts, lock after 3 failures",
+      "family": "Security",
+      "depends_on": ["B2"],
+      "conflicts_with": []
+    },
+    "A1": {
+      "id": "A1",
+      "content": "Password reset handled by AuthService microservice",
+      "layer": "L2_architecture",
+      "status": "validated",
+      "author": "tech_lead",
+      "source_text": "AuthService owns all password operations",
+      "family": "Password Reset",
+      "depends_on": ["F1", "F2", "F3"],
+      "conflicts_with": []
+    },
+    "A2": {
+      "id": "A2",
+      "content": "Email delivery delegated to NotificationService via async message queue",
+      "layer": "L2_architecture",
+      "status": "validated",
+      "author": "tech_lead",
+      "source_text": "Use message queue for email, NotificationService handles delivery",
+      "family": "Password Reset",
+      "depends_on": ["F2"],
+      "conflicts_with": []
+    },
+    "I1": {
+      "id": "I1",
+      "content": "POST /auth/reset-password {email: string} returns 202 Accepted",
+      "layer": "L3_interfaces",
+      "status": "validated",
+      "author": "tech_lead",
+      "source_text": "REST endpoint for initiating password reset",
+      "family": "Password Reset",
+      "depends_on": ["A1"],
+      "conflicts_with": []
+    },
+    "D1": {
+      "id": "D1",
+      "content": "PasswordResetToken entity: id, userId, token (32-byte), expiresAt, usedAt",
+      "layer": "L4_data_models",
+      "status": "validated",
+      "author": "tech_lead",
+      "source_text": "Token table with expiry tracking",
+      "family": "Password Reset",
+      "depends_on": ["F3", "I1"],
+      "conflicts_with": []
+    },
+    "T1": {
+      "id": "T1",
+      "content": "Test: valid token within 15min window resets password successfully",
+      "layer": "L6_tests",
+      "status": "validated",
+      "author": "qa_lead",
+      "source_text": "Happy path test for password reset",
+      "family": "Password Reset",
+      "depends_on": ["F3", "D1"],
+      "conflicts_with": []
+    },
+    "T2": {
+      "id": "T2",
+      "content": "Test: expired token after 15min returns 410 Gone",
+      "layer": "L6_tests",
+      "status": "validated",
+      "author": "qa_lead",
+      "source_text": "Expired token rejection test",
+      "family": "Password Reset",
+      "depends_on": ["F3", "D1"],
+      "conflicts_with": []
+    }
+  },
+  "edges": [
+    {"source": "B1", "target": "F1", "edge_type": "derives"},
+    {"source": "B1", "target": "F2", "edge_type": "derives"},
+    {"source": "B2", "target": "F3", "edge_type": "derives"},
+    {"source": "B2", "target": "F4", "edge_type": "derives"},
+    {"source": "F1", "target": "A1", "edge_type": "derives"},
+    {"source": "F2", "target": "A2", "edge_type": "derives"},
+    {"source": "F3", "target": "A1", "edge_type": "constrains"},
+    {"source": "A1", "target": "I1", "edge_type": "derives"},
+    {"source": "F3", "target": "D1", "edge_type": "constrains"},
+    {"source": "I1", "target": "D1", "edge_type": "derives"},
+    {"source": "F3", "target": "T1", "edge_type": "derives"},
+    {"source": "F3", "target": "T2", "edge_type": "derives"},
+    {"source": "D1", "target": "T1", "edge_type": "derives"},
+    {"source": "D1", "target": "T2", "edge_type": "derives"}
+  ],
+  "conflicts": []
+}
+```
+
+---
+
+## 7. Demo Script for Devin CLI
+
+```
+DEMO SCRIPT (5 minutes)
+═══════════════════════════════════════════════════
+
+[SLIDE: Title — "SDD-Compiler: Solving Death by Markdown"]
+
+NARRATOR: "Let me show you the SDD-Compiler in action."
+
+──────────────────────────────────────────────────
+
+STEP 1: Show current state
+
+  > /status
+
+  EXPECTED OUTPUT:
+  Total nodes: 12, Validated: 12 ✅, Conflicts: 0
+  Ready for code generation: YES
+
+  > /graph
+
+  EXPECTED OUTPUT: Full green graph, all ✅
+
+NARRATOR: "This is a spec for a user auth system.
+12 requirements across 6 layers. All validated,
+zero conflicts. Let's break it."
+
+──────────────────────────────────────────────────
+
+STEP 2: Add conflicting spec
+
+  > To improve user experience, password reset links
+    should remain valid for 24 hours. Many users don't
+    check email right away and 15 minutes is too short.
+
+  EXPECTED OUTPUT:
+  - New node F5 created at Layer 1
+  - CONFLICT DETECTED: F3 ↔ F5
+  - Graph re-printed with F3 ❌ and F5 ❌
+  - Downstream T1 and T2 marked ⚠️ (affected by conflict)
+
+NARRATOR: "One sentence. The compiler immediately
+detected it contradicts an existing requirement written
+by a different team member. It also flagged that two
+test cases downstream are now in question."
+
+──────────────────────────────────────────────────
+
+STEP 3: Inspect the conflict
+
+  > /inspect F3
+  > /inspect F5
+
+NARRATOR: "I can drill into each node to understand
+the full context."
+
+──────────────────────────────────────────────────
+
+STEP 4: Ask for resolution
+
+  > /resolve
+
+  EXPECTED OUTPUT: Three options with trade-offs
+
+NARRATOR: "Only when I ASK does it suggest solutions.
+It respects the engineer's thinking process."
+
+──────────────────────────────────────────────────
+
+STEP 5: Apply resolution
+
+  > Password reset tokens have a default expiry of
+    15 minutes. Enterprise accounts can configure
+    extended token validity up to 24 hours through
+    admin settings. Token TTL is stored per-tenant.
+
+  EXPECTED OUTPUT:
+  - F3 updated, F5 resolved
+  - New nodes created (config-related)
+  - All conflicts resolved
+  - Graph re-printed: all ✅
+
+  > /status
+  Ready for code generation: YES ✅
+
+NARRATOR: "Clean compile. The spec is consistent,
+layered, and ready for code generation."
+
+══════════════════════════════════════════════════
+```
+
+---
+
+## 8. Final Evaluation — Is This Sufficient as a POC?
+
+```
+POC REQUIREMENT                     DEVIN CLI APPROACH        VERDICT
+──────────────────────────────────  ────────────────────────  ────────
+Free-form spec input                Type directly in CLI      ✅ FULL
+Compile / process button            Press Enter               ✅ FULL
+Graph visualization                 ASCII art in console      ⚠️ PARTIAL
+  └ Layer organization              Grouped text by layer     ✅ FULL
+  └ Color coding                    Emoji icons ✅❌⚠️🆕       ✅ FULL
+  └ Interactive (click nodes)       /inspect command          ✅ FULL
+  └ Dependency edges                Text arrows               ⚠️ PARTIAL
+Conflict detection                  Devin compares nodes      ✅ FULL
+Conflict highlighting               ❌ markers + description  ✅ FULL
+Resolution suggestions              /resolve command          ✅ FULL
+Resolution application              Type fix + re-compile     ✅ FULL
+Family grouping                     /families command         ✅ FULL
+Persistent state                    spec_graph.json file      ✅ FULL
+Multi-person simulation             Different author fields   ⚠️ PARTIAL
+Code generation ready output        /export command           ✅ FULL
+```
+
+### Overall Assessment
+
+```
+SCORE: 11 FULL / 3 PARTIAL / 0 MISSING
+
+This is a VIABLE hackathon POC.
+
+The partial items (visual graph quality, edge rendering,
+multi-user) are all acceptable limitations for a 1-day
+hackathon. The core value proposition — free-form input
+becoming a structured, conflict-checked specification graph
+— is fully demonstrable.
+```
+
+### The One Risk to Manage
+
+```
+CRITICAL RISK:
+  Devin must consistently follow the .md instructions
+  across the entire demo flow without deviating.
+
+MITIGATION:
+  1. Test the EXACT demo script 5+ times before demo day
+  2. Make .md instructions extremely explicit and redundant
+  3. Include worked examples IN the .md files so Devin has
+     few-shot references
+  4. Keep spec_graph.json format simple so Devin can
+     reliably read/write it
+  5. Have backup screenshots if live demo fails
+```
+
+---
+
+Shall we refine any of the `.md` files further, design the demo conflict scenario in more detail, or rehearse the edge cases Devin might struggle with?
+
+
+
+
+===== Victor Truong =====
+00f5aa50-a201-491d-8669-dbc872995e3b: Come back before discussing how to build poc, back to your response with title “SDD-Compiler: Consolidated Architecture”. The core principle here is using graph, which may have some minimal advantage to human psychology. But in terms of AI-agent, does it really help in reducing token consumption and hallucination, while improving the accuracy of solving conflicting specs ?
+Lecture me how AI-agent works if I simply as an agentic AI-agent to consolidate 2 SDD specs and pick up inconsistencies?
+ac35748e-e66a-494e-b559-52ba60c2ced6: <details type="reasoning" done="true" duration="0" label="Thinking">
+<summary>Thinking for 0 seconds</summary>
+&gt; The user is asking a very fundamental and important question. They want to understand whether the graph-based approach actually provides technical advantages over simply asking an AI agent to &quot;read these two specs and find inconsistencies.&quot; They want a lecture on how AI agents actually process this kind of task, and whether the graph structure genuinely helps with token consumption, hallucination reduction, and accuracy.
+&gt;
+&gt; This is a great critical thinking question. Let me think deeply about this.
+&gt;
+&gt; The key things to address:
+&gt;
+&gt; 1. How does an AI agent actually work when you ask it to compare two specs?
+&gt; 2. What are the failure modes (token limits, attention degradation, hallucination)?
+&gt; 3. Does the graph structure actually help, or is it just a nice visualization with no real AI benefit?
+&gt; Honestly, when an LLM reads two full specs and hunts for inconsistencies, it has to attend across the entire context, which suffers from attention dilution and the &quot;lost in the middle&quot; problem, and it has no structured way to verify its own findings, so it can hallucinate conflicts or miss real ones. A graph representation breaks the specs into atomic nodes, letting comparisons happen node-by-node in a targeted, structured way rather than relying on brute-force attention over a huge blob of text.
+&gt;
+&gt; I do have to admit the graph itself is AI-generated, so extraction could still hallucinate or drop information -- but that's a decomposition task, which LLMs handle reasonably well, versus holistic conflict-detection across long documents, which they handle poorly. So the graph approach really just splits one hard problem into two more tractable ones: decomposition, then targeted pairwise comparison.
+&gt;
+&gt; I still want to weigh in the &quot;lost in the middle&quot; effect, token efficiency, and how structured chunking helps focus reasoning -- I should be honest about both the strengths and limits of this approach.
+&gt;
+&gt;
+</details>
+# How AI Agents Actually Process Spec Comparison — And Whether Graphs Help
+
+---
+
+## Part 1: What Actually Happens When You Ask an AI Agent to Compare Two Specs
+
+Let's be brutally concrete. Suppose you have two SDD spec documents, each about 3,000 words, and you paste them into Devin or Claude and say:
+
+> *"Compare these two specs and find all inconsistencies."*
+
+Here is what happens inside the model, step by step.
+
+### Step 1: Tokenization
+
+```
+Spec A (3,000 words) → ~4,000 tokens
+Spec B (3,000 words) → ~4,000 tokens
+Your instruction       → ~20 tokens
+System prompt          → ~500 tokens
+                        ──────────
+Total context          → ~8,500 tokens
+```
+
+This is well within modern context windows (128K–200K). So far no problem.
+
+### Step 2: Self-Attention Computation
+
+This is where the real work happens. The transformer model uses **self-attention** to relate every token to every other token.
+
+```
+Self-attention complexity: O(n²)
+
+For 8,500 tokens:
+  8,500 × 8,500 = 72,250,000 attention pairs
+
+The model must implicitly "consider" 72 million
+relationships to find the inconsistencies.
+```
+
+But here's the critical nuance. The model doesn't literally check all 72 million pairs for semantic conflict. The attention mechanism learns **patterns** during training. It distributes attention weights across the context based on what it has learned is relevant.
+
+The question is: **how well does this attention distribution work for the specific task of finding spec inconsistencies?**
+
+### Step 3: The Actual Cognitive Task
+
+Finding an inconsistency between two specs requires the model to:
+
+```
+For EVERY statement S_a in Spec A:
+  For EVERY statement S_b in Spec B:
+    1. Understand what S_a means
+    2. Understand what S_b means
+    3. Determine if they refer to the SAME concept/property
+    4. If same concept: determine if the values/behaviors CONFLICT
+    5. Consider implicit constraints (does S_a indirectly
+       make S_b impossible through a chain of logic?)
+```
+
+This is a **quadratic comparison task**. If Spec A has 30 distinct requirements and Spec B has 30, the model must implicitly evaluate 900 pairs.
+
+And for each pair, it's not just string matching. It's **semantic reasoning**:
+
+```
+S_a: "Reset token expires after 15 minutes"
+S_b: "Password recovery links should remain active for 24 hours"
+
+To detect this conflict, the model must:
+1. Recognize "reset token" and "password recovery link" refer
+   to the same concept
+2. Recognize "expires after" and "remain active for" are
+   inverse framings of the same property (TTL)
+3. Recognize 15 minutes ≠ 24 hours
+4. Conclude: CONFLICT
+```
+
+This specific example is easy. But what about subtle ones?
+
+```
+S_a: "System must support 10,000 concurrent users"
+S_b: "Each password reset generates a cryptographic token
+      using 500ms of CPU time"
+
+To detect this conflict, the model must:
+1. Calculate: 10,000 users × some percentage requesting
+   resets simultaneously
+2. Estimate: if even 1% hit reset at once = 100 concurrent
+   token generations
+3. Calculate: 100 × 500ms = 50 seconds of CPU time
+4. Infer: this likely exceeds single-server capacity
+5. Conclude: POTENTIAL ARCHITECTURAL CONFLICT
+
+This requires MULTI-HOP REASONING across two statements
+that don't share any keywords.
+```
+
+---
+
+## Part 2: The Known Failure Modes
+
+### Failure Mode 1: Lost in the Middle
+
+This is the most well-documented failure. Research from Stanford/Berkeley (2023) showed that LLMs have significantly **degraded recall for information in the middle** of long contexts.
+
+```
+ATTENTION DISTRIBUTION IN PRACTICE:
+
+Position in context:  Beginning  ···  Middle  ···  End
+Attention strength:   ████████        ██            ████████
+
+The model pays most attention to:
+  - The beginning of the context (primacy effect)
+  - The end of the context (recency effect)
+  - Tokens near the query/instruction
+
+Information buried in the MIDDLE of a long document
+gets significantly less attention.
+```
+
+What this means for spec comparison:
+
+```
+If you paste Spec A then Spec B:
+
+  [Instruction] [Spec A: beginning...middle...end] [Spec B: beginning...middle...end]
+                                    ↑                              ↑
+                              LOW ATTENTION                  HIGH ATTENTION
+
+  Conflicts between the MIDDLE of Spec A and the BEGINNING
+  of Spec B are MOST LIKELY TO BE MISSED.
+
+  Conflicts between the END of Spec A and the END of Spec B
+  are MOST LIKELY TO BE FOUND.
+```
+
+This is not random. It's a **systematic bias** in what the model catches and misses. You cannot fix this by asking nicely or prompting better. It's architectural.
+
+### Failure Mode 2: Attention Dilution at Scale
+
+```
+SPEC SIZE vs CONFLICT DETECTION ACCURACY (conceptual)
+
+  Accuracy
+  100% │ ●
+       │   ●
+   90% │     ●
+       │       ●
+   80% │         ●
+       │            ●
+   70% │               ●
+       │                   ●
+   60% │                       ●
+       │                            ●
+   50% │                                 ●
+       └──────────────────────────────────────
+         10   20   30   50   80  120  200  500
+              Number of requirements in context
+
+As the number of statements grows, the model must
+distribute its attention across more pairs. Each
+individual comparison gets LESS attention, and
+accuracy degrades.
+```
+
+This is why models are often good at finding one or two obvious conflicts but **miss the third, fourth, and fifth** ones in the same document.
+
+### Failure Mode 3: Hallucinated Conflicts
+
+The flip side of missing real conflicts is **inventing fake ones**. This happens because:
+
+```
+WHY HALLUCINATED CONFLICTS OCCUR:
+
+1. SURFACE SIMILARITY TRAP
+   The model sees two statements that LOOK related
+   (similar words) but aren't actually conflicting.
+
+   "Users can reset password via email"
+   "Users can update email in settings"
+
+   Model might flag: "CONFLICT: email reset vs email update"
+   Reality: These are completely independent features.
+
+2. OVER-INFERENCE TRAP
+   The model makes a logical leap that isn't warranted.
+
+   "System uses PostgreSQL"
+   "System must handle 1M writes per second"
+
+   Model might flag: "CONFLICT: PostgreSQL can't handle 1M wps"
+   Reality: With proper architecture (sharding, etc.) it might.
+   The model is making an architectural assumption.
+
+3. PLEASING BIAS
+   You asked for conflicts. The model WANTS to find conflicts
+   to satisfy your request. If real conflicts are scarce,
+   it will manufacture borderline ones.
+
+   This is well-documented: when you ask "find problems,"
+   models find problems even when there aren't any.
+```
+
+### Failure Mode 4: No Verification Mechanism
+
+```
+FUNDAMENTAL PROBLEM:
+
+  When a compiler checks types:
+    int x = "hello"  →  ERROR: type mismatch (PROVABLY WRONG)
+
+  When an LLM checks spec consistency:
+    "Token expires in 15min" vs "Token valid for 24hr"
+    → "These might conflict" (PROBABILISTIC GUESS)
+
+  The LLM has NO formal verification system.
+  It's doing PATTERN MATCHING on what "looks like" a conflict
+  based on training data.
+
+  It cannot PROVE that two statements conflict.
+  It can only estimate the PROBABILITY that they conflict.
+```
+
+---
+
+## Part 3: Does the Graph Actually Help?
+
+Now the hard question. Let me be honest and analyze this rigorously.
+
+### Claim 1: "Graph reduces token consumption"
+
+```
+SCENARIO A: Monolithic Comparison (No Graph)
+─────────────────────────────────────────────
+  Input: Full Spec A (4,000 tokens) + Full Spec B (4,000 tokens)
+  Prompt: "Find inconsistencies"
+  Total: ~8,500 tokens per call
+  Calls: 1
+  Total tokens consumed: ~8,500 + output
+
+SCENARIO B: Graph-Based Comparison
+─────────────────────────────────────────────
+  Step 1: Parse Spec A into nodes
+    Input: Spec A (4,000 tokens) + parsing instruction
+    Output: 30 nodes (JSON)
+    Tokens: ~5,000
+
+  Step 2: Parse Spec B into nodes
+    Input: Spec B (4,000 tokens) + parsing instruction
+    Output: 30 nodes (JSON)
+    Tokens: ~5,000
+
+  Step 3: Conflict detection (node-by-node)
+    For each new node, compare against relevant existing nodes.
+    Input per call: 1 new node (~50 tokens) +
+                    5-10 related nodes (~300 tokens) + instruction
+    Tokens per call: ~500
+    Calls: 30 nodes × 1 call each = 30 calls
+    Total: 30 × 500 = ~15,000
+
+  GRAND TOTAL: 5,000 + 5,000 + 15,000 = ~25,000 tokens
+
+VERDICT: Graph approach uses ~3x MORE tokens.
+```
+
+**Wait, that's worse.** More calls, more tokens. So the "token efficiency" claim is **FALSE** in the naive implementation.
+
+**BUT** — and this is critical — there is a smarter approach:
+
+```
+SCENARIO C: Graph-Based with Smart Filtering
+─────────────────────────────────────────────
+  Step 1-2: Same as above (~10,000 tokens for parsing)
+
+  Step 3: INSTEAD of comparing every new node against
+          every existing node, use the graph structure
+          to FILTER comparisons:
+
+    - Only compare nodes in the SAME LAYER
+    - Only compare nodes in the SAME FAMILY or
+      related families
+    - Only compare nodes that share dependency ancestors
+
+    This reduces 30×30 = 900 comparisons to maybe
+    30-50 TARGETED comparisons.
+
+    And each comparison is SMALL (two nodes, ~100 tokens)
+    so they can be BATCHED into a single prompt:
+
+    "Check these 10 pairs for conflicts: ..."
+    ~1,500 tokens per batch × 5 batches = ~7,500
+
+  GRAND TOTAL: 10,000 + 7,500 = ~17,500 tokens
+
+  BUT each individual comparison is HIGH QUALITY because
+  the model is focusing on just TWO statements at a time,
+  not searching through 6,000 words of prose.
+```
+
+So the token story is nuanced:
+
+```
+                    TOKENS     ACCURACY
+Monolithic:         ~8,500     Medium (attention dilution)
+Graph (naive):      ~25,000    High (focused comparisons)
+Graph (smart):      ~17,500    High (focused + filtered)
+
+The graph trades tokens for accuracy.
+It's not about using FEWER tokens.
+It's about using tokens MORE EFFECTIVELY.
+```
+
+---
+
+### Claim 2: "Graph reduces hallucination"
+
+This one has a stronger case. Here's why:
+
+```
+MONOLITHIC COMPARISON:
+══════════════════════
+
+  Prompt: "Here are two 3000-word specs. Find all conflicts."
+
+  The model must:
+  1. Hold ALL information in "working memory" simultaneously
+  2. Decide what to compare with what
+  3. Make judgment calls about what constitutes a conflict
+  4. Generate a comprehensive list
+
+  HALLUCINATION RISK:
+  - Model sees 60+ requirements and must find conflicts
+  - Pressure to find SOMETHING (pleasing bias)
+  - May pattern-match on surface similarities
+  - No structure to constrain its reasoning
+  - Output: "I found 7 conflicts" — some real, some hallucinated
+  - YOU have no way to verify without reading both full specs yourself
+
+GRAPH-BASED COMPARISON:
+══════════════════════
+
+  Prompt: "Do these two nodes conflict?
+           Node F3: 'Token expires in 15 minutes'
+           Node F7: 'Token valid for 24 hours'"
+
+  The model must:
+  1. Understand two short statements
+  2. Determine if they conflict
+  3. Say yes or no with reasoning
+
+  HALLUCINATION RISK:
+  - Much smaller input = much less room for confusion
+  - Binary question (conflict or not) = harder to hallucinate
+  - Reasoning is AUDITABLE (you can check the logic for
+    this specific pair)
+  - If it says "conflict" you can read both nodes in
+    5 seconds and verify
+  - If it says "no conflict" and you disagree, you can
+    re-prompt with context
+
+THE KEY INSIGHT:
+  Hallucination is proportional to AMBIGUITY OF TASK.
+
+  "Find all conflicts in 6000 words" = HIGH AMBIGUITY
+  "Do these two statements conflict?" = LOW AMBIGUITY
+
+  The graph DECOMPOSES a high-ambiguity task into
+  many low-ambiguity tasks.
+```
+
+**Verdict: YES, the graph genuinely reduces hallucination**, not because of the graph structure itself, but because **it enables decomposition of a vague, open-ended task into specific, verifiable sub-tasks.**
+
+---
+
+### Claim 3: "Graph improves accuracy of conflict detection"
+
+```
+WHY MONOLITHIC COMPARISON MISSES CONFLICTS:
+
+  Problem 1: ORDERING BIAS
+  ─────────────────────────
+  In a long document, the model attends differently
+  to different positions. A conflict between paragraph
+  3 and paragraph 47 is less likely to be caught than
+  a conflict between paragraph 46 and paragraph 47.
+
+  Graph approach: Position doesn't matter. Each pair
+  is presented in isolation. No ordering bias.
+
+  Problem 2: SEMANTIC DISTANCE
+  ─────────────────────────────
+  Two requirements that use different terminology for
+  the same concept are hard to match in a long document.
+
+  "Auth token lifetime: 15 minutes" (page 2)
+  "Recovery link validity period: 24 hours" (page 8)
+
+  In monolithic comparison, the model may not connect
+  "auth token lifetime" with "recovery link validity
+  period" because they're far apart and use different words.
+
+  Graph approach: The layer classification step ALREADY
+  identified both as L1_functional requirements about
+  the same feature family. They're presented together
+  for comparison.
+
+  Problem 3: MULTI-HOP REASONING
+  ──────────────────────────────
+  Some conflicts are INDIRECT:
+
+  A: "Use SQLite for storage"
+  B: "Support 100 concurrent write transactions"
+
+  These don't directly contradict each other in words.
+  The conflict requires KNOWLEDGE that SQLite has
+  limited concurrent write support.
+
+  In a monolithic document, the model must simultaneously:
+  - Find A and B among dozens of other statements
+  - Retrieve knowledge about SQLite concurrency
+  - Connect them
+
+  Graph approach: When comparing node A1 ("Use SQLite")
+  with node B3 ("100 concurrent writes"), the model
+  can focus ALL its reasoning capacity on this one
+  inference. Higher chance of catching it.
+
+  Problem 4: COMPLETENESS
+  ───────────────────────
+  This is perhaps the strongest argument.
+
+  Monolithic: The model produces a LIST of conflicts.
+  You have NO IDEA if the list is complete. Did it
+  check all pairs? Did it skip some? You can't know.
+
+  Graph: You have an EXPLICIT record of which pairs
+  were checked. If pair (F3, F7) was compared and
+  no conflict found, that's a logged result you can
+  audit. If pair (A1, B3) was never compared because
+  the filtering heuristic excluded it, you can see
+  that gap and address it.
+
+  The graph gives you AUDITABILITY of the comparison
+  process itself.
+```
+
+**Verdict: YES, the graph improves accuracy**, primarily through three mechanisms:
+1. Eliminates positional/attention bias
+2. Enables focused, high-quality comparisons
+3. Provides auditability and completeness tracking
+
+---
+
+## Part 4: The Honest Tradeoff Summary
+
+```
+┌────────────────────────────────────────────────────────────┐
+│              MONOLITHIC vs GRAPH: HONEST COMPARISON        │
+├────────────────────┬───────────────────┬───────────────────┤
+│ DIMENSION          │ MONOLITHIC        │ GRAPH-BASED       │
+├────────────────────┼───────────────────┼───────────────────┤
+│ Token cost         │ ✅ Lower           │ ❌ Higher          │
+│ Latency            │ ✅ Single call      │ ❌ Multiple calls  │
+│ Setup complexity   │ ✅ Zero             │ ❌ Need graph logic │
+│ Hallucination rate │ ❌ Higher           │ ✅ Lower           │
+│ Conflict accuracy  │ ❌ Degrades w/size  │ ✅ Stable w/size   │
+│ Completeness       │ ❌ Unknown          │ ✅ Auditable       │
+│ Verifiability      │ ❌ Hard to check    │ ✅ Easy to check   │
+│ Scalability        │ ❌ Breaks at ~100   │ ✅ Scales well     │
+│                    │    requirements    │                   │
+│ Ordering bias      │ ❌ Significant      │ ✅ Eliminated      │
+│ Indirect conflicts │ ❌ Often missed     │ ⚠️ Better but not  │
+│                    │                   │    guaranteed     │
+│ Implementation     │ ✅ Trivial          │ ❌ Significant     │
+│                    │                   │    engineering    │
+└────────────────────┴───────────────────┴───────────────────┘
+```
+
+### When Monolithic is Actually Fine
+
+```
+USE MONOLITHIC WHEN:
+• Specs are small (< 30 requirements total)
+• You need a quick sanity check, not exhaustive analysis
+• You're one person working on one feature
+• You'll manually verify the AI's findings anyway
+• Speed matters more than completeness
+```
+
+### When Graph Becomes Necessary
+
+```
+USE GRAPH WHEN:
+• Specs are large (50+ requirements)
+• Multiple people contribute specs at different times
+• You need CONFIDENCE that all conflicts were checked
+• Conflicts have real consequences (safety, compliance, cost)
+• The spec evolves over time and new additions must be
+  checked against ALL historical decisions
+• You need to PROVE to stakeholders that the spec is consistent
+```
+
+---
+
+## Part 5: The Real Value of the Graph Is NOT for the AI
+
+Here's the insight that reframes everything:
+
+```
+COMMON ASSUMPTION:
+  "The graph helps the AI work better."
+
+DEEPER TRUTH:
+  "The graph helps HUMANS manage the AI's work."
+
+THE GRAPH IS A COORDINATION STRUCTURE, NOT AN AI OPTIMIZATION.
+```
+
+Think about it:
+
+```
+WITHOUT GRAPH:
+  Human: "AI, compare these specs"
+  AI: "I found 5 conflicts"
+  Human: "Are you sure? Did you check everything?"
+  AI: "I believe so"
+  Human: "..." (has no way to verify)
+
+WITH GRAPH:
+  Human: "AI, parse this spec into nodes"
+  AI: [produces 30 nodes]
+  Human: [can read and verify each node individually — 5 seconds each]
+
+  Human: "AI, check node F3 against nodes F5, F6, F7"
+  AI: "F3 conflicts with F7, reason: ..."
+  Human: [reads F3 and F7 — 10 seconds total — can verify immediately]
+
+  Human: [looks at graph] "Wait, you didn't compare F3 with D1.
+          Those seem related."
+  Human: "AI, check F3 against D1"
+  AI: "No conflict"
+  Human: [agrees, moves on]
+```
+
+The graph enables **HUMAN OVERSIGHT of the AI's reasoning process**. Without the graph, you're trusting the AI's monolithic output as a black box. With the graph, you have:
+
+```
+1. DECOMPOSED ARTIFACTS you can individually verify
+2. EXPLICIT COMPARISON RECORDS you can audit
+3. STRUCTURAL VISUALIZATION that lets you spot gaps
+4. INCREMENTAL PROCESSING that limits blast radius of errors
+```
+
+### This Is Exactly How Compilers Work
+
+```
+A compiler doesn't just say "your code is wrong."
+It says:
+  - file: auth.py
+  - line: 47
+  - error: type mismatch
+  - expected: int
+  - got: string
+  - in function: validate_token()
+
+This STRUCTURED ERROR REPORT lets the human:
+  - Go to the exact location
+  - Understand the exact problem
+  - Verify the compiler is correct
+  - Fix the specific issue
+
+The SDD-Compiler graph does the same for specifications.
+Not "your specs have conflicts somewhere" but:
+  - node: F3
+  - conflicts with: F7
+  - property: token TTL
+  - values: 15min vs 24hr
+  - dependency impact: T1, T2 tests affected
+```
+
+---
+
+## Part 6: Revised Understanding of the Architecture
+
+Given this analysis, let me restate why the graph matters:
+
+```
+THE GRAPH SERVES THREE PURPOSES:
+
+PURPOSE 1: DECOMPOSITION FOR AI
+  Break a hard, open-ended task (compare two documents)
+  into easy, closed-ended tasks (compare two statements).
+  This is where accuracy and hallucination improvements
+  come from.
+
+PURPOSE 2: COORDINATION FOR HUMANS
+  Give multiple people a shared, visual, inspectable
+  representation of the spec state. This is where the
+  collaboration value comes from.
+
+PURPOSE 3: AUDITABILITY FOR TRUST
+  Create a verifiable record of what was checked, what
+  conflicted, and what was resolved. This is where the
+  "compiler" metaphor earns its name — compilers are
+  TRUSTED because their checks are systematic and complete.
+```
+
+The graph is not primarily an AI optimization. It is a **human-AI coordination protocol** that makes AI reasoning auditable, decomposable, and trustworthy.
+
+---
+
+Shall we now return to the POC implementation discussion with this deeper understanding integrated?
+
+
+
+===== Victor Truong =====
+3cbbd40b-1303-4b5e-ba75-dff306492582: can you summarize our discussion so far into html file so I can present to a team ?
+363f3d36-440d-4d57-8411-031105138ee5: parentId: 3cbbd40b-1303-4b5e-ba75-dff306492582
+id: 363f3d36-440d-4d57-8411-031105138ee5
+childrenIds: cdc23d86-fdd5-4815-b322-c74bc897f4aa
+role: assistant
+content:
+model: claude-opus-4-6
+modelName: Claude Opus 4.6
+modelIdx: 0
+timestamp: 1788981069
+error: The response was interrupted.
+done: True
+
+
+
+===== Victor Truong =====
+cdc23d86-fdd5-4815-b322-c74bc897f4aa: summarize our discussion so far into html file so I can present to a team. Drop out the discussion of how to implement the proof-of-concept, including both your suggested methods to code poc and my suggestion of using solely devin CLI and skills files
+6f0698a5-0093-496b-a9e3-756f73fba121: <details type="reasoning" done="true" duration="0" label="Thinking">
+<summary>Thinking for 0 seconds</summary>
+&gt; The user wants me to create an HTML file that summarizes the entire discussion, but excluding the POC implementation details (both the Streamlit approach and the Devin CLI approach). Let me compile all the conceptual and architectural content into a clean, presentable HTML file.
+&gt;
+&gt; Key sections to include:
+&gt; 1. SDD Framework lecture
+&gt; 2. The &quot;Death by Markdown&quot; problem
+&gt; 3. The Working Principle brainstorm (vocabulary trap, prior art, reframing)
+&gt; 4. Consolidated Architecture (graph, layers, dual-view, interaction model, collaboration)
+&gt; 5. How AI agents actually process spec comparison (failure modes, does graph help)
+&gt; 6. The honest tradeoff analysis
+&gt; I need to leave out anything about the Streamlit or Devin CLI implementations, file structures, coding plans, hour-by-hour schedules, demo scripts, and technology stack decisions.
+&gt;
+&gt;
+</details>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDD-Compiler: Solving Death by Markdown</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --bg-card: #1c2129;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --accent-purple: #bc8cff;
+            --accent-orange: #f0883e;
+            --accent-cyan: #39d2c0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4em;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero .tagline {
+            font-size: 1.05em;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-number {
+            font-size: 0.8em;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: var(--accent-blue);
+        }
+
+        h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--accent-cyan);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-purple);
+            padding: 16px 20px;
+            margin: 24px 0;
+            background: var(--bg-secondary);
+            border-radius: 0 8px 8px 0;
+        }
+
+        blockquote p {
+            color: var(--text-primary);
+            margin-bottom: 0;
+            font-size: 1.05em;
+        }
+
+        /* Key Insight Callouts */
+        .insight {
+            border-left: 4px solid var(--accent-green);
+            background: rgba(63, 185, 80, 0.06);
+        }
+
+        .warning {
+            border-left: 4px solid var(--accent-yellow);
+            background: rgba(210, 153, 34, 0.06);
+        }
+
+        .critical {
+            border-left: 4px solid var(--accent-red);
+            background: rgba(248, 81, 73, 0.06);
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--accent-cyan);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        th {
+            background: var(--bg-tertiary);
+            color: var(--accent-blue);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        tr:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: var(--accent-blue);
+        }
+
+        .card p {
+            font-size: 0.95em;
+            margin-bottom: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 12px 0 12px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Spectrum Bar */
+        .spectrum {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, rgba(248,81,73,0.15), rgba(210,153,34,0.15), rgba(63,185,80,0.15));
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .spectrum-label {
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .spectrum-left { color: var(--accent-red); }
+        .spectrum-center { color: var(--accent-yellow); }
+        .spectrum-right { color: var(--accent-green); }
+
+        /* Layer Diagram */
+        .layer-stack {
+            margin: 24px 0;
+        }
+
+        .layer-item {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 4px;
+        }
+
+        .layer-label {
+            min-width: 160px;
+            padding: 14px 16px;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .layer-content {
+            flex: 1;
+            padding: 14px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-left: none;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95em;
+            color: var(--text-secondary);
+        }
+
+        .l0 .layer-label { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+        .l1 .layer-label { background: rgba(240, 136, 62, 0.2); color: var(--accent-orange); }
+        .l2 .layer-label { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
+        .l3 .layer-label { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+        .l4 .layer-label { background: rgba(57, 210, 192, 0.2); color: var(--accent-cyan); }
+        .l5 .layer-label { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
+        .l6 .layer-label { background: rgba(188, 140, 255, 0.2); color: var(--accent-purple); }
+
+        /* Flow Diagram */
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .flow-arrow {
+            color: var(--accent-blue);
+            font-size: 1.4em;
+        }
+
+        /* Problem Stack */
+        .problem-stack {
+            margin: 24px 0;
+        }
+
+        .problem-level {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 8px;
+        }
+
+        .problem-level .level-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .level-tag {
+            font-size: 0.8em;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .tag-problem { background: rgba(248,81,73,0.2); color: var(--accent-red); }
+        .tag-solution { background: rgba(63,185,80,0.2); color: var(--accent-green); }
+        .tag-result { background: rgba(88,166,255,0.2); color: var(--accent-blue); }
+        .tag-unknown { background: rgba(210,153,34,0.2); color: var(--accent-yellow); }
+
+        /* Comparison Boxes */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .compare-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .compare-box.positive { border-top: 3px solid var(--accent-green); }
+        .compare-box.negative { border-top: 3px solid var(--accent-red); }
+
+        .compare-box h4 {
+            margin-top: 0;
+        }
+
+        /* Divider */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 48px 0;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .toc ol {
+            color: var(--text-secondary);
+        }
+
+        .toc a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Emoji Status */
+        .status-green { color: var(--accent-green); }
+        .status-red { color: var(--accent-red); }
+        .status-yellow { color: var(--accent-yellow); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .comparison { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+            .layer-item { flex-direction: column; }
+            .layer-label { border-radius: 8px 8px 0 0; min-width: auto; }
+            .layer-content { border-left: 1px solid var(--border-color); border-radius: 0 0 8px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ==================== HERO ==================== -->
+    <div class="hero">
+        <h1>SDD-Compiler</h1>
+        <div class="subtitle">A Product Spec Compiler &amp; IDE</div>
+        <div class="tagline">
+            "Don't make humans write better specifications. Build a system that asks better questions —
+            grounded in product knowledge and validated by executable evidence — until the specification
+            emerges as a byproduct of the conversation."
+        </div>
+    </div>
+
+    <!-- ==================== TOC ==================== -->
+    <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+            <li><a href="#sdd-framework">What is Spec-Driven Development?</a></li>
+            <li><a href="#death-by-markdown">The "Death by Markdown" Problem</a></li>
+            <li><a href="#vocabulary-trap">The Vocabulary Spectrum Trap</a></li>
+            <li><a href="#prior-art">Prior Attempts at Strict Specifications</a></li>
+            <li><a href="#reframing">Reframing the Problem</a></li>
+            <li><a href="#architecture">SDD-Compiler Architecture</a></li>
+            <li><a href="#formal-layers">The Formal Layers for Code Generation</a></li>
+            <li><a href="#interaction-model">Interaction Model &amp; Conflict Philosophy</a></li>
+            <li><a href="#ai-internals">How AI Agents Actually Process Spec Comparison</a></li>
+            <li><a href="#graph-value">Does the Graph Actually Help?</a></li>
+            <li><a href="#similar-work">Prior Art &amp; Similar Products</a></li>
+        </ol>
+    </div>
+
+    <!-- ==================== SECTION 1: SDD ==================== -->
+    <div class="section" id="sdd-framework">
+        <div class="section-number">Section 01</div>
+        <h2>What is Spec-Driven Development?</h2>
+
+        <p>
+            Spec-Driven Development (SDD) is an emerging software development paradigm that has gained
+            significant traction alongside AI-powered code generation tools. At its core, SDD inverts
+            the traditional developer workflow.
+        </p>
+
+        <div class="comparison">
+            <div class="compare-box">
+                <h4>Traditional Development</h4>
+                <p>Think → Code → Test → Refine</p>
+            </div>
+            <div class="compare-box positive">
+                <h4>Spec-Driven Development</h4>
+                <p>Think → <strong>Specify</strong> → Generate → Validate</p>
+            </div>
+        </div>
+
+        <p>
+            In SDD, the <strong>specification becomes the primary artifact</strong>, not the code.
+            The developer's job shifts from <em>writing code</em> to <em>writing precise, unambiguous
+            specifications</em> that an AI system can consume to produce correct, working code.
+        </p>
+
+        <blockquote class="insight">
+            <p><strong>Code generation is becoming commoditized. Intent expression is not.</strong></p>
+        </blockquote>
+
+        <h3>Why SDD Has Gained Wide Adoption</h3>
+
+        <table>
+            <thead>
+                <tr><th>Driver</th><th>Explanation</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>AI code quality improved</td><td>LLMs now generate production-quality code for many common patterns</td></tr>
+                <tr><td>Speed</td><td>Generating code from a spec is vastly faster than writing it by hand</td></tr>
+                <tr><td>Consistency</td><td>AI-generated code follows style guides and patterns uniformly</td></tr>
+                <tr><td>Accessibility</td><td>Non-traditional developers (PMs, designers) can participate more directly</td></tr>
+                <tr><td>Cost reduction</td><td>Less developer time per feature means lower cost per unit of output</td></tr>
+            </tbody>
+        </table>
+
+        <h3>The SDD Ecosystem in Practice</h3>
+        <ul>
+            <li><strong>Markdown files</strong> (<code>.md</code>) as the primary specification format</li>
+            <li><strong>Prompt templates</strong> that structure how specs are fed to AI</li>
+            <li><strong>Context files</strong> (like <code>CLAUDE.md</code>, <code>cursor_rules</code>) that give AI agents persistent project knowledge</li>
+            <li><strong>Review cycles</strong> where humans validate AI output against the spec</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 2: PROBLEM ==================== -->
+    <div class="section" id="death-by-markdown">
+        <div class="section-number">Section 02</div>
+        <h2>The "Death by Markdown" Problem</h2>
+
+        <p>
+            SDD was supposed to solve the bottleneck of code production. And it did. But SDD introduced
+            a <strong>new bottleneck</strong>: specification production. Writing a good spec is hard — it
+            requires deep product understanding, anticipation of edge cases, awareness of system constraints,
+            and clear, unambiguous language.
+        </p>
+
+        <h3>The "AI Writing Specs" Escape Attempt</h3>
+
+        <p>
+            Faced with this difficulty, teams naturally asked: <em>"If AI can write code from specs,
+            why can't AI also write the specs?"</em> So people started using AI to generate the
+            specifications themselves. This creates a compounding problem:
+        </p>
+
+        <pre>
+Vague Human Intent
+       ↓
+  AI-Generated Spec (Markdown)     ← May not match true intent
+       ↓
+  AI-Generated Code                ← Faithful to spec, but spec may be wrong
+       ↓
+  Output that looks right but may be subtly wrong</pre>
+
+        <p>
+            The AI-generated spec <strong>appears</strong> thorough — well-formatted, comprehensive-looking,
+            using all the right terminology. But it may hallucinate requirements, miss critical edge cases,
+            contradict existing system behavior, or use ambiguous language.
+        </p>
+
+        <h3>The Shifted Bottleneck</h3>
+
+        <blockquote class="critical">
+            <p>
+                Instead of reviewing code to check if it's correct, developers must now
+                <strong>review massive markdown documents</strong> to check if the <em>specification</em>
+                is correct. The bottleneck didn't disappear. It multiplied.
+            </p>
+        </blockquote>
+
+        <table>
+            <thead>
+                <tr><th>Problem</th><th>Explanation</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Spec review is cognitively expensive</td><td>Reading a 20-page spec and verifying it matches your vague mental model is exhausting</td></tr>
+                <tr><td>Specs are deceptively readable</td><td>AI-generated markdown <em>reads</em> well, making you <em>feel</em> like it's correct even when it isn't</td></tr>
+                <tr><td>No compiler for specs</td><td>Code has compilers, linters, type-checkers, and tests. Specs have human eyeballs.</td></tr>
+                <tr><td>Specs lack execution feedback</td><td>You can run code and see if it works. You can't "run" a spec.</td></tr>
+                <tr><td>Compounding errors</td><td>If you miss a spec error, it propagates into code, tests, and docs — all consistently wrong</td></tr>
+            </tbody>
+        </table>
+
+        <h3>The Problem Stack</h3>
+
+        <div class="problem-stack">
+            <div class="problem-level">
+                <div class="level-header">
+                    <span class="level-tag tag-problem">Problem 1</span>
+                    <span class="level-tag tag-solution">Solved</span>
+                </div>
+                <p><strong>Code production was the bottleneck.</strong><br>
+                Solution: SDD + AI code generation. Result: Code production is now cheap &amp; fast.</p>
+            </div>
+            <div class="problem-level">
+                <div class="level-header">
+                    <span class="level-tag tag-problem">Problem 2</span>
+                    <span class="level-tag tag-result">Attempted</span>
+                </div>
+                <p><strong>Writing good specs is hard.</strong><br>
+                Solution: Use AI to generate specs too. Result: Specs are produced fast but may be wrong in subtle, hard-to-detect ways.</p>
+            </div>
+            <div class="problem-level">
+                <div class="level-header">
+                    <span class="level-tag tag-problem">Problem 3</span>
+                    <span class="level-tag tag-unknown">Unsolved</span>
+                </div>
+                <p><strong>Now we must review specs AND code.</strong><br>
+                "Death by Markdown" — shifted bottleneck, not solved it. This is what SDD-Compiler proposes to address.</p>
+            </div>
+            <div class="problem-level" style="border: 1px solid var(--accent-red);">
+                <div class="level-header">
+                    <span class="level-tag tag-problem">Root Cause</span>
+                </div>
+                <p><strong>There is no "compiler" for specs.</strong> No automated system validates whether a specification actually matches human intent, is internally consistent, and aligns with the existing product's reality.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 3: VOCABULARY TRAP ==================== -->
+    <div class="section" id="vocabulary-trap">
+        <div class="section-number">Section 03</div>
+        <h2>The Vocabulary Spectrum Trap</h2>
+
+        <p>
+            SDD specs are vague and free-form by nature. Unlike code, which has strict vocabulary
+            (<code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, function names),
+            natural language specifications are inherently ambiguous. But if we enforce strict vocabulary
+            on specifications, we inevitably slide toward creating another programming language —
+            defeating the entire purpose of SDD.
+        </p>
+
+        <div class="spectrum">
+            <span class="spectrum-label spectrum-left">
+                VAGUE<br>
+                Natural Language<br>
+                ✅ Easy to write<br>
+                ❌ Ambiguous
+            </span>
+            <span class="spectrum-label spectrum-center">
+                ???<br>
+                Constrained NL<br>
+                The sweet spot?
+            </span>
+            <span class="spectrum-label spectrum-right">
+                PRECISE<br>
+                Programming Language<br>
+                ✅ Unambiguous<br>
+                ❌ Hard to write
+            </span>
+        </div>
+
+        <blockquote class="warning">
+            <p>
+                <strong>The Vocabulary Trap:</strong> Any attempt to make specifications precise enough
+                for machines to compile will, if taken to its logical conclusion, converge toward a
+                programming language — thereby recreating the exact problem SDD was designed to solve.
+            </p>
+        </blockquote>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 4: PRIOR ART ==================== -->
+    <div class="section" id="prior-art">
+        <div class="section-number">Section 04</div>
+        <h2>Prior Attempts at Strict Specifications</h2>
+
+        <p>
+            The vocabulary trap has been sprung many times before. Studying these attempts reveals
+            what works, what fails, and why.
+        </p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4>Formal Specification Languages <span style="color:var(--text-muted);">(1970s–2000s)</span></h4>
+                <p>Z Notation, VDM, TLA+, Alloy, B Method — mathematically rigorous specification languages.</p>
+                <p style="margin-top:8px;"><span class="status-red">Verdict:</span> Extremely precise but almost nobody used them outside academia. Became a programming language for mathematicians.</p>
+            </div>
+            <div class="card">
+                <h4>UML / Model-Driven Architecture <span style="color:var(--text-muted);">(1990s–2010s)</span></h4>
+                <p>Visual specification language with the dream of generating code directly from diagrams.</p>
+                <p style="margin-top:8px;"><span class="status-red">Verdict:</span> Shifted complexity from text to diagrams. Did not reduce it. Diagram-code sync was a nightmare.</p>
+            </div>
+            <div class="card">
+                <h4>BDD / Gherkin Syntax <span style="color:var(--text-muted);">(2000s–present)</span></h4>
+                <p>Constrained natural language (<code>Given/When/Then</code>) for writing executable specifications.</p>
+                <p style="margin-top:8px;"><span class="status-yellow">Verdict:</span> Most successful attempt. Found a useful niche but couldn't generalize to full product specification.</p>
+            </div>
+            <div class="card">
+                <h4>Design by Contract — Eiffel <span style="color:var(--text-muted);">(1986–present)</span></h4>
+                <p>Embedded specifications (preconditions, postconditions, invariants) directly into code.</p>
+                <p style="margin-top:8px;"><span class="status-yellow">Verdict:</span> Made code more self-documenting but didn't help non-coders specify intent.</p>
+            </div>
+            <div class="card">
+                <h4>Structured Prompt Engineering <span style="color:var(--text-muted);">(2023–present)</span></h4>
+                <p>Frameworks like CRISP, RACE, CO-STAR, LMQL, Guidance, BAML — systematizing how prompts are structured.</p>
+                <p style="margin-top:8px;"><span class="status-yellow">Verdict:</span> Useful tools, wrong level of abstraction. They optimize the AI interface, not the human intent discovery process.</p>
+            </div>
+        </div>
+
+        <blockquote class="insight">
+            <p>
+                <strong>The Key Lesson:</strong> No fixed point on the vocabulary spectrum works for all
+                situations. The right level of precision depends on the context, the domain, the team,
+                and the specific requirement being expressed.
+            </p>
+        </blockquote>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 5: REFRAMING ==================== -->
+    <div class="section" id="reframing">
+        <div class="section-number">Section 05</div>
+        <h2>Reframing the Problem</h2>
+
+        <p>
+            The word "compiler" implies well-defined input syntax. But we just established that enforcing
+            well-defined syntax leads to the vocabulary trap. So the metaphor of a compiler may be misleading.
+            What is the <strong>fundamental problem</strong>?
+        </p>
+
+        <blockquote>
+            <p>
+                A human has a vague, incomplete, partially contradictory mental model of what they want.
+                We need a process that converges this fuzzy intent into a precise, validated,
+                implementation-ready specification — without requiring the human to learn a formal language.
+            </p>
+        </blockquote>
+
+        <h3>Fundamental Requirements</h3>
+
+        <table>
+            <thead>
+                <tr><th>Requirement</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>R1: Intent Discovery</strong></td><td>Humans don't fully know what they want. The system must help them <em>discover</em> their intent, not just document it.</td></tr>
+                <tr><td><strong>R2: Ambiguity Resolution</strong></td><td>Natural language is inherently ambiguous. The system must detect ambiguity and resolve it through interaction, not vocabulary enforcement.</td></tr>
+                <tr><td><strong>R3: Consistency Validation</strong></td><td>New specs must not contradict existing product behavior, previous decisions, or each other.</td></tr>
+                <tr><td><strong>R4: Progressive Formalization</strong></td><td>Start vague, get precise incrementally. Don't demand precision upfront.</td></tr>
+                <tr><td><strong>R5: Executable Feedback</strong></td><td>The only way to truly validate a spec is to see its consequences — generated tests, prototypes, simulations.</td></tr>
+                <tr><td><strong>R6: Learning / Memory</strong></td><td>Each completed cycle should make the system smarter about this specific product.</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Better Metaphors Than "Compiler"</h3>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4>🧑‍💻 Senior Engineer Pair Partner</h4>
+                <p>Asks probing questions, points out contradictions, suggests patterns, sketches prototypes, and remembers everything. The specification <strong>emerges from dialogue</strong>.</p>
+            </div>
+            <div class="card">
+                <h4>🔍 Type Inference Engine</h4>
+                <p>Let humans express intent loosely. <strong>Infer</strong> detailed requirements from context. <strong>Flag</strong> when inferences conflict. <strong>Ask</strong> the human to disambiguate only when necessary.</p>
+            </div>
+            <div class="card">
+                <h4>🧪 Test-Driven Spec</h4>
+                <p>Instead of abstract requirements, provide <strong>concrete examples</strong>. The system generalizes, generates counter-examples, and you confirm or deny — progressively refining the spec.</p>
+            </div>
+        </div>
+
+        <h3>The Reframed Technical Problem</h3>
+
+        <pre>
+Build a system that:
+
+1. ACCEPTS vague natural language input
+   (no strict vocabulary required)
+
+2. CONVERGES toward precise specifications through
+   multi-turn interaction (not single-pass compilation)
+
+3. GROUNDS every specification element in something
+   verifiable: a test case, a code sketch, a counter-example,
+   or a reference to existing product behavior
+
+4. VALIDATES consistency against a growing knowledge
+   base of the product's history, decisions, and constraints
+
+5. LEARNS from each completed cycle to become more
+   effective at intent discovery for THIS product
+
+The output is NOT a markdown document.
+The output is a VALIDATED SPECIFICATION GRAPH:
+a structured, interconnected, tested set of
+requirements with full traceability.</pre>
+
+        <h3>Three Fundamental Technical Pillars</h3>
+
+        <div class="card-grid">
+            <div class="card" style="border-top: 3px solid var(--accent-red);">
+                <h4>Pillar 1: Interactive Convergence Engine</h4>
+                <p>How do you systematically narrow vague intent into precise specification through dialogue? What questions should be asked and in what order? When is a specification "converged enough"?</p>
+                <p style="margin-top:8px; color: var(--text-muted); font-size:0.85em;">Territory: dialogue systems, active learning, information-theoretic question selection</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-yellow);">
+                <h4>Pillar 2: Grounding &amp; Validation Mechanism</h4>
+                <p>How do you check that a spec element is meaningful and consistent? Can you generate executable artifacts from partial specs to provide feedback? Can you detect conflicts with existing product state?</p>
+                <p style="margin-top:8px; color: var(--text-muted); font-size:0.85em;">Territory: constraint satisfaction, knowledge graphs, code/test generation</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-green);">
+                <h4>Pillar 3: Product-Specific Learning Loop</h4>
+                <p>How does the system accumulate knowledge about THIS product over time? How do real-world outcomes feed back? How do you represent product knowledge for retrieval and reasoning?</p>
+                <p style="margin-top:8px; color: var(--text-muted); font-size:0.85em;">Territory: RAG, episodic memory, knowledge graphs, fine-tuning</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 6: ARCHITECTURE ==================== -->
+    <div class="section" id="architecture">
+        <div class="section-number">Section 06</div>
+        <h2>SDD-Compiler Architecture</h2>
+
+        <h3>Core Concept: The Specification Graph</h3>
+
+        <p>
+            Just as <code>CMake</code> parses source files and builds a <strong>dependency graph</strong>
+            of targets, sources, and build rules before any compilation happens, the SDD-Compiler parses
+            free-form human input and builds a <strong>specification graph</strong> of requirements,
+            dependencies, and constraints before any code generation happens.
+        </p>
+
+        <div class="flow">
+            <div class="flow-step">CMakeLists.txt</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">cmake</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Dependency Graph</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">make</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Compiled Binary</div>
+        </div>
+        <div class="flow">
+            <div class="flow-step" style="border-color: var(--accent-blue);">Free-form Spec</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color: var(--accent-blue);">SDD-Compiler</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color: var(--accent-blue);">Spec Graph</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color: var(--accent-blue);">AI Agent</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color: var(--accent-blue);">Generated Code</div>
+        </div>
+
+        <h3>Graph Structure</h3>
+
+        <pre>
+SPECIFICATION GRAPH (Directed Acyclic Graph)
+
+  Nodes  = Individual atomic requirements
+  Edges  = Dependencies, derivations, and constraints between requirements
+  Layers = Formal strata that organize nodes by abstraction level
+
+  Properties of each node:
+  ┌─────────────────────────────────────┐
+  │  id:          unique identifier     │
+  │  content:     the requirement text  │
+  │  layer:       which formal layer    │
+  │  status:      draft|validated|conflict│
+  │  author:      who wrote it          │
+  │  source_text: original free-form    │
+  │  depends_on:  [node_ids]            │
+  │  conflicts:   [node_ids]            │
+  │  family:      grouping cluster      │
+  └─────────────────────────────────────┘</pre>
+
+        <h3>Dual-View Architecture</h3>
+
+        <p>The graph serves two fundamentally different consumers:</p>
+
+        <div class="comparison">
+            <div class="compare-box">
+                <h4>👤 Human View (Collapsed)</h4>
+                <p>Nodes grouped into <strong>families</strong> — high-level clusters that hide individual node complexity. Humans see summaries like "Password Reset (12 nodes: 10 ✅, 2 ❌)" and can drill down on demand.</p>
+            </div>
+            <div class="compare-box">
+                <h4>🤖 Agent View (Expanded)</h4>
+                <p>Every individual node with full dependency edges, conflict markers, and traceability links. AI agents consume this for code generation, conflict detection, and test synthesis.</p>
+            </div>
+        </div>
+
+        <h4>Family Grouping Criteria (in priority order)</h4>
+        <ol>
+            <li><strong>Functional Cohesion</strong> — nodes describing the same feature/capability</li>
+            <li><strong>Layer Proximity</strong> — nodes in the same formal layer</li>
+            <li><strong>Dependency Clusters</strong> — nodes that heavily depend on each other</li>
+            <li><strong>Author Proximity</strong> — nodes written by the same person in the same session</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 7: FORMAL LAYERS ==================== -->
+    <div class="section" id="formal-layers">
+        <div class="section-number">Section 07</div>
+        <h2>The Formal Layers for Code Generation</h2>
+
+        <p>
+            Each layer <strong>constrains</strong> the layers below it — exactly analogous to how
+            in a build system, a library target constrains the compilation of binaries that depend on it.
+        </p>
+
+        <div class="layer-stack">
+            <div class="layer-item l0">
+                <div class="layer-label">L0 — Business</div>
+                <div class="layer-content">
+                    <strong>WHY</strong> does this exist? What value does it deliver?<br>
+                    <em>Example: "Users must reset passwords without contacting support"</em>
+                </div>
+            </div>
+            <div class="layer-item l1">
+                <div class="layer-label">L1 — Functional</div>
+                <div class="layer-content">
+                    <strong>WHAT</strong> exactly should the system do?<br>
+                    <em>Example: "User clicks 'forgot password' → receives email within 30s"</em>
+                </div>
+            </div>
+            <div class="layer-item l2">
+                <div class="layer-label">L2 — Architecture</div>
+                <div class="layer-content">
+                    <strong>HOW</strong> is the system structured at component level?<br>
+                    <em>Example: "Password reset handled by AuthService microservice"</em>
+                </div>
+            </div>
+            <div class="layer-item l3">
+                <div class="layer-label">L3 — Interfaces</div>
+                <div class="layer-content">
+                    <strong>HOW</strong> do components communicate?<br>
+                    <em>Example: "POST /auth/reset-password {email: string} → 202 Accepted"</em>
+                </div>
+            </div>
+            <div class="layer-item l4">
+                <div class="layer-label">L4 — Data Models</div>
+                <div class="layer-content">
+                    <strong>WHAT</strong> data exists and how is it structured?<br>
+                    <em>Example: "PasswordResetToken {id, userId, token, expiresAt, usedAt}"</em>
+                </div>
+            </div>
+            <div class="layer-item l5">
+                <div class="layer-label">L5 — Logic</div>
+                <div class="layer-content">
+                    <strong>HOW</strong> does the internal logic work?<br>
+                    <em>Example: "On reset request: if failedAttempts ≥ 3 AND now < lockedUntil → reject"</em>
+                </div>
+            </div>
+            <div class="layer-item l6">
+                <div class="layer-label">L6 — Tests</div>
+                <div class="layer-content">
+                    <strong>HOW</strong> do we verify correctness?<br>
+                    <em>Example: "Test: expired token → 410 Gone"</em>
+                </div>
+            </div>
+        </div>
+
+        <h3>Why This Order?</h3>
+
+        <table>
+            <thead>
+                <tr><th>Layer</th><th>What It Determines</th><th>What It Constrains Below</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>L0 Business</td><td>Why we're building this</td><td>Scopes everything below</td></tr>
+                <tr><td>L1 Functional</td><td>What users experience</td><td>Constrains architecture choices</td></tr>
+                <tr><td>L2 Architecture</td><td>What components exist</td><td>Constrains interface design</td></tr>
+                <tr><td>L3 Interfaces</td><td>How components talk</td><td>Constrains data model design</td></tr>
+                <tr><td>L4 Data Models</td><td>What data is stored</td><td>Constrains logic implementation</td></tr>
+                <tr><td>L5 Logic</td><td>How logic works</td><td>Constrains what tests are needed</td></tr>
+                <tr><td>L6 Tests</td><td>How to verify correctness</td><td>Direct input to code generation</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            Dependencies are <strong>not only vertical</strong> (between layers). They can be
+            <strong>horizontal</strong> (within a layer) and <strong>diagonal</strong> (skipping layers).
+        </p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 8: INTERACTION MODEL ==================== -->
+    <div class="section" id="interaction-model">
+        <div class="section-number">Section 08</div>
+        <h2>Interaction Model &amp; Conflict Philosophy</h2>
+
+        <h3>The Write → Compile → Inspect Cycle</h3>
+
+        <div class="flow">
+            <div class="flow-step">✏️ Write Freely</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="background: var(--accent-blue); color: var(--bg-primary); font-weight:700;">🔨 COMPILE</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">📊 See Graph</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">🔍 Inspect / Fix</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">🔁 Repeat</div>
+        </div>
+
+        <h4>Step 1: Write Freely</h4>
+        <p>User types specs in natural language. No vocabulary restrictions. Can write one sentence or a full paragraph. Can specify which layer they're targeting or let the system infer it.</p>
+
+        <h4>Step 2: Compile (user explicitly triggers)</h4>
+        <p>AI agent processes free-form text: extracts atomic requirements as new nodes, classifies each node into a formal layer, infers dependency edges to existing nodes, assigns to families, and runs conflict detection against the full graph.</p>
+
+        <h4>Step 3: Feedback Display (immediate)</h4>
+        <p>System shows new nodes created with layer assignments, edges inferred, and status indicators:</p>
+        <ul>
+            <li><span class="status-red">❌ CONFLICTS</span> highlighted (no fix suggested unless user asks)</li>
+            <li><span class="status-yellow">⚠️ AMBIGUITIES</span> flagged (possible multiple interpretations noted)</li>
+            <li><span class="status-green">✅ VALIDATED</span> nodes (consistent with graph)</li>
+        </ul>
+
+        <h3>The Conflict Highlighting Philosophy</h3>
+
+        <p>This encodes an important UX and workflow principle:</p>
+
+        <div class="comparison">
+            <div class="compare-box positive">
+                <h4>✅ DO</h4>
+                <ul>
+                    <li>Highlight conflicting nodes immediately</li>
+                    <li>Show WHY they conflict</li>
+                    <li>Show the dependency path that creates the conflict</li>
+                </ul>
+            </div>
+            <div class="compare-box negative">
+                <h4>❌ DON'T</h4>
+                <ul>
+                    <li>Auto-suggest fixes</li>
+                    <li>Block the user from continuing</li>
+                    <li>Require resolution before adding more specs</li>
+                </ul>
+            </div>
+        </div>
+
+        <blockquote class="insight">
+            <p>
+                <strong>Rationale:</strong> The user may have context the system doesn't.
+                The user may be mid-thought and doesn't want interruption.
+                Premature fix suggestions can anchor thinking in the wrong direction.
+                The user explicitly asks for help when ready.
+            </p>
+        </blockquote>
+
+        <h3>Design Assumptions</h3>
+
+        <table>
+            <thead>
+                <tr><th>Assumption</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>#1 — Start from scratch</td><td>SDD specs are built from an empty graph</td></tr>
+                <tr><td>#2 — Multi-person collaboration</td><td>Multiple people contribute to specs; coordination is a major requirement</td></tr>
+                <tr><td>#3 — Code-only scope</td><td>This SDD-Compiler is for coding, not for business or general purposes</td></tr>
+                <tr><td>#4 — Serial collaboration</td><td>For simplicity, all people work on the same version, each in series; versioning conflicts ignored for now</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 9: AI INTERNALS ==================== -->
+    <div class="section" id="ai-internals">
+        <div class="section-number">Section 09</div>
+        <h2>How AI Agents Actually Process Spec Comparison</h2>
+
+        <p>
+            When you ask an AI agent to compare two SDD spec documents and find inconsistencies,
+            here's what actually happens inside the model — and why it fails.
+        </p>
+
+        <h3>The Cognitive Task</h3>
+
+        <p>
+            Finding an inconsistency requires the model to consider every statement in Spec A against
+            every statement in Spec B — a <strong>quadratic comparison task</strong>. For 30 requirements
+            in each spec, the model must implicitly evaluate <strong>900 pairs</strong>. Each pair requires
+            semantic reasoning, not just string matching.
+        </p>
+
+        <pre>
+Easy conflict (surface-level):
+  S_a: "Reset token expires after 15 minutes"
+  S_b: "Password recovery links should remain active for 24 hours"
+  → Model must recognize these refer to the same concept with different values
+
+Hard conflict (multi-hop reasoning):
+  S_a: "System must support 10,000 concurrent users"
+  S_b: "Each password reset generates a cryptographic token using 500ms of CPU time"
+  → Model must calculate: 10,000 × 1% reset rate × 500ms = potential overload
+  → Requires inference across statements that share NO keywords</pre>
+
+        <h3>Known Failure Modes</h3>
+
+        <div class="card-grid">
+            <div class="card" style="border-top: 3px solid var(--accent-red);">
+                <h4>Lost in the Middle</h4>
+                <p>Research (Stanford/Berkeley, 2023) shows LLMs have <strong>degraded recall for information in the middle</strong> of long contexts. The model pays most attention to the beginning and end. Conflicts between the middle of Spec A and the beginning of Spec B are <strong>most likely to be missed</strong>. This is a systematic, architectural bias.</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-red);">
+                <h4>Attention Dilution at Scale</h4>
+                <p>As the number of requirements grows, the model distributes attention across more pairs. Each individual comparison gets less attention, and <strong>accuracy degrades</strong>. Models are often good at finding 1–2 obvious conflicts but miss the 3rd, 4th, and 5th in the same document.</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-red);">
+                <h4>Hallucinated Conflicts</h4>
+                <p>The model may invent fake conflicts due to: <strong>surface similarity traps</strong> (similar words ≠ actual conflict), <strong>over-inference</strong> (unwarranted logical leaps), or <strong>pleasing bias</strong> (you asked for conflicts, so it finds some even when there aren't any).</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-red);">
+                <h4>No Verification Mechanism</h4>
+                <p>When a compiler checks types, it can <strong>prove</strong> an error exists. When an LLM checks spec consistency, it produces a <strong>probabilistic guess</strong>. It's doing pattern matching on what "looks like" a conflict based on training data, not formal verification.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 10: GRAPH VALUE ==================== -->
+    <div class="section" id="graph-value">
+        <div class="section-number">Section 10</div>
+        <h2>Does the Graph Actually Help?</h2>
+
+        <h3>Claim 1: Token Consumption</h3>
+
+        <table>
+            <thead>
+                <tr><th>Approach</th><th>Total Tokens</th><th>Accuracy</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Monolithic (paste both specs)</td><td>~8,500</td><td>Medium (attention dilution)</td></tr>
+                <tr><td>Graph-based (naive, every pair)</td><td>~25,000</td><td>High (focused comparisons)</td></tr>
+                <tr><td>Graph-based (smart filtering)</td><td>~17,500</td><td>High (focused + filtered)</td></tr>
+            </tbody>
+        </table>
+
+        <blockquote class="warning">
+            <p>
+                The graph trades tokens for accuracy.
+                It's not about using <strong>fewer</strong> tokens.
+                It's about using tokens <strong>more effectively</strong>.
+            </p>
+        </blockquote>
+
+        <h3>Claim 2: Hallucination Reduction</h3>
+
+        <div class="comparison">
+            <div class="compare-box negative">
+                <h4>Monolithic Comparison</h4>
+                <p>"Find all conflicts in 6,000 words" = <strong>high ambiguity</strong>. Model must hold all info simultaneously, pressure to find something (pleasing bias), no structure to constrain reasoning. Output: "I found 7 conflicts" — some real, some hallucinated. <strong>You have no way to verify</strong> without reading both full specs yourself.</p>
+            </div>
+            <div class="compare-box positive">
+                <h4>Graph-Based Comparison</h4>
+                <p>"Do these two nodes conflict?" = <strong>low ambiguity</strong>. Much smaller input, binary question (harder to hallucinate), reasoning is <strong>auditable</strong>. If it says "conflict" you can read both nodes in 5 seconds and verify.</p>
+            </div>
+        </div>
+
+        <blockquote class="insight">
+            <p>
+                <strong>Key Insight:</strong> Hallucination is proportional to ambiguity of task.
+                The graph <strong>decomposes</strong> a high-ambiguity task into many low-ambiguity tasks.
+            </p>
+        </blockquote>
+
+        <h3>Claim 3: Conflict Detection Accuracy</h3>
+
+        <table>
+            <thead>
+                <tr><th>Problem with Monolithic</th><th>How Graph Solves It</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Ordering Bias:</strong> Conflicts between paragraph 3 and paragraph 47 are less likely to be caught than between paragraphs 46 and 47</td>
+                    <td>Each pair is presented in isolation. No ordering bias.</td>
+                </tr>
+                <tr>
+                    <td><strong>Semantic Distance:</strong> Requirements using different terminology for the same concept are hard to connect across a long document</td>
+                    <td>Layer classification already identifies both as the same layer/family. They're presented together for comparison.</td>
+                </tr>
+                <tr>
+                    <td><strong>Multi-Hop Reasoning:</strong> Indirect conflicts require knowledge + inference, which is hard while juggling dozens of other statements</td>
+                    <td>Model can focus ALL its reasoning capacity on one specific pair at a time.</td>
+                </tr>
+                <tr>
+                    <td><strong>Completeness:</strong> Monolithic produces a list with no guarantee of completeness. You can't know what was checked.</td>
+                    <td>Graph provides an explicit record of which pairs were checked. Gaps are visible and auditable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Honest Tradeoff Summary</h3>
+
+        <table>
+            <thead>
+                <tr><th>Dimension</th><th>Monolithic</th><th>Graph-Based</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Token cost</td><td><span class="status-green">✅ Lower</span></td><td><span class="status-red">❌ Higher</span></td></tr>
+                <tr><td>Latency</td><td><span class="status-green">✅ Single call</span></td><td><span class="status-red">❌ Multiple calls</span></td></tr>
+                <tr><td>Setup complexity</td><td><span class="status-green">✅ Zero</span></td><td><span class="status-red">❌ Need graph logic</span></td></tr>
+                <tr><td>Hallucination rate</td><td><span class="status-red">❌ Higher</span></td><td><span class="status-green">✅ Lower</span></td></tr>
+                <tr><td>Conflict accuracy</td><td><span class="status-red">❌ Degrades with size</span></td><td><span class="status-green">✅ Stable with size</span></td></tr>
+                <tr><td>Completeness</td><td><span class="status-red">❌ Unknown</span></td><td><span class="status-green">✅ Auditable</span></td></tr>
+                <tr><td>Verifiability</td><td><span class="status-red">❌ Hard to check</span></td><td><span class="status-green">✅ Easy to check</span></td></tr>
+                <tr><td>Scalability</td><td><span class="status-red">❌ Breaks at ~100 requirements</span></td><td><span class="status-green">✅ Scales well</span></td></tr>
+                <tr><td>Ordering bias</td><td><span class="status-red">❌ Significant</span></td><td><span class="status-green">✅ Eliminated</span></td></tr>
+                <tr><td>Implementation effort</td><td><span class="status-green">✅ Trivial</span></td><td><span class="status-red">❌ Significant engineering</span></td></tr>
+            </tbody>
+        </table>
+
+        <h3>The Deepest Insight: The Graph Is for Humans, Not AI</h3>
+
+        <blockquote class="insight">
+            <p>
+                <strong>Common assumption:</strong> "The graph helps the AI work better."<br><br>
+                <strong>Deeper truth:</strong> "The graph helps <em>humans manage the AI's work</em>."<br><br>
+                The graph is a <strong>coordination structure</strong>, not an AI optimization.
+            </p>
+        </blockquote>
+
+        <p>The graph enables <strong>human oversight of the AI's reasoning process</strong>:</p>
+
+        <div class="comparison">
+            <div class="compare-box negative">
+                <h4>Without Graph</h4>
+                <p>"AI, compare these specs" → "I found 5 conflicts" → "Are you sure? Did you check everything?" → "I believe so" → <strong>No way to verify.</strong></p>
+            </div>
+            <div class="compare-box positive">
+                <h4>With Graph</h4>
+                <p>Each node is individually verifiable (5 seconds). Each comparison is logged and auditable. Structural visualization reveals gaps. <strong>You can challenge the AI on specific pairs it missed.</strong></p>
+            </div>
+        </div>
+
+        <h3>The Graph Serves Three Purposes</h3>
+
+        <div class="card-grid">
+            <div class="card" style="border-top: 3px solid var(--accent-blue);">
+                <h4>1. Decomposition for AI</h4>
+                <p>Break a hard, open-ended task (compare two documents) into easy, closed-ended tasks (compare two statements). This is where accuracy and hallucination improvements come from.</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-green);">
+                <h4>2. Coordination for Humans</h4>
+                <p>Give multiple people a shared, visual, inspectable representation of the spec state. This is where the collaboration value comes from.</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-purple);">
+                <h4>3. Auditability for Trust</h4>
+                <p>Create a verifiable record of what was checked, what conflicted, and what was resolved. This is where the "compiler" metaphor earns its name — compilers are trusted because their checks are systematic and complete.</p>
+            </div>
+        </div>
+
+        <p>This is exactly how real compilers work:</p>
+
+        <pre>
+A compiler doesn't just say "your code is wrong."
+It says:
+  - file: auth.py, line: 47
+  - error: type mismatch
+  - expected: int, got: string
+  - in function: validate_token()
+
+The SDD-Compiler graph does the same for specifications:
+  - node: F3
+  - conflicts with: F7
+  - property: token TTL
+  - values: 15min vs 24hr
+  - dependency impact: T1, T2 tests affected</pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SECTION 11: SIMILAR WORK ==================== -->
+    <div class="section" id="similar-work">
+        <div class="section-number">Section 11</div>
+        <h2>Prior Art &amp; Similar Products</h2>
+
+        <h3>Requirements Management Tools</h3>
+
+        <table>
+            <thead>
+                <tr><th>Tool</th><th>Similarity</th><th>Key Difference from SDD-Compiler</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>IBM DOORS</strong></td><td>Graph-based requirements traceability, layered linking</td><td>No AI, no free-form input, very manual node creation</td></tr>
+                <tr><td><strong>Jama Connect</strong></td><td>Traceability matrices, impact analysis</td><td>No AI, no conflict auto-detection, no layered graph</td></tr>
+                <tr><td><strong>Polarion (Siemens)</strong></td><td>Full ALM with requirements linked to tests and code</td><td>Enterprise-grade but no free-form-to-graph pipeline</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Model-Based Systems Engineering (MBSE)</h3>
+
+        <table>
+            <thead>
+                <tr><th>Tool / Method</th><th>Similarity</th><th>Key Difference</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>SysML / Capella</strong></td><td>Formal layered models: requirements → functional → logical → physical</td><td>Requires expertise in visual modeling language; no NL input</td></tr>
+                <tr><td><strong>ARCADIA Method</strong></td><td>Formal layers: operational → system → logical → physical</td><td>Method for systems engineering, not software spec-to-code</td></tr>
+            </tbody>
+        </table>
+
+        <h3>AI-Powered Spec-to-Code Tools</h3>
+
+        <table>
+            <thead>
+                <tr><th>Tool</th><th>Similarity</th><th>Key Difference</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>MetaGPT</strong></td><td>Multi-agent pipeline: PRD → Design → Tasks → Code with formal layers</td><td>Fully automated — human doesn't interactively build graph. No conflict detection.</td></tr>
+                <tr><td><strong>GPT Engineer</strong></td><td>Takes spec prompt, asks clarifying questions, generates code</td><td>Single-pass, no persistent graph, no multi-user</td></tr>
+                <tr><td><strong>Factory AI / Devin</strong></td><td>AI agent that plans and writes code from descriptions</td><td>Agent-oriented, no visible spec graph, no collaborative spec building</td></tr>
+                <tr><td><strong>Cursor / Windsurf</strong></td><td>IDE with AI that takes specs in context files</td><td>No graph structure, no conflict detection, single-user</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Formal Specification &amp; Constraint Systems</h3>
+
+        <table>
+            <thead>
+                <tr><th>Method / Tool</th><th>Similarity</th><th>Key Difference</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Alloy Analyzer</strong></td><td>Builds a model, auto-finds constraint violations and counter-examples</td><td>Requires formal Alloy language, not natural language</td></tr>
+                <tr><td><strong>Specification by Example</strong> (Gojko Adzic)</td><td>Collaborative specification through concrete examples</td><td>Method, not a tool. No graph, no AI, no automation</td></tr>
+                <tr><td><strong>Event Storming</strong> (Alberto Brandolini)</td><td>Collaborative domain discovery, natural grouping into aggregates</td><td>Workshop method with physical sticky notes. SDD-Compiler is essentially a <strong>digital, AI-powered Event Storming</strong> with persistent graph structure</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Build Systems (The Explicit Analogy)</h3>
+
+        <table>
+            <thead>
+                <tr><th>Tool</th><th>What SDD-Compiler Borrows</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>CMake / Make</strong></td><td>Dependency graph construction before compilation, target-level nodes</td></tr>
+                <tr><td><strong>Bazel</strong></td><td>Hermetic builds, strict layering, visibility rules between targets</td></tr>
+                <tr><td><strong>Nx (Monorepo)</strong></td><td>Project graph with affected-target detection — knows what to rebuild when something changes</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Where SDD-Compiler Lives</h3>
+
+        <blockquote class="insight">
+            <p>
+                <strong>No existing product combines all of these:</strong><br><br>
+                MetaGPT's layered agent pipeline +<br>
+                IBM DOORS' traceability graph +<br>
+                Event Storming's collaborative discovery +<br>
+                Alloy's automatic conflict detection +<br>
+                CMake's dependency graph model<br><br>
+                <strong>SDD-Compiler sits at the intersection of all five.</strong>
+            </p>
+        </blockquote>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div class="footer">
+        <p>SDD-Compiler — Hackathon Concept Document</p>
+        <p style="margin-top:8px;">Brainstormed and consolidated through iterative discussion.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
+```

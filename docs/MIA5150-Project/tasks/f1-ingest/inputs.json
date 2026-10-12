@@ -1,0 +1,34 @@
+{
+  "task": "f1-ingest",
+  "formats": {
+    "markdown": {
+      "source": "~/sddc-runs/pilot-graph-R000023-specs/specs",
+      "include": [
+        "vision.md",
+        "constitution.md",
+        "README.md",
+        "F1_ingest/spec.md",
+        "F2_node_model/spec.md",
+        "F3_atomizer/spec.md",
+        "F4_graph_store/spec.md",
+        "F5_retrieval/spec.md",
+        "F6_conflicts/spec.md"
+      ],
+      "spec_line": "The specification is the Markdown files in `spec/`, one folder per feature. Start with `spec/README.md`."
+    },
+    "export": {
+      "source": "~/sddc-runs/pilot-export-R000023",
+      "include": [
+        "**"
+      ],
+      "spec_line": "The specification is the compiled export in `spec/`. Start with `spec/MAP.md`; account for every id of your feature in `spec/CHECKLIST.md`."
+    }
+  },
+  "note": "Both formats carry the same 9 spec files: the Markdown the frozen pilot graph was compiled from, and that graph's export (gate passed, 2026-09-30). ownership.yaml and _templates/ are not specs and were not compiled, so neither format has them.",
+  "scoring": {
+    "cmd_env": "SDDC_CMD",
+    "console_script": "sddc",
+    "checklist_packs": "f1-ingest",
+    "label_pattern": "(?:AC|CT)-1\\.\\d+"
+  }
+}

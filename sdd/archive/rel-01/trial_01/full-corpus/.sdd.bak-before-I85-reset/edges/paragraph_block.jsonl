@@ -1,0 +1,10 @@
+{"from": "AC-1.30", "type": "uses_term", "to": "term:list_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.30", "type": "uses_term", "to": "term:list_item_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.30", "type": "uses_term", "to": "term:nested", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.30", "type": "uses_term", "to": "term:paragraph_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.30", "type": "uses_term", "to": "term:parent_block_field", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.30", "type": "uses_term", "to": "term:parent_relation_field", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.5", "type": "uses_term", "to": "term:content_inside_a_blockquote", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.5", "type": "uses_term", "to": "term:in_blockquote", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.5", "type": "uses_term", "to": "term:ingest_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.5", "type": "uses_term", "to": "term:paragraph_block", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,33 @@
+{"from": "AC-3.19", "type": "refines", "to": "N-000008", "provenance": "judgment", "judgment": "J-003397", "rationale": "AC-3.19 specifies a particular scenario (re-running compile without source changes) where zero model calls must occur, which is a concrete instantiation of the general principle N-000008 establishes that F1 makes no model calls.", "quotes": ["it succeeds with zero model calls", "F1 makes no model calls"]}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:compiler", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:link_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:node_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:source_change", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-3.19", "type": "uses_term", "to": "term:term_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000008", "type": "conflicts_with", "to": "N-000233", "provenance": "judgment", "judgment": "J-003179", "rationale": "A states F1 makes no model calls, while B requires recording telemetry for model calls (backend, model, tokens); these cannot both be true for the same F1 component at the same time.", "quotes": ["F1 makes **no model calls", "Every call records: backend, model as reported, CLI version, input and output tokens, cache tokens"]}
+{"from": "N-000008", "type": "conflicts_with", "to": "N-000233", "provenance": "judgment", "judgment": "J-003179", "rationale": "A states F1 makes no model calls, while B requires recording telemetry for model calls (backend, model, tokens); these cannot both be true for the same F1 component at the same time.", "quotes": ["F1 makes **no model calls", "Every call records: backend, model as reported, CLI version, input and output tokens, cache tokens"]}
+{"from": "N-000008", "type": "conflicts_with", "to": "N-000565", "provenance": "judgment", "judgment": "J-003471", "rationale": "N-000008 forbids F1 from making model calls; N-000565 requires model calls to ask questions about pairs—they cannot both hold if F1 and the model-calling phase are part of the same system.", "quotes": ["F1 makes no model calls", "Ask the model one question about one pair at a time"]}
+{"from": "N-000008", "type": "conflicts_with", "to": "N-000766", "provenance": "judgment", "judgment": "J-003414", "rationale": "F1 MUST NOT make model calls, while model calls MUST go through one interface—these cannot both hold for the same system at the same time.", "quotes": ["F1 makes **no model calls", "Model calls go through **one interface with two backends"]}
+{"from": "N-000008", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "conflicts_with", "to": "N-000594", "provenance": "judgment", "judgment": "J-003493", "rationale": "N-000233 requires recording model calls with specific telemetry, while N-000594 explicitly states no model call is made when a lock hit occurs.", "quotes": ["Every call records: backend, model as reported, CLI version, input and output tokens", "A lock hit is replayed; no model call is made"]}
+{"from": "N-000233", "type": "uses_term", "to": "term:backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:cache_token", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:cli_version", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:duration", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:estimated_cost", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:input_token", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:output_token", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000233", "type": "uses_term", "to": "term:status", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000565", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000565", "type": "uses_term", "to": "term:link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000565", "type": "uses_term", "to": "term:model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000565", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000565", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000565", "type": "uses_term", "to": "term:spec_set", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000766", "type": "uses_term", "to": "term:backend", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000766", "type": "uses_term", "to": "term:interface", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000766", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

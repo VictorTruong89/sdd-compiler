@@ -1,0 +1,5 @@
+{"from": "N-000455", "type": "depends_on", "to": "N-000436", "provenance": "judgment", "judgment": "J-004900", "rationale": "Claim B specifies the output structure must include 'every open conflict record with full member records,' which presupposes that those records are validated per Claim A (validate every changed record against F2), since member records are a kind of block.", "quotes": ["validate every changed record against F2", "every open conflict record with full member records"]}
+{"from": "N-000455", "type": "uses_term", "to": "term:conflict", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000455", "type": "uses_term", "to": "term:conflict_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000455", "type": "uses_term", "to": "term:conflict_registry", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000455", "type": "uses_term", "to": "term:member_record", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

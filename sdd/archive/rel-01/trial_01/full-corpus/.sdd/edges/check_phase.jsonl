@@ -1,0 +1,12 @@
+{"from": "N-000569", "type": "uses_term", "to": "term:atomization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000569", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000569", "type": "uses_term", "to": "term:compiler", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000572", "type": "depends_on", "to": "N-000569", "provenance": "judgment", "judgment": "J-003913", "rationale": "N-000572 states the prerequisite condition (atomization must finish) that N-000569 presupposes when describing how the check phase is reached.", "quotes": ["after atomization", "starts only when atomization has finished"]}
+{"from": "N-000572", "type": "uses_term", "to": "term:atomization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000572", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000605", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000605", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000656", "type": "refines", "to": "N-000218", "provenance": "judgment", "judgment": "J-005253", "rationale": "N-000656 specifies that the check phase must record metadata in last_checked_run, which is a concrete implementation detail of the general checking requirement in N-000218.", "quotes": ["checks every answer before accepting it, records it", "records the run in `last_checked_run`"]}
+{"from": "N-000656", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000656", "type": "uses_term", "to": "term:last_checked_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000656", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

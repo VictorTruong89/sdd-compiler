@@ -1,0 +1,151 @@
+{
+ "measurement": "R12 dense A/B",
+ "date": "2026-09-19",
+ "spec": "F5_retrieval",
+ "arm": "off",
+ "vocabulary_shown": false,
+ "seconds": 460,
+ "exit": 0,
+ "summary": {
+  "pending": 65,
+  "completed": 64,
+  "failed": 1,
+  "nodes_formed": 50,
+  "model_calls": 33,
+  "cost_usd": 0.86,
+  "stop_reason": null
+ },
+ "check_store": "clean",
+ "nodes": 50,
+ "terms": 79,
+ "terms_used_once": 53,
+ "families": 22,
+ "one_node_families": 15,
+ "nodes_in_families_of_3_plus": 21,
+ "family_null": 4,
+ "global": 4,
+ "family_sizes": [
+  12,
+  3,
+  3,
+  3,
+  2,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "largest": [
+  [
+   "term:node",
+   12
+  ],
+  [
+   "(global)",
+   4
+  ],
+  [
+   null,
+   4
+  ],
+  [
+   "term:candidate",
+   3
+  ],
+  [
+   "term:evidence",
+   3
+  ],
+  [
+   "term:pair_key",
+   3
+  ],
+  [
+   "term:pair",
+   2
+  ],
+  [
+   "term:run_record",
+   2
+  ]
+ ],
+ "ambiguity": {
+  "referential": 9,
+  "unresolved_term": 4,
+  "scope": 2,
+  "missing_modality": 2
+ },
+ "status": {
+  "unchecked": 33,
+  "ambiguous": 17
+ },
+ "layers": {
+  "C": 12,
+  "L5": 8,
+  "V": 20,
+  "L4": 3,
+  "L1": 7
+ },
+ "narrower": [
+  [
+   "batch run",
+   "term:run"
+  ],
+  [
+   "c node",
+   "term:node"
+  ],
+  [
+   "checked_against per node",
+   "term:node"
+  ],
+  [
+   "checked node",
+   "term:node"
+  ],
+  [
+   "compile run",
+   "term:run"
+  ],
+  [
+   "first node",
+   "term:node"
+  ],
+  [
+   "node id",
+   "term:node"
+  ],
+  [
+   "node status",
+   "term:status"
+  ],
+  [
+   "returned pair",
+   "term:pair"
+  ],
+  [
+   "run record",
+   "term:run"
+  ],
+  [
+   "scoring candidate",
+   "term:candidate"
+  ]
+ ],
+ "term_same": [
+  "Q-TERM merged \"term\" into term:shared_term as an alias — Both name a piece of data; 'term' and 'shared term' are synonyms in this registry context.. Reject to u"
+ ]
+}

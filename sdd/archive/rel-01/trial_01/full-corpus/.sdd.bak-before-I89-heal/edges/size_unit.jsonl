@@ -1,0 +1,5 @@
+{"from": "N-000339", "type": "refines", "to": "N-000319", "provenance": "judgment", "judgment": "J-006807", "rationale": "Claim B specifies which units are decimal vs binary; Claim A applies this by normalizing sizes to bytes with the KB/KiB distinction that B defines.", "quotes": ["size (to bytes; KB = 1000, KiB = 1024)", "KB/MB/GB are decimal, KiB/MiB/GiB binary"]}
+{"from": "N-000339", "type": "refines", "to": "N-000319", "provenance": "judgment", "judgment": "J-006807", "rationale": "Claim B specifies which units are decimal vs binary; Claim A applies this by normalizing sizes to bytes with the KB/KiB distinction that B defines.", "quotes": ["size (to bytes; KB = 1000, KiB = 1024)", "KB/MB/GB are decimal, KiB/MiB/GiB binary"]}
+{"from": "N-000339", "type": "uses_term", "to": "term:binary_unit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000339", "type": "uses_term", "to": "term:decimal_unit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000339", "type": "uses_term", "to": "term:size_unit", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,7 @@
+{"from": "AC-1.4", "type": "depends_on", "to": "N-000393", "provenance": "judgment", "judgment": "J-005596", "rationale": "AC-1.4 specifies that table body-row blocks have table_header equal to the header row text; N-000393 states a table row is one claim. AC-1.4's specification of how table elements map to blocks depends on understanding what constitutes a table row.", "quotes": ["every body-row block has `table_header` equal to the header row text", "A table row is one claim"]}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:delimiter_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:header_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:ingest_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:table", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:table_body_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-1.4", "type": "uses_term", "to": "term:table_header", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

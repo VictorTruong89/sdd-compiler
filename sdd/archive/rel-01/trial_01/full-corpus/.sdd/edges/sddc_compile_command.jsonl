@@ -1,0 +1,7 @@
+{"from": "N-000324", "type": "depends_on", "to": "N-000167", "provenance": "judgment", "judgment": "J-006459", "rationale": "Claim B requires sddc compile to perform F1 ingest, which depends on F1 ingest's behavior (Claim A) regarding unprocessed blocks and atomization.", "quotes": ["unprocessed blocks `unchanged` and they would **silently never be atomized", "F1 ingest over the paths"]}
+{"from": "N-000324", "type": "uses_term", "to": "term:sddc_compile_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000324", "type": "uses_term", "to": "term:spec_source", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000325", "type": "uses_term", "to": "term:sddc_atomize", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000325", "type": "uses_term", "to": "term:sddc_compile_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000326", "type": "refines", "to": "N-000287", "provenance": "judgment", "judgment": "J-006799", "rationale": "Claim A establishes that checks run as a separate phase after atomization; Claim B refines this by specifying that the sddc compile command must perform these F5/F6 checks in that phase.", "quotes": ["checks (F5 retrieval, F6 judgment) run as a **separate phase after atomization**", "the F5/F6 checks"]}
+{"from": "N-000326", "type": "uses_term", "to": "term:sddc_compile_command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

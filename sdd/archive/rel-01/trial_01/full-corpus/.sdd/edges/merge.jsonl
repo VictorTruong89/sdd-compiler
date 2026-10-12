@@ -1,0 +1,8 @@
+{"from": "N-000299", "type": "uses_term", "to": "term:inferred_node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000299", "type": "uses_term", "to": "term:merge", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000299", "type": "uses_term", "to": "term:proposed_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000299", "type": "uses_term", "to": "term:sddc_review_accept", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000366", "type": "depends_on", "to": "N-000363", "provenance": "judgment", "judgment": "J-005546", "rationale": "Claim B (a term_same item records the merge) describes the recording of an event that Claim A describes (a Q-TERM same verdict merges at once). Recording the merge presupposes that a merge occurs, making B dependent on A's premise.", "quotes": ["A Q-TERM same verdict merges at once, and a person may undo it", "a term_same item records the merge"]}
+{"from": "N-000366", "type": "refines", "to": "N-000299", "provenance": "judgment", "judgment": "J-003306", "rationale": "N-000366 specifies the data structure (`term_same` item) used to record term merges, refining the general action described in N-000299.", "quotes": ["confirm a term merge", "a `term_same` item records the merge"]}
+{"from": "N-000366", "type": "uses_term", "to": "term:merge", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000366", "type": "uses_term", "to": "term:term_same_item", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

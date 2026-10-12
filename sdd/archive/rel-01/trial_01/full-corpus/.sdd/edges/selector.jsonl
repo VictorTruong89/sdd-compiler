@@ -1,0 +1,13 @@
+{"from": "N-000474", "type": "conflicts_with", "to": "N-000475", "provenance": "judgment", "judgment": "J-004914", "rationale": "Claim A requires constraints with selectors to be listed when the selector covers any member; Claim B requires constraints with empty selectors NOT to be listed on every card. An empty selector cannot cover any member, so these address opposite cases and together form a complete rule.", "quotes": ["A family card lists a constraint as \"in scope\" when its selector covers any member", "A constraint with an empty selector is not listed on every card"]}
+{"from": "N-000474", "type": "depends_on", "to": "N-000541", "provenance": "judgment", "judgment": "J-003906", "rationale": "A describes when a family card lists a constraint as 'in scope' based on whether its selector covers any member; B specifies what it means for a selector to cover nodes. A's decision depends on understanding what 'selector covers' means, which B defines.", "quotes": ["its selector covers any member", "A selector that names a family, term or category covers the nodes matching it, narrowed by its layers if it has any"]}
+{"from": "N-000474", "type": "uses_term", "to": "term:constraint", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:family_card", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:member", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:sdd_compiler_model_scope_cover", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000474", "type": "uses_term", "to": "term:selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:category", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:selector", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000541", "type": "uses_term", "to": "term:term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

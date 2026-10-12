@@ -1,0 +1,5 @@
+{"from": "AC-2.4", "type": "subsumes", "to": "AC-2.3", "provenance": "judgment", "judgment": "J-006048", "rationale": "AC-2.4 states that verification kind always results in layer V; AC-2.3 specifies a different outcome (layer null) for a requirement with seven 'no' answers. AC-2.4 subsumes the general case that covers AC-2.3's specific scenario.", "quotes": ["when placed, then layer is `null`", "Given kind `verification` with arbitrary answers, when placed, then layer is `V`"]}
+{"from": "AC-2.4", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-2.4", "type": "uses_term", "to": "term:verification", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000094", "type": "uses_term", "to": "term:code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000094", "type": "uses_term", "to": "term:layer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

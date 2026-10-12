@@ -1,0 +1,10 @@
+{"from": "N-000569", "type": "uses_term", "to": "term:atomization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000569", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000569", "type": "uses_term", "to": "term:compiler", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000572", "type": "uses_term", "to": "term:atomization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000572", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000605", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000605", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000656", "type": "uses_term", "to": "term:check_phase", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000656", "type": "uses_term", "to": "term:last_checked_run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000656", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,4 @@
+{"from": "N-000743", "type": "subsumes", "to": "N-000156", "provenance": "judgment", "judgment": "J-006447", "rationale": "B's requirement that a card names broader and narrower families (which are kinds of family) subsumes A's requirement that terms keep separate families, as it implies a structured relationship between families.", "quotes": ["the terms keep separate families", "A card names its broader and narrower families"]}
+{"from": "N-000743", "type": "uses_term", "to": "term:broader_family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000743", "type": "uses_term", "to": "term:card", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000743", "type": "uses_term", "to": "term:narrower_family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

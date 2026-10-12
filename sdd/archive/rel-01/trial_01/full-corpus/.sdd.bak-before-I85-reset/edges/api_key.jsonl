@@ -1,0 +1,5 @@
+{"from": "N-000767", "type": "uses_term", "to": "term:api_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000767", "type": "uses_term", "to": "term:child_environment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000767", "type": "uses_term", "to": "term:env_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000767", "type": "uses_term", "to": "term:headless_claude_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000767", "type": "uses_term", "to": "term:model_call", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

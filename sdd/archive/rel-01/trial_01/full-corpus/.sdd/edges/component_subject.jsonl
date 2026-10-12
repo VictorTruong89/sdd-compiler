@@ -1,0 +1,7 @@
+{"from": "N-000315", "type": "conflicts_with", "to": "N-000317", "provenance": "judgment", "judgment": "J-006805", "rationale": "Claim A states component subject names family as a last resort (implying it can seed a family), while Claim B states actors and categories never seed a family; if component subject is an actor or category, these cannot both hold.", "quotes": ["names the family as a last resort", "never seed a family"]}
+{"from": "N-000315", "type": "uses_term", "to": "term:component_subject", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000315", "type": "uses_term", "to": "term:family", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000316", "type": "refines", "to": "N-000315", "provenance": "judgment", "judgment": "J-004475", "rationale": "Claim B specifies the temporal position (after mention, before null) while Claim A describes the same behavior as a fallback; B refines A's description of when the component subject names the family.", "quotes": ["names the family as a last resort", "after mention and before null"]}
+{"from": "N-000316", "type": "uses_term", "to": "term:component_subject", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000316", "type": "uses_term", "to": "term:mention", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000316", "type": "uses_term", "to": "term:null", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

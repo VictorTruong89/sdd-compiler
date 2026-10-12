@@ -1,0 +1,8 @@
+{"from": "AC-4.5", "type": "uses_term", "to": "term:exit_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.5", "type": "uses_term", "to": "term:link", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.5", "type": "uses_term", "to": "term:node", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.5", "type": "uses_term", "to": "term:transaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000450", "type": "depends_on", "to": "N-000435", "provenance": "judgment", "judgment": "J-005342", "rationale": "Claim B (transaction failure handling with exit code 4) presupposes Claim A's requirement that writes go through transactions—you cannot abort a transaction that doesn't exist.", "quotes": ["All writes go through one transaction", "A failing check aborts the transaction"]}
+{"from": "N-000450", "type": "depends_on", "to": "N-000465", "provenance": "judgment", "judgment": "J-005350", "rationale": "A specifies that a failing check aborts the transaction with exit code 4; B states registry and conflict records are validated on every transaction. A presupposes the transaction validation context that B describes.", "quotes": ["A failing check aborts the transaction (exit `4`) naming each violation", "Registry and conflict records are derived and validated on every transaction"]}
+{"from": "N-000450", "type": "uses_term", "to": "term:exit_code", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000450", "type": "uses_term", "to": "term:transaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

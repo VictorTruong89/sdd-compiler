@@ -1,0 +1,3 @@
+{"from": "AC-4.12", "type": "uses_term", "to": "term:committed_change", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.12", "type": "uses_term", "to": "term:graph_hash", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "AC-4.12", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

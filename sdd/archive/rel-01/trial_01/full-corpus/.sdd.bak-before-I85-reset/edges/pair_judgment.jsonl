@@ -1,0 +1,4 @@
+{"from": "N-000593", "type": "uses_term", "to": "term:lock", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000593", "type": "uses_term", "to": "term:pair_judgment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000593", "type": "uses_term", "to": "term:pair_key", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000593", "type": "uses_term", "to": "term:q_pair_schema_version", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

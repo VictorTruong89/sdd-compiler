@@ -1,0 +1,3 @@
+{"from": "N-000404", "type": "refines", "to": "N-000396", "provenance": "judgment", "judgment": "J-005550", "rationale": "B refines A by specifying a consequence of dropped annotations—that they never stop a run—which is a more specific constraint on how the general rule in A (dropped and reported, never raised) applies.", "quotes": ["is dropped and reported, never raised", "a dropped annotation never stops a run"]}
+{"from": "N-000404", "type": "uses_term", "to": "term:dropped_annotation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000404", "type": "uses_term", "to": "term:run", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

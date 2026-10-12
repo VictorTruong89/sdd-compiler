@@ -1,0 +1,6 @@
+{"from": "N-000549", "type": "uses_term", "to": "term:parent_entity_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000549", "type": "uses_term", "to": "term:score", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000549", "type": "uses_term", "to": "term:shared_term", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000550", "type": "uses_term", "to": "term:candidate", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000550", "type": "uses_term", "to": "term:rank_order", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000550", "type": "verifies", "to": "N-000549", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
