@@ -32,7 +32,7 @@
 
 ### QR-2 — Which pre-rel01 proposals are re-adopted, amended or rejected for rel01?
 - **Origin:** rel01 S2 · **Status:** answered 2026-09-14 — **all approved** (rel01 D12), with amendments listed in D12
-- **Context:** Before rel01, `design/rel01_design/core-working-principle.md` recorded proposals P-0…P-14
+- **Context:** Before rel01, `archive/rel-01/design/rel01_design/core-working-principle.md` recorded proposals P-0…P-14
   for a broader vision. None is binding. Each needs an explicit keep, amend or reject so rel01 does
   not silently inherit or silently lose them:
 
@@ -75,7 +75,7 @@
 - **Options:** A — command hook output shown to Claude after a spec edit · B — prompt hook (Haiku)
   gating code edits that touch conflicted nodes · C — a skill Claude calls to list conflicts ·
   D — `sdd status` report for humans
-- **Binds in:** `design/rel01_design/G3-algorithms.md` G3.2
+- **Binds in:** `archive/rel-01/design/rel01_design/G3-algorithms.md` G3.2
 
 ### QR-6 — A node in more than one conflict
 - **Origin:** gap in rel01 D9 · **Status:** answered 2026-09-14 — option B (rel01 D14)
@@ -127,4 +127,4 @@
   code must emit, such as run logs and read logs), and design the detailed experiment after a graph
   exists · B — design G4 fully before coding, amending D2 · C — keep D2; G4 is not part of the coding
   gate
-- **Binds in:** rel01 D2, D20; `design/rel01_design/G4-measurement.md`
+- **Binds in:** rel01 D2, D20; `archive/rel-01/design/rel01_design/G4-measurement.md`

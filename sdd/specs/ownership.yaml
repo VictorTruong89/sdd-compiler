@@ -1,6 +1,6 @@
 # Spec ownership — which spec governs which code path.
 #
-# STATUS: F1 wired 2026-09-15. No code exists yet, so the globs match nothing until code lands.
+# STATUS: F1–F7 wired; all seven are built (rel01 closed 2026-10-01).
 # When a spec is added, add its globs here in the same change.
 # A glob that matches nothing governs nothing, silently — move globs with the code.
 

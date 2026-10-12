@@ -19,7 +19,7 @@
 | `rel<NN> D<n>` · `rel<NN> S<n>` | Release decision · release session | Release | `design/rel<NN>_brainstorm.md` |
 | `QR-<n>` | Question register entry | Repository | `questions.md` |
 | `G<n>` · `G<n>.<k>` | Release goal · sub-goal | Release | `design/rel<NN>_brainstorm.md` |
-| `P-<n>` | Pre-rel01 design proposal | Historical | `design/rel01_design/core-working-principle.md` |
+| `P-<n>` | Pre-rel01 design proposal | Historical | `archive/rel-01/design/rel01_design/core-working-principle.md` |
 | `B-<digits>` · `R-<digits>` | Block · run (runtime records) | `.sdd/` store | F1 |
 | `N-<digits>` · `term:<name>` · `CF-<digits>` | Node · term · conflict record | `.sdd/` store | F2 |
 | `J-<digits>` · `RV-<digits>` | Judgment · review item | `.sdd/` store | F3 |

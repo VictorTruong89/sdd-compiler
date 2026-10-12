@@ -1,6 +1,6 @@
 # Phase D pilot — F1 (Ingest), Sonnet, Markdown vs export
 
-> Run 2026-09-30 by the harness in `harness/` (sandboxed, tools `Bash, Read, Write, Edit`, ceiling
+> Run 2026-09-30 by the harness in `harness/` at the repository root (sandboxed, tools `Bash, Read, Write, Edit`, ceiling
 > $10 estimated API-equivalent per run). **The pilot task is excluded from reported study results**
 > (G3-3 §6). One run per format: these are observations, not a comparison with any statistical weight.
 > Every `$` is Claude Code's `total_cost_usd` — an estimated API-equivalent on the subscription.

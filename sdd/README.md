@@ -19,23 +19,37 @@ This project is built spec-first. **The specs are the source of truth; the code 
 ```text
 sdd/
 ├── README.md                 this file
-├── questions.md              question register                        (placeholder)
+├── questions.md              question register
 ├── agent-workflow.md         how an AI agent turns specs into code    (placeholder)
 ├── specs/
-│   ├── README.md             spec index                               (placeholder)
-│   ├── vision.md             WHAT and WHY                             (placeholder)
-│   ├── constitution.md       HOW: rules, invariants, test tiers       (placeholder)
-│   ├── ownership.yaml        spec → code globs                        (placeholder)
+│   ├── README.md             spec index
+│   ├── vision.md             WHAT and WHY
+│   ├── constitution.md       HOW: rules, invariants, test tiers
+│   ├── ownership.yaml        spec → code globs
+│   ├── F<n>_<slug>/spec.md   one feature = one spec (F1–F7)
 │   └── _templates/spec.md    feature spec skeleton
 ├── design/
-│   ├── rel01_brainstorm.md   rel01 living brainstorm and decisions    (placeholder)
-│   ├── rel01_design/         rel01 design notes (core-working-principle.md: pre-rel01 input)
 │   ├── releases/             one-page close-outs (+ template)
 │   └── _templates/           brainstorm template
 ├── blueprints/               per-module as-built notes                (empty)
-└── archive/                  frozen history (the pre-rel01 vision)
+└── archive/
+    ├── rel-01/               release 01, frozen: brainstorm, design notes, measurements,
+    │                         a snapshot of the specs at the close, the first full compile
+    ├── chat_history/         pre-rel01 brainstorm exports
+    └── 2026-09-13_vision_pre-rel01.md
 ```
 
-## Current release
+## Releases
 
-**rel01** — opened 2026-09-14, target 2026-09-30. See [`design/rel01_brainstorm.md`](design/rel01_brainstorm.md).
+| Release | State | Where |
+|---|---|---|
+| **rel01** | Closed 2026-10-01 | [close-out](design/releases/rel01_closeout.md) · [archive](archive/rel-01/README.md) |
+
+No release is open. The next one starts by copying `design/_templates/brainstorm.md` into `design/`.
+
+## Closing a release
+
+1. Write the close-out in `design/releases/` and mark the brainstorm FROZEN.
+2. Move the release's brainstorm and design notes to `archive/rel-<NN>/design/`, and copy `specs/`
+   to `archive/rel-<NN>/specs/` as a snapshot. The live specs stay in `specs/`.
+3. Re-point links in the live files; add the release to the table above and to `archive/README.md`.

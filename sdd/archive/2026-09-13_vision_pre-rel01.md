@@ -68,7 +68,7 @@ Not decided yet. Listed so nothing is silently assumed.
 
 - Technical refinement of U1–U7: what each means mechanically, and how each is measured.
   In progress for the core working principle (atomize → place → link → retrieve):
-  working design [`design/core-working-principle.md`](../design/rel01_design/core-working-principle.md), lecture
+  working design [`design/core-working-principle.md`](../archive/rel-01/design/rel01_design/core-working-principle.md), lecture
   [`design/core-working-principle.html`](../../docs/lectures/core-working-principle.html).
 - U4 release timing. It is not in the first release, but U5 comparison needs some notion of "which
   graph version" — see the design file.

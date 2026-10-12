@@ -4,7 +4,7 @@
 
 The graph was built so that a coding agent could be handed **the few claims that govern a change**
 instead of a folder of documents. That hand-off — traversal into a *context pack* — is designed
-(`sdd/design/rel01_design/G3-3-traversal.md`, spec id **F7 reserved, not built**), and the `sddc query`
+(`sdd/archive/rel-01/design/rel01_design/G3-3-traversal.md`, spec id **F7 reserved, not built**), and the `sddc query`
 command is deferred. So in rel01 **there is no built-in command that answers "what must I read to
 change X?"**
 

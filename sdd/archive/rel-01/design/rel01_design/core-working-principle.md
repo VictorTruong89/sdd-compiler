@@ -1,12 +1,12 @@
 # Core Working Principle — Working Design
 
 > **Status:** In progress · **Opened:** 2026-09-13 · **Tier:** design — **proposals, not yet adopted**.
-> **Serves:** first release **U1 · U2 · U5** ([`../vision.md`](../../archive/2026-09-13_vision_pre-rel01.md) §1). **Designs for, does
+> **Serves:** first release **U1 · U2 · U5** ([`../vision.md`](../../../2026-09-13_vision_pre-rel01.md) §1). **Designs for, does
 > not build:** U7.
 > **Binds to:** vision O1 (deterministic core, relaxed in later releases), O2 (the agent makes
 > language judgments), O3 (runs through the agent's hooks and API).
-> **Lecture companions:** [`core-working-principle.html`](../../../docs/lectures/core-working-principle.html) explains the
-> reasoning and alternatives; [`lecture-tiered-md-vs-graph.html`](../../../docs/lectures/lecture-tiered-md-vs-graph.html)
+> **Lecture companions:** [`core-working-principle.html`](../../../../../docs/lectures/core-working-principle.html) explains the
+> reasoning and alternatives; [`lecture-tiered-md-vs-graph.html`](../../../../../docs/lectures/lecture-tiered-md-vs-graph.html)
 > compares against tiered Markdown specs, storage and visualization. **If the two disagree, this file wins** (vision §5).
 > **Evidence rule:** this file states no accuracy, coverage or token figure. Every quantitative
 > property is written as *to be measured*. Named methods are listed in §12 as *to verify*.
@@ -841,7 +841,7 @@ Vision O1 allows later releases to deploy local models. Where they could help, a
 
 ## 13. Relation to tiered Markdown specs
 
-Lecture: [`lecture-tiered-md-vs-graph.html`](../../../docs/lectures/lecture-tiered-md-vs-graph.html). It was measured
+Lecture: [`lecture-tiered-md-vs-graph.html`](../../../../../docs/lectures/lecture-tiered-md-vs-graph.html). It was measured
 against `collective-investment-ai-assistant/sdd/specs/` on 2026-09-13.
 
 ### 13.1 Findings that bind this design
@@ -880,7 +880,7 @@ against `collective-investment-ai-assistant/sdd/specs/` on 2026-09-13.
 3. The comparison experiment: flat Markdown, tiered Markdown, graph views only, and graph with query
    tools, all run on the same agent, on tasks with known answer sets and planted traps. Study design
    (metrics, Claude Code instrumentation, failure catalogue, statistics):
-   [`lecture-tiered-md-vs-graph.html`](../../../docs/lectures/lecture-tiered-md-vs-graph.html) Parts 6–10. Nothing in this
+   [`lecture-tiered-md-vs-graph.html`](../../../../../docs/lectures/lecture-tiered-md-vs-graph.html) Parts 6–10. Nothing in this
    file claims the graph is better until that experiment has run.
 4. Design features the experiment needs from the compiler: hook-friendly query logging, and graph
    views generated only from spec content, so no answers leak into them.

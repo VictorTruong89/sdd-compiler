@@ -24,7 +24,7 @@ weak part, and re-litigating it here would stop a release for something M4 canno
 
 `tests/fixtures/planted/`, 3 files, ~725 words, 28 blocks. Written 2026-09-21 in the voice of ordinary
 specs (G4 §3's warning: planted conflicts must not look planted). The answer key — six pairs, P1 … P6 —
-is [`tests/fixtures/planted/EXPECTED.md`](../../../tests/fixtures/planted/EXPECTED.md).
+is [`tests/fixtures/planted/EXPECTED.md`](../../../../../tests/fixtures/planted/EXPECTED.md).
 
 Hashes of the compiled corpus (I-69: a measurement on a moving corpus is not a comparison):
 

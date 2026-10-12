@@ -4,7 +4,7 @@
 > ⛔ **Coding gated (rel01 D20).**
 > **Source:** rel01 sub-goal G2.3 · approved proposals P-10 (indexes, disclosure levels), P-13
 > (storage), P-14 (visualization; realized first as the collapsed form) in
-> [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
+> [`../../archive/rel-01/design/rel01_design/core-working-principle.md`](../../archive/rel-01/design/rel01_design/core-working-principle.md)
 > §6, §14, §15 · rel01 D9 (conflicted-node registry), D10 (two forms), D14 (conflict records).
 > **Depends on:** F1 (block, source, run records; atomic writes) · F2 (all record contracts).
 > **⚑ Drafting choices** are marked in §7.
@@ -221,7 +221,7 @@ Sorted by id. Derived on every transaction; never edited.
   `id_counters.node` is unchanged (never rewound). → *integration.*
 
 **Collapsed form**
-- **AC-4.14** *(map)* — **Given** the worked-example graph (`design/rel01_design/core-working-principle.md` §9) with one conflicted L1 node in
+- **AC-4.14** *(map)* — **Given** the worked-example graph (`archive/rel-01/design/rel01_design/core-working-principle.md` §9) with one conflicted L1 node in
   `term:share_link`, **when** `sddc map` runs, **then** that row's L1 cell shows its count with `✗`, and
   the row sorts first. → *golden.*
 - **AC-4.15** *(family card)* — **Given** a family, **when** `sddc family TERM` runs, **then** members

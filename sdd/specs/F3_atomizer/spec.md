@@ -4,7 +4,7 @@
 > **Revised:** 2026-09-17 (rel01 D26 — batch compiler over static Markdown)
 > ⛔ **Coding gated (rel01 D20).**
 > **Source:** rel01 sub-goal G2.2 · approved proposals P-1, P-2, P-4, P-5, P-6 in
-> [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
+> [`../../archive/rel-01/design/rel01_design/core-working-principle.md`](../../archive/rel-01/design/rel01_design/core-working-principle.md)
 > §1.2, §3 · rel01 D7 (two model backends), D8 (Haiku atomizes and forms nodes), **D26 (batch)**.
 > **Withdrawn by D26, deferred:** the hook trigger, the `--actor` stop rule and the AI fix loop
 > (old D4). See D8 below.

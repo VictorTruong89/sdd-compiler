@@ -1,6 +1,6 @@
 """Score one run: install what the agent built, run the hidden tests, count what it accounted for.
 
-    python score.py --run ~/sddc-runs/study-runs/<run> --task ../tasks/f1-ingest
+    python score.py --run ~/sddc-runs/study-runs/<run> --task ../docs/MIA5150-Project/tasks/f1-ingest
 
 The agent's code is untrusted, so installing and testing it happen in the same sandbox as the run
 (network on, for PyPI). Writes <run>/score/score.json and junit.xml. No model call.

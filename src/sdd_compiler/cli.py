@@ -136,7 +136,7 @@ def dispatch(args: argparse.Namespace) -> int:
     print(
         f"sddc: `{args.command}` is not built yet — it arrives with milestone "
         f"{'M4' if args.command == 'conflicts' else 'M3'} "
-        f"(sdd/design/rel01_design/build-plan.md)",
+        f"(sdd/archive/rel-01/design/rel01_design/build-plan.md)",
         file=sys.stderr,
     )
     return ExitCode.USAGE

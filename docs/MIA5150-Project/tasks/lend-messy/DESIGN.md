@@ -1,6 +1,7 @@
 # Pilot task 2 — `lend`, a tool-library loan CLI, specified messily across files
 
-> **Status:** BUILT 2026-10-01, awaiting the owner's approval for the compile · study side (outside the
+> **Status:** BUILT 2026-10-01, awaiting the owner's approval for the compile · **carried to rel-02**
+> (owner, 2026-10-11: worth exploring for the study; nothing run in rel01) · study side (outside the
 > compiler). Purpose: a pilot task that **can** tell the formats apart. The F1 pilot could not: one
 > clean spec file, both formats 26 / 26 (`../../pilot-F1-results.md`). The proposal's hypothesis is that
 > the graph helps on "messy, multi-file specs (duplicates, scattered refinements, contradictions)"; this

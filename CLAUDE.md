@@ -1,8 +1,9 @@
 # SDD Compiler — working agreement
 
 > **Status:** opened 2026-09-14 · release **rel01 CLOSED 2026-10-01**
-> ([close-out](sdd/design/releases/rel01_closeout.md)); its brainstorm is frozen. The next release has no
-> brainstorm yet. Sections marked `TODO` are still open.
+> ([close-out](sdd/design/releases/rel01_closeout.md)); its brainstorm, design notes and first compile
+> are frozen in [`sdd/archive/rel-01/`](sdd/archive/rel-01/README.md). **No release is open:** the next
+> one has no brainstorm yet. Sections marked `TODO` are still open.
 >
 > ★ **rel01 in one sentence (rel01 D26):** point `sddc compile` at a folder of static Markdown spec
 > files and get back a spec graph plus a report of every conflict in it. No hooks, no live input, no
@@ -16,10 +17,11 @@ is a bug — say so rather than quietly picking a side.
 ## Read before you write
 
 - `sdd/specs/vision.md` — what is being built and why. **Adopted 2026-09-17.**
-- `sdd/specs/constitution.md` — non-negotiable rules. *(TODO.)*
-- The spec that governs the path you touch — mapping in `sdd/specs/ownership.yaml`. *(TODO.)*
-- Working on rel01? `sdd/design/rel01_brainstorm.md` (goals G1–G4, stack, decisions) and
-  `sdd/design/rel01_design/`.
+- `sdd/specs/constitution.md` — non-negotiable rules.
+- The spec that governs the path you touch — mapping in `sdd/specs/ownership.yaml`.
+- The open release's brainstorm in `sdd/design/` *(none open yet)*.
+- Why something was built the way it was in rel01: `sdd/archive/rel-01/` (brainstorm with decisions
+  rel01 D1–D42, design notes, build plan and issue log). Frozen; never edit, never build from it.
 
 ## Layout
 
@@ -29,9 +31,11 @@ is a bug — say so rather than quietly picking a side.
 | `sdd/design/` | Release brainstorm and design notes | Non-authoritative, release-scoped |
 | `sdd/blueprints/` | What the built code does and why | Permanent, per module |
 | `sdd/archive/` | Superseded documents, frozen | Historical |
+| `sdd/archive/rel-01/` | Release 01: brainstorm, design notes, measurements, spec snapshot, `trial_01/` | Historical |
 | `sdd/questions.md` | Question register: decisions and rejected options | Reasoning, never rules |
 | `docs/lectures/` | **HTML lectures** for the owner's understanding | Never binding |
 | `src/`, `tests/` | Python CLI code and tests (stack: constitution §6) | Downstream of specs |
+| `harness/` | Runs a coding agent on a task in a sandbox and scores it; outside the compiler (F7 D9) | No governing spec yet |
 | `sdd/archive/chat_history/` | Raw brainstorm exports and course brief from before rel01 | Historical |
 
 ## Document conventions
@@ -42,7 +46,8 @@ is a bug — say so rather than quietly picking a side.
 
 ## The loop
 
-1. **Diverge** — brainstorm in `sdd/design/rel01_brainstorm.md`.
+1. **Diverge** — brainstorm in the open release's brainstorm file under `sdd/design/` (copied from
+   `sdd/design/_templates/brainstorm.md` when the release opens).
 2. **Converge** — record the decision in that file's decisions log.
 3. **Graduate** — copy `sdd/specs/_templates/spec.md` → `sdd/specs/F<n>_<slug>/spec.md` once its
    acceptance criteria can be written.

@@ -1,27 +1,32 @@
 # Study harness — run a coding agent on a task, then score it
 
-> Built 2026-09-30 for the Phase D pilot (`sdd/design/rel01_design/HANDOVER_code_ready_graph.md`) and
+> Built 2026-09-30 for the Phase D pilot and
 > the week-6 pilot of the proposal. Step 2 of G3-3 §1: it lives outside the compiler (F7 D9). No file
 > here is read by `sddc`.
+>
+> **Location (2026-10-11):** at the repository root, because it is code, not a document, and it measures
+> the compiler for any purpose, not only the course study. It is not under `src/` because F7 D9 keeps
+> scoring out of the compiler, and no spec governs it yet (`sdd/specs/ownership.yaml` has no entry).
+> The tasks it runs are still in `docs/MIA5150-Project/tasks/`.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `harness/run_task.py` | One trial: copy the task's inputs for one spec format into an empty workspace, run Claude Code headless **in a sandbox**, with a $ ceiling and a wall-clock timeout; keep the transcript and a `run.json` |
-| `harness/score.py` | Install the agent's package and run the hidden tests **in the same sandbox**; map results to the requirement list; count the spec ids the agent accounted for |
-| `harness/sandbox.py` | The bubblewrap command: system read-only, `/home` and `/tmp` hidden, a fresh home, the workspace at `/home/work`, environment cleared (no `ANTHROPIC_API_KEY`) |
-| `tasks/lend-messy/` | The second task (built 2026-10-01): a messy 7-file spec with 12 planted items; see its `DESIGN.md`. Scoring settings per task live in `inputs.json` → `scoring` |
-| `tasks/f1-ingest/` | The first task: `task.md` (the fixed task text), `inputs.json` (what each format gets), `requirements.md` (R1–R28), `hidden_tests/` (26 black-box tests) |
+| `run_task.py` | One trial: copy the task's inputs for one spec format into an empty workspace, run Claude Code headless **in a sandbox**, with a $ ceiling and a wall-clock timeout; keep the transcript and a `run.json` |
+| `score.py` | Install the agent's package and run the hidden tests **in the same sandbox**; map results to the requirement list; count the spec ids the agent accounted for |
+| `sandbox.py` | The bubblewrap command: system read-only, `/home` and `/tmp` hidden, a fresh home, the workspace at `/home/work`, environment cleared (no `ANTHROPIC_API_KEY`) |
+| `../docs/MIA5150-Project/tasks/lend-messy/` | The second task (built 2026-10-01): a messy 7-file spec with 12 planted items; see its `DESIGN.md`. Scoring settings per task live in `inputs.json` → `scoring` |
+| `../docs/MIA5150-Project/tasks/f1-ingest/` | The first task: `task.md` (the fixed task text), `inputs.json` (what each format gets), `requirements.md` (R1–R28), `hidden_tests/` (26 black-box tests) |
 
 ## The F1 pilot (approved by the owner 2026-09-30: task F1, model Sonnet)
 
 ```bash
-cd docs/MIA5150-Project/harness
-python3 run_task.py --task ../tasks/f1-ingest --format markdown --model sonnet --budget-usd 10 --dry-run
-python3 run_task.py --task ../tasks/f1-ingest --format markdown --model sonnet --budget-usd 10
-python3 run_task.py --task ../tasks/f1-ingest --format export   --model sonnet --budget-usd 10
-python3 score.py --run ~/sddc-runs/study-runs/<run> --task ../tasks/f1-ingest
+cd harness
+python3 run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format markdown --model sonnet --budget-usd 10 --dry-run
+python3 run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format markdown --model sonnet --budget-usd 10
+python3 run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format export   --model sonnet --budget-usd 10
+python3 score.py --run ~/sddc-runs/study-runs/<run> --task ../docs/MIA5150-Project/tasks/f1-ingest
 ```
 
 - **Inputs, same content in both formats.** Markdown: the 9 frozen spec files the pilot graph was

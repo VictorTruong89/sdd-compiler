@@ -1,7 +1,7 @@
 ---
 name: sdd-spec
 description: >
-  PLACEHOLDER — not yet written. Graduate a decided idea from sdd/design/rel01_brainstorm.md into a
+  PLACEHOLDER — not yet written. Graduate a decided idea from the open release's brainstorm (under sdd/design/) into a
   feature spec under sdd/specs/F<n>_<slug>/spec.md, with acceptance criteria, contracts, decisions
   and a traceability table. Use when a brainstorm decision is ready to become a spec, or when a spec
   must be amended before implementation.
@@ -13,7 +13,7 @@ description: >
 
 Until then:
 
-1. Confirm the decision is recorded in `sdd/design/rel01_brainstorm.md` with rejected options.
+1. Confirm the decision is recorded in the open release's brainstorm under `sdd/design/`, with rejected options.
 2. Claim the next free `F<n>` in `sdd/specs/README.md`. Never renumber.
 3. Copy `sdd/specs/_templates/spec.md`; fill every section. Every behaviour gets an `AC-<n>.<k>`.
 4. Add code globs to `sdd/specs/ownership.yaml` in the same change.

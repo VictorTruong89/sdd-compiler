@@ -86,7 +86,7 @@ If a lecture and a Markdown file disagree, **the Markdown wins**.
 
 # 7. How to use this file
 
-- **Proposing or designing?** Start here, then `../design/rel01_brainstorm.md`. Work that serves no
+- **Proposing or designing?** Start here, then `../archive/rel-01/design/rel01_brainstorm.md`. Work that serves no
   purpose in §2, or contradicts §3 or §5, is out of scope — say so rather than building it.
 - **Implementing?** This file binds nothing directly. Go to [`constitution.md`](constitution.md) and
   the governing spec.

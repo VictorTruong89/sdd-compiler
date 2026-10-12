@@ -172,7 +172,7 @@ proves almost nothing.
 | T16 Q-PAIR judgment; links and conflict records; direction and confidence | ✅ | 18 | F6 AC-6.2 … AC-6.8, AC-6.1 partial · CT-6.1, CT-6.3 · **F6 D11** (the direction rule lives in the schema). Writing them through a transaction is T17 |
 | T17 check phase inside `compile`; budget; conflict lifecycle | ✅ | 19 | F6 AC-6.9, AC-6.12 … AC-6.19, and AC-6.1, AC-6.11 end to end · **F6 D12, D13** · exit codes 3 and 5 wired. `compile` = ingest → atomize → **check** → write |
 | T18 end-of-run report; `sddc conflicts`; exit 3 | ✅ | 12 (2 goldens) | F6 AC-6.10, AC-6.11 · F4 AC-4.16 · **`compile` now prints the report**: what failed, what formed no node, what was dropped, every conflict grouped with contradictions first |
-| Planted-conflict fixture (G4 §3 corpus 2) | ✅ | 1 | `tests/fixtures/planted/` — 3 files, 28 blocks, six pairs P1 … P6 in [`EXPECTED.md`](../../../tests/fixtures/planted/EXPECTED.md); written in ordinary spec voice. A suite test keeps it from rotting |
+| Planted-conflict fixture (G4 §3 corpus 2) | ✅ | 1 | `tests/fixtures/planted/` — 3 files, 28 blocks, six pairs P1 … P6 in [`EXPECTED.md`](../../../../../tests/fixtures/planted/EXPECTED.md); written in ordinary spec voice. A suite test keeps it from rotting |
 | **M4 gate** pass line | ✅ written **before** the run finished — [`M4-gate.md`](M4-gate.md) §1 | — | G1 ≥ 4 of 6 planted pairs including P1 · G2 ≥ half of what is reported judged real · G3 the run finishes, the store checks pass, the report names every conflict. Owner confirms |
 | **M4 gate** | ❌ **failed, usefully** — [`M4-gate.md`](M4-gate.md) | +1 | First end-to-end run: 28 blocks → 34 nodes → 123 pairs → 72 judged → **11 conflicts**, store clean, $1.30. **M1 recall 1 of 6** planted pairs; **M2 precision 3 of 11 (27 %)**. Every planted pair *was* proposed — five ranked 81st–130th because each side got its own term (the measured cost of I-65). One real duplication found that nobody planted. Follow-ups R15 … R18 in the gate file |
 | **R15, R16** gate fixes | ✅ | +3 | **F5 D11** (S2 follows `broader`; S6 takes a shared keyword) · **F6 D15** (when two numbers are *not* a contradiction). Effect measured offline before spending: the 5 GB/5 GiB pair rank 123 → 50, the alias pair 81 → 43 |
@@ -216,7 +216,7 @@ order found. Owner decisions are cited by their spec decision id.
 > | Each spec's §7 | The decisions that changed the product, with what was rejected and why (F1 D1 … F6 D13) |
 >
 > **At release close** they are summarised into `sdd/design/releases/rel01_closeout.md`, from
-> [`releases/_template_closeout.md`](../releases/_template_closeout.md): what shipped, what did not,
+> [`releases/_template_closeout.md`](../../../../design/releases/_template_closeout.md): what shipped, what did not,
 > and "measured, not asserted" — every number with its sample size. Build-plan §5 lists what that file
 > must record. The template keeps it to one page: **these seven places stay the detailed record.**
 

@@ -2,9 +2,9 @@
 
 > **Spec-ID:** F7 · **Status:** 🟢 approved 2026-09-30 · **Drafted:** 2026-09-25 (rel01 D34)
 > **Source:** rel01 S40–S41 · design note
-> [`../../design/rel01_design/G3-3-agent-export.md`](../../design/rel01_design/G3-3-agent-export.md)
+> [`../../archive/rel-01/design/rel01_design/G3-3-agent-export.md`](../../archive/rel-01/design/rel01_design/G3-3-agent-export.md)
 > (E1–E6, owner answers Q1–Q7 in rel01 D34) · refines
-> [`G3-3-traversal.md`](../../design/rel01_design/G3-3-traversal.md) · lecture
+> [`G3-3-traversal.md`](../../archive/rel-01/design/rel01_design/G3-3-traversal.md) · lecture
 > [`docs/lectures/lecture-agent-reads-spec-graph.html`](../../../docs/lectures/lecture-agent-reads-spec-graph.html)
 > (non-binding).
 > **Revised:** 2026-09-30 (Phase A of `HANDOVER_code_ready_graph.md`; owner answers: definitions shown,

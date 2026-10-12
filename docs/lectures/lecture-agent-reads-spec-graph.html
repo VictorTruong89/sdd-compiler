@@ -128,7 +128,7 @@ html{scroll-behavior:smooth;scroll-padding-top:4rem}
     <p class="standfirst">A frontier coding agent (Claude Code, driving Haiku, Sonnet or Opus) is handed a set of SDD spec files and asked to build the system. This lecture follows what it actually does with them, where that process drops requirements or invents behaviour, and then asks the same questions of the spec graph. It ends with a small, bounded set of changes to the compiler's output, so the graph gives an agent everything the Markdown gives, plus the structure the Markdown lacks.</p>
     <div class="meta">
       <span>Written 2026-09-25</span>
-      <span>Graph measured: trial_01/full-corpus (R18)</span>
+      <span>Graph measured: sdd/archive/rel-01/trial_01/full-corpus (R18)</span>
       <span>Sources opened 2026-09-25</span>
       <span>Scope: compiler stops at the artifact; code generation is a separate step</span>
     </div>
@@ -154,7 +154,7 @@ html{scroll-behavior:smooth;scroll-padding-top:4rem}
   <div style="padding-top:2.5rem">
   <div class="tierbanner">
     <p><strong>Lecture: for understanding, not binding.</strong> The proposals in Part 4 are inputs to a design note. They become rules only once they are recorded in <code>sdd/design/</code> and graduated into a spec. If this page and a Markdown file disagree, the Markdown wins.</p>
-    <p><strong>What is measured and what is not.</strong> Every graph figure was counted on <code>trial_01/full-corpus/</code> on 2026-09-25 and is given in bytes or counts. No token count appears. Claude's tokenizer is not public, and a bytes-to-tokens ratio would be an invented number. Risk ratings in Part 2 are <em>judgements with stated reasons</em>, not measurements. Effort figures in Part 4 are estimates.</p>
+    <p><strong>What is measured and what is not.</strong> Every graph figure was counted on <code>sdd/archive/rel-01/trial_01/full-corpus/</code> on 2026-09-25 and is given in bytes or counts. No token count appears. Claude's tokenizer is not public, and a bytes-to-tokens ratio would be an invented number. Risk ratings in Part 2 are <em>judgements with stated reasons</em>, not measurements. Effort figures in Part 4 are estimates.</p>
   </div>
   </div>
 
@@ -329,7 +329,7 @@ Markdown specs ──sddc compile──► artifact ──┬─► Claude Code 
   <p>An agent following an edge from node A to node B does this: it reads a record that mentions <code>B</code>, then decides to look B up, then issues a tool call (<code>Grep "N-000807"</code> or <code>Read</code> of the file that holds it), then gets text back that lands in the window. Each hop costs a round trip, adds tokens, and depends on the agent <em>choosing</em> to make it. SWE-agent's central result is that this interface matters: purpose-built commands for navigating and viewing changed how well the same model performed <a href="#r16">[16]</a>. For the compiler, <strong>the artifact's file layout and ids are the agent's interface to the graph</strong>, and they deserve the same design care as the node schema.</p>
 
   <h3><span class="sn">3.2</span>What the rel01 store looks like to an agent (measured)</h3>
-  <p>Counted on <code>trial_01/full-corpus/.sdd/</code>, the store built from this repository's 164,581 bytes of specs:</p>
+  <p>Counted on <code>sdd/archive/rel-01/trial_01/full-corpus/.sdd/</code>, the store built from this repository's 164,581 bytes of specs:</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Measure</th><th>Value</th><th>Consequence for an agent</th></tr></thead>
     <tbody>
@@ -539,6 +539,6 @@ Markdown specs ──sddc compile──► artifact ──┬─► Claude Code 
 
 <footer>
   <div class="wrap">
-    <p>Lecture, non-authoritative. Written 2026-09-25. Graph figures measured on <code>trial_01/full-corpus/</code> (R18). Proposals E1–E6 are design input, not decisions; they take effect only when recorded in <code>sdd/design/</code>.</p>
+    <p>Lecture, non-authoritative. Written 2026-09-25. Graph figures measured on <code>sdd/archive/rel-01/trial_01/full-corpus/</code> (R18). Proposals E1–E6 are design input, not decisions; they take effect only when recorded in <code>sdd/design/</code>.</p>
   </div>
 </footer>

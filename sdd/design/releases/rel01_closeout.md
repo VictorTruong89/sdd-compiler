@@ -66,3 +66,12 @@ Commands: `sddc init · ingest · compile · status · conflicts [judge] · fami
 - [x] `specs/README.md` index matches reality (updated at close)
 - [x] Open questions moved: rel01-level ones answered in `questions.md`; carried work is the table above
 - [x] `rel01_brainstorm.md` marked FROZEN
+
+## After the close
+
+- **2026-10-11 — archived (owner).** The brainstorm, `rel01_design/` (with `measurements/`) and
+  `trial_01/` moved to [`sdd/archive/rel-01/`](../../archive/rel-01/README.md), with a snapshot of
+  `sdd/specs/` as it stood. Paths written as text above are the paths of the time; "build-plan" is now
+  `sdd/archive/rel-01/design/rel01_design/build-plan.md`. The specs stay live in `sdd/specs/`.
+- The messy pilot task `lend` (`docs/MIA5150-Project/tasks/lend-messy/`), built 2026-10-01 and not
+  compiled, is carried to the next release.

@@ -7,7 +7,7 @@
 > recipe idea stays; its first concrete form is the unit pack (E4).
 > **Spec id:** `F7` (rel01 D34). Where this note and F7 differ, F7 wins.
 > **Explanation, evidence and references:** lecture
-> [`docs/lectures/lecture-agent-reads-spec-graph.html`](../../../docs/lectures/lecture-agent-reads-spec-graph.html)
+> [`docs/lectures/lecture-agent-reads-spec-graph.html`](../../../../../docs/lectures/lecture-agent-reads-spec-graph.html)
 > (non-binding; this note wins where they differ).
 
 ---

@@ -40,12 +40,12 @@ aborts with exit `4`, names every problem, and leaves the old store untouched.
 
 | What | Where |
 |---|---|
-| **The full store** (950 nodes, 381 conflicts) | **`~/sddc-runs/full-corpus/.sdd/`**, and a copy of the whole run directory in the repository at **`trial_01/full-corpus/`** |
+| **The full store** (950 nodes, 381 conflicts) | **`~/sddc-runs/full-corpus/.sdd/`**, and a copy of the whole run directory in the repository at **`sdd/archive/rel-01/trial_01/full-corpus/`** |
 | The spec text it was compiled from, frozen | `~/sddc-runs/full-corpus/sdd/specs/` and its hashes in `corpus.sha256` |
 | Backups taken before the I-85 repair and the I-89 heal | `~/sddc-runs/full-corpus/.sdd.bak-before-I85-reset/`, `.sdd.bak-before-I89-heal/` |
 | **An interactive explorer** of this store | `~/sddc-runs/full-corpus/graph.html` (section 5 below) |
-| Per-round output, the report, the conflict list, the M2 sample | `sdd/design/rel01_design/measurements/R18_*` — in the repository |
-| The write-up | `sdd/design/rel01_design/M4-gate.md` §8 |
+| Per-round output, the report, the conflict list, the M2 sample | `sdd/archive/rel-01/design/rel01_design/measurements/R18_*` — in the repository |
+| The write-up | `sdd/archive/rel-01/design/rel01_design/M4-gate.md` §8 |
 
 Point any command at it with `--root`:
 

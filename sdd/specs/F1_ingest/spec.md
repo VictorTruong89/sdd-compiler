@@ -4,8 +4,8 @@
 > **Revised:** 2026-09-17 (rel01 D26 — batch compiler over static Markdown)
 > ⛔ **Coding gated (rel01 D20):** implementation does not start until G2, G3 and G4 are reviewed and
 > the rel01 build plan and task list exist.
-> **Source discussion:** `sdd/design/rel01_brainstorm.md` S2–S5 · design
-> [`../../design/rel01_design/G1-ingest.md`](../../design/rel01_design/G1-ingest.md) (approved, rel01 D19)
+> **Source discussion:** `sdd/archive/rel-01/design/rel01_brainstorm.md` S2–S5 · design
+> [`../../archive/rel-01/design/rel01_design/G1-ingest.md`](../../archive/rel-01/design/rel01_design/G1-ingest.md) (approved, rel01 D19)
 > **Governs:** `constitution.md` §6 (stack). Constitution §1–§5 are still placeholders: the id families
 > and test-tier names used here are provisional until the constitution adopts them.
 > **Decisions applied:** rel01 D3 (Python CLI), D6 (no automatic commits), D12 (P-0, P-6, P-13),
@@ -303,7 +303,7 @@ reserved for "conflict" (F6).
   AC-1.13…AC-1.16, AC-1.27…AC-1.29); the `sddc hook post-edit` adapter (old D3 and AC-1.17…AC-1.19);
   the `--actor` flag (AC-1.20). They return with live editing, together with rel01 D13, D16, D18 and
   D25. The inbox, marker format and heading rules are recorded in
-  [`../../design/rel01_design/G1-ingest.md`](../../design/rel01_design/G1-ingest.md) **Appendix A**.
+  [`../../archive/rel-01/design/rel01_design/G1-ingest.md`](../../archive/rel-01/design/rel01_design/G1-ingest.md) **Appendix A**.
 
 - **D14 — ⚑ Sections a person names are stored but never atomized** (I-92, 2026-09-27).
   `skip_headings` (default `["Traceability"]`) takes every block under a matching heading out of the

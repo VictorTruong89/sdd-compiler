@@ -3,7 +3,7 @@
 > **Spec-ID:** F5 · **Status:** 🟢 approved · **Drafted:** 2026-09-17 · **Approved:** 2026-09-18 (rel01 D28)
 > ⛔ **Coding gated (rel01 D20).**
 > **Source:** rel01 sub-goal G3.1 · approved proposal P-10 and the candidate rule in
-> [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
+> [`../../archive/rel-01/design/rel01_design/core-working-principle.md`](../../archive/rel-01/design/rel01_design/core-working-principle.md)
 > §5–§6 · rel01 D26 (batch) · the F5 conflict list of 2026-09-16 (items 5.1–5.5).
 > **Depends on:** F2 (node properties) · F4 (indexes). **Feeds:** F6 (pair judgment).
 > **⚑ Drafting choices** are marked in §7.

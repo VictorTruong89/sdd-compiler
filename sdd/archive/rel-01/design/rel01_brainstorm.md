@@ -5,7 +5,7 @@
 > criteria can be written. If this file and a spec disagree, the spec wins.
 >
 > **Status:** FROZEN · **Opened:** 2026-09-14 · **Closed:** 2026-10-01 (target 2026-09-30, D35) ·
-> **Previous release:** none · Close-out: [`releases/rel01_closeout.md`](releases/rel01_closeout.md).
+> **Previous release:** none · Close-out: [`releases/rel01_closeout.md`](../../../design/releases/rel01_closeout.md).
 > Frozen at the close: append nothing; rel02 opens its own brainstorm.
 
 ---
@@ -132,10 +132,10 @@ use in a later release; rel01 wires none of them.
 | Input | What it offers | Status |
 |---|---|---|
 | [`rel01_design/core-working-principle.md`](rel01_design/core-working-principle.md) | Proposals P-0…P-14: atomize → place → link → retrieve, storage, visualization, worked example | Pre-rel01; each proposal must be re-adopted or rejected here |
-| [`../../docs/lectures/core-working-principle.html`](../../docs/lectures/core-working-principle.html) | Lecture on the same principle | Reference |
-| [`../../docs/lectures/lecture-tiered-md-vs-graph.html`](../../docs/lectures/lecture-tiered-md-vs-graph.html) | Graph vs tiered/flat Markdown; storage; visualization; study design (Parts 6–10) — input to G4 | Reference |
-| [`../archive/2026-09-13_vision_pre-rel01.md`](../archive/2026-09-13_vision_pre-rel01.md) | Scrapped vision (U1–U7, O1–O3) | Frozen |
-| [`../archive/chat_history/`](../archive/chat_history/) | Two earlier AI discussions + course brief | Raw reference |
+| [`../../docs/lectures/core-working-principle.html`](../../../../docs/lectures/core-working-principle.html) | Lecture on the same principle | Reference |
+| [`../../docs/lectures/lecture-tiered-md-vs-graph.html`](../../../../docs/lectures/lecture-tiered-md-vs-graph.html) | Graph vs tiered/flat Markdown; storage; visualization; study design (Parts 6–10) — input to G4 | Reference |
+| [`../archive/2026-09-13_vision_pre-rel01.md`](../../2026-09-13_vision_pre-rel01.md) | Scrapped vision (U1–U7, O1–O3) | Frozen |
+| [`../archive/chat_history/`](../../chat_history/) | Two earlier AI discussions + course brief | Raw reference |
 
 **Which pre-rel01 proposals feed which goal:**
 
@@ -325,7 +325,7 @@ use in a later release; rel01 wires none of them.
 
 - Owner direction: the compiler stops at the artifact; a separate agent generates code from it; the
   graph must be code-ready for long-term use, not only for the MIA 5150 study.
-- Lecture [`lecture-agent-reads-spec-graph.html`](../../docs/lectures/lecture-agent-reads-spec-graph.html):
+- Lecture [`lecture-agent-reads-spec-graph.html`](../../../../docs/lectures/lecture-agent-reads-spec-graph.html):
   how an agent consumes specs, where missout and hallucination arise, how it would traverse a graph.
 - Measured on R18: the raw store is ≈ 21.6× the Markdown's bytes; 183 blocks (25 of them code) form
   no node; 0 nodes allocated to a component; 246 of 375 families hold one node.
@@ -1086,7 +1086,7 @@ planned because the backend could be measured before the pipeline exists.
 
 - **rel01 D42 — 2026-10-01 — rel01 closes.** Owner. D35's condition holds: the pilot graph's export
   passes the gate and Sonnet built F1 from it alone (26 / 26 hidden tests, `pilot-F1-results.md`).
-  Close-out: [`releases/rel01_closeout.md`](releases/rel01_closeout.md). This file is frozen.
+  Close-out: [`releases/rel01_closeout.md`](../../../design/releases/rel01_closeout.md). This file is frozen.
 
 ## Rejected alternatives
 
@@ -1095,4 +1095,4 @@ planned because the backend could be measured before the pipeline exists.
 
 ## Open questions
 
-*Tracked in [`../questions.md`](../questions.md): QR-1…QR-10 answered. Spec-level questions live in each spec §8.*
+*Tracked in [`../questions.md`](../../../questions.md): QR-1…QR-10 answered. Spec-level questions live in each spec §8.*

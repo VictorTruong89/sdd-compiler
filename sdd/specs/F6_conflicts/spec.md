@@ -3,7 +3,7 @@
 > **Spec-ID:** F6 · **Status:** 🟢 approved · **Drafted:** 2026-09-17 · **Approved:** 2026-09-18 (rel01 D28)
 > ⛔ **Coding gated (rel01 D20).**
 > **Source:** rel01 sub-goal G3.2 · approved proposals P-1 (Q-PAIR, judgment lock) and §5 of
-> [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
+> [`../../archive/rel-01/design/rel01_design/core-working-principle.md`](../../archive/rel-01/design/rel01_design/core-working-principle.md)
 > · rel01 D9, D14 (conflict records and registry), D15, D17 (status), **D26 (batch: never stop, report
 > everything at the end)** · the F6 conflict list of 2026-09-16 (items 6.3–6.5, 6.7).
 > **Depends on:** F2 (records) · F3 (model interface, judgment lock, guards) · F4 (store, registry) ·

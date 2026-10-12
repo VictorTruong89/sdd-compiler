@@ -3,7 +3,7 @@
 > **Spec-ID:** F2 · **Status:** 🟢 approved · **Drafted:** 2026-09-15 · **Approved:** 2026-09-15 (rel01 D23)
 > ⛔ **Coding gated (rel01 D20):** no implementation until G3 and G4 are reviewed and the build plan exists.
 > **Source:** rel01 sub-goal G2.1 · approved proposals P-3, P-4, P-7, P-8, P-9, P-12 in
-> [`../../design/rel01_design/core-working-principle.md`](../../design/rel01_design/core-working-principle.md)
+> [`../../archive/rel-01/design/rel01_design/core-working-principle.md`](../../archive/rel-01/design/rel01_design/core-working-principle.md)
 > §2–§5, §13 · rel01 decisions D8 (hardcoded layers, abundant properties), D9, D14, D15, D17 (status
 > and conflicts), D11 (families belong to placement).
 > **Governs:** `constitution.md` §1 (id families).
