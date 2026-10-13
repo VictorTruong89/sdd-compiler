@@ -2,7 +2,8 @@
 
 > **Status:** rel01 **closed 2026-10-01** ([close-out](sdd/design/releases/rel01_closeout.md); opened
 > 2026-09-14). Seven feature specs built, 754 tests at the close. Its design record is frozen in
-> [`sdd/archive/rel-01/`](sdd/archive/rel-01/README.md). No release is open.
+> [`sdd/archive/rel-01/`](sdd/archive/rel-01/README.md). **rel02 is open** (2026-10-11):
+> [`sdd/design/rel-02/rel02_brainstorm.md`](sdd/design/rel-02/rel02_brainstorm.md).
 
 A compiler for specifications. It turns a folder of Markdown spec files into a **spec graph**: every
 atomic claim as a node, classified by layer and family, linked to the claims it relates to, with every
@@ -286,11 +287,11 @@ Each gap you find is either a gap in the graph (a compiler finding) or a gap in 
 |---|---|
 | `CLAUDE.md` | Working agreement for AI agents working **on** the compiler |
 | `sdd/specs/` | The compiler's own specs (vision, constitution, F1–F7) — [map](sdd/README.md) |
-| `sdd/design/` | The open release's brainstorm and design notes (none open); `releases/` holds the one-page close-outs |
+| `sdd/design/` | The open release's brainstorm and design notes (`rel-02/`); `releases/` holds the one-page close-outs |
 | `src/sdd_compiler/` · `tests/` | The Python CLI and its tests |
-| `harness/` | Runs a coding agent on a task in a sandbox and scores the result with hidden tests. Outside the compiler (F7 D9); `sddc` never reads it |
+| `harness/` | Runs a coding agent on a task in a sandbox and scores the result with hidden tests. Outside the compiler (F7 D9); `sddc` never reads it. `harness/tasks/` holds the tasks (`f1-ingest`, `lend-messy`) |
 | `docs/lectures/` | Lectures explaining the design, including the as-built beginner's guide |
 | `sdd/archive/rel-01/trial_01/full-corpus/` | The R18 compile of this repository's own `sdd/specs/`: spec copy, graph, explorer — the input to the first code-generation trial |
 | `sdd/archive/rel-01/` | Release 01, frozen: brainstorm and decisions, design notes, gates, measurements, the build plan and issue log, a snapshot of the specs at the close |
 | `sdd/archive/` | Other superseded documents and pre-rel01 brainstorm exports |
-| `docs/MIA5150-Project/` | The course study: the submitted proposal (`project-proposal/`), the pilot tasks the harness runs (`tasks/`), the F1 pilot result, the metrics survey |
+| `docs/MIA5150-Project/` | The course study: the submitted proposal (`project-proposal/`), the F1 pilot result, the metrics survey |

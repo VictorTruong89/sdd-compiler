@@ -1,0 +1,24 @@
+{
+  "sample": "advertools-test_ad_create-level1-metadata.json",
+  "image": "dorothyduuu/swe-dev:advertools-image",
+  "runs": {
+    "image_as_shipped": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 1.0
+    },
+    "reference": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 0.8
+    },
+    "untouched": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 0.5
+    }
+  }
+}

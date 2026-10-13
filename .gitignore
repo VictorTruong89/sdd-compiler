@@ -29,3 +29,8 @@ node_modules/
 
 # ── SDD Compiler outputs that are derived, never the record ────────
 .sdd/cache/
+
+# ── Benchmark and platform trials: third-party downloads stay out of git ──
+# (their licences and sizes are theirs; the trial record TRIAL.md beside them is tracked)
+harness/benchmarks/*/download/
+harness/platforms/*/download/

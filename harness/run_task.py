@@ -1,6 +1,6 @@
 """Run one coding-agent trial: one task, one spec format, one model — sandboxed, capped, logged.
 
-    python run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format export --model sonnet --budget-usd 10
+    python run_task.py --task tasks/f1-ingest --format export --model sonnet --budget-usd 10
     python run_task.py ... --dry-run      # prepare and probe the sandbox; no model call
 
 Writes a durable run directory under --out (default ~/sddc-runs/study-runs):

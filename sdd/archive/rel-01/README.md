@@ -39,4 +39,4 @@ Kept outside this archive because the next release continues them (owner, 2026-1
 
 - `sdd/specs/` — the live specs.
 - `sdd/questions.md` — the permanent question register.
-- `docs/MIA5150-Project/tasks/lend-messy/` — the messy pilot task `lend`: built, not yet compiled.
+- `harness/tasks/lend-messy/` — the messy pilot task `lend`: built, not yet compiled.

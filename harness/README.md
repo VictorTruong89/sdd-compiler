@@ -7,7 +7,7 @@
 > **Location (2026-10-11):** at the repository root, because it is code, not a document, and it measures
 > the compiler for any purpose, not only the course study. It is not under `src/` because F7 D9 keeps
 > scoring out of the compiler, and no spec governs it yet (`sdd/specs/ownership.yaml` has no entry).
-> The tasks it runs are still in `docs/MIA5150-Project/tasks/`.
+> The tasks it runs are in `tasks/` beside the scripts (moved from `docs/MIA5150-Project/tasks/`, 2026-10-11).
 
 ## Layout
 
@@ -16,17 +16,18 @@
 | `run_task.py` | One trial: copy the task's inputs for one spec format into an empty workspace, run Claude Code headless **in a sandbox**, with a $ ceiling and a wall-clock timeout; keep the transcript and a `run.json` |
 | `score.py` | Install the agent's package and run the hidden tests **in the same sandbox**; map results to the requirement list; count the spec ids the agent accounted for |
 | `sandbox.py` | The bubblewrap command: system read-only, `/home` and `/tmp` hidden, a fresh home, the workspace at `/home/work`, environment cleared (no `ANTHROPIC_API_KEY`) |
-| `../docs/MIA5150-Project/tasks/lend-messy/` | The second task (built 2026-10-01): a messy 7-file spec with 12 planted items; see its `DESIGN.md`. Scoring settings per task live in `inputs.json` → `scoring` |
-| `../docs/MIA5150-Project/tasks/f1-ingest/` | The first task: `task.md` (the fixed task text), `inputs.json` (what each format gets), `requirements.md` (R1–R28), `hidden_tests/` (26 black-box tests) |
+| `benchmarks/<name>/`, `platforms/<name>/` | Trials of outside benchmarks and platforms (rel02 milestone 1). `TRIAL.md` is the record; `download/` is ignored by git |
+| `tasks/lend-messy/` | The second task (built 2026-10-01): a messy 7-file spec with 12 planted items; see its `DESIGN.md`. Scoring settings per task live in `inputs.json` → `scoring` |
+| `tasks/f1-ingest/` | The first task: `task.md` (the fixed task text), `inputs.json` (what each format gets), `requirements.md` (R1–R28), `hidden_tests/` (26 black-box tests) |
 
 ## The F1 pilot (approved by the owner 2026-09-30: task F1, model Sonnet)
 
 ```bash
 cd harness
-python3 run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format markdown --model sonnet --budget-usd 10 --dry-run
-python3 run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format markdown --model sonnet --budget-usd 10
-python3 run_task.py --task ../docs/MIA5150-Project/tasks/f1-ingest --format export   --model sonnet --budget-usd 10
-python3 score.py --run ~/sddc-runs/study-runs/<run> --task ../docs/MIA5150-Project/tasks/f1-ingest
+python3 run_task.py --task tasks/f1-ingest --format markdown --model sonnet --budget-usd 10 --dry-run
+python3 run_task.py --task tasks/f1-ingest --format markdown --model sonnet --budget-usd 10
+python3 run_task.py --task tasks/f1-ingest --format export   --model sonnet --budget-usd 10
+python3 score.py --run ~/sddc-runs/study-runs/<run> --task tasks/f1-ingest
 ```
 
 - **Inputs, same content in both formats.** Markdown: the 9 frozen spec files the pilot graph was

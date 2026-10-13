@@ -29,6 +29,7 @@ sdd/
 │   ├── F<n>_<slug>/spec.md   one feature = one spec (F1–F7)
 │   └── _templates/spec.md    feature spec skeleton
 ├── design/
+│   ├── rel-02/               rel02 brainstorm, design notes, the study plan  (open)
 │   ├── releases/             one-page close-outs (+ template)
 │   └── _templates/           brainstorm template
 ├── blueprints/               per-module as-built notes                (empty)
@@ -44,8 +45,9 @@ sdd/
 | Release | State | Where |
 |---|---|---|
 | **rel01** | Closed 2026-10-01 | [close-out](design/releases/rel01_closeout.md) · [archive](archive/rel-01/README.md) |
+| **rel02** | Open since 2026-10-11 | [`design/rel-02/rel02_brainstorm.md`](design/rel-02/rel02_brainstorm.md) |
 
-No release is open. The next one starts by copying `design/_templates/brainstorm.md` into `design/`.
+A release opens by copying `design/_templates/brainstorm.md` into `design/rel-<NN>/`.
 
 ## Closing a release
 

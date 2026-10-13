@@ -73,5 +73,5 @@ Commands: `sddc init · ingest · compile · status · conflicts [judge] · fami
   `trial_01/` moved to [`sdd/archive/rel-01/`](../../archive/rel-01/README.md), with a snapshot of
   `sdd/specs/` as it stood. Paths written as text above are the paths of the time; "build-plan" is now
   `sdd/archive/rel-01/design/rel01_design/build-plan.md`. The specs stay live in `sdd/specs/`.
-- The messy pilot task `lend` (`docs/MIA5150-Project/tasks/lend-messy/`), built 2026-10-01 and not
+- The messy pilot task `lend` (`harness/tasks/lend-messy/`), built 2026-10-01 and not
   compiled, is carried to the next release.

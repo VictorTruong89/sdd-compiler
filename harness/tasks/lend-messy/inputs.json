@@ -2,7 +2,7 @@
   "task": "lend-messy",
   "formats": {
     "markdown": {
-      "source": "~/Workspace/sdd-compiler/docs/MIA5150-Project/tasks/lend-messy/spec",
+      "source": "~/Workspace/sdd-compiler/harness/tasks/lend-messy/spec",
       "include": [
         "vision.md",
         "glossary.md",

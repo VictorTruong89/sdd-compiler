@@ -2,8 +2,8 @@
 
 > **Status:** opened 2026-09-14 · release **rel01 CLOSED 2026-10-01**
 > ([close-out](sdd/design/releases/rel01_closeout.md)); its brainstorm, design notes and first compile
-> are frozen in [`sdd/archive/rel-01/`](sdd/archive/rel-01/README.md). **No release is open:** the next
-> one has no brainstorm yet. Sections marked `TODO` are still open.
+> are frozen in [`sdd/archive/rel-01/`](sdd/archive/rel-01/README.md). **rel02 is open** (2026-10-11):
+> [`sdd/design/rel-02/rel02_brainstorm.md`](sdd/design/rel-02/rel02_brainstorm.md). Sections marked `TODO` are still open.
 >
 > ★ **rel01 in one sentence (rel01 D26):** point `sddc compile` at a folder of static Markdown spec
 > files and get back a spec graph plus a report of every conflict in it. No hooks, no live input, no
@@ -19,7 +19,7 @@ is a bug — say so rather than quietly picking a side.
 - `sdd/specs/vision.md` — what is being built and why. **Adopted 2026-09-17.**
 - `sdd/specs/constitution.md` — non-negotiable rules.
 - The spec that governs the path you touch — mapping in `sdd/specs/ownership.yaml`.
-- The open release's brainstorm in `sdd/design/` *(none open yet)*.
+- The open release's brainstorm: `sdd/design/rel-02/rel02_brainstorm.md` (objectives, decisions, open questions).
 - Why something was built the way it was in rel01: `sdd/archive/rel-01/` (brainstorm with decisions
   rel01 D1–D42, design notes, build plan and issue log). Frozen; never edit, never build from it.
 
@@ -46,8 +46,7 @@ is a bug — say so rather than quietly picking a side.
 
 ## The loop
 
-1. **Diverge** — brainstorm in the open release's brainstorm file under `sdd/design/` (copied from
-   `sdd/design/_templates/brainstorm.md` when the release opens).
+1. **Diverge** — brainstorm in `sdd/design/rel-02/rel02_brainstorm.md`.
 2. **Converge** — record the decision in that file's decisions log.
 3. **Graduate** — copy `sdd/specs/_templates/spec.md` → `sdd/specs/F<n>_<slug>/spec.md` once its
    acceptance criteria can be written.

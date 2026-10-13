@@ -1,0 +1,24 @@
+{
+  "sample": "idna-test_idna_codec-level2-metadata.json",
+  "image": "dorothyduuu/swe-dev:idna-image",
+  "runs": {
+    "image_as_shipped": {
+      "passed": 9,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 0.5
+    },
+    "reference": {
+      "passed": 9,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 0.4
+    },
+    "untouched": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 1,
+      "seconds": 0.5
+    }
+  }
+}

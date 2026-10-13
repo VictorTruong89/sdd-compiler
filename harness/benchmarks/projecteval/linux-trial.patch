@@ -1,0 +1,47 @@
+diff --git a/config.ini b/config.ini
+index cfa25d9..30f320d 100644
+--- a/config.ini
++++ b/config.ini
+@@ -1,6 +1,7 @@
+ [Default]
+ OPENAI_KEY = Your-OPENAI-KEY
+ GOOGLE_AI_KEY = Your-Google-KEY
++DEEPSEEK_KEY = unused
+ 
+ # DEFAULT_BROWSER_TYPE: should be edge, firefox or chrome. Windows recommended: edge, Docker recommended:chrome.
+ # DEFAULT_BROWSER_TYPE = edge
+diff --git a/openjudge.py b/openjudge.py
+index db4647b..54986a2 100644
+--- a/openjudge.py
++++ b/openjudge.py
+@@ -106,7 +106,14 @@ class BasePythonManager:
+ 
+     def stop(self):
+         if self.process and self.process.poll() is None:
+-            self.process.send_signal(signal.CTRL_BREAK_EVENT)  # Only solution right now to prevent stuck in Windows
++            if utils.iswindows():
++                self.process.send_signal(signal.CTRL_BREAK_EVENT)  # Only solution right now to prevent stuck in Windows
++            else:  # trial patch (sdd-compiler): CTRL_BREAK_EVENT does not exist outside Windows
++                self.process.terminate()
++                try:
++                    self.process.wait(timeout=5)
++                except subprocess.TimeoutExpired:
++                    self.process.kill()
+         else:
+             self.logger.info(f"{self.__class__.__name__} is not running.")
+         self.stdout_file.close()
+@@ -304,6 +311,14 @@ class WebsiteJudge(BaseJudge):
+                                                                                    logger=self.logger, *args, **kwargs)
+             self.subprocess.initiate_command(initiate_command_list)
+             self.subprocess.start()
++            # trial patch (sdd-compiler): wait until the server accepts connections (up to 20 s)
++            import socket
++            for _ in range(100):
++                try:
++                    socket.create_connection(("localhost", 8000), timeout=0.2).close()
++                    break
++                except OSError:
++                    time.sleep(0.2)
+             self.status = True
+         except Exception as e:
+             self.logger.critical(f"Subprocess initiate exception:{e}")

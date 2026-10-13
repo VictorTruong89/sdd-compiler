@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "total_elapsed_seconds": 31.6,
+    "predictions_dir": "../../preds-empty",
+    "timestamp": "2026-10-12T08:37:23.157560",
+    "harness_version": "1.0.0"
+  },
+  "summary": {
+    "total_repos": 1,
+    "python_repos": 1,
+    "java_repos": 0,
+    "avg_pass_at_1": 1.0,
+    "avg_api_coverage": 0.0,
+    "deployment_success_rate": 0.0,
+    "pass_at_1_by_lang": {
+      "python": 1.0,
+      "java": 0.0
+    },
+    "ac_by_lang": {
+      "python": 0.0,
+      "java": 0.0
+    },
+    "dsr_by_lang": {
+      "python": 0.0,
+      "java": 0.0
+    }
+  },
+  "results": [
+    {
+      "repo_name": "flask",
+      "lang": "python",
+      "port": 5000,
+      "framework": "flask",
+      "exit_code": 0,
+      "dsr": {
+        "success": false,
+        "message": "No service entry point found"
+      },
+      "pass_at_1": {
+        "passed": 7,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 7,
+        "score": 1.0
+      },
+      "api_coverage": {
+        "total_apis": 3,
+        "implemented_apis": 0,
+        "score": 0.0
+      },
+      "elapsed_seconds": 31.39
+    }
+  ]
+}
