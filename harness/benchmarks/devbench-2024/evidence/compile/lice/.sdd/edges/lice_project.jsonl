@@ -1,0 +1,7 @@
+{"from": "N-000001", "type": "uses_term", "to": "term:lice_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000001", "type": "uses_term", "to": "term:tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000024", "type": "uses_term", "to": "term:lice_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000024", "type": "uses_term", "to": "term:programming_language", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:entry_point", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:lice_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,9 @@
+{"from": "N-000019", "type": "uses_term", "to": "term:api_interaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:command_line_argument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:query_arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:xml_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:query_arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000027", "type": "uses_term", "to": "term:command_line_argument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:query_arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

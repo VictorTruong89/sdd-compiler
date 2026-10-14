@@ -1,0 +1,6 @@
+{"from": "N-000007", "type": "uses_term", "to": "term:renko_chart_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000015", "type": "uses_term", "to": "term:functionality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "uses_term", "to": "term:pytest_library", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000037", "type": "uses_term", "to": "term:external_dependency", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:external_dependency", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000039", "type": "uses_term", "to": "term:external_dependency", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

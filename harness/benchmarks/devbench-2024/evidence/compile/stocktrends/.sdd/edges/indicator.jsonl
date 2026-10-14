@@ -1,0 +1,18 @@
+{"from": "N-000016", "type": "duplicates", "to": "N-000032", "provenance": "judgment", "judgment": "J-000197", "rationale": "Both state that unit tests exist to ensure the accuracy of financial indicators' calculations, though B's subject is elided and it may describe a data set rather than the system.", "quotes": ["Include comprehensive unit tests to validate the correctness of financial indicators' calculations.", "Used for unit testing to ensure the accuracy of financial indicators' calculations."]}
+{"from": "N-000016", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000016", "type": "uses_term", "to": "term:unit_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "duplicates", "to": "N-000032", "provenance": "judgment", "judgment": "J-000202", "rationale": "Both state that the folder or files are used for unit testing to verify the accuracy of the financial indicators.", "quotes": ["a key step in verifying the accuracy and functionality of financial indicators", "unit testing to ensure the accuracy of financial indicators' calculations"]}
+{"from": "N-000025", "type": "uses_term", "to": "term:folder", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "uses_term", "to": "term:unit_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:unit_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:calculation_model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:program", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:calculation_model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:program", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:demo_script", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

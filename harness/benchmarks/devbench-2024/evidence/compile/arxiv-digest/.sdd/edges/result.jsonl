@@ -1,0 +1,16 @@
+{"from": "N-000010", "type": "duplicates", "to": "N-000030", "provenance": "judgment", "judgment": "J-000215", "rationale": "A says check_date filters by recent_days to the recent period, and B says the recent_days parameter filters papers from the last k days, which is the same filtering rule stated from two sides.", "quotes": ["filter the results based on the recent_days parameter", "Filter papers from the most recent k days."]}
+{"from": "N-000010", "type": "refines", "to": "N-000016", "provenance": "judgment", "judgment": "J-000323", "rationale": "Claim A says check_date filters by the recent_days parameter, which is a more specific way of stating B's claim that date filtering is applied via check_date.", "quotes": ["The `check_date` function is written to filter the results based on the recent_days parameter", "Applies date filtering via check_date."]}
+{"from": "N-000010", "type": "uses_term", "to": "term:check_date_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:paper", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000031", "type": "refines", "to": "N-000002", "provenance": "judgment", "judgment": "J-000210", "rationale": "B defines the to_file argument that saves results as CSV to a path, a specific mechanism for the CSV-saving option A describes generally.", "quotes": ["save them to specified csv file", "Path to save the results in CSV format."]}
+{"from": "N-000031", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000031", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000031", "type": "uses_term", "to": "term:to_file_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "refines", "to": "N-000002", "provenance": "judgment", "judgment": "J-000298", "rationale": "A says users can print results to the console or save to CSV; B narrows the console option to an optional verbose flag that prints results, so B is a more specific statement of A's console branch.", "quotes": ["allow user to either print query results to console or save them to specified csv file", "Flag to print results to the console."]}
+{"from": "N-000032", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:verbose_flag", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:print_results_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

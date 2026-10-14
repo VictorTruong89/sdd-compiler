@@ -4,7 +4,7 @@
 > comes from a file named in `rel02_methodology_notes.md` §8 or in
 > `harness/platforms/harbor/TRIAL.md` §5b–5e, or in `harness/benchmarks/devbench-2024/TRIAL.md` §7–10.
 > Method detail is in the methodology notes; this file holds the wording of results. R1 written in
-> round 6, R2 and R3 in round 10 (2026-10-13). Sections not listed here are *to be written*.
+> round 6, R2 and R3 in round 10 (2026-10-13); Sonnet results added to R2 and R3 in round 11 (2026-10-14). Sections not listed here are *to be written*.
 
 ## R1. Result on a small messy specification (`lend`)
 
@@ -118,6 +118,40 @@ On Claude Haiku 5.5 the model is below the ceiling:
 | stocktrends | Markdown | 1 | 3 / 9 | 2 / 2 | $0.0522 |
 | stocktrends | Export | 1 | 3 / 9 | 2 / 2 | $0.1150 |
 
+### The same three projects on Sonnet (added 2026-10-14)
+
+Claude Sonnet 5.5 was run on `lice`, `arxiv-digest` and `stocktrends` exactly as Haiku was: same
+tasks, same agent and tools, same network limits, one run per format.
+
+| Project | Format | All tests | Stated (S) | Names only (U) | Not in spec or against it (R + C) | Turns | Agent time | Cost, est. |
+|---|---|---|---|---|---|---|---|---|
+| lice | Markdown | 6 / 31 | 3 / 3 | 3 / 3 | 0 / 25 | 4 | 36.8 s | $0.1039 |
+| lice | Export | 6 / 31 | 3 / 3 | 3 / 3 | 0 / 25 | 7 | 44.8 s | $0.1347 |
+| arxiv-digest | Markdown | 29 / 42 | 25 / 28 | 4 / 7 | 0 / 7 | 4 | 23.7 s | $0.0692 |
+| arxiv-digest | Export | 30 / 42 | 27 / 28 | 3 / 7 | 0 / 7 | 8 | 31.7 s | $0.1288 |
+| stocktrends | Markdown | 4 / 9 | 2 / 2 | 2 / 5 | 0 / 2 | 9 | 103.1 s | $0.2167 |
+| stocktrends | Export | 3 / 9 | 2 / 2 | 1 / 5 | 0 / 2 | 10 | 107.0 s | $0.2778 |
+
+- **No format difference that survives a reading.** `lice`: identical. `arxiv-digest`: the export
+  build passed two more acceptance tests, but the Markdown build lost them because no CSV was
+  written at scoring time; the same code, rerun against the live arXiv service minutes later, wrote
+  it. Most likely a passing failure of the service, not of the build. `stocktrends`: the export build
+  failed one test by also requiring a `date` column, which the specification does not ask for.
+- **The two-test difference seen in every Haiku run on `arxiv-digest` does not appear on Sonnet.**
+  The Sonnet Markdown build applies the allowed-characters rule inside the function the tests call,
+  as the export builds did. It was a habit of one model reading the Markdown, not an effect of the
+  format.
+- **Sonnet is ahead of Haiku only on tests open to reading** (on `lice` it took BSD3 as the default
+  licence, which the tests expect; 6 / 31 against 3 / 31). On tests stated in the specification the
+  models are level: `lice` 3 / 3 and `stocktrends` 2 / 2 everywhere; `arxiv-digest` export 27 / 28 for
+  both; Markdown 25 / 28 for Sonnet and 20, 25, 25 for Haiku, lost on different tests.
+- **No build of either model in either format passed any test that needs a detail absent from the
+  specification or contradicts it.** All twelve `arxiv-digest` builds kept the specified default of
+  10 results where the benchmark's test expects 100; the 100 is in the benchmark's reference code
+  only.
+- **The export run cost more again:** 1.3 to 1.9 times the Markdown run. Sonnet runs cost 2.4 to 7.2
+  times Haiku runs on the same task (against the mean of Haiku's three runs on `arxiv-digest`).
+
 ### Findings
 
 1. **Two of three projects show no difference between formats.** On `lice` and `stocktrends` both
@@ -188,11 +222,14 @@ from the specification's own Markdown files?
 | `lice`, DevEval | Haiku | 1 | none (3 / 31 both) | 2.2 |
 | `stocktrends`, DevEval | Haiku | 1 | none (3 / 9 both) | 2.2 |
 | `arxiv-digest`, DevEval | Haiku | 3 | 2 tests for the export in every run | 2.7 |
+| `lice`, DevEval | Sonnet | 1 | none (6 / 31 both) | 1.3 |
+| `arxiv-digest`, DevEval | Sonnet | 1 | 1 test (30 against 29), most likely the live service | 1.9 |
+| `stocktrends`, DevEval | Sonnet | 1 | 1 test for the Markdown (4 against 3), on an unstated point | 1.3 |
 
 1. **On specifications of 1 200 to 2 100 words, the format made no difference to the tests passed
-   in five of six settings,** and a two-test difference in the sixth, on a point the specification
-   leaves open.
-2. **The export cost more to use in every setting,** 1.6 to 2.7 times the agent's run cost, on top
+   in any of nine settings that survives a reading.** The one steady difference (two tests, Haiku,
+   `arxiv-digest`) is on a point the specification leaves open and does not appear on Sonnet.
+2. **The export cost more to use in every setting,** 1.3 to 2.7 times the agent's run cost, on top
    of a one-time compile of $0.22 to $0.50 (est.) and 16 to 38 minutes per specification.
 3. **The owner's decisions changed what was built; the carrier did not.** On `lend`, both models
    built the two decided behaviours when told them, whether through the export or through a plain

@@ -1,0 +1,4 @@
+{"from": "N-000048", "type": "uses_term", "to": "term:arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:command_line_argument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:query_url", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

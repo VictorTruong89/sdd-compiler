@@ -1,0 +1,19 @@
+{"from": "N-000016", "type": "duplicates", "to": "N-000018", "provenance": "judgment", "judgment": "J-000190", "rationale": "Both state that the supporting data folder contains the same four files: column_names.csv, data_rows.csv, dataset.csv, and nested_dataset.json.", "quotes": ["Contains files such as `column_names.csv`, `data_rows.csv`, `dataset.csv`, and `nested_dataset.json`.", "Includes similar files: `column_names.csv`, `data_rows.csv`, `dataset.csv`, and `nested_dataset.json`."]}
+{"from": "N-000016", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000018", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000018", "type": "uses_term", "to": "term:dataset", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000018", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000018", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000042", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000042", "type": "uses_term", "to": "term:hone_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000046", "type": "depends_on", "to": "N-000047", "provenance": "judgment", "judgment": "J-000199", "rationale": "Claim A makes the Hone class available through the package, which presupposes that the Hone class exists; claim B is the statement that hone.py defines it, so A depends on B.", "quotes": ["Import statement file to make the Hone class available as part of the package", "Contains the Hone class with methods to convert CSV files to a nested JSON structure"]}
+{"from": "N-000046", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000046", "type": "uses_term", "to": "term:hone_class", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000046", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:convert_method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:hone_class", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:structured_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000061", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000061", "type": "uses_term", "to": "term:hone_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

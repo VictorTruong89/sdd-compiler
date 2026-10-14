@@ -1,0 +1,43 @@
+{"id": "term:argument_parsing", "canonical": "argument parsing", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:bash_script", "canonical": "bash script", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:cli_support", "canonical": "cli support", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:column_name", "canonical": "column name", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:command_line", "canonical": "command line", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:context_manager", "canonical": "context manager", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:conversion_process", "canonical": "conversion process", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:convert_method", "canonical": "convert method", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:core_functionality", "canonical": "core functionality", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:csv_file", "canonical": "csv file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:csv_input_filepath", "canonical": "csv input filepath", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:csv_utils_class", "canonical": "csv utils class", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:custom_delimiter", "canonical": "custom delimiter", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_row", "canonical": "data row", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:dataset", "canonical": "dataset", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:delimiter", "canonical": "delimiter", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:demo_script", "canonical": "demo script", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:external_dependency", "canonical": "external dependency", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file", "canonical": "file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file_operation", "canonical": "file operation", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:get_schema_method", "canonical": "get schema method", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:helper_method", "canonical": "helper method", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:hone_class", "canonical": "hone class", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:hone_project", "canonical": "hone project", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:project"}
+{"id": "term:json_file", "canonical": "json file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:json_output_filepath", "canonical": "json output filepath", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:json_utils_class", "canonical": "json utils class", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:license_file", "canonical": "license file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:file"}
+{"id": "term:licensing_information", "canonical": "licensing information", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:main_function", "canonical": "main function", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:output", "canonical": "output", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:project", "canonical": "project", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:python_package", "canonical": "python package", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:schema", "canonical": "schema", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:schema_structure", "canonical": "schema structure", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:standard_output", "canonical": "standard output", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:output"}
+{"id": "term:structured_json", "canonical": "structured json", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:test_directory", "canonical": "test directory", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:test_script", "canonical": "test script", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:test_utils_class", "canonical": "test utils class", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:user", "canonical": "user", "aliases": [], "kind": "actor", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:utility_script", "canonical": "utility script", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:utils_directory", "canonical": "utils directory", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}

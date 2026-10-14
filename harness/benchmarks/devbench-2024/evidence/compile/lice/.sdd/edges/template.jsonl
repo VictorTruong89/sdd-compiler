@@ -1,0 +1,20 @@
+{"from": "N-000014", "type": "refines", "to": "N-000015", "provenance": "judgment", "judgment": "J-000181", "rationale": "A states the exact count (35) and storage location of the templates, which is a more specific form of B's general description of a wide range of license templates; no conflict.", "quotes": ["uses a set of 35 templates", "Includes a wide range of license templates"]}
+{"from": "N-000014", "type": "refines", "to": "N-000053", "provenance": "judgment", "judgment": "J-000182", "rationale": "A gives the count (35) and folder location of the templates, which is a more specific version of B's statement that the templates directory holds text templates for various licenses.", "quotes": ["uses a set of 35 templates", "contains the text templates for various licenses"]}
+{"from": "N-000014", "type": "uses_term", "to": "term:lice_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000014", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000014", "type": "uses_term", "to": "term:templates_folder", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000015", "type": "duplicates", "to": "N-000053", "provenance": "judgment", "judgment": "J-000186", "rationale": "Both state that the project ships license text templates for many licenses, differing only in wording and in naming the project versus the templates directory.", "quotes": ["Includes a wide range of license templates", "contains the text templates for various licenses"]}
+{"from": "N-000015", "type": "refines", "to": "N-000003", "provenance": "judgment", "judgment": "J-000318", "rationale": "Claim B names the license templates that are the concrete means by which Claim A's wide range of supported licenses is provided, so B is the more specific statement.", "quotes": ["supporting a wide range of commonly used open-source licenses", "Includes a wide range of license templates"]}
+{"from": "N-000015", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000016", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000016", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000039", "type": "uses_term", "to": "term:file_system", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000039", "type": "uses_term", "to": "term:license_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000039", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:templates_folder", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:license_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

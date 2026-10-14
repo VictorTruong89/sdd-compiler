@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="7" time="0.185" timestamp="2026-10-14T04:18:43.690133+00:00" hostname="b40764a4c0a0"><testcase classname="unit_tests.test_instrument" name="test_validate_df" time="0.001"><failure message="ValueError: DataFrame must have date, open, high, low, close columns">def test_validate_df():
+        """
+        This test checks whether the _validate_df method correctly validates the input DataFrame.
+        """
+        df = pd.DataFrame({'open': [1, 2, 3], 'high': [4, 5, 6], 'low': [7, 8, 9], 'close': [10, 11, 12]})
+&gt;       instrument = Instrument(df)
+                     ^^^^^^^^^^^^^^
+
+unit_tests/test_instrument.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stocktrends/indicators.py:14: in __init__
+    self._validate_df()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;stocktrends.indicators.Instrument object at 0x7e9f346360f0&gt;
+
+    def _validate_df(self):
+        """Lowercase the column names and check the required OHLC columns."""
+        self.df = self.df.copy()
+        self.df.columns = [str(c).lower() for c in self.df.columns]
+        self.odf = self.df
+        required = {"date", "open", "high", "low", "close"}
+        if not required.issubset(set(self.df.columns)):
+&gt;           raise ValueError("DataFrame must have date, open, high, low, close columns")
+E           ValueError: DataFrame must have date, open, high, low, close columns
+
+stocktrends/indicators.py:24: ValueError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_get_state" time="0.001"><failure message="AttributeError: 'PnF' object has no attribute 'UPTREND_CONTINUAL'">def test_get_state():
+        """
+        Test case where the get_state method of the PnF class is tested. It checks if the method returns the correct state based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HOOLI.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+&gt;       assert pnf.get_state(True, 3) == pnf.UPTREND_CONTINUAL
+                                         ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PnF' object has no attribute 'UPTREND_CONTINUAL'
+
+unit_tests/test_pnf.py:11: AttributeError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_roundit" time="0.001"><failure message="TypeError: PnF.roundit() missing 1 required positional argument: 'base'">def test_roundit():
+        """
+        Test the roundit method of the PnF class. This function tests the roundit method of the PnF class by asserting the expected results for different inputs.
+        """
+        df = pd.read_csv('unit_samples/HOOLI.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+&gt;       assert pnf.roundit(7) == 5
+               ^^^^^^^^^^^^^^
+E       TypeError: PnF.roundit() missing 1 required positional argument: 'base'
+
+unit_tests/test_pnf.py:23: TypeError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_get_bar_ohlc_data_close" time="0.013"><failure message="assert (114, 6) == (41, 5)&#10;  &#10;  At index 0 diff: 114 != 41&#10;  Use -v to get more diff">def test_get_bar_ohlc_data_close():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='close')
+&gt;       assert data.shape == (41, 5)
+E       assert (114, 6) == (41, 5)
+E         
+E         At index 0 diff: 114 != 41
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:38: AssertionError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_get_bar_ohlc_data_hl" time="0.012"><failure message="assert (192, 6) == (31, 5)&#10;  &#10;  At index 0 diff: 192 != 31&#10;  Use -v to get more diff">def test_get_bar_ohlc_data_hl():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='hl')
+&gt;       assert data.shape == (31, 5)
+E       assert (192, 6) == (31, 5)
+E         
+E         At index 0 diff: 192 != 31
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:49: AssertionError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_get_ohlc_data_close" time="0.011"><failure message="assert (114, 6) == (244, 6)&#10;  &#10;  At index 0 diff: 114 != 244&#10;  Use -v to get more diff">def test_get_ohlc_data_close():
+        """
+        The test function that tests the get_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_ohlc_data(source='close')
+&gt;       assert data.shape == (244, 6)
+E       assert (114, 6) == (244, 6)
+E         
+E         At index 0 diff: 114 != 244
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:60: AssertionError</failure></testcase><testcase classname="unit_tests.test_renko" name="test_Renko_box_periodic_close" time="0.002" /></testsuite></testsuites>

@@ -1,0 +1,8 @@
+{"from": "N-000011", "type": "uses_term", "to": "term:functionality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000011", "type": "uses_term", "to": "term:pnf_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000012", "type": "uses_term", "to": "term:pnf_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000060", "type": "uses_term", "to": "term:model_structure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000060", "type": "uses_term", "to": "term:pnf_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000065", "type": "uses_term", "to": "term:data_frame", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000065", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000065", "type": "uses_term", "to": "term:pnf_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

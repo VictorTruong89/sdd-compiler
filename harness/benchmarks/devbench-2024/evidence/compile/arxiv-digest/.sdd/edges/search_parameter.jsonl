@@ -1,0 +1,8 @@
+{"from": "N-000014", "type": "uses_term", "to": "term:command_line_argument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000014", "type": "uses_term", "to": "term:output_preference", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000014", "type": "uses_term", "to": "term:search_parameter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "uses_term", "to": "term:search_parameter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000026", "type": "depends_on", "to": "N-000030", "provenance": "judgment", "judgment": "J-000254", "rationale": "A's requirement that query parameters accompany the mandatory --recent_days parameter presupposes that recent_days is a required parameter, which B states.", "quotes": ["along with the mandatory `--recent_days` parameter", "recent_days (int, required)"]}
+{"from": "N-000026", "type": "refines", "to": "N-000001", "provenance": "judgment", "judgment": "J-000264", "rationale": "Both concern the recent-date filter on searches; B makes the --recent_days parameter mandatory alongside query parameters, a more specific statement than A's general added feature.", "quotes": ["with an added feature to filter results based on recent publication dates", "along with the mandatory `--recent_days` parameter"]}
+{"from": "N-000026", "type": "uses_term", "to": "term:recent_filter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000026", "type": "uses_term", "to": "term:search_parameter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

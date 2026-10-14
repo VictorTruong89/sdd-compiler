@@ -1,0 +1,9 @@
+{"from": "N-000003", "type": "uses_term", "to": "term:open_source_license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000004", "type": "uses_term", "to": "term:developer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000005", "type": "uses_term", "to": "term:software_licensing", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000023", "type": "uses_term", "to": "term:development_environment", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000023", "type": "uses_term", "to": "term:workflow", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000027", "type": "uses_term", "to": "term:pytest_library", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:environment_variable", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:git_config", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000048", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

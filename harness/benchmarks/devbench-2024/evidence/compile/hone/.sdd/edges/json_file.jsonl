@@ -1,0 +1,14 @@
+{"from": "N-000009", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000011", "type": "uses_term", "to": "term:helper_method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000011", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000011", "type": "uses_term", "to": "term:standard_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "depends_on", "to": "N-000032", "provenance": "judgment", "judgment": "J-000255", "rationale": "B's requirement that output JSON reflect 'the structure defined by the schema' presupposes the optional --schema option defined in A.", "quotes": ["JSON schema structure for the output JSON.", "accurately reflect the structure defined by the schema"]}
+{"from": "N-000036", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "uses_term", "to": "term:schema_structure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "uses_term", "to": "term:conversion_process", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "uses_term", "to": "term:test_script", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "uses_term", "to": "term:test_utils_class", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

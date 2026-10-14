@@ -1,0 +1,4 @@
+{"from": "N-000016", "type": "depends_on", "to": "N-000037", "provenance": "judgment", "judgment": "J-000333", "rationale": "The date-filter requirement presupposes that check_date exists, and the class diagram is the claim that declares check_date as a Global_functions member.", "quotes": ["Applies date filtering via check_date.", "+check_date(date_string: str, recent_days: int, current_date: datetime) -> bool"]}
+{"from": "N-000016", "type": "uses_term", "to": "term:check_date_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000016", "type": "uses_term", "to": "term:date_filter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000021", "type": "uses_term", "to": "term:date_filter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

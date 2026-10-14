@@ -1,0 +1,5 @@
+{"from": "N-000025", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000026", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000027", "type": "depends_on", "to": "N-000028", "provenance": "judgment", "judgment": "J-000411", "rationale": "Claim A's portability to any standard Python environment presupposes Claim B's dependencies being only standard Python libraries.", "quotes": ["capable of running on any standard Python environment", "Standard Python libraries"]}
+{"from": "N-000027", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

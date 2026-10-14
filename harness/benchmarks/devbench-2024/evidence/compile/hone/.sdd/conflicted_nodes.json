@@ -1,0 +1,95 @@
+{
+ "count": 6,
+ "nodes": [
+  {
+   "id": "N-000016",
+   "family": "term:file",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     26,
+     26
+    ]
+   },
+   "conflict_ids": [
+    "CF-000001"
+   ]
+  },
+  {
+   "id": "N-000018",
+   "family": "term:file",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     41,
+     41
+    ]
+   },
+   "conflict_ids": [
+    "CF-000001"
+   ]
+  },
+  {
+   "id": "N-000030",
+   "family": "term:csv_file",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     154,
+     157
+    ]
+   },
+   "conflict_ids": [
+    "CF-000003"
+   ]
+  },
+  {
+   "id": "N-000037",
+   "family": "term:conversion_process",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     168,
+     168
+    ]
+   },
+   "conflict_ids": [
+    "CF-000002"
+   ]
+  },
+  {
+   "id": "N-000051",
+   "family": "term:csv_file",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/architecture_design.md",
+    "lines": [
+     45,
+     45
+    ]
+   },
+   "conflict_ids": [
+    "CF-000002"
+   ]
+  },
+  {
+   "id": "N-000059",
+   "family": "term:bash_script",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/architecture_design.md",
+    "lines": [
+     63,
+     66
+    ]
+   },
+   "conflict_ids": [
+    "CF-000003"
+   ]
+  }
+ ]
+}

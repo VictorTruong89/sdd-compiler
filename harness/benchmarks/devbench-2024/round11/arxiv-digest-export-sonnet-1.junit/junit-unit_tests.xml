@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="38" time="0.085" timestamp="2026-10-14T04:13:29.869157+00:00" hostname="0f9168ce25b9"><testcase classname="unit_tests.test_check_date.TestCheckDate" name="test_invalid_date_format" time="0.001" /><testcase classname="unit_tests.test_check_date.TestCheckDate" name="test_out_of_range" time="0.000" /><testcase classname="unit_tests.test_check_date.TestCheckDate" name="test_within_range" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_header" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_sort_by_submitted_date_descending" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_only_category" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_only_title" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_only_author" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_only_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_category_and_title" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_category_and_author" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_category_and_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_title_and_author" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_title_and_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_author_and_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_category_title_author" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_category_title_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_category_author_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_query_url_with_title_author_abstract" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_construct_query_all_arguments" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_construct_query_special_characters_in_title" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_construct_query_non_ascii_characters_in_title" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_construct_query_empty_query" time="0.000" /><testcase classname="unit_tests.test_construct_query_url" name="test_construct_query_default_max_results" time="0.000"><failure message="AssertionError: assert 'max_results=100' in 'http://export.arxiv.org/api/query?search_query=cat:cs.CL+AND+au:Smith+AND+ti:language+AND+abs:translation&amp;sortBy=submittedDate&amp;sortOrder=descending&amp;start=0&amp;max_results=10'">def test_construct_query_default_max_results():
+        query_url = construct_query_url(category='cs.CL', title='language', author='Smith', abstract='translation')
+&gt;       assert "max_results=100" in query_url
+E       AssertionError: assert 'max_results=100' in 'http://export.arxiv.org/api/query?search_query=cat:cs.CL+AND+au:Smith+AND+ti:language+AND+abs:translation&amp;sortBy=submittedDate&amp;sortOrder=descending&amp;start=0&amp;max_results=10'
+
+unit_tests/test_construct_query_url.py:107: AssertionError</failure></testcase><testcase classname="unit_tests.test_construct_query_url" name="test_construct_query_max_results" time="0.000" /><testcase classname="unit_tests.test_get_args.TestGetArgs" name="test_all_required_arguments_present" time="0.000"><failure message="ValueError: At least one of category, title, author, abstract must be provided">self = &lt;unit_tests.test_get_args.TestGetArgs testMethod=test_all_required_arguments_present&gt;
+
+    def test_all_required_arguments_present(self) -&gt; None:
+        """
+        Test whether all required arguments are present.
+        """
+&gt;       args = get_args(['--recent_days', '3'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_get_args.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:37: in get_args
+    _validate(args.category, args.title, args.author, args.abstract)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+category = None, title = None, author = None, abstract = None
+
+    def _validate(category, title, author, abstract):
+        values = [category, title, author, abstract]
+        if all(v is None or v == "" for v in values):  # spec: N-000025
+&gt;           raise ValueError("At least one of category, title, author, abstract must be provided")
+E           ValueError: At least one of category, title, author, abstract must be provided
+
+query_arxiv.py:20: ValueError</failure></testcase><testcase classname="unit_tests.test_get_args.TestGetArgs" name="test_defaults_only_recent_days" time="0.000"><failure message="ValueError: At least one of category, title, author, abstract must be provided">self = &lt;unit_tests.test_get_args.TestGetArgs testMethod=test_defaults_only_recent_days&gt;
+
+    def test_defaults_only_recent_days(self) -&gt; None:
+&gt;       args = get_args([
+            '--recent_days', '30'
+        ])
+
+unit_tests/test_get_args.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:37: in get_args
+    _validate(args.category, args.title, args.author, args.abstract)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+category = None, title = None, author = None, abstract = None
+
+    def _validate(category, title, author, abstract):
+        values = [category, title, author, abstract]
+        if all(v is None or v == "" for v in values):  # spec: N-000025
+&gt;           raise ValueError("At least one of category, title, author, abstract must be provided")
+E           ValueError: At least one of category, title, author, abstract must be provided
+
+query_arxiv.py:20: ValueError</failure></testcase><testcase classname="unit_tests.test_get_args.TestGetArgs" name="test_missing_required_arguments" time="0.001" /><testcase classname="unit_tests.test_get_args.TestGetArgs" name="test_override_args" time="0.000" /><testcase classname="unit_tests.test_print_results" name="test_print_with_multiple_papers" time="0.000"><failure message="AssertionError: assert ('Author 1' in 'Title: Paper 1\nCategory: \nAuthor: \nPublished: Date 1\nLink: Link 1\nAbstract: Abstract 1 Abstract 1 Abstract 1 Abs...bstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\n\n')&#10; +  where 'Title: Paper 1\nCategory: \nAuthor: \nPublished: Date 1\nLink: Link 1\nAbstract: Abstract 1 Abstract 1 Abstract 1 Abs...bstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\n\n' = CaptureResult(out='Title: Paper 1\nCategory: \nAuthor: \nPublished: Date 1\nLink: Link 1\nAbstract: Abstract 1 Abstrac... Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\n\n', err='').out">capfd = &lt;_pytest.capture.CaptureFixture object at 0x7236716bbc80&gt;
+
+    def test_print_with_multiple_papers(capfd):
+        papers = [
+            {
+                "title": "Paper 1",
+                "authors": "Author 1",
+                "abstract": "Abstract 1 " * 50,  # repeating to ensure it's long enough
+                "published": "Date 1",
+                "link": "Link 1"
+            },
+            {
+                "title": "Paper 2",
+                "authors": "Author 2",
+                "abstract": "Abstract 2 " * 50,
+                "published": "Date 2",
+                "link": "Link 2"
+            }
+        ]
+        print_results(papers)
+        captured = capfd.readouterr()  # Capture the print output
+    
+        assert "Paper 1" in captured.out and "Paper 2" in captured.out
+&gt;       assert "Author 1" in captured.out and "Author 2" in captured.out
+E       AssertionError: assert ('Author 1' in 'Title: Paper 1\nCategory: \nAuthor: \nPublished: Date 1\nLink: Link 1\nAbstract: Abstract 1 Abstract 1 Abstract 1 Abs...bstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\n\n')
+E        +  where 'Title: Paper 1\nCategory: \nAuthor: \nPublished: Date 1\nLink: Link 1\nAbstract: Abstract 1 Abstract 1 Abstract 1 Abs...bstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\n\n' = CaptureResult(out='Title: Paper 1\nCategory: \nAuthor: \nPublished: Date 1\nLink: Link 1\nAbstract: Abstract 1 Abstrac... Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\n\n', err='').out
+
+unit_tests/test_print_results.py:24: AssertionError</failure></testcase><testcase classname="unit_tests.test_print_results" name="test_abstract_truncation" time="0.000"><failure message="AssertionError: assert ('Word1' in 'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n' and 'Word2' in 'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n')&#10; +  where 'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n' = CaptureResult(out='Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Wor...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n', err='').out&#10; +  and   'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n' = CaptureResult(out='Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Wor...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n', err='').out">capfd = &lt;_pytest.capture.CaptureFixture object at 0x7236716b6e70&gt;
+
+    def test_abstract_truncation(capfd):
+        paper = {
+            "title": "Test Paper",
+            "authors": "Test Author",
+            "abstract": "Word1 " * 298 + "Word2 "*3,  # 301 words
+            "published": "Test Date",
+            "link": "Test Link"
+        }
+    
+        print_results([paper])
+        captured = capfd.readouterr()
+    
+&gt;       assert "Word1" in captured.out and "Word2" in captured.out
+E       AssertionError: assert ('Word1' in 'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n' and 'Word2' in 'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n')
+E        +  where 'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n' = CaptureResult(out='Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Wor...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n', err='').out
+E        +  and   'Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Word1 Word1 Word1 Wor... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n' = CaptureResult(out='Title: Test Paper\nCategory: \nAuthor: \nPublished: Test Date\nLink: Test Link\nAbstract: Word1 Wor...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\n\n', err='').out
+
+unit_tests/test_print_results.py:41: AssertionError</failure></testcase><testcase classname="unit_tests.test_process_entries" name="test_process_entries_one_author" time="0.000"><failure message="SyntaxError: prefix 'atom' not found in prefix map">def test_process_entries_one_author():
+        # Sample XML entry
+        xml_sample = """&lt;?xml version="1.0"?&gt;
+    &lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+      &lt;entry&gt;
+        &lt;title&gt;Understanding Natural Language Processing&lt;/title&gt;
+        &lt;published&gt;2023-10-15T00:00:00Z&lt;/published&gt;
+        &lt;author&gt;&lt;name&gt;John Doe&lt;/name&gt;&lt;/author&gt;
+        &lt;summary&gt;Summary of the paper&lt;/summary&gt;
+        &lt;id&gt;link of the paper&lt;/id&gt;
+      &lt;/entry&gt;
+    &lt;/feed&gt;"""
+        root = ET.fromstring(xml_sample)
+        entries = root.findall('default:entry', {'default': 'http://www.w3.org/2005/Atom'})
+    
+&gt;       papers = process_entries(entries, {'default': 'http://www.w3.org/2005/Atom'}, datetime(2023, 10, 16), 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_process_entries.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:80: in process_entries
+    published = (entry.findtext("atom:published", default="", namespaces=namespace) or "").strip()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:425: in findtext
+    elem = next(iterfind(elem, path, namespaces))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:385: in iterfind
+    token = next()
+            ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'atom:published'
+namespaces = {'default': 'http://www.w3.org/2005/Atom'}
+
+    def xpath_tokenizer(pattern, namespaces=None):
+        default_namespace = namespaces.get('') if namespaces else None
+        parsing_attribute = False
+        for token in xpath_tokenizer_re.findall(pattern):
+            ttype, tag = token
+            if tag and tag[0] != "{":
+                if ":" in tag:
+                    prefix, uri = tag.split(":", 1)
+                    try:
+                        if not namespaces:
+                            raise KeyError
+                        yield ttype, "{%s}%s" % (namespaces[prefix], uri)
+                    except KeyError:
+&gt;                       raise SyntaxError("prefix %r not found in prefix map" % prefix) from None
+E                       SyntaxError: prefix 'atom' not found in prefix map
+
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:87: SyntaxError</failure></testcase><testcase classname="unit_tests.test_process_entries" name="test_process_entries_multiple_authors" time="0.000"><failure message="SyntaxError: prefix 'atom' not found in prefix map">def test_process_entries_multiple_authors():
+        # Sample XML entry
+        xml_sample = """&lt;?xml version="1.0"?&gt;
+    &lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+      &lt;entry&gt;
+        &lt;title&gt;Understanding Natural Language Processing&lt;/title&gt;
+        &lt;published&gt;2023-10-15T00:00:00Z&lt;/published&gt;
+        &lt;author&gt;
+          &lt;name&gt;First Author&lt;/name&gt;
+        &lt;/author&gt;
+        &lt;author&gt;
+          &lt;name&gt;Second Author&lt;/name&gt;
+        &lt;/author&gt;
+        &lt;author&gt;
+          &lt;name&gt;Third Author&lt;/name&gt;
+        &lt;/author&gt;
+        &lt;summary&gt;Summary of the paper&lt;/summary&gt;
+        &lt;id&gt;link of the paper&lt;/id&gt;
+      &lt;/entry&gt;
+    &lt;/feed&gt;"""
+        root = ET.fromstring(xml_sample)
+        entries = root.findall('default:entry', {'default': 'http://www.w3.org/2005/Atom'})
+    
+&gt;       papers = process_entries(entries, {'default': 'http://www.w3.org/2005/Atom'}, datetime(2023, 10, 16), 2)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_process_entries.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:80: in process_entries
+    published = (entry.findtext("atom:published", default="", namespaces=namespace) or "").strip()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:425: in findtext
+    elem = next(iterfind(elem, path, namespaces))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:385: in iterfind
+    token = next()
+            ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'atom:published'
+namespaces = {'default': 'http://www.w3.org/2005/Atom'}
+
+    def xpath_tokenizer(pattern, namespaces=None):
+        default_namespace = namespaces.get('') if namespaces else None
+        parsing_attribute = False
+        for token in xpath_tokenizer_re.findall(pattern):
+            ttype, tag = token
+            if tag and tag[0] != "{":
+                if ":" in tag:
+                    prefix, uri = tag.split(":", 1)
+                    try:
+                        if not namespaces:
+                            raise KeyError
+                        yield ttype, "{%s}%s" % (namespaces[prefix], uri)
+                    except KeyError:
+&gt;                       raise SyntaxError("prefix %r not found in prefix map" % prefix) from None
+E                       SyntaxError: prefix 'atom' not found in prefix map
+
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:87: SyntaxError</failure></testcase><testcase classname="unit_tests.test_process_entries" name="test_process_entries_out_of_date" time="0.000"><failure message="SyntaxError: prefix 'atom' not found in prefix map">def test_process_entries_out_of_date():
+        # Sample XML entry
+        xml_sample = """&lt;?xml version="1.0"?&gt;
+    &lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+      &lt;entry&gt;
+        &lt;title&gt;Understanding Natural Language Processing&lt;/title&gt;
+        &lt;published&gt;2023-10-15T00:00:00Z&lt;/published&gt;
+        &lt;author&gt;
+          &lt;name&gt;First Author&lt;/name&gt;
+        &lt;/author&gt;
+        &lt;author&gt;
+          &lt;name&gt;Second Author&lt;/name&gt;
+        &lt;/author&gt;
+        &lt;author&gt;
+          &lt;name&gt;Third Author&lt;/name&gt;
+        &lt;/author&gt;
+        &lt;summary&gt;Summary of the paper&lt;/summary&gt;
+        &lt;id&gt;link of the paper&lt;/id&gt;
+      &lt;/entry&gt;
+    &lt;/feed&gt;"""
+        root = ET.fromstring(xml_sample)
+        entries = root.findall('default:entry', {'default': 'http://www.w3.org/2005/Atom'})
+    
+&gt;       papers = process_entries(entries, {'default': 'http://www.w3.org/2005/Atom'}, datetime(2023, 11, 11), 2)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_process_entries.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:80: in process_entries
+    published = (entry.findtext("atom:published", default="", namespaces=namespace) or "").strip()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:425: in findtext
+    elem = next(iterfind(elem, path, namespaces))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:385: in iterfind
+    token = next()
+            ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'atom:published'
+namespaces = {'default': 'http://www.w3.org/2005/Atom'}
+
+    def xpath_tokenizer(pattern, namespaces=None):
+        default_namespace = namespaces.get('') if namespaces else None
+        parsing_attribute = False
+        for token in xpath_tokenizer_re.findall(pattern):
+            ttype, tag = token
+            if tag and tag[0] != "{":
+                if ":" in tag:
+                    prefix, uri = tag.split(":", 1)
+                    try:
+                        if not namespaces:
+                            raise KeyError
+                        yield ttype, "{%s}%s" % (namespaces[prefix], uri)
+                    except KeyError:
+&gt;                       raise SyntaxError("prefix %r not found in prefix map" % prefix) from None
+E                       SyntaxError: prefix 'atom' not found in prefix map
+
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:87: SyntaxError</failure></testcase><testcase classname="unit_tests.test_save_to_csv" name="test_no_papers_to_save" time="0.001"><failure message="AssertionError: assert '' == 'No papers to save.\n'&#10;  &#10;  - No papers to save.">capfd = &lt;_pytest.capture.CaptureFixture object at 0x7236716af7a0&gt;
+
+    def test_no_papers_to_save(capfd):
+        save_to_csv([], 'some_path/some_file.csv')
+        captured = capfd.readouterr()  # Capture the print statement
+&gt;       assert captured.out == "No papers to save.\n"
+E       AssertionError: assert '' == 'No papers to save.\n'
+E         
+E         - No papers to save.
+
+unit_tests/test_save_to_csv.py:8: AssertionError</failure></testcase><testcase classname="unit_tests.test_save_to_csv" name="test_directory_created" time="0.001"><failure message="ValueError: dict contains fields not in fieldnames: 'name', 'id'">tmpdir = local('/tmp/pytest-of-root/pytest-0/test_directory_created0')
+
+    def test_directory_created(tmpdir):
+        file_name = f"{tmpdir}/some_directory/some_file.csv"
+&gt;       save_to_csv([{'id': "1", 'name': 'Test Paper'}], file_name)
+
+unit_tests/test_save_to_csv.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:104: in save_to_csv
+    writer.writerows(papers)
+/usr/local/lib/python3.12/csv.py:167: in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;csv.DictWriter object at 0x7236716bb260&gt;
+rowdict = {'id': '1', 'name': 'Test Paper'}
+
+    def _dict_to_list(self, rowdict):
+        if self.extrasaction == "raise":
+            wrong_fields = rowdict.keys() - self.fieldnames
+            if wrong_fields:
+&gt;               raise ValueError("dict contains fields not in fieldnames: "
+                                 + ", ".join([repr(x) for x in wrong_fields]))
+E               ValueError: dict contains fields not in fieldnames: 'name', 'id'
+
+/usr/local/lib/python3.12/csv.py:159: ValueError</failure></testcase><testcase classname="unit_tests.test_save_to_csv" name="test_file_written" time="0.000"><failure message="ValueError: dict contains fields not in fieldnames: 'name', 'id'">tmpdir = local('/tmp/pytest-of-root/pytest-0/test_file_written0')
+
+    def test_file_written(tmpdir):
+        file_name = f"{tmpdir}/some_file.csv"
+        papers = [{'id': "1", 'name': 'Test Paper'}, {'id': "2", 'name': 'Another Test Paper'}]
+&gt;       save_to_csv(papers, file_name)
+
+unit_tests/test_save_to_csv.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:104: in save_to_csv
+    writer.writerows(papers)
+/usr/local/lib/python3.12/csv.py:167: in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;csv.DictWriter object at 0x7236716be330&gt;
+rowdict = {'id': '1', 'name': 'Test Paper'}
+
+    def _dict_to_list(self, rowdict):
+        if self.extrasaction == "raise":
+            wrong_fields = rowdict.keys() - self.fieldnames
+            if wrong_fields:
+&gt;               raise ValueError("dict contains fields not in fieldnames: "
+                                 + ", ".join([repr(x) for x in wrong_fields]))
+E               ValueError: dict contains fields not in fieldnames: 'name', 'id'
+
+/usr/local/lib/python3.12/csv.py:159: ValueError</failure></testcase><testcase classname="unit_tests.test_save_to_csv" name="test_no_directory" time="0.000"><failure message="ValueError: dict contains fields not in fieldnames: 'name', 'id'">def test_no_directory():
+        file_name = "some_file.csv"
+        paper = [{'id': "1", 'name': 'Test Paper'}]
+&gt;       save_to_csv(paper, file_name)
+
+unit_tests/test_save_to_csv.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:104: in save_to_csv
+    writer.writerows(papers)
+/usr/local/lib/python3.12/csv.py:167: in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;csv.DictWriter object at 0x7236716ba840&gt;
+rowdict = {'id': '1', 'name': 'Test Paper'}
+
+    def _dict_to_list(self, rowdict):
+        if self.extrasaction == "raise":
+            wrong_fields = rowdict.keys() - self.fieldnames
+            if wrong_fields:
+&gt;               raise ValueError("dict contains fields not in fieldnames: "
+                                 + ", ".join([repr(x) for x in wrong_fields]))
+E               ValueError: dict contains fields not in fieldnames: 'name', 'id'
+
+/usr/local/lib/python3.12/csv.py:159: ValueError</failure></testcase></testsuite></testsuites>

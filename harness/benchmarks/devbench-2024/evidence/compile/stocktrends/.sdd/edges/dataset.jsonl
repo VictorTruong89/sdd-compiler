@@ -1,0 +1,5 @@
+{"from": "N-000018", "type": "uses_term", "to": "term:dataset", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000033", "type": "refines", "to": "N-000029", "provenance": "judgment", "judgment": "J-000228", "rationale": "Both say the test-data folder holds CSVs used for indicator testing, but the second names the specific files HOOLI.csv and HDFCLIFE.csv, so it is a more specific statement of the first.", "quotes": ["Contains CSV files for acceptance testing of the financial indicators.", "Contains `HOOLI.csv` and `HDFCLIFE.csv`"]}
+{"from": "N-000033", "type": "uses_term", "to": "term:csv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000033", "type": "uses_term", "to": "term:dataset", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000033", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

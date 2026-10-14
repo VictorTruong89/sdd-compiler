@@ -198,6 +198,10 @@ reference whose behaviour is known (`check_scoring.py`).
 - **Round 9 — run-to-run variation is as large as the first difference seen.** The same Markdown
   task gave 22, 27 and 28 of 42. A single pair of runs cannot support a format claim; n = 3 is the
   least used from now on where a difference is to be reported.
+- **Round 11 — the live arXiv service can cost a build tests at scoring time.** Two acceptance tests
+  of one Sonnet build failed with no CSV written; the same code, rerun from the host about ten
+  minutes later, wrote it. The scorer keeps no stderr of those script runs, so the cause is
+  inferred, not shown. `arxiv-digest` acceptance results are to be read with this in mind.
 
 ## 8. Register of model runs
 
@@ -237,6 +241,12 @@ Tokens for runs 8 and 9 (Harbor fields; "input" includes cache): Markdown 56 374
 | 26 | 2026-10-13 | same, export, run 2 | Haiku | same | 30 / 42 (S 27 / 28), 13 turns, 100.3 s | $0.0237 | `…/round9/arxiv-digest-export-haiku-2.*` |
 | 27 | 2026-10-13 | same, Markdown, run 3 | Haiku | same | 28 / 42 (S 25 / 28), 7 turns, 50.6 s | $0.0100 | `…/round9/arxiv-digest-markdown-haiku-3.*` |
 | 28 | 2026-10-13 | same, export, run 3 | Haiku | same | 29 / 42 (S 27 / 28), 14 turns, 102.1 s | $0.0237 | `…/round9/arxiv-digest-export-haiku-3.*` |
+| 29 | 2026-10-14 | DevEval `lice`, Markdown (round 11) | Sonnet (`claude-sonnet-5-5`) | as the Haiku runs, one at a time | 6 / 31 (S 3 / 3, U 3 / 3), 4 turns, 36.8 s | $0.1039 | `harness/benchmarks/devbench-2024/round11/lice-markdown-sonnet-1.*` |
+| 30 | 2026-10-14 | DevEval `lice`, export | Sonnet | same | 6 / 31 (S 3 / 3, U 3 / 3), 7 turns, 44.8 s | $0.1347 | `…/round11/lice-export-sonnet-1.*` |
+| 31 | 2026-10-14 | DevEval `arxiv-digest`, Markdown | Sonnet | same | 29 / 42 (S 25 / 28), 4 turns, 23.7 s; 2 acceptance tests lost to the live service, most likely | $0.0692 | `…/round11/arxiv-digest-markdown-sonnet-1.*` |
+| 32 | 2026-10-14 | DevEval `arxiv-digest`, export | Sonnet | same | 30 / 42 (S 27 / 28), 8 turns, 31.7 s | $0.1288 | `…/round11/arxiv-digest-export-sonnet-1.*` |
+| 33 | 2026-10-14 | DevEval `stocktrends`, Markdown | Sonnet | same | 4 / 9 (S 2 / 2, U 2 / 5), 9 turns, 103.1 s | $0.2167 | `…/round11/stocktrends-markdown-sonnet-1.*` |
+| 34 | 2026-10-14 | DevEval `stocktrends`, export | Sonnet | same | 3 / 9 (S 2 / 2, U 1 / 5), 10 turns, 107.0 s | $0.2778 | `…/round11/stocktrends-export-sonnet-1.*` |
 
 Tokens for runs 10 and 11: Markdown 897 440 input incl. cache (821 287 cache read), 60 939 output of
 which 35 866 thinking; export 1 627 993 (1 525 588 cache read), 71 744 output of which 42 069 thinking.
@@ -273,3 +283,7 @@ both the Markdown and the export; ids checked against the reference run with
 **Round 10 (no model call).** Report draft sections R2 and R3 written from this register and the two
 TRIAL files. Cost ratios are the recorded export cost over the recorded Markdown cost; for
 `arxiv-digest` the mean of three runs per format. No new measurement.
+
+Tokens for runs 29 to 34 (Harbor `result.json`; input incl. cache, cache read, output): 38 745,
+26 880, 5 378 · 81 117, 64 637, 6 233 · 34 220, 26 474, 3 555 · 118 469, 99 079, 4 134 ·
+161 639, 140 108, 11 657 · 208 397, 175 110, 12 717.

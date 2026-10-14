@@ -1,0 +1,4 @@
+{"from": "N-000054", "type": "uses_term", "to": "term:brick", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:closing_price", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:data_frame", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,8 @@
+{"from": "N-000046", "type": "uses_term", "to": "term:client", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000046", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000046", "type": "uses_term", "to": "term:data_frame", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000046", "type": "uses_term", "to": "term:instrument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "refines", "to": "N-000046", "provenance": "judgment", "judgment": "J-000190", "rationale": "Both describe _validate_df checking the DataFrame's columns on initialization; B narrows this to the required OHLC columns, a more specific form of A's generic column-name check.", "quotes": ["Check column names", "validates the DataFrame to ensure it has the required OHLC columns"]}
+{"from": "N-000050", "type": "uses_term", "to": "term:data_frame", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "uses_term", "to": "term:ohlc_column", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,19 @@
+{"from": "N-000001", "type": "uses_term", "to": "term:financial_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000001", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000001", "type": "uses_term", "to": "term:program", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:financial_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:indicator", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:python_program", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000004", "type": "refines", "to": "N-000001", "provenance": "judgment", "judgment": "J-000195", "rationale": "Claim B's loading and preprocessing of financial data from formats including CSV is a more specific form of Claim A's general processing of financial data.", "quotes": ["functionalities for processing financial data", "Load and preprocess financial data from various formats, including CSV."]}
+{"from": "N-000004", "type": "uses_term", "to": "term:csv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000004", "type": "uses_term", "to": "term:financial_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "refines", "to": "N-000008", "provenance": "judgment", "judgment": "J-000381", "rationale": "Both concern the data returned by a method, but the OHLC claim names get_ohlc_data and a specific data content and chart-type basis, making it a more specific form of the generic return-shape claim.", "quotes": ["returns the correct data shape based on given parameters", "retrieves the OHLC (Open, High, Low, Close) data based on the chart type"]}
+{"from": "N-000052", "type": "uses_term", "to": "term:chart_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:financial_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000058", "type": "uses_term", "to": "term:data_frame", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000058", "type": "uses_term", "to": "term:financial_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000058", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000066", "type": "uses_term", "to": "term:financial_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000066", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

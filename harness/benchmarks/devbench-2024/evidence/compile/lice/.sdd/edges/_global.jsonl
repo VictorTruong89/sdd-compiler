@@ -1,0 +1,6 @@
+{"from": "N-000022", "type": "uses_term", "to": "term:developer", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000022", "type": "uses_term", "to": "term:legal_terminology", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "uses_term", "to": "term:coding_convention", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000025", "type": "uses_term", "to": "term:lice_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000026", "type": "uses_term", "to": "term:operating_system", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000058", "type": "uses_term", "to": "term:architecture", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

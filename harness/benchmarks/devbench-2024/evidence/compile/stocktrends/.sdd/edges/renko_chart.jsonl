@@ -1,0 +1,8 @@
+{"from": "N-000006", "type": "uses_term", "to": "term:brick_size", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000006", "type": "uses_term", "to": "term:renko_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:instrument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:line_break_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:pnf_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:renko_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:model_structure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:renko_chart", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

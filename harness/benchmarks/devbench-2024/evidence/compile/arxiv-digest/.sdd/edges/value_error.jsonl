@@ -1,0 +1,2 @@
+{"from": "N-000028", "type": "depends_on", "to": "N-000025", "provenance": "judgment", "judgment": "J-000306", "rationale": "B's ValueError applies only when the 'at least one query parameter' requirement in A is not met, so B presupposes A.", "quotes": ["At least one of the query parameters `[category, title, author, abstract]` must be provided", "otherwise, a `ValueError` will be raised."]}
+{"from": "N-000028", "type": "uses_term", "to": "term:value_error", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,14 @@
+{"from": "N-000027", "type": "subsumes", "to": "N-000028", "provenance": "judgment", "judgment": "J-000181", "rationale": "Claim A's column list includes DATE, OPEN, HIGH, LOW and CLOSE, so A already implies Claim B's requirement that the file has date, open, high, low and close columns.", "quotes": ["includes columns for DATE, SERIES, OPEN, HIGH, LOW, PREV. CLOSE", "includes columns for date, open, high, low, and close prices"]}
+{"from": "N-000027", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000027", "type": "uses_term", "to": "term:data_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000028", "type": "uses_term", "to": "term:closing_price", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000028", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000028", "type": "uses_term", "to": "term:data_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000030", "type": "uses_term", "to": "term:csv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000030", "type": "uses_term", "to": "term:data_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "subsumes", "to": "N-000020", "provenance": "judgment", "judgment": "J-000339", "rationale": "The file tree in B places HOOLI.csv, hooli_linebreak_3.csv and hooli_renko_4.csv in the acceptance test folder, which already implies A's statement that those files are in the acceptance folder (folder name treated as the same object).", "quotes": ["Files include `HOOLI.csv`, `hooli_linebreak_3.csv`, and `hooli_renko_4.csv`.", "├── acceptance_tests"]}
+{"from": "N-000047", "type": "subsumes", "to": "N-000030", "provenance": "judgment", "judgment": "J-000189", "rationale": "B's file tree places HOOLI.csv, hooli_linebreak_3.csv and hooli_renko_4.csv in acceptance_tests, which already implies A's statement that the folder includes those files.", "quotes": ["Files include `HOOLI.csv`, `hooli_linebreak_3.csv`, and `hooli_renko_4.csv`.", "│   ├── HOOLI.csv"]}
+{"from": "N-000047", "type": "uses_term", "to": "term:acceptance_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:data_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:folder", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:unit_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,4 @@
+{"from": "N-000060", "type": "depends_on", "to": "N-000042", "provenance": "judgment", "judgment": "J-000326", "rationale": "B describes what the LICENSE file contains, which presupposes that A's project tree includes a LICENSE file.", "quotes": ["├── LICENSE", "Contains the licensing information"]}
+{"from": "N-000060", "type": "uses_term", "to": "term:hone_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000060", "type": "uses_term", "to": "term:license_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000060", "type": "uses_term", "to": "term:licensing_information", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

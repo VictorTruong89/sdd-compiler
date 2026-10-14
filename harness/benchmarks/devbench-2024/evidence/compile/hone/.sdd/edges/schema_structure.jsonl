@@ -1,0 +1,5 @@
+{"from": "N-000004", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000004", "type": "uses_term", "to": "term:schema_structure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "refines", "to": "N-000004", "provenance": "judgment", "judgment": "J-000235", "rationale": "Claim B specifies a concrete --schema option accepting a JSON schema structure, which is one way the package accommodates schema structures from claim A.", "quotes": ["and schema structures", "JSON schema structure for the output JSON"]}
+{"from": "N-000032", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:schema_structure", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

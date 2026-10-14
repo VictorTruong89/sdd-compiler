@@ -1,0 +1,5 @@
+{"from": "N-000011", "type": "refines", "to": "N-000010", "provenance": "judgment", "judgment": "J-000206", "rationale": "B is a specific capability (generating a new source file with the license in its header) within the broader support for creating license headers that A states.", "quotes": ["Supports the creation of license headers for source files in different programming languages.", "Can generate a new source file with the license commented in the header."]}
+{"from": "N-000011", "type": "uses_term", "to": "term:license_header", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000011", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000042", "type": "uses_term", "to": "term:examples_script", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000042", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

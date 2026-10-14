@@ -1,0 +1,12 @@
+{"from": "N-000038", "type": "uses_term", "to": "term:console_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:main", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000038", "type": "uses_term", "to": "term:paper", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "uses_term", "to": "term:arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000050", "type": "uses_term", "to": "term:paper", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "refines", "to": "N-000002", "provenance": "judgment", "judgment": "J-000213", "rationale": "B specifies how the CSV save works (valid papers, path/file name from arguments), which A states only generally.", "quotes": ["save them to specified csv file", "whose path/fileName is specified by arguments"]}
+{"from": "N-000052", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:paper", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:save_to_csv_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

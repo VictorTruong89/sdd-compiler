@@ -1,0 +1,8 @@
+{"from": "N-000013", "type": "duplicates", "to": "N-000014", "provenance": "judgment", "judgment": "J-000264", "rationale": "Both say the system must provide functionality for analyzing or processing financial instrument data, with A naming stocks and commodities and B only more generic.", "quotes": ["Implement features for analyzing financial instruments", "Include functionality to handle specific instrument-related data processing and analysis tasks."]}
+{"from": "N-000013", "type": "uses_term", "to": "term:commodity", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:financial_instrument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:functionality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:stock", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000014", "type": "refines", "to": "N-000001", "provenance": "judgment", "judgment": "J-000357", "rationale": "Claim B names a specific kind of the general financial-data processing functionality in claim A, namely instrument-related processing and analysis; the link between instrument data and financial data is only implied, so confidence is low.", "quotes": ["processing financial data", "instrument-related data processing and analysis tasks"]}
+{"from": "N-000014", "type": "uses_term", "to": "term:functionality", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000014", "type": "uses_term", "to": "term:instrument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

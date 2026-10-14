@@ -1,0 +1,12 @@
+{"from": "N-000031", "type": "uses_term", "to": "term:command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000031", "type": "uses_term", "to": "term:correct_syntax", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "refines", "to": "N-000030", "provenance": "judgment", "judgment": "J-000232", "rationale": "Both require the --vars option to list template variables for a license; B adds the MUST modality, the word 'correct', and the 'license type' scope, so it is a more specific form of A.", "quotes": ["Option to list all template variables for the specified license.", "must list all the correct template variables for the specified license type"]}
+{"from": "N-000036", "type": "uses_term", "to": "term:command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "uses_term", "to": "term:license_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "uses_term", "to": "term:template_variable", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "refines", "to": "N-000007", "provenance": "judgment", "judgment": "J-000268", "rationale": "The command claim shows a concrete invocation that passes the year via -y, which is a more specific form of the general claim that the year can be specified.", "quotes": ["Allows specification of the year", "lice [license_type] -o \"Your Organization Name\" -y $(date +\"%Y\")"]}
+{"from": "N-000055", "type": "uses_term", "to": "term:command", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:license_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:organization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:year", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

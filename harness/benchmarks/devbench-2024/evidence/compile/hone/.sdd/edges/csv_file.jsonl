@@ -1,0 +1,31 @@
+{"from": "N-000006", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000006", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000006", "type": "uses_term", "to": "term:data_row", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000008", "type": "refines", "to": "N-000035", "provenance": "judgment", "judgment": "J-000208", "rationale": "Both say the package converts CSV to structured JSON, but A specifies nested output using a schema while B is a general capability over any valid CSV.", "quotes": ["nested JSON structure using a custom or automatically generated schema", "converting any valid CSV file to a structured JSON format"]}
+{"from": "N-000008", "type": "refines", "to": "N-000051", "provenance": "judgment", "judgment": "J-000185", "rationale": "Both say CSV is converted to JSON using a specified or generated schema, but A adds the flat-to-nested structure that B's convert() claim does not state.", "quotes": ["Conversion of flat CSV data into a nested JSON structure", "Converts CSV files to JSON based on specified or generated schema"]}
+{"from": "N-000008", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000008", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000008", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:helper_method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "refines", "to": "N-000018", "provenance": "judgment", "judgment": "J-000249", "rationale": "B names the supporting data folder and lists all five files, which is a more specific statement of A's 'similar files' list for the same folder.", "quotes": ["Includes similar files", "Houses `column_names.csv`, `data_rows.csv`, `dataset.csv`, `nested_dataset.json`, and `nested_schema.json`."]}
+{"from": "N-000020", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000030", "type": "duplicates", "to": "N-000059", "provenance": "judgment", "judgment": "J-000361", "rationale": "Both state the same command, python examples/demo.py, for running the demo, though the subject (user vs. bash script) and modality (SHOULD vs. MUST) differ.", "quotes": ["python examples/demo.py", "python examples/demo.py"]}
+{"from": "N-000030", "type": "uses_term", "to": "term:command_line", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000030", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000030", "type": "uses_term", "to": "term:json_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000030", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "refines", "to": "N-000002", "provenance": "judgment", "judgment": "J-000233", "rationale": "Claim B states a specific capability (converting any valid CSV to structured JSON) that realizes the general aim in claim A of simplifying CSV-to-JSON conversion.", "quotes": ["simplifies the task of converting CSV files to structured JSON", "be capable of converting any valid CSV file to a structured JSON format"]}
+{"from": "N-000035", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:structured_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:conversion_process", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "refines", "to": "N-000035", "provenance": "judgment", "judgment": "J-000226", "rationale": "B names the convert() method and its schema basis, which is the concrete means by which A's package-level CSV-to-JSON conversion capability is provided, though B does not restate A's 'any valid CSV' scope.", "quotes": ["be capable of converting any valid CSV file to a structured JSON format", "Converts CSV files to JSON based on specified or generated schema"]}
+{"from": "N-000051", "type": "uses_term", "to": "term:convert_method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000054", "type": "uses_term", "to": "term:csv_utils_class", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

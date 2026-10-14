@@ -1,0 +1,22 @@
+{"from": "N-000009", "type": "uses_term", "to": "term:paper", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000009", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000024", "type": "uses_term", "to": "term:command_line_argument", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000024", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000024", "type": "uses_term", "to": "term:query_arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000033", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000033", "type": "uses_term", "to": "term:search_parameter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "refines", "to": "N-000002", "provenance": "judgment", "judgment": "J-000212", "rationale": "B describes one specific case of A's either/or output choice: CSV only, with no console printing.", "quotes": ["save them to specified csv file", "only save results to csv while not print result to console"]}
+{"from": "N-000044", "type": "refines", "to": "N-000024", "provenance": "judgment", "judgment": "J-000177", "rationale": "B gives a concrete csv-only invocation that is one configuration of the option set A describes, so B is a more specific instance of A's usage.", "quotes": ["--to_file path_to_csv_file", "run `sh ./examples/run_query_only_csv.sh`"]}
+{"from": "N-000044", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "uses_term", "to": "term:output_preference", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000044", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:output_preference", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:txt_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:main", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:query", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000047", "type": "uses_term", "to": "term:result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

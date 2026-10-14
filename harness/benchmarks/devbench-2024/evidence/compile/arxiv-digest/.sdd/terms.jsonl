@@ -1,0 +1,37 @@
+{"id": "term:abstract", "canonical": "abstract", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:api_interaction", "canonical": "api interaction", "aliases": [], "kind": "event", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:arxiv", "canonical": "arxiv", "aliases": [], "kind": "external_system", "definition": "ArXiv: An open-access archive and distribution service for scholarly articles in various scientific fields.", "defined_by": "B-000050", "status": "proposed", "broader": null}
+{"id": "term:check_date_function", "canonical": "check_date function", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:command_line_argument", "canonical": "command-line argument", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:console", "canonical": "console", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:console_output", "canonical": "console output", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:csv_export", "canonical": "csv export", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:csv_file", "canonical": "csv file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:date_filter", "canonical": "date filter", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:git", "canonical": "git", "aliases": [], "kind": "external_system", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:global_function", "canonical": "global function", "aliases": [], "kind": "component", "definition": "`Global_functions` is a fake class to host global functions", "defined_by": "B-000052", "status": "proposed", "broader": null}
+{"id": "term:key_detail", "canonical": "key detail", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:main", "canonical": "main", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:output_preference", "canonical": "output preference", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:outputs_folder", "canonical": "outputs folder", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:paper", "canonical": "paper", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:print_results_function", "canonical": "print_results function", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:publication_date", "canonical": "publication date", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:python", "canonical": "python", "aliases": [], "kind": "external_reference", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:python_library", "canonical": "python library", "aliases": [], "kind": "external_reference", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:query", "canonical": "query", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:query_arxiv", "canonical": "query arxiv", "aliases": [], "kind": "component", "definition": "Query ArXiv is a tool designed to streamline the process of fetching research papers from the ArXiv database.", "defined_by": "B-000001", "status": "proposed", "broader": null}
+{"id": "term:query_result", "canonical": "query result", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:query_url", "canonical": "query url", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:recent_filter", "canonical": "recent filter", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:result", "canonical": "result", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:result_limit", "canonical": "result limit", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:save_to_csv_function", "canonical": "save_to_csv function", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:search_field", "canonical": "search field", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:search_parameter", "canonical": "search parameter", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:to_file_flag", "canonical": "to_file flag", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:txt_file", "canonical": "txt file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:user_criteria", "canonical": "user criteria", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:value_error", "canonical": "value error", "aliases": [], "kind": "event", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:verbose_flag", "canonical": "verbose flag", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:xml_data", "canonical": "xml data", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}

@@ -1,0 +1,7 @@
+{"from": "N-000015", "type": "uses_term", "to": "term:api_interaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000015", "type": "uses_term", "to": "term:user_criteria", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000015", "type": "uses_term", "to": "term:xml_data", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000036", "type": "uses_term", "to": "term:api_interaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000049", "type": "uses_term", "to": "term:api_interaction", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000049", "type": "uses_term", "to": "term:arxiv", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000049", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

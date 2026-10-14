@@ -1,0 +1,1149 @@
+.......................F.FF..FFFFFF.FF                                   [100%]
+=================================== FAILURES ===================================
+___________________ test_construct_query_default_max_results ___________________
+
+    def test_construct_query_default_max_results():
+        query_url = construct_query_url(category='cs.CL', title='language', author='Smith', abstract='translation')
+>       assert "max_results=100" in query_url
+E       AssertionError: assert 'max_results=100' in 'http://export.arxiv.org/api/query?search_query=cat:cs.CL+AND+au:Smith+AND+ti:language+AND+abs:translation&sortBy=submittedDate&sortOrder=descending&start=0&max_results=10'
+
+unit_tests/test_construct_query_url.py:107: AssertionError
+_______________ TestGetArgs.test_all_required_arguments_present ________________
+
+self = <unit_tests.test_get_args.TestGetArgs testMethod=test_all_required_arguments_present>
+
+    def test_all_required_arguments_present(self) -> None:
+        """
+        Test whether all required arguments are present.
+        """
+>       args = get_args(['--recent_days', '3'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_get_args.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:36: in get_args
+    parser.error("At least one of category, title, author, abstract must be provided")
+/usr/local/lib/python3.12/argparse.py:2650: in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ArgumentParser(prog='__main__.py', usage=None, description='Query the ArXiv API for recent papers.', formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=True)
+status = 2
+message = '__main__.py: error: At least one of category, title, author, abstract must be provided\n'
+
+    def exit(self, status=0, message=None):
+        if message:
+            self._print_message(message, _sys.stderr)
+>       _sys.exit(status)
+E       SystemExit: 2
+
+/usr/local/lib/python3.12/argparse.py:2637: SystemExit
+----------------------------- Captured stderr call -----------------------------
+usage: __main__.py [-h] [--category CATEGORY] [--title TITLE]
+                   [--author AUTHOR] [--abstract ABSTRACT] --recent_days
+                   RECENT_DAYS [--to_file TO_FILE] [--verbose]
+                   [--max_results MAX_RESULTS]
+__main__.py: error: At least one of category, title, author, abstract must be provided
+__________________ TestGetArgs.test_defaults_only_recent_days __________________
+
+self = <unit_tests.test_get_args.TestGetArgs testMethod=test_defaults_only_recent_days>
+
+    def test_defaults_only_recent_days(self) -> None:
+>       args = get_args([
+            '--recent_days', '30'
+        ])
+
+unit_tests/test_get_args.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:36: in get_args
+    parser.error("At least one of category, title, author, abstract must be provided")
+/usr/local/lib/python3.12/argparse.py:2650: in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ArgumentParser(prog='__main__.py', usage=None, description='Query the ArXiv API for recent papers.', formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=True)
+status = 2
+message = '__main__.py: error: At least one of category, title, author, abstract must be provided\n'
+
+    def exit(self, status=0, message=None):
+        if message:
+            self._print_message(message, _sys.stderr)
+>       _sys.exit(status)
+E       SystemExit: 2
+
+/usr/local/lib/python3.12/argparse.py:2637: SystemExit
+----------------------------- Captured stderr call -----------------------------
+usage: __main__.py [-h] [--category CATEGORY] [--title TITLE]
+                   [--author AUTHOR] [--abstract ABSTRACT] --recent_days
+                   RECENT_DAYS [--to_file TO_FILE] [--verbose]
+                   [--max_results MAX_RESULTS]
+__main__.py: error: At least one of category, title, author, abstract must be provided
+_______________________ test_print_with_multiple_papers ________________________
+
+capfd = <_pytest.capture.CaptureFixture object at 0x75b254a5d130>
+
+    def test_print_with_multiple_papers(capfd):
+        papers = [
+            {
+                "title": "Paper 1",
+                "authors": "Author 1",
+                "abstract": "Abstract 1 " * 50,  # repeating to ensure it's long enough
+                "published": "Date 1",
+                "link": "Link 1"
+            },
+            {
+                "title": "Paper 2",
+                "authors": "Author 2",
+                "abstract": "Abstract 2 " * 50,
+                "published": "Date 2",
+                "link": "Link 2"
+            }
+        ]
+        print_results(papers)
+        captured = capfd.readouterr()  # Capture the print output
+    
+        assert "Paper 1" in captured.out and "Paper 2" in captured.out
+>       assert "Author 1" in captured.out and "Author 2" in captured.out
+E       AssertionError: assert ('Author 1' in 'Category: \nTitle: Paper 1\nAuthor: \nPublished: Date 1\nAbstract: Abstract 1 Abstract 1 Abstract 1 Abstract 1 Abstra...Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\nLink: Link 2\n----------------------------------------\n')
+E        +  where 'Category: \nTitle: Paper 1\nAuthor: \nPublished: Date 1\nAbstract: Abstract 1 Abstract 1 Abstract 1 Abstract 1 Abstra...Abstract 2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\nLink: Link 2\n----------------------------------------\n' = CaptureResult(out='Category: \nTitle: Paper 1\nAuthor: \nPublished: Date 1\nAbstract: Abstract 1 Abstract 1 Abstract 1...2 Abstract 2 Abstract 2 Abstract 2 Abstract 2 Ab...\nLink: Link 2\n----------------------------------------\n', err='').out
+
+unit_tests/test_print_results.py:24: AssertionError
+___________________________ test_abstract_truncation ___________________________
+
+capfd = <_pytest.capture.CaptureFixture object at 0x75b254a5ad80>
+
+    def test_abstract_truncation(capfd):
+        paper = {
+            "title": "Test Paper",
+            "authors": "Test Author",
+            "abstract": "Word1 " * 298 + "Word2 "*3,  # 301 words
+            "published": "Test Date",
+            "link": "Test Link"
+        }
+    
+        print_results([paper])
+        captured = capfd.readouterr()
+    
+>       assert "Word1" in captured.out and "Word2" in captured.out
+E       AssertionError: assert ('Word1' in 'Category: \nTitle: Test Paper\nAuthor: \nPublished: Test Date\nAbstract: Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\nLink: Test Link\n----------------------------------------\n' and 'Word2' in 'Category: \nTitle: Test Paper\nAuthor: \nPublished: Test Date\nAbstract: Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\nLink: Test Link\n----------------------------------------\n')
+E        +  where 'Category: \nTitle: Test Paper\nAuthor: \nPublished: Test Date\nAbstract: Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\nLink: Test Link\n----------------------------------------\n' = CaptureResult(out='Category: \nTitle: Test Paper\nAuthor: \nPublished: Test Date\nAbstract: Word1 Word1 Word1 Word1 Wo... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\nLink: Test Link\n----------------------------------------\n', err='').out
+E        +  and   'Category: \nTitle: Test Paper\nAuthor: \nPublished: Test Date\nAbstract: Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...rd1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\nLink: Test Link\n----------------------------------------\n' = CaptureResult(out='Category: \nTitle: Test Paper\nAuthor: \nPublished: Test Date\nAbstract: Word1 Word1 Word1 Word1 Wo... Word1 Word1 Word1 Word1 Word1 Word1 Word1 Wo...\nLink: Test Link\n----------------------------------------\n', err='').out
+
+unit_tests/test_print_results.py:41: AssertionError
+_______________________ test_process_entries_one_author ________________________
+
+    def test_process_entries_one_author():
+        # Sample XML entry
+        xml_sample = """<?xml version="1.0"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <entry>
+        <title>Understanding Natural Language Processing</title>
+        <published>2023-10-15T00:00:00Z</published>
+        <author><name>John Doe</name></author>
+        <summary>Summary of the paper</summary>
+        <id>link of the paper</id>
+      </entry>
+    </feed>"""
+        root = ET.fromstring(xml_sample)
+        entries = root.findall('default:entry', {'default': 'http://www.w3.org/2005/Atom'})
+    
+>       papers = process_entries(entries, {'default': 'http://www.w3.org/2005/Atom'}, datetime(2023, 10, 16), 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_process_entries.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:76: in process_entries
+    published = entry.find("atom:published", namespace)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:412: in find
+    return next(iterfind(elem, path, namespaces), None)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:385: in iterfind
+    token = next()
+            ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'atom:published'
+namespaces = {'default': 'http://www.w3.org/2005/Atom'}
+
+    def xpath_tokenizer(pattern, namespaces=None):
+        default_namespace = namespaces.get('') if namespaces else None
+        parsing_attribute = False
+        for token in xpath_tokenizer_re.findall(pattern):
+            ttype, tag = token
+            if tag and tag[0] != "{":
+                if ":" in tag:
+                    prefix, uri = tag.split(":", 1)
+                    try:
+                        if not namespaces:
+                            raise KeyError
+                        yield ttype, "{%s}%s" % (namespaces[prefix], uri)
+                    except KeyError:
+>                       raise SyntaxError("prefix %r not found in prefix map" % prefix) from None
+E                       SyntaxError: prefix 'atom' not found in prefix map
+
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:87: SyntaxError
+____________________ test_process_entries_multiple_authors _____________________
+
+    def test_process_entries_multiple_authors():
+        # Sample XML entry
+        xml_sample = """<?xml version="1.0"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <entry>
+        <title>Understanding Natural Language Processing</title>
+        <published>2023-10-15T00:00:00Z</published>
+        <author>
+          <name>First Author</name>
+        </author>
+        <author>
+          <name>Second Author</name>
+        </author>
+        <author>
+          <name>Third Author</name>
+        </author>
+        <summary>Summary of the paper</summary>
+        <id>link of the paper</id>
+      </entry>
+    </feed>"""
+        root = ET.fromstring(xml_sample)
+        entries = root.findall('default:entry', {'default': 'http://www.w3.org/2005/Atom'})
+    
+>       papers = process_entries(entries, {'default': 'http://www.w3.org/2005/Atom'}, datetime(2023, 10, 16), 2)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_process_entries.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:76: in process_entries
+    published = entry.find("atom:published", namespace)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:412: in find
+    return next(iterfind(elem, path, namespaces), None)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:385: in iterfind
+    token = next()
+            ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'atom:published'
+namespaces = {'default': 'http://www.w3.org/2005/Atom'}
+
+    def xpath_tokenizer(pattern, namespaces=None):
+        default_namespace = namespaces.get('') if namespaces else None
+        parsing_attribute = False
+        for token in xpath_tokenizer_re.findall(pattern):
+            ttype, tag = token
+            if tag and tag[0] != "{":
+                if ":" in tag:
+                    prefix, uri = tag.split(":", 1)
+                    try:
+                        if not namespaces:
+                            raise KeyError
+                        yield ttype, "{%s}%s" % (namespaces[prefix], uri)
+                    except KeyError:
+>                       raise SyntaxError("prefix %r not found in prefix map" % prefix) from None
+E                       SyntaxError: prefix 'atom' not found in prefix map
+
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:87: SyntaxError
+_______________________ test_process_entries_out_of_date _______________________
+
+    def test_process_entries_out_of_date():
+        # Sample XML entry
+        xml_sample = """<?xml version="1.0"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <entry>
+        <title>Understanding Natural Language Processing</title>
+        <published>2023-10-15T00:00:00Z</published>
+        <author>
+          <name>First Author</name>
+        </author>
+        <author>
+          <name>Second Author</name>
+        </author>
+        <author>
+          <name>Third Author</name>
+        </author>
+        <summary>Summary of the paper</summary>
+        <id>link of the paper</id>
+      </entry>
+    </feed>"""
+        root = ET.fromstring(xml_sample)
+        entries = root.findall('default:entry', {'default': 'http://www.w3.org/2005/Atom'})
+    
+>       papers = process_entries(entries, {'default': 'http://www.w3.org/2005/Atom'}, datetime(2023, 11, 11), 2)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unit_tests/test_process_entries.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+query_arxiv.py:76: in process_entries
+    published = entry.find("atom:published", namespace)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:412: in find
+    return next(iterfind(elem, path, namespaces), None)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:385: in iterfind
+    token = next()
+            ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'atom:published'
+namespaces = {'default': 'http://www.w3.org/2005/Atom'}
+
+    def xpath_tokenizer(pattern, namespaces=None):
+        default_namespace = namespaces.get('') if namespaces else None
+        parsing_attribute = False
+        for token in xpath_tokenizer_re.findall(pattern):
+            ttype, tag = token
+            if tag and tag[0] != "{":
+                if ":" in tag:
+                    prefix, uri = tag.split(":", 1)
+                    try:
+                        if not namespaces:
+                            raise KeyError
+                        yield ttype, "{%s}%s" % (namespaces[prefix], uri)
+                    except KeyError:
+>                       raise SyntaxError("prefix %r not found in prefix map" % prefix) from None
+E                       SyntaxError: prefix 'atom' not found in prefix map
+
+/usr/local/lib/python3.12/xml/etree/ElementPath.py:87: SyntaxError
+____________________________ test_no_papers_to_save ____________________________
+
+capfd = <_pytest.capture.CaptureFixture object at 0x75b254a5df10>
+
+    def test_no_papers_to_save(capfd):
+        save_to_csv([], 'some_path/some_file.csv')
+        captured = capfd.readouterr()  # Capture the print statement
+>       assert captured.out == "No papers to save.\n"
+E       AssertionError: assert '' == 'No papers to save.\n'
+E         
+E         - No papers to save.
+
+unit_tests/test_save_to_csv.py:8: AssertionError
+______________________________ test_file_written _______________________________
+
+tmpdir = local('/tmp/pytest-of-root/pytest-0/test_file_written0')
+
+    def test_file_written(tmpdir):
+        file_name = f"{tmpdir}/some_file.csv"
+        papers = [{'id': "1", 'name': 'Test Paper'}, {'id': "2", 'name': 'Another Test Paper'}]
+        save_to_csv(papers, file_name)
+    
+        # Check if file was written
+        assert os.path.isfile(file_name)
+    
+        # Check the content of the file
+        with open(file_name, newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+>           assert [row for row in reader] == papers
+E           AssertionError: assert [{'category':...ct': '', ...}] == [{'id': '1', ... Test Paper'}]
+E             
+E             At index 0 diff: {'category': '', 'title': '', 'author': '', 'abstract': '', 'published': '', 'link': ''} != {'id': '1', 'name': 'Test Paper'}
+E             Use -v to get more diff
+
+unit_tests/test_save_to_csv.py:26: AssertionError
+______________________________ test_no_directory _______________________________
+
+    def test_no_directory():
+        file_name = "some_file.csv"
+        paper = [{'id': "1", 'name': 'Test Paper'}]
+        save_to_csv(paper, file_name)
+    
+        # Check if file was written
+        assert os.path.isfile(file_name)
+    
+        # Check the content of the file
+        with open(file_name, newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+>           assert [row for row in reader] == paper
+E           AssertionError: assert [{'category':...ct': '', ...}] == [{'id': '1', ...'Test Paper'}]
+E             
+E             At index 0 diff: {'category': '', 'title': '', 'author': '', 'abstract': '', 'published': '', 'link': ''} != {'id': '1', 'name': 'Test Paper'}
+E             Use -v to get more diff
+
+unit_tests/test_save_to_csv.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED unit_tests/test_construct_query_url.py::test_construct_query_default_max_results
+FAILED unit_tests/test_get_args.py::TestGetArgs::test_all_required_arguments_present
+FAILED unit_tests/test_get_args.py::TestGetArgs::test_defaults_only_recent_days
+FAILED unit_tests/test_print_results.py::test_print_with_multiple_papers - As...
+FAILED unit_tests/test_print_results.py::test_abstract_truncation - Assertion...
+FAILED unit_tests/test_process_entries.py::test_process_entries_one_author - ...
+FAILED unit_tests/test_process_entries.py::test_process_entries_multiple_authors
+FAILED unit_tests/test_process_entries.py::test_process_entries_out_of_date
+FAILED unit_tests/test_save_to_csv.py::test_no_papers_to_save - AssertionErro...
+FAILED unit_tests/test_save_to_csv.py::test_file_written - AssertionError: as...
+FAILED unit_tests/test_save_to_csv.py::test_no_directory - AssertionError: as...
+11 failed, 27 passed in 0.11s
+..FF                                                                     [100%]
+=================================== FAILURES ===================================
+________________ TestQueryArxiv.test_acceptance_category_search ________________
+
+self = <test_query_arxiv.TestQueryArxiv testMethod=test_acceptance_category_search>
+
+    def test_acceptance_category_search(self):
+    
+        os.makedirs("output_temp", exist_ok=True)
+    
+        # Standard Code for reference
+        os.system('python query_arxiv.py --category cs.CL --max_results=10 --recent_days 5 --to_file output_temp/reference_output.csv --verbose >> output_temp/reference_output.txt')
+    
+        # test script
+        os.system('python query_arxiv.py --category cs.CL --max_results=10 --recent_days 5 --to_file output_temp/test_output.csv --verbose >> output_temp/test_output.txt')
+    
+        # Compare terminal output with reference
+        with open("output_temp/reference_output.txt", "r") as ref_file, open(f"output_temp/reference_output.txt", "r") as test_file:
+            reference_output = ref_file.read()
+            test_output = test_file.read()
+            # Regular expression to get the first line of each param of reference_output
+            titles = re.findall(r"Title:\s*(.*?)\n", reference_output)
+            authors = re.findall(r"Authors:\s*(.*?)\n", reference_output)
+            abstracts = re.findall(r"Abstract:\s*(.*?)\n", reference_output)
+            published_dates = re.findall(r"Published Date:\s*(.*?)\n", reference_output)
+            links = re.findall(r"Link:\s*(.*?)\n?", reference_output)
+    
+            # Comparison
+            for title in titles:
+                assert title in test_output, f"Title '{title}' not found in terminal output."
+            for author in authors:
+                assert author in test_output, f"Author '{author}' not found in terminal output."
+            for abstract in abstracts:
+                assert abstract in test_output, f"Abstract '{abstract}' not found in terminal output."
+            for date in published_dates:
+                assert date in test_output, f"Published date '{date}' not found in terminal output."
+            for link in links:
+                assert link in test_output, f"Link '{link}' not found in terminal output."
+    
+        # Compare the CSV file output with reference CSV using Pandas
+>       df_reference = pd.read_csv("output_temp/reference_output.csv")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+acceptance_tests/test_query_arxiv.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:872: in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:300: in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1643: in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1907: in _make_engine
+    self.handles = get_handle(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path_or_buf = 'output_temp/reference_output.csv', mode = 'r', encoding = 'utf-8'
+compression = None, memory_map = False, is_text = True, errors = 'strict'
+storage_options = None
+
+    def get_handle(
+        path_or_buf: FilePath | BaseBuffer,
+        mode: str,
+        *,
+        encoding: str | None = None,
+        compression: CompressionOptions | None = None,
+        memory_map: bool = False,
+        is_text: bool = True,
+        errors: str | None = None,
+        storage_options: StorageOptions | None = None,
+    ) -> IOHandles[str] | IOHandles[bytes]:
+        """
+        Get file handle for given path/buffer and mode.
+    
+        Parameters
+        ----------
+        path_or_buf : str or file handle
+            File path or object.
+        mode : str
+            Mode to open path_or_buf with.
+        encoding : str or None
+            Encoding to use.
+        compression : str or dict, default 'infer'
+            For on-the-fly compression of the output data. If 'infer' and 'path_or_buf'
+            is path-like, then detect compression from the following extensions: '.gz',
+            '.bz2', '.zip', '.xz', '.zst', '.tar', '.tar.gz', '.tar.xz' or '.tar.bz2'
+            (otherwise no compression).
+            Set to ``None`` for no compression.
+            Can also be a dict with key ``'method'`` set
+            to one of {``'zip'``, ``'gzip'``, ``'bz2'``, ``'zstd'``, ``'xz'``, ``'tar'``}
+            and other key-value pairs are forwarded to
+            ``zipfile.ZipFile``, ``gzip.GzipFile``,
+            ``bz2.BZ2File``, ``zstandard.ZstdCompressor``, ``lzma.LZMAFile`` or
+            ``tarfile.TarFile``, respectively.
+            As an example, the following could be passed for faster compression and to
+            create a reproducible gzip archive:
+            ``compression={'method': 'gzip', 'compresslevel': 1, 'mtime': 1}``.
+    
+               May be a dict with key 'method' as compression mode
+               and other keys as compression options if compression
+               mode is 'zip'.
+    
+               Passing compression options as keys in dict is
+               supported for compression modes 'gzip', 'bz2', 'zstd' and 'zip'.
+    
+        memory_map : bool, default False
+            See parsers._parser_params for more information. Only used by read_csv.
+        is_text : bool, default True
+            Whether the type of the content passed to the file/buffer is string or
+            bytes. This is not the same as `"b" not in mode`. If a string content is
+            passed to a binary file/buffer, a wrapper is inserted.
+        errors : str, default 'strict'
+            Specifies how encoding and decoding errors are to be handled.
+            See the errors argument for :func:`open` for a full list
+            of options.
+        storage_options: StorageOptions = None
+            Passed to _get_filepath_or_buffer
+    
+        Returns the dataclass IOHandles
+        """
+        # Windows does not default to utf-8. Set to utf-8 for a consistent behavior
+        encoding = encoding or "utf-8"
+    
+        errors = errors or "strict"
+    
+        # read_csv does not know whether the buffer is opened in binary/text mode
+        if _is_binary_mode(path_or_buf, mode) and "b" not in mode:
+            mode += "b"
+    
+        # validate encoding and errors
+        codecs.lookup(encoding)
+        if isinstance(errors, str):
+            codecs.lookup_error(errors)
+    
+        # open URLs
+        ioargs = _get_filepath_or_buffer(
+            path_or_buf,
+            encoding=encoding,
+            compression=compression,
+            mode=mode,
+            storage_options=storage_options,
+        )
+    
+        handle = ioargs.filepath_or_buffer
+        handles: list[BaseBuffer]
+    
+        # memory mapping needs to be the first step
+        # only used for read_csv
+        handle, memory_map, handles = _maybe_memory_map(handle, memory_map)
+    
+        is_path = isinstance(handle, str)
+        compression_args = dict(ioargs.compression)
+        compression = compression_args.pop("method")
+    
+        # Only for write methods
+        if "r" not in mode and is_path:
+            check_parent_directory(str(handle))
+    
+        if compression:
+            if compression != "zstd":
+                # compression libraries do not like an explicit text-mode
+                ioargs.mode = ioargs.mode.replace("t", "")
+            elif compression == "zstd" and "b" not in ioargs.mode:
+                # python-zstandard defaults to text mode, but we always expect
+                # compression libraries to use binary mode.
+                ioargs.mode += "b"
+    
+            # GZ Compression
+            if compression == "gzip":
+                if isinstance(handle, str):
+                    # error: Incompatible types in assignment (expression has type
+                    # "GzipFile", variable has type "Union[str, BaseBuffer]")
+                    handle = gzip.GzipFile(  # type: ignore[assignment]
+                        filename=handle,
+                        mode=ioargs.mode,
+                        **compression_args,
+                    )
+                else:
+                    handle = gzip.GzipFile(
+                        # No overload variant of "GzipFile" matches argument types
+                        # "Union[str, BaseBuffer]", "str", "Dict[str, Any]"
+                        fileobj=handle,  # type: ignore[call-overload]
+                        mode=ioargs.mode,
+                        **compression_args,
+                    )
+    
+            # BZ Compression
+            elif compression == "bz2":
+                import bz2
+    
+                # Overload of "BZ2File" to handle pickle protocol 5
+                # "Union[str, BaseBuffer]", "str", "Dict[str, Any]"
+                handle = bz2.BZ2File(  # type: ignore[call-overload]
+                    handle,
+                    mode=ioargs.mode,
+                    **compression_args,
+                )
+    
+            # ZIP Compression
+            elif compression == "zip":
+                # error: Argument 1 to "_BytesZipFile" has incompatible type
+                # "Union[str, BaseBuffer]"; expected "Union[Union[str, PathLike[str]],
+                # ReadBuffer[bytes], WriteBuffer[bytes]]"
+                handle = _BytesZipFile(
+                    handle,  # type: ignore[arg-type]
+                    ioargs.mode,
+                    **compression_args,
+                )
+                if handle.buffer.mode == "r":
+                    handles.append(handle)
+                    zip_names = handle.buffer.namelist()
+                    if len(zip_names) == 1:
+                        handle = handle.buffer.open(zip_names.pop())
+                    elif not zip_names:
+                        raise ValueError(f"Zero files found in ZIP file {path_or_buf}")
+                    else:
+                        raise ValueError(
+                            "Multiple files found in ZIP file. "
+                            f"Only one file per ZIP: {zip_names}"
+                        )
+    
+            # TAR Encoding
+            elif compression == "tar":
+                compression_args.setdefault("mode", ioargs.mode)
+                if isinstance(handle, str):
+                    handle = _BytesTarFile(name=handle, **compression_args)
+                else:
+                    # error: Argument "fileobj" to "_BytesTarFile" has incompatible
+                    # type "BaseBuffer"; expected "Union[ReadBuffer[bytes],
+                    # WriteBuffer[bytes], None]"
+                    handle = _BytesTarFile(
+                        fileobj=handle,  # type: ignore[arg-type]
+                        **compression_args,
+                    )
+                assert isinstance(handle, _BytesTarFile)
+                if "r" in handle.buffer.mode:
+                    handles.append(handle)
+                    files = handle.buffer.getnames()
+                    if len(files) == 1:
+                        file = handle.buffer.extractfile(files[0])
+                        assert file is not None
+                        handle = file
+                    elif not files:
+                        raise ValueError(f"Zero files found in TAR archive {path_or_buf}")
+                    else:
+                        raise ValueError(
+                            "Multiple files found in TAR archive. "
+                            f"Only one file per TAR archive: {files}"
+                        )
+    
+            # XZ Compression
+            elif compression == "xz":
+                # error: Argument 1 to "LZMAFile" has incompatible type "Union[str,
+                # BaseBuffer]"; expected "Optional[Union[Union[str, bytes, PathLike[str],
+                # PathLike[bytes]], IO[bytes]], None]"
+                import lzma
+    
+                handle = lzma.LZMAFile(
+                    handle,  # type: ignore[arg-type]
+                    ioargs.mode,
+                    **compression_args,
+                )
+    
+            # Zstd Compression
+            elif compression == "zstd":
+                zstd = import_optional_dependency("zstandard")
+                if "r" in ioargs.mode:
+                    open_args = {"dctx": zstd.ZstdDecompressor(**compression_args)}
+                else:
+                    open_args = {"cctx": zstd.ZstdCompressor(**compression_args)}
+                handle = zstd.open(
+                    handle,
+                    mode=ioargs.mode,
+                    **open_args,
+                )
+    
+            # Unrecognized Compression
+            else:
+                msg = f"Unrecognized compression type: {compression}"
+                raise ValueError(msg)
+    
+            assert not isinstance(handle, str)
+            handles.append(handle)
+    
+        elif isinstance(handle, str):
+            # Check whether the filename is to be opened in binary mode.
+            # Binary mode does not support 'encoding' and 'newline'.
+            if ioargs.encoding and "b" not in ioargs.mode:
+                # Encoding
+>               handle = open(
+                    handle,
+                    ioargs.mode,
+                    encoding=ioargs.encoding,
+                    errors=errors,
+                    newline="",
+                )
+E               FileNotFoundError: [Errno 2] No such file or directory: 'output_temp/reference_output.csv'
+
+/tmp/venv/lib/python3.12/site-packages/pandas/io/common.py:930: FileNotFoundError
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "/app/query_arxiv.py", line 138, in <module>
+    main()
+  File "/app/query_arxiv.py", line 127, in main
+    data = fetch_data(url)
+           ^^^^^^^^^^^^^^^
+  File "/app/query_arxiv.py", line 56, in fetch_data
+    with urllib.request.urlopen(query_url) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 553, in error
+    result = self._call_chain(*args)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 745, in http_error_302
+    return self.parent.open(new, timeout=req.timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Too Many Requests
+Traceback (most recent call last):
+  File "/app/query_arxiv.py", line 138, in <module>
+    main()
+  File "/app/query_arxiv.py", line 127, in main
+    data = fetch_data(url)
+           ^^^^^^^^^^^^^^^
+  File "/app/query_arxiv.py", line 56, in fetch_data
+    with urllib.request.urlopen(query_url) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 553, in error
+    result = self._call_chain(*args)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 745, in http_error_302
+    return self.parent.open(new, timeout=req.timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Unknown Error
+_________________ TestQueryArxiv.test_acceptance_title_search __________________
+
+self = <test_query_arxiv.TestQueryArxiv testMethod=test_acceptance_title_search>
+
+    def test_acceptance_title_search(self):
+    
+        os.makedirs("output_temp", exist_ok=True)
+    
+        # Standard Code for reference
+        os.system('python query_arxiv.py --title LLM --max_results=10 --recent_days 5 --to_file output_temp/reference_output.csv --verbose >> output_temp/reference_output.txt')
+    
+        # test script
+        os.system('python query_arxiv.py --title LLM --max_results=10 --recent_days 5 --to_file output_temp/test_output.csv --verbose >> output_temp/test_output.txt')
+    
+        # Compare terminal output with reference
+        with open("output_temp/reference_output.txt", "r") as ref_file, open(f"output_temp/reference_output.txt", "r") as test_file:
+            reference_output = ref_file.read()
+            test_output = test_file.read()
+            # Regular expression to get the first line of each param of reference_output
+            titles = re.findall(r"Title:\s*(.*?)\n", reference_output)
+            authors = re.findall(r"Authors:\s*(.*?)\n", reference_output)
+            abstracts = re.findall(r"Abstract:\s*(.*?)\n", reference_output)
+            published_dates = re.findall(r"Published Date:\s*(.*?)\n", reference_output)
+            links = re.findall(r"Link:\s*(.*?)\n?", reference_output)
+    
+            # Comparison
+            for title in titles:
+                assert title in test_output, f"Title '{title}' not found in terminal output."
+            for author in authors:
+                assert author in test_output, f"Author '{author}' not found in terminal output."
+            for abstract in abstracts:
+                assert abstract in test_output, f"Abstract '{abstract}' not found in terminal output."
+            for date in published_dates:
+                assert date in test_output, f"Published date '{date}' not found in terminal output."
+            for link in links:
+                assert link in test_output, f"Link '{link}' not found in terminal output."
+    
+        # Compare the CSV file output with reference CSV using Pandas
+>       df_reference = pd.read_csv("output_temp/reference_output.csv")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+acceptance_tests/test_query_arxiv.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:872: in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:300: in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1643: in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1907: in _make_engine
+    self.handles = get_handle(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path_or_buf = 'output_temp/reference_output.csv', mode = 'r', encoding = 'utf-8'
+compression = None, memory_map = False, is_text = True, errors = 'strict'
+storage_options = None
+
+    def get_handle(
+        path_or_buf: FilePath | BaseBuffer,
+        mode: str,
+        *,
+        encoding: str | None = None,
+        compression: CompressionOptions | None = None,
+        memory_map: bool = False,
+        is_text: bool = True,
+        errors: str | None = None,
+        storage_options: StorageOptions | None = None,
+    ) -> IOHandles[str] | IOHandles[bytes]:
+        """
+        Get file handle for given path/buffer and mode.
+    
+        Parameters
+        ----------
+        path_or_buf : str or file handle
+            File path or object.
+        mode : str
+            Mode to open path_or_buf with.
+        encoding : str or None
+            Encoding to use.
+        compression : str or dict, default 'infer'
+            For on-the-fly compression of the output data. If 'infer' and 'path_or_buf'
+            is path-like, then detect compression from the following extensions: '.gz',
+            '.bz2', '.zip', '.xz', '.zst', '.tar', '.tar.gz', '.tar.xz' or '.tar.bz2'
+            (otherwise no compression).
+            Set to ``None`` for no compression.
+            Can also be a dict with key ``'method'`` set
+            to one of {``'zip'``, ``'gzip'``, ``'bz2'``, ``'zstd'``, ``'xz'``, ``'tar'``}
+            and other key-value pairs are forwarded to
+            ``zipfile.ZipFile``, ``gzip.GzipFile``,
+            ``bz2.BZ2File``, ``zstandard.ZstdCompressor``, ``lzma.LZMAFile`` or
+            ``tarfile.TarFile``, respectively.
+            As an example, the following could be passed for faster compression and to
+            create a reproducible gzip archive:
+            ``compression={'method': 'gzip', 'compresslevel': 1, 'mtime': 1}``.
+    
+               May be a dict with key 'method' as compression mode
+               and other keys as compression options if compression
+               mode is 'zip'.
+    
+               Passing compression options as keys in dict is
+               supported for compression modes 'gzip', 'bz2', 'zstd' and 'zip'.
+    
+        memory_map : bool, default False
+            See parsers._parser_params for more information. Only used by read_csv.
+        is_text : bool, default True
+            Whether the type of the content passed to the file/buffer is string or
+            bytes. This is not the same as `"b" not in mode`. If a string content is
+            passed to a binary file/buffer, a wrapper is inserted.
+        errors : str, default 'strict'
+            Specifies how encoding and decoding errors are to be handled.
+            See the errors argument for :func:`open` for a full list
+            of options.
+        storage_options: StorageOptions = None
+            Passed to _get_filepath_or_buffer
+    
+        Returns the dataclass IOHandles
+        """
+        # Windows does not default to utf-8. Set to utf-8 for a consistent behavior
+        encoding = encoding or "utf-8"
+    
+        errors = errors or "strict"
+    
+        # read_csv does not know whether the buffer is opened in binary/text mode
+        if _is_binary_mode(path_or_buf, mode) and "b" not in mode:
+            mode += "b"
+    
+        # validate encoding and errors
+        codecs.lookup(encoding)
+        if isinstance(errors, str):
+            codecs.lookup_error(errors)
+    
+        # open URLs
+        ioargs = _get_filepath_or_buffer(
+            path_or_buf,
+            encoding=encoding,
+            compression=compression,
+            mode=mode,
+            storage_options=storage_options,
+        )
+    
+        handle = ioargs.filepath_or_buffer
+        handles: list[BaseBuffer]
+    
+        # memory mapping needs to be the first step
+        # only used for read_csv
+        handle, memory_map, handles = _maybe_memory_map(handle, memory_map)
+    
+        is_path = isinstance(handle, str)
+        compression_args = dict(ioargs.compression)
+        compression = compression_args.pop("method")
+    
+        # Only for write methods
+        if "r" not in mode and is_path:
+            check_parent_directory(str(handle))
+    
+        if compression:
+            if compression != "zstd":
+                # compression libraries do not like an explicit text-mode
+                ioargs.mode = ioargs.mode.replace("t", "")
+            elif compression == "zstd" and "b" not in ioargs.mode:
+                # python-zstandard defaults to text mode, but we always expect
+                # compression libraries to use binary mode.
+                ioargs.mode += "b"
+    
+            # GZ Compression
+            if compression == "gzip":
+                if isinstance(handle, str):
+                    # error: Incompatible types in assignment (expression has type
+                    # "GzipFile", variable has type "Union[str, BaseBuffer]")
+                    handle = gzip.GzipFile(  # type: ignore[assignment]
+                        filename=handle,
+                        mode=ioargs.mode,
+                        **compression_args,
+                    )
+                else:
+                    handle = gzip.GzipFile(
+                        # No overload variant of "GzipFile" matches argument types
+                        # "Union[str, BaseBuffer]", "str", "Dict[str, Any]"
+                        fileobj=handle,  # type: ignore[call-overload]
+                        mode=ioargs.mode,
+                        **compression_args,
+                    )
+    
+            # BZ Compression
+            elif compression == "bz2":
+                import bz2
+    
+                # Overload of "BZ2File" to handle pickle protocol 5
+                # "Union[str, BaseBuffer]", "str", "Dict[str, Any]"
+                handle = bz2.BZ2File(  # type: ignore[call-overload]
+                    handle,
+                    mode=ioargs.mode,
+                    **compression_args,
+                )
+    
+            # ZIP Compression
+            elif compression == "zip":
+                # error: Argument 1 to "_BytesZipFile" has incompatible type
+                # "Union[str, BaseBuffer]"; expected "Union[Union[str, PathLike[str]],
+                # ReadBuffer[bytes], WriteBuffer[bytes]]"
+                handle = _BytesZipFile(
+                    handle,  # type: ignore[arg-type]
+                    ioargs.mode,
+                    **compression_args,
+                )
+                if handle.buffer.mode == "r":
+                    handles.append(handle)
+                    zip_names = handle.buffer.namelist()
+                    if len(zip_names) == 1:
+                        handle = handle.buffer.open(zip_names.pop())
+                    elif not zip_names:
+                        raise ValueError(f"Zero files found in ZIP file {path_or_buf}")
+                    else:
+                        raise ValueError(
+                            "Multiple files found in ZIP file. "
+                            f"Only one file per ZIP: {zip_names}"
+                        )
+    
+            # TAR Encoding
+            elif compression == "tar":
+                compression_args.setdefault("mode", ioargs.mode)
+                if isinstance(handle, str):
+                    handle = _BytesTarFile(name=handle, **compression_args)
+                else:
+                    # error: Argument "fileobj" to "_BytesTarFile" has incompatible
+                    # type "BaseBuffer"; expected "Union[ReadBuffer[bytes],
+                    # WriteBuffer[bytes], None]"
+                    handle = _BytesTarFile(
+                        fileobj=handle,  # type: ignore[arg-type]
+                        **compression_args,
+                    )
+                assert isinstance(handle, _BytesTarFile)
+                if "r" in handle.buffer.mode:
+                    handles.append(handle)
+                    files = handle.buffer.getnames()
+                    if len(files) == 1:
+                        file = handle.buffer.extractfile(files[0])
+                        assert file is not None
+                        handle = file
+                    elif not files:
+                        raise ValueError(f"Zero files found in TAR archive {path_or_buf}")
+                    else:
+                        raise ValueError(
+                            "Multiple files found in TAR archive. "
+                            f"Only one file per TAR archive: {files}"
+                        )
+    
+            # XZ Compression
+            elif compression == "xz":
+                # error: Argument 1 to "LZMAFile" has incompatible type "Union[str,
+                # BaseBuffer]"; expected "Optional[Union[Union[str, bytes, PathLike[str],
+                # PathLike[bytes]], IO[bytes]], None]"
+                import lzma
+    
+                handle = lzma.LZMAFile(
+                    handle,  # type: ignore[arg-type]
+                    ioargs.mode,
+                    **compression_args,
+                )
+    
+            # Zstd Compression
+            elif compression == "zstd":
+                zstd = import_optional_dependency("zstandard")
+                if "r" in ioargs.mode:
+                    open_args = {"dctx": zstd.ZstdDecompressor(**compression_args)}
+                else:
+                    open_args = {"cctx": zstd.ZstdCompressor(**compression_args)}
+                handle = zstd.open(
+                    handle,
+                    mode=ioargs.mode,
+                    **open_args,
+                )
+    
+            # Unrecognized Compression
+            else:
+                msg = f"Unrecognized compression type: {compression}"
+                raise ValueError(msg)
+    
+            assert not isinstance(handle, str)
+            handles.append(handle)
+    
+        elif isinstance(handle, str):
+            # Check whether the filename is to be opened in binary mode.
+            # Binary mode does not support 'encoding' and 'newline'.
+            if ioargs.encoding and "b" not in ioargs.mode:
+                # Encoding
+>               handle = open(
+                    handle,
+                    ioargs.mode,
+                    encoding=ioargs.encoding,
+                    errors=errors,
+                    newline="",
+                )
+E               FileNotFoundError: [Errno 2] No such file or directory: 'output_temp/reference_output.csv'
+
+/tmp/venv/lib/python3.12/site-packages/pandas/io/common.py:930: FileNotFoundError
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "/app/query_arxiv.py", line 138, in <module>
+    main()
+  File "/app/query_arxiv.py", line 127, in main
+    data = fetch_data(url)
+           ^^^^^^^^^^^^^^^
+  File "/app/query_arxiv.py", line 56, in fetch_data
+    with urllib.request.urlopen(query_url) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 553, in error
+    result = self._call_chain(*args)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 745, in http_error_302
+    return self.parent.open(new, timeout=req.timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Unknown Error
+Traceback (most recent call last):
+  File "/app/query_arxiv.py", line 138, in <module>
+    main()
+  File "/app/query_arxiv.py", line 127, in main
+    data = fetch_data(url)
+           ^^^^^^^^^^^^^^^
+  File "/app/query_arxiv.py", line 56, in fetch_data
+    with urllib.request.urlopen(query_url) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 553, in error
+    result = self._call_chain(*args)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 745, in http_error_302
+    return self.parent.open(new, timeout=req.timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Unknown Error
+=========================== short test summary info ============================
+FAILED acceptance_tests/test_query_arxiv.py::TestQueryArxiv::test_acceptance_category_search
+FAILED acceptance_tests/test_query_arxiv.py::TestQueryArxiv::test_acceptance_title_search
+2 failed, 2 passed in 91.53s (0:01:31)

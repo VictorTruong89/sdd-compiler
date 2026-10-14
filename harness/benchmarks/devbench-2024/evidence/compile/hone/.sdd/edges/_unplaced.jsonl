@@ -1,0 +1,5 @@
+{"from": "N-000012", "type": "uses_term", "to": "term:context_manager", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000012", "type": "uses_term", "to": "term:file_operation", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000028", "type": "refines", "to": "N-000025", "provenance": "judgment", "judgment": "J-000389", "rationale": "Claim B lists the specific standard libraries (csv, json, argparse, contextlib) that Claim A describes only generically as built-in libraries for CSV and JSON processing.", "quotes": ["utilize built-in libraries for CSV and JSON processing", "Standard Python libraries"]}
+{"from": "N-000028", "type": "uses_term", "to": "term:argument_parsing", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000028", "type": "uses_term", "to": "term:context_manager", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

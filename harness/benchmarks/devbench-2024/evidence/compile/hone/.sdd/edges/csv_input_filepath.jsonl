@@ -1,0 +1,3 @@
+{"from": "N-000033", "type": "refines", "to": "N-000013", "provenance": "judgment", "judgment": "J-000298", "rationale": "Claim A lists the CSV input filepath among the arguments the parser handles, and claim B states the type and required status of that same argument, so B is the more specific statement.", "quotes": ["CSV input filepath, and JSON output filepath", "Path to the input CSV file."]}
+{"from": "N-000033", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000033", "type": "uses_term", "to": "term:csv_input_filepath", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,6 @@
+{"from": "N-000002", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:query_result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "refines", "to": "N-000002", "provenance": "judgment", "judgment": "J-000165", "rationale": "B specifies the content of the console-printing option that A allows, so B is a more specific statement of one branch of A.", "quotes": ["allow user to either print query results to console", "results printed to console, including titles, authors, links, and truncated abstracts"]}
+{"from": "N-000040", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "uses_term", "to": "term:query_result", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

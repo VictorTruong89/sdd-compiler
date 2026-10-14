@@ -1,0 +1,3 @@
+{"from": "N-000052", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:get_schema_method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,7 @@
+{"from": "N-000018", "type": "refines", "to": "N-000053", "provenance": "judgment", "judgment": "J-000250", "rationale": "A names specific header templates inside the templates set, which is a more specific case of B's general statement that the directory contains text templates for various licenses.", "quotes": ["Contains header templates like", "contains the text templates for various licenses"]}
+{"from": "N-000018", "type": "uses_term", "to": "term:header_template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:header_template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:license_information", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:file_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:header_template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000020", "type": "uses_term", "to": "term:programming_language", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,5 @@
+{"from": "N-000041", "type": "uses_term", "to": "term:context", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:formatted_license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000041", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

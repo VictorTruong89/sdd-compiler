@@ -1,0 +1,15 @@
+{"from": "N-000032", "type": "uses_term", "to": "term:license_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:license_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000032", "type": "uses_term", "to": "term:tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:context", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:license_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:organization", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:project_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000051", "type": "uses_term", "to": "term:year", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "refines", "to": "N-000035", "provenance": "judgment", "judgment": "J-000238", "rationale": "A requires the tool to format licenses accurately for the programming language syntax, and B says format_license produces the text in a specific language's comment style, which is a narrower instance of that requirement.", "quotes": ["accurately format licenses according to the specified programming language syntax", "formats the license text for a specific programming language comment style"]}
+{"from": "N-000052", "type": "uses_term", "to": "term:comment_style", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:license_text", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000052", "type": "uses_term", "to": "term:programming_language", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

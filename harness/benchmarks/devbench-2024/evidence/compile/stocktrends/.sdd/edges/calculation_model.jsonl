@@ -1,0 +1,3 @@
+{"from": "N-000040", "type": "uses_term", "to": "term:acceptance_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "uses_term", "to": "term:calculation_model", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000040", "type": "uses_term", "to": "term:repository", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

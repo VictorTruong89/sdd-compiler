@@ -1,0 +1,4 @@
+{"from": "N-000017", "type": "depends_on", "to": "N-000002", "provenance": "judgment", "judgment": "J-000241", "rationale": "The coherence requirement for key details in console and CSV presupposes that the console and CSV outputs offered by the first claim exist.", "quotes": ["either print query results to console or save them to specified csv file", "Coherent presentation of key details in both console and CSV."]}
+{"from": "N-000017", "type": "uses_term", "to": "term:console", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:key_detail", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,11 @@
+{"from": "N-000008", "type": "uses_term", "to": "term:data_shape", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000008", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:data_shape", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000023", "type": "subsumes", "to": "N-000022", "provenance": "judgment", "judgment": "J-000270", "rationale": "If both describe the same file, B's column list (index, date, open, high, low, close, uptrend status) already includes A's date, open, high, low, and close columns.", "quotes": ["The file includes columns for date, open, high, low, and close prices.", "has columns for index, date, open, high, low, close, and uptrend status"]}
+{"from": "N-000023", "type": "subsumes", "to": "N-000024", "provenance": "judgment", "judgment": "J-000272", "rationale": "Claim A lists the same columns as B plus 'index', so A implies B's column list.", "quotes": ["has columns for index, date, open, high, low, close, and uptrend status", "Includes date, open, high, low, close, and uptrend status columns"]}
+{"from": "N-000023", "type": "subsumes", "to": "N-000028", "provenance": "judgment", "judgment": "J-000274", "rationale": "Claim B's columns (date, open, high, low, close) are a subset of the columns A lists, so A implies B.", "quotes": ["has columns for index, date, open, high, low, close, and uptrend status", "includes columns for date, open, high, low, and close prices"]}
+{"from": "N-000023", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000023", "type": "uses_term", "to": "term:data_shape", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000064", "type": "uses_term", "to": "term:data_shape", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000064", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

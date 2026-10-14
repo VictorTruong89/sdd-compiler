@@ -518,6 +518,20 @@ Doc2Feat-Bench would supply the tasks — the report must say they were tried an
   (d) repeat `lend` to n = 3 per cell (16 more runs, about $2 est. at the costs seen) to firm up
   R1. Suggested: (a), designed small first: agree the size and the planted rules before any spend.
 
+### S14 — 2026-10-14 — round 11: Sonnet on the three DevEval projects
+
+- **Done (owner's request, D23):** six Sonnet runs, same conditions as Haiku ($0.9311 est.).
+  Detail: `harness/benchmarks/devbench-2024/TRIAL.md` §11.
+- **Result:** no format difference that survives a reading. `lice` identical; `arxiv-digest` one
+  test apart, from the live service most likely; `stocktrends` one test apart, on an unstated point.
+  Sonnet scores higher than Haiku where tests are open to reading (it chose BSD3 as the default
+  licence), not on what the specification states. No build of either model, in either format, passed
+  a test that needs something absent from the specification.
+- **Reading:** the round 9 difference (character rule) was a Haiku habit in Markdown, not a property
+  of the formats. With both models, DevEval at this size shows no format effect.
+- **Options:** as S13 (a)–(d); the investigation note adds a candidate compiler change, a gap
+  ("underspecified") report, which would be tested on a task of ours with planted gaps.
+
 ## Decisions log
 
 - **rel02 D1 — 2026-10-11 — rel02 has two objectives: O-a, the graph is ready for a coding agent to
@@ -611,6 +625,8 @@ Doc2Feat-Bench would supply the tasks — the report must say they were tried an
   specification or not. Owner.
 - **rel02 D22 — 2026-10-13 — Round 10 is option 1 of S12:** write up the DevEval result and the
   overall result as draft report sections, no model calls. Owner.
+- **rel02 D23 — 2026-10-14 — Round 11: Sonnet on `lice`, `arxiv-digest`, `stocktrends`, both formats,
+  one run each, exactly as the Haiku runs; results summarised in the report draft.** Owner.
 
 ## Rejected alternatives
 

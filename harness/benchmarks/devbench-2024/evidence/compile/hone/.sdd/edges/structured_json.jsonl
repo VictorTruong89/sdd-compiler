@@ -1,0 +1,8 @@
+{"from": "N-000002", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:structured_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000019", "type": "uses_term", "to": "term:structured_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:json_utils_class", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:standard_output", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000055", "type": "uses_term", "to": "term:structured_json", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

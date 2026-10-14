@@ -1,0 +1,4 @@
+{"from": "N-000053", "type": "refines", "to": "N-000006", "provenance": "judgment", "judgment": "J-000329", "rationale": "B narrows A to one method that computes period-close bricks from a brick size, which is a part of calculating Renko charts with brick sizes.", "quotes": ["Calculate Renko charts with customizable brick sizes", "calculates the period close bricks based on the given brick size"]}
+{"from": "N-000053", "type": "uses_term", "to": "term:brick_size", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:method", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000053", "type": "uses_term", "to": "term:period_close_brick", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

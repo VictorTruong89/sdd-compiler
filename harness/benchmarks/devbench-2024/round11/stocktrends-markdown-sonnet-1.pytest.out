@@ -1,0 +1,93 @@
+.FFFFF.                                                                  [100%]
+=================================== FAILURES ===================================
+________________________________ test_get_state ________________________________
+
+    def test_get_state():
+        """
+        Test case where the get_state method of the PnF class is tested. It checks if the method returns the correct state based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HOOLI.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+>       assert pnf.get_state(True, 3) == pnf.UPTREND_CONTINUAL
+                                         ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PnF' object has no attribute 'UPTREND_CONTINUAL'
+
+unit_tests/test_pnf.py:11: AttributeError
+_________________________________ test_roundit _________________________________
+
+    def test_roundit():
+        """
+        Test the roundit method of the PnF class. This function tests the roundit method of the PnF class by asserting the expected results for different inputs.
+        """
+        df = pd.read_csv('unit_samples/HOOLI.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+>       assert pnf.roundit(7) == 5
+               ^^^^^^^^^^^^^^
+E       TypeError: PnF.roundit() missing 1 required positional argument: 'base'
+
+unit_tests/test_pnf.py:23: TypeError
+_________________________ test_get_bar_ohlc_data_close _________________________
+
+    def test_get_bar_ohlc_data_close():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='close')
+>       assert data.shape == (41, 5)
+E       assert (43, 6) == (41, 5)
+E         
+E         At index 0 diff: 43 != 41
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:38: AssertionError
+__________________________ test_get_bar_ohlc_data_hl ___________________________
+
+    def test_get_bar_ohlc_data_hl():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='hl')
+>       assert data.shape == (31, 5)
+E       assert (91, 6) == (31, 5)
+E         
+E         At index 0 diff: 91 != 31
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:49: AssertionError
+___________________________ test_get_ohlc_data_close ___________________________
+
+    def test_get_ohlc_data_close():
+        """
+        The test function that tests the get_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_ohlc_data(source='close')
+>       assert data.shape == (244, 6)
+E       assert (247, 6) == (244, 6)
+E         
+E         At index 0 diff: 247 != 244
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:60: AssertionError
+=========================== short test summary info ============================
+FAILED unit_tests/test_pnf.py::test_get_state - AttributeError: 'PnF' object ...
+FAILED unit_tests/test_pnf.py::test_roundit - TypeError: PnF.roundit() missin...
+FAILED unit_tests/test_pnf.py::test_get_bar_ohlc_data_close - assert (43, 6) ...
+FAILED unit_tests/test_pnf.py::test_get_bar_ohlc_data_hl - assert (91, 6) == ...
+FAILED unit_tests/test_pnf.py::test_get_ohlc_data_close - assert (247, 6) == ...
+5 failed, 2 passed in 0.16s
+..                                                                       [100%]
+2 passed in 0.15s

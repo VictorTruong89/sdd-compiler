@@ -1,0 +1,52 @@
+{
+ "schema_version": "export/1",
+ "compiler_version": "0.1.0.dev0",
+ "store_hash": "sha256:c1cb0fabbb025736b4a8cea3bd9aa146209be4a3ae9c829a680e58d8e79d8878",
+ "profile_export": {
+  "foundation_globs": [
+   "**/vision.md",
+   "**/constitution.md"
+  ],
+  "skip_headings": [
+   "Traceability"
+  ]
+ },
+ "allow_open": true,
+ "counts": {
+  "packs": 12,
+  "blocks": 79,
+  "blocks_omitted": 0,
+  "blocks_excluded": 0,
+  "blocks_no_node": 32,
+  "blocks_pending": 0,
+  "nodes": 55,
+  "nodes_omitted": 0,
+  "contracts": 0,
+  "checklist_items": 55,
+  "unsettled_contradictions": 2
+ },
+ "unsettled_ids": [
+  "CF-000003",
+  "CF-000006"
+ ],
+ "excluded_blocks": [],
+ "backward_needs": [],
+ "chars": {
+  "source_markdown": 9950,
+  "export_total": 31898,
+  "packs": {
+   "01-uml-class--uml-class.md": 2541,
+   "02-prd--introduction.md": 1112,
+   "03-prd--goals.md": 1000,
+   "04-prd--features-and-functionalities.md": 7772,
+   "05-prd--technical-constraints.md": 1449,
+   "06-prd--dependencies.md": 747,
+   "07-prd--usage.md": 2551,
+   "08-prd--command-line-arguments-script-input.md": 2922,
+   "09-prd--acceptance-criteria.md": 1462,
+   "10-prd--terms-concepts-explanation.md": 503,
+   "11-uml-sequence--uml-sequence.md": 2883,
+   "12-architecture-design--architecture-design.md": 6956
+  }
+ }
+}

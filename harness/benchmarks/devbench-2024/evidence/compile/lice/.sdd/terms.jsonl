@@ -1,0 +1,47 @@
+{"id": "term:architecture", "canonical": "architecture", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:coding_convention", "canonical": "coding convention", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:command", "canonical": "command", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:comment_style", "canonical": "comment style", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:context", "canonical": "context", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:correct_syntax", "canonical": "correct syntax", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:developer", "canonical": "developer", "aliases": [], "kind": "actor", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:development_environment", "canonical": "development environment", "aliases": [], "kind": "external_system", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:entry_point", "canonical": "entry point", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:environment_variable", "canonical": "environment variable", "aliases": [], "kind": "external_reference", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:examples_script", "canonical": "examples script", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file_extension", "canonical": "file extension", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file_system", "canonical": "file system", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:file_type", "canonical": "file type", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:formatted_license", "canonical": "formatted license", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:license"}
+{"id": "term:git_config", "canonical": "git config", "aliases": [], "kind": "external_system", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:global_function", "canonical": "global function", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:header_template", "canonical": "header template", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:template"}
+{"id": "term:legal_terminology", "canonical": "legal terminology", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:lice_project", "canonical": "lice project", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:lice_tool", "canonical": "lice tool", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:tool"}
+{"id": "term:license", "canonical": "license", "aliases": [], "kind": "data", "definition": "`license`: The type of license to generate.", "defined_by": "B-000030", "status": "proposed", "broader": null}
+{"id": "term:license_file", "canonical": "license file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:license_header", "canonical": "license header", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:license_information", "canonical": "license information", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:license_text", "canonical": "license text", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:license"}
+{"id": "term:license_type", "canonical": "license type", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:license"}
+{"id": "term:licensing_requirement", "canonical": "licensing requirement", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:software_licensing"}
+{"id": "term:open_source_license", "canonical": "open-source license", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:license_file"}
+{"id": "term:operating_system", "canonical": "operating system", "aliases": [], "kind": "external_system", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:organization", "canonical": "organization", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:programming_language", "canonical": "programming language", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:project_name", "canonical": "project name", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pytest_library", "canonical": "pytest library", "aliases": [], "kind": "external_system", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:runtime_environment", "canonical": "runtime environment", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:software_licensing", "canonical": "software licensing", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:software_project", "canonical": "software project", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:source_file", "canonical": "source file", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:template", "canonical": "template", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:template_variable", "canonical": "template variable", "aliases": [], "kind": "data", "definition": "**Template Variable**: A placeholder in the license template that is replaced with actual data when generating the license file.", "defined_by": "B-000050", "status": "proposed", "broader": null}
+{"id": "term:templates_folder", "canonical": "templates folder", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:tool", "canonical": "tool", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unit_test", "canonical": "unit test", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:user", "canonical": "user", "aliases": [], "kind": "actor", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:version", "canonical": "version", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:workflow", "canonical": "workflow", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:year", "canonical": "year", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}

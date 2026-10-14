@@ -1,0 +1,9 @@
+{"from": "N-000013", "type": "uses_term", "to": "term:argument_parsing", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:csv_input_filepath", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:delimiter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:json_output_filepath", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:schema", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000031", "type": "refines", "to": "N-000007", "provenance": "judgment", "judgment": "J-000293", "rationale": "Claim A requires general support for custom CSV delimiters, and claim B is a more specific optional CLI option that supplies those delimiters as a list, so B refines A without conflict.", "quotes": ["Support for custom delimiters within CSV files", "List of string delimiters for parsing CSV files."]}
+{"from": "N-000031", "type": "refines", "to": "N-000013", "provenance": "judgment", "judgment": "J-000195", "rationale": "Claim A says argument parsing specifies delimiters among other inputs; claim B specifies the --delimiters option as an optional list of string delimiters, a more specific statement of that same delimiter parsing.", "quotes": ["Argument parsing for specifying delimiters", "List of string delimiters for parsing CSV files"]}
+{"from": "N-000031", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000031", "type": "uses_term", "to": "term:delimiter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

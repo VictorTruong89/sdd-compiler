@@ -1,0 +1,3 @@
+{"from": "N-000010", "type": "uses_term", "to": "term:license_header", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:programming_language", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000010", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

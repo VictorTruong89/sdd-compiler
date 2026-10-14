@@ -1,0 +1,5 @@
+{"from": "N-000003", "type": "uses_term", "to": "term:custom_delimiter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000003", "type": "uses_term", "to": "term:python_package", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000007", "type": "refines", "to": "N-000003", "provenance": "judgment", "judgment": "J-000200", "rationale": "Both say the package handles custom delimiters; B adds the scope 'within CSV files' and raises the modality from SHOULD to MUST, so B is the more specific statement of A.", "quotes": ["accommodate custom delimiters", "Support for custom delimiters within CSV files"]}
+{"from": "N-000007", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000007", "type": "uses_term", "to": "term:custom_delimiter", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

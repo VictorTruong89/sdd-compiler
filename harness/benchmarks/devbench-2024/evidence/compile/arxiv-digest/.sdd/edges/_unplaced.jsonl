@@ -1,0 +1,3 @@
+{"from": "N-000022", "type": "uses_term", "to": "term:python", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000023", "type": "refines", "to": "N-000019", "provenance": "judgment", "judgment": "J-000336", "rationale": "B names the concrete libraries (os, datetime, urllib, xml.etree.ElementTree, csv, argparse) that A refers to only generically as necessary libraries for API, XML and CLI work.", "quotes": ["utilizing necessary libraries for API interaction, XML data parsing, and command-line argument parsing", "Libraries: os, datetime, urllib, xml.etree.ElementTree, csv, and argparse"]}
+{"from": "N-000023", "type": "uses_term", "to": "term:python_library", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

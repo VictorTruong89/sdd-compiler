@@ -1,0 +1,4 @@
+{"path": "sdd/specs/PRD.md", "file_hash": "sha256:7c17db5a20d0968e2077f391ebeb3192c7b9ec59f82ae6d138706fd7ead5629b", "last_ingest_run": "R-000001"}
+{"path": "sdd/specs/UML_class.md", "file_hash": "sha256:cc85ce3e58a43f87d714c86c85a71cb61c525468c05ae3144a2139a856da1084", "last_ingest_run": "R-000001"}
+{"path": "sdd/specs/UML_sequence.md", "file_hash": "sha256:1fb350a47a95eaa64f3b9a4678f7aeba027c20ce64d71975e62d77dd66fbdf9b", "last_ingest_run": "R-000001"}
+{"path": "sdd/specs/architecture_design.md", "file_hash": "sha256:d125aa5ad783fda6d4e621526e0b7651041a456f7d923777aa76a68997d55738", "last_ingest_run": "R-000001"}

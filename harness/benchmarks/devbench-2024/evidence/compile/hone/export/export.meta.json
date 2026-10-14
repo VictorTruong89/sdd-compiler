@@ -1,0 +1,53 @@
+{
+ "schema_version": "export/1",
+ "compiler_version": "0.1.0.dev0",
+ "store_hash": "sha256:f45c05c9eda54c95ffe66a288726b3a291de879ff20bd1cdf15afae90dbdaf28",
+ "profile_export": {
+  "foundation_globs": [
+   "**/vision.md",
+   "**/constitution.md"
+  ],
+  "skip_headings": [
+   "Traceability"
+  ]
+ },
+ "allow_open": true,
+ "counts": {
+  "packs": 16,
+  "blocks": 121,
+  "blocks_omitted": 0,
+  "blocks_excluded": 0,
+  "blocks_no_node": 69,
+  "blocks_pending": 0,
+  "nodes": 61,
+  "nodes_omitted": 0,
+  "contracts": 0,
+  "checklist_items": 61,
+  "unsettled_contradictions": 0
+ },
+ "unsettled_ids": [],
+ "excluded_blocks": [],
+ "backward_needs": [],
+ "chars": {
+  "source_markdown": 13546,
+  "export_total": 35457,
+  "packs": {
+   "01-prd--introduction.md": 753,
+   "02-prd--goals.md": 1481,
+   "03-prd--features-and-functionalities.md": 3022,
+   "04-prd--supporting-data-description.md": 9054,
+   "05-prd--technical-constraints.md": 1105,
+   "06-prd--dependencies.md": 821,
+   "07-prd--usage.md": 889,
+   "08-prd--command-line-configuration-arguments.md": 1599,
+   "09-prd--acceptance-criteria.md": 2179,
+   "10-prd--terms-concepts-explanation.md": 1004,
+   "11-uml-class--root.md": 2477,
+   "12-uml-sequence--root.md": 1860,
+   "13-architecture-design--architecture-design.md": 1458,
+   "14-architecture-design--outputs.md": 1093,
+   "15-architecture-design--hone.md": 5625,
+   "16-architecture-design--license-and-readme.md": 1037
+  }
+ }
+}

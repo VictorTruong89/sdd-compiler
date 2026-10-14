@@ -1,0 +1,25 @@
+{"from": "N-000006", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000006", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:programming_language", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000013", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000029", "type": "refines", "to": "N-000006", "provenance": "judgment", "judgment": "J-000173", "rationale": "The script gives specific commands that generate BSD3, MIT and GPL licenses, which is a concrete instance of the general claim that users can generate various licenses such as BSD-3, MIT, GPL.", "quotes": ["generate various licenses such as BSD-3, MIT, GPL, etc., with simple commands", "# Generate a BSD3 license using default options"]}
+{"from": "N-000029", "type": "refines", "to": "N-000032", "provenance": "judgment", "judgment": "J-000254", "rationale": "A is a concrete example of generating a BSD3 license with default options, which is a specific instance of B's general requirement that the tool correctly generates license text for each license type.", "quotes": ["Generate a BSD3 license using default options", "The tool must correctly generate the license text for each specified license type."]}
+{"from": "N-000029", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000029", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000034", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000034", "type": "uses_term", "to": "term:template", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:programming_language", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000035", "type": "uses_term", "to": "term:tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "refines", "to": "N-000006", "provenance": "judgment", "judgment": "J-000153", "rationale": "Claim A says users can generate licenses with simple commands, and Claim B specifies the concrete means, running ./examples.sh, which is a more specific statement of that capability.", "quotes": ["Users can generate various licenses such as BSD-3, MIT, GPL, etc., with simple commands.", "which encapsulates the commands to install Lice and generate various licenses"]}
+{"from": "N-000043", "type": "uses_term", "to": "term:examples_script", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000043", "type": "uses_term", "to": "term:user", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000049", "type": "uses_term", "to": "term:global_function", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000049", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "refines", "to": "N-000006", "provenance": "judgment", "judgment": "J-000176", "rationale": "B gives one concrete command (lice -l py -f) for the general 'generate licenses with simple commands' capability that A describes, so B is the more specific statement.", "quotes": ["generate various licenses", "lice -l py -f [filename]"]}
+{"from": "N-000056", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "uses_term", "to": "term:license", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000056", "type": "uses_term", "to": "term:source_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

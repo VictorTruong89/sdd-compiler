@@ -1,0 +1,42 @@
+{"id": "term:acceptance_test", "canonical": "acceptance test", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:test"}
+{"id": "term:brick", "canonical": "brick", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:brick_size", "canonical": "brick size", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:calculation_model", "canonical": "calculation model", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:chart_type", "canonical": "chart type", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:client", "canonical": "client", "aliases": [], "kind": "actor", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:closing_price", "canonical": "closing price", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:column_name", "canonical": "column name", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:commodity", "canonical": "commodity", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:csv", "canonical": "csv", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_field", "canonical": "data field", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_file", "canonical": "data file", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_frame", "canonical": "data frame", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:data_shape", "canonical": "data shape", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:dataset", "canonical": "dataset", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:demo_script", "canonical": "demo script", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:external_dependency", "canonical": "external dependency", "aliases": [], "kind": "external_reference", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:financial_data", "canonical": "financial data", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:financial_instrument", "canonical": "financial instrument", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:folder", "canonical": "folder", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:functionality", "canonical": "functionality", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:indicator", "canonical": "indicator", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:instrument", "canonical": "instrument", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:investment_opportunity", "canonical": "investment opportunity", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:line_break_chart", "canonical": "line break chart", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:line_number", "canonical": "line number", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:market_trend", "canonical": "market trend", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:method", "canonical": "method", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:model_structure", "canonical": "model structure", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:ohlc_column", "canonical": "ohlc column", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:period_close_brick", "canonical": "period close brick", "aliases": [], "kind": "data", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pnf_chart", "canonical": "pnf chart", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:program", "canonical": "program", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:pytest_library", "canonical": "pytest library", "aliases": [], "kind": "external_reference", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:python_program", "canonical": "python program", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": "term:program"}
+{"id": "term:renko_chart", "canonical": "renko chart", "aliases": [], "kind": "entity", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:renko_chart_type", "canonical": "renko chart type", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:repository", "canonical": "repository", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:stock", "canonical": "stock", "aliases": [], "kind": "category", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:test", "canonical": "test", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:unit_test", "canonical": "unit test", "aliases": [], "kind": "component", "definition": null, "defined_by": null, "status": "proposed", "broader": null}
+{"id": "term:user", "canonical": "user", "aliases": [], "kind": "actor", "definition": null, "defined_by": null, "status": "proposed", "broader": null}

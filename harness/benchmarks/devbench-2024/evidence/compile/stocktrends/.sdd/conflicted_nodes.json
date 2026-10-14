@@ -1,0 +1,249 @@
+{
+ "count": 16,
+ "nodes": [
+  {
+   "id": "N-000013",
+   "family": "term:functionality",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     26,
+     26
+    ]
+   },
+   "conflict_ids": [
+    "CF-000008"
+   ]
+  },
+  {
+   "id": "N-000014",
+   "family": "term:functionality",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     27,
+     27
+    ]
+   },
+   "conflict_ids": [
+    "CF-000008"
+   ]
+  },
+  {
+   "id": "N-000016",
+   "family": "term:indicator",
+   "layer": "L5",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     33,
+     33
+    ]
+   },
+   "conflict_ids": [
+    "CF-000004"
+   ]
+  },
+  {
+   "id": "N-000019",
+   "family": "term:csv",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     42,
+     42
+    ]
+   },
+   "conflict_ids": [
+    "CF-000001"
+   ]
+  },
+  {
+   "id": "N-000020",
+   "family": "term:csv",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     43,
+     43
+    ]
+   },
+   "conflict_ids": [
+    "CF-000009",
+    "CF-000010"
+   ]
+  },
+  {
+   "id": "N-000021",
+   "family": "term:csv",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     43,
+     43
+    ]
+   },
+   "conflict_ids": [
+    "CF-000002"
+   ]
+  },
+  {
+   "id": "N-000022",
+   "family": "term:column_name",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     46,
+     46
+    ]
+   },
+   "conflict_ids": [
+    "CF-000006"
+   ]
+  },
+  {
+   "id": "N-000025",
+   "family": "term:indicator",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     56,
+     56
+    ]
+   },
+   "conflict_ids": [
+    "CF-000005"
+   ]
+  },
+  {
+   "id": "N-000026",
+   "family": "term:csv",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     57,
+     57
+    ]
+   },
+   "conflict_ids": [
+    "CF-000007"
+   ]
+  },
+  {
+   "id": "N-000028",
+   "family": "term:data_file",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     63,
+     63
+    ]
+   },
+   "conflict_ids": [
+    "CF-000006"
+   ]
+  },
+  {
+   "id": "N-000029",
+   "family": "term:csv",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     67,
+     67
+    ]
+   },
+   "conflict_ids": [
+    "CF-000001"
+   ]
+  },
+  {
+   "id": "N-000030",
+   "family": "term:data_file",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     68,
+     68
+    ]
+   },
+   "conflict_ids": [
+    "CF-000003",
+    "CF-000009"
+   ]
+  },
+  {
+   "id": "N-000031",
+   "family": "term:csv",
+   "layer": "L1",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     69,
+     69
+    ]
+   },
+   "conflict_ids": [
+    "CF-000002"
+   ]
+  },
+  {
+   "id": "N-000032",
+   "family": "term:indicator",
+   "layer": null,
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     72,
+     72
+    ]
+   },
+   "conflict_ids": [
+    "CF-000004",
+    "CF-000005"
+   ]
+  },
+  {
+   "id": "N-000033",
+   "family": "term:dataset",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/PRD.md",
+    "lines": [
+     73,
+     73
+    ]
+   },
+   "conflict_ids": [
+    "CF-000007"
+   ]
+  },
+  {
+   "id": "N-000047",
+   "family": "term:data_file",
+   "layer": "L2",
+   "source": {
+    "file": "sdd/specs/architecture_design.md",
+    "lines": [
+     4,
+     22
+    ]
+   },
+   "conflict_ids": [
+    "CF-000003",
+    "CF-000010"
+   ]
+  }
+ ]
+}

@@ -485,6 +485,53 @@ All ten Haiku runs by class (passed / in class):
 Files: `round9/arxiv-digest-<format>-haiku-<n>.{result.json, reward.json, pytest.out, app.tgz}` and
 `.junit/`.
 
+## 11. Round 11: Sonnet on the same three projects, both formats (2026-10-14)
+
+**Question (owner):** run Claude Sonnet 5.5 on `lice`, `arxiv-digest` and `stocktrends` in both
+formats exactly as Haiku ran, and compare.
+
+**Conditions.** Identical to the Haiku runs except the model (`anthropic/claude-sonnet-5-5`):
+Harbor, Claude Code 2.1.296, tools `Bash`, `Edit`, `Read`, `Write`, agent network limited to the
+model API and PyPI, same tasks, one run per format, one run at a time. The `lice` tasks were first
+rebuilt with the fixed scorer and workspace saving (only `tests/test.sh` differs from round 7;
+export unchanged by hash; reference 31 / 31, do-nothing 0 / 31). Every run collected no more tests
+than the hidden set. No token in the job folders.
+
+| Project | Format | All tests | Stated (S) | Names only (U) | Not in spec or against it (R + C) | Turns | Agent time | Cost, est. |
+|---|---|---|---|---|---|---|---|---|
+| lice | Markdown | 6 / 31 | 3 / 3 | 3 / 3 | 0 / 25 | 4 | 36.8 s | $0.1039 |
+| lice | Export | 6 / 31 | 3 / 3 | 3 / 3 | 0 / 25 | 7 | 44.8 s | $0.1347 |
+| arxiv-digest | Markdown | 29 / 42 | 25 / 28 | 4 / 7 | 0 / 7 | 4 | 23.7 s | $0.0692 |
+| arxiv-digest | Export | 30 / 42 | 27 / 28 | 3 / 7 | 0 / 7 | 8 | 31.7 s | $0.1288 |
+| stocktrends | Markdown | 4 / 9 | 2 / 2 | 2 / 5 | 0 / 2 | 9 | 103.1 s | $0.2167 |
+| stocktrends | Export | 3 / 9 | 2 / 2 | 1 / 5 | 0 / 2 | 10 | 107.0 s | $0.2778 |
+
+Total for the six runs: $0.9311 est. Classes from `test-classification.json` (fixed in round 9).
+
+**Reading (from junit files and saved code; n = 1 per cell).**
+- **Same picture as Haiku: no R or C test passed,** in either format, on any project. All six
+  builds kept `max_results = 10` (F1 of the investigation note). Both `lice` builds define
+  `LICENSES` and fail on the next missing name, `valid_year` (`ImportError`), as the investigation
+  predicted.
+- **`lice`:** identical results. Sonnet passes all 3 U acceptance tests that Haiku failed (it made
+  BSD3 the default licence), so 6 / 31 against Haiku's 3 / 31.
+- **`arxiv-digest`:** export 30, Markdown 29. The two tests only the export passed are acceptance
+  tests (`category`, `title`) where the Markdown build wrote no CSV file at scoring time; the same
+  build, rerun from the host against the live arXiv service at 2026-10-14 ~04:20 UTC, wrote the CSV
+  for both queries. So that difference is most likely the live service at the moment of scoring, not
+  the build. The test only the Markdown build passed is `test_directory_created` (U). **The
+  character-rule difference seen in all six Haiku runs does not appear:** the Sonnet Markdown build
+  checks the allowed characters inside `construct_query_url` and passes both tests.
+- **`stocktrends`:** Markdown 4, export 3. The one difference is `test_validate_df` (U): the export
+  build also requires a `date` column (the specification asks for OHLC columns only); the test frame
+  has none.
+- **Cost:** the export run cost 1.30 (`lice`), 1.86 (`arxiv-digest`) and 1.28 (`stocktrends`) times
+  the Markdown run; Sonnet runs cost 2.4 to 7.2 times the Haiku runs of the same task
+  (against the mean of Haiku's three runs on `arxiv-digest`).
+
+Files: `round11/<project>-<format>-sonnet-1.{result.json, reward.json, pytest.out, app.tgz}` and
+`.junit/`.
+
 ## 6. Revisit guide
 
 ### 6.1 What is in this folder
@@ -496,6 +543,8 @@ Files: `round9/arxiv-digest-<format>-haiku-<n>.{result.json, reward.json, pytest
 | `readtime-oracle.result.json` | yes | Harbor's result for the reference run with `TEST_DIR` set |
 | `build_clean_task.py` | yes | Our script: one DevEval project as a clean Harbor task, in Markdown or export format (§7) |
 | `pilot-hone-markdown-sonnet-1.result.json`, `pilot-hone-export-sonnet-1.result.json` | yes | Harbor's results for the two pilot runs. Checked: no token inside |
+| `PROJECTS.md` | yes | All 22 DevEval projects (21 in Harbor): language, domain, size, tests, spec words, usable here; how to pick one (2026-10-14) |
+| `evidence/` | yes | Saved 2026-10-14: the compile stores and exports the agents read, the clean tasks (without reference), and every model run's Harbor job with the agent transcript. Index: `evidence/README.md` |
 | `download/deveval/` | **no** | The 63 Harbor tasks |
 | `download/clean/` | **no** | The two generated clean tasks (they hold the hidden tests and the reference) |
 | `~/sddc-runs/deveval-hone/` | outside the repository | The compile store (`.sdd/`), the four documents, the export |

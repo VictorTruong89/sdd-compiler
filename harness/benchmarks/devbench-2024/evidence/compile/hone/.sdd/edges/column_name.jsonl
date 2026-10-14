@@ -1,0 +1,6 @@
+{"from": "N-000017", "type": "depends_on", "to": "N-000006", "provenance": "judgment", "judgment": "J-000263", "rationale": "The column-name parsing test presupposes the capability to read CSV files and extract column names, which is the claim being tested.", "quotes": ["Ability to read CSV files and extract column names and data rows.", "Tests the parsing of column names within a CSV file."]}
+{"from": "N-000017", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000017", "type": "uses_term", "to": "term:csv_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000022", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000023", "type": "refines", "to": "N-000022", "provenance": "judgment", "judgment": "J-000253", "rationale": "B is a concrete example mapping of CSV columns to JSON fields, which is an instance of the general mapping requirement stated in A.", "quotes": ["Specifies the expected mapping of CSV columns to JSON fields.", "\"adopted_since\": \"adopted_since\","]}
+{"from": "N-000023", "type": "uses_term", "to": "term:column_name", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,14 @@
+{"from": "N-000002", "type": "refines", "to": "N-000001", "provenance": "judgment", "judgment": "J-000295", "rationale": "A only says the project provides a tool; B says what that tool does (quickly generates license files), a more specific statement about the same provided tool.", "quotes": ["to provide a tool", "quickly generates license files for software projects"]}
+{"from": "N-000002", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:license_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000002", "type": "uses_term", "to": "term:software_project", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000021", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000021", "type": "uses_term", "to": "term:license_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000021", "type": "uses_term", "to": "term:licensing_requirement", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "refines", "to": "N-000044", "provenance": "judgment", "judgment": "J-000262", "rationale": "The script in N-000045 includes the specific unittest discover command, which is a more specific instance of the general claim that examples.sh includes a unit-test discovery and run command.", "quotes": ["includes a command for discovering and running unit tests", "python -m unittest discover -s ./lice/tests -p 'test_*.py'"]}
+{"from": "N-000045", "type": "subsumes", "to": "N-000057", "provenance": "judgment", "judgment": "J-000234", "rationale": "A is a whole install-and-run script that includes the unittest discover command as one of its steps, so A's claim already covers B's standalone instruction to run that command.", "quotes": ["python -m unittest discover -s ./lice/tests -p 'test_*.py'", "python -m unittest discover -s ./lice/tests -p 'test_*.py'"]}
+{"from": "N-000045", "type": "uses_term", "to": "term:examples_script", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:lice_tool", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:license_file", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:license_type", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}
+{"from": "N-000045", "type": "uses_term", "to": "term:unit_test", "provenance": "code", "judgment": null, "rationale": null, "quotes": []}

@@ -1,0 +1,35 @@
+{
+ "schema_version": "graph/1",
+ "compiler_version": "0.1.0.dev0",
+ "question_schemas": {
+  "q-atom": "q-atom/1",
+  "q-desc": "q-desc/1",
+  "q-term": "q-term/1"
+ },
+ "layer_mapping_version": "layers/1",
+ "sources": {
+  "sdd/specs/PRD.md": "sha256:035132dbdd1c7c48e7f0bf6d99045a802cfb9088339cd9aa95b002f817458264",
+  "sdd/specs/UML_class.md": "sha256:d3fd359fba580e7b2cadc118866bb1426eb25acea4fe65edadaad90144232b6a",
+  "sdd/specs/UML_sequence.md": "sha256:3d8281ebbacaa84f420c764e7ed3ac8a7c99dcabb5e48de68457362e571f53b3",
+  "sdd/specs/architecture_design.md": "sha256:839c5b57d360e776d5c54d73f91fc873e09865ede48558c9515427c2c02a5848"
+ },
+ "counts": {
+  "nodes": 55,
+  "terms": 37,
+  "links": 156,
+  "open_conflicts": 8,
+  "by_status": {
+   "ambiguous": 21,
+   "conflict": 12,
+   "validated": 22
+  }
+ },
+ "id_counters": {
+  "node": 55,
+  "conflict": 8,
+  "judgment": 340,
+  "review": 3,
+  "block": 79,
+  "run": 2
+ }
+}

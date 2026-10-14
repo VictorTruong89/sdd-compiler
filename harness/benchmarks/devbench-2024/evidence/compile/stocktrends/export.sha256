@@ -1,0 +1,15 @@
+bb01c51b02a844b4ebf47b92d0ad71c3ea33024e496e9fa189e9a586289f21c4  ./CHECKLIST.md
+6d9d31702661eb754e4a3127680615b53a2daab897eaaeb2ccebf9cd7510a588  ./export.meta.json
+9b24c85d42af150f29ff6ad316f4f21f82d9ab5e57bcf57e319f3223a9b7d521  ./MAP.md
+d7f9604d71d94541d6d865a61fd3661d4d34e7898199fa263f8c271f53251139  ./packs/01-prd--introduction.md
+710ca518974ce5789bab05f6f00f04fe9aae85d1b50c3b5cfbe507f4edb1e188  ./packs/02-prd--goals.md
+ce76fbc97a69a4d13093c3a2677042beb9a52adc915ab54e1cf78bec0406a6e6  ./packs/03-prd--features-and-functionalities.md
+e9dfbc398ce1f6046947c7f9f7e1f53d2335ebb08d69883f547eeeb4c18ea36d  ./packs/04-prd--supporting-data-description.md
+334168c70016bee64c4d12d71f0a98f9d65f592a76aa6ec118ff8c7fc9164737  ./packs/05-prd--technical-constraints.md
+79f6135489acbd0924d4dbe026d0980bd05c2447eef8ed88983f12a2a9e4e548  ./packs/06-prd--dependencies.md
+c5d0ea809b909bc2c2c3fa353b98677f6a5e1a8d91b9f2c743ebc40a78be265c  ./packs/07-prd--usage.md
+63f13e2a9c7044a5f7e8c4e0d1d4acbb868ad900ddfaeeb4d712a17812767364  ./packs/08-prd--acceptance-criteria.md
+21e375abfdb7c43b298d0b82dab6ad778a891989f5099e204a1ff9365fa1c2cc  ./packs/09-prd--terms-concepts-explanation.md
+a742d142478de634fc5bc926e7602f8db3501f1df9388257a244b799647f4a66  ./packs/10-uml-class--uml-class.md
+e693024f7e19394064472444c2286de789b2ee24acd134ccb50e9cca16207fa4  ./packs/11-uml-sequence--uml-sequence.md
+2826f293b0c26769489259acf70633fbf7da27960ecd9fd97bc8a2beb19ed053  ./packs/12-architecture-design--architecture-design.md
