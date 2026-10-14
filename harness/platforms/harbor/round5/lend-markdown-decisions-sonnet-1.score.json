@@ -1,0 +1,92 @@
+{
+ "rewards": {
+  "reward": 1.0,
+  "tests_passed": 24,
+  "tests_total": 24,
+  "installable": 1,
+  "requirements_met": 24,
+  "omissions": 0,
+  "contradictions_side_a": 4,
+  "contradictions_side_b": 1,
+  "contradictions_neither": 0,
+  "contradictions_error": 0,
+  "noticed_auto": 4,
+  "extra_commands": 0,
+  "settled_followed": 2,
+  "settled_total": 2,
+  "has_open_questions": 1,
+  "has_implementation_notes": 1
+ },
+ "tests_collected": 24,
+ "requirements": {
+  "R1": "met",
+  "R2": "met",
+  "R3": "met",
+  "R4": "met",
+  "R5": "met",
+  "R6": "met",
+  "R7": "met",
+  "R8": "met",
+  "R9": "met",
+  "R10": "met",
+  "R11": "met",
+  "R12": "met",
+  "R13": "met",
+  "R14": "met",
+  "R15": "met",
+  "R16": "met",
+  "R17": "met",
+  "R18": "met",
+  "R19": "met",
+  "R20": "met",
+  "R21": "met",
+  "R22": "met",
+  "R23": "met",
+  "R24": "met"
+ },
+ "contradictions": {
+  "P1": {
+   "side": "A",
+   "evidence": "fee after 40 days late: 1000 cents"
+  },
+  "P2": {
+   "side": "A",
+   "evidence": "report rows on the due date: 0 at 10:00, 0 at 19:00"
+  },
+  "P3": {
+   "side": "B",
+   "evidence": "report header: ['item', 'title', 'member', 'due', 'days_overdue', 'email']"
+  },
+  "P4": {
+   "side": "A",
+   "evidence": "owing 600 cents, next checkout exits 0"
+  },
+  "P10": {
+   "side": "A",
+   "evidence": "due after renewing on 10 June: 2026-06-29"
+  }
+ },
+ "settled": {
+  "P2": {
+   "verdict": "A",
+   "followed": true
+  },
+  "P3": {
+   "verdict": "B",
+   "followed": true
+  }
+ },
+ "noticed_auto": {
+  "A1": true,
+  "A2": true,
+  "A3": true,
+  "A4": true,
+  "A5": false,
+  "A6": false
+ },
+ "extra_commands": [],
+ "documents_present": {
+  "OPEN_QUESTIONS.md": true,
+  "IMPLEMENTATION_NOTES.md": true
+ }
+}

@@ -1,0 +1,145 @@
+{
+    "id": "d654f090-68d4-468c-8b4c-8237c360a431",
+    "task_name": "sdd-compiler/lend-messy-export",
+    "trial_name": "lend-export-settled-pinned__4MJGwLm",
+    "trial_uri": "file:///home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/jobs/r4-lend-export-settled-sonnet-1/lend-export-settled-pinned__4MJGwLm",
+    "task_id": {
+        "path": "lend-export-settled-pinned"
+    },
+    "source": null,
+    "task_checksum": "d70cc02487b484b2c3b1b6381ff35843240a9955c44526e5b72b1da1c2fb3efb",
+    "config": {
+        "task": {
+            "path": "lend-export-settled-pinned",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "lend-export-settled-pinned__4MJGwLm",
+        "trials_dir": "jobs/r4-lend-export-settled-sonnet-1",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "claude-code",
+            "import_path": null,
+            "model_name": "anthropic/claude-sonnet-5-5",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.1.296",
+                "max_budget_usd": 10,
+                "disallowed_tools": "Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "e9b76a2d-e360-4f4b-b082-5129f4873679",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "claude-code",
+        "version": "2.1.296",
+        "model_info": {
+            "name": "claude-sonnet-5-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 178132,
+        "n_cache_tokens": 142010,
+        "n_output_tokens": 9288,
+        "cost_usd": 0.251541,
+        "model_usage": {
+            "claude-sonnet-5-5": {
+                "n_input_tokens": 178132,
+                "n_cache_tokens": 142010,
+                "n_output_tokens": 9288,
+                "cost_usd": 0.197379
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0,
+            "tests_passed": 24,
+            "tests_total": 24,
+            "installable": 1,
+            "requirements_met": 24,
+            "omissions": 0,
+            "contradictions_side_a": 4,
+            "contradictions_side_b": 1,
+            "contradictions_neither": 0,
+            "contradictions_error": 0,
+            "noticed_auto": 5,
+            "extra_commands": 0,
+            "settled_followed": 2,
+            "settled_total": 2,
+            "has_open_questions": 1,
+            "has_implementation_notes": 1
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-13T11:03:58.791165Z",
+    "finished_at": "2026-10-13T11:05:36.720280Z",
+    "environment_setup": {
+        "started_at": "2026-10-13T11:03:58.810689Z",
+        "finished_at": "2026-10-13T11:04:03.534390Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-13T11:04:03.534432Z",
+        "finished_at": "2026-10-13T11:04:03.650329Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-13T11:04:03.650440Z",
+        "finished_at": "2026-10-13T11:05:16.181671Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-13T11:05:17.704565Z",
+        "finished_at": "2026-10-13T11:05:26.113066Z"
+    },
+    "step_results": null
+}

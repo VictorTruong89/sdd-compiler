@@ -50,3 +50,26 @@ F1.
 2. Two Sonnet runs, Markdown and export, same harness and ceiling ($10 estimated API-equivalent each).
 3. Scoring: hidden tests by `score.py`; A1–A6 audited by the owner, blind to format where possible.
 4. Compiler recall on the answer key (which planted items the compile reported) — a by-product, recorded.
+
+## Scoring beyond the tests (added 2026-10-12, rel02 round 1)
+
+`scoring/lend_score.py` runs after the hidden tests, with no model. It reports requirements met and
+omissions (R1–R24), which side of each planted contradiction the build took (A, B or neither, by
+probing the command), commands beyond the eight specified, and a keyword triage of A1–A6 in the
+agent's notes. `scoring/check_scoring.py` checks it against three variants of the reference whose
+behaviour is known. What it is not: the audit of A1–A6 stays a human reading (scale in
+`requirements.md`), and inventions that no probe reaches are not counted. Harbor packaging:
+`harness/platforms/harbor/build_lend_task.py`; results of the free checks: that folder's `TRIAL.md` §5a.
+
+### Settled contradictions (round 4, 2026-10-13)
+
+`lend_score.py --settled P2=A,P3=B` reports `settled_followed` / `settled_total`: of the contradictions
+the owner settled, how many the build follows, read from the same probes. The verdicts and the
+correction of P1 (a loose bound, not a contradiction) are in `ANSWER_KEY.md`. Build the Harbor task with
+`build_lend_task.py … --settled P2=A,P3=B`.
+
+### Control input: decisions as plain text (round 5, 2026-10-13)
+
+`decisions/DECISIONS.md` holds the owner's two verdicts in plain words. `build_lend_task.py … --decisions
+decisions/DECISIONS.md` adds it to the Markdown spec folder as `spec/DECISIONS.md`; the instruction is
+unchanged. It is the control for the settled export: same decisions, no graph.

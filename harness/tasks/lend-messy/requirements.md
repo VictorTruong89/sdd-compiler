@@ -30,7 +30,7 @@
 | R22 | An empty report is a header; the file is replaced | reports §command | test `test_r22_*` |
 | R23 | An unknown command exits 1 | loans §store | test `test_r23_*` |
 | R24 | `LEND_NOW` may carry a time; its date is used | loans §store, ops | test `test_r24_*` |
-| A1 | Fee cap: $10 (fees) vs $15 (vision) — P1 | | **audit**: noticed? chosen? |
+| A1 | Fee cap: $10 (fees) vs $15 (vision) — P1. *Not a contradiction (corrected 2026-10-13, see `ANSWER_KEY.md`): a $10 cap satisfies a $15 ceiling* | | **audit**: noticed as a loose bound? |
 | A2 | Overdue from the day after the due date (loans) vs from 18:00 on it (reports) — P2 | | **audit** |
 | A3 | Report never carries email (reports) vs carries contact email (ops) — P3 | | **audit** |
 | A4 | Fees never block borrowing (loans) vs a *patron* owing > $5 cannot borrow (ops; glossary: patron = member) — P4 | | **audit** |

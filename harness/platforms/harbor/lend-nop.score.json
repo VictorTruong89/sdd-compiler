@@ -1,0 +1,80 @@
+{
+ "rewards": {
+  "reward": 0,
+  "tests_passed": 0,
+  "tests_total": 24,
+  "installable": 0,
+  "requirements_met": 0,
+  "omissions": 24,
+  "contradictions_side_a": 0,
+  "contradictions_side_b": 0,
+  "contradictions_neither": 0,
+  "contradictions_error": 5,
+  "noticed_auto": 0,
+  "extra_commands": -1,
+  "has_open_questions": 0,
+  "has_implementation_notes": 0
+ },
+ "tests_collected": 0,
+ "requirements": {
+  "R1": "no test ran",
+  "R2": "no test ran",
+  "R3": "no test ran",
+  "R4": "no test ran",
+  "R5": "no test ran",
+  "R6": "no test ran",
+  "R7": "no test ran",
+  "R8": "no test ran",
+  "R9": "no test ran",
+  "R10": "no test ran",
+  "R11": "no test ran",
+  "R12": "no test ran",
+  "R13": "no test ran",
+  "R14": "no test ran",
+  "R15": "no test ran",
+  "R16": "no test ran",
+  "R17": "no test ran",
+  "R18": "no test ran",
+  "R19": "no test ran",
+  "R20": "no test ran",
+  "R21": "no test ran",
+  "R22": "no test ran",
+  "R23": "no test ran",
+  "R24": "no test ran"
+ },
+ "contradictions": {
+  "P1": {
+   "side": "not run",
+   "evidence": "the package did not install"
+  },
+  "P2": {
+   "side": "not run",
+   "evidence": "the package did not install"
+  },
+  "P3": {
+   "side": "not run",
+   "evidence": "the package did not install"
+  },
+  "P4": {
+   "side": "not run",
+   "evidence": "the package did not install"
+  },
+  "P10": {
+   "side": "not run",
+   "evidence": "the package did not install"
+  }
+ },
+ "noticed_auto": {
+  "A1": false,
+  "A2": false,
+  "A3": false,
+  "A4": false,
+  "A5": false,
+  "A6": false
+ },
+ "extra_commands": [],
+ "documents_present": {
+  "OPEN_QUESTIONS.md": false,
+  "IMPLEMENTATION_NOTES.md": false
+ }
+}

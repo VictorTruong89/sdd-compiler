@@ -1,0 +1,133 @@
+{
+    "id": "909bbb9f-435a-422a-8932-75a95f0d79d5",
+    "task_name": "sdd-compiler/deveval-python-arxiv-digest-export",
+    "trial_name": "arxiv-digest-export__YyuPRoa",
+    "trial_uri": "file:///home/victor/Workspace/sdd-compiler/harness/benchmarks/devbench-2024/download/jobs/r9-arxiv-digest-export-haiku-2/arxiv-digest-export__YyuPRoa",
+    "task_id": {
+        "path": "clean/arxiv-digest-export"
+    },
+    "source": null,
+    "task_checksum": "0748e404ad51f7b7c9e96086bc6a575899ae3f05ec2fdf9b2b035d1c513640df",
+    "config": {
+        "task": {
+            "path": "clean/arxiv-digest-export",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "arxiv-digest-export__YyuPRoa",
+        "trials_dir": "jobs/r9-arxiv-digest-export-haiku-2",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "claude-code",
+            "import_path": null,
+            "model_name": "anthropic/claude-haiku-5-5",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.1.296",
+                "max_budget_usd": 10,
+                "disallowed_tools": "Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "b2735058-f26e-4799-9de7-cb521a5ddbed",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "claude-code",
+        "version": "2.1.296",
+        "model_info": {
+            "name": "claude-haiku-5-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 354983,
+        "n_cache_tokens": 311114,
+        "n_output_tokens": 23669,
+        "cost_usd": 0.023717240000000004,
+        "model_usage": {
+            "claude-haiku-5-5": {
+                "n_input_tokens": 354983,
+                "n_cache_tokens": 311114,
+                "n_output_tokens": 23669,
+                "cost_usd": 0.020428715000000004
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.7142857142857143,
+            "tests_passed": 30,
+            "tests_total": 42,
+            "tests_collected": 42
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-14T02:52:24.549759Z",
+    "finished_at": "2026-10-14T02:54:41.383238Z",
+    "environment_setup": {
+        "started_at": "2026-10-14T02:52:24.570341Z",
+        "finished_at": "2026-10-14T02:52:28.015703Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-14T02:52:28.015747Z",
+        "finished_at": "2026-10-14T02:52:28.144879Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-14T02:52:28.145000Z",
+        "finished_at": "2026-10-14T02:54:11.292195Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-14T02:54:12.890135Z",
+        "finished_at": "2026-10-14T02:54:30.694040Z"
+    },
+    "step_results": null
+}

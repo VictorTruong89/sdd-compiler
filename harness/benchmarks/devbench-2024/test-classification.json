@@ -1,0 +1,343 @@
+{
+ "_about": "One reader's judgement by reading each hidden test against the four specification documents and the seed files, 2026-10-13. Classes: S stated, U names stated but expected value or behaviour not, R needs a name/default/key/exact string not in the specification, C contradicts the specification. Method and limits: TRIAL.md section 10.",
+ "lice": {
+  "tests": {
+   "unit_tests.test_lice::test_paths": [
+    "R",
+    "clean_path is named; expanding ~ and $VAR is not stated [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice::test_file_template": [
+    "R",
+    "needs LICENSES to iterate as template file names; the diagram lists AGPL3, Apache, ... [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice::test_package_template": [
+    "R",
+    "calls load_template(license) with no header argument; no default is given [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice::test_extract_vars": [
+    "R",
+    "expects a sorted list of names; order not stated [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice::test_license": [
+    "R",
+    "load_template(license) with no header argument [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice::test_license_header": [
+    "R",
+    "expects IOError when a header template is missing; not stated [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestFormatLicense::test_format_license_c_language": [
+    "R",
+    "exact comment text for C not given [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestFormatLicense::test_format_license_python_language": [
+    "R",
+    "exact comment text for Python not given [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestGetSuffix::test_valid_suffix": [
+    "R",
+    "get_suffix returns String | Boolean; language detected from the extension [own class S; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestGetSuffix::test_no_suffix": [
+    "R",
+    "same [own class S; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestGetSuffix::test_unrecognized_suffix": [
+    "R",
+    "the list of recognised extensions is not given [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestValidYear::test_valid_year": [
+    "R",
+    "valid_year is not in the specification [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestValidYear::test_invalid_year_non_numeric": [
+    "R",
+    "valid_year is not in the specification [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestValidYear::test_invalid_year_not_four_digits": [
+    "R",
+    "valid_year is not in the specification [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestValidYear::test_invalid_year_extra_characters": [
+    "R",
+    "valid_year is not in the specification [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_help_message": [
+    "R",
+    "argument parser stated [own class S; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_invalid_license": [
+    "R",
+    "behaviour on an unknown licence not stated [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_valid_license": [
+    "R",
+    "licence argument stated [own class S; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_list_languages_option": [
+    "R",
+    "--languages is not in the specification [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_template_path_not_exist": [
+    "R",
+    "exact message 'path does not exist: ...' and ValueError not given [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_output_to_file": [
+    "R",
+    "expects open(name, 'w') with exactly these arguments [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_list_template_vars": [
+    "R",
+    "exact sentence 'The bsd3 license template contains the following variables' not given [own class R; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_list_template_vars_with_custom_template": [
+    "R",
+    "expects exit after listing; not stated [own class U; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_custom_organization": [
+    "R",
+    "organization reflected in the licence: stated [own class S; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "unit_tests.test_lice.TestMainFunction::test_custom_project": [
+    "R",
+    "project reflected in the licence: stated [own class S; R because the file imports `valid_year`, absent from the specification]"
+   ],
+   "acceptance_tests.test_acceptance::test_default_license_generation": [
+    "U",
+    "the default licence (BSD3) is not stated"
+   ],
+   "acceptance_tests.test_acceptance::test_specified_license_generation": [
+    "S",
+    "stated"
+   ],
+   "acceptance_tests.test_acceptance::test_license_with_organization": [
+    "S",
+    "stated"
+   ],
+   "acceptance_tests.test_acceptance::test_license_with_year": [
+    "S",
+    "stated"
+   ],
+   "acceptance_tests.test_acceptance::test_license_with_project": [
+    "U",
+    "depends on the unstated default licence having a project field"
+   ],
+   "acceptance_tests.test_acceptance::test_license_with_output_file": [
+    "U",
+    "depends on the unstated default licence"
+   ]
+  }
+ },
+ "arxiv-digest": {
+  "tests": {
+   "unit_tests.test_construct_query_url::test_query_url_header": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_sort_by_submitted_date_descending": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_only_category": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_only_title": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_only_author": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_only_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_category_and_title": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_category_and_author": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_category_and_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_title_and_author": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_title_and_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_author_and_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_category_title_author": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_category_title_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_category_author_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_query_url_with_title_author_abstract": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_construct_query_all_arguments": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_construct_query_max_results": [
+    "S",
+    "prefix and URL shape are in the example URL of the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_construct_query_special_characters_in_title": [
+    "S",
+    "allowed characters and ValueError are stated in the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_construct_query_non_ascii_characters_in_title": [
+    "S",
+    "allowed characters and ValueError are stated in the PRD"
+   ],
+   "unit_tests.test_construct_query_url::test_construct_query_empty_query": [
+    "U",
+    "'at least one must be specified' is stated; the exception type is not"
+   ],
+   "unit_tests.test_construct_query_url::test_construct_query_default_max_results": [
+    "C",
+    "expects max_results=100; the specification gives a default of 10 (class diagram, PRD)"
+   ],
+   "unit_tests.test_check_date.TestCheckDate::test_within_range": [
+    "U",
+    "exactly k days counts as within; boundary not stated"
+   ],
+   "unit_tests.test_check_date.TestCheckDate::test_out_of_range": [
+    "S",
+    "stated"
+   ],
+   "unit_tests.test_check_date.TestCheckDate::test_invalid_date_format": [
+    "U",
+    "ValueError on a bad date not stated"
+   ],
+   "unit_tests.test_get_args.TestGetArgs::test_missing_required_arguments": [
+    "S",
+    "recent_days is required"
+   ],
+   "unit_tests.test_get_args.TestGetArgs::test_all_required_arguments_present": [
+    "S",
+    "stated"
+   ],
+   "unit_tests.test_get_args.TestGetArgs::test_override_args": [
+    "S",
+    "arguments stated"
+   ],
+   "unit_tests.test_get_args.TestGetArgs::test_defaults_only_recent_days": [
+    "R",
+    "expects to_file to default to an empty string; not given"
+   ],
+   "unit_tests.test_print_results::test_print_with_multiple_papers": [
+    "R",
+    "paper key `authors`; the specification says `author` and gives no dictionary keys"
+   ],
+   "unit_tests.test_print_results::test_abstract_truncation": [
+    "R",
+    "same key; also expects the last words of a 301-word abstract to be printed"
+   ],
+   "unit_tests.test_process_entries::test_process_entries_one_author": [
+    "R",
+    "result keys `authors`, `link`, `published` as raw text: not given"
+   ],
+   "unit_tests.test_process_entries::test_process_entries_multiple_authors": [
+    "R",
+    "same, and authors joined with ', '"
+   ],
+   "unit_tests.test_process_entries::test_process_entries_out_of_date": [
+    "U",
+    "date filter stated; the namespace key `default` is not"
+   ],
+   "unit_tests.test_save_to_csv::test_no_papers_to_save": [
+    "R",
+    "exact text 'No papers to save.' not given"
+   ],
+   "unit_tests.test_save_to_csv::test_directory_created": [
+    "U",
+    "creating the folder is not stated; test rows have keys other than the stated columns"
+   ],
+   "unit_tests.test_save_to_csv::test_file_written": [
+    "U",
+    "test rows have keys other than the stated columns"
+   ],
+   "unit_tests.test_save_to_csv::test_no_directory": [
+    "U",
+    "same"
+   ],
+   "acceptance_tests.test_query_arxiv.TestQueryArxiv::test_acceptance_category_search": [
+    "S",
+    "command line and CSV output stated; note the test compares the build with itself, not with a reference"
+   ],
+   "acceptance_tests.test_query_arxiv.TestQueryArxiv::test_acceptance_title_search": [
+    "S",
+    "command line and CSV output stated; note the test compares the build with itself, not with a reference"
+   ],
+   "acceptance_tests.test_query_arxiv.TestQueryArxiv::test_acceptance_author_search": [
+    "S",
+    "command line and CSV output stated; note the test compares the build with itself, not with a reference"
+   ],
+   "acceptance_tests.test_query_arxiv.TestQueryArxiv::test_acceptance_abstract_search": [
+    "S",
+    "command line and CSV output stated; note the test compares the build with itself, not with a reference"
+   ]
+  }
+ },
+ "stocktrends": {
+  "tests": {
+   "unit_tests.test_instrument::test_validate_df": [
+    "U",
+    "validation stated; ValueError is not"
+   ],
+   "unit_tests.test_pnf::test_get_state": [
+    "R",
+    "constants UPTREND_CONTINUAL etc. are not in the specification"
+   ],
+   "unit_tests.test_pnf::test_roundit": [
+    "R",
+    "calls roundit(7); no default for base is given"
+   ],
+   "unit_tests.test_pnf::test_get_bar_ohlc_data_close": [
+    "U",
+    "expects an exact output shape; the PnF method is not described"
+   ],
+   "unit_tests.test_pnf::test_get_bar_ohlc_data_hl": [
+    "U",
+    "same"
+   ],
+   "unit_tests.test_pnf::test_get_ohlc_data_close": [
+    "U",
+    "same"
+   ],
+   "unit_tests.test_renko::test_Renko_box_periodic_close": [
+    "U",
+    "expects an exact row count; the period-close method is not described"
+   ],
+   "acceptance_tests.test_indicators::test_renko": [
+    "S",
+    "expected values are in the seed data; comparison stated in the PRD"
+   ],
+   "acceptance_tests.test_indicators::test_linebreak": [
+    "S",
+    "same"
+   ]
+  }
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "rewards": {
+  "reward": 0,
+  "tests_passed": 0,
+  "tests_total": 24,
+  "installable": 1,
+  "requirements_met": 0,
+  "omissions": 24,
+  "contradictions_side_a": 4,
+  "contradictions_side_b": 1,
+  "contradictions_neither": 0,
+  "contradictions_error": 0,
+  "noticed_auto": 4,
+  "extra_commands": 0,
+  "settled_followed": 0,
+  "settled_total": 2,
+  "has_open_questions": 1,
+  "has_implementation_notes": 1
+ },
+ "tests_collected": 0,
+ "requirements": {
+  "R1": "no test ran",
+  "R2": "no test ran",
+  "R3": "no test ran",
+  "R4": "no test ran",
+  "R5": "no test ran",
+  "R6": "no test ran",
+  "R7": "no test ran",
+  "R8": "no test ran",
+  "R9": "no test ran",
+  "R10": "no test ran",
+  "R11": "no test ran",
+  "R12": "no test ran",
+  "R13": "no test ran",
+  "R14": "no test ran",
+  "R15": "no test ran",
+  "R16": "no test ran",
+  "R17": "no test ran",
+  "R18": "no test ran",
+  "R19": "no test ran",
+  "R20": "no test ran",
+  "R21": "no test ran",
+  "R22": "no test ran",
+  "R23": "no test ran",
+  "R24": "no test ran"
+ },
+ "contradictions": {
+  "P1": {
+   "side": "A",
+   "evidence": "fee after 40 days late: 1000 cents"
+  },
+  "P2": {
+   "side": "B",
+   "evidence": "report rows on the due date: 0 at 10:00, 1 at 19:00"
+  },
+  "P3": {
+   "side": "A",
+   "evidence": "report header: ['item', 'title', 'member', 'due', 'days_overdue']"
+  },
+  "P4": {
+   "side": "A",
+   "evidence": "owing 600 cents, next checkout exits 0"
+  },
+  "P10": {
+   "side": "A",
+   "evidence": "due after renewing on 10 June: 2026-06-29"
+  }
+ },
+ "settled": {
+  "P2": {
+   "verdict": "A",
+   "followed": false
+  },
+  "P3": {
+   "verdict": "B",
+   "followed": false
+  }
+ },
+ "noticed_auto": {
+  "A1": true,
+  "A2": true,
+  "A3": true,
+  "A4": true,
+  "A5": false,
+  "A6": false
+ },
+ "extra_commands": [],
+ "documents_present": {
+  "OPEN_QUESTIONS.md": true,
+  "IMPLEMENTATION_NOTES.md": true
+ }
+}

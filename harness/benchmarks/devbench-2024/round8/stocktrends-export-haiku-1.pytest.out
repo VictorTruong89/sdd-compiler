@@ -1,0 +1,113 @@
+.FFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+________________________________ test_get_state ________________________________
+
+    def test_get_state():
+        """
+        Test case where the get_state method of the PnF class is tested. It checks if the method returns the correct state based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HOOLI.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+>       assert pnf.get_state(True, 3) == pnf.UPTREND_CONTINUAL
+                                         ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PnF' object has no attribute 'UPTREND_CONTINUAL'
+
+unit_tests/test_pnf.py:11: AttributeError
+_________________________________ test_roundit _________________________________
+
+    def test_roundit():
+        """
+        Test the roundit method of the PnF class. This function tests the roundit method of the PnF class by asserting the expected results for different inputs.
+        """
+        df = pd.read_csv('unit_samples/HOOLI.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+>       assert pnf.roundit(7) == 5
+               ^^^^^^^^^^^^^^
+E       TypeError: PnF.roundit() missing 1 required positional argument: 'base'
+
+unit_tests/test_pnf.py:23: TypeError
+_________________________ test_get_bar_ohlc_data_close _________________________
+
+    def test_get_bar_ohlc_data_close():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='close')
+>       assert data.shape == (41, 5)
+E       assert (879, 5) == (41, 5)
+E         
+E         At index 0 diff: 879 != 41
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:38: AssertionError
+__________________________ test_get_bar_ohlc_data_hl ___________________________
+
+    def test_get_bar_ohlc_data_hl():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='hl')
+>       assert data.shape == (31, 5)
+E       assert (879, 5) == (31, 5)
+E         
+E         At index 0 diff: 879 != 31
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:49: AssertionError
+___________________________ test_get_ohlc_data_close ___________________________
+
+    def test_get_ohlc_data_close():
+        """
+        The test function that tests the get_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_ohlc_data(source='close')
+>       assert data.shape == (244, 6)
+E       assert (65, 6) == (244, 6)
+E         
+E         At index 0 diff: 65 != 244
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:60: AssertionError
+________________________ test_Renko_box_periodic_close _________________________
+
+    def test_Renko_box_periodic_close():
+        """
+        The test function that tests the get_ohlc_data method of the Renko class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        renko = indicators.Renko(df)
+        renko.brick_size = 20
+        renko.chart_type = indicators.Renko.PERIOD_CLOSE
+        data = renko.get_ohlc_data()
+>       assert data.shape == (84, 6)
+E       assert (86, 6) == (84, 6)
+E         
+E         At index 0 diff: 86 != 84
+E         Use -v to get more diff
+
+unit_tests/test_renko.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED unit_tests/test_pnf.py::test_get_state - AttributeError: 'PnF' object ...
+FAILED unit_tests/test_pnf.py::test_roundit - TypeError: PnF.roundit() missin...
+FAILED unit_tests/test_pnf.py::test_get_bar_ohlc_data_close - assert (879, 5)...
+FAILED unit_tests/test_pnf.py::test_get_bar_ohlc_data_hl - assert (879, 5) ==...
+FAILED unit_tests/test_pnf.py::test_get_ohlc_data_close - assert (65, 6) == (...
+FAILED unit_tests/test_renko.py::test_Renko_box_periodic_close - assert (86, ...
+6 failed, 1 passed in 0.18s
+..                                                                       [100%]
+2 passed in 0.12s

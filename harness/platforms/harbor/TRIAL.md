@@ -220,6 +220,224 @@ already used for a pilot; some days of porting.
 **A finding that goes beyond Harbor:** Docker is now installed, so the Docker routes of other candidates
 are open as well (ProjectEval's supported Linux route, and any benchmark that runs repositories).
 
+## 5a. Round 1 of the working map: scoring, pinned agent, limited tools and network (2026-10-12, no model call)
+
+Stage A of the working map (brainstorm D15). Everything here was checked with the free agents or with
+Claude Code started without credentials; **the first model run must confirm the three items marked
+"to confirm"**.
+
+| What | How it is done | Checked how | Result |
+|---|---|---|---|
+| Omissions | `harness/tasks/lend-messy/scoring/lend_score.py`, run by `tests/test.sh`: a requirement R1–R24 is met when every hidden test named for it passes | Reference and do-nothing agents | Reference: 24 met, 0 omissions. Do-nothing: 0 met, 24 omissions (`lend-oracle-pinned.score.json`, `lend-nop.score.json`) |
+| Inventions, automatic part | Five probes through the command, one per planted contradiction: the build took statement A, statement B, or **neither**. Plus commands in `lend --help` beyond the eight specified | `scoring/check_scoring.py`: three variants of the reference with known behaviour | All pass: A-variant 5 × A; B-variant 5 × B and 1 extra command; third variant "neither" on the four items where a probe can show it |
+| Audit triage | Keywords for A1–A6 in the agent's `OPEN_QUESTIONS.md` and `IMPLEMENTATION_NOTES.md` (`noticed_auto`). **A triage, not the audit** | A sample note naming three items | 3 of 6 found, as written |
+| Files for the human audit | `test.sh` copies the two notes, `pyproject.toml` and an archive of `/app` to `verifier/agent_files/` | Reference agent | Present in the job folder |
+| Agent version | `--claude-version 2.1.296` puts that release in the task image | `claude --version` in the agent phase | `2.1.296 (Claude Code)`; agent setup phase 0 s with the reference agent. **To confirm:** that Harbor skips its own install when run with `--ak version=2.1.296` |
+| Tools | `--ak disallowed_tools=…` (19 names, §6.4) | Claude Code started in the image with no credentials and no network; its start event read | Tools offered: `Bash`, `Edit`, `Read`, `Write`. Cost 0, "Not logged in". **To confirm** in a logged-in run: the list can differ |
+| Network in the agent phase | `[agent] network_mode = "allowlist"`, hosts `api.anthropic.com`, `pypi.org`, `files.pythonhosted.org` | Probes in the reference agent's script | `pypi.org` and `api.anthropic.com` reached; `example.com` and `github.com` blocked. **To confirm:** that Claude Code works with only these hosts |
+
+Fourteen named rewards per trial now, in `reward.json`; the detail behind them is in `score.json`.
+The pinned image is 570 MB and took about 55 s to build the first time; Harbor removes it after each
+job, so that time recurs unless Docker's build cache holds.
+
+**Limits, stated plainly:**
+
+- The invention count is partial. It catches behaviour no statement supports on five planted items,
+  and extra commands. Inventions elsewhere in the code still need the human audit.
+- `noticed_auto` is a keyword match. It has not been compared with a human reading of a real run.
+- The earlier Sonnet run of `lend` (§3) cannot be rescored: that task version did not keep the
+  agent's files.
+- Restricting the network and the tools changes the conditions compared with the three pilot runs.
+
+## 5b. Round 2: the messy task in both formats, Sonnet, n = 1 each (2026-10-13)
+
+Owner approved the compile and both runs. Files: `round2/`. Conditions as set in round 1, the same
+for both runs; the two task folders differ only in `spec/` and one line of the task text (checked
+with `diff`). Free checks on the export task first: reference 24 / 24, do-nothing 0 / 24.
+
+**The three items round 1 left to confirm: all confirmed.** Agent setup took 0–1 s (Harbor skipped
+its install); the start event lists `Bash`, `Edit`, `Read`, `Write` and version 2.1.296,
+`apiKeySource: "none"`; Claude Code ran to completion behind the three-host allow-list. No token in
+the job files.
+
+| | Markdown (7 files, 2 120 words) | Graph export (25 packs, 13 516 words) |
+|---|---|---|
+| Hidden tests | 24 / 24 | 24 / 24 |
+| Requirements met / omissions | 24 / 0 | 24 / 0 |
+| Contradiction sides P1, P2, P3, P4, P10 | A, B, A, A, A | A, B, A, A, A |
+| Answers matching neither statement | 0 | 0 |
+| Extra commands | 0 | 0 |
+| Turns / agent time | 5 / 56.6 s | 6 / 71.9 s |
+| Cost, est. API-equivalent | $0.1451 | $0.2351 |
+| Input tokens incl. cache / output | 56 374 / 8 172 | 139 791 / 9 419 |
+| Audit items named in its notes (assistant's reading) | A1, A2, A3, A4 | A2, A3, A4, A5 |
+| Not named | A5 worked example, A6 vague "fast" | A1 fee cap $15, A6 only in passing |
+
+Compile for the export: 98 calls, $0.5031, 37 min 34 s (`round2/lend-compile-1.json`).
+
+**What it shows, as observations (n = 1):**
+
+1. **No difference on anything the scorer measures.** Same tests, same omissions, the same side on
+   every contradiction, no invented behaviour in either.
+2. **The export cost 1.6 times more to run** ($0.2351 against $0.1451), plus the compile.
+3. **Each agent missed a different planted contradiction in its notes.** The export agent did not
+   name the fee cap ($10 against $15), which is also one the compiler missed: the two statements sit
+   in packs 00 and 06 with no link. The Markdown agent did not name the worked example. Both named
+   the superseded limit and chose 3.
+4. **Where the compiler flagged a contradiction, the export agent cited it** (CF ids and node ids in
+   its notes) — the flag reached the agent.
+
+**Defect found in our own scorer:** the keyword triage counted the export run's "pack 15" and
+"15 June" as the fee-cap item. Fixed in `lend_score.py` (a dollar sign or "1500 cents" is now
+needed) and covered in `check_scoring.py`. The stored `score.json` files hold the values from before
+the fix (`noticed_auto` 4 and 6); after it they are 4 and 5, the fifth being a passing mention of
+"fast". The triage stays a triage.
+
+## 5c. Round 3: the same two runs on Haiku, n = 1 each (2026-10-13)
+
+Owner approved. Files: `round3/`. Same task folders, export (checksum verified) and conditions as
+round 2; only the model changed (`anthropic/claude-haiku-5-5`, reported as `claude-haiku-5-5`). The
+task's scorer carried the triage fix from round 2.
+
+| | Markdown | Graph export |
+|---|---|---|
+| Hidden tests | 24 / 24 | 24 / 24 |
+| Requirements met / omissions | 24 / 0 | 24 / 0 |
+| Contradiction sides P1, P2, P3, P4, P10 | A, B, A, A, A | A, B, A, A, A |
+| Answers matching neither statement | 0 | 0 |
+| Commands beyond the eight (read in the code; the scorer could not parse the help text) | 0 | 0 |
+| Turns / agent time | 35 / 246.4 s | 43 / 296.4 s |
+| Cost, est. API-equivalent | $0.0539 | $0.1118 |
+| Input tokens incl. cache / output | 897 440 / 60 939 | 1 627 993 / 71 744 |
+| Lines of Python written (source and its own tests) | 948 | 1 049 |
+| Words in its two notes files | 1 970 | 2 205 |
+| Audit items treated as contradictions in its notes (assistant's reading) | A2, A3, A4, A5 | A2, A3, A4, A5 |
+| Fee cap, A1 | Looked at and judged **not a conflict**: a $10 cap satisfies "nobody should owe more than $15" | Not mentioned |
+
+**What it shows, as observations (n = 1):**
+
+1. **Haiku is at the ceiling too.** Four runs on `lend` now (two models, two formats): every one
+   24 / 24, 0 omissions, and the same side on all five contradictions. The task does not separate
+   the formats on any scored measure with either model.
+2. **The export cost about twice as much to run on Haiku** ($0.1118 against $0.0539); 1.6 times on
+   Sonnet.
+3. **The export agent said what the graph did not flag.** Its notes mark the borrowing limit, the
+   renewal example and the fees-over-$5 rule as "not flagged by the MAP": it found three of the
+   compiler's four misses by reading the packs.
+4. **The fee cap is not named by the export agent in either round;** the Markdown agent addressed it
+   in both.
+
+**Two defects found in our own materials:**
+
+- **Planted item P1 is not a real contradiction.** "Nobody should owe more than $15" and "capped at
+  $10.00" can both hold; the Haiku Markdown agent said so. So the compiler's "miss" of P1 may be
+  correct, and its recall on the key is 5 of 8 if P1 is set aside. The answer key and audit item A1
+  need rewording or removal before `lend` is used again.
+- **The scorer could not parse `--help`** when the command list had a metavar (`extra_commands` −1 in
+  both runs). Fixed in `lend_score.py` and covered in `check_scoring.py`; the stored `score.json`
+  files hold the −1.
+
+**A limit of the task design, seen after three rounds.** The hidden tests were written never to
+depend on how a contradiction is resolved, and the contradictions are left unsettled in both
+formats. So what the graph adds — flagging conflicts — cannot change any scored number by design.
+Only the agents' notes can show it, and those need the human audit.
+
+## 5d. Round 4: the export with the owner's verdicts, Sonnet and Haiku, n = 1 each (2026-10-13)
+
+**Question:** when the owner settles the contradictions the compiler reported, does an agent given
+the export build the settled behaviour?
+
+**What changed against rounds 2 and 3.** Only the export. On a copy of the store (`~/sddc-runs/lend-r4/`)
+the owner's verdict was recorded on the four reported contradictions with
+`sddc conflicts judge CF-… --verdict real --note "…"` (no model call), and `sddc export` then ran
+without `--allow-open` (0 unsettled). Each settled conflict appears in the packs of its nodes as
+`Settled: CF-… / rationale / adjudication: <the owner's note>`. Six files differ from the round 2
+export (`MAP.md`, `export.meta.json`, packs 09, 16, 22, 24); 13 731 words against 13 516. Task,
+instruction, hidden tests, agent version, tools and network are those of round 1.
+
+| Planted item | Conflicts | Owner's verdict (2026-10-13) | Side |
+|---|---|---|---|
+| P2 | CF-000001, CF-000010 | `loans/spec.md` wins: overdue only from the day after the due date, in the report too | A |
+| P3 | CF-000004, CF-000009 | `ops/notes.md` wins: each report row carries the contact email, sixth column `email` | B |
+
+Both verdicts are the opposite of what every build of rounds 2 and 3 chose unaided. This was chosen on
+purpose and must be stated in the report: a verdict that agrees with the unaided choice cannot show an
+effect. P4 and P10 have no verdict because the compiler did not report them.
+
+**New measure.** `lend_score.py --settled P2=A,P3=B` adds `settled_followed` / `settled_total`, using the
+existing probes. Checked by `check_scoring.py` (five checks pass) and by the reference solution through
+Harbor (`r4-oracle-settled`: 24 / 24, settled 1 of 2, as the reference takes side A on P3).
+
+**Runs.** Markdown side: not rerun (owner's choice); the round 2 and 3 builds were rescored offline from
+their stored `app.tgz`. The unsettled-export builds were rescored the same way.
+
+| Build | Model | Tests | Sides P1 P2 P3 P4 P10 | Settled followed | Turns | Agent time | Cost (est.) |
+|---|---|---|---|---|---|---|---|
+| Markdown (round 2, rescored) | Sonnet | 24 / 24 | A B A A A | 0 of 2 | 5 | 56.6 s | $0.1451 |
+| Export, unsettled (round 2, rescored) | Sonnet | 24 / 24 | A B A A A | 0 of 2 | 6 | 71.9 s | $0.2351 |
+| **Export, settled (round 4)** | Sonnet | 24 / 24 | A **A B** A A | **2 of 2** | 7 | 69.7 s | $0.2515 |
+| Markdown (round 3, rescored) | Haiku | 24 / 24 | A B A A A | 0 of 2 | 35 | 246.4 s | $0.0539 |
+| Export, unsettled (round 3, rescored) | Haiku | 24 / 24 | A B A A A | 0 of 2 | 43 | 296.4 s | $0.1118 |
+| **Export, settled (round 4)** | Haiku | 24 / 24 | A **A B** A A | **2 of 2** | 53 | 304.1 s | $0.1227 |
+
+0 omissions and 0 extra commands in both new builds. Both agents cite the verdict in `OPEN_QUESTIONS.md`
+(Sonnet: "Settled conflict verdict: loans wins"; Haiku quotes the adjudication and its conflict ids).
+`grep -rl "sk-ant-oat01"` on both job folders: empty.
+
+**What this shows, and what it does not.**
+- It shows that the chain works end to end: compile, the owner judges, export, the agent builds the
+  settled behaviour. Both models followed both verdicts.
+- It does **not** show that the graph is needed for this. The Markdown agent was given no decision at
+  all, so "0 of 2" for Markdown says only that an agent cannot guess a decision it was not told. The
+  missing control is Markdown plus the same two decisions in a plain file (not run; owner chose 2 runs).
+- n = 1 per cell.
+
+**Findings for the compiler (stage "fix compiler" of the working map).**
+1. `MAP.md` of a settled export says nothing about settled conflicts and prints "unsettled
+   contradictions: 0". The Haiku agent noted that the P4 pair is "not in the export's conflict list"
+   although the MAP reports 0. A reader can take 0 to mean "no contradictions"; it means "none that
+   the compiler found is unjudged".
+2. The verdict is `real` or `false` plus a free-text note. Which side wins lives only in the note. The
+   losing claim stays in its pack and in `CHECKLIST.md` as an ordinary item, so an agent told to
+   "account for every id" must work out from prose that the id is dropped. Both agents did.
+3. One contradiction can be several conflict records (P2 and P3 are two each), so the owner judged
+   four records for two decisions and the same note is printed several times in a pack.
+
+Files: `round4/` (result, score and notes of both runs; `rescore.*.score.json` for the four earlier
+builds; `lend-adjudications.jsonl`; `lend-export-settled.sha256`).
+
+## 5e. Round 5: the control — Markdown plus the decisions in a plain file, n = 1 each (2026-10-13)
+
+**Question:** is the graph needed to carry the owner's decisions, or does a plain file do the same?
+
+**What changed against the Markdown runs of rounds 2 and 3.** One file added to the spec folder:
+`spec/DECISIONS.md` (`harness/tasks/lend-messy/decisions/DECISIONS.md`, 92 words; spec folder 2 212
+words). It states the two verdicts of round 4 in the same words as the adjudication notes, naming files
+instead of conflict and node ids. The instruction is unchanged and does not mention the file. Built
+with `build_lend_task.py … --decisions FILE --settled P2=A,P3=B`. Reference solution through Harbor
+(`r5-oracle-decisions`): 24 / 24, settled 1 of 2, as expected.
+
+| Input | Model | Tests | Sides P1 P2 P3 P4 P10 | Settled followed | Turns | Agent time | Cost (est.) |
+|---|---|---|---|---|---|---|---|
+| Markdown (round 2) | Sonnet | 24 / 24 | A B A A A | 0 of 2 | 5 | 56.6 s | $0.1451 |
+| **Markdown + decisions file (round 5)** | Sonnet | 24 / 24 | A A B A A | **2 of 2** | 5 | 69.1 s | $0.1461 |
+| Export with verdicts (round 4) | Sonnet | 24 / 24 | A A B A A | 2 of 2 | 7 | 69.7 s | $0.2515 |
+| Markdown (round 3) | Haiku | 24 / 24 | A B A A A | 0 of 2 | 35 | 246.4 s | $0.0539 |
+| **Markdown + decisions file (round 5)** | Haiku | 24 / 24 | A A B A A | **2 of 2** | 35 | 185.2 s | $0.0381 |
+| Export with verdicts (round 4) | Haiku | 24 / 24 | A A B A A | 2 of 2 | 53 | 304.1 s | $0.1227 |
+
+0 omissions and 0 extra commands in both new builds; both agents cite `DECISIONS.md` in
+`OPEN_QUESTIONS.md`, and both list the fees-over-$5 pair as a contradiction no decision covers.
+`grep -rl "sk-ant-oat01"` on both job folders: empty.
+
+**Reading.** On `lend`, a plain decisions file gives the same scored result as the settled export,
+at 0.58 times (Sonnet) and 0.31 times (Haiku) the run cost, and without the compile. Across five
+rounds no scored measure favours the graph export on this task. What the compiler did contribute
+is upstream of the agent: it reported the two contradictions the owner then settled (and missed
+P4 and P10; by keyword triage of the notes, the Markdown agents named P4 on both models and P10 on Haiku only). n = 1 per cell.
+
+Files: `round5/`.
+
 ## 6. Revisit guide — how to repeat or continue this trial
 
 Written 2026-10-12 so that a later session can pick this up without the conversation it came from.
@@ -313,3 +531,21 @@ Where things are in a job folder: `jobs/<job>/result.json` (summary), and per tr
 | Can the container's network be limited to what Claude Code needs? | `task.toml` `network_mode = "allowlist"` with `allowed_hosts` (`models/task/config.py`) |
 | ~~Does the agent's container inherit anything from our host configuration (CLAUDE.md, memory, hooks)?~~ | No sign of it in the model run: no MCP servers, memory path inside the trial folder, no mention of `CLAUDE.md` or the repository in the transcript (§3) |
 | Can the Claude Code install be cached between trials? | Put it in the task's Dockerfile, or look for a Harbor option |
+
+### 6.5 Round 1 commands (2026-10-12): build, free checks, and the model run that comes next
+
+```bash
+cd harness/tasks/lend-messy/scoring && python3 check_scoring.py        # scorer against known variants
+cd ../../../platforms/harbor
+python3 build_lend_task.py download/lend-markdown-pinned --claude-version 2.1.296 --agent-network allowlist
+cd download && export HARBOR_TELEMETRY=0
+.venv/bin/harbor run -p lend-markdown-pinned -a oracle -o jobs --job-name r1-oracle-pinned   # 24 / 24, 0 omissions
+.venv/bin/harbor run -p lend-markdown-pinned -a nop    -o jobs --job-name r1-nop-pinned      # 0 / 24, 24 omissions
+
+# NEXT, model call, needs the owner's go-ahead (round 2). Not run yet.
+DISALLOW=Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow
+source ~/.config/sdd-compiler/claude-oauth.env; export CLAUDE_FORCE_OAUTH=1
+env -u ANTHROPIC_API_KEY .venv/bin/harbor run -p lend-markdown-pinned -a claude-code \
+  -m anthropic/claude-sonnet-5-5 --ak version=2.1.296 --ak max_budget_usd=10 \
+  --ak disallowed_tools=$DISALLOW -o jobs --job-name <name>
+```

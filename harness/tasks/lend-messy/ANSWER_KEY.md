@@ -19,6 +19,26 @@
 | P11 | Subsumption, modality differs | "Every member MUST have an email" (`loans/spec.md`; `CHANGELOG.md` 2026-03-02) | "A member SHOULD keep an email on file" (`reports/spec.md`) | R4 |
 | P12 | Vague | "Status should be fast" (`vision.md`) | — | A6 |
 
+## Correction, 2026-10-13 (round 3 finding): P1 is not a contradiction
+
+"Capped at $10.00" (`loans/fees.md`) and "nobody should owe more than $15" (`vision.md`) can both hold: a
+$10 cap satisfies a $15 ceiling. P1 is kept in the table as written, but it is scored as a **loose
+bound, not a contradiction**: a compiler that does not report it is not counted as missing it, and
+audit item A1 is dropped from the count of contradictions (five planted becomes four: P2, P3, P4, P10).
+The spec text is unchanged, so the round 2 compile stays valid. The probe for P1 stays in the scorer as
+a check that the $10 cap is implemented.
+
+## Owner verdicts, 2026-10-13 (round 4)
+
+| Item | Conflicts | Verdict | Side |
+|---|---|---|---|
+| P2 | CF-000001, CF-000010 | `loans/spec.md` wins: overdue only from the day after the due date, in the report too | A |
+| P3 | CF-000004, CF-000009 | `ops/notes.md` wins: each report row carries the member's contact email | B |
+
+Both verdicts are the opposite of what all four builds of rounds 2 and 3 chose unaided, on purpose: a
+verdict that agrees with the unaided choice could not show an effect. P4 and P10 have no verdict,
+because the compiler did not report them. Scored with `lend_score.py --settled P2=A,P3=B`.
+
 ## Resolutions used by the reference implementation
 
 The reference (`reference/`) takes one side only so that it runs; the hidden tests never depend on it:

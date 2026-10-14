@@ -1,0 +1,102 @@
+
+==================================== ERRORS ====================================
+___________________ ERROR collecting unit_tests/test_lice.py ___________________
+ImportError while importing test module '/app/unit_tests/test_lice.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unit_tests/test_lice.py:9: in <module>
+    from lice.core import (
+E   ImportError: cannot import name 'LICENSES' from 'lice.core' (/app/lice/core.py)
+=========================== short test summary info ============================
+ERROR unit_tests/test_lice.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.10s
+F...FF                                                                   [100%]
+=================================== FAILURES ===================================
+_______________________ test_default_license_generation ________________________
+
+    def test_default_license_generation():
+        """
+        Test if the default license (BSD3) is generated when no license is specified.
+        """
+        stdout, stderr, returncode = run_lice([])
+>       assert_in_license(stdout, "All rights reserved.")
+
+acceptance_tests/test_acceptance.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = 'The MIT License (MIT)\nCopyright (c) 2026 \n\nPermission is hereby granted, free of charge, to any person obtaining a... OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\nOR OTHER DEALINGS IN THE SOFTWARE.'
+expected_string = 'All rights reserved.'
+
+    def assert_in_license(content, expected_string):
+        """
+        Asserts that the expected string is in the license content, ignoring
+        leading/trailing whitespace and line endings.
+        """
+        content = content.strip().replace('\r\n', '\n')
+>       assert expected_string in content
+E       AssertionError: assert 'All rights reserved.' in 'The MIT License (MIT)\nCopyright (c) 2026 \n\nPermission is hereby granted, free of charge, to any person obtaining a... OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\nOR OTHER DEALINGS IN THE SOFTWARE.'
+
+acceptance_tests/test_acceptance.py:21: AssertionError
+__________________________ test_license_with_project ___________________________
+
+    def test_license_with_project():
+        """
+        Test if the project name is replaced correctly.
+        """
+        project = "TestProject"
+        stdout, stderr, returncode = run_lice(['-p', project])
+>       assert_in_license(stdout, project)
+
+acceptance_tests/test_acceptance.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = 'The MIT License (MIT)\nCopyright (c) 2026 \n\nPermission is hereby granted, free of charge, to any person obtaining a... OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\nOR OTHER DEALINGS IN THE SOFTWARE.'
+expected_string = 'TestProject'
+
+    def assert_in_license(content, expected_string):
+        """
+        Asserts that the expected string is in the license content, ignoring
+        leading/trailing whitespace and line endings.
+        """
+        content = content.strip().replace('\r\n', '\n')
+>       assert expected_string in content
+E       AssertionError: assert 'TestProject' in 'The MIT License (MIT)\nCopyright (c) 2026 \n\nPermission is hereby granted, free of charge, to any person obtaining a... OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\nOR OTHER DEALINGS IN THE SOFTWARE.'
+
+acceptance_tests/test_acceptance.py:21: AssertionError
+________________________ test_license_with_output_file _________________________
+
+    def test_license_with_output_file():
+        """
+        Test if the license is written to a file.
+        """
+        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+            run_lice(['-f', tmp_file.name])
+            tmp_file.seek(0)
+            content = tmp_file.read().decode('utf-8')
+>           assert_in_license(content, "All rights reserved.")
+
+acceptance_tests/test_acceptance.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+content = 'The MIT License (MIT)\nCopyright (c) 2026 \n\nPermission is hereby granted, free of charge, to any person obtaining a... OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\nOR OTHER DEALINGS IN THE SOFTWARE.'
+expected_string = 'All rights reserved.'
+
+    def assert_in_license(content, expected_string):
+        """
+        Asserts that the expected string is in the license content, ignoring
+        leading/trailing whitespace and line endings.
+        """
+        content = content.strip().replace('\r\n', '\n')
+>       assert expected_string in content
+E       AssertionError: assert 'All rights reserved.' in 'The MIT License (MIT)\nCopyright (c) 2026 \n\nPermission is hereby granted, free of charge, to any person obtaining a... OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\nOR OTHER DEALINGS IN THE SOFTWARE.'
+
+acceptance_tests/test_acceptance.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED acceptance_tests/test_acceptance.py::test_default_license_generation
+FAILED acceptance_tests/test_acceptance.py::test_license_with_project - Asser...
+FAILED acceptance_tests/test_acceptance.py::test_license_with_output_file - A...
+3 failed, 3 passed in 0.18s
