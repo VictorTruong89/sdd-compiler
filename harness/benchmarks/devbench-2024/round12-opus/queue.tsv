@@ -1,0 +1,10 @@
+project	task	status	job	attempts	last_message
+readtime	clean/readtime-markdown	hold		0	not in the approved batch of 8 (owner 2026-10-14)
+chakin	clean/chakin-markdown	done	r12-chakin-markdown-opus-1	1	
+particle-swarm-optimization	clean/particle-swarm-optimization-markdown	done	r12-particle-swarm-optimization-markdown-opus-1	1	
+geotext	clean/geotext-markdown	done	r12-geotext-markdown-opus-1	1	
+stocktrends	clean/stocktrends-markdown	done	r12-stocktrends-markdown-opus-1	1	
+hybrid-images	clean/hybrid-images-markdown	done	r12-hybrid-images-markdown-opus-1	1	
+hone	clean/hone-markdown	done	r12-hone-markdown-opus-1	1	
+lice	clean/lice-markdown	done	r12-lice-markdown-opus-1	1	
+arxiv-digest	clean/arxiv-digest-markdown	done	r12-arxiv-digest-markdown-opus-1	1	

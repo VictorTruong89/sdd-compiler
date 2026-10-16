@@ -532,6 +532,24 @@ Total for the six runs: $0.9311 est. Classes from `test-classification.json` (fi
 Files: `round11/<project>-<format>-sonnet-1.{result.json, reward.json, pytest.out, app.tgz}` and
 `.junit/`.
 
+## 12. Round 12: Opus on the Python projects, Markdown only (2026-10-14; paused)
+
+**Question (owner):** which projects have hidden tests the specification states, does the strongest
+model pass them, and what does Opus score on DevEval as repackaged here?
+
+**Done:** the 61 tests of six more projects classified before any run (all nine projects: S 60, U 33,
+R 47, C 3 of 143); `hybrid-images` found to have 20 hidden tests, not 19 (builder count fixed); six tasks
+rebuilt and checked (reference passes all except `hybrid-images` 12 / 20, do-nothing 0); **eight Opus runs**
+(n = 1 each, `readtime` held): **91 / 131, S 57 / 58, U 29 / 33, R 5 / 37, C 0 / 3, $2.142 est.**
+
+**Main reading:** stated tests are solved; the 5 R passes come with upstream's exact unstated names
+(`UPTREND_CONTINUAL`, `roundit(base=5)`, `six.moves…urlretrieve`, `Index` namedtuple), so they show
+recall of the public packages, not use of the specification. Open: `readtime`, the `arxiv-digest`
+live-service check, reading the one missed S test.
+
+Everything (runs, tasks, checks, queue, log, results, classification notes, findings): `round12-opus/README.md`.
+Register runs 35–42.
+
 ## 6. Revisit guide
 
 ### 6.1 What is in this folder

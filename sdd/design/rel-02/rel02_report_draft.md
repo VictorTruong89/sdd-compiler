@@ -256,3 +256,109 @@ does not improve the code an agent writes, and it costs more. What the work does
 narrower: the compiler finds some real contradictions before any code is written, and a decision
 recorded once reaches the code. Whether the graph earns its cost on large specifications is the
 open question that decides the claim.
+
+## R4. Result on a second benchmark (Zero2Repo) — draft, rounds 13, 13b and 13c (2026-10-14 to 16)
+
+> Sources: `harness/trials/r13-zero2repo-case004/TRIAL.md` (round 13),
+> `harness/trials/r13b-zero2repo-haiku-sweep/TRIAL.md` (round 13b),
+> `harness/trials/r13c-zero2repo-3cases/TRIAL.md` (round 13c), register runs 43–84 in
+> `rel02_methodology_notes.md`. R3 does not yet include this section.
+
+### Why a second benchmark
+
+DevEval's hidden tests check details its documents do not state (R2, "A finding about the benchmark
+itself"), so a format difference there could not be read as a specification effect. Zero2Repo
+(commit `0ecc523`, 17 cases, no licence file, kept out of git) writes its hidden tests against a stated
+Interface Contract. On case004 (`pallets/itsdangerous`, names neutralised) the original upstream code
+fails only the 12 tests on behaviour the contract adds (246 / 258), which supports the claim.
+
+### Round 13: case004, both models, both formats, two runs each
+
+Every Markdown run passed all 258 tests (Haiku 2, Sonnet 2). Export runs: Sonnet 2 / 2 full; Haiku 1
+full, 1 at 256 / 258. The two misses were caused by the compiler: one sentence of the specification
+states a rule and its exception, the compiler judged them contradictory, the export showed the
+contradiction as unsettled, and Haiku resolved it the wrong way. With the 18 detected contradictions
+judged false (all were a rule and its stated exception or condition) and the export remade, Haiku
+passed 258 / 258 twice, at 20–35 turns against 46–75 with the unsettled export and 24–26 with the
+Markdown. Sonnet's turns and cost did not change with the format.
+
+### Round 13b: which cases does Haiku fail from the Markdown?
+
+**Intention.** case004 sat at the ceiling: a format can only lose there. The sweep looks for cases
+where Haiku, given the plain Markdown, does not pass every test, so the export has room to show a gain.
+One Haiku run per case (a screen, not a rate), on the 8 Python cases that run on a Python + Node image;
+the 9 TypeScript, C/C++, Go and Zig cases need their toolchains in the image and are not run.
+
+| Case | Upstream | Spec words | Tests passed | Turns | $ est. |
+|---|---|---|---|---|---|
+| case001 | tomli | 4 860 | 302 / 302 | 14 | 0.05 |
+| case007 | pyotp | 5 122 | 80 / 80 | 16 | 0.03 |
+| case011 | jmespath | 7 002 | 321 / 321 | 20 | 0.27 |
+| case002 | python-envfile | 7 202 | 281 / 281 | 24 | 0.07 |
+| case005 | h11 | 7 915 | 395 / 395 | 22 | 0.37 |
+| case010 | nltk | 8 412 | **166 / 197** | 33 | 0.45 |
+| case006 | click | 14 138 | **464 / 476** | 81 | 1.24 |
+| case016 | sloptrim | 18 964 | **370 / 388** | 53 | 0.55 |
+
+**Findings.** With case004, Haiku passes 6 of the 9 Python cases in full from the Markdown. The three
+it fails are the three largest specifications (8 412 to 18 964 words; the passes are 4 860 to 7 915).
+On case010 Haiku left out the Snowball stemmers the specification requires, and made ARLSTem raise
+because the specification calls its results "outside this specification" (the tests only check that
+it constructs and returns a string); on case006 and case016 the misses are edge cases and rules spread over many features
+(read in round 13c, below). **Correction (2026-10-16):** 20 of case010's 197 tests cannot pass in our
+tasks (model files missing, see 13c); on the 177 scorable tests this run is 146 / 177, all 11 misses
+in the stemmers.
+
+**What this does not cover.** One run per case; famous upstreams (recall: in round 13 the agents
+chose upstream's own module names, which the specification does not give); Python only.
+
+### Round 13c: three cases Haiku fails, both models, both formats, two runs each
+
+**Intention.** Take the three cases Haiku failed from the Markdown in 13b (case010 nltk, case006
+click, case016 sloptrim: 8 412, 14 138 and 18 964 words) and ask whether the spec-graph export
+changes which hidden tests pass, for Haiku and for Sonnet, and why the failing tests fail. Each case was
+compiled with `sddc` (Haiku), every contradiction the compiler raised was judged against the
+specification (145 in all, every one false: a rule and its stated exception, two different
+components, or a word in two senses), and the export was made with none left unsettled. 24 runs:
+3 cases × 2 models × 2 formats × n = 2.
+
+**A benchmark fault first.** 20 of case010's 197 tests need NLTK model files that Zero2Repo's own
+runner downloads before scoring and its Harbor adapter output does not. In our tasks these 20 fail in
+every run whatever the code, so case010 is read on the 177 scorable tests below.
+
+| Case (tests) | Haiku Markdown | Haiku export | Sonnet Markdown | Sonnet export |
+|---|---|---|---|---|
+| case010 (177 scorable) | 142, 149 (13b: 146) | 148, 146 | 155, 156 | 156, 155 |
+| case006 (476) | 452, 0 ¹ (13b: 464) | 425, 467 | 470, 469 | 473, 470 |
+| case016 (388) | 381, 378 (13b: 370) | 364, 379 | 385, 387 | 387, **388** ² |
+
+¹ Haiku stopped early calling its code "a partial build"; the tests could not import it.
+² Official 1.0, the only full pass of the round.
+
+Turns, Haiku: Markdown 33–47 (runs that finished), export 63–87. Sonnet: 21–38 in both formats.
+Estimated cost (Claude Code's `total_cost_usd`): runs $38.61, three runs stopped at the usage limit
+and rerun $4.37, compiles $11.16 (386, 853 and 939 Haiku calls).
+
+**Findings.**
+
+- **The settled export did not change which tests pass.** Test by test, no test fails in every run of
+  one format and in no run of the other, for either model, on case010 and case016 (for Haiku the 13b
+  run counted as a third Markdown run). On case006 Haiku shows 2 such tests each way, on 2 runs per
+  format. Sonnet's totals overlap between formats on every case.
+- **Haiku works about twice as long on the export without scoring higher** (63–87 turns against
+  33–47; 1.4–1.9× the estimated cost). On case004 (round 13) the settled export had brought Haiku's
+  turns down to about the Markdown's; on these larger specifications (export 5.0–5.3× the Markdown's
+  words) it does not.
+- **The failures are mostly not about reading the specification.** case010: algorithms the
+  specification names without giving their rules (Snowball, Lancaster stemmers); Haiku leaves them
+  out, Sonnet approximates them and misses exact stems. case006 and case016: single stated rules among
+  hundreds (a tie rule, five distinct failure replies, Unicode character classes), missed in both
+  formats. Where a format difference shows on case006, the rule is present word for word in both
+  formats.
+- **The compiler's contradictions were all false again** (145 here, 18 in round 13): on specifications
+  written carefully, every one it raised was a rule with its own stated exception or condition, or two
+  different things with similar wording. Two judgements were readings the text leaves partly open.
+
+**What this does not cover.** n = 2 per cell; a time-of-day difference between formats cannot be
+excluded (the Markdown runs went first); case010's 20 unscorable tests are not rescored with the model
+files installed (possible without a model call, from the saved code); famous upstreams; Python only.

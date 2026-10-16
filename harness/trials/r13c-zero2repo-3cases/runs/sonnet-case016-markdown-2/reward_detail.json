@@ -1,0 +1,1 @@
+{"judge_error": null, "official_reward_raw": 0.0, "failed_tests": ["../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge"], "error_tests": []}

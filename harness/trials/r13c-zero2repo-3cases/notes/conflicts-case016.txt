@@ -1,0 +1,467 @@
+### Group 1 (2 record(s), 3 node(s))
+- **CF-000002** contradiction: N-001049 (sdd/specs/Interface_Contract.md:625), N-001051 (sdd/specs/Interface_Contract.md:625) — Claim A requires the export to name `skills`, `plugins` and `CLAUDE_PLUGIN_ROOT` on one line at full and strict, while Claim B forbids the export from naming any of them; B has no level qualifier in the quoted text, so read literally both cannot hold for the same export.
+- **CF-000091** contradiction: N-001050 (sdd/specs/Interface_Contract.md:625), N-001051 (sdd/specs/Interface_Contract.md:625) — A has the export line naming CLAUDE_PLUGIN_ROOT, skills and plugins, while B says the export names none of them; this conflicts unless B is limited to a level that A does not cover, and B's visible text shows no level qualifier.
+
+### Group 2 (1 record(s), 2 node(s))
+- **CF-000003** contradiction: N-000186 (sdd/specs/Full_PRD.md:148), N-000187 (sdd/specs/Full_PRD.md:148) — Claim A says a document under 300 words never fires the pattern, while claim B says such a document fires when it has no semicolon and almost no parenthetical; the text does not say whether B's 'such a document' excludes short documents, so the conflict depends on that reading.
+
+### Group 3 (2 record(s), 3 node(s))
+- **CF-000004** contradiction: N-000936 (sdd/specs/Interface_Contract.md:520), N-000938 (sdd/specs/Interface_Contract.md:520) — Claim A requires the coverage line to be present when prose exceeds the scan window, while claim B forbids any coverage line from appearing, so both cannot hold for long prose; claim B's text has no stated condition, so this is a low-confidence reading.
+- **CF-000111** contradiction: N-000796 (sdd/specs/Interface_Contract.md:256), N-000938 (sdd/specs/Interface_Contract.md:520) — A requires a coverage annotation when extracted prose exceeds the scan window, while B forbids any coverage: line with no stated condition, so both cannot hold in the longer-prose case.
+
+### Group 4 (1 record(s), 2 node(s))
+- **CF-000005** contradiction: N-001055 (sdd/specs/Interface_Contract.md:625), N-001056 (sdd/specs/Interface_Contract.md:625) — A says the export never names the cleanup switch, while B says at `strict` the export names it, so both cannot hold for the export at strict; A's text omits any level qualifier, so this rests on the literal wording.
+
+### Group 5 (3 record(s), 4 node(s))
+- **CF-000017** contradiction: N-000375 (sdd/specs/Full_PRD.md:248), N-000377 (sdd/specs/Full_PRD.md:248) — Claim A says the contract is allowed to name the detector path, while claim B says the exported contract must not name that path, so both cannot hold for the same contract.
+- **CF-000036** duplication: N-000377 (sdd/specs/Full_PRD.md:248), N-000493 (sdd/specs/Full_PRD.md:292) — Both say the exported writing contract must not contain this machine's path or the user name, differing only in wording and modality phrasing.
+- **CF-000165** duplication: N-000375 (sdd/specs/Full_PRD.md:248), N-000782 (sdd/specs/Interface_Contract.md:210) — Both allow the same thing, naming this machine's detector path, with MAY modality; the subjects (writing contract, live delivery) are not distinguished in the text.
+
+### Group 6 (1 record(s), 2 node(s))
+- **CF-000021** contradiction: N-000941 (sdd/specs/Interface_Contract.md:520), N-000942 (sdd/specs/Interface_Contract.md:520) — A requires every fired finding to be listed, while B caps the number of listed entries, so the two clash whenever fired findings exceed the cap.
+
+### Group 7 (1 record(s), 2 node(s))
+- **CF-000032** contradiction: N-000983 (sdd/specs/Interface_Contract.md:556), N-000986 (sdd/specs/Interface_Contract.md:556) — A requires the Python check line to contain `python not found`, while B requires that same line not to contain it, so both cannot hold.
+
+### Group 8 (2 record(s), 3 node(s))
+- **CF-000033** contradiction: N-000992 (sdd/specs/Interface_Contract.md:561), N-000996 (sdd/specs/Interface_Contract.md:563) — A requires the closer to contain the show command in the user's typed form, while B requires the closer to contain neither the show command nor the on command in either spelling.
+- **CF-000034** contradiction: N-000996 (sdd/specs/Interface_Contract.md:563), N-000998 (sdd/specs/Interface_Contract.md:565) — A bars the closer from containing the on command in either spelling, while B requires the closer to contain the on command in the typed form, so both cannot hold for the same closer; B's 'Only the mode is off' scoping is truncated, so this is low confidence.
+
+### Group 9 (2 record(s), 3 node(s))
+- **CF-000038** contradiction: N-000871 (sdd/specs/Interface_Contract.md:430), N-000873 (sdd/specs/Interface_Contract.md:430) — A says a level word changes the stored level, while B says the stored level stays as it was with no condition, so both cannot hold if a level word is present.
+- **CF-000166** duplication: N-000447 (sdd/specs/Full_PRD.md:281), N-000871 (sdd/specs/Interface_Contract.md:430) — Claim A defines forwarding as holding when a level word changes the stored level, and Claim B states that same effect as a MUST, so both state the same behaviour.
+
+### Group 10 (1 record(s), 2 node(s))
+- **CF-000049** contradiction: N-000063 (sdd/specs/Full_PRD.md:59), N-000082 (sdd/specs/Full_PRD.md:82) — A says the resampled interval is the only opt-in extra, but B makes the cleanup switch (FP-03) and other switches optional too, so both cannot hold if 'extra' covers the same set.
+
+### Group 11 (2 record(s), 3 node(s))
+- **CF-000050** contradiction: N-000117 (sdd/specs/Full_PRD.md:93), N-000121 (sdd/specs/Full_PRD.md:95) — Claim A caps the score at 40 except under the single-decisive floor, but claim B forces a floor of 45 for a short document with three or more score-moving families, which that exception does not cover.
+- **CF-000051** contradiction: N-000117 (sdd/specs/Full_PRD.md:93), N-000122 (sdd/specs/Full_PRD.md:95) — Claim A caps the score at 40 except under the single-decisive floor, but claim B forces a floor of 45 for a 400-word document with six or more score-moving families, which that exception does not cover.
+
+### Group 12 (2 record(s), 3 node(s))
+- **CF-000058** contradiction: N-000384 (sdd/specs/Full_PRD.md:254), N-000479 (sdd/specs/Full_PRD.md:290) — A states unconditionally that the feature scores saved prose files, while B says that in this mode saving files triggers no scoring, so both cannot hold in that mode.
+- **CF-000059** duplication: N-000385 (sdd/specs/Full_PRD.md:258), N-000479 (sdd/specs/Full_PRD.md:290) — A says the guard does not score in off or lite, and B says saving triggers no scoring in this mode; both state the same no-scoring fact for the same mode.
+
+### Group 13 (1 record(s), 2 node(s))
+- **CF-000078** contradiction: N-000885 (sdd/specs/Interface_Contract.md:457), N-001040 (sdd/specs/Interface_Contract.md:617) — A requires a namespaced help reply to keep the non-namespaced `/prosecheck` spelling, while B requires the reply to use the spelling the user typed, which for a namespaced invocation is `/prosecheck:prosecheck`; both cannot hold for the same namespaced reply.
+
+### Group 14 (1 record(s), 2 node(s))
+- **CF-000079** contradiction: N-000907 (sdd/specs/Interface_Contract.md:480), N-000932 (sdd/specs/Interface_Contract.md:510) — A says the `status` reply is one line while B says the reply is several listed lines in order; if both describe the same status reply they cannot both hold, though B is unqualified and may describe a different reply.
+
+### Group 15 (1 record(s), 2 node(s))
+- **CF-000082** contradiction: N-000193 (sdd/specs/Full_PRD.md:154), N-000194 (sdd/specs/Full_PRD.md:154) — A says a heading of three or more words whose major words all begin with capitals fires, but B says an all-capitals heading does not fire, and an all-capitals heading also meets A's capitalisation condition.
+
+### Group 16 (1 record(s), 2 node(s))
+- **CF-000092** contradiction: N-001052 (sdd/specs/Interface_Contract.md:625), N-001054 (sdd/specs/Interface_Contract.md:625) — A says the export must never show the full-level threshold integer, while B says at full level the export must show the full-level threshold; A has no mode condition, so both cannot hold at full.
+
+### Group 17 (4 record(s), 4 node(s))
+- **CF-000094** contradiction: N-000029 (sdd/specs/Full_PRD.md:31), N-001004 (sdd/specs/Interface_Contract.md:578) — A says the ledger holds base name, score, band and pattern labels, while B says the ledger holds base names only, so both cannot hold for the same ledger under the literal reading of 'only'.
+- **CF-000115** contradiction: N-000029 (sdd/specs/Full_PRD.md:31), N-000417 (sdd/specs/Full_PRD.md:266) — A says the session ledger holds base name, score, band and pattern labels; B says the same ledger holds the base name only, so both cannot hold.
+- **CF-000132** contradiction: N-000272 (sdd/specs/Full_PRD.md:196), N-000417 (sdd/specs/Full_PRD.md:266) — A has the guard record .pdf/.rtf on the ledger as binary, while B says the ledger holds only the base name, so a binary marking would be extra content the ledger may not hold.
+- **CF-000037** duplication: N-000417 (sdd/specs/Full_PRD.md:266), N-001004 (sdd/specs/Interface_Contract.md:578) — Both state that the session ledger holds base names only, differing only in wording.
+
+### Group 18 (1 record(s), 2 node(s))
+- **CF-000096** contradiction: N-000074 (sdd/specs/Full_PRD.md:69), N-000931 (sdd/specs/Interface_Contract.md:510) — A forbids scoring a file written only by a shell command, while B requires that any readable file inside its size cap be scored, so a shell-written file that is readable and under the cap would have to be both scored and not scored.
+
+### Group 19 (6 record(s), 4 node(s))
+- **CF-000103** contradiction: N-000508 (sdd/specs/Full_PRD.md:293), N-000762 (sdd/specs/Interface_Contract.md:198) — If the stats command writes to standard output while the stored level is off, A requires printed output and B requires standard output to be empty, so both cannot hold; the text does not say whether stats is exempt from the level.
+- **CF-000104** contradiction: N-000508 (sdd/specs/Full_PRD.md:293), N-000786 (sdd/specs/Interface_Contract.md:216) — If the stats command writes to standard output while the stored level is off, A requires printed output and B requires standard output to be empty, so both cannot hold; the text does not say whether stats is exempt from the level.
+- **CF-000105** contradiction: N-000508 (sdd/specs/Full_PRD.md:293), N-000859 (sdd/specs/Interface_Contract.md:415) — If the stats command writes to standard output while the stored level is off, A requires printed output and B requires standard output to be empty, so both cannot hold; the text does not say whether stats is exempt from the level.
+- **CF-000069** duplication: N-000762 (sdd/specs/Interface_Contract.md:198), N-000786 (sdd/specs/Interface_Contract.md:216) — Both claims are the same sentence about stored level off emptying standard output.
+- **CF-000070** duplication: N-000762 (sdd/specs/Interface_Contract.md:198), N-000859 (sdd/specs/Interface_Contract.md:415) — Both say that when the stored level is off, standard output is empty; only the wording differs.
+- **CF-000072** duplication: N-000786 (sdd/specs/Interface_Contract.md:216), N-000859 (sdd/specs/Interface_Contract.md:415) — Both say that with stored level off, standard output is empty; only the wording differs.
+
+### Group 20 (1 record(s), 2 node(s))
+- **CF-000110** contradiction: N-000777 (sdd/specs/Interface_Contract.md:207), N-000780 (sdd/specs/Interface_Contract.md:208) — One says the text must not contain `--clean`; the other says the text must ask for a finish through `--clean`. Both apply to the same text unless a condition separates them, and none is shown.
+
+### Group 21 (2 record(s), 3 node(s))
+- **CF-000112** contradiction: N-000858 (sdd/specs/Interface_Contract.md:415), N-000920 (sdd/specs/Interface_Contract.md:493) — A says an ordinary non-command prompt falls through to the writing-contract reminder, while B says that same prompt after off produces empty standard output; both cannot hold unless A is read as level-gated.
+- **CF-000186** contradiction: N-000544 (sdd/specs/Full_PRD.md:301), N-000920 (sdd/specs/Interface_Contract.md:493) — Claim A says non-command prompts unconditionally fall through to the reminder, while claim B says after off an ordinary non-command prompt produces empty standard output, so both cannot hold for the same prompt in off mode unless the reminder is not output.
+
+### Group 22 (1 record(s), 2 node(s))
+- **CF-000114** contradiction: N-000993 (sdd/specs/Interface_Contract.md:561), N-000995 (sdd/specs/Interface_Contract.md:563) — A unconditionally bans `/prosecheck doctor` from the closer, while B requires the closer to contain the non-namespaced `/prosecheck doctor` whenever a check is not successful, so both cannot hold in that state.
+
+### Group 23 (8 record(s), 9 node(s))
+- **CF-000117** contradiction: N-000425 (sdd/specs/Full_PRD.md:271), N-000676 (sdd/specs/Interface_Contract.md:73) — A requires a successful exit for an unreadable path, while B requires exit 1 for an unreadable path, so both cannot hold for the same input.
+- **CF-000136** contradiction: N-000425 (sdd/specs/Full_PRD.md:271), N-000752 (sdd/specs/Interface_Contract.md:175) — Both cover an unreadable path, but A requires a successful exit for a path not on disk while B requires exit status 1 for an unreadable path, so both cannot hold for a missing path; the match is inferred from B's unqualified label, so confidence is low.
+- **CF-000209** contradiction: N-000734 (sdd/specs/Interface_Contract.md:166), N-000752 (sdd/specs/Interface_Contract.md:175) — Claim A states the exit status is 0 without any scope, while claim B requires exit status 1 for unreadable input, so both cannot hold for the same failing run.
+- **CF-000210** contradiction: N-000752 (sdd/specs/Interface_Contract.md:175), N-000962 (sdd/specs/Interface_Contract.md:537) — Claim A requires the detector to exit with status 1 on an unreadable path, while claim B states the exit status is not required, so both cannot hold for that same exit status in that case; the claims are unscoped in the excerpt, so this is low confidence.
+- **CF-000085** duplication: N-000826 (sdd/specs/Interface_Contract.md:336), N-000847 (sdd/specs/Interface_Contract.md:394) — Both state that the process exits successfully with MUST modality; only capitalization differs.
+- **CF-000109** duplication: N-000706 (sdd/specs/Interface_Contract.md:120), N-000734 (sdd/specs/Interface_Contract.md:166) — Both claims state the same requirement that the exit status is 0.
+- **CF-000208** duplication: N-000706 (sdd/specs/Interface_Contract.md:120), N-000847 (sdd/specs/Interface_Contract.md:394) — Both say the process ends with a successful outcome, which is exit status 0, with no differing condition.
+- **CF-000140** subsumption: N-000535 (sdd/specs/Full_PRD.md:297), N-000962 (sdd/specs/Interface_Contract.md:537) — If whether the reply contains the exit status is the implementer's choice, then the exit status is not required, so A implies B.
+
+### Group 24 (1 record(s), 2 node(s))
+- **CF-000118** contradiction: N-000755 (sdd/specs/Interface_Contract.md:180), N-000758 (sdd/specs/Interface_Contract.md:180) — Claim A requires a notice line with the first operand on standard error without any qualifier, while claim B forbids that line for a single-operand run, so they conflict unless A is scoped to multi-operand runs, which the text does not say.
+
+### Group 25 (7 record(s), 7 node(s))
+- **CF-000128** contradiction: N-000025 (sdd/specs/Full_PRD.md:25), N-000395 (sdd/specs/Full_PRD.md:261) — A says the nudge names all the fired pattern labels, while B's envelope, which carries the nudge context, caps them at up to five, so both cannot hold when more than five labels fire.
+- **CF-000144** contradiction: N-000735 (sdd/specs/Interface_Contract.md:170), N-000960 (sdd/specs/Interface_Contract.md:537) — A requires standard output to be empty on failure, while B requires the detector's failure outcome to be the base name and the word failed, which would be printed output if it goes to standard output; the text does not state the channel explicitly.
+- **CF-000173** contradiction: N-000958 (sdd/specs/Interface_Contract.md:535), N-000959 (sdd/specs/Interface_Contract.md:536) — Both govern the same detector exiting without failure, yet A requires the base name to be printed while B requires the base name not to be printed.
+- **CF-000174** contradiction: N-000958 (sdd/specs/Interface_Contract.md:535), N-000960 (sdd/specs/Interface_Contract.md:537) — The same detector cannot both exit without failure (A) and exit with a failure (B) at the same time.
+- **CF-000175** contradiction: N-000959 (sdd/specs/Interface_Contract.md:536), N-000960 (sdd/specs/Interface_Contract.md:537) — The same detector cannot both exit without failure (A) and exit with a failure (B) at the same time.
+- **CF-000179** contradiction: N-000395 (sdd/specs/Full_PRD.md:261), N-000958 (sdd/specs/Interface_Contract.md:535) — Claim A requires the hook to always print a JSON envelope naming the base name, while Claim B requires the detector to print nothing in its case, so both cannot hold for the same output unless the two are the same component under different conditions, which the text does not say.
+- **CF-000066** duplication: N-000530 (sdd/specs/Full_PRD.md:297), N-000959 (sdd/specs/Interface_Contract.md:536) — Both say that when the detector exits without failure and prints non-report text, the output is "no report" and does not name the file ("not the base name"); the subject differs (check vs the detector), so confidence is low.
+
+### Group 26 (1 record(s), 2 node(s))
+- **CF-000134** contradiction: N-000286 (sdd/specs/Full_PRD.md:207), N-000404 (sdd/specs/Full_PRD.md:264) — A requires the detector to run on any file path, while B requires paths under node_modules to be skipped, so a node_modules file path given directly would have to both be run and be skipped; the text does not say B applies only to directory walks.
+
+### Group 27 (11 record(s), 9 node(s))
+- **CF-000137** contradiction: N-000499 (sdd/specs/Full_PRD.md:292), N-001074 (sdd/specs/Interface_Contract.md:633) — A requires init to create the rule file when it does not yet exist, while B states without any scope that the rule file is not created, so both cannot hold for the same case unless B is limited to some unstated situation.
+- **CF-000141** contradiction: N-000633 (sdd/specs/Interface_Contract.md:41), N-001074 (sdd/specs/Interface_Contract.md:633) — A says init copies the Cursor rule into place when the file does not exist, while B says the rule file is not created, with no condition. Both cannot hold for the same file in the same init run, though B's unstated context could narrow it.
+- **CF-000148** contradiction: N-001061 (sdd/specs/Interface_Contract.md:629), N-001074 (sdd/specs/Interface_Contract.md:633) — A requires the rule to open with a front-matter block, which presupposes the rule file exists, while B forbids the rule file from being created; neither text states a condition that separates the two.
+- **CF-000153** contradiction: N-000499 (sdd/specs/Full_PRD.md:292), N-000537 (sdd/specs/Full_PRD.md:298) — Claim A has init copy the Cursor rule whenever that file does not yet exist with no level condition, while claim B says that when the level is off, init writes no files, including the Cursor rule, so both cannot hold when the level is off.
+- **CF-000158** contradiction: N-000537 (sdd/specs/Full_PRD.md:298), N-000633 (sdd/specs/Interface_Contract.md:41) — A says init at level off must write no files, including the Cursor rule; B says init copies the Cursor rule whenever the file is absent, with no level condition, so both must hold when level is off and the file is absent.
+- **CF-000159** contradiction: N-000634 (sdd/specs/Interface_Contract.md:41), N-001074 (sdd/specs/Interface_Contract.md:633) — One claim asserts the Cursor rule's front matter exists and limits it to prose globs, while the other states unconditionally that the rule file is not created; both cannot hold for the same file unless the second has a condition the quoted text omits.
+- **CF-000028** duplication: N-000499 (sdd/specs/Full_PRD.md:292), N-000633 (sdd/specs/Interface_Contract.md:41) — Both say init copies the shipped Cursor rule to the same prosecheck.mdc path when that file does not yet exist; `./` is only a different spelling of the same path.
+- **CF-000138** duplication: N-000501 (sdd/specs/Full_PRD.md:292), N-000634 (sdd/specs/Interface_Contract.md:41) — Both claims state the same front-matter rule: the Cursor rule is limited to the listed prose globs and excludes py, js, ts, and json.
+- **CF-000205** duplication: N-000634 (sdd/specs/Interface_Contract.md:41), N-001062 (sdd/specs/Interface_Contract.md:629) — Both say the Cursor rule's front-matter glob list is limited to the same eight prose globs.
+- **CF-000202** subsumption: N-000501 (sdd/specs/Full_PRD.md:292), N-001064 (sdd/specs/Interface_Contract.md:629) — Claim A states the code-glob exclusion as part of its front-matter limit, so it implies Claim B's bare statement that the list excludes those globs.
+- **CF-000206** subsumption: N-000634 (sdd/specs/Interface_Contract.md:41), N-001064 (sdd/specs/Interface_Contract.md:629) — A's limit to prose globs already excludes *.py, *.js, *.ts and *.json, so A implies B's exclusion statement.
+
+### Group 28 (1 record(s), 2 node(s))
+- **CF-000146** contradiction: N-000853 (sdd/specs/Interface_Contract.md:407), N-000957 (sdd/specs/Interface_Contract.md:534) — Under the Python-launch failure condition, B requires the whole reply to be `detector unavailable`, which cannot also name all twelve subcommands as A requires; the B text is truncated, so this is low confidence.
+
+### Group 29 (2 record(s), 3 node(s))
+- **CF-000151** contradiction: N-000130 (sdd/specs/Full_PRD.md:98), N-000154 (sdd/specs/Full_PRD.md:130) — A says code blocks and similar structures inside the scan window generate no findings, while B requires every invisible character in the scan window (which includes those blocks) to be counted, so an invisible character inside a code block cannot both be counted and produce no finding.
+- **CF-000052** duplication: N-000154 (sdd/specs/Full_PRD.md:130), N-000290 (sdd/specs/Full_PRD.md:212) — Both require removal or counting of every invisible character, with the same codepoint list and the same exception for characters that do a job in position.
+
+### Group 30 (2 record(s), 3 node(s))
+- **CF-000152** contradiction: N-000294 (sdd/specs/Full_PRD.md:213), N-000296 (sdd/specs/Full_PRD.md:213) — Claim A keeps U+00A0 and U+202F when they hold something together, so those characters remain non-standard spaces; Claim B says a rescan finds zero non-standard-space hits, which fails for kept characters unless hits exclude the exceptions.
+- **CF-000198** contradiction: N-000296 (sdd/specs/Full_PRD.md:213), N-000713 (sdd/specs/Interface_Contract.md:148) — A says a rescan after cleanup reports zero non-standard-space hits, while B says the hit count is a positive integer, so a zero count for the same rescan cannot satisfy both.
+
+### Group 31 (1 record(s), 2 node(s))
+- **CF-000168** contradiction: N-000522 (sdd/specs/Full_PRD.md:293), N-001087 (sdd/specs/Interface_Contract.md:662) — A says an unreadable transcript yields no turn count, while B unconditionally says the stats reply carries the assistant-turn count, so both cannot hold for an unreadable transcript.
+
+### Group 32 (1 record(s), 2 node(s))
+- **CF-000172** contradiction: N-000892 (sdd/specs/Interface_Contract.md:460), N-001067 (sdd/specs/Interface_Contract.md:629) — Claim A requires the reply to include the full-level guard threshold integer, while claim B forbids showing that same integer, so both hold only if they govern the same output, which the text does not state.
+
+### Group 33 (1 record(s), 2 node(s))
+- **CF-000182** contradiction: N-000028 (sdd/specs/Full_PRD.md:30), N-000293 (sdd/specs/Full_PRD.md:213) — Claim A normalizes non-standard spaces only where they are not load-bearing, while claim B requires every non-U+0020 space separator to become U+0020, so a load-bearing space cannot satisfy both.
+
+### Group 34 (1 record(s), 2 node(s))
+- **CF-000185** contradiction: N-000424 (sdd/specs/Full_PRD.md:271), N-000950 (sdd/specs/Interface_Contract.md:530) — Claim A says a directory is ignored (no reply implied), while claim B says a directory gets the reply `not a file`; both cannot hold for the same directory input, though B's text is truncated.
+
+### Group 35 (1 record(s), 2 node(s))
+- **CF-000189** contradiction: N-000155 (sdd/specs/Full_PRD.md:131), N-000156 (sdd/specs/Full_PRD.md:131) — Claim A flags a square-bracket fill-in slot (e.g. one beginning with 'your') as a slot, while Claim B says a bracket followed by '(' is a link and not a slot; a '[your name](url)' bracket must be both, which cannot hold.
+
+### Group 36 (1 record(s), 2 node(s))
+- **CF-000199** contradiction: N-000319 (sdd/specs/Full_PRD.md:230), N-000761 (sdd/specs/Interface_Contract.md:196) — A allows the plugin hooks' standard output to be a JSON envelope, while B says standard output is plain text and not JSON; if B covers hook output, both cannot hold.
+
+### Group 37 (1 record(s), 2 node(s))
+- **CF-000200** contradiction: N-000387 (sdd/specs/Full_PRD.md:259), N-000409 (sdd/specs/Full_PRD.md:264) — A says the eligible extensions are exactly the twenty FP-02 formats, while B says any other file is eligible by its extension, which would make files outside those twenty eligible. The text does not say what 'other file' refers to, so this is low confidence.
+
+### Group 38 (1 record(s), 2 node(s))
+- **CF-000214** contradiction: N-000343 (sdd/specs/Full_PRD.md:237), N-000346 (sdd/specs/Full_PRD.md:237) — A says every banned-list word used standalone in ordinary prose fires a check, while B says the self-thoroughness and copula-avoidance cases are enforced only in context and not as bare words, so a bare 'Comprehensive' or 'boast' cannot both fire and not fire.
+
+### Group 39 (9 record(s), 9 node(s))
+- **CF-000217** contradiction: N-000579 (sdd/specs/Interface_Contract.md:9), N-000581 (sdd/specs/Interface_Contract.md:9) — Claim A says prosecheck has no runtime third-party dependency, while Claim B says the plugin's hooks need Node.js, an external runtime that may count as one; whether Node.js is a third-party dependency is a judgment call.
+- **CF-000160** duplication: N-000032 (sdd/specs/Full_PRD.md:36), N-000556 (sdd/specs/Hardware_Requirements.md:7) — Both prohibit compiled extensions and runtime third-party dependencies for the same product, though the subjects are named prosecheck and detector and each lists one extra item (installable package vs GPU requirement).
+- **CF-000192** duplication: N-000031 (sdd/specs/Full_PRD.md:36), N-000052 (sdd/specs/Full_PRD.md:55) — Both say the plugin hooks run on or require Node.js; A states the requirement and B states the runtime behaviour, which amount to the same claim.
+- **CF-000193** duplication: N-000031 (sdd/specs/Full_PRD.md:36), N-000581 (sdd/specs/Interface_Contract.md:9) — Both claims have identical text: the plugin's saved-file and command hooks need Node.js.
+- **CF-000212** duplication: N-000031 (sdd/specs/Full_PRD.md:36), N-000045 (sdd/specs/Full_PRD.md:53) — Both say the plugin's hooks need Node.js; B is a terser restatement, though "the hooks" may be read as broader than the saved-file and command hooks.
+- **CF-000169** subsumption: N-000556 (sdd/specs/Hardware_Requirements.md:7), N-000565 (sdd/specs/Hardware_Requirements.md:18) — Claim A says the detector has no runtime third-party dependencies, which already implies claim B's zero runtime third-party dependencies for the tool, so A is the more complete statement.
+- **CF-000176** subsumption: N-000032 (sdd/specs/Full_PRD.md:36), N-000565 (sdd/specs/Hardware_Requirements.md:18) — A's ban on any runtime third-party dependency, alongside no installable package or compiled extension, already implies B's zero runtime third-party dependencies for the same tool.
+- **CF-000213** subsumption: N-000043 (sdd/specs/Full_PRD.md:52), N-000565 (sdd/specs/Hardware_Requirements.md:18) — Claim B's zero runtime third-party dependencies already implies claim A's narrower ban on runtime third-party libraries.
+- **CF-000216** subsumption: N-000565 (sdd/specs/Hardware_Requirements.md:18), N-000579 (sdd/specs/Interface_Contract.md:9) — B says there is no runtime third-party dependency, which already implies A's zero runtime third-party dependencies, and B adds the package and compiled-extension exclusions.
+
+### Group 40 (2 record(s), 3 node(s))
+- **CF-000001** duplication: N-000091 (sdd/specs/Full_PRD.md:88), N-000222 (sdd/specs/Full_PRD.md:170) — Both say that extracted prose of at most 262,144 characters is not longer than the window; A states it as 'only when more than', B as 'at most ... not longer'.
+- **CF-000080** subsumption: N-000008 (sdd/specs/Full_PRD.md:7), N-000222 (sdd/specs/Full_PRD.md:170) — Claim A fixes the scanned window at 262,144 characters, which already implies that prose of at most that length is not longer than the window, so B follows from A.
+
+### Group 41 (3 record(s), 4 node(s))
+- **CF-000006** duplication: N-000010 (sdd/specs/Full_PRD.md:7), N-000578 (sdd/specs/Interface_Contract.md:7) — Both claims are the same sentence from different spec files, stating that the detector can be run by hand on a file path or on standard input.
+- **CF-000007** subsumption: N-000081 (sdd/specs/Full_PRD.md:82), N-000578 (sdd/specs/Interface_Contract.md:7) — Claim A's mandatory interface (a file path, or no path with piped stdin) already implies Claim B's permitted by-hand use on a file path or standard input, so A covers B.
+- **CF-000125** subsumption: N-000010 (sdd/specs/Full_PRD.md:7), N-000595 (sdd/specs/Interface_Contract.md:21) — B's mandatory acceptance of a file path or standard input implies A's permission to run the detector by hand on those inputs, though A's wording is weaker and adds the 'by hand' framing.
+
+### Group 42 (1 record(s), 2 node(s))
+- **CF-000008** duplication: N-000084 (sdd/specs/Full_PRD.md:86), N-000597 (sdd/specs/Interface_Contract.md:23) — Both claims state the same sentence: the report has two kinds of content, findings and metrics.
+
+### Group 43 (1 record(s), 2 node(s))
+- **CF-000009** duplication: N-000225 (sdd/specs/Full_PRD.md:171), N-000603 (sdd/specs/Interface_Contract.md:24) — Both state that a buffer that is not UTF-16 and contains a NUL byte is not text, differing only in wording.
+
+### Group 44 (1 record(s), 2 node(s))
+- **CF-000010** duplication: N-000227 (sdd/specs/Full_PRD.md:171), N-000602 (sdd/specs/Interface_Contract.md:24) — Both state verbatim that UTF-16 with a byte-order mark is decoded as text.
+
+### Group 45 (3 record(s), 3 node(s))
+- **CF-000011** duplication: N-000228 (sdd/specs/Full_PRD.md:172), N-000600 (sdd/specs/Interface_Contract.md:24) — Both state verbatim that standard input and standard output use UTF-8.
+- **CF-000012** duplication: N-000228 (sdd/specs/Full_PRD.md:172), N-000684 (sdd/specs/Interface_Contract.md:80) — Both require standard input and standard output to be UTF-8, with only the verb differing ('use' versus 'are').
+- **CF-000014** duplication: N-000600 (sdd/specs/Interface_Contract.md:24), N-000684 (sdd/specs/Interface_Contract.md:80) — Both state that standard input and standard output use UTF-8, with only the verb differing.
+
+### Group 46 (1 record(s), 2 node(s))
+- **CF-000013** duplication: N-000354 (sdd/specs/Full_PRD.md:239), N-000764 (sdd/specs/Interface_Contract.md:199) — Both state that on the first start of a fresh install the welcome comes before the writing contract, differing only in how the flag condition is worded.
+
+### Group 47 (2 record(s), 3 node(s))
+- **CF-000015** duplication: N-000880 (sdd/specs/Interface_Contract.md:451), N-000908 (sdd/specs/Interface_Contract.md:480) — Both require the reply line to name the stored level as a standalone word; the only difference is the word "live" and the name of the line.
+- **CF-000171** duplication: N-000861 (sdd/specs/Interface_Contract.md:426), N-000908 (sdd/specs/Interface_Contract.md:480) — Both require the same response, naming the stored level as a standalone word, with the subject being the same line in different words.
+
+### Group 48 (1 record(s), 2 node(s))
+- **CF-000016** duplication: N-000001 (sdd/specs/Full_PRD.md:5), N-000570 (sdd/specs/Interface_Contract.md:5) — Both claims are word-for-word identical: prosecheck has no website and no hosted version.
+
+### Group 49 (1 record(s), 2 node(s))
+- **CF-000018** duplication: N-000881 (sdd/specs/Interface_Contract.md:451), N-000909 (sdd/specs/Interface_Contract.md:480) — Both forbid the line from naming any other stored level; the second claim only spells out the set of levels in parentheses, so it states the same rule.
+
+### Group 50 (18 record(s), 7 node(s))
+- **CF-000019** duplication: N-000906 (sdd/specs/Interface_Contract.md:471), N-000963 (sdd/specs/Interface_Contract.md:541) — Both state that the reply is the block `reason`, with the same modality and subject.
+- **CF-000020** duplication: N-000906 (sdd/specs/Interface_Contract.md:471), N-001035 (sdd/specs/Interface_Contract.md:606) — Both texts are identical: the reply is the block `reason`.
+- **CF-000022** duplication: N-000963 (sdd/specs/Interface_Contract.md:541), N-001035 (sdd/specs/Interface_Contract.md:606) — Both state that the reply is the block reason, differing only in backtick formatting.
+- **CF-000023** duplication: N-001002 (sdd/specs/Interface_Contract.md:569), N-001078 (sdd/specs/Interface_Contract.md:637) — Both state that the reply is the block reason, differing only in trailing punctuation.
+- **CF-000039** duplication: N-000906 (sdd/specs/Interface_Contract.md:471), N-001002 (sdd/specs/Interface_Contract.md:569) — Both state that the reply is the block `reason`, though A's canonical subject is the `status` reply and B's is the generic reply.
+- **CF-000040** duplication: N-000906 (sdd/specs/Interface_Contract.md:471), N-001078 (sdd/specs/Interface_Contract.md:637) — Both texts are the same sentence stating that the reply is the block `reason`.
+- **CF-000041** duplication: N-000963 (sdd/specs/Interface_Contract.md:541), N-001002 (sdd/specs/Interface_Contract.md:569) — Both texts are the same sentence, the reply is the block `reason, with the same subject and response.
+- **CF-000042** duplication: N-000963 (sdd/specs/Interface_Contract.md:541), N-001078 (sdd/specs/Interface_Contract.md:637) — Both state that the reply is the block `reason, differing only in a missing closing backtick in A's text.
+- **CF-000043** duplication: N-001002 (sdd/specs/Interface_Contract.md:569), N-001035 (sdd/specs/Interface_Contract.md:606) — Both state the same requirement that the reply is the block `reason`.
+- **CF-000044** duplication: N-001035 (sdd/specs/Interface_Contract.md:606), N-001078 (sdd/specs/Interface_Contract.md:637) — Both state the same requirement that the reply is the block `reason`.
+- **CF-000086** duplication: N-000906 (sdd/specs/Interface_Contract.md:471), N-000913 (sdd/specs/Interface_Contract.md:484) — Both claims state that the status reply is the block `reason`.
+- **CF-000087** duplication: N-000913 (sdd/specs/Interface_Contract.md:484), N-000963 (sdd/specs/Interface_Contract.md:541) — Both claims state that the reply is the block `reason`.
+- **CF-000088** duplication: N-000913 (sdd/specs/Interface_Contract.md:484), N-001035 (sdd/specs/Interface_Contract.md:606) — Both claims state that the reply is the block `reason`.
+- **CF-000089** duplication: N-000925 (sdd/specs/Interface_Contract.md:497), N-001002 (sdd/specs/Interface_Contract.md:569) — Both claims state that the reply is the block `reason`, with only a trailing-punctuation difference in the quoted text.
+- **CF-000090** duplication: N-000925 (sdd/specs/Interface_Contract.md:497), N-001078 (sdd/specs/Interface_Contract.md:637) — Both claims are the identical statement that the reply is the block `reason`.
+- **CF-000119** duplication: N-000906 (sdd/specs/Interface_Contract.md:471), N-000925 (sdd/specs/Interface_Contract.md:497) — Both state that the reply is the block `reason` with identical wording; A is scoped to the `status` reply, which is likely the same reply B names, so the claim is the same.
+- **CF-000120** duplication: N-000913 (sdd/specs/Interface_Contract.md:484), N-000925 (sdd/specs/Interface_Contract.md:497) — Both say the reply is the block `reason`; A only differs by a missing closing backtick in its text.
+- **CF-000121** duplication: N-000925 (sdd/specs/Interface_Contract.md:497), N-000963 (sdd/specs/Interface_Contract.md:541) — Both say the reply is the block `reason`; B differs only by a missing closing backtick.
+
+### Group 51 (1 record(s), 2 node(s))
+- **CF-000024** duplication: N-000021 (sdd/specs/Full_PRD.md:20), N-000585 (sdd/specs/Interface_Contract.md:11) — Both state that the score is a triage heuristic on the writing in front of the detector, not a calibrated authorship classifier.
+
+### Group 52 (4 record(s), 4 node(s))
+- **CF-000025** duplication: N-000112 (sdd/specs/Full_PRD.md:92), N-000712 (sdd/specs/Interface_Contract.md:148) — Both require the pattern label to be the human-readable name of its catalogue pattern.
+- **CF-000084** duplication: N-000656 (sdd/specs/Interface_Contract.md:57), N-000712 (sdd/specs/Interface_Contract.md:148) — Both claims say the human-readable label wording is free text chosen by the implementer, differing only in whether they name it the finding's label or the pattern label.
+- **CF-000097** duplication: N-000113 (sdd/specs/Full_PRD.md:92), N-000656 (sdd/specs/Interface_Contract.md:57) — Both claims state that the wording of the pattern label is left to the implementer's choice.
+- **CF-000157** subsumption: N-000113 (sdd/specs/Full_PRD.md:92), N-000712 (sdd/specs/Interface_Contract.md:148) — B defines the label as the pattern's human-readable title with wording free, which already implies A's point that the wording is the implementer's choice.
+
+### Group 53 (1 record(s), 2 node(s))
+- **CF-000026** duplication: N-000192 (sdd/specs/Full_PRD.md:153), N-000332 (sdd/specs/Full_PRD.md:236) — Both draw the same line at more than one em dash per paragraph: A as a detector trigger for overuse, B as a host-agent writing limit. They differ in framing (detector versus agent behaviour), so this is a low-confidence call.
+
+### Group 54 (3 record(s), 3 node(s))
+- **CF-000027** duplication: N-000449 (sdd/specs/Full_PRD.md:285), N-000630 (sdd/specs/Interface_Contract.md:39) — Both state the same exact list of twelve subcommands with the same MUST modality.
+- **CF-000031** duplication: N-000630 (sdd/specs/Interface_Contract.md:39), N-000843 (sdd/specs/Interface_Contract.md:390) — Both list the same exact set of twelve subcommands.
+- **CF-000064** duplication: N-000449 (sdd/specs/Full_PRD.md:285), N-000843 (sdd/specs/Interface_Contract.md:390) — Both list the same twelve subcommands as the exact set, differing only in punctuation.
+
+### Group 55 (1 record(s), 2 node(s))
+- **CF-000029** duplication: N-000548 (sdd/specs/Full_PRD.md:309), N-000586 (sdd/specs/Interface_Contract.md:11) — Both say a score, a band and a hook phrase describe the same kind of text; writing and prose are treated as one thing here, so the claims state the same thing.
+
+### Group 56 (1 record(s), 2 node(s))
+- **CF-000030** duplication: N-000549 (sdd/specs/Full_PRD.md:309), N-000587 (sdd/specs/Interface_Contract.md:11) — Both prohibit naming a person or a model as the author of a score, band and hook phrase, with identical terms.
+
+### Group 57 (1 record(s), 2 node(s))
+- **CF-000035** duplication: N-000004 (sdd/specs/Full_PRD.md:5), N-000573 (sdd/specs/Interface_Contract.md:5) — Both claims state the same prohibition that no text leaves the machine.
+
+### Group 58 (1 record(s), 2 node(s))
+- **CF-000045** duplication: N-000007 (sdd/specs/Full_PRD.md:7), N-000575 (sdd/specs/Interface_Contract.md:7) — Both state the same placement obligation for the writing contract into the session and subagents; B only adds a purpose clause.
+
+### Group 59 (1 record(s), 2 node(s))
+- **CF-000046** duplication: N-000009 (sdd/specs/Full_PRD.md:7), N-000577 (sdd/specs/Interface_Contract.md:7) — Both claims have identical text: above the active threshold, the saved-file guard names the flagged spans and asks for them to be fixed.
+
+### Group 60 (1 record(s), 2 node(s))
+- **CF-000047** duplication: N-000022 (sdd/specs/Full_PRD.md:21), N-000645 (sdd/specs/Interface_Contract.md:49) — Both state that bands describe the prose and never name an author.
+
+### Group 61 (3 record(s), 3 node(s))
+- **CF-000053** duplication: N-000216 (sdd/specs/Full_PRD.md:168), N-000607 (sdd/specs/Interface_Contract.md:26) — Both claims say the help switch and its short alias print the usage message to standard output and succeed with exit 0.
+- **CF-000054** duplication: N-000216 (sdd/specs/Full_PRD.md:168), N-000703 (sdd/specs/Interface_Contract.md:110) — Both claims say --help and -h write the usage message to standard output and exit 0 or succeed.
+- **CF-000067** duplication: N-000607 (sdd/specs/Interface_Contract.md:26), N-000703 (sdd/specs/Interface_Contract.md:110) — Both state that --help (and -h) writes the usage message to standard output and exits 0.
+
+### Group 62 (1 record(s), 2 node(s))
+- **CF-000055** duplication: N-000358 (sdd/specs/Full_PRD.md:239), N-000767 (sdd/specs/Interface_Contract.md:201) — Both require the welcome to present the same four /prosecheck commands (doctor, check, off, help) in the same written form.
+
+### Group 63 (2 record(s), 3 node(s))
+- **CF-000056** duplication: N-000373 (sdd/specs/Full_PRD.md:247), N-000877 (sdd/specs/Interface_Contract.md:434) — Both state that the level defaults to full when no valid stored value exists, differing only in wording ("nothing valid is stored" vs "no valid word is stored").
+- **CF-000083** subsumption: N-000349 (sdd/specs/Full_PRD.md:238), N-000877 (sdd/specs/Interface_Contract.md:434) — A says full applies when stored, when no flag is stored, or when nothing valid is stored; that last case is exactly B's rule, so A implies B but not the reverse.
+
+### Group 64 (3 record(s), 3 node(s))
+- **CF-000057** duplication: N-000383 (sdd/specs/Full_PRD.md:254), N-000813 (sdd/specs/Interface_Contract.md:298) — Both state that a relative file path is resolved against the supplied working directory when one is provided.
+- **CF-000074** duplication: N-000813 (sdd/specs/Interface_Contract.md:298), N-000816 (sdd/specs/Interface_Contract.md:317) — Both say a relative file_path is resolved against the supplied cwd directory when cwd is given; only the wording differs.
+- **CF-000116** duplication: N-000383 (sdd/specs/Full_PRD.md:254), N-000816 (sdd/specs/Interface_Contract.md:317) — Both say a relative path is resolved against the supplied working directory (payload cwd), differing only in which interface states it.
+
+### Group 65 (1 record(s), 2 node(s))
+- **CF-000060** duplication: N-000441 (sdd/specs/Full_PRD.md:281), N-000628 (sdd/specs/Interface_Contract.md:39) — Both require the same follow-up, after the doctor's closing line points at show or at turning the tool on and after init says it is switched off, to use the form the user typed; B only adds backticks and a restated clause.
+
+### Group 66 (1 record(s), 2 node(s))
+- **CF-000061** duplication: N-000442 (sdd/specs/Full_PRD.md:281), N-000629 (sdd/specs/Interface_Contract.md:39) — Both require the help list, the mode line's pointer at on, and the doctor's re-run request to keep the non-namespaced spelling; B only adds the /prosecheck example.
+
+### Group 67 (1 record(s), 2 node(s))
+- **CF-000062** duplication: N-000444 (sdd/specs/Full_PRD.md:281), N-000869 (sdd/specs/Interface_Contract.md:430) — Both say the host puts the user's full argument string into the command body in place of the argument placeholder; A describes it as inserting, B as replacing $ARGUMENTS.
+
+### Group 68 (1 record(s), 2 node(s))
+- **CF-000063** duplication: N-000446 (sdd/specs/Full_PRD.md:281), N-000870 (sdd/specs/Interface_Contract.md:430) — Both say the resulting prompt is submitted to the same router; A just names it prompt-submit router.
+
+### Group 69 (3 record(s), 3 node(s))
+- **CF-000065** duplication: N-000491 (sdd/specs/Full_PRD.md:291), N-001012 (sdd/specs/Interface_Contract.md:582) — Both say a ledger older than seven days is not listed by a later session, with B referring to the PRD's age limit instead of stating the number.
+- **CF-000081** duplication: N-000056 (sdd/specs/Full_PRD.md:57), N-001012 (sdd/specs/Interface_Contract.md:582) — Both say a ledger older than the seven-day limit is no longer present after a later session, with B pointing to the PRD for the limit; 'gone' and 'not listed' are close but not identical wording.
+- **CF-000048** subsumption: N-000056 (sdd/specs/Full_PRD.md:57), N-000491 (sdd/specs/Full_PRD.md:291) — If a ledger older than seven days is gone (claim A), it is necessarily not listed by a later session (claim B), so A implies B.
+
+### Group 70 (3 record(s), 3 node(s))
+- **CF-000068** duplication: N-000692 (sdd/specs/Interface_Contract.md:86), N-000733 (sdd/specs/Interface_Contract.md:166) — Both state that with the cleanup switch, standard output is the scrubbed text rather than the structured report/JSON.
+- **CF-000163** duplication: N-000288 (sdd/specs/Full_PRD.md:211), N-000692 (sdd/specs/Interface_Contract.md:86) — Both say that with cleanup, standard output is the scrubbed text; A also adds a successful exit, which B does not state.
+- **CF-000164** duplication: N-000288 (sdd/specs/Full_PRD.md:211), N-000733 (sdd/specs/Interface_Contract.md:166) — Both state that cleanup's standard output is the scrubbed text; A adds a successful exit and B adds that there is no JSON or label.
+
+### Group 71 (1 record(s), 2 node(s))
+- **CF-000071** duplication: N-000770 (sdd/specs/Interface_Contract.md:201), N-001025 (sdd/specs/Interface_Contract.md:598) — Both say the plain-text cap is expressed in kilobytes; B adds only a placeholder name for it.
+
+### Group 72 (1 record(s), 2 node(s))
+- **CF-000073** duplication: N-000787 (sdd/specs/Interface_Contract.md:217), N-000846 (sdd/specs/Interface_Contract.md:394) — Both unconditionally say standard output is one JSON object; only capitalization differs.
+
+### Group 73 (1 record(s), 2 node(s))
+- **CF-000075** duplication: N-000818 (sdd/specs/Interface_Contract.md:321), N-000835 (sdd/specs/Interface_Contract.md:362) — Both claims have identical text: the host's JSON names the supplied session as `session_id`.
+
+### Group 74 (1 record(s), 2 node(s))
+- **CF-000076** duplication: N-000823 (sdd/specs/Interface_Contract.md:334), N-001003 (sdd/specs/Interface_Contract.md:569) — Both claims have identical text: a different `session_id` is a different ledger.
+
+### Group 75 (1 record(s), 2 node(s))
+- **CF-000077** duplication: N-000851 (sdd/specs/Interface_Contract.md:403), N-001090 (sdd/specs/Interface_Contract.md:662) — Both say that text the spec does not state is free for the implementer to choose.
+
+### Group 76 (1 record(s), 2 node(s))
+- **CF-000095** duplication: N-000062 (sdd/specs/Full_PRD.md:59), N-000583 (sdd/specs/Interface_Contract.md:9) — Both state the same claim, that the default scan has no model and no random component, with identical wording.
+
+### Group 77 (1 record(s), 2 node(s))
+- **CF-000098** duplication: N-000235 (sdd/specs/Full_PRD.md:182), N-000615 (sdd/specs/Interface_Contract.md:29) — Both claims say the size cap is file size on disk, in binary units, enforced by the tooling.
+
+### Group 78 (1 record(s), 2 node(s))
+- **CF-000099** duplication: N-000239 (sdd/specs/Full_PRD.md:182), N-000616 (sdd/specs/Interface_Contract.md:29) — Both claims state the same thing: the detector command itself reads a path it is given.
+
+### Group 79 (2 record(s), 3 node(s))
+- **CF-000100** duplication: N-000371 (sdd/specs/Full_PRD.md:246), N-000785 (sdd/specs/Interface_Contract.md:214) — Both claims say that malformed input is treated as an empty object, differing only in wording.
+- **CF-000211** duplication: N-000760 (sdd/specs/Interface_Contract.md:192), N-000785 (sdd/specs/Interface_Contract.md:214) — Both state that malformed input is treated as an empty object; A also covers empty input and B says it generally, so the core claim is the same.
+
+### Group 80 (1 record(s), 2 node(s))
+- **CF-000106** duplication: N-000599 (sdd/specs/Interface_Contract.md:24), N-000699 (sdd/specs/Interface_Contract.md:106) — Both state that when no path or operand is given, the detector reads standard input; B only adds the FILE operand wording.
+
+### Group 81 (1 record(s), 2 node(s))
+- **CF-000107** duplication: N-000609 (sdd/specs/Interface_Contract.md:26), N-000704 (sdd/specs/Interface_Contract.md:116) — Both say that every line after the first in the usage message is free text chosen by the implementer.
+
+### Group 82 (3 record(s), 3 node(s))
+- **CF-000108** duplication: N-000649 (sdd/specs/Interface_Contract.md:53), N-000723 (sdd/specs/Interface_Contract.md:156) — Both state the same closed set of confidence values: none, low, moderate, high.
+- **CF-000161** duplication: N-000094 (sdd/specs/Full_PRD.md:88), N-000649 (sdd/specs/Interface_Contract.md:53) — Both state that the confidence label takes exactly the values none, low, moderate and high.
+- **CF-000162** duplication: N-000094 (sdd/specs/Full_PRD.md:88), N-000723 (sdd/specs/Interface_Contract.md:156) — Both state that the confidence value must be one of none, low, moderate and high.
+
+### Group 83 (1 record(s), 2 node(s))
+- **CF-000113** duplication: N-000876 (sdd/specs/Interface_Contract.md:434), N-000917 (sdd/specs/Interface_Contract.md:493) — Both state that the level word `on` stores `full`.
+
+### Group 84 (3 record(s), 3 node(s))
+- **CF-000122** duplication: N-000994 (sdd/specs/Interface_Contract.md:561), N-000997 (sdd/specs/Interface_Contract.md:563) — Both claims are the same permission with identical text, that the rest of the closer's wording is free.
+- **CF-000123** duplication: N-000994 (sdd/specs/Interface_Contract.md:561), N-001000 (sdd/specs/Interface_Contract.md:565) — Both claims state the same permission that the rest of the closer's wording is free, differing only in the canonical verb wording.
+- **CF-000124** duplication: N-000997 (sdd/specs/Interface_Contract.md:563), N-001000 (sdd/specs/Interface_Contract.md:565) — Both claims have subject 'the closer', modality MAY, and the same text about the rest of its wording being free.
+
+### Group 85 (1 record(s), 2 node(s))
+- **CF-000126** duplication: N-000020 (sdd/specs/Full_PRD.md:19), N-000102 (sdd/specs/Full_PRD.md:90) — Both say the same 12 machine-checked patterns carry zero weight in the report; B names them and A refers to them as the remaining 12.
+
+### Group 86 (1 record(s), 2 node(s))
+- **CF-000129** duplication: N-000088 (sdd/specs/Full_PRD.md:88), N-000718 (sdd/specs/Interface_Contract.md:150) — Both say the metrics object is always included/present in the output, stated in different documents with different wording.
+
+### Group 87 (1 record(s), 2 node(s))
+- **CF-000130** duplication: N-000212 (sdd/specs/Full_PRD.md:165), N-000214 (sdd/specs/Full_PRD.md:166) — Both state that the empty-prose failure is a structured error on the error stream, a failing status, and no traceback, with B phrasing the status as the same as empty input.
+
+### Group 88 (3 record(s), 4 node(s))
+- **CF-000133** duplication: N-000277 (sdd/specs/Full_PRD.md:198), N-000678 (sdd/specs/Interface_Contract.md:73) — Both state that the output must contain no traceback; A addresses the detector command and B the implementer, but the requirement is the same.
+- **CF-000142** duplication: N-000678 (sdd/specs/Interface_Contract.md:73), N-000737 (sdd/specs/Interface_Contract.md:170) — Both claims require that no traceback be shown; Claim B only scopes it to standard error, which is the same requirement.
+- **CF-000207** duplication: N-000674 (sdd/specs/Interface_Contract.md:72), N-000678 (sdd/specs/Interface_Contract.md:73) — Both claims are the same MUST-level requirement that the implementer produces no traceback, with identical wording.
+
+### Group 89 (1 record(s), 2 node(s))
+- **CF-000135** duplication: N-000299 (sdd/specs/Full_PRD.md:215), N-000317 (sdd/specs/Full_PRD.md:224) — Both say trailing whitespace must be removed, so B's required collapse restates A's trim requirement.
+
+### Group 90 (1 record(s), 2 node(s))
+- **CF-000139** duplication: N-000523 (sdd/specs/Full_PRD.md:297), N-000945 (sdd/specs/Interface_Contract.md:524) — Both state that check with no path returns a non-empty reply that shows no score (no standalone 0–100 integer) and is not the unknown-subcommand reply (no word unknown), differing only in wording.
+
+### Group 91 (2 record(s), 3 node(s))
+- **CF-000143** duplication: N-000697 (sdd/specs/Interface_Contract.md:92), N-000790 (sdd/specs/Interface_Contract.md:232) — If 'the process' in Claim B is the hook process of Claim A, both state that the process ends with a successful exit status, so they say the same thing.
+- **CF-000187** duplication: N-000697 (sdd/specs/Interface_Contract.md:92), N-000759 (sdd/specs/Interface_Contract.md:192) — Both state that the hook process exits with status 0.
+
+### Group 92 (1 record(s), 2 node(s))
+- **CF-000145** duplication: N-000769 (sdd/specs/Interface_Contract.md:201), N-000937 (sdd/specs/Interface_Contract.md:520) — Both state the same permission: the scan window may carry thousands-separator commas.
+
+### Group 93 (1 record(s), 2 node(s))
+- **CF-000147** duplication: N-000946 (sdd/specs/Interface_Contract.md:524), N-001011 (sdd/specs/Interface_Contract.md:582) — Both state that the reply's wording is free, with B scoping it to the rest of the wording after some fixed part, so they say essentially the same thing about the same reply.
+
+### Group 94 (2 record(s), 3 node(s))
+- **CF-000149** duplication: N-000044 (sdd/specs/Full_PRD.md:53), N-000580 (sdd/specs/Interface_Contract.md:9) — Both state that the detector needs Python 3.9 or newer, only worded differently.
+- **CF-000220** duplication: N-000044 (sdd/specs/Full_PRD.md:53), N-000557 (sdd/specs/Hardware_Requirements.md:7) — Both state the same Python 3.9-or-newer floor, differing only in whether the subject is the detector or the documented interpreter.
+
+### Group 95 (1 record(s), 2 node(s))
+- **CF-000150** duplication: N-000076 (sdd/specs/Full_PRD.md:70), N-000635 (sdd/specs/Interface_Contract.md:43) — Both prohibit a website, account, or hosted service/API, though claim A says the product must not be one and claim B says the surface must not contain one, and the hosted-service and hosted-API wording differs.
+
+### Group 96 (1 record(s), 2 node(s))
+- **CF-000154** duplication: N-000650 (sdd/specs/Interface_Contract.md:53), N-000724 (sdd/specs/Interface_Contract.md:157) — Both require that when confidence is not high, a readable reason is carried, which is the same requirement worded for metrics and for the confidence_reason field.
+
+### Group 97 (1 record(s), 2 node(s))
+- **CF-000155** duplication: N-000798 (sdd/specs/Interface_Contract.md:257), N-000940 (sdd/specs/Interface_Contract.md:520) — Both say the tells line (the <labels> content) lists the detector's fired finding label strings, so they state the same claim in different words.
+
+### Group 98 (1 record(s), 2 node(s))
+- **CF-000167** duplication: N-000511 (sdd/specs/Full_PRD.md:293), N-001077 (sdd/specs/Interface_Contract.md:637) — Both say the stats command prints a prose score once there is enough assistant text, differing only in the name (session-prose vs own-prose) and B's extra token-use line.
+
+### Group 99 (1 record(s), 2 node(s))
+- **CF-000170** duplication: N-000771 (sdd/specs/Interface_Contract.md:201), N-000990 (sdd/specs/Interface_Contract.md:561) — Both state the archive cap format as the digit followed by MB with an optional space before MB.
+
+### Group 100 (1 record(s), 2 node(s))
+- **CF-000178** duplication: N-000330 (sdd/specs/Full_PRD.md:236), N-000774 (sdd/specs/Interface_Contract.md:205) — Both require the writing contract to contain the same banned words, one by listing them and the other by requiring every PRD-list word to appear as a standalone word.
+
+### Group 101 (1 record(s), 2 node(s))
+- **CF-000180** duplication: N-001036 (sdd/specs/Interface_Contract.md:606), N-001079 (sdd/specs/Interface_Contract.md:637) — Both state that the same kind of command opens no network connection; the init command is a subcommand, so the terms are one thing and the claims match.
+
+### Group 102 (1 record(s), 2 node(s))
+- **CF-000181** duplication: N-001053 (sdd/specs/Interface_Contract.md:625), N-001068 (sdd/specs/Interface_Contract.md:629) — Both state that the output does not name the band `light tells`; the subjects (the export, the rule) are not clearly distinct, so the claims match.
+
+### Group 103 (1 record(s), 2 node(s))
+- **CF-000183** duplication: N-000137 (sdd/specs/Full_PRD.md:102), N-000344 (sdd/specs/Full_PRD.md:237) — Both state the same two-hit threshold for the same model-dialect vocabulary family, one as a firing condition and one as the requirement for its dialect words.
+
+### Group 104 (1 record(s), 2 node(s))
+- **CF-000184** duplication: N-000415 (sdd/specs/Full_PRD.md:266), N-000430 (sdd/specs/Full_PRD.md:273) — Both require a failed check or attempt to be recorded with a human-readable reason for the failure, so they state the same requirement in different words.
+
+### Group 105 (1 record(s), 2 node(s))
+- **CF-000190** duplication: N-000002 (sdd/specs/Full_PRD.md:5), N-000571 (sdd/specs/Interface_Contract.md:5) — Both claims are the same sentence, that nothing the user writes is uploaded, so they state the same claim.
+
+### Group 106 (2 record(s), 3 node(s))
+- **CF-000191** duplication: N-000006 (sdd/specs/Full_PRD.md:7), N-000574 (sdd/specs/Interface_Contract.md:7) — Both claims have identical text: the doctor answers with four successful-check lines when the install is sound and the tool is on.
+- **CF-000215** duplication: N-000472 (sdd/specs/Full_PRD.md:290), N-000574 (sdd/specs/Interface_Contract.md:7) — Both state that a healthy install with the tool not off (on) produces four successful-check lines, just worded differently.
+
+### Group 107 (1 record(s), 2 node(s))
+- **CF-000194** duplication: N-000041 (sdd/specs/Full_PRD.md:52), N-000555 (sdd/specs/Hardware_Requirements.md:7) — Both state the same architecture for prosecheck: a standard-library prose-pattern detector with JavaScript/Node hooks, with B adding only the CPU-only wording.
+
+### Group 108 (1 record(s), 2 node(s))
+- **CF-000195** duplication: N-000167 (sdd/specs/Full_PRD.md:137), N-000197 (sdd/specs/Full_PRD.md:157) — Both claims say the implementer alone decides what the list contains; "the list" is the same pattern catalogue.
+
+### Group 109 (1 record(s), 2 node(s))
+- **CF-000196** duplication: N-000269 (sdd/specs/Full_PRD.md:196), N-000617 (sdd/specs/Interface_Contract.md:29) — Both claims state the same prohibition: .pdf and .rtf are not among the twenty formats.
+
+### Group 110 (1 record(s), 2 node(s))
+- **CF-000201** duplication: N-000460 (sdd/specs/Full_PRD.md:289), N-001016 (sdd/specs/Interface_Contract.md:594) — Both say the truncation note is present only when the scan was truncated, so they state the same condition for the same clause.
+
+### Group 111 (1 record(s), 2 node(s))
+- **CF-000203** duplication: N-000542 (sdd/specs/Full_PRD.md:301), N-000845 (sdd/specs/Interface_Contract.md:394) — Both state that a command prompt is kept from being sent on as an ordinary message; the user-prompt versus command-prompt wording is the only difference, so the claims are likely the same.
+
+### Group 112 (1 record(s), 2 node(s))
+- **CF-000204** duplication: N-000551 (sdd/specs/Full_PRD.md:309), N-000648 (sdd/specs/Interface_Contract.md:51) — Both state the same MUST rule that user-visible phrases use “reads …” rather than “was written by …”, differing only in subject wording.
+
+### Group 113 (2 record(s), 3 node(s))
+- **CF-000218** duplication: N-000675 (sdd/specs/Interface_Contract.md:72), N-000679 (sdd/specs/Interface_Contract.md:73) — Both claims state the same requirement, that the implementer produces nothing on standard output, with the same subject and modality.
+- **CF-000219** duplication: N-000679 (sdd/specs/Interface_Contract.md:73), N-000683 (sdd/specs/Interface_Contract.md:74) — Both state that nothing appears on standard output; B's canonical form (MUST NOT print anything on standard output) is the same requirement as A's MUST for nothing on standard output.
+
+### Group 114 (1 record(s), 2 node(s))
+- **CF-000221** duplication: N-000046 (sdd/specs/Full_PRD.md:54), N-000562 (sdd/specs/Hardware_Requirements.md:16) — Both name the same platform set, Linux, macOS (darwin) and Windows, as the platforms to run on.
+
+### Group 115 (2 record(s), 3 node(s))
+- **CF-000093** subsumption: N-000024 (sdd/specs/Full_PRD.md:24), N-000328 (sdd/specs/Full_PRD.md:235) — A's claim that the contract governs prose deliverables only implies B's claim that it owns deliverable prose, though the wording differs.
+- **CF-000127** subsumption: N-000024 (sdd/specs/Full_PRD.md:24), N-000324 (sdd/specs/Full_PRD.md:235) — Both say the writing contract's scope is prose deliverables only, but A also lists the excluded items, so A implies B's scope statement.
+
+### Group 116 (1 record(s), 2 node(s))
+- **CF-000101** subsumption: N-000465 (sdd/specs/Full_PRD.md:290), N-000977 (sdd/specs/Interface_Contract.md:554) — A's doctor requirement includes the statement that off is not a fault of the install, so A implies B's standalone rule that off is not a fault.
+
+### Group 117 (1 record(s), 2 node(s))
+- **CF-000102** subsumption: N-000492 (sdd/specs/Full_PRD.md:292), N-001043 (sdd/specs/Interface_Contract.md:623) — Claim A's marker-based section already guarantees that a second init does not duplicate the contract, which is the whole of Claim B's outcome.
+
+### Group 118 (1 record(s), 2 node(s))
+- **CF-000131** subsumption: N-000232 (sdd/specs/Full_PRD.md:182), N-000282 (sdd/specs/Full_PRD.md:201) — A's exact list of twenty formats already implies that source-code extensions such as .py are not among them, so A implies B.
+
+### Group 119 (1 record(s), 2 node(s))
+- **CF-000156** subsumption: N-000811 (sdd/specs/Interface_Contract.md:283), N-000829 (sdd/specs/Interface_Contract.md:356) — B says the tool input sits beside tool_name, session_id and cwd, which implies A's claim that the working directory sits beside the tool name and tool input; B is the stronger statement.
+
+### Group 120 (1 record(s), 2 node(s))
+- **CF-000177** subsumption: N-000305 (sdd/specs/Full_PRD.md:216), N-000315 (sdd/specs/Full_PRD.md:223) — A's rule that every genuine non-Latin word stays byte-for-byte already implies B's ban on converting a genuine Cyrillic word, since Cyrillic is a kind of non-Latin word.
+
+### Group 121 (1 record(s), 2 node(s))
+- **CF-000188** subsumption: N-000705 (sdd/specs/Interface_Contract.md:120), N-000910 (sdd/specs/Interface_Contract.md:480) — On success, standard output being exactly one JSON object already implies nothing else on standard output names a stored level.
+
+### Group 122 (1 record(s), 2 node(s))
+- **CF-000197** subsumption: N-000283 (sdd/specs/Full_PRD.md:201), N-000584 (sdd/specs/Interface_Contract.md:9) — B says the product never processes code, which already implies that the guard leaves source-code extensions alone, so B implies A.
+
+### Group 123 (1 record(s), 2 node(s))
+- **CF-000222** subsumption: N-000103 (sdd/specs/Full_PRD.md:90), N-000107 (sdd/specs/Full_PRD.md:91) — A's general rule that no writing-advice finding changes the score already implies B's weight-zero status for the parallelism form, which B classifies as writing advice.

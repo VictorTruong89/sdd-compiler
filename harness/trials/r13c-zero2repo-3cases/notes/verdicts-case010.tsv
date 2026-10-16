@@ -1,0 +1,15 @@
+CF-000001	one sentence, two parameter values: preserve_line=True does not split sentences, preserve_line=False does
+CF-000002	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 114 the whitespace tokenizer (separate bullets)
+CF-000022	different components: PRD 97 is a tokenizer's rule; PRD 149 is how stemmers treat their input
+CF-000004	rule and its stated case: a bare apostrophe ending a word is split (PRD 104); other apostrophes inside a word stay (PRD 106)
+CF-000023	different tokenizers: PRD 104 is the Penn Treebank tokenizer, PRD 121 the tweet tokenizer
+CF-000008	different entries: IC 118 is a tagger's training data (tagged pairs), IC 180 another entry's input (token lists)
+CF-000011	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 117 the regular-expression tokenizer
+CF-000012	different stemmers: the irregular-form table is Porter's (PRD 155), stopword skipping is Snowball's (PRD 171)
+CF-000014	different functions: IC 230 is accuracy (lists), IC 238 is precision/recall/f_measure (sets)
+CF-000017	stated exception: IC 11 says a refusal is never None "unless an entry below says otherwise"; IC 239 is such an entry
+CF-000024	same meaning: "none" parse trees (PRD 250) and an empty iterator (IC 174) agree
+CF-000028	different conditions: an empty tagged-token list yields a chunk structure (PRD 228); an invalid chunk grammar is refused (PRD 229)
+CF-000029	not a behaviour conflict: PRD 9 is a note on what each document holds; PRD 258 states observable ordering
+CF-000037	different scopes: PRD 141 lists the families that exist; PRD 143 says which families' stemming results are specified
+CF-000042	no behaviour conflict: the WordNet lemmatizer is named as part of the stemmer entries alongside the listed stemmer families (PRD 141)

@@ -1,0 +1,52 @@
+{
+ "tests": {
+  "unit_tests.test_csv_utils.AcceptanceTestCSVtoJSON::test_full_conversion_small_cats_dataset": [
+   "S",
+   "expected output is the seed file small_cats_dataset/nested_dataset.json (with nested_schema.json); convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "unit_tests.test_csv_utils.AcceptanceTestCSVtoJSON::test_full_conversion_comma_test": [
+   "S",
+   "expected output is the seed file comma_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "unit_tests.test_csv_utils.AcceptanceTestCSVtoJSON::test_full_conversion_quotes_test": [
+   "S",
+   "expected output is the seed file quotes_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "unit_tests.test_hone.TestHone::test_nest_small_csv": [
+   "S",
+   "expected output is the seed file small_cats_dataset/nested_dataset.json; nesting on shared prefixes shown by the schema example; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "unit_tests.test_hone.TestHone::test_nest_comma_csv": [
+   "S",
+   "expected output is the seed file comma_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "unit_tests.test_hone.TestHone::test_nest_quotes_csv": [
+   "S",
+   "expected output is the seed file quotes_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_comma_handling": [
+   "S",
+   "expected output is the seed file comma_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_quoted_field_handling": [
+   "S",
+   "expected output is the seed file quotes_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_nested_json_generation": [
+   "S",
+   "expected output is the seed file small_cats_dataset/nested_dataset.json (schema loaded but not passed); convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_data_integrity": [
+   "S",
+   "expected output is the seed file small_cats_dataset/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+  ],
+  "unit_tests.test_hone.TestHone::test_get_schema": [
+   "S",
+   "get_schema(csv_filepath) stated; expected schema is the seed file nested_schema.json"
+  ],
+  "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_error_handling": [
+   "U",
+   "expects any exception for a missing CSV file; behaviour on a missing file is not stated (a plain open() raises)"
+  ]
+ }
+}

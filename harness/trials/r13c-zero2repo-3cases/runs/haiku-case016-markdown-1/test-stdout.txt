@@ -1,0 +1,57 @@
+{
+  "reward": 0.0,
+  "judge_error": null,
+  "judge_mode": "final_tests",
+  "final": {
+    "final_step": "final",
+    "status": "failed",
+    "exit_code": 1,
+    "log": "/logs/verifier/final_tests.log",
+    "passed_count": 381,
+    "failed_count": 7,
+    "error_count": 0,
+    "skipped_count": 0,
+    "total_count": 388,
+    "pass_rate": 0.9819587628865979,
+    "test_framework": "pytest",
+    "counts_parsed": true,
+    "passed": 381,
+    "failed": 7,
+    "total": 388,
+    "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_leftover_decisive_pairs_raise_score_to_at_least_65",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[article-title]",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F05_acceptance.py::test_five_failure_reasons_stay_distinguishable",
+      "../tests/final/tests/F05_acceptance.py::test_missing_score_is_not_any_integer",
+      "../tests/final/tests/F06_acceptance.py::test_check_not_a_file_unreadable_and_pdf_rtf_differ",
+      "../tests/final/tests/F06_acceptance.py::test_check_names_the_file_only_for_no_output_and_stated_failure"
+    ],
+    "error_tests": [],
+    "test_files": [
+      "/tests/final/tests/F01_acceptance.py",
+      "/tests/final/tests/F01_helpers.py",
+      "/tests/final/tests/F02_acceptance.py",
+      "/tests/final/tests/F02_helpers.py",
+      "/tests/final/tests/F03_acceptance.py",
+      "/tests/final/tests/F03_helpers.py",
+      "/tests/final/tests/F04_acceptance.py",
+      "/tests/final/tests/F04_helpers.py",
+      "/tests/final/tests/F05_acceptance.py",
+      "/tests/final/tests/F05_helpers.py",
+      "/tests/final/tests/F06_acceptance.py",
+      "/tests/final/tests/F06_helpers.py",
+      "/tests/final/tests/_harness.py",
+      "/tests/final/tests/conftest.py"
+    ],
+    "test_command_ran": "python3 -I /tests/pytest_launcher.py /tests/final/tests/F01_acceptance.py /tests/final/tests/F01_helpers.py /tests/final/tests/F02_acceptance.py /tests/final/tests/F02_helpers.py /tests/final/tests/F03_acceptance.py /tests/final/tests/F03_helpers.py /tests/final/tests/F04_acceptance.py /tests/final/tests/F04_helpers.py /tests/final/tests/F05_acceptance.py /tests/final/tests/F05_helpers.py /tests/final/tests/F06_acceptance.py /tests/final/tests/F06_helpers.py /tests/final/tests/_harness.py /tests/final/tests/conftest.py"
+  },
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}

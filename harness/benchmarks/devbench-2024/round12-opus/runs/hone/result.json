@@ -1,0 +1,133 @@
+{
+    "id": "c74a0217-ee7c-4097-aa81-8c50fb30dc73",
+    "task_name": "sdd-compiler/deveval-python-hone-markdown",
+    "trial_name": "hone-markdown__LUKpfwZ",
+    "trial_uri": "file:///home/victor/Workspace/sdd-compiler/harness/benchmarks/devbench-2024/download/jobs/r12-hone-markdown-opus-1/hone-markdown__LUKpfwZ",
+    "task_id": {
+        "path": "clean/hone-markdown"
+    },
+    "source": null,
+    "task_checksum": "d89c097cef8bf2e63baae641977901e815ac0ae49afa39ec73c8808f9e459820",
+    "config": {
+        "task": {
+            "path": "clean/hone-markdown",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "hone-markdown__LUKpfwZ",
+        "trials_dir": "jobs/r12-hone-markdown-opus-1",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "claude-code",
+            "import_path": null,
+            "model_name": "anthropic/claude-opus-5-5",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.1.296",
+                "max_budget_usd": 10,
+                "disallowed_tools": "Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "e118e09d-0db0-4a5d-93f6-9681f77809bb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "claude-code",
+        "version": "2.1.296",
+        "model_info": {
+            "name": "claude-opus-5-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 109472,
+        "n_cache_tokens": 91900,
+        "n_output_tokens": 8975,
+        "cost_usd": 0.3384,
+        "model_usage": {
+            "claude-opus-5-5": {
+                "n_input_tokens": 109472,
+                "n_cache_tokens": 91900,
+                "n_output_tokens": 8975,
+                "cost_usd": 0.285726
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0,
+            "tests_passed": 12,
+            "tests_total": 12,
+            "tests_collected": 12
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-14T12:35:19.246120Z",
+    "finished_at": "2026-10-14T12:37:06.886785Z",
+    "environment_setup": {
+        "started_at": "2026-10-14T12:35:19.266724Z",
+        "finished_at": "2026-10-14T12:35:22.781907Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-14T12:35:22.781957Z",
+        "finished_at": "2026-10-14T12:35:22.909686Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-14T12:35:22.909864Z",
+        "finished_at": "2026-10-14T12:36:50.679363Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-14T12:36:52.238279Z",
+        "finished_at": "2026-10-14T12:36:56.307874Z"
+    },
+    "step_results": null
+}

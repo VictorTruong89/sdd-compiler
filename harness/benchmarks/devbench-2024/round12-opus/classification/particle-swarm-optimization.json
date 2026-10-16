@@ -1,0 +1,28 @@
+{
+ "tests": {
+  "unit_tests.test_cost_functions.TestCostFunctions::test_sphere": [
+   "S",
+   "sphere(x) named in architecture; value is the standard sphere function (sum of squares), not written out"
+  ],
+  "unit_tests.test_pso_simple.TestPSO::test_evaluate": [
+   "S",
+   "Particle, evaluate and the attributes pos_best_i, err_best_i are in the UML class; updating the personal best is the standard PSO step, not written out"
+  ],
+  "unit_tests.test_pso_simple.TestPSO::test_update_velocity": [
+   "S",
+   "update_velocity(pos_best_g) and velocity_i stated; test asks only that the velocity changes"
+  ],
+  "unit_tests.test_pso_simple.TestPSO::test_update_position": [
+   "S",
+   "update_position(bounds) 'based on its velocity'; position_i is a list in the UML; expects position + velocity within bounds"
+  ],
+  "unit_tests.test_pso_simple.TestPSO::test_minimize": [
+   "S",
+   "minimize(costFunc, x0, bounds, num_particles, maxiter, verbose) stated; returns (err_best_g, pos_best_g) per the sequence diagram"
+  ],
+  "acceptance_tests.test_pso.test_all::test_everything": [
+   "S",
+   "same call as test_minimize"
+  ]
+ }
+}

@@ -1,0 +1,3 @@
+# Each trial keeps tasks, Harbor jobs, compile stores and third-party material in work/ (not tracked).
+*/work/
+*/STOP

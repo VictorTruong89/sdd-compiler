@@ -1,0 +1,9 @@
+run_id	task	model	status	job	attempts	last_message
+haiku-case001-1	work/tasks/case001-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case001-1	1	salvaged: Harbor rejected reward.json (null judge_error, builder bug); agent and verifier completed
+haiku-case007-1	work/tasks/case007-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case007-1	1	
+haiku-case011-1	work/tasks/case011-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case011-1	1	
+haiku-case002-1	work/tasks/case002-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case002-1	1	
+haiku-case005-1	work/tasks/case005-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case005-1	1	
+haiku-case010-1	work/tasks/case010-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case010-1	1	
+haiku-case006-1	work/tasks/case006-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case006-1	1	
+haiku-case016-1	work/tasks/case016-markdown	anthropic/claude-haiku-5-5	done	r13b-zero2repo-haiku-sweep-haiku-case016-1	1	

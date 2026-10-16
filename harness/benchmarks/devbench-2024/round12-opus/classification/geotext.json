@@ -1,0 +1,40 @@
+{
+ "tests": {
+  "unit_tests.test_geotext.TestGeotext::test_cities": [
+   "U",
+   "cities attribute stated; the exact lists (e.g. 'Goiás', 'Santa Catarina', 'Rio Grande' from 'Rio Grande do Norte') depend on a candidate regex the specification does not give"
+  ],
+  "unit_tests.test_geotext.TestGeotext::test_nationalities": [
+   "S",
+   "nationalities = 'nationality terms found in the text' (kept as written: 'Japanese'); data file nationalities.txt in the seed"
+  ],
+  "unit_tests.test_geotext.TestGeotext::test_countries": [
+   "S",
+   "countries = list of country names found in the text"
+  ],
+  "unit_tests.test_geotext.TestGeotext::test_country_mentions": [
+   "U",
+   "country_mentions stated as a count of country mentions; that keys are ISO codes and that city mentions count for their country is not stated"
+  ],
+  "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_city_extraction": [
+   "S",
+   "'London' in cities: city extraction stated, city in seed data"
+  ],
+  "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_country_mentions_count": [
+   "U",
+   "same as test_country_mentions: expects {'US': 2, 'CN': 1} in order"
+  ],
+  "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_country_filter": [
+   "S",
+   "GeoText(text, country) filters cities by country code: stated"
+  ],
+  "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_nationalities_extraction": [
+   "S",
+   "'German' in nationalities, as written in the text"
+  ],
+  "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_data_loading": [
+   "R",
+   "needs a GeoText instance attribute named index; build_index() and its namedtuple are stated, the attribute and the field names are not"
+  ]
+ }
+}

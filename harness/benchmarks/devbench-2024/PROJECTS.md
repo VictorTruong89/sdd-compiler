@@ -45,7 +45,7 @@ hidden test and doing nothing passes none, after repackaging (`clean-tasks-check
 | chakin | Python | NLP | 1 | 162 | 1 / 1 | 982 | yes |
 | geotext | Python | NLP | 2 | 470 | 4 / 5 | 895 | yes |
 | hone | Python | SE | 4 | 274 | 7 / 5 | 1 699 | yes; **used** (pilot) |
-| hybrid-images | Python | ALGO, CV | 1 | 144 | 19 / 1 | 760 | **no**: reference passes 12 of 19 |
+| hybrid-images | Python | ALGO, CV | 1 | 144 | 19 / 1 | 760 | **kept for round 12 (owner, 2026-10-14)**: reference passes 12 of 20 (20 tests: the acceptance test is named `test`, which the first count missed) |
 | lice | Python | SE | 2 | 376 | 25 / 6 | 1 376 | yes; **used** (rounds 7, 11) |
 | particle-swarm-optimization | Python | ALGO | 2 | 168 | 5 / 1 | 524 | yes |
 | readtime | Python | ALGO | 3 | 284 | 8 / 4 | 827 | yes |
@@ -92,3 +92,41 @@ Notes on the table:
   usable and unused; their specs are small (524 to 982 words).
 - **Needs the network at test time:** `arxiv-digest` (the live arXiv service; see TRIAL §11) and
   `actor-relationship-game` (TMDB). Avoid them when a clean comparison matters.
+
+## 6. Who owns the projects, and why the hidden tests check unstated details (2026-10-14)
+
+Sources opened 2026-10-14: each project's own files in `download/deveval/python-<p>-implementation/environment/deveval_source_repo/`
+(README, LICENSE, setup files); the paper arXiv:2403.08604 v1 HTML, §4.1 "Dataset Construction" and
+Appendix C, read through a summarising fetch; the upstream repository's GitHub API record and all of its
+issues (5, all closed).
+
+**Layers.** The code belongs to independent open-source authors on GitHub. DevEval's team
+(GitHub organisation `open-compass`; the authors' affiliations were not checked) picked the
+repositories, wrote the four documents and prepared the tests. Harbor (laude-institute) only repackages
+DevEval as Harbor tasks; it adds nothing to the specification or the tests.
+
+| Project | Original repository (from the project's own files) |
+|---|---|
+| chakin | `chakki-works/chakin` (README image link) |
+| geotext | `elyase/geotext` (README install line) |
+| hybrid-images | `ReynoldZhao/Project1_Hybrid_Images` (README; MIT, "Copyright (c) 2019 ReynoldZhao") |
+| lice | Jeremy Carbaugh / Sunlight Foundation (licence text; repository URL not in the files) |
+| particle-swarm-optimization | `nathanrooy/particle-swarm-optimization` (README) |
+| readtime | `alanhamlett/readtime` (README; "Copyright (c) 2016 by Alan Hamlett") |
+| stocktrends | `chillaranand/stocktrends` (README install line) |
+| hone, arxiv-digest | no author or URL in the files; not traced |
+
+**Why the tests check things the documents do not state.** Per the paper (§4.1): repositories were taken
+from "a GitHub dump"; annotators were given templates and wrote the design documents to correspond to
+the existing code; they "were also required to run existing unit and acceptance tests, or to develop
+additional tests". So the documents were written *from* the code and the tests come from (or were
+written against) that code. Nothing checked that every name, string or default a test uses appears in
+the documents. The paper's appendix (C.2, C.4) reports models getting names wrong and following the
+original repositories' imports, but treats that as a model error, not a specification gap. The
+upstream repository was last pushed 2024-05-30; none of its 5 issues raises the point.
+
+**Community reports of the same problem elsewhere** (not about DevEval): NL2Repo-Bench issue #17
+"Hidden tests require API surface that start.md never names" (2026-08-19; e.g. 28 of 30 symbols the
+`funcy` tests call are absent from its specification) and #19 (three more tasks); its issue #21
+reports grading images that contain the reference code (as DevEval's Harbor images do, TRIAL §3) and
+#12 agent-written tests leaking into scoring (our round-8 fault). Records: `../zero2repo/TRIAL.md` §4.

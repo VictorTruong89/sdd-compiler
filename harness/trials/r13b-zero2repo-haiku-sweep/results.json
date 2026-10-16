@@ -1,0 +1,472 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 3.0389,
+ "groups": {
+  "work/tasks/case001-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case001-1"
+   ],
+   "tests_passed": [
+    302
+   ],
+   "mean_tests_passed": 302,
+   "turns": [
+    14
+   ],
+   "cost_usd_est": [
+    0.04981271999999999
+   ]
+  },
+  "work/tasks/case002-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case002-1"
+   ],
+   "tests_passed": [
+    281
+   ],
+   "mean_tests_passed": 281,
+   "turns": [
+    24
+   ],
+   "cost_usd_est": [
+    0.07260116
+   ]
+  },
+  "work/tasks/case005-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case005-1"
+   ],
+   "tests_passed": [
+    395
+   ],
+   "mean_tests_passed": 395,
+   "turns": [
+    22
+   ],
+   "cost_usd_est": [
+    0.37077759
+   ]
+  },
+  "work/tasks/case006-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case006-1"
+   ],
+   "tests_passed": [
+    464
+   ],
+   "mean_tests_passed": 464,
+   "turns": [
+    81
+   ],
+   "cost_usd_est": [
+    1.2422391800000003
+   ]
+  },
+  "work/tasks/case007-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case007-1"
+   ],
+   "tests_passed": [
+    80
+   ],
+   "mean_tests_passed": 80,
+   "turns": [
+    16
+   ],
+   "cost_usd_est": [
+    0.025337130000000003
+   ]
+  },
+  "work/tasks/case010-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case010-1"
+   ],
+   "tests_passed": [
+    166
+   ],
+   "mean_tests_passed": 166,
+   "turns": [
+    33
+   ],
+   "cost_usd_est": [
+    0.45385809
+   ]
+  },
+  "work/tasks/case011-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case011-1"
+   ],
+   "tests_passed": [
+    321
+   ],
+   "mean_tests_passed": 321,
+   "turns": [
+    20
+   ],
+   "cost_usd_est": [
+    0.2692845
+   ]
+  },
+  "work/tasks/case016-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "haiku-case016-1"
+   ],
+   "tests_passed": [
+    370
+   ],
+   "mean_tests_passed": 370,
+   "turns": [
+    53
+   ],
+   "cost_usd_est": [
+    0.55497234
+   ]
+  }
+ },
+ "runs": {
+  "haiku-case001-1": {
+   "task": "work/tasks/case001-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 1.0
+    },
+    "reward.json": {
+     "reward": 1.0,
+     "tests_passed": 302,
+     "tests_total": 302,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 1.0,
+     "judge_error": null
+    }
+   },
+   "tests": {
+    "passed": 302,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 14,
+   "subtype": "success",
+   "agent_seconds": 259.3,
+   "total_cost_usd_est": 0.04981271999999999,
+   "exception_info": {
+    "exception_type": "VerifierOutputParseError",
+    "exception_message": "Non-numeric reward None in JSON file jobs/r13b-zero2repo-haiku-sweep-haiku-case001-1/case001-markdown__v8EcMKc/verifier/reward.json",
+    "exception_traceback": "Traceback (most recent call last):\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 500, in run\n    await self._run()\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 51, in _run\n    await self._run_verifier()\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 105, in _run_verifier\n    self.result.verifier_result = await self._run_shared_verifier(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 896, in _run_shared_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 859, in _verify_with_timeout\n    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 258, in verify\n    rewards = self._parse_reward_json()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/victor/Workspace/sdd-compiler/harness/platforms/harbor/download/.venv/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 111, in _parse_reward_json\n    raise VerifierOutputParseError(\nharbor.verifier.verifier.VerifierOutputParseError: Non-numeric reward None in JSON file jobs/r13b-zero2repo-haiku-sweep-haiku-case001-1/case001-markdown__v8EcMKc/verifier/reward.json\n",
+    "occurred_at": "2026-10-15T01:49:21.124771Z"
+   }
+  },
+  "haiku-case002-1": {
+   "task": "work/tasks/case002-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 1.0
+    },
+    "reward.json": {
+     "reward": 1.0,
+     "tests_passed": 281,
+     "tests_total": 281,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 1.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 1.0,
+     "failed_tests": [],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 281,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 24,
+   "subtype": "success",
+   "agent_seconds": 323.2,
+   "total_cost_usd_est": 0.07260116,
+   "exception_info": null
+  },
+  "haiku-case005-1": {
+   "task": "work/tasks/case005-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 1.0
+    },
+    "reward.json": {
+     "reward": 1.0,
+     "tests_passed": 395,
+     "tests_total": 395,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 1.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 1.0,
+     "failed_tests": [],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 395,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 22,
+   "subtype": "success",
+   "agent_seconds": 808.8,
+   "total_cost_usd_est": 0.37077759,
+   "exception_info": null
+  },
+  "haiku-case006-1": {
+   "task": "work/tasks/case006-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9747899159663865,
+     "tests_passed": 464,
+     "tests_total": 476,
+     "tests_failed": 12,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error",
+      "../tests/final/tests/F03_acceptance.py::test_file_type_env_splits_on_os_pathsep",
+      "../tests/final/tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest",
+      "../tests/final/tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred",
+      "../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+      "../tests/final/tests/F08_acceptance.py::test_prompt_not_required_on_omit_asks_when_flag_has_no_value",
+      "../tests/final/tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag",
+      "../tests/final/tests/F09_acceptance.py::test_file_type_env_list_splits_on_os_pathsep",
+      "../tests/final/tests/F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 464,
+    "failed": 12,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 81,
+   "subtype": "success",
+   "agent_seconds": 973.8,
+   "total_cost_usd_est": 1.2422391800000003,
+   "exception_info": null
+  },
+  "haiku-case007-1": {
+   "task": "work/tasks/case007-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 1.0
+    },
+    "reward.json": {
+     "reward": 1.0,
+     "tests_passed": 80,
+     "tests_total": 80,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 1.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 1.0,
+     "failed_tests": [],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 80,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 16,
+   "subtype": "success",
+   "agent_seconds": 124.2,
+   "total_cost_usd_est": 0.025337130000000003,
+   "exception_info": null
+  },
+  "haiku-case010-1": {
+   "task": "work/tasks/case010-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.8426395939086294,
+     "tests_passed": 166,
+     "tests_total": 197,
+     "tests_failed": 31,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_recommended_sentence_tokenizer_three_muffin_sentences",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_sentence_tokenizer_same_atoms_other_order",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_sentence_tokenizer_single_atom_is_one_sentence",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_word_with_sentence_split_three_points_no_glue",
+      "../tests/final/tests/F01_acceptance.py::test_cli_tokenize_hello_world_joined_by_spaces",
+      "../tests/final/tests/F01_acceptance.py::test_cli_one_output_line_per_nonempty_input_line",
+      "../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str",
+      "../tests/final/tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_recommended_english",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_english_john_list_ptb_category_structure",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_english_homepage_proper_vs_common_noun",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_russian_rnc_named_s_v_and_category_contrasts",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_russian_universal_maps_noun_and_verb",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_refuses_raw_john_string_token_list_succeeds",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_refuses_runtime_raw_string_token_list_succeeds",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_korean_does_not_succeed_english_does",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_runtime_unsupported_language_does_not_succeed",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_russian_fails_when_only_english_perceptron_installed",
+      "../tests/final/tests/F03_acceptance.py::test_recommended_english_fails_when_only_russian_perceptron_installed",
+      "../tests/final/tests/F03_acceptance.py::test_english_universal_mapping_absent_without_tables_ptb_still_works",
+      "../tests/final/tests/F03_acceptance.py::test_russian_universal_succeeds_without_universal_tables_english_does_not",
+      "../tests/final/tests/F04_acceptance.py::test_named_entity_fails_without_ne_resource_when_perceptron_present"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 166,
+    "failed": 31,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 33,
+   "subtype": "success",
+   "agent_seconds": 690.9,
+   "total_cost_usd_est": 0.45385809,
+   "exception_info": null
+  },
+  "haiku-case011-1": {
+   "task": "work/tasks/case011-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 1.0
+    },
+    "reward.json": {
+     "reward": 1.0,
+     "tests_passed": 321,
+     "tests_total": 321,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 1.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 1.0,
+     "failed_tests": [],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 321,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 20,
+   "subtype": "success",
+   "agent_seconds": 444.8,
+   "total_cost_usd_est": 0.2692845,
+   "exception_info": null
+  },
+  "haiku-case016-1": {
+   "task": "work/tasks/case016-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9536082474226805,
+     "tests_passed": 370,
+     "tests_total": 388,
+     "tests_failed": 18,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[synonym-companies]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[single-dialect]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[utm-other-domain]",
+      "../tests/final/tests/F01_acceptance.py::test_single_dialect_word_does_not_fire_model_dialect",
+      "../tests/final/tests/F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_archive_cap",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_at_archive_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_notebook_between_plain_text_and_archive_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+      "../tests/final/tests/F03_acceptance.py::test_jobless_invisible_codepoints_are_removed_and_rescan_is_quiet",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_eight_thousand_tag_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F05_acceptance.py::test_five_failure_reasons_stay_distinguishable",
+      "../tests/final/tests/F05_acceptance.py::test_empty_result_shares_its_reason_with_unreadable",
+      "../tests/final/tests/F06_acceptance.py::test_help_names_the_threshold_integers_and_the_export_path[plain]",
+      "../tests/final/tests/F06_acceptance.py::test_help_names_the_threshold_integers_and_the_export_path[named]"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 370,
+    "failed": 18,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 53,
+   "subtype": "success",
+   "agent_seconds": 1061.6,
+   "total_cost_usd_est": 0.55497234,
+   "exception_info": null
+  }
+ }
+}

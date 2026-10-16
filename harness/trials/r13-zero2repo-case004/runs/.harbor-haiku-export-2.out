@@ -1,0 +1,26 @@
+  1/1 Collection_Errors: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:06:15 0:00:00
+adhoc • claude-code • claude-haiku-5-5
+┏━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
+┃ Trials ┃ Except… ┃ Collec… ┃ Offici… ┃ Reward ┃ Tests_… ┃ Tests_P… ┃ Tests_… ┃
+┡━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
+│      1 │       0 │   0.000 │   0.000 │  0.992 │ 258.000 │  256.000 │ 258.000 │
+└────────┴─────────┴─────────┴─────────┴────────┴─────────┴──────────┴─────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.9922480620155039 │     1 │
+│ 256                │     1 │
+│ 258                │     1 │
+│ 258                │     1 │
+│ 0                  │     1 │
+│ 0.0                │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 6m 15s
+Results written to jobs/r13-zero2repo-case004-haiku-export-2/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload 
+jobs/r13-zero2repo-case004-haiku-export-2`
+

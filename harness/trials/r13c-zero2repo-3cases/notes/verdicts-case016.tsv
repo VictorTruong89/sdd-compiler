@@ -1,0 +1,62 @@
+CF-000002	scoped by level in one paragraph: at full and strict one export line names CLAUDE_PLUGIN_ROOT, skills, plugins; at lite none of them (IC 625)
+CF-000091	scoped by level: same as CF-000002 (IC 625)
+CF-000003	"such a document" is the long document of the same sentence: under 300 words never fires; a longer one fires without semicolons or parentheticals (PRD 148)
+CF-000004	stated condition: the coverage line is present only when extracted prose is longer than the scan window, absent at exactly the window length (IC 520)
+CF-000111	same condition in both: coverage text when prose exceeds the window (IC 256), coverage line only then (IC 520)
+CF-000005	scoped by level: the full export does not name the cleanup switch; the strict export does (IC 625)
+CF-000017	different contracts: the live-session contract may name the detector path; the exported one must not (PRD 248)
+CF-000021	stated cap: the tells line lists fired findings, at least one and at most the label cap (IC 520)
+CF-000032	different failure cases: Python cannot be launched (line says python not found) versus Python runs but returns no numeric score (it does not) (IC 556)
+CF-000033	different states: closer when all checks succeed (IC 561) versus when a check fails (IC 563)
+CF-000034	different states: closer when a check fails (IC 563) versus when only the mode is off (IC 565)
+CF-000038	stated condition: a body with $ARGUMENTS forwards the level word; a body without it does not, so the level stays (IC 430)
+CF-000049	different subjects: PRD 59 is about what may add non-determinism to the scan report (the resampled interval only); the cleanup switch emits text instead of a report (PRD 82, 207)
+CF-000050	different family counts: exactly one score-moving family caps at 40 (PRD 93); the floors need two or more (PRD 95)
+CF-000051	different family counts: one family caps at 40 (PRD 93); the 400-word floors need five or more (PRD 95)
+CF-000058	rule and its stated mode: the guard scores saved prose files (PRD 254); with the mode off saving triggers no scoring (PRD 290)
+CF-000078	different replies: the help reply keeps the non-namespaced spelling (IC 457); the init-at-off reply uses the spelling typed (IC 617)
+CF-000079	different replies: status is one line (IC 480); the multi-line reply is check's scored reply (IC 510)
+CF-000082	rule and its stated exception: title-case headings fire, all-capitals headings do not (PRD 154)
+CF-000092	scoped by level: lite shows no full-level threshold; full shows it (IC 625)
+CF-000094	"base name only" contrasts with the full path, not with the score and labels: PRD 266 lists score, band, labels in the record and then says it holds the base name only; PRD 31 says never the full path
+CF-000115	same as CF-000094 (PRD 31, 266)
+CF-000132	same as CF-000094: the record carries a kind (scored, skipped, failed, binary) and the file by base name only (PRD 266)
+CF-000096	different paths: a file written by a shell command never reaches the guard (PRD 69); IC 510 is the check command scoring a file the user names
+CF-000103	different components: stdout is empty at off for the session-start hook (IC 198); stats is a command reply (PRD 293)
+CF-000104	different components: empty at off is the subagent-start hook (IC 216); stats is a command reply
+CF-000105	different components: empty at off is the ordinary-prompt fall-through (IC 415); stats is a command reply
+CF-000110	scoped by level: at full the text does not contain --clean (IC 207); at strict it asks for --clean (IC 208)
+CF-000112	stated in the same paragraph: ordinary prompts fall through to the reminder, and when the level is off stdout is empty (IC 415)
+CF-000186	stated in IC 415: the fall-through reminder is empty at off; PRD 301 says only that non-command prompts are not blocked
+CF-000114	different states: all checks succeed, no doctor command (IC 561); a check fails, doctor command (IC 563)
+CF-000117	different components: the saved-file hook exits successfully on a missing path (PRD 271); the detector command exits 1 (IC 73)
+CF-000136	different components: saved-file hook (PRD 271) versus detector command (IC 175)
+CF-000209	different runs: --clean success exits 0 (IC 166); an unreadable input exits 1 (IC 175)
+CF-000210	different subjects: the detector exits 1 (IC 175); IC 537 says the check reply need not state that exit status
+CF-000118	stated condition: the notice line is for two or more operands; a single operand prints none (IC 180)
+CF-000128	glossary and rule: the glossary summarises (PRD 25); the FP-05 rule gives the cap of five labels (PRD 261)
+CF-000144	different components: the detector's stdout is empty on failure (IC 170); the check command's reply reports that failure (IC 537)
+CF-000173	three separate cases in one list: no output (IC 535), non-report output (IC 536)
+CF-000174	separate cases in one list: detector exits without failure (IC 535) or with one (IC 537)
+CF-000175	separate cases in one list (IC 536, 537)
+CF-000179	different components: the saved-file hook's envelope on a flagged file (PRD 261); the check command's reply when the detector prints nothing (IC 535)
+CF-000134	different components: the detector command takes any path (PRD 207); the saved-file guard skips node_modules (PRD 264)
+CF-000137	stated condition: the rule file is not created only when it cannot be written (IC 633); otherwise init copies it (PRD 292)
+CF-000141	stated condition: rule not created when the write fails (IC 633)
+CF-000148	stated condition: the rule's format (IC 629) applies when it is written; IC 633 is the failed-write case
+CF-000159	stated condition: front matter of a written rule (IC 41); not created only on a failed write (IC 633)
+CF-000153	rule and its stated exception: init copies the Cursor rule (PRD 292); at level off init writes no files, rule included (PRD 298)
+CF-000158	rule and its stated exception: PRD 298 (off writes nothing) over IC 41
+CF-000146	different replies: an unknown subcommand names all twelve (IC 407); the check reply when Python cannot be launched (IC 534)
+CF-000151	general exclusion holds: code blocks and the other listed structures generate no findings (PRD 98); "counted on the scan window" (PRD 130) says which part of the text, not an override. A reading: the text does not say it in so many words
+CF-000152	same line implies it: load-bearing no-break spaces are kept and the rescan reports zero hits, so kept ones are not hits (PRD 213)
+CF-000198	different things: a reported finding's count is positive (IC 148); with zero hits there is no finding to report
+CF-000168	stated case: an unreadable transcript gives no counts (PRD 293); IC 662 is the readable case
+CF-000172	different outputs: the help reply's full line shows the threshold (IC 460); the Cursor rule does not (IC 629)
+CF-000182	glossary and rule: the glossary says "where not load-bearing" (PRD 30); PRD 213 states those exceptions
+CF-000185	different components: the saved-file hook ignores a directory (PRD 271); the check command replies "not a file" (IC 530)
+CF-000189	rule and its stated exception: a bracket slot fires, unless immediately followed by "(" or "[", which makes it a link (PRD 131)
+CF-000199	different hooks: the prompt-submit hook may print a JSON envelope (PRD 230, IC 415); the session-start hook prints plain text (IC 196)
+CF-000200	"eligible by its extension" means the extension decides, as PRD 259 says (the twenty formats); it is not a wider set
+CF-000214	rule and its stated exception: banned words fire as bare words except "Comprehensive" and "boast" (PRD 237)
+CF-000217	same sentence: no third-party package dependency; Node.js is the runtime the hooks need (IC 9)

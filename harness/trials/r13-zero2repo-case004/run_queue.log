@@ -1,0 +1,37 @@
+2026-10-14T16:29:56-04:00	start trial r13-zero2repo-case004, claude 2.1.296, budget 10, one=0
+2026-10-14T16:29:56-04:00	run haiku-markdown-1 attempt 1 model anthropic/claude-haiku-5-5 task case004-markdown
+2026-10-14T16:34:06-04:00	harbor haiku-markdown-1 exit 0 after 250 s
+2026-10-14T16:34:06-04:00	done haiku-markdown-1 turns 26 cost_usd_est 0.05074995 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 0.0} 
+2026-10-14T16:35:35-04:00	start trial r13-zero2repo-case004, claude 2.1.296, budget 10, one=0
+2026-10-14T16:35:35-04:00	run sonnet-markdown-1 attempt 1 model anthropic/claude-sonnet-5-5 task case004-markdown
+2026-10-14T16:37:11-04:00	harbor sonnet-markdown-1 exit 0 after 96 s
+2026-10-14T16:37:11-04:00	done sonnet-markdown-1 turns 5 cost_usd_est 0.2330878 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T16:39:11-04:00	run haiku-markdown-2 attempt 1 model anthropic/claude-haiku-5-5 task case004-markdown
+2026-10-14T16:43:20-04:00	harbor haiku-markdown-2 exit 0 after 249 s
+2026-10-14T16:43:20-04:00	done haiku-markdown-2 turns 24 cost_usd_est 0.04937184 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T16:45:20-04:00	run sonnet-markdown-2 attempt 1 model anthropic/claude-sonnet-5-5 task case004-markdown
+2026-10-14T16:46:53-04:00	harbor sonnet-markdown-2 exit 0 after 93 s
+2026-10-14T16:46:53-04:00	done sonnet-markdown-2 turns 6 cost_usd_est 0.21355749999999998 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T16:48:53-04:00	end no pending or limited row left
+2026-10-14T18:29:57-04:00	start trial r13-zero2repo-case004, claude 2.1.296, budget 10, one=0
+2026-10-14T18:29:57-04:00	run haiku-export-1 attempt 1 model anthropic/claude-haiku-5-5 task case004-export
+2026-10-14T18:38:09-04:00	harbor haiku-export-1 exit 0 after 492 s
+2026-10-14T18:38:09-04:00	done haiku-export-1 turns 75 cost_usd_est 0.51437948 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T18:40:09-04:00	run sonnet-export-1 attempt 1 model anthropic/claude-sonnet-5-5 task case004-export
+2026-10-14T18:41:41-04:00	harbor sonnet-export-1 exit 0 after 92 s
+2026-10-14T18:41:41-04:00	done sonnet-export-1 turns 7 cost_usd_est 0.2240296 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T18:43:41-04:00	run haiku-export-2 attempt 1 model anthropic/claude-haiku-5-5 task case004-export
+2026-10-14T18:49:57-04:00	harbor haiku-export-2 exit 0 after 376 s
+2026-10-14T18:49:57-04:00	done haiku-export-2 turns 46 cost_usd_est 0.3862586699999999 reward {"reward": 0.9922480620155039, "tests_passed": 256, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 0.0} 
+2026-10-14T18:51:57-04:00	run sonnet-export-2 attempt 1 model anthropic/claude-sonnet-5-5 task case004-export
+2026-10-14T18:53:40-04:00	harbor sonnet-export-2 exit 0 after 103 s
+2026-10-14T18:53:40-04:00	done sonnet-export-2 turns 6 cost_usd_est 0.24664890000000003 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T18:55:40-04:00	end no pending or limited row left
+2026-10-14T21:18:02-04:00	start trial r13-zero2repo-case004, claude 2.1.296, budget 10, one=0
+2026-10-14T21:18:02-04:00	run haiku-settled-1 attempt 1 model anthropic/claude-haiku-5-5 task case004-export-settled
+2026-10-14T21:23:15-04:00	harbor haiku-settled-1 exit 0 after 313 s
+2026-10-14T21:23:16-04:00	done haiku-settled-1 turns 35 cost_usd_est 0.16695236000000002 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T21:25:16-04:00	run haiku-settled-2 attempt 1 model anthropic/claude-haiku-5-5 task case004-export-settled
+2026-10-14T21:29:37-04:00	harbor haiku-settled-2 exit 0 after 261 s
+2026-10-14T21:29:37-04:00	done haiku-settled-2 turns 20 cost_usd_est 0.07263889999999999 reward {"reward": 1.0, "tests_passed": 258, "tests_total": 258, "tests_collected": 258, "collection_errors": 0, "official_reward": 1.0} 
+2026-10-14T21:31:37-04:00	end no pending or limited row left

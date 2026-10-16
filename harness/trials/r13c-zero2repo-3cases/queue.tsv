@@ -1,0 +1,25 @@
+run_id	task	model	status	job	attempts	last_message
+haiku-case010-markdown-1	work/tasks/case010-markdown	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case010-markdown-1	1	
+sonnet-case010-markdown-1	work/tasks/case010-markdown	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case010-markdown-1	1	
+haiku-case006-markdown-1	work/tasks/case006-markdown	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case006-markdown-1	1	
+sonnet-case006-markdown-1	work/tasks/case006-markdown	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case006-markdown-1	1	
+haiku-case016-markdown-1	work/tasks/case016-markdown	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case016-markdown-1	1	
+sonnet-case016-markdown-1	work/tasks/case016-markdown	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case016-markdown-1	1	
+haiku-case010-markdown-2	work/tasks/case010-markdown	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case010-markdown-2	1	
+sonnet-case010-markdown-2	work/tasks/case010-markdown	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case010-markdown-2	1	
+haiku-case006-markdown-2	work/tasks/case006-markdown	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case006-markdown-2	1	
+sonnet-case006-markdown-2	work/tasks/case006-markdown	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case006-markdown-2	1	
+haiku-case016-markdown-2	work/tasks/case016-markdown	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case016-markdown-2	1	
+sonnet-case016-markdown-2	work/tasks/case016-markdown	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case016-markdown-2	1	
+haiku-case010-export-1	work/tasks/case010-export	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case010-export-1	1	
+sonnet-case010-export-1	work/tasks/case010-export	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case010-export-1	1	
+haiku-case006-export-1	work/tasks/case006-export	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case006-export-1	1	
+sonnet-case006-export-1	work/tasks/case006-export	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case006-export-1	1	
+haiku-case016-export-1	work/tasks/case016-export	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case016-export-1	1	
+sonnet-case016-export-1	work/tasks/case016-export	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case016-export-1	1	
+haiku-case010-export-2	work/tasks/case010-export	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case010-export-2	1	
+sonnet-case010-export-2	work/tasks/case010-export	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case010-export-2	1	
+haiku-case006-export-2	work/tasks/case006-export	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case006-export-2	1	
+sonnet-case006-export-2	work/tasks/case006-export	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case006-export-2	1	
+haiku-case016-export-2	work/tasks/case016-export	anthropic/claude-haiku-5-5	done	r13c-zero2repo-3cases-haiku-case016-export-2	1	
+sonnet-case016-export-2	work/tasks/case016-export	anthropic/claude-sonnet-5-5	done	r13c-zero2repo-3cases-sonnet-case016-export-2	1	

@@ -1,0 +1,144 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-8.4.1, pluggy-1.6.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 71 items / 12 errors
+
+==================================== ERRORS ====================================
+___________________ ERROR collecting tests/F03_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F03_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F03_acceptance.py:21: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'File' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F04_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F04_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F04_acceptance.py:17: in <module>
+    from optlyn import STRING, Path, argument, group, option
+E   ImportError: cannot import name 'Path' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F05_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F05_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F05_acceptance.py:19: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'prompt' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F06_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F06_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F06_acceptance.py:19: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'CommandCollection' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F07_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F07_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F07_acceptance.py:20: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'Path' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F08_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F08_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F08_acceptance.py:16: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'confirm' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F09_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F09_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F09_acceptance.py:20: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'File' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F10_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F10_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F10_acceptance.py:22: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'File' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F11_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F11_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F11_acceptance.py:30: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'clear' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F12_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F12_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F12_acceptance.py:21: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'File' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F13_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F13_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F13_acceptance.py:17: in <module>
+    from optlyn import (
+E   ImportError: cannot import name 'File' from 'optlyn' (/app/src/optlyn/__init__.py)
+___________________ ERROR collecting tests/F14_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F14_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F14_acceptance.py:26: in <module>
+    from optlyn import File, argument, command, echo, group, option, style, unstyle
+E   ImportError: cannot import name 'File' from 'optlyn' (/app/src/optlyn/__init__.py)
+=========================== short test summary info ============================
+ERROR ../tests/final/tests/F03_acceptance.py
+ERROR ../tests/final/tests/F04_acceptance.py
+ERROR ../tests/final/tests/F05_acceptance.py
+ERROR ../tests/final/tests/F06_acceptance.py
+ERROR ../tests/final/tests/F07_acceptance.py
+ERROR ../tests/final/tests/F08_acceptance.py
+ERROR ../tests/final/tests/F09_acceptance.py
+ERROR ../tests/final/tests/F10_acceptance.py
+ERROR ../tests/final/tests/F11_acceptance.py
+ERROR ../tests/final/tests/F12_acceptance.py
+ERROR ../tests/final/tests/F13_acceptance.py
+ERROR ../tests/final/tests/F14_acceptance.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 12 errors during collection !!!!!!!!!!!!!!!!!!!
+============================== 12 errors in 0.62s ==============================
+CODING_BENCH_COLLECTION_AUDIT={"collected": ["tests/F01_acceptance.py::test_underscore_name_invoked_with_dash", "tests/F01_acceptance.py::test_function_name_lowercased_before_dash_mapping", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_command]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_cmd]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_group]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_grp]", "tests/F01_acceptance.py::test_explicit_name_overrides_mapped_name", "tests/F01_acceptance.py::test_valid_args_run_callback_once_exit_zero", "tests/F01_acceptance.py::test_greeting_absent_when_callback_does_not_run", "tests/F01_acceptance.py::test_parameterless_command_runs_on_empty_args", "tests/F01_acceptance.py::test_inferred_destination_receives_converted_value", "tests/F01_acceptance.py::test_declared_destination_receives_converted_value", "tests/F01_acceptance.py::test_script_program_invocation_runs_callback", "tests/F01_acceptance.py::test_deprecated_command_still_runs_and_exits_zero", "tests/F01_acceptance.py::test_deprecation_warning_distinct_from_greeting_and_usage_failure", "tests/F01_acceptance.py::test_custom_deprecation_note_appears_in_warning", "tests/F01_acceptance.py::test_help_marks_deprecated_unlike_nondeprecated_twin", "tests/F01_acceptance.py::test_standalone_success_exits_zero_and_discards_return_value", "tests/F01_acceptance.py::test_non_standalone_success_returns_callback_value", "tests/F01_acceptance.py::test_standalone_usage_error_exits_class_two", "tests/F01_acceptance.py::test_non_standalone_failure_propagates_to_caller", "tests/F01_acceptance.py::test_unknown_option_does_not_run_callback", "tests/F01_acceptance.py::test_missing_required_parameter_does_not_run_callback", "tests/F01_acceptance.py::test_conversion_failure_does_not_run_callback", "tests/F01_acceptance.py::test_leftover_tokens_fail_unless_extra_arguments_allowed", "tests/F01_acceptance.py::test_ascii_environment_encoding_does_not_abort", "tests/F01_acceptance.py::test_invocation_fails_when_package_not_importable", "tests/F02_acceptance.py::test_help_prints_page_without_running_callback_exits_zero", "tests/F02_acceptance.py::test_help_eager_exits_without_required_params", "tests/F02_acceptance.py::test_help_page_contains_description_and_option_help", "tests/F02_acceptance.py::test_group_help_does_not_run_group_callback", "tests/F02_acceptance.py::test_docstring_is_description_unless_explicit_help", "tests/F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted", "tests/F02_acceptance.py::test_argument_help_appears_in_positional_arguments_section", "tests/F02_acceptance.py::test_subcommand_short_help_is_first_sentence", "tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line", "tests/F02_acceptance.py::test_explicit_short_help_overrides_first_sentence", "tests/F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end", "tests/F02_acceptance.py::test_usage_brackets_optional_not_required_argument", "tests/F02_acceptance.py::test_variadic_argument_marked_with_trailing_ellipsis", "tests/F02_acceptance.py::test_author_options_placeholder_appears_on_usage", "tests/F02_acceptance.py::test_invoke_without_command_brackets_leading_command_token", "tests/F02_acceptance.py::test_chaining_group_usage_marks_repeatable_command_unit", "tests/F02_acceptance.py::test_argument_default_metavar_is_name_uppercased", "tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name", "tests/F02_acceptance.py::test_flag_and_count_options_have_no_metavar", "tests/F02_acceptance.py::test_choice_type_supplies_own_metavar_placeholder", "tests/F02_acceptance.py::test_author_metavar_override_appears", "tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80", "tests/F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks", "tests/F02_acceptance.py::test_backspace_paragraph_keeps_breaks_and_strips_marker", "tests/F02_acceptance.py::test_show_default_per_parameter_and_via_context", "tests/F02_acceptance.py::test_custom_default_description_replaces_raw_default", "tests/F02_acceptance.py::test_off_boolean_flag_default_stays_hidden", "tests/F02_acceptance.py::test_show_environment_variable_name_appears", "tests/F02_acceptance.py::test_hidden_option_omitted_from_help_but_accepted", "tests/F02_acceptance.py::test_hidden_command_omitted_from_group_help_but_invocable", "tests/F02_acceptance.py::test_hidden_group_omitted_from_parent_help_but_invocable", "tests/F02_acceptance.py::test_context_replaces_help_option_names", "tests/F02_acceptance.py::test_author_option_wins_only_when_every_help_name_reused", "tests/F02_acceptance.py::test_parameter_named_help_does_not_disable_automatic_help", "tests/F02_acceptance.py::test_extra_help_option_prints_help_and_exits", "tests/F02_acceptance.py::test_disabled_automatic_help_makes_help_unknown_unless_declared", "tests/F02_acceptance.py::test_version_option_eager_exits_without_required_params", "tests/F02_acceptance.py::test_version_detects_installed_distribution", "tests/F02_acceptance.py::test_version_resolves_import_name_to_distribution", "tests/F02_acceptance.py::test_custom_version_prints_callback_string_not_template", "tests/F02_acceptance.py::test_first_eager_flag_on_command_line_wins", "tests/F02_acceptance.py::test_missing_subcommand_help_is_usage_error_not_success", "tests/F02_acceptance.py::test_leaf_no_args_is_help_is_usage_error", "tests/F02_acceptance.py::test_invoke_without_command_skips_no_args_help"], "issues": ["executed tests differ from collected tests"], "reports": {}, "selected": ["tests/F01_acceptance.py::test_underscore_name_invoked_with_dash", "tests/F01_acceptance.py::test_function_name_lowercased_before_dash_mapping", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_command]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_cmd]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_group]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_grp]", "tests/F01_acceptance.py::test_explicit_name_overrides_mapped_name", "tests/F01_acceptance.py::test_valid_args_run_callback_once_exit_zero", "tests/F01_acceptance.py::test_greeting_absent_when_callback_does_not_run", "tests/F01_acceptance.py::test_parameterless_command_runs_on_empty_args", "tests/F01_acceptance.py::test_inferred_destination_receives_converted_value", "tests/F01_acceptance.py::test_declared_destination_receives_converted_value", "tests/F01_acceptance.py::test_script_program_invocation_runs_callback", "tests/F01_acceptance.py::test_deprecated_command_still_runs_and_exits_zero", "tests/F01_acceptance.py::test_deprecation_warning_distinct_from_greeting_and_usage_failure", "tests/F01_acceptance.py::test_custom_deprecation_note_appears_in_warning", "tests/F01_acceptance.py::test_help_marks_deprecated_unlike_nondeprecated_twin", "tests/F01_acceptance.py::test_standalone_success_exits_zero_and_discards_return_value", "tests/F01_acceptance.py::test_non_standalone_success_returns_callback_value", "tests/F01_acceptance.py::test_standalone_usage_error_exits_class_two", "tests/F01_acceptance.py::test_non_standalone_failure_propagates_to_caller", "tests/F01_acceptance.py::test_unknown_option_does_not_run_callback", "tests/F01_acceptance.py::test_missing_required_parameter_does_not_run_callback", "tests/F01_acceptance.py::test_conversion_failure_does_not_run_callback", "tests/F01_acceptance.py::test_leftover_tokens_fail_unless_extra_arguments_allowed", "tests/F01_acceptance.py::test_ascii_environment_encoding_does_not_abort", "tests/F01_acceptance.py::test_invocation_fails_when_package_not_importable", "tests/F02_acceptance.py::test_help_prints_page_without_running_callback_exits_zero", "tests/F02_acceptance.py::test_help_eager_exits_without_required_params", "tests/F02_acceptance.py::test_help_page_contains_description_and_option_help", "tests/F02_acceptance.py::test_group_help_does_not_run_group_callback", "tests/F02_acceptance.py::test_docstring_is_description_unless_explicit_help", "tests/F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted", "tests/F02_acceptance.py::test_argument_help_appears_in_positional_arguments_section", "tests/F02_acceptance.py::test_subcommand_short_help_is_first_sentence", "tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line", "tests/F02_acceptance.py::test_explicit_short_help_overrides_first_sentence", "tests/F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end", "tests/F02_acceptance.py::test_usage_brackets_optional_not_required_argument", "tests/F02_acceptance.py::test_variadic_argument_marked_with_trailing_ellipsis", "tests/F02_acceptance.py::test_author_options_placeholder_appears_on_usage", "tests/F02_acceptance.py::test_invoke_without_command_brackets_leading_command_token", "tests/F02_acceptance.py::test_chaining_group_usage_marks_repeatable_command_unit", "tests/F02_acceptance.py::test_argument_default_metavar_is_name_uppercased", "tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name", "tests/F02_acceptance.py::test_flag_and_count_options_have_no_metavar", "tests/F02_acceptance.py::test_choice_type_supplies_own_metavar_placeholder", "tests/F02_acceptance.py::test_author_metavar_override_appears", "tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80", "tests/F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks", "tests/F02_acceptance.py::test_backspace_paragraph_keeps_breaks_and_strips_marker", "tests/F02_acceptance.py::test_show_default_per_parameter_and_via_context", "tests/F02_acceptance.py::test_custom_default_description_replaces_raw_default", "tests/F02_acceptance.py::test_off_boolean_flag_default_stays_hidden", "tests/F02_acceptance.py::test_show_environment_variable_name_appears", "tests/F02_acceptance.py::test_hidden_option_omitted_from_help_but_accepted", "tests/F02_acceptance.py::test_hidden_command_omitted_from_group_help_but_invocable", "tests/F02_acceptance.py::test_hidden_group_omitted_from_parent_help_but_invocable", "tests/F02_acceptance.py::test_context_replaces_help_option_names", "tests/F02_acceptance.py::test_author_option_wins_only_when_every_help_name_reused", "tests/F02_acceptance.py::test_parameter_named_help_does_not_disable_automatic_help", "tests/F02_acceptance.py::test_extra_help_option_prints_help_and_exits", "tests/F02_acceptance.py::test_disabled_automatic_help_makes_help_unknown_unless_declared", "tests/F02_acceptance.py::test_version_option_eager_exits_without_required_params", "tests/F02_acceptance.py::test_version_detects_installed_distribution", "tests/F02_acceptance.py::test_version_resolves_import_name_to_distribution", "tests/F02_acceptance.py::test_custom_version_prints_callback_string_not_template", "tests/F02_acceptance.py::test_first_eager_flag_on_command_line_wins", "tests/F02_acceptance.py::test_missing_subcommand_help_is_usage_error_not_success", "tests/F02_acceptance.py::test_leaf_no_args_is_help_is_usage_error", "tests/F02_acceptance.py::test_invoke_without_command_skips_no_args_help"]}

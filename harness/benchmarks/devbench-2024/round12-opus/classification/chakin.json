@@ -1,0 +1,12 @@
+{
+ "tests": {
+  "unit_tests.test_downloader.TestDownloader::test_download_by_name": [
+   "R",
+   "patches chakin.downloader.urlretrieve, a module-level name the specification never gives; also needs download() to return the saved file path (not stated)"
+  ],
+  "acceptance_tests.acceptance_test.TestDownloader::test_download_acceptance": [
+   "R",
+   "same: patches chakin.downloader.urlretrieve and needs the returned path"
+  ]
+ }
+}

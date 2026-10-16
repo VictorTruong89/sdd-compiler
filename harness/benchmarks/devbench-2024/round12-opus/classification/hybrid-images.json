@@ -1,0 +1,84 @@
+{
+ "tests": {
+  "unit_tests.unit_test.TestCrossCorrelation2D::test_identity_filter_grey": [
+   "S",
+   "cross_correlation_2d with an identity kernel returns the image: holds for any same-size output whatever the border rule"
+  ],
+  "unit_tests.unit_test.TestCrossCorrelation2D::test_mean_filter_grey": [
+   "U",
+   "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x3 mean kernel)"
+  ],
+  "unit_tests.unit_test.TestCrossCorrelation2D::test_mean_filter_rect_grey": [
+   "U",
+   "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x5 kernel)"
+  ],
+  "unit_tests.unit_test.TestCrossCorrelation2D::test_mean_filter_RGB": [
+   "U",
+   "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, per channel)"
+  ],
+  "unit_tests.unit_test.TestCrossCorrelation2D::test_rand_rect_filter_RGB": [
+   "U",
+   "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, random 5x7 kernel)"
+  ],
+  "unit_tests.unit_test.TestCrossCorrelation2D::test_big_filter_grey": [
+   "U",
+   "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (kernel larger than the image)"
+  ],
+  "unit_tests.unit_test.TestConvolve2D::test_identity_filter_grey": [
+   "S",
+   "convolve_2d with an identity kernel returns the image: holds for any same-size output whatever the border rule"
+  ],
+  "unit_tests.unit_test.TestConvolve2D::test_mean_filter_grey": [
+   "U",
+   "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x3 mean kernel)"
+  ],
+  "unit_tests.unit_test.TestConvolve2D::test_mean_filter_rect_grey": [
+   "U",
+   "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x5 kernel)"
+  ],
+  "unit_tests.unit_test.TestConvolve2D::test_mean_filter_RGB": [
+   "U",
+   "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, per channel)"
+  ],
+  "unit_tests.unit_test.TestConvolve2D::test_rand_rect_filter_RGB": [
+   "U",
+   "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, random 5x7 kernel)"
+  ],
+  "unit_tests.unit_test.TestConvolve2D::test_big_filter_grey": [
+   "U",
+   "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (kernel larger than the image)"
+  ],
+  "unit_tests.unit_test.TestGaussianKernel2D::test_5_5_5": [
+   "S",
+   "square kernel: sampled Gaussian normalised to sum 1, the standard definition; size and sigma stated"
+  ],
+  "unit_tests.unit_test.TestGaussianKernel2D::test_1_7_3": [
+   "C",
+   "gaussian_blur_kernel_2d(sigma, width=7, height=3) expected with 7 rows and 3 columns: width taken as rows, against the plain meaning of width and height"
+  ],
+  "unit_tests.unit_test.TestGaussianKernel2D::test_1079_3_5": [
+   "C",
+   "same: width=3, height=5 expected as 3 rows by 5 columns"
+  ],
+  "unit_tests.unit_test.TestHighLowPass::test_low_pass_2_3": [
+   "U",
+   "low_pass(img, sigma, size) stated; exact values need the border rule (zero padding), not stated"
+  ],
+  "unit_tests.unit_test.TestHighLowPass::test_low_pass_9_7": [
+   "U",
+   "low_pass(img, sigma, size) stated; exact values need the border rule (zero padding), not stated"
+  ],
+  "unit_tests.unit_test.TestHighLowPass::test_high_pass_2_3": [
+   "U",
+   "high_pass stated; exact values need image minus low pass and the border rule, neither stated"
+  ],
+  "unit_tests.unit_test.TestHighLowPass::test_high_pass_9_7": [
+   "U",
+   "high_pass stated; exact values need image minus low pass and the border rule, neither stated"
+  ],
+  "acceptance_tests.acceptance_test.TestHybridImage::test": [
+   "R",
+   "compares with resources/hybrid.png to within 1 grey level: needs the mixing formula for mixin_ratio, scaling, clipping and output type, none given"
+  ]
+ }
+}

@@ -1,0 +1,138 @@
+### Group 1 (1 record(s), 2 node(s))
+- **CF-000005** contradiction: N-000109 (sdd/specs/Full_PRD.md:92), N-000121 (sdd/specs/Full_PRD.md:94) — A says the signing key is always derived from the secret and salt, while B says that under none the signing key is the secret itself; for the same key under none both cannot hold.
+
+### Group 2 (1 record(s), 2 node(s))
+- **CF-000008** contradiction: N-000041 (sdd/specs/Full_PRD.md:45), N-000203 (sdd/specs/Full_PRD.md:143) — For an instant beyond the standard date-time range, A requires the signing time to be returned as a UTC datetime while B requires signing to succeed, which cannot both hold for the same signing.
+
+### Group 3 (1 record(s), 2 node(s))
+- **CF-000013** contradiction: N-000224 (sdd/specs/Full_PRD.md:154), N-000326 (sdd/specs/Interface_Contract.md:52) — One claim classifies a token with a failed signature and no separator as a plain signature mismatch, not a missing timestamp, while the other says the token is refused as a malformed timestamp, so the same failure cannot carry both labels.
+
+### Group 4 (2 record(s), 3 node(s))
+- **CF-000014** contradiction: N-000247 (sdd/specs/Full_PRD.md:176), N-000328 (sdd/specs/Interface_Contract.md:53) — Claim A refuses any payload section that is not valid URL-safe base64, but Claim B permits a `<sep>`-prefixed section, which is not valid base64 as a whole, so the same section would have to be both accepted and refused.
+- **CF-000029** contradiction: N-000094 (sdd/specs/Full_PRD.md:83), N-000328 (sdd/specs/Interface_Contract.md:53) — A forbids Signtoken's signing helper from rewriting the payload into a URL-safe alphabet, while B requires every token's payload section to be URL-safe base64; if the helper's tokens are the ones B describes, both cannot hold. The text does not say which helper B covers, so confidence is low.
+
+### Group 5 (1 record(s), 2 node(s))
+- **CF-000017** contradiction: N-000179 (sdd/specs/Full_PRD.md:124), N-000364 (sdd/specs/Interface_Contract.md:111) — A says an undeserializable payload yields (false, no object), while B says a payload-decode failure raises BadPayload; the same function cannot do both for the same payload.
+
+### Group 6 (1 record(s), 2 node(s))
+- **CF-000018** contradiction: N-000324 (sdd/specs/Interface_Contract.md:52), N-000327 (sdd/specs/Interface_Contract.md:52) — A says the time field is at most 11 characters and B says it is more than 11 characters, so both cannot hold for the same field; B's 'that long' is anaphoric, so confidence is low.
+
+### Group 7 (4 record(s), 5 node(s))
+- **CF-000019** contradiction: N-000003 (sdd/specs/Full_PRD.md:5), N-000138 (sdd/specs/Full_PRD.md:97) — Claim A says a receiver without the secret key cannot get a changed payload to verify, but claim B requires a changed payload with an empty signature to be reported valid.
+- **CF-000021** contradiction: N-000025 (sdd/specs/Full_PRD.md:43), N-000138 (sdd/specs/Full_PRD.md:97) — A requires that a valid token yields the original bytes, while B says a changed payload with an empty signature is recovered as the changed payload and reported valid, so the same valid token would yield two different payloads.
+- **CF-000022** contradiction: N-000026 (sdd/specs/Full_PRD.md:43), N-000138 (sdd/specs/Full_PRD.md:97) — Claim A requires validity checks to proceed without recovering the payload, while Claim B requires that a changed payload with an empty signature be recovered and reported valid, so both cannot hold for that same check.
+- **CF-000001** duplication: N-000003 (sdd/specs/Full_PRD.md:5), N-000060 (sdd/specs/Full_PRD.md:56) — Both say that a party seeing the token cannot forge a verifying payload without the secret key; only the named party differs.
+
+### Group 8 (6 record(s), 5 node(s))
+- **CF-000023** contradiction: N-000129 (sdd/specs/Full_PRD.md:95), N-000320 (sdd/specs/Interface_Contract.md:51) — Claim A says every signature's length follows the digest size with no exception, while Claim B requires the NoneAlgorithm signature to be empty, which cannot hold if that algorithm has a non-zero digest.
+- **CF-000024** contradiction: N-000129 (sdd/specs/Full_PRD.md:95), N-000349 (sdd/specs/Interface_Contract.md:86) — Claim A's unqualified digest-size length rule and Claim B's requirement that NoneAlgorithm produce an empty signature both apply to the same signature and cannot both hold unless no digest is involved.
+- **CF-000027** contradiction: N-000199 (sdd/specs/Full_PRD.md:143), N-000320 (sdd/specs/Interface_Contract.md:51) — Claim A says the signature covers the time field with no exception, while Claim B says that under NoneAlgorithm the signature is empty, so a NoneAlgorithm signature cannot both be empty and cover the payload and time field.
+- **CF-000028** contradiction: N-000199 (sdd/specs/Full_PRD.md:143), N-000349 (sdd/specs/Interface_Contract.md:86) — Claim A says the signature covers the payload and time field, while Claim B says NoneAlgorithm produces an empty signature, which covers nothing; both cannot hold for a NoneAlgorithm signature.
+- **CF-000015** duplication: N-000320 (sdd/specs/Interface_Contract.md:51), N-000349 (sdd/specs/Interface_Contract.md:86) — Both state that the signature produced under NoneAlgorithm is empty.
+- **CF-000025** subsumption: N-000135 (sdd/specs/Full_PRD.md:97), N-000320 (sdd/specs/Interface_Contract.md:51) — A's claim that the no-op algorithm's signature is empty already implies B's statement that under NoneAlgorithm the signature is empty, while A adds the caller's permission.
+
+### Group 9 (3 record(s), 4 node(s))
+- **CF-000034** contradiction: N-000221 (sdd/specs/Full_PRD.md:153), N-000223 (sdd/specs/Full_PRD.md:153) — A says the refusal is always a signature mismatch carrying the payload, while B says that for an unrepresentable time the same refusal is a malformed timestamp instead, so both cannot hold for that case.
+- **CF-000044** contradiction: N-000220 (sdd/specs/Full_PRD.md:153), N-000223 (sdd/specs/Full_PRD.md:153) — A says a signature failure with a separator is a time-signature failure, while B says an unrepresentable time makes the refusal a malformed timestamp 'instead'; nothing in the pair keeps these cases apart, so both can apply to one refusal.
+- **CF-000002** duplication: N-000173 (sdd/specs/Full_PRD.md:123), N-000221 (sdd/specs/Full_PRD.md:153) — Both say a signature-mismatch refusal carries the payload section, with B only restating it as the part before the time field.
+
+### Group 10 (1 record(s), 2 node(s))
+- **CF-000038** contradiction: N-000170 (sdd/specs/Full_PRD.md:122), N-000216 (sdd/specs/Full_PRD.md:147) — A says a token verified by any fallback loads, while B says an expired token is refused and later fallbacks are not tried, so an expired token verified by a fallback cannot both load and be refused.
+
+### Group 11 (1 record(s), 2 node(s))
+- **CF-000052** contradiction: N-000176 (sdd/specs/Full_PRD.md:124), N-000183 (sdd/specs/Full_PRD.md:129) — A says unsafe load always returns a pair, while B says that on a payload-decode failure it raises instead of returning a pair; B is not explicitly conditioned, so the scope is ambiguous.
+
+### Group 12 (1 record(s), 2 node(s))
+- **CF-000003** duplication: N-000013 (sdd/specs/Full_PRD.md:21), N-000117 (sdd/specs/Full_PRD.md:93) — Both say tokens signed only with a key no longer in the list are rejected (invalidated or refused).
+
+### Group 13 (1 record(s), 2 node(s))
+- **CF-000004** duplication: N-000102 (sdd/specs/Full_PRD.md:89), N-000204 (sdd/specs/Full_PRD.md:143) — Both state the same permission: the payload may contain the separator.
+
+### Group 14 (1 record(s), 2 node(s))
+- **CF-000006** duplication: N-000095 (sdd/specs/Full_PRD.md:87), N-000332 (sdd/specs/Interface_Contract.md:63) — Both say that signing yields a byte-string token of the same form; B points back to the form A defines rather than restating its parts.
+
+### Group 15 (1 record(s), 2 node(s))
+- **CF-000007** duplication: N-000112 (sdd/specs/Full_PRD.md:92), N-000293 (sdd/specs/Interface_Contract.md:29) — Both say that when the salt is omitted, a product-defined default salt is used.
+
+### Group 16 (1 record(s), 2 node(s))
+- **CF-000009** duplication: N-000015 (sdd/specs/Full_PRD.md:23), N-000057 (sdd/specs/Full_PRD.md:56) — Both say a verified token yields the original thing back; A says "payload" and B says "object", and the text does not distinguish them.
+
+### Group 17 (1 record(s), 2 node(s))
+- **CF-000010** duplication: N-000087 (sdd/specs/Full_PRD.md:83), N-000145 (sdd/specs/Full_PRD.md:109) — Both require the signing helper (named 'signing helper' and 'serialize-and-sign helper', one kind of thing) to be constructed with a secret key.
+
+### Group 18 (1 record(s), 2 node(s))
+- **CF-000011** duplication: N-000090 (sdd/specs/Full_PRD.md:83), N-000291 (sdd/specs/Interface_Contract.md:28) — Both state that text is encoded as UTF-8 with no added condition.
+
+### Group 19 (1 record(s), 2 node(s))
+- **CF-000016** duplication: N-000333 (sdd/specs/Interface_Contract.md:64), N-000342 (sdd/specs/Interface_Contract.md:76) — Both claims say that unsign returns the payload as bytes; A's signature form unsign(signed_value) names the same function as B's bare unsign.
+
+### Group 20 (2 record(s), 3 node(s))
+- **CF-000020** duplication: N-000017 (sdd/specs/Full_PRD.md:28), N-000064 (sdd/specs/Full_PRD.md:59) — Both state that the separator is a period, with claim A naming it as the product default and claim B giving the same value without the qualifier.
+- **CF-000030** duplication: N-000017 (sdd/specs/Full_PRD.md:28), N-000298 (sdd/specs/Interface_Contract.md:30) — Both state that the separator's default value is a period.
+
+### Group 21 (1 record(s), 2 node(s))
+- **CF-000026** duplication: N-000143 (sdd/specs/Full_PRD.md:102), N-000339 (sdd/specs/Interface_Contract.md:67) — Both state that a key-derivation name outside the four built-in names produces no verified token, either by refusing at construction or signing or by emitting a token that does not verify.
+
+### Group 22 (3 record(s), 3 node(s))
+- **CF-000031** duplication: N-000018 (sdd/specs/Full_PRD.md:29), N-000126 (sdd/specs/Full_PRD.md:95) — Both state that the digest default is SHA-1.
+- **CF-000035** duplication: N-000018 (sdd/specs/Full_PRD.md:29), N-000061 (sdd/specs/Full_PRD.md:57) — Both state that the product's default digest is SHA-1 with MUST modality.
+- **CF-000036** duplication: N-000061 (sdd/specs/Full_PRD.md:57), N-000126 (sdd/specs/Full_PRD.md:95) — Both state that the default digest is SHA-1.
+
+### Group 23 (1 record(s), 2 node(s))
+- **CF-000032** duplication: N-000044 (sdd/specs/Full_PRD.md:46), N-000231 (sdd/specs/Full_PRD.md:162) — Both state that the payload is compressed when compression shortens it.
+
+### Group 24 (1 record(s), 2 node(s))
+- **CF-000033** duplication: N-000338 (sdd/specs/Interface_Contract.md:66), N-000340 (sdd/specs/Interface_Contract.md:67) — Both state that the exception class is left to the implementer's choice.
+
+### Group 25 (1 record(s), 2 node(s))
+- **CF-000037** duplication: N-000101 (sdd/specs/Full_PRD.md:88), N-000336 (sdd/specs/Interface_Contract.md:65) — Both state the same prohibition that bad-token validation never raises; the "separate validity check" in claim A is the validate(signed_value) call in claim B under another name.
+
+### Group 26 (2 record(s), 3 node(s))
+- **CF-000039** duplication: N-000182 (sdd/specs/Full_PRD.md:129), N-000379 (sdd/specs/Interface_Contract.md:136) — Both say a payload-decode failure carries the error raised while decoding or deserializing the payload, A as load behaviour and B as the BadPayload field.
+- **CF-000041** duplication: N-000022 (sdd/specs/Full_PRD.md:34), N-000379 (sdd/specs/Interface_Contract.md:136) — Both state that the payload-decode failure refusal retains the underlying decode exception, one as prose and one as the BadPayload original_error field.
+
+### Group 27 (1 record(s), 2 node(s))
+- **CF-000040** duplication: N-000001 (sdd/specs/Full_PRD.md:5), N-000004 (sdd/specs/Full_PRD.md:9) — Both say a signed token or data must reveal tampering of the payload, so the same claim is stated twice in different words.
+
+### Group 28 (1 record(s), 2 node(s))
+- **CF-000042** duplication: N-000096 (sdd/specs/Full_PRD.md:87), N-000318 (sdd/specs/Interface_Contract.md:50) — Both require that text be UTF-8 encoded, one before signing and one for a serialized value that is text, so they state the same encoding rule.
+
+### Group 29 (1 record(s), 2 node(s))
+- **CF-000043** duplication: N-000163 (sdd/specs/Full_PRD.md:120), N-000352 (sdd/specs/Interface_Contract.md:96) — Both state that the extra/keyword dump options are passed unchanged to every dump call, differing only in naming (dump/load object vs. serializer.dumps).
+
+### Group 30 (1 record(s), 2 node(s))
+- **CF-000045** duplication: N-000268 (sdd/specs/Hardware_Requirements.md:21), N-000273 (sdd/specs/Interface_Contract.md:8) — Both claims say that putting the source directory (src) on the import path is enough to make the tree importable.
+
+### Group 31 (1 record(s), 2 node(s))
+- **CF-000046** duplication: N-000171 (sdd/specs/Full_PRD.md:122), N-000357 (sdd/specs/Interface_Contract.md:99) — Both state that each fallback item is a mapping of signing options, a signer class, or a (signer class, mapping) pair; the different names fallback_item and fallback_signer refer to the same thing.
+
+### Group 32 (1 record(s), 2 node(s))
+- **CF-000047** duplication: N-000050 (sdd/specs/Full_PRD.md:52), N-000255 (sdd/specs/Hardware_Requirements.md:8) — Both state that the library has no compiled extensions, native code, or GPU/accelerator requirements.
+
+### Group 33 (1 record(s), 2 node(s))
+- **CF-000048** duplication: N-000051 (sdd/specs/Full_PRD.md:52), N-000256 (sdd/specs/Hardware_Requirements.md:8) — Both state that the library declares zero runtime dependencies, one as MUST have zero and the other as MUST NOT declare any.
+
+### Group 34 (1 record(s), 2 node(s))
+- **CF-000049** duplication: N-000118 (sdd/specs/Full_PRD.md:94), N-000299 (sdd/specs/Interface_Contract.md:31) — Both claims require the same four key-derivation scheme names, concat, django-concat, hmac and none.
+
+### Group 35 (3 record(s), 3 node(s))
+- **CF-000050** duplication: N-000019 (sdd/specs/Full_PRD.md:30), N-000119 (sdd/specs/Full_PRD.md:94) — Both claims state that the default key-derivation scheme is django-concat.
+- **CF-000053** duplication: N-000019 (sdd/specs/Full_PRD.md:30), N-000063 (sdd/specs/Full_PRD.md:58) — Both claims state that the product's key-derivation default is django-concat, one as a full sentence and one as a fragment of the same statement.
+- **CF-000058** duplication: N-000063 (sdd/specs/Full_PRD.md:58), N-000119 (sdd/specs/Full_PRD.md:94) — Both state that the default key-derivation scheme is django-concat.
+
+### Group 36 (1 record(s), 2 node(s))
+- **CF-000051** duplication: N-000020 (sdd/specs/Full_PRD.md:32), N-000180 (sdd/specs/Full_PRD.md:124) — Both claims state that a signature mismatch does not abort the caller.
+
+### Group 37 (1 record(s), 2 node(s))
+- **CF-000054** duplication: N-000047 (sdd/specs/Full_PRD.md:48), N-000078 (sdd/specs/Full_PRD.md:72) — Both forbid the URL-safe encoding helpers from being a core capability, which is the same prohibition stated two ways.
+
+### Group 38 (3 record(s), 3 node(s))
+- **CF-000055** duplication: N-000052 (sdd/specs/Full_PRD.md:53), N-000257 (sdd/specs/Hardware_Requirements.md:8) — Both claims require the same thing, a Python 3.10-or-newer interpreter floor, with B naming it as the documented floor and A stating it as the library's run requirement.
+- **CF-000056** duplication: N-000052 (sdd/specs/Full_PRD.md:53), N-000264 (sdd/specs/Hardware_Requirements.md:20) — Both state the same requirement that the library or Python version is 3.10 or newer.
+- **CF-000059** duplication: N-000257 (sdd/specs/Hardware_Requirements.md:8), N-000264 (sdd/specs/Hardware_Requirements.md:20) — Both state the same requirement that the Python interpreter floor is 3.10 or newer.
+
+### Group 39 (1 record(s), 2 node(s))
+- **CF-000012** subsumption: N-000070 (sdd/specs/Full_PRD.md:65), N-000130 (sdd/specs/Full_PRD.md:95) — If a token is accepted only when its signature verifies under the configured digest, a token from a signer with a different digest cannot verify, so A already implies B's non-recovery.
+
+### Group 40 (1 record(s), 2 node(s))
+- **CF-000057** subsumption: N-000053 (sdd/specs/Full_PRD.md:54), N-000261 (sdd/specs/Hardware_Requirements.md:17) — B is a MUST to run on linux, darwin and windows, which implies A's SHOULD to work on Linux, macOS and Windows; the platform set is the same and only the modality differs.

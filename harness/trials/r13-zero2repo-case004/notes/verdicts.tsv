@@ -1,0 +1,18 @@
+CF-000005	rule and its stated exception: PRD 92 itself says the salt is not mixed in under `none`; PRD 94 says the key is the secret under `none`
+CF-000008	different operations: signing succeeds past the date range (PRD 143); loading such a time is refused as malformed (PRD 153), not returned as a datetime
+CF-000013	different conditions: no separator and failed signature = plain mismatch (PRD 154); verified signature and over-long time = malformed (IC 52)
+CF-000014	scope: the `<sep>` marker precedes the base64 text; "not valid URL-safe base64" applies to the encoded payload after the marker
+CF-000029	different helpers: PRD 83 is the basic signer; IC 53's `<b64payload>` is the serializer token format
+CF-000017	different conditions: (False, None) is for a signature mismatch (PRD 124); BadPayload is for a verified signature whose payload fails to decode (PRD 129)
+CF-000018	one sentence: written time is at most 11 characters; a longer field is therefore refused as malformed
+CF-000019	stated exception: the no-op algorithm is an explicit opt-in that "provides no tamper detection" (PRD 97)
+CF-000021	stated exception: under the opted-in no-op algorithm the changed payload is the valid token's payload (PRD 97)
+CF-000022	no conflict: validity checks without payload recovery (PRD 43) still apply; PRD 97 describes the no-op algorithm's result
+CF-000023	scope: signature length follows the digest for HMAC (PRD 95 "used by the HMAC signature"); NoneAlgorithm has no digest and an empty signature
+CF-000024	scope: as CF-000023
+CF-000027	scope: an empty NoneAlgorithm signature is the algorithm's output over payload and time; the token layout still holds
+CF-000028	scope: as CF-000027
+CF-000034	one sentence, rule and its exception: time-signature failure carries the payload, except an unrepresentable time is malformed "instead" (PRD 153)
+CF-000044	one sentence, rule and its exception: as CF-000034
+CF-000038	rule and its stated exception: a verifying fallback loads (PRD 122) unless the timestamped check finds it expired, which ends the search (PRD 147)
+CF-000052	different conditions: the pair is for signature results (PRD 124); a verified payload that fails to decode raises in unsafe load too (PRD 129)

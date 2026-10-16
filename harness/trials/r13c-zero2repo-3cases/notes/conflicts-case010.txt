@@ -1,0 +1,129 @@
+### Group 1 (1 record(s), 2 node(s))
+- **CF-000001** contradiction: N-000392 (sdd/specs/Interface_Contract.md:68), N-000393 (sdd/specs/Interface_Contract.md:68) — Both govern the same parameter's effect on `text`, and one says no sentence splitting while the other says it splits sentences first.
+
+### Group 2 (3 record(s), 4 node(s))
+- **CF-000002** contradiction: N-000087 (sdd/specs/Full_PRD.md:97), N-000108 (sdd/specs/Full_PRD.md:114) — Both define 'the tokens' with incompatible boundaries (non-word non-whitespace runs versus all non-whitespace runs), and the text does not separate them as different tokenizers.
+- **CF-000022** contradiction: N-000088 (sdd/specs/Full_PRD.md:97), N-000147 (sdd/specs/Full_PRD.md:149) — A says whitespace is never part of a token, but B says a stemmer's whole input, including any spaces, is one token.
+- **CF-000021** subsumption: N-000088 (sdd/specs/Full_PRD.md:97), N-000108 (sdd/specs/Full_PRD.md:114) — Defining tokens as maximal runs of non-whitespace characters already implies that whitespace is never part of a token.
+
+### Group 3 (2 record(s), 3 node(s))
+- **CF-000004** contradiction: N-000098 (sdd/specs/Full_PRD.md:104), N-000100 (sdd/specs/Full_PRD.md:106) — A says a bare apostrophe ending a word is split off as its own token, while B says an apostrophe that does not begin a clitic stays inside its word, so the same trailing apostrophe must both be split and kept.
+- **CF-000023** contradiction: N-000098 (sdd/specs/Full_PRD.md:104), N-000114 (sdd/specs/Full_PRD.md:121) — A requires the n't clitic in a contraction like "don't" to be split off as its own token, while B requires words with an internal apostrophe (contractions) to stay one token.
+
+### Group 4 (1 record(s), 2 node(s))
+- **CF-000008** contradiction: N-000417 (sdd/specs/Interface_Contract.md:118), N-000460 (sdd/specs/Interface_Contract.md:180) — Both fix the type of each sentence: a list of (token, tag) pairs cannot also be a list of str tokens at the same time.
+
+### Group 5 (1 record(s), 2 node(s))
+- **CF-000011** contradiction: N-000086 (sdd/specs/Full_PRD.md:97), N-000111 (sdd/specs/Full_PRD.md:117) — Claim A says the tokens are always the maximal word-character runs, while claim B says that in the default token mode the tokens are the caller's pattern matches, so the default output can differ.
+
+### Group 6 (1 record(s), 2 node(s))
+- **CF-000012** contradiction: N-000150 (sdd/specs/Full_PRD.md:155), N-000172 (sdd/specs/Full_PRD.md:171) — For a word that is both an irregular-table entry and a stopword with stopword skipping on, A requires the table's stem to be returned while B requires the word to be returned unchanged.
+
+### Group 7 (1 record(s), 2 node(s))
+- **CF-000014** contradiction: N-000481 (sdd/specs/Interface_Contract.md:230), N-000487 (sdd/specs/Interface_Contract.md:238) — The same `reference` and `test` cannot both be `list`s and `set`s (or `frozenset`s) at the same time.
+
+### Group 8 (1 record(s), 2 node(s))
+- **CF-000017** contradiction: N-000362 (sdd/specs/Interface_Contract.md:11), N-000489 (sdd/specs/Interface_Contract.md:239) — If a no-number result counts as a call that does not succeed, A requires a raise while B requires a return of None; the conflict depends on whether B's case is a failure, which the text does not settle.
+
+### Group 9 (1 record(s), 2 node(s))
+- **CF-000024** contradiction: N-000254 (sdd/specs/Full_PRD.md:250), N-000454 (sdd/specs/Interface_Contract.md:174) — For a token list the grammar does not derive, one says the chart parser returns none and the other says `parse` gives an empty iterator; assuming `parse` is that parser's entry point, both cannot hold for the same call.
+
+### Group 10 (1 record(s), 2 node(s))
+- **CF-000028** contradiction: N-000243 (sdd/specs/Full_PRD.md:228), N-000246 (sdd/specs/Full_PRD.md:229) — A says an empty tagged-token list yields a chunk structure, but B, as written with no condition, says the chunking operation never returns one; they can only both hold if B is limited to a case the text does not state.
+
+### Group 11 (1 record(s), 2 node(s))
+- **CF-000029** contradiction: N-000014 (sdd/specs/Full_PRD.md:9), N-000273 (sdd/specs/Full_PRD.md:258) — Claim A places exact output forms in the Interface Contract rather than this document, while Claim B states the pretty-printed output's ordering here, so both cannot hold for the same output form.
+
+### Group 12 (3 record(s), 4 node(s))
+- **CF-000037** contradiction: N-000135 (sdd/specs/Full_PRD.md:141), N-000138 (sdd/specs/Full_PRD.md:143) — Claim A says the built-in stemmer families are exactly nine, including ISRI, ARLSTem, ARLSTem2, Cistem and RSLP; Claim B says the stemmer families specified in this same document are only Porter, Lancaster, Snowball and regex, so both cannot hold for the same set unless 'specified here' is read as a narrower scope.
+- **CF-000042** contradiction: N-000135 (sdd/specs/Full_PRD.md:141), N-000136 (sdd/specs/Full_PRD.md:141) — Claim A says the built-in stemmer families are exactly a listed set that excludes WordNet, while claim B says a WordNet lemmatizer lives in that same stemmer family.
+- **CF-000040** duplication: N-000032 (sdd/specs/Full_PRD.md:49), N-000138 (sdd/specs/Full_PRD.md:143) — Both state the same set of stemmers (Porter, Lancaster, Snowball, and a regular-expression or caller-supplied suffix pattern stemmer), one as a stemming capability and one as the families specified.
+
+### Group 13 (1 record(s), 2 node(s))
+- **CF-000003** duplication: N-000233 (sdd/specs/Full_PRD.md:221), N-000236 (sdd/specs/Full_PRD.md:222) — Chinked tokens are the tokens no chunk rule matches, so both claims say the same unchunked tokens are direct children of the root, worded as 'stay' versus 'become'.
+
+### Group 14 (1 record(s), 2 node(s))
+- **CF-000005** duplication: N-000026 (sdd/specs/Full_PRD.md:34), N-000083 (sdd/specs/Full_PRD.md:93) — Both claims say the recommended sentence tokenizer and the recommended word tokenizer (when splitting into sentences first) require Punkt models for the requested language.
+
+### Group 15 (1 record(s), 2 node(s))
+- **CF-000006** duplication: N-000030 (sdd/specs/Full_PRD.md:48), N-000080 (sdd/specs/Full_PRD.md:91) — Both claims state that the tokenize command applies the recommended word tokenizer to each line of a text stream, including the sentence-splitting step; the differing names refer to the same command.
+
+### Group 16 (1 record(s), 2 node(s))
+- **CF-000007** duplication: N-000031 (sdd/specs/Full_PRD.md:48), N-000082 (sdd/specs/Full_PRD.md:91) — Both say the command-line tokenize command requires the Punkt models for the requested language, with B adding only the reason that it splits sentences first.
+
+### Group 17 (1 record(s), 2 node(s))
+- **CF-000009** duplication: N-000048 (sdd/specs/Full_PRD.md:60), N-000352 (sdd/specs/Hardware_Requirements.md:20) — Both state that an editable install from the source tree/project root suffices for importing from the tree; the second is stated as MUST and adds the import-path alternative.
+
+### Group 18 (1 record(s), 2 node(s))
+- **CF-000010** duplication: N-000052 (sdd/specs/Full_PRD.md:61), N-000338 (sdd/specs/Hardware_Requirements.md:7) — Both say optional extra groups are not required for the CPU profile; the second only makes 'mandatory' explicit.
+
+### Group 19 (1 record(s), 2 node(s))
+- **CF-000013** duplication: N-000415 (sdd/specs/Interface_Contract.md:117), N-000452 (sdd/specs/Interface_Contract.md:173) — Both claims state the same requirement that `tokens` is a `list` of `str`, differing only in layer and wording.
+
+### Group 20 (1 record(s), 2 node(s))
+- **CF-000015** duplication: N-000029 (sdd/specs/Full_PRD.md:48), N-000079 (sdd/specs/Full_PRD.md:89) — Both claims have identical text stating that an s-expression tokenizer exists and is outside this specification.
+
+### Group 21 (1 record(s), 2 node(s))
+- **CF-000018** duplication: N-000190 (sdd/specs/Full_PRD.md:188), N-000222 (sdd/specs/Full_PRD.md:208) — Both claims state that mapping Russian tags does not require the packaged universal tagset tables, so they are the same claim.
+
+### Group 22 (1 record(s), 2 node(s))
+- **CF-000019** duplication: N-000251 (sdd/specs/Full_PRD.md:246), N-000451 (sdd/specs/Interface_Contract.md:171) — Both say each `|`-separated alternative yields its own Production, one per alternative, just phrased as grammar semantics versus the productions() interface.
+
+### Group 23 (1 record(s), 2 node(s))
+- **CF-000020** duplication: N-000028 (sdd/specs/Full_PRD.md:48), N-000078 (sdd/specs/Full_PRD.md:89) — Both claims require LINGORA to provide the same set of tokenizers (word/punctuation, Penn Treebank, recommended word and sentence, whitespace, blank-line, regex, tweet, and span extraction), differing only in wording.
+
+### Group 24 (1 record(s), 2 node(s))
+- **CF-000025** duplication: N-000021 (sdd/specs/Full_PRD.md:19), N-000122 (sdd/specs/Full_PRD.md:127) — Both claims say that slicing the source text at a span or pair must yield the same token, differing only in the names 'original string'/'input' and 'span'/'pair'.
+
+### Group 25 (1 record(s), 2 node(s))
+- **CF-000027** duplication: N-000389 (sdd/specs/Interface_Contract.md:66), N-000407 (sdd/specs/Interface_Contract.md:99) — Both say the pattern/regexp parameter is a Python regular expression (string), and both claims list term:pattern, so they state the same claim.
+
+### Group 26 (2 record(s), 3 node(s))
+- **CF-000030** duplication: N-000023 (sdd/specs/Full_PRD.md:24), N-000200 (sdd/specs/Full_PRD.md:196) — Both state that the fallback (backoff) tagger is consulted only when the primary tagger leaves a token without a tag.
+- **CF-000046** subsumption: N-000023 (sdd/specs/Full_PRD.md:24), N-000201 (sdd/specs/Full_PRD.md:196) — If the fallback is consulted only for tokens the primary did not tag, tokens the primary tagged can never be retagged, so A implies B's claim that they keep their tags.
+
+### Group 27 (1 record(s), 2 node(s))
+- **CF-000031** duplication: N-000046 (sdd/specs/Full_PRD.md:60), N-000335 (sdd/specs/Hardware_Requirements.md:7) — Both claims state that the library is pure-Python with no compiled extensions, native code, or GPU/accelerator requirements, differing only in the added 'natural-language processing' descriptor.
+
+### Group 28 (3 record(s), 4 node(s))
+- **CF-000032** duplication: N-000056 (sdd/specs/Full_PRD.md:63), N-000340 (sdd/specs/Hardware_Requirements.md:13) — Both say a word/punctuation tokenization runs with no downloaded corpus or model; B only places this requirement under the CPU profile.
+- **CF-000033** duplication: N-000056 (sdd/specs/Full_PRD.md:63), N-000345 (sdd/specs/Hardware_Requirements.md:18) — Both state that the word/punctuation tokenizer runs with no downloaded corpus or model.
+- **CF-000026** subsumption: N-000059 (sdd/specs/Full_PRD.md:64), N-000345 (sdd/specs/Hardware_Requirements.md:18) — A's general statement that packaged data is not required for the baseline word/punctuation tokenizer already implies B's narrower statement that this tokenizer runs with no downloaded corpus or model.
+
+### Group 29 (1 record(s), 2 node(s))
+- **CF-000035** duplication: N-000073 (sdd/specs/Full_PRD.md:77), N-000333 (sdd/specs/Full_PRD.md:330) — A says the product must not offer Chat bots, Twitter clients, Hugging Face helpers and Toolbox readers, and B says the same Chat, Twitter, Hugging Face and Toolbox helpers are outside the specification.
+
+### Group 30 (1 record(s), 2 node(s))
+- **CF-000036** duplication: N-000074 (sdd/specs/Full_PRD.md:78), N-000334 (sdd/specs/Full_PRD.md:331) — A says the product must not offer wrappers requiring an external binary or service, and B says those external-binary wrappers are outside the specification; both name the same list.
+
+### Group 31 (1 record(s), 2 node(s))
+- **CF-000038** duplication: N-000245 (sdd/specs/Full_PRD.md:229), N-000429 (sdd/specs/Interface_Contract.md:139) — Both state that the chunk grammar (grammar) must be a str or a list of chunk-parser stages, one phrased as a rejection of the other two forms.
+
+### Group 32 (1 record(s), 2 node(s))
+- **CF-000039** duplication: N-000304 (sdd/specs/Full_PRD.md:287), N-000326 (sdd/specs/Full_PRD.md:318) — Both state that accuracy on two lists of different lengths does not succeed; "Two-list accuracy" is just another name for the same accuracy.
+
+### Group 33 (1 record(s), 2 node(s))
+- **CF-000041** duplication: N-000072 (sdd/specs/Full_PRD.md:76), N-000332 (sdd/specs/Full_PRD.md:329) — Both state that graphical applications (and drawing helpers or tree/table drawing) are excluded from LINGORA's scope, one as a MUST NOT and one as outside the specification.
+
+### Group 34 (1 record(s), 2 node(s))
+- **CF-000043** duplication: N-000187 (sdd/specs/Full_PRD.md:188), N-000209 (sdd/specs/Full_PRD.md:198) — Both say the Russian tagger's output uses the Russian National Corpus tagset, one as the tagset used and the other as the tags returned.
+
+### Group 35 (1 record(s), 2 node(s))
+- **CF-000044** duplication: N-000223 (sdd/specs/Full_PRD.md:214), N-000436 (sdd/specs/Interface_Contract.md:146) — Both say the root label of the chunk structure is MUST-defaulted to the sentence label, just worded differently.
+
+### Group 36 (1 record(s), 2 node(s))
+- **CF-000045** duplication: N-000020 (sdd/specs/Full_PRD.md:11), N-000423 (sdd/specs/Interface_Contract.md:125) — Both state that a missing packaged model for the requested path or language makes the operation fail or raise, which is the same claim in different words.
+
+### Group 37 (1 record(s), 2 node(s))
+- **CF-000047** duplication: N-000053 (sdd/specs/Full_PRD.md:62), N-000342 (sdd/specs/Hardware_Requirements.md:16) — A lists Windows, Mac OS X, and Linux and B lists linux, darwin, windows; darwin is macOS under another name, so both state the same supported platform set.
+
+### Group 38 (3 record(s), 3 node(s))
+- **CF-000048** duplication: N-000336 (sdd/specs/Hardware_Requirements.md:7), N-000346 (sdd/specs/Hardware_Requirements.md:19) — Both state the same requirement: the Python interpreter must be version 3.10 or newer.
+- **CF-000049** duplication: N-000336 (sdd/specs/Hardware_Requirements.md:7), N-000356 (sdd/specs/Interface_Contract.md:9) — Both require Python 3.10 or newer; one names the interpreter and the other names the product, but the requirement is the same.
+- **CF-000050** duplication: N-000346 (sdd/specs/Hardware_Requirements.md:19), N-000356 (sdd/specs/Interface_Contract.md:9) — Both require Python 3.10 or newer; one names the CPU baseline profile and the other the product, but the requirement is the same.
+
+### Group 39 (1 record(s), 2 node(s))
+- **CF-000016** subsumption: N-000133 (sdd/specs/Full_PRD.md:134), N-000363 (sdd/specs/Interface_Contract.md:11) — B forbids a refusal from showing as an empty list, empty string, 0 or None, which already implies A's requirement that a failure be distinguishable from a successful empty token list; the failure/refusal naming is assumed to be the same thing.
+
+### Group 40 (1 record(s), 2 node(s))
+- **CF-000034** subsumption: N-000057 (sdd/specs/Full_PRD.md:64), N-000070 (sdd/specs/Full_PRD.md:75) — A says WordNet, Treebank and other corpora live outside the source tree, which already implies the B rule that they must not be shipped inside it.

@@ -1,5 +1,5 @@
 {
- "_about": "One reader's judgement by reading each hidden test against the four specification documents and the seed files, 2026-10-13. Classes: S stated, U names stated but expected value or behaviour not, R needs a name/default/key/exact string not in the specification, C contradicts the specification. Method and limits: TRIAL.md section 10.",
+ "_about": "One reader's judgement by reading each hidden test against the four specification documents and the seed files, 2026-10-13. Classes: S stated, U names stated but expected value or behaviour not, R needs a name/default/key/exact string not in the specification, C contradicts the specification. Method and limits: TRIAL.md section 10. Extended 2026-10-14 (round 12, before any Opus run) with chakin, particle-swarm-optimization, readtime, geotext, hone and hybrid-images by the same method and reader; notes in round12-opus/classification/README.md.",
  "lice": {
   "tests": {
    "unit_tests.test_lice::test_paths": [
@@ -337,6 +337,274 @@
    "acceptance_tests.test_indicators::test_linebreak": [
     "S",
     "same"
+   ]
+  }
+ },
+ "chakin": {
+  "tests": {
+   "unit_tests.test_downloader.TestDownloader::test_download_by_name": [
+    "R",
+    "patches chakin.downloader.urlretrieve, a module-level name the specification never gives; also needs download() to return the saved file path (not stated)"
+   ],
+   "acceptance_tests.acceptance_test.TestDownloader::test_download_acceptance": [
+    "R",
+    "same: patches chakin.downloader.urlretrieve and needs the returned path"
+   ]
+  }
+ },
+ "particle-swarm-optimization": {
+  "tests": {
+   "unit_tests.test_cost_functions.TestCostFunctions::test_sphere": [
+    "S",
+    "sphere(x) named in architecture; value is the standard sphere function (sum of squares), not written out"
+   ],
+   "unit_tests.test_pso_simple.TestPSO::test_evaluate": [
+    "S",
+    "Particle, evaluate and the attributes pos_best_i, err_best_i are in the UML class; updating the personal best is the standard PSO step, not written out"
+   ],
+   "unit_tests.test_pso_simple.TestPSO::test_update_velocity": [
+    "S",
+    "update_velocity(pos_best_g) and velocity_i stated; test asks only that the velocity changes"
+   ],
+   "unit_tests.test_pso_simple.TestPSO::test_update_position": [
+    "S",
+    "update_position(bounds) 'based on its velocity'; position_i is a list in the UML; expects position + velocity within bounds"
+   ],
+   "unit_tests.test_pso_simple.TestPSO::test_minimize": [
+    "S",
+    "minimize(costFunc, x0, bounds, num_particles, maxiter, verbose) stated; returns (err_best_g, pos_best_g) per the sequence diagram"
+   ],
+   "acceptance_tests.test_pso.test_all::test_everything": [
+    "S",
+    "same call as test_minimize"
+   ]
+  }
+ },
+ "readtime": {
+  "tests": {
+   "unit_tests.test_custom_wpm.BaseTestCase::test_custom_wpm": [
+    "R",
+    "default 265 stated, but the rounding to whole seconds and the strings 'N min' / 'N min read' are not given"
+   ],
+   "unit_tests.test_custom_wpm.BaseTestCase::test_custom_wpm_html": [
+    "S",
+    "checks only result.wpm: default 265 stated, wpm is a Result constructor parameter"
+   ],
+   "unit_tests.test_custom_wpm.BaseTestCase::test_custom_wpm_markdown": [
+    "S",
+    "same, for of_markdown"
+   ],
+   "unit_tests.test_check_data.BaseTestCase::test_plain_text_empty": [
+    "R",
+    "empty text gives 1 second and '1 min read': minimum and strings not given"
+   ],
+   "unit_tests.test_check_data.BaseTestCase::test_plain_text_null": [
+    "R",
+    "None gives 0 seconds and '1 min read': not given"
+   ],
+   "unit_tests.test_check_data.BaseTestCase::test_unsupported_format": [
+    "R",
+    "exact message 'Unsupported format: foo' not given (PRD: 'appropriate exception handling')"
+   ],
+   "unit_tests.test_check_data.BaseTestCase::test_invalid_format": [
+    "R",
+    "same, 'Unsupported format: 123'"
+   ],
+   "unit_tests.test_transitions.BaseTestCase::test_transitions": [
+    "R",
+    "needs the rounding rule (ceil to the second, minutes rounded up) and the strings, not given"
+   ],
+   "acceptance_tests.test_readtime.BaseTestCase::test_plain_text": [
+    "R",
+    "exact 154 s for the seed sample: word-count and rounding rules not given; strings not given"
+   ],
+   "acceptance_tests.test_readtime.BaseTestCase::test_markdown": [
+    "R",
+    "exact 236 s: needs the time per image and the text extraction rules, not given"
+   ],
+   "acceptance_tests.test_readtime.BaseTestCase::test_html": [
+    "R",
+    "same, 236 s for the HTML sample"
+   ],
+   "acceptance_tests.test_readtime.BaseTestCase::test_can_add": [
+    "R",
+    "adding Results is stated (_add_operator_methods), but the test first asserts the exact 154 s and 236 s"
+   ]
+  }
+ },
+ "geotext": {
+  "tests": {
+   "unit_tests.test_geotext.TestGeotext::test_cities": [
+    "U",
+    "cities attribute stated; the exact lists (e.g. 'Goiás', 'Santa Catarina', 'Rio Grande' from 'Rio Grande do Norte') depend on a candidate regex the specification does not give"
+   ],
+   "unit_tests.test_geotext.TestGeotext::test_nationalities": [
+    "S",
+    "nationalities = 'nationality terms found in the text' (kept as written: 'Japanese'); data file nationalities.txt in the seed"
+   ],
+   "unit_tests.test_geotext.TestGeotext::test_countries": [
+    "S",
+    "countries = list of country names found in the text"
+   ],
+   "unit_tests.test_geotext.TestGeotext::test_country_mentions": [
+    "U",
+    "country_mentions stated as a count of country mentions; that keys are ISO codes and that city mentions count for their country is not stated"
+   ],
+   "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_city_extraction": [
+    "S",
+    "'London' in cities: city extraction stated, city in seed data"
+   ],
+   "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_country_mentions_count": [
+    "U",
+    "same as test_country_mentions: expects {'US': 2, 'CN': 1} in order"
+   ],
+   "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_country_filter": [
+    "S",
+    "GeoText(text, country) filters cities by country code: stated"
+   ],
+   "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_nationalities_extraction": [
+    "S",
+    "'German' in nationalities, as written in the text"
+   ],
+   "acceptance_tests.test_acceptance.TestGeoTextAcceptance::test_data_loading": [
+    "R",
+    "needs a GeoText instance attribute named index; build_index() and its namedtuple are stated, the attribute and the field names are not"
+   ]
+  }
+ },
+ "hone": {
+  "tests": {
+   "unit_tests.test_csv_utils.AcceptanceTestCSVtoJSON::test_full_conversion_small_cats_dataset": [
+    "S",
+    "expected output is the seed file small_cats_dataset/nested_dataset.json (with nested_schema.json); convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "unit_tests.test_csv_utils.AcceptanceTestCSVtoJSON::test_full_conversion_comma_test": [
+    "S",
+    "expected output is the seed file comma_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "unit_tests.test_csv_utils.AcceptanceTestCSVtoJSON::test_full_conversion_quotes_test": [
+    "S",
+    "expected output is the seed file quotes_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "unit_tests.test_hone.TestHone::test_nest_small_csv": [
+    "S",
+    "expected output is the seed file small_cats_dataset/nested_dataset.json; nesting on shared prefixes shown by the schema example; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "unit_tests.test_hone.TestHone::test_nest_comma_csv": [
+    "S",
+    "expected output is the seed file comma_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "unit_tests.test_hone.TestHone::test_nest_quotes_csv": [
+    "S",
+    "expected output is the seed file quotes_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_comma_handling": [
+    "S",
+    "expected output is the seed file comma_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_quoted_field_handling": [
+    "S",
+    "expected output is the seed file quotes_test/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_nested_json_generation": [
+    "S",
+    "expected output is the seed file small_cats_dataset/nested_dataset.json (schema loaded but not passed); convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_data_integrity": [
+    "S",
+    "expected output is the seed file small_cats_dataset/nested_dataset.json; convert(csv_filepath, schema) stated; Python's csv module reproduces the seed keys"
+   ],
+   "unit_tests.test_hone.TestHone::test_get_schema": [
+    "S",
+    "get_schema(csv_filepath) stated; expected schema is the seed file nested_schema.json"
+   ],
+   "acceptance_tests.test_acceptance.CSVtoJSONAcceptanceTests::test_error_handling": [
+    "U",
+    "expects any exception for a missing CSV file; behaviour on a missing file is not stated (a plain open() raises)"
+   ]
+  }
+ },
+ "hybrid-images": {
+  "tests": {
+   "unit_tests.unit_test.TestCrossCorrelation2D::test_identity_filter_grey": [
+    "S",
+    "cross_correlation_2d with an identity kernel returns the image: holds for any same-size output whatever the border rule"
+   ],
+   "unit_tests.unit_test.TestCrossCorrelation2D::test_mean_filter_grey": [
+    "U",
+    "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x3 mean kernel)"
+   ],
+   "unit_tests.unit_test.TestCrossCorrelation2D::test_mean_filter_rect_grey": [
+    "U",
+    "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x5 kernel)"
+   ],
+   "unit_tests.unit_test.TestCrossCorrelation2D::test_mean_filter_RGB": [
+    "U",
+    "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, per channel)"
+   ],
+   "unit_tests.unit_test.TestCrossCorrelation2D::test_rand_rect_filter_RGB": [
+    "U",
+    "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, random 5x7 kernel)"
+   ],
+   "unit_tests.unit_test.TestCrossCorrelation2D::test_big_filter_grey": [
+    "U",
+    "cross_correlation_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (kernel larger than the image)"
+   ],
+   "unit_tests.unit_test.TestConvolve2D::test_identity_filter_grey": [
+    "S",
+    "convolve_2d with an identity kernel returns the image: holds for any same-size output whatever the border rule"
+   ],
+   "unit_tests.unit_test.TestConvolve2D::test_mean_filter_grey": [
+    "U",
+    "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x3 mean kernel)"
+   ],
+   "unit_tests.unit_test.TestConvolve2D::test_mean_filter_rect_grey": [
+    "U",
+    "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (3x5 kernel)"
+   ],
+   "unit_tests.unit_test.TestConvolve2D::test_mean_filter_RGB": [
+    "U",
+    "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, per channel)"
+   ],
+   "unit_tests.unit_test.TestConvolve2D::test_rand_rect_filter_RGB": [
+    "U",
+    "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (RGB image, random 5x7 kernel)"
+   ],
+   "unit_tests.unit_test.TestConvolve2D::test_big_filter_grey": [
+    "U",
+    "convolve_2d stated; compared with cv2.filter2D(BORDER_CONSTANT): zero padding, same-size output and colour handling are not stated (kernel larger than the image)"
+   ],
+   "unit_tests.unit_test.TestGaussianKernel2D::test_5_5_5": [
+    "S",
+    "square kernel: sampled Gaussian normalised to sum 1, the standard definition; size and sigma stated"
+   ],
+   "unit_tests.unit_test.TestGaussianKernel2D::test_1_7_3": [
+    "C",
+    "gaussian_blur_kernel_2d(sigma, width=7, height=3) expected with 7 rows and 3 columns: width taken as rows, against the plain meaning of width and height"
+   ],
+   "unit_tests.unit_test.TestGaussianKernel2D::test_1079_3_5": [
+    "C",
+    "same: width=3, height=5 expected as 3 rows by 5 columns"
+   ],
+   "unit_tests.unit_test.TestHighLowPass::test_low_pass_2_3": [
+    "U",
+    "low_pass(img, sigma, size) stated; exact values need the border rule (zero padding), not stated"
+   ],
+   "unit_tests.unit_test.TestHighLowPass::test_low_pass_9_7": [
+    "U",
+    "low_pass(img, sigma, size) stated; exact values need the border rule (zero padding), not stated"
+   ],
+   "unit_tests.unit_test.TestHighLowPass::test_high_pass_2_3": [
+    "U",
+    "high_pass stated; exact values need image minus low pass and the border rule, neither stated"
+   ],
+   "unit_tests.unit_test.TestHighLowPass::test_high_pass_9_7": [
+    "U",
+    "high_pass stated; exact values need image minus low pass and the border rule, neither stated"
+   ],
+   "acceptance_tests.acceptance_test.TestHybridImage::test": [
+    "R",
+    "compares with resources/hybrid.png to within 1 grey level: needs the mixing formula for mixin_ratio, scaling, clipping and output type, none given"
    ]
   }
  }

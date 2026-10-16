@@ -132,7 +132,7 @@ seed_line = f" Present now: {', '.join(f'`{t}`' for t in tops)}." if tops else "
 n_tests = 0
 for folder in tests:
     shutil.copytree(repo / folder, out / "tests" / folder, ignore=shutil.ignore_patterns("__pycache__"))
-    n_tests += sum(len(re.findall(r"^\s*def test_", p.read_text(encoding="utf-8"), re.M))
+    n_tests += sum(len(re.findall(r"^\s*def test", p.read_text(encoding="utf-8"), re.M))
                    for p in (out / "tests" / folder).rglob("*.py"))
 deps = cfg.get("dependencies") or ""
 if deps and (repo / deps).is_file():

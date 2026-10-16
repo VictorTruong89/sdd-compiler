@@ -1,0 +1,51 @@
+{
+  "reward": 1.0,
+  "judge_error": null,
+  "judge_mode": "final_tests",
+  "final": {
+    "final_step": "final",
+    "status": "passed",
+    "exit_code": 0,
+    "log": "/logs/verifier/final_tests.log",
+    "passed_count": 321,
+    "failed_count": 0,
+    "error_count": 0,
+    "skipped_count": 0,
+    "total_count": 321,
+    "pass_rate": 1.0,
+    "test_framework": "pytest",
+    "counts_parsed": true,
+    "passed": 321,
+    "failed": 0,
+    "total": 321,
+    "failed_tests": [],
+    "error_tests": [],
+    "test_files": [
+      "/tests/final/tests/F01_acceptance.py",
+      "/tests/final/tests/F01_helpers.py",
+      "/tests/final/tests/F02_acceptance.py",
+      "/tests/final/tests/F02_helpers.py",
+      "/tests/final/tests/F03_acceptance.py",
+      "/tests/final/tests/F03_helpers.py",
+      "/tests/final/tests/F04_acceptance.py",
+      "/tests/final/tests/F04_helpers.py",
+      "/tests/final/tests/F05_acceptance.py",
+      "/tests/final/tests/F05_helpers.py",
+      "/tests/final/tests/F06_acceptance.py",
+      "/tests/final/tests/F06_helpers.py",
+      "/tests/final/tests/F07_acceptance.py",
+      "/tests/final/tests/F07_helpers.py",
+      "/tests/final/tests/F08_acceptance.py",
+      "/tests/final/tests/F08_helpers.py"
+    ],
+    "test_command_ran": "python3 -I /tests/pytest_launcher.py /tests/final/tests/F01_acceptance.py /tests/final/tests/F01_helpers.py /tests/final/tests/F02_acceptance.py /tests/final/tests/F02_helpers.py /tests/final/tests/F03_acceptance.py /tests/final/tests/F03_helpers.py /tests/final/tests/F04_acceptance.py /tests/final/tests/F04_helpers.py /tests/final/tests/F05_acceptance.py /tests/final/tests/F05_helpers.py /tests/final/tests/F06_acceptance.py /tests/final/tests/F06_helpers.py /tests/final/tests/F07_acceptance.py /tests/final/tests/F07_helpers.py /tests/final/tests/F08_acceptance.py /tests/final/tests/F08_helpers.py"
+  },
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}

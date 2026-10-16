@@ -1,0 +1,29 @@
+2026-10-14T21:44:52-04:00	start trial r13b-zero2repo-haiku-sweep, claude 2.1.296, budget 10, one=0
+2026-10-14T21:44:52-04:00	run haiku-case001-1 attempt 1 model anthropic/claude-haiku-5-5 task case001-markdown
+2026-10-14T21:49:32-04:00	harbor haiku-case001-1 exit 0 after 280 s
+2026-10-14T21:49:32-04:00	limited haiku-case001-1 turns 14 cost_usd_est 0.04981271999999999 message: {"type":"rate_limit_event","rate_limit_info":{"status":"allowed","resetsAt":1792044600,"rateLimitType":"five_hour","overageStatus":"rejected","overageDisabledReason":"out_of_credits","isUsingOverage":false,"unifiedWindows":{"five_hour":{"utilization":0.08,"resetsAt":1792044600},"seven_day":{"utiliza
+2026-10-14T21:49:32-04:00	limit no reset time in the message; probing every 1800 s
+2026-10-14T21:50:50-04:00	salvage	haiku-case001-1 marked done by hand: the "limited" was a false match (status allowed) after Harbor rejected reward.json (null value, builder bug, fixed); verifier result 302 / 302, official 1.0; turns 14 cost_usd_est 0.0498
+2026-10-14T21:50:54-04:00	start trial r13b-zero2repo-haiku-sweep, claude 2.1.296, budget 10, one=0
+2026-10-14T21:50:54-04:00	run haiku-case007-1 attempt 1 model anthropic/claude-haiku-5-5 task case007-markdown
+2026-10-14T21:53:19-04:00	harbor haiku-case007-1 exit 0 after 145 s
+2026-10-14T21:53:19-04:00	done haiku-case007-1 turns 16 cost_usd_est 0.025337130000000003 reward {"reward": 1.0, "tests_passed": 80, "tests_total": 80, "tests_failed": 0, "tests_error": 0, "official_reward": 1.0} 
+2026-10-14T21:55:19-04:00	run haiku-case011-1 attempt 1 model anthropic/claude-haiku-5-5 task case011-markdown
+2026-10-14T22:03:05-04:00	harbor haiku-case011-1 exit 0 after 466 s
+2026-10-14T22:03:05-04:00	done haiku-case011-1 turns 20 cost_usd_est 0.2692845 reward {"reward": 1.0, "tests_passed": 321, "tests_total": 321, "tests_failed": 0, "tests_error": 0, "official_reward": 1.0} 
+2026-10-14T22:05:05-04:00	run haiku-case002-1 attempt 1 model anthropic/claude-haiku-5-5 task case002-markdown
+2026-10-14T22:10:56-04:00	harbor haiku-case002-1 exit 0 after 351 s
+2026-10-14T22:10:56-04:00	done haiku-case002-1 turns 24 cost_usd_est 0.07260116 reward {"reward": 1.0, "tests_passed": 281, "tests_total": 281, "tests_failed": 0, "tests_error": 0, "official_reward": 1.0} 
+2026-10-14T22:12:56-04:00	run haiku-case005-1 attempt 1 model anthropic/claude-haiku-5-5 task case005-markdown
+2026-10-14T22:26:49-04:00	harbor haiku-case005-1 exit 0 after 833 s
+2026-10-14T22:26:49-04:00	done haiku-case005-1 turns 22 cost_usd_est 0.37077759 reward {"reward": 1.0, "tests_passed": 395, "tests_total": 395, "tests_failed": 0, "tests_error": 0, "official_reward": 1.0} 
+2026-10-14T22:28:49-04:00	run haiku-case010-1 attempt 1 model anthropic/claude-haiku-5-5 task case010-markdown
+2026-10-14T22:41:05-04:00	harbor haiku-case010-1 exit 0 after 736 s
+2026-10-14T22:41:05-04:00	done haiku-case010-1 turns 33 cost_usd_est 0.45385809 reward {"reward": 0.8426395939086294, "tests_passed": 166, "tests_total": 197, "tests_failed": 31, "tests_error": 0, "official_reward": 0.0} 
+2026-10-14T22:43:05-04:00	run haiku-case006-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-markdown
+2026-10-14T22:59:47-04:00	harbor haiku-case006-1 exit 0 after 1002 s
+2026-10-14T22:59:47-04:00	done haiku-case006-1 turns 81 cost_usd_est 1.2422391800000003 reward {"reward": 0.9747899159663865, "tests_passed": 464, "tests_total": 476, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-10-14T23:01:48-04:00	run haiku-case016-1 attempt 1 model anthropic/claude-haiku-5-5 task case016-markdown
+2026-10-14T23:24:36-04:00	harbor haiku-case016-1 exit 0 after 1368 s
+2026-10-14T23:24:37-04:00	done haiku-case016-1 turns 53 cost_usd_est 0.55497234 reward {"reward": 0.9536082474226805, "tests_passed": 370, "tests_total": 388, "tests_failed": 18, "tests_error": 0, "official_reward": 0.0} 
+2026-10-14T23:26:37-04:00	end no pending or limited row left

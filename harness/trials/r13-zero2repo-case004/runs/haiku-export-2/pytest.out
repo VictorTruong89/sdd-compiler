@@ -1,0 +1,226 @@
+........................................................................ [ 27%]
+........................................................................ [ 55%]
+...................................F.F.................................. [ 83%]
+..........................................                               [100%]
+=================================== FAILURES ===================================
+________ test_replaced_out_of_range_time_field_is_malformed_not_expiry _________
+
+    def test_replaced_out_of_range_time_field_is_malformed_not_expiry():
+        signer = make_timestamped_signer("secret-key")
+        with frozen_clock(PUBLIC_SIGNING_INSTANT) as clock:
+            legal = sign_value(signer, PUBLIC_VALUE)
+            instant = clock.instant
+            require_recovered_bytes(signer, legal, PUBLIC_VALUE)
+            require_three_part_layout(legal, expected_bytes(PUBLIC_VALUE))
+            # Replace-without-re-sign: splice fields this helper itself emitted,
+            # not this checkout's URL-safe-base64 spelling of an epoch.
+            replaced = replace_time_field(legal, out_of_range_time_field(signer))
+            exc = require_recovery_failure(recover_timestamped(signer, replaced))
+            require_signing_time_absent(exc)
+    
+            in_range = replace_time_field(legal, in_range_time_field(signer))
+            mismatch_with_time = require_recovery_failure(
+                recover_timestamped(signer, in_range)
+            )
+            require_signing_time_on_failure(mismatch_with_time)
+    
+            require_recovered_bytes(signer, legal, PUBLIC_VALUE)
+            clock.tick(AGE_EXPIRED_SECONDS)
+            expired_exc = require_expired_recovery(
+                recover_timestamped(signer, legal, max_age=MAX_AGE_SECONDS),
+                payload=PUBLIC_VALUE,
+                instant=instant,
+            )
+            assert datetimes_on_failure(expired_exc)
+            assert not datetimes_on_failure(exc)
+>           require_distinct_failure_kinds(
+                exc, mismatch_with_time,
+                expect=("malformed-timestamp", "time-signature"),
+            )
+
+/tests/final/tests/F03_acceptance.py:1303: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F03_helpers.py:755: in require_distinct_failure_kinds
+    require_failure_kind(first, left_kind)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+exc = BadTimeSignature('Signature does not match'), kind = 'malformed-timestamp'
+
+    def require_failure_kind(exc: BaseException, kind: str) -> BaseException:
+        if kind not in FAILURE_KINDS:
+            raise HarnessError(f"unknown failure kind {kind!r}")
+        got = failure_kind(exc)
+>       assert got == kind, (
+            f"refusal is a {got} failure, expected {kind}; "
+            f"type={type(exc).__name__} message={str(exc)!r}"
+        )
+E       AssertionError: refusal is a time-signature failure, expected malformed-timestamp; type=BadTimeSignature message='Signature does not match'
+E       assert 'time-signature' == 'malformed-timestamp'
+E         
+E         - malformed-timestamp
+E         + time-signature
+
+/tests/final/tests/F03_helpers.py:739: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='TimestampSigner' cwd='/tmp/harness-ws-r5ycube3'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+constructed timestamped signer args=('secret-key',) kwargs=[]
+[harness] clock_freeze epoch=1592957345.0 instant=2020-06-24T00:09:05+00:00
+[harness] call fn='TimestampSigner.sign' cwd='/tmp/harness-ws-irdo37kr'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+signed type=str token_len=40
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-f2ah98iz'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+recovered b'value'
+three-part layout payload_len=5 time_len=6 sig_len=27
+[harness] clock_freeze epoch=253399622400.0 instant=9999-12-01T00:00:00+00:00
+[harness] call fn='TimestampSigner.sign' cwd='/tmp/harness-ws-dtc1yydz'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+signed type=bytes token_len=56
+three-part layout payload_len=20 time_len=7 sig_len=27
+[harness] clock_restore epoch=253434182400.0
+out-of-range time field from helper epoch=253434182400.0 field=b'OwHauwA'
+replaced time field old_len=6 new_len=7
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-24sleikv'
+[harness] call_done exception=BadTimeSignature stdout_len=0 stderr_len=0 environ_keys=11
+recovery refused via BadTimeSignature
+failure date_signed=[]
+signing-time field absent
+[harness] clock_freeze epoch=1.0 instant=1970-01-01T00:00:01+00:00
+[harness] call fn='TimestampSigner.sign' cwd='/tmp/harness-ws-hm9saxav'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+signed type=bytes token_len=51
+three-part layout payload_len=20 time_len=2 sig_len=27
+[harness] clock_restore epoch=1.0
+in-range time field from helper at epoch=1 field=b'AQ'
+replaced time field old_len=6 new_len=2
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-wmx4m2c5'
+[harness] call_done exception=BadTimeSignature stdout_len=0 stderr_len=0 environ_keys=11
+recovery refused via BadTimeSignature
+failure date_signed=['1970-01-01T00:00:01+00:00']
+aware UTC datetime=1970-01-01T00:00:01+00:00
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-rn0jr0oe'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+recovered b'value'
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-ux1ue7o3'
+[harness] call_done exception=SignatureExpired stdout_len=0 stderr_len=0 environ_keys=11
+recovery refused via SignatureExpired
+failure payload attribute=b'value' expected_payload=b'value'
+failure date_signed=['2020-06-24T00:09:05+00:00']
+aware UTC datetime=2020-06-24T00:09:05+00:00
+classified as expired recovery
+failure date_signed=['2020-06-24T00:09:05+00:00']
+failure date_signed=[]
+failure kind=time-signature type=BadTimeSignature
+[harness] clock_restore epoch=1592957356.0
+__________ test_runtime_replaced_out_of_range_time_field_is_malformed __________
+
+    def test_runtime_replaced_out_of_range_time_field_is_malformed():
+        secret = runtime_secret()
+        text = runtime_text()
+        signer = make_timestamped_signer(secret)
+        with frozen_clock(OTHER_SIGNING_INSTANT) as clock:
+            legal = sign_value(signer, text)
+            instant = clock.instant
+            require_three_part_layout(legal, expected_bytes(text))
+            replaced = replace_time_field(legal, out_of_range_time_field(signer))
+            exc = require_recovery_failure(recover_timestamped(signer, replaced))
+            require_signing_time_absent(exc)
+    
+            in_range = replace_time_field(legal, in_range_time_field(signer))
+            mismatch_with_time = require_recovery_failure(
+                recover_timestamped(signer, in_range)
+            )
+            require_signing_time_on_failure(mismatch_with_time)
+    
+            require_recovered_bytes(signer, legal, text)
+            clock.tick(AGE_EXPIRED_SECONDS)
+            expired_exc = require_expired_recovery(
+                recover_timestamped(signer, legal, max_age=MAX_AGE_SECONDS),
+                payload=text,
+                instant=instant,
+            )
+            assert datetimes_on_failure(expired_exc)
+            assert not datetimes_on_failure(exc)
+>           require_distinct_failure_kinds(
+                exc, mismatch_with_time,
+                expect=("malformed-timestamp", "time-signature"),
+            )
+
+/tests/final/tests/F03_acceptance.py:1348: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F03_helpers.py:755: in require_distinct_failure_kinds
+    require_failure_kind(first, left_kind)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+exc = BadTimeSignature('Signature does not match'), kind = 'malformed-timestamp'
+
+    def require_failure_kind(exc: BaseException, kind: str) -> BaseException:
+        if kind not in FAILURE_KINDS:
+            raise HarnessError(f"unknown failure kind {kind!r}")
+        got = failure_kind(exc)
+>       assert got == kind, (
+            f"refusal is a {got} failure, expected {kind}; "
+            f"type={type(exc).__name__} message={str(exc)!r}"
+        )
+E       AssertionError: refusal is a time-signature failure, expected malformed-timestamp; type=BadTimeSignature message='Signature does not match'
+E       assert 'time-signature' == 'malformed-timestamp'
+E         
+E         - malformed-timestamp
+E         + time-signature
+
+/tests/final/tests/F03_helpers.py:739: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='TimestampSigner' cwd='/tmp/harness-ws-ijjqr7u7'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+constructed timestamped signer args=('sk-7301a177c8359de39e88cd566c7ccdd1',) kwargs=[]
+[harness] clock_freeze epoch=1520778120.0 instant=2018-03-11T14:22:00+00:00
+[harness] call fn='TimestampSigner.sign' cwd='/tmp/harness-ws-es2zz3bg'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+signed type=str token_len=55
+three-part layout payload_len=20 time_len=6 sig_len=27
+[harness] clock_freeze epoch=253399622400.0 instant=9999-12-01T00:00:00+00:00
+[harness] call fn='TimestampSigner.sign' cwd='/tmp/harness-ws-36npw2kt'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+signed type=bytes token_len=56
+three-part layout payload_len=20 time_len=7 sig_len=27
+[harness] clock_restore epoch=253434182400.0
+out-of-range time field from helper epoch=253434182400.0 field=b'OwHauwA'
+replaced time field old_len=6 new_len=7
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-6k68_djh'
+[harness] call_done exception=BadTimeSignature stdout_len=0 stderr_len=0 environ_keys=11
+recovery refused via BadTimeSignature
+failure date_signed=[]
+signing-time field absent
+[harness] clock_freeze epoch=1.0 instant=1970-01-01T00:00:01+00:00
+[harness] call fn='TimestampSigner.sign' cwd='/tmp/harness-ws-6d53ksgm'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+signed type=bytes token_len=51
+three-part layout payload_len=20 time_len=2 sig_len=27
+[harness] clock_restore epoch=1.0
+in-range time field from helper at epoch=1 field=b'AQ'
+replaced time field old_len=6 new_len=2
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-v3nmqvim'
+[harness] call_done exception=BadTimeSignature stdout_len=0 stderr_len=0 environ_keys=11
+recovery refused via BadTimeSignature
+failure date_signed=['1970-01-01T00:00:01+00:00']
+aware UTC datetime=1970-01-01T00:00:01+00:00
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-mq5mcnym'
+[harness] call_done exception=None stdout_len=0 stderr_len=0 environ_keys=11
+recovered b'txt-3cf28c43b74990f4'
+[harness] call fn='TimestampSigner.unsign' cwd='/tmp/harness-ws-5tc2mr10'
+[harness] call_done exception=SignatureExpired stdout_len=0 stderr_len=0 environ_keys=11
+recovery refused via SignatureExpired
+failure payload attribute=b'txt-3cf28c43b74990f4' expected_payload=b'txt-3cf28c43b74990f4'
+failure date_signed=['2018-03-11T14:22:00+00:00']
+aware UTC datetime=2018-03-11T14:22:00+00:00
+classified as expired recovery
+failure date_signed=['2018-03-11T14:22:00+00:00']
+failure date_signed=[]
+failure kind=time-signature type=BadTimeSignature
+[harness] clock_restore epoch=1520778131.0
+-------------- generated xml file: /logs/verifier/junit-final.xml --------------
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F03_acceptance.py::test_replaced_out_of_range_time_field_is_malformed_not_expiry
+FAILED ../tests/final/tests/F03_acceptance.py::test_runtime_replaced_out_of_range_time_field_is_malformed
+2 failed, 256 passed in 0.75s

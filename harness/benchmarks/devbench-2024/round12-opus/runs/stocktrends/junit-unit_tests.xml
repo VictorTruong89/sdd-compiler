@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="7" time="0.169" timestamp="2026-10-14T12:23:31.802581+00:00" hostname="b03b4ec1ac1c"><testcase classname="unit_tests.test_instrument" name="test_validate_df" time="0.001" /><testcase classname="unit_tests.test_pnf" name="test_get_state" time="0.001" /><testcase classname="unit_tests.test_pnf" name="test_roundit" time="0.001" /><testcase classname="unit_tests.test_pnf" name="test_get_bar_ohlc_data_close" time="0.008"><failure message="assert (42, 6) == (41, 5)&#10;  &#10;  At index 0 diff: 42 != 41&#10;  Use -v to get more diff">def test_get_bar_ohlc_data_close():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='close')
+&gt;       assert data.shape == (41, 5)
+E       assert (42, 6) == (41, 5)
+E         
+E         At index 0 diff: 42 != 41
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:38: AssertionError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_get_bar_ohlc_data_hl" time="0.009"><failure message="assert (90, 6) == (31, 5)&#10;  &#10;  At index 0 diff: 90 != 31&#10;  Use -v to get more diff">def test_get_bar_ohlc_data_hl():
+        """
+        The test function that tests the get_bar_ohlc_data method of the PnF class. It checks if the method returns the correct data shape based on the given parameters.
+        """
+        df = pd.read_csv('unit_samples/HDFCLIFE.csv')
+        df.columns = [i.lower() for i in df.columns]
+        pnf = indicators.PnF(df)
+        pnf.box_size = 10
+        data = pnf.get_bar_ohlc_data(source='hl')
+&gt;       assert data.shape == (31, 5)
+E       assert (90, 6) == (31, 5)
+E         
+E         At index 0 diff: 90 != 31
+E         Use -v to get more diff
+
+unit_tests/test_pnf.py:49: AssertionError</failure></testcase><testcase classname="unit_tests.test_pnf" name="test_get_ohlc_data_close" time="0.003" /><testcase classname="unit_tests.test_renko" name="test_Renko_box_periodic_close" time="0.003" /></testsuite></testsuites>

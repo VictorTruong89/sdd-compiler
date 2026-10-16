@@ -1,0 +1,52 @@
+{
+ "tests": {
+  "unit_tests.test_custom_wpm.BaseTestCase::test_custom_wpm": [
+   "R",
+   "default 265 stated, but the rounding to whole seconds and the strings 'N min' / 'N min read' are not given"
+  ],
+  "unit_tests.test_custom_wpm.BaseTestCase::test_custom_wpm_html": [
+   "S",
+   "checks only result.wpm: default 265 stated, wpm is a Result constructor parameter"
+  ],
+  "unit_tests.test_custom_wpm.BaseTestCase::test_custom_wpm_markdown": [
+   "S",
+   "same, for of_markdown"
+  ],
+  "unit_tests.test_check_data.BaseTestCase::test_plain_text_empty": [
+   "R",
+   "empty text gives 1 second and '1 min read': minimum and strings not given"
+  ],
+  "unit_tests.test_check_data.BaseTestCase::test_plain_text_null": [
+   "R",
+   "None gives 0 seconds and '1 min read': not given"
+  ],
+  "unit_tests.test_check_data.BaseTestCase::test_unsupported_format": [
+   "R",
+   "exact message 'Unsupported format: foo' not given (PRD: 'appropriate exception handling')"
+  ],
+  "unit_tests.test_check_data.BaseTestCase::test_invalid_format": [
+   "R",
+   "same, 'Unsupported format: 123'"
+  ],
+  "unit_tests.test_transitions.BaseTestCase::test_transitions": [
+   "R",
+   "needs the rounding rule (ceil to the second, minutes rounded up) and the strings, not given"
+  ],
+  "acceptance_tests.test_readtime.BaseTestCase::test_plain_text": [
+   "R",
+   "exact 154 s for the seed sample: word-count and rounding rules not given; strings not given"
+  ],
+  "acceptance_tests.test_readtime.BaseTestCase::test_markdown": [
+   "R",
+   "exact 236 s: needs the time per image and the text extraction rules, not given"
+  ],
+  "acceptance_tests.test_readtime.BaseTestCase::test_html": [
+   "R",
+   "same, 236 s for the HTML sample"
+  ],
+  "acceptance_tests.test_readtime.BaseTestCase::test_can_add": [
+   "R",
+   "adding Results is stated (_add_operator_methods), but the test first asserts the exact 154 s and 236 s"
+  ]
+ }
+}

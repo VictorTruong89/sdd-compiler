@@ -1,0 +1,312 @@
+### Group 1 (2 record(s), 3 node(s))
+- **CF-000003** contradiction: N-000255 (sdd/specs/Full_PRD.md:151), N-000707 (sdd/specs/Full_PRD.md:380) — A makes an unknown option a usage error only unless the command ignores unknown options, while B lists unknown option as a usage error with exit status 2 with no exception, so in the ignore-configured case both cannot hold.
+- **CF-000018** contradiction: N-000255 (sdd/specs/Full_PRD.md:151), N-000258 (sdd/specs/Full_PRD.md:151) — A makes an unknown option a usage error by default, while B says unknown long options are left intact with no error condition; the text does not say whether 'left intact' excludes an error, so this is low confidence.
+
+### Group 2 (2 record(s), 3 node(s))
+- **CF-000006** contradiction: N-000183 (sdd/specs/Full_PRD.md:134), N-000586 (sdd/specs/Full_PRD.md:310) — A permits mixing options and arguments on leaf commands while B forbids it within a chain, and a chained subcommand is a leaf command, so for such commands mixing is both allowed and disallowed.
+- **CF-000015** contradiction: N-000183 (sdd/specs/Full_PRD.md:134), N-000585 (sdd/specs/Full_PRD.md:310) — Claim A says options and positional arguments may be mixed on a leaf command, while claim B says each subcommand's options must come before its arguments; for a leaf subcommand both cannot hold.
+
+### Group 3 (1 record(s), 2 node(s))
+- **CF-000007** contradiction: N-000186 (sdd/specs/Full_PRD.md:134), N-000386 (sdd/specs/Full_PRD.md:221) — B states as a MUST that group options come before the subcommand name, while A says that where mixing is enabled a group option after the subcommand name is still delivered to the group, so B is violated for such groups.
+
+### Group 4 (4 record(s), 5 node(s))
+- **CF-000010** contradiction: N-000015 (sdd/specs/Full_PRD.md:23), N-000140 (sdd/specs/Full_PRD.md:112) — A says options appear fully on the help page, which covers hidden options too, while B says hidden options are omitted from help; a hidden option must both appear and not appear.
+- **CF-000110** contradiction: N-000408 (sdd/specs/Full_PRD.md:227), N-000759 (sdd/specs/Full_PRD.md:421) — A says every name a custom listing returns must appear in help and completion, while B says hidden names must be omitted from both, so a hidden name returned by a custom listing would violate both; the text does not say whether listings return hidden names.
+- **CF-000086** duplication: N-000140 (sdd/specs/Full_PRD.md:112), N-000759 (sdd/specs/Full_PRD.md:421) — Both state that hidden items are omitted from help and from shell completion (FP-02/FP-12); A's options, commands and groups are kinds of the hidden name B covers.
+- **CF-000066** subsumption: N-000015 (sdd/specs/Full_PRD.md:23), N-000187 (sdd/specs/Full_PRD.md:135) — A says options are optional unless the author marks them required, which presupposes that some options may be required, as B states.
+
+### Group 5 (1 record(s), 2 node(s))
+- **CF-000011** contradiction: N-000086 (sdd/specs/Full_PRD.md:84), N-000251 (sdd/specs/Full_PRD.md:146) — A says declared parameters must be passed to the function, while B lets a parameter be hidden from the callback, so a hidden parameter would violate A's must; the MAY is an exception to A's universal requirement, so the two cannot both hold for such a parameter.
+
+### Group 6 (3 record(s), 4 node(s))
+- **CF-000012** contradiction: N-000098 (sdd/specs/Full_PRD.md:91), N-000101 (sdd/specs/Full_PRD.md:91) — A exempts leftover tokens from usage error when extra arguments are allowed, but B says option-shaped leftovers remain usage errors under that same setting alone; the reading depends on what "that setting" refers to.
+- **CF-000019** contradiction: N-000101 (sdd/specs/Full_PRD.md:91), N-000261 (sdd/specs/Full_PRD.md:151) — Claim A says an option-shaped leftover token stays a usage error under the extra-arguments setting alone, while claim B says such a token is a usage error only unless extra arguments are allowed, so with that setting it is not an error.
+- **CF-000001** duplication: N-000098 (sdd/specs/Full_PRD.md:91), N-000311 (sdd/specs/Full_PRD.md:175) — Both state that extra tokens beyond the declared arity, not collected by a variadic argument and not allowed as extra arguments, are a usage error.
+
+### Group 7 (1 record(s), 2 node(s))
+- **CF-000013** contradiction: N-000143 (sdd/specs/Full_PRD.md:113), N-000146 (sdd/specs/Full_PRD.md:113) — A says every name in a replaced help-name list prints help, while B says an overlapping name reused by the author runs the author's option instead; for such an overlapping name both cannot hold.
+
+### Group 8 (2 record(s), 3 node(s))
+- **CF-000016** contradiction: N-000225 (sdd/specs/Full_PRD.md:142), N-000228 (sdd/specs/Full_PRD.md:142) — Both govern unrecognized non-empty environment values: A makes them a conversion usage error, while B says unrecognized values are treated as unset and not as a usage error.
+- **CF-000031** contradiction: N-000224 (sdd/specs/Full_PRD.md:142), N-000228 (sdd/specs/Full_PRD.md:142) — A says a whitespace-only value, which strips to empty, deactivates the flag; B says empty values are unset so the next source wins. The same empty value cannot both deactivate and fall through, though B's 'empty' may mean only the literal empty string.
+
+### Group 9 (1 record(s), 2 node(s))
+- **CF-000020** contradiction: N-000102 (sdd/specs/Full_PRD.md:91), N-000257 (sdd/specs/Full_PRD.md:151) — Claim A allows option-shaped leftover tokens to be consumed as arguments only with the setting or `--`, while claim B says leftover option-like tokens become extra arguments with no stated condition, so they conflict unless B is read as conditional on the setting.
+
+### Group 10 (8 record(s), 6 node(s))
+- **CF-000026** contradiction: N-000281 (sdd/specs/Full_PRD.md:166), N-000310 (sdd/specs/Full_PRD.md:174) — Claim A says the callback receives the default, which requires it to run, while claim B says the callback does not run; no stated condition separates them.
+- **CF-000027** contradiction: N-000281 (sdd/specs/Full_PRD.md:166), N-000370 (sdd/specs/Full_PRD.md:207) — Claim A says the callback receives the default, implying it runs, while claim B says the callback is not run; the claims give no condition that separates them.
+- **CF-000030** contradiction: N-000159 (sdd/specs/Full_PRD.md:118), N-000382 (sdd/specs/Full_PRD.md:220) — A says the group callback is not run, while B says it does run when a named subcommand is dispatched, so both cannot hold for the same dispatch.
+- **CF-000055** contradiction: N-000310 (sdd/specs/Full_PRD.md:174), N-000382 (sdd/specs/Full_PRD.md:220) — A says the callback does not run with no stated scope, while B says the group callback does run before a dispatched subcommand, and neither text separates the two scenarios.
+- **CF-000059** contradiction: N-000382 (sdd/specs/Full_PRD.md:220), N-000570 (sdd/specs/Full_PRD.md:298) — A says the group callback runs when a subcommand is dispatched, while B flatly says the callback does not run; B's scope is unstated in the quoted text, so this may be a context-specific exception.
+- **CF-000054** duplication: N-000310 (sdd/specs/Full_PRD.md:174), N-000370 (sdd/specs/Full_PRD.md:207) — Both say the same callback MUST NOT run, just worded differently ('the callback does not run' vs 'callback not run').
+- **CF-000056** duplication: N-000310 (sdd/specs/Full_PRD.md:174), N-000570 (sdd/specs/Full_PRD.md:298) — Both state the identical MUST NOT-run claim about the callback; the only difference is a trailing period.
+- **CF-000058** duplication: N-000370 (sdd/specs/Full_PRD.md:207), N-000570 (sdd/specs/Full_PRD.md:298) — Both say the callback MUST NOT run, differing only in wording.
+
+### Group 11 (1 record(s), 2 node(s))
+- **CF-000029** contradiction: N-000929 (sdd/specs/Interface_Contract.md:215), N-000930 (sdd/specs/Interface_Contract.md:216) — Claim A says open_file delivers an open file object, while Claim B says that with path_type=Path it delivers a path, not an open file, so the same call cannot satisfy both; the mode scoping in A makes this low confidence.
+
+### Group 12 (5 record(s), 6 node(s))
+- **CF-000032** contradiction: N-000242 (sdd/specs/Full_PRD.md:145), N-000244 (sdd/specs/Full_PRD.md:145) — A states without qualification that the command callback must not run, while B requires callbacks to run for every source including environment, default map, and prompts, which would include the command callback as a kind of callback; low confidence because A's condition is not stated in the claim.
+- **CF-000033** contradiction: N-000242 (sdd/specs/Full_PRD.md:145), N-000247 (sdd/specs/Full_PRD.md:145) — A says the command callback must not run, while B says a missing parameter still runs its callback; if a missing parameter is the usage-error case, the same kind of callback is both run and not run, but the text does not say this, so confidence is low.
+- **CF-000129** duplication: N-000104 (sdd/specs/Full_PRD.md:101), N-000709 (sdd/specs/Full_PRD.md:380) — Both state that the command callback does not run.
+- **CF-000131** duplication: N-000242 (sdd/specs/Full_PRD.md:145), N-000709 (sdd/specs/Full_PRD.md:380) — Both claims say the command callback does not run, with the same modality and no added condition.
+- **CF-000134** duplication: N-000690 (sdd/specs/Full_PRD.md:359), N-000709 (sdd/specs/Full_PRD.md:380) — Both state that the command callback does not run, with the same modality and subject.
+
+### Group 13 (5 record(s), 6 node(s))
+- **CF-000034** contradiction: N-000246 (sdd/specs/Full_PRD.md:145), N-000486 (sdd/specs/Full_PRD.md:269) — A says any omitted required option is a usage error, while B says an omitted required prompting option prompts instead of failing, so a required prompting option that is omitted cannot satisfy both.
+- **CF-000038** contradiction: N-000484 (sdd/specs/Full_PRD.md:269), N-000485 (sdd/specs/Full_PRD.md:269) — A says an omitted option uses its default, while B says a required option that is omitted prompts, so a required option with a default cannot satisfy both.
+- **CF-000039** contradiction: N-000484 (sdd/specs/Full_PRD.md:269), N-000486 (sdd/specs/Full_PRD.md:269) — A says an omitted option uses the default, while B says an omitted required prompting option prompts rather than failing, so both cannot hold for a required option with a default.
+- **CF-000105** contradiction: N-000194 (sdd/specs/Full_PRD.md:137), N-000485 (sdd/specs/Full_PRD.md:269) — If a counting option is also required and omitted, A says it yields zero while B says it prompts, so both cannot hold for that option at once.
+- **CF-000021** duplication: N-000211 (sdd/specs/Full_PRD.md:139), N-000484 (sdd/specs/Full_PRD.md:269) — Both say that an omitted option results in the default value.
+
+### Group 14 (2 record(s), 3 node(s))
+- **CF-000035** contradiction: N-000314 (sdd/specs/Full_PRD.md:177), N-000315 (sdd/specs/Full_PRD.md:177) — A deprecated argument with neither a default nor an optional marking would have to both not be required (A) and count as required (B), and the text gives no exception for deprecated arguments.
+- **CF-000025** duplication: N-000276 (sdd/specs/Full_PRD.md:165), N-000315 (sdd/specs/Full_PRD.md:177) — Both say an argument with no default is required, which is the same rule for the minimal argument, though the wording differs.
+
+### Group 15 (1 record(s), 2 node(s))
+- **CF-000037** contradiction: N-000447 (sdd/specs/Full_PRD.md:247), N-000451 (sdd/specs/Full_PRD.md:247) — A says a default-map string is split for non-one-arity (multi-value) parameters, while B says a default-map string is refused as not an iterable sequence; if B covers repeatable options, the same string for the same parameter cannot be both split and refused.
+
+### Group 16 (1 record(s), 2 node(s))
+- **CF-000040** contradiction: N-000495 (sdd/specs/Full_PRD.md:271), N-000497 (sdd/specs/Full_PRD.md:271) — A negative answer is one of the other answers, so it must both ask again (N-000495) and simply return false (N-000497), which cannot both happen for the same answer.
+
+### Group 17 (4 record(s), 5 node(s))
+- **CF-000041** contradiction: N-000541 (sdd/specs/Full_PRD.md:292), N-000550 (sdd/specs/Full_PRD.md:292) — A must-exist requirement and a statement that existence is not required cannot both hold for the same path.
+- **CF-000042** contradiction: N-000544 (sdd/specs/Full_PRD.md:292), N-000550 (sdd/specs/Full_PRD.md:292) — A requires the path to be readable, which presupposes it exists, while B says existence is not required; the two may clash for a nonexistent path.
+- **CF-000043** contradiction: N-000545 (sdd/specs/Full_PRD.md:292), N-000550 (sdd/specs/Full_PRD.md:292) — A requires the path to be writable, which presupposes it exists, while B says existence is not required; the two may clash for a nonexistent path.
+- **CF-000100** contradiction: N-000541 (sdd/specs/Full_PRD.md:292), N-000558 (sdd/specs/Full_PRD.md:292) — A requires every path to exist, while B delivers the dash as the path `-`, which must then exist unless the dash is exempt; the text does not exempt it.
+
+### Group 18 (1 record(s), 2 node(s))
+- **CF-000044** contradiction: N-000546 (sdd/specs/Full_PRD.md:292), N-000553 (sdd/specs/Full_PRD.md:292) — A says checking the path for executability MAY happen, while B says executability must NOT be checked, so both cannot hold for the same path.
+
+### Group 19 (5 record(s), 5 node(s))
+- **CF-000046** contradiction: N-000666 (sdd/specs/Full_PRD.md:339), N-000668 (sdd/specs/Full_PRD.md:339) — A requires the application directory to sit under XDG_CONFIG_HOME when set, while B requires the POSIX-forced mode to use the home dot folder regardless of XDG_CONFIG_HOME, so both cannot hold for the same directory in that mode unless A is read as default-only.
+- **CF-000065** contradiction: N-000664 (sdd/specs/Full_PRD.md:339), N-000666 (sdd/specs/Full_PRD.md:339) — The spec ties the application directory to the platform's config location, but also says it always sits under the XDG/~/.config user config home, which cannot hold on a platform whose native location is elsewhere (e.g. Windows APPDATA); the text does not name that location, so this is low confidence.
+- **CF-000080** contradiction: N-000667 (sdd/specs/Full_PRD.md:339), N-000668 (sdd/specs/Full_PRD.md:339) — Claim A fixes the macOS folder under Library/Application Support, while Claim B forces a dot-prefixed home folder on all POSIX systems, which includes macOS, so both cannot hold for the same folder when the forced mode is active.
+- **CF-000083** contradiction: N-000665 (sdd/specs/Full_PRD.md:339), N-000667 (sdd/specs/Full_PRD.md:339) — Claim A makes the folder name the lowercased, dash-joined application name with no platform limit, while Claim B makes the macOS folder the application name as given, so on macOS the two folder names cannot both hold.
+- **CF-000115** contradiction: N-000664 (sdd/specs/Full_PRD.md:339), N-000668 (sdd/specs/Full_PRD.md:339) — Claim A says the path is the platform config location unconditionally, while Claim B says that on POSIX in forced mode the path is the home dot-folder regardless of XDG_CONFIG_HOME, so both cannot hold for the path when forced mode is active unless A is read as default-mode only.
+
+### Group 20 (2 record(s), 3 node(s))
+- **CF-000049** contradiction: N-000148 (sdd/specs/Full_PRD.md:113), N-000164 (sdd/specs/Full_PRD.md:120) — The first claim presupposes an automatic help option that stays in place, while the second says --help is an unknown option unless the author declared it, which denies that automatic option; the second's antecedent is not shown, so this is low confidence.
+- **CF-000068** contradiction: N-000023 (sdd/specs/Full_PRD.md:39), N-000164 (sdd/specs/Full_PRD.md:120) — Claim A requires automatic help via the default --help, while claim B says --help is an unknown option unless the author declared it, so under the default both cannot hold for --help; the text does not state the exception, so confidence is low.
+
+### Group 21 (2 record(s), 3 node(s))
+- **CF-000050** contradiction: N-000170 (sdd/specs/Full_PRD.md:131), N-000188 (sdd/specs/Full_PRD.md:135) — A says an omitted option with no default still calls the callback with an absent value, while B says omitting it is a usage error and the callback does not run, so both cannot hold for the same omitted option with no other source.
+- **CF-000014** duplication: N-000170 (sdd/specs/Full_PRD.md:131), N-000282 (sdd/specs/Full_PRD.md:166) — Both say a callback receives an absent value when the option is omitted and has no default; claim B only adds a parenthetical about the value's type.
+
+### Group 22 (1 record(s), 2 node(s))
+- **CF-000051** contradiction: N-000209 (sdd/specs/Full_PRD.md:139), N-000483 (sdd/specs/Full_PRD.md:269) — Both describe what happens when the flag appears with no value: one says it yields the author's flag-value, the other says it prompts, and both cannot hold for the same flag at the same time.
+
+### Group 23 (4 record(s), 5 node(s))
+- **CF-000061** contradiction: N-000519 (sdd/specs/Full_PRD.md:286), N-000559 (sdd/specs/Full_PRD.md:292) — A requires the helper to open stdin when given the dash, while B says no standard stream is read at all, so both cannot hold for stdin.
+- **CF-000062** contradiction: N-000519 (sdd/specs/Full_PRD.md:286), N-000562 (sdd/specs/Full_PRD.md:292) — A requires the helper to open a standard stream via the dash rule, while B says still no standard stream is read, so both cannot hold for stdin.
+- **CF-000076** contradiction: N-000555 (sdd/specs/Full_PRD.md:292), N-000758 (sdd/specs/Full_PRD.md:420) — A says a dash is not special, but B says opening `-` follows the stdin/stdout rule, which is special handling of the dash, so both cannot hold for the dash.
+- **CF-000093** duplication: N-000519 (sdd/specs/Full_PRD.md:286), N-000758 (sdd/specs/Full_PRD.md:420) — Both state that the file-open helper and opening `-` as a file follow the same stdin/stdout dash rule.
+
+### Group 24 (2 record(s), 3 node(s))
+- **CF-000063** contradiction: N-000522 (sdd/specs/Full_PRD.md:290), N-000538 (sdd/specs/Full_PRD.md:292) — Both claims say the same value must be one thing, an open file in A and a path in B, so both cannot hold together.
+- **CF-000070** contradiction: N-000058 (sdd/specs/Full_PRD.md:58), N-000522 (sdd/specs/Full_PRD.md:290) — If a file-type value is an open file, not a path, it cannot also be text as every command-line value must be, unless the text is read as the pre-conversion token only.
+
+### Group 25 (1 record(s), 2 node(s))
+- **CF-000074** contradiction: N-000379 (sdd/specs/Full_PRD.md:219), N-000401 (sdd/specs/Full_PRD.md:226) — Claim A says naming any subcommand runs that subcommand's own callback, while Claim B says naming a nested group with nothing after runs only the outer callbacks and then shows help, so the nested group's own callback is not run.
+
+### Group 26 (1 record(s), 2 node(s))
+- **CF-000075** contradiction: N-000527 (sdd/specs/Full_PRD.md:290), N-000611 (sdd/specs/Full_PRD.md:330) — A says text output uses the declared encoding when the author sets one, including the dash stream; B says echo on an ASCII-only declared stream writes UTF-8 instead, so echo's output cannot use both encodings.
+
+### Group 27 (1 record(s), 2 node(s))
+- **CF-000078** contradiction: N-000872 (sdd/specs/Interface_Contract.md:129), N-000920 (sdd/specs/Interface_Contract.md:203) — A requires a conversion function to refuse a value by raising ValueError, while B says a refusal from a conversion function is raised as BadParameter, so the same refusal would need two different exception types.
+
+### Group 28 (1 record(s), 2 node(s))
+- **CF-000079** contradiction: N-000903 (sdd/specs/Interface_Contract.md:173), N-000905 (sdd/specs/Interface_Contract.md:175) — A multiple=True parameter that is omitted with no value from any source would have to be a tuple (one entry per occurrence, so empty) under one claim and None under the other.
+
+### Group 29 (1 record(s), 2 node(s))
+- **CF-000081** contradiction: N-000739 (sdd/specs/Full_PRD.md:405), N-000741 (sdd/specs/Full_PRD.md:405) — A says default capture does not record OS-level descriptor writes, while B says OS-level writes to descriptors 1 and 2 are captured as stdout and stderr, with no mode qualifier.
+
+### Group 30 (2 record(s), 3 node(s))
+- **CF-000084** contradiction: N-000129 (sdd/specs/Full_PRD.md:107), N-000130 (sdd/specs/Full_PRD.md:107) — Claim A says single newlines in a paragraph are not kept as hard breaks, while claim B says a backspace-first-line paragraph keeps its line breaks; both apply to the same kind of paragraph, so the exception conflicts with the general rule as written.
+- **CF-000130** contradiction: N-000126 (sdd/specs/Full_PRD.md:107), N-000130 (sdd/specs/Full_PRD.md:107) — A requires all help text to be rewrapped, while B requires a backspace-led paragraph not to be rewrapped; a backspace-led paragraph in help text would have to satisfy both, and A has no carve-out for it.
+
+### Group 31 (5 record(s), 5 node(s))
+- **CF-000085** contradiction: N-000735 (sdd/specs/Full_PRD.md:404), N-000736 (sdd/specs/Full_PRD.md:404) — A says hidden prompts never echo, while B says the optional runner mode echoes every standard-input read, which would include a hidden prompt's input in that mode; this holds only if B covers hidden-prompt reads.
+- **CF-000099** contradiction: N-000516 (sdd/specs/Full_PRD.md:280), N-000736 (sdd/specs/Full_PRD.md:404) — The first says hidden input is never echoed into captured output, while the second says the optional runner mode echoes all standard-input reads, which would include hidden input unless the text excludes it.
+- **CF-000111** duplication: N-000517 (sdd/specs/Full_PRD.md:280), N-000735 (sdd/specs/Full_PRD.md:404) — Both say visible prompts have their echoed typed input placed in the captured output. A's text is truncated, so the match rests on its canonical form.
+- **CF-000098** subsumption: N-000516 (sdd/specs/Full_PRD.md:280), N-000735 (sdd/specs/Full_PRD.md:404) — The second claim states that hidden prompts do not echo the typed line, which already implies the first claim that hidden input is not echoed, and adds the visible-prompt echo.
+- **CF-000132** subsumption: N-000500 (sdd/specs/Full_PRD.md:272), N-000735 (sdd/specs/Full_PRD.md:404) — B's clause that hidden prompts do not echo the typed line says the same thing as A about hidden input, so B implies A; B also adds the visible-prompt echo.
+
+### Group 32 (1 record(s), 2 node(s))
+- **CF-000097** contradiction: N-000460 (sdd/specs/Full_PRD.md:250), N-000700 (sdd/specs/Full_PRD.md:365) — A says a token that matches nothing after normalization is a usage error, while B says an incomplete token that matches nothing is not a usage error; A is not limited to complete tokens, so they clash on incomplete non-matching tokens.
+
+### Group 33 (3 record(s), 4 node(s))
+- **CF-000102** contradiction: N-000879 (sdd/specs/Interface_Contract.md:136), N-000898 (sdd/specs/Interface_Contract.md:163) — Claim A requires nargs to be a positive int, but Claim B also allows -1 for variadic, which is not a positive int, so for nargs=-1 both cannot hold; the table wording in A may be a summary, so confidence is low.
+- **CF-000088** duplication: N-000201 (sdd/specs/Full_PRD.md:138), N-000879 (sdd/specs/Interface_Contract.md:136) — Both say the per-occurrence token count for a multi-value option is a strictly positive integer, one stated as a behaviour and the other as the nargs parameter type.
+- **CF-000106** duplication: N-000205 (sdd/specs/Full_PRD.md:138), N-000879 (sdd/specs/Interface_Contract.md:136) — A says each occurrence takes that many tokens and B says nargs is the tokens per occurrence, so both state the same token-per-occurrence rule.
+
+### Group 34 (1 record(s), 2 node(s))
+- **CF-000104** contradiction: N-000192 (sdd/specs/Full_PRD.md:136), N-000210 (sdd/specs/Full_PRD.md:139) — If an on/off pair is an option, B's rule gives the on token as the output for flag plus on token, while A requires true for that same input, so both cannot hold.
+
+### Group 35 (2 record(s), 3 node(s))
+- **CF-000113** contradiction: N-000614 (sdd/specs/Full_PRD.md:330), N-000615 (sdd/specs/Full_PRD.md:330) — A says styles are kept whenever the output is a terminal, but B lets the invocation force color off so styles are stripped even on a terminal; both cannot hold when that option is used.
+- **CF-000077** duplication: N-000614 (sdd/specs/Full_PRD.md:330), N-000671 (sdd/specs/Full_PRD.md:344) — Both say that echo to a terminal keeps styles, with the same subject, condition and response in different words.
+
+### Group 36 (1 record(s), 2 node(s))
+- **CF-000117** contradiction: N-000046 (sdd/specs/Full_PRD.md:54), N-000764 (sdd/specs/Hardware_Requirements.md:7) — A says the supported target is Linux, while B says macOS and Windows hosts are sufficient to install and use Optlyn, so both cannot hold as the sole supported platform.
+
+### Group 37 (2 record(s), 3 node(s))
+- **CF-000122** contradiction: N-000353 (sdd/specs/Full_PRD.md:196), N-000355 (sdd/specs/Full_PRD.md:197) — Claim A requires clamping to the adjacent integer for an open bound, but claim B allows clamping only when both bounds are closed, so an open-bound clamp cannot both happen and be allowed.
+- **CF-000123** subsumption: N-000355 (sdd/specs/Full_PRD.md:197), N-000372 (sdd/specs/Full_PRD.md:208) — Claim A's general rule that clamp is allowed only when both bounds are closed already implies claim B's specific refusal of clamp for float ranges with an open bound.
+
+### Group 38 (2 record(s), 3 node(s))
+- **CF-000124** contradiction: N-000448 (sdd/specs/Full_PRD.md:247), N-000630 (sdd/specs/Full_PRD.md:331) — Claim A says every sequence is used as-is, while claim B removes ANSI sequences, which the terms relation makes a kind of sequence, so both cannot hold for the same ANSI sequence; the scope of A's line 247 context is unclear.
+- **CF-000125** contradiction: N-000448 (sdd/specs/Full_PRD.md:247), N-000650 (sdd/specs/Full_PRD.md:334) — Claim A says every sequence is used as-is, while claim B turns interrupt and end-of-file key sequences into failures rather than raw characters, and key sequences are a kind of sequence; the scope of A is unclear.
+
+### Group 39 (1 record(s), 2 node(s))
+- **CF-000133** contradiction: N-000641 (sdd/specs/Full_PRD.md:333), N-000645 (sdd/specs/Full_PRD.md:333) — A requires the progress bar to show a remaining-time estimate when length is known, while B forbids an explicitly hidden bar from printing anything, so a hidden bar with known length cannot satisfy both.
+
+### Group 40 (2 record(s), 3 node(s))
+- **CF-000135** contradiction: N-000703 (sdd/specs/Full_PRD.md:367), N-000990 (sdd/specs/Interface_Contract.md:309) — Claim A says that when the callback does not run the process prints no registration script, while Claim B says source mode prints the registration script; this holds only if source mode is a case where the callback does not run, which the text does not state.
+- **CF-000101** duplication: N-000678 (sdd/specs/Full_PRD.md:353), N-000990 (sdd/specs/Interface_Contract.md:309) — Both say the source-mode entry point (`{shell}_source` / source mode) prints the script the user sources to register completion, so they state the same claim under different names.
+
+### Group 41 (1 record(s), 2 node(s))
+- **CF-000136** contradiction: N-000893 (sdd/specs/Interface_Contract.md:150), N-000943 (sdd/specs/Interface_Contract.md:240) — Both state the type of the same show_default option: one allows a str in addition to bool, while the other says it must be bool, so both cannot hold.
+
+### Group 42 (1 record(s), 2 node(s))
+- **CF-000002** duplication: N-000217 (sdd/specs/Full_PRD.md:141), N-000436 (sdd/specs/Full_PRD.md:246) — Both say a value taken from the environment variable is converted with the option's type, with "That value" referring to the same environment value.
+
+### Group 43 (1 record(s), 2 node(s))
+- **CF-000004** duplication: N-000256 (sdd/specs/Full_PRD.md:151), N-000312 (sdd/specs/Full_PRD.md:176) — Both say option-like tokens may be consumed as arguments without `--` when ignore-unknown-options is on, though A's antecedent is only inferred from its "in which case" opening.
+
+### Group 44 (3 record(s), 3 node(s))
+- **CF-000008** duplication: N-000218 (sdd/specs/Full_PRD.md:141), N-000437 (sdd/specs/Full_PRD.md:246) — Both claims say an environment value may satisfy a required option, differing only in the word may versus can.
+- **CF-000052** duplication: N-000218 (sdd/specs/Full_PRD.md:141), N-000302 (sdd/specs/Full_PRD.md:169) — Both say an environment value may satisfy a required option/argument; 'option' and 'argument' are treated as names for the same parameter here, so the claims state the same thing.
+- **CF-000053** duplication: N-000302 (sdd/specs/Full_PRD.md:169), N-000437 (sdd/specs/Full_PRD.md:246) — Both say an environment value may satisfy a required parameter, with "argument" and "option" treated as the same kind of thing here.
+
+### Group 45 (1 record(s), 2 node(s))
+- **CF-000017** duplication: N-000603 (sdd/specs/Full_PRD.md:319), N-000859 (sdd/specs/Interface_Contract.md:101) — Both claims say that attaching a group beneath a chaining group is rejected at the point of declaration/attachment; only the wording ("refused" vs "raises") differs.
+
+### Group 46 (1 record(s), 2 node(s))
+- **CF-000022** duplication: N-000216 (sdd/specs/Full_PRD.md:141), N-000301 (sdd/specs/Full_PRD.md:169) — Both say an absent or empty environment variable counts as not supplying a value; A adds a parenthetical about the next source winning.
+
+### Group 47 (1 record(s), 2 node(s))
+- **CF-000023** duplication: N-000254 (sdd/specs/Full_PRD.md:147), N-000317 (sdd/specs/Full_PRD.md:177) — Both state the same rule that a deprecation warning fires only when the user supplied the value rather than a default, differing only in calling the thing 'option' or 'argument'.
+
+### Group 48 (5 record(s), 4 node(s))
+- **CF-000024** duplication: N-000270 (sdd/specs/Full_PRD.md:154), N-000316 (sdd/specs/Full_PRD.md:177) — Both claims state the identical sentence that declaring that combination is refused at declaration time.
+- **CF-000057** duplication: N-000316 (sdd/specs/Full_PRD.md:177), N-000899 (sdd/specs/Interface_Contract.md:163) — Both state that an invalid attribute combination is rejected at declaration time, one as 'refused' and the other as 'raises'.
+- **CF-000096** duplication: N-000896 (sdd/specs/Interface_Contract.md:154), N-000899 (sdd/specs/Interface_Contract.md:163) — Both say an invalid combination of keywords raises at declaration; B's text drops the PRD reference and the 'attrs' qualifier appears only in its canonical form.
+- **CF-000108** duplication: N-000270 (sdd/specs/Full_PRD.md:154), N-000896 (sdd/specs/Interface_Contract.md:154) — Both claims say that an invalid keyword combination is refused or raised at declaration time, so they state the same requirement.
+- **CF-000109** duplication: N-000316 (sdd/specs/Full_PRD.md:177), N-000896 (sdd/specs/Interface_Contract.md:154) — Both say an invalid keyword combination is refused or raised at declaration time, though claim A's 'that combination' is unspecified, so the match is inferred.
+
+### Group 49 (2 record(s), 3 node(s))
+- **CF-000028** duplication: N-000368 (sdd/specs/Full_PRD.md:207), N-000708 (sdd/specs/Full_PRD.md:380) — Both claims say a message goes to standard error and distinguishes the failure from success.
+- **CF-000089** duplication: N-000241 (sdd/specs/Full_PRD.md:145), N-000368 (sdd/specs/Full_PRD.md:207) — Both claims require a usage-error message on standard error that distinguishes the failure from success.
+
+### Group 50 (1 record(s), 2 node(s))
+- **CF-000045** duplication: N-000642 (sdd/specs/Full_PRD.md:333), N-000674 (sdd/specs/Full_PRD.md:345) — Both state that items must not be skipped (still visited, in order) when there is no terminal or the bar is explicitly hidden.
+
+### Group 51 (1 record(s), 2 node(s))
+- **CF-000048** duplication: N-000062 (sdd/specs/Full_PRD.md:59), N-000468 (sdd/specs/Full_PRD.md:252) — Both say other threads cannot see the context unless it is entered in that thread; claim A only adds that the author does the entering.
+
+### Group 52 (1 record(s), 2 node(s))
+- **CF-000060** duplication: N-000473 (sdd/specs/Full_PRD.md:258), N-000606 (sdd/specs/Full_PRD.md:320) — Both claims say that files from a chained command's file type cannot be used by later pipeline processors.
+
+### Group 53 (1 record(s), 2 node(s))
+- **CF-000064** duplication: N-000063 (sdd/specs/Full_PRD.md:59), N-000071 (sdd/specs/Full_PRD.md:68) — A says the context is not a thread-safe mutable store and B forbids thread-safe mutation of an invocation context; both state that the context must not support thread-safe mutation.
+
+### Group 54 (1 record(s), 2 node(s))
+- **CF-000069** duplication: N-000027 (sdd/specs/Full_PRD.md:40), N-000319 (sdd/specs/Full_PRD.md:183) — Both state that authors can supply a custom parameter type; A uses MUST for support and B uses MAY for authors, but the claim content is the same.
+
+### Group 55 (1 record(s), 2 node(s))
+- **CF-000071** duplication: N-000060 (sdd/specs/Full_PRD.md:58), N-000096 (sdd/specs/Full_PRD.md:90) — Both say an ASCII-only environment encoding does not abort the run; 'invocation' and 'execution' name the same thing here.
+
+### Group 56 (1 record(s), 2 node(s))
+- **CF-000072** duplication: N-000269 (sdd/specs/Full_PRD.md:154), N-000513 (sdd/specs/Full_PRD.md:278) — Both state the same constraint that a deprecated option may not be combined with a prompt, one as a prohibition and one as the refusal of that combination.
+
+### Group 57 (1 record(s), 2 node(s))
+- **CF-000073** duplication: N-000285 (sdd/specs/Full_PRD.md:166), N-000305 (sdd/specs/Full_PRD.md:169) — Both claims say a unary argument's value is delivered whole as a single value rather than split, so they state the same claim in different words.
+
+### Group 58 (4 record(s), 4 node(s))
+- **CF-000082** duplication: N-000042 (sdd/specs/Full_PRD.md:53), N-000778 (sdd/specs/Interface_Contract.md:7) — Both claims state the same requirement that the package uses Python 3.10 or newer.
+- **CF-000139** duplication: N-000042 (sdd/specs/Full_PRD.md:53), N-000768 (sdd/specs/Hardware_Requirements.md:18) — Both claims require Python 3.10 or newer for the package or setup, stated identically.
+- **CF-000144** duplication: N-000763 (sdd/specs/Hardware_Requirements.md:7), N-000778 (sdd/specs/Interface_Contract.md:7) — Both state that optlyn, which is the package, requires Python 3.10 or newer.
+- **CF-000145** duplication: N-000768 (sdd/specs/Hardware_Requirements.md:18), N-000778 (sdd/specs/Interface_Contract.md:7) — Both claims require the same thing, Python 3.10 or newer; only the subject differs (the setup versus the package).
+
+### Group 59 (1 record(s), 2 node(s))
+- **CF-000087** duplication: N-000154 (sdd/specs/Full_PRD.md:114), N-000919 (sdd/specs/Interface_Contract.md:195) — Both state that the custom-version option's identity is exactly the string returned by the callback.
+
+### Group 60 (1 record(s), 2 node(s))
+- **CF-000090** duplication: N-000365 (sdd/specs/Full_PRD.md:203), N-000577 (sdd/specs/Full_PRD.md:299) — Both state that a failure is a usage error identifying the parameter; A adds only the 'not an uncaught crash' clause, and the scope of B's 'each failure' is read as the same conversion failures.
+
+### Group 61 (1 record(s), 2 node(s))
+- **CF-000091** duplication: N-000469 (sdd/specs/Full_PRD.md:252), N-000956 (sdd/specs/Interface_Contract.md:258) — Both say that entering the invocation context on a thread makes it current on that thread, so they state the same claim, with B's with-statement wording being the same mechanism as A's entering wording.
+
+### Group 62 (1 record(s), 2 node(s))
+- **CF-000094** duplication: N-000729 (sdd/specs/Full_PRD.md:402), N-000848 (sdd/specs/Interface_Contract.md:78) — Both say extra keywords on invoke go to the invocation context; the wording differs ('invocation-context settings' vs 'invocation Context') but the claim is the same.
+
+### Group 63 (1 record(s), 2 node(s))
+- **CF-000095** duplication: N-000832 (sdd/specs/Interface_Contract.md:62), N-000965 (sdd/specs/Interface_Contract.md:280) — Both say the implementer chooses the escape/wrapping text around the output; A calls it surrounding text, B calls it the exact codes, and the terms treat surrounding text as a kind of text.
+
+### Group 64 (3 record(s), 3 node(s))
+- **CF-000103** duplication: N-000043 (sdd/specs/Full_PRD.md:53), N-000779 (sdd/specs/Interface_Contract.md:7) — Both say the package has no declared runtime dependencies: A as zero dependencies (MUST), B as MUST NOT have any.
+- **CF-000116** duplication: N-000043 (sdd/specs/Full_PRD.md:53), N-000762 (sdd/specs/Hardware_Requirements.md:7) — Both state that the package (Optlyn) has zero declared runtime dependencies, with only the subject name differing.
+- **CF-000143** duplication: N-000762 (sdd/specs/Hardware_Requirements.md:7), N-000779 (sdd/specs/Interface_Contract.md:7) — Both state that the package has no runtime dependencies; one names it optlyn and the other the package, which are the same thing.
+
+### Group 65 (1 record(s), 2 node(s))
+- **CF-000107** duplication: N-000249 (sdd/specs/Full_PRD.md:145), N-001000 (sdd/specs/Interface_Contract.md:313) — Both say the already-bound/parsed values are available on the invocation context (ctx.params), differing only in wording ('bound' vs 'parsed', 'readable on the context' vs 'holds').
+
+### Group 66 (1 record(s), 2 node(s))
+- **CF-000112** duplication: N-000613 (sdd/specs/Full_PRD.md:330), N-000670 (sdd/specs/Full_PRD.md:344) — Both state that echo to a non-terminal strips ANSI styles.
+
+### Group 67 (1 record(s), 2 node(s))
+- **CF-000114** duplication: N-000677 (sdd/specs/Full_PRD.md:353), N-000983 (sdd/specs/Interface_Contract.md:302) — Both state the same rule for naming the completion environment variable: underscore, program name upper-cased with dashes replaced by underscores, and _COMPLETE.
+
+### Group 68 (2 record(s), 3 node(s))
+- **CF-000119** duplication: N-000160 (sdd/specs/Full_PRD.md:118), N-000367 (sdd/specs/Full_PRD.md:207) — Both say the resulting exit is the non-zero usage-error class, though claim A's scope (which exits it covers) is not stated, so this is a low-confidence match.
+- **CF-000120** duplication: N-000240 (sdd/specs/Full_PRD.md:145), N-000367 (sdd/specs/Full_PRD.md:207) — Both require the same non-zero usage-class exit; A's refusal is a usage error (N-000239), so the two name the same outcome for one kind of thing.
+
+### Group 69 (1 record(s), 2 node(s))
+- **CF-000121** duplication: N-000325 (sdd/specs/Full_PRD.md:108), N-000818 (sdd/specs/Interface_Contract.md:51) — Both claims state that the default metavar/placeholder for an argument is the argument name in uppercase; 'metavar' and 'argument placeholder' are two names for the same thing.
+
+### Group 70 (1 record(s), 2 node(s))
+- **CF-000126** duplication: N-000470 (sdd/specs/Full_PRD.md:253), N-000942 (sdd/specs/Interface_Contract.md:239) — Claim A's on, off, and autodetect options correspond to claim B's True, False, and None for the color parameter, so both state the same set of color choices across the L1 and L4 wording, though the mapping is implicit.
+
+### Group 71 (1 record(s), 2 node(s))
+- **CF-000128** duplication: N-000704 (sdd/specs/Full_PRD.md:379), N-000788 (sdd/specs/Interface_Contract.md:23) — Both state that success, intentional help, version, and an author clean stop with no status yield exit status 0.
+
+### Group 72 (1 record(s), 2 node(s))
+- **CF-000137** duplication: N-000030 (sdd/specs/Full_PRD.md:42), N-000518 (sdd/specs/Full_PRD.md:286) — A says the tool provides file and path parameters; B says the file and path parameter types are exposed on options or arguments, which is the same claim.
+
+### Group 73 (1 record(s), 2 node(s))
+- **CF-000138** duplication: N-000041 (sdd/specs/Full_PRD.md:52), N-000777 (sdd/specs/Interface_Contract.md:7) — Both claims state that the optlyn package lives at src/optlyn, the same layout expressed in different words.
+
+### Group 74 (1 record(s), 2 node(s))
+- **CF-000140** duplication: N-000141 (sdd/specs/Full_PRD.md:112), N-000701 (sdd/specs/Full_PRD.md:366) — Both claims say hidden names stay usable when fully typed or invoked by name, which is the same claim about hidden items.
+
+### Group 75 (1 record(s), 2 node(s))
+- **CF-000141** duplication: N-000515 (sdd/specs/Full_PRD.md:280), N-000734 (sdd/specs/Full_PRD.md:404) — Both say supplied input reaches the program as typed standard input, so they state the same claim, though B names the invoke context more specifically.
+
+### Group 76 (1 record(s), 2 node(s))
+- **CF-000005** subsumption: N-000597 (sdd/specs/Full_PRD.md:314), N-000950 (sdd/specs/Interface_Contract.md:252) — Claim B's chaining case (a value that is neither None nor a child name) implies Claim A's narrower statement that asking for the subcommand name on a chaining group does not yield any one child's name.
+
+### Group 77 (1 record(s), 2 node(s))
+- **CF-000009** subsumption: N-000556 (sdd/specs/Full_PRD.md:292), N-000578 (sdd/specs/Full_PRD.md:299) — A says permission checks apply only to an existing path, which already implies that a missing path gets no further checks; B is the narrower case where existence is not required.
+
+### Group 78 (1 record(s), 2 node(s))
+- **CF-000036** subsumption: N-000423 (sdd/specs/Full_PRD.md:235), N-000756 (sdd/specs/Full_PRD.md:419) — B's statement that chaining forbids nested groups already implies A's rule that a chaining group cannot nest further groups, and B adds the return-value change.
+
+### Group 79 (1 record(s), 2 node(s))
+- **CF-000047** subsumption: N-000061 (sdd/specs/Full_PRD.md:59), N-000467 (sdd/specs/Full_PRD.md:252) — Claim A's MUST that the context is available on the running thread implies claim B's weaker MAY that it can be read there.
+
+### Group 80 (1 record(s), 2 node(s))
+- **CF-000067** subsumption: N-000017 (sdd/specs/Full_PRD.md:27), N-000065 (sdd/specs/Full_PRD.md:64) — A assigns help-page layout to Optlyn and wording to the author, which implies B's rule that authors may not redesign layout; the two agree and A is the broader statement.
+
+### Group 81 (1 record(s), 2 node(s))
+- **CF-000092** subsumption: N-000487 (sdd/specs/Full_PRD.md:270), N-000754 (sdd/specs/Full_PRD.md:418) — A says a declared default, including a callable one, still prompts as a MUST, which implies B's weaker claim that a callable default may still prompt.
+
+### Group 82 (1 record(s), 2 node(s))
+- **CF-000118** subsumption: N-000047 (sdd/specs/Full_PRD.md:54), N-000761 (sdd/specs/Hardware_Requirements.md:7) — A forbids compiled extensions, native code, GPU or accelerator both as requirements and as claims, which implies B's narrower statement that there are no such requirements.
+
+### Group 83 (1 record(s), 2 node(s))
+- **CF-000127** subsumption: N-000477 (sdd/specs/Full_PRD.md:264), N-000507 (sdd/specs/Full_PRD.md:273) — A requires the confirmation option to abort when the user declines, which already implies B's rule that a negative answer aborts without running the callback.
+
+### Group 84 (1 record(s), 2 node(s))
+- **CF-000142** subsumption: N-000653 (sdd/specs/Full_PRD.md:335), N-000675 (sdd/specs/Full_PRD.md:346) — Claim A says a non-interactive pause does nothing and does not block, which already implies claim B's rule that pause must not block in non-interactive runs.

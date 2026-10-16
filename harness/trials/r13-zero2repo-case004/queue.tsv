@@ -1,0 +1,11 @@
+run_id	task	model	status	job	attempts	last_message
+haiku-markdown-1	work/tasks/case004-markdown	anthropic/claude-haiku-5-5	done	r13-zero2repo-case004-haiku-markdown-1	1	
+haiku-export-1	work/tasks/case004-export	anthropic/claude-haiku-5-5	done	r13-zero2repo-case004-haiku-export-1	1	
+sonnet-markdown-1	work/tasks/case004-markdown	anthropic/claude-sonnet-5-5	done	r13-zero2repo-case004-sonnet-markdown-1	1	
+sonnet-export-1	work/tasks/case004-export	anthropic/claude-sonnet-5-5	done	r13-zero2repo-case004-sonnet-export-1	1	
+haiku-markdown-2	work/tasks/case004-markdown	anthropic/claude-haiku-5-5	done	r13-zero2repo-case004-haiku-markdown-2	1	
+haiku-export-2	work/tasks/case004-export	anthropic/claude-haiku-5-5	done	r13-zero2repo-case004-haiku-export-2	1	
+sonnet-markdown-2	work/tasks/case004-markdown	anthropic/claude-sonnet-5-5	done	r13-zero2repo-case004-sonnet-markdown-2	1	
+sonnet-export-2	work/tasks/case004-export	anthropic/claude-sonnet-5-5	done	r13-zero2repo-case004-sonnet-export-2	1	
+haiku-settled-1	work/tasks/case004-export-settled	anthropic/claude-haiku-5-5	done	r13-zero2repo-case004-haiku-settled-1	1	
+haiku-settled-2	work/tasks/case004-export-settled	anthropic/claude-haiku-5-5	done	r13-zero2repo-case004-haiku-settled-2	1	

@@ -1,0 +1,1 @@
+{"judge_error": null, "official_reward_raw": 0.0, "failed_tests": ["../tests/final/tests/F05_acceptance.py::test_instruction_stems_without_prose_extension_are_absent"], "error_tests": []}

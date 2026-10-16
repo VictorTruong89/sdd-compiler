@@ -1,0 +1,23 @@
+  1/1 Reward: 0.778 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:02:32 0:00:00
+adhoc • claude-code • claude-opus-5-5
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Reward ┃ Tests_Collected ┃ Tests_Passed ┃ Tests_Total ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│      1 │          0 │  0.778 │           9.000 │        7.000 │       9.000 │
+└────────┴────────────┴────────┴─────────────────┴──────────────┴─────────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.7777777777777778 │     1 │
+│ 7                  │     1 │
+│ 9                  │     1 │
+│ 9                  │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 2m 32s
+Results written to jobs/r12-stocktrends-markdown-opus-1/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload jobs/r12-stocktrends-markdown-opus-1`
+
