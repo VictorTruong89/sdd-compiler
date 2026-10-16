@@ -532,6 +532,58 @@ Doc2Feat-Bench would supply the tasks — the report must say they were tried an
 - **Options:** as S13 (a)–(d); the investigation note adds a candidate compiler change, a gap
   ("underspecified") report, which would be tested on a task of ours with planted gaps.
 
+### S15 — 2026-10-16 — how agents read the export (round 13c, case006); options to make it cheaper
+
+No model call. Lecture: [`docs/lectures/lecture-export-to-agent.html`](../../../docs/lectures/lecture-export-to-agent.html).
+Evidence: the 8 case006 transcripts of round 13c (`harness/trials/r13c-zero2repo-3cases/runs/*case006*/agent.tgz`,
+session JSONL) and the export task's `spec/` (`work/tasks/case006-export/environment/spec/`), counted 2026-10-16.
+
+- **What the export is made of (words, case006, total 75 090; Markdown 14 138):** pack Text verbatim
+  14 238 · `↳` tag lines 7 585 · "Claims to implement" 22 128 · `CHECKLIST.md` 23 151 · "Related
+  elsewhere" 5 233 · other pack sections 1 873 · `MAP.md` 882. Claims and checklist restate node
+  texts: 60% of the words. Same split for case010 and case016 in the lecture §2.3.
+- **What the agents read:** all 4 export runs read the whole spec text before writing code (so did the
+  Markdown runs). 3 of 4 cut the export back to the `## Text` sections with `sed`/`awk`, 2 also
+  removed the `↳` lines. No run read pack 19's claims list (lines 667–2272) or `CHECKLIST.md` past line
+  40; the checklist was counted and grepped, not ticked. Pack 19 (32 520 words, 43% of the export)
+  exceeded Claude Code's Bash inline limit (≈ 30 000 chars) and the Read limit (25 000 tokens) in
+  every export run.
+- **Tokens (from `usage`):** spec reading took context from 6.2k to 37.3k tokens on Markdown and to
+  48.7k–95.6k on the export. One planning request per run wrote 54k–128k output tokens in both
+  formats. Peak context 336k of 1M; no compaction. Haiku's extra turns on the export were code
+  writing and testing, not spec reading (haiku-export-2 read the spec in 8 tool calls, made 63
+  requests). Why is *not known*.
+- **Side finding:** `haiku-case006-markdown-2` (the "partial build", r13c Finding 7) hit the
+  128 000-token output cap in one thought, then read Claude Code's budget reminder (`used 0.0014`)
+  as "$0.0014 left" and stopped. Not a format effect.
+
+**Options (not decisions; the owner decides).** Word changes are computed by stripping or removing
+measured parts of the current case006 files, not from a built export.
+
+| # | Option | Evidence | Expected effect | What it drops |
+|---|---|---|---|---|
+| X1 | "Claims to implement" as ids only (`- [N-…] kind · modality · layer` + `needs:`), no node text | 22 128 words; never read past pack 18; Sonnet cut it; claims are often sentence fragments | −12 688 words (ids-only list with `needs:` = 9 440) | a claim's exact slice without looking at Text; F7 §4.5 item 3 |
+| X2 | `CHECKLIST.md` as ids only, grouped by pack | 23 151 words; read ≤ 40 lines, then counted | −18 985 words (ids-only = 4 166) | the 80-character preview; F7 §4.8 |
+| X3 | `↳` tag lines compact (`↳ N-000991–998`) or moved to an index file | 7 585 words; 3 of 4 runs deleted them before reading | up to −7 585 words | ids at the point of reading |
+| X4 | Split a unit above a size limit at the next heading level (limit *to be set*, e.g. under 30 000 chars) | pack 19 = 43% of the export; paged or saved to a file in every export run | case006: 20 → 33 packs; no partial reads | the simple "source × H2" key (F7 §4.3) |
+| X5 | `MAP.md`: per-pack word counts; "How to use" says Text is the spec and the lists are indexes | every run measured sizes itself and inferred which section to keep | 1–2 fewer exploratory calls (*to be measured*) | nothing; ≈ 50 words added |
+| X6 | "Related elsewhere": keep duplicates / same-as only; drop `refines`/`subsumes` pairs | 5 233 words (case016 12 905); not read in pack 19; weak evidence | −3 000 to −5 000 words (*to be measured*) | cross-unit ordering hints |
+| X7 | Task instruction: drop or soften "account for every id in `spec/CHECKLIST.md`" | haiku-export-1's id-marking work and range-based coverage file | fewer Haiku turns? (*to be measured*) | the coverage prompt of E6; a task change, not a compiler change |
+
+X1 + X2 + X3 (tag lines fully moved): case006 75 090 → 35 832 words (2.5× Markdown); case010
+42 230 → 22 460 (2.7×); case016 100 089 → 54 549 (2.9×).
+
+- **Recommendation:** X1–X5 together (an F7 amendment), then rerun the four Haiku case006 export runs
+  and compare turns, context after reading and tests with round 13c. What it drops: the export stops
+  restating node texts; a node's words in isolation must be looked up in Text or the store. n = 2
+  can show a turn and token effect of the size seen (63–87 against 33–47 turns), not a test-level one.
+- **Not addressed by any option:** most failing tests are rules missed in both formats (r13c Finding
+  4). A smaller export is expected to cut cost and turns, not to raise scores on clean specifications.
+- **Contradicts the 2026-09-25 lecture:** pack-by-pack reading (no run did it), "a pack small enough to
+  read in full" (pack 19), the size check "pack chars ≤ Markdown chars" (3.4× by the export's own
+  `chars` field, never enforced), "links as short id lists" (claims repeat text). Confirmed: the map
+  was followed as the entry point; settled conflicts.
+
 ## Decisions log
 
 - **rel02 D1 — 2026-10-11 — rel02 has two objectives: O-a, the graph is ready for a coding agent to

@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Export to Agent</title>
+<style>
+:root{
+  --ground:#F6F7F9; --surface:#FFFFFF; --surface-2:#EEF1F5; --code-bg:#EDF0F4;
+  --ink:#141A24; --ink-soft:#57616F; --ink-faint:#828C9A;
+  --accent:#1F4E8C; --accent-soft:#E3EBF6;
+  --verd:#0E7C6B; --verd-soft:#DEEFEB;
+  --oxide:#A33A1E; --oxide-soft:#F7E4DE;
+  --plum:#6B3FA0; --plum-soft:#EDE5F6;
+  --rule:#DCE1E8; --rule-soft:#E9ECF1;
+  --fs-xs:.76rem; --fs-sm:.875rem; --fs-base:1.0625rem;
+  --fs-lg:1.22rem; --fs-xl:1.55rem; --fs-2xl:2.05rem; --fs-3xl:2.75rem;
+  --measure:68ch;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+    --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+    --accent:#77ADEB; --accent-soft:#17293F;
+    --verd:#3ECBB2; --verd-soft:#0F2C29;
+    --oxide:#E58A6D; --oxide-soft:#331E17;
+    --plum:#B99AE6; --plum-soft:#271D36;
+    --rule:#26313F; --rule-soft:#1D2531;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --surface:#151B23; --surface-2:#1B222C; --code-bg:#111821;
+  --ink:#E4E9F0; --ink-soft:#9AA5B4; --ink-faint:#75808F;
+  --accent:#77ADEB; --accent-soft:#17293F;
+  --verd:#3ECBB2; --verd-soft:#0F2C29;
+  --oxide:#E58A6D; --oxide-soft:#331E17;
+  --plum:#B99AE6; --plum-soft:#271D36;
+  --rule:#26313F; --rule-soft:#1D2531;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:var(--fs-base);line-height:1.7;-webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(1rem,4vw,2.5rem)}
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-block:clamp(2.5rem,7vw,4.5rem) clamp(2rem,5vw,3rem)}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.1rem}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,5.5vw,var(--fs-3xl));line-height:1.08;letter-spacing:-.015em;margin:0 0 1rem;text-wrap:balance}
+.standfirst{font-size:var(--fs-lg);color:var(--ink-soft);margin:0;max-width:62ch;text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);letter-spacing:.04em}
+.tocbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+.tocbar .wrap{display:flex;gap:.4rem;overflow-x:auto;padding-block:.5rem}
+.tocbar a{flex:0 0 auto;display:flex;align-items:baseline;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.45rem .7rem;border-radius:3px;white-space:nowrap}
+.tocbar a:hover{background:var(--surface-2);color:var(--ink)}
+.tocbar a b{font-weight:700}
+.tocbar a.l0 b{color:var(--ink-soft)} .tocbar a.l1 b{color:var(--accent)} .tocbar a.l2 b{color:var(--verd)} .tocbar a.l3 b{color:var(--plum)} .tocbar a.l4 b{color:var(--oxide)} .tocbar a.l5 b{color:var(--ink)}
+.lecture{padding-block:clamp(3rem,8vw,6rem) clamp(2rem,5vw,4rem);border-bottom:1px solid var(--rule)}
+.lechead{display:flex;gap:clamp(1rem,3vw,2rem);align-items:flex-start;margin-bottom:2.5rem}
+.lecnum{flex:0 0 auto;font-family:var(--mono);font-weight:700;font-size:var(--fs-sm);letter-spacing:.1em;padding:.35rem .6rem;border-radius:3px;line-height:1.2}
+.l0 .lecnum{background:var(--surface-2);color:var(--ink-soft)}
+.l1 .lecnum{background:var(--accent-soft);color:var(--accent)}
+.l2 .lecnum{background:var(--verd-soft);color:var(--verd)}
+.l3 .lecnum{background:var(--plum-soft);color:var(--plum)}
+.l4 .lecnum{background:var(--oxide-soft);color:var(--oxide)}
+.l5 .lecnum{background:var(--surface-2);color:var(--ink)}
+.lechead h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,var(--fs-2xl));line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance}
+.lechead p{margin:0;color:var(--ink-soft);max-width:58ch}
+h3{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:1.25;margin:3.2rem 0 1rem;text-wrap:balance;padding-top:1.2rem;border-top:1px solid var(--rule-soft)}
+h3 .sn{font-family:var(--mono);font-size:var(--fs-sm);color:var(--ink-faint);margin-right:.6rem;font-weight:500}
+h4{font-family:var(--display);font-weight:600;font-size:var(--fs-lg);margin:2rem 0 .6rem;line-height:1.3}
+p{margin:0 0 1.1rem;max-width:var(--measure);text-wrap:pretty}
+ul,ol{margin:0 0 1.2rem;padding-left:1.3rem;max-width:var(--measure)}
+li{margin-bottom:.5rem}
+li::marker{color:var(--ink-faint)}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.1em .35em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:var(--fs-sm);line-height:1.62;background:var(--code-bg);border:1px solid var(--rule);border-radius:5px;padding:1.1rem 1.25rem;overflow-x:auto;margin:0 0 1.4rem;max-width:var(--measure)}
+pre code{background:none;padding:0;font-size:inherit}
+.cm{color:var(--ink-faint)} .kw{color:var(--accent);font-weight:500} .st{color:var(--verd)}
+.callout{border-left:3px solid var(--accent);background:var(--surface);padding:1.1rem 1.3rem;margin:0 0 1.5rem;max-width:var(--measure);border-radius:0 4px 4px 0}
+.callout.warn{border-left-color:var(--oxide)} .callout.key{border-left-color:var(--verd)} .callout.fresh{border-left-color:var(--plum)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout .lbl{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem;font-weight:700}
+.callout.warn .lbl{color:var(--oxide)} .callout.key .lbl{color:var(--verd)} .callout.fresh .lbl{color:var(--plum)}
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm);min-width:34rem}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td code{font-size:.82em}
+figure{margin:0 0 1.8rem}
+.figscroll{overflow-x:auto}
+figure svg{display:block;width:100%;min-width:680px;height:auto;background:var(--surface);border:1px solid var(--rule);border-radius:5px}
+figcaption{font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-faint);margin-top:.6rem;letter-spacing:.02em;line-height:1.55;max-width:var(--measure)}
+.svg-ink{fill:var(--ink)} .svg-soft{fill:var(--ink-soft)} .svg-faint{fill:var(--ink-faint)}
+.svg-box{fill:var(--surface-2);stroke:var(--rule)}
+.svg-agent{fill:var(--plum-soft);stroke:var(--plum)}
+.svg-comp{fill:var(--verd-soft);stroke:var(--verd)}
+.svg-core{fill:var(--accent-soft);stroke:var(--accent)}
+.svg-line{stroke:var(--ink-faint);fill:none;stroke-width:1.2}
+.svg-head{fill:var(--ink-faint)}
+.t-plum{fill:var(--plum)} .t-verd{fill:var(--verd)} .t-acc{fill:var(--accent)}
+svg text{font-family:var(--mono);font-size:11px}
+.exercises{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:1.4rem 1.6rem;margin-top:2.5rem;max-width:var(--measure)}
+.exercises h4{margin-top:0} .exercises ol{margin-bottom:0}
+.pill{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.05em;padding:.12em .45em;border-radius:3px;background:var(--surface-2);color:var(--ink-soft);white-space:nowrap}
+.pill.ok{background:var(--verd-soft);color:var(--verd)} .pill.no{background:var(--oxide-soft);color:var(--oxide)} .pill.ag{background:var(--plum-soft);color:var(--plum)}
+.tierbanner{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--oxide);border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin:0 0 2rem;max-width:var(--measure)}
+.tierbanner p{margin-bottom:.6rem} .tierbanner p:last-child{margin-bottom:0}
+footer{padding-block:clamp(2.5rem,6vw,4rem) 5rem;color:var(--ink-soft)}
+footer p{font-size:var(--fs-sm)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.svg-bad{fill:var(--oxide-soft);stroke:var(--oxide)}
+.svg-warn{fill:#F6ECD2;stroke:#A77A12}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .svg-warn{fill:#33290F;stroke:#D9A93B}}
+:root[data-theme="dark"] .svg-warn{fill:#33290F;stroke:#D9A93B}
+
+.cm{color:var(--ink-soft)}
+.nw td:first-child{white-space:nowrap}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">SDD Compiler · Lecture · rel02 · Worked example: Zero2Repo case006</p>
+    <h1>From export to agent: how a many-file spec reaches Claude Code and gets read</h1>
+    <p class="standfirst">The spec-graph export is not one file but twenty-odd. This lecture follows it from the disk to the model: which file the agent sees first, which file tells it how to read the rest, what the model does with every token it reads, and what four real agents actually opened. The aim is practical: make the export cheaper to read. Round 13c measured it at 5.0–5.3× the Markdown's words, and Haiku took 63–87 turns on it against 33–47 on the Markdown, without scoring higher.</p>
+    <div class="meta">
+      <span>Written 2026-10-16</span>
+      <span>Evidence: harness/trials/r13c-zero2repo-3cases/</span>
+      <span>Sources opened 2026-10-16</span>
+      <span>Builds on: <a href="lecture-agent-reads-spec-graph.html">lecture-agent-reads-spec-graph.html</a> (2026-09-25)</span>
+      <span>Options recorded: <a href="../../sdd/design/rel-02/rel02_brainstorm.md">rel02_brainstorm.md</a> S15</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tocbar" aria-label="Parts">
+  <div class="wrap">
+    <a class="l0" href="#p0"><b>0</b> Frame and answers</a>
+    <a class="l1" href="#p1"><b>1</b> How a model reads</a>
+    <a class="l2" href="#p2"><b>2</b> The export on disk</a>
+    <a class="l3" href="#p3"><b>3</b> The first file</a>
+    <a class="l2" href="#p4"><b>4</b> MAP.md</a>
+    <a class="l4" href="#p5"><b>5</b> What the agents did</a>
+    <a class="l5" href="#p6"><b>6</b> What to change</a>
+    <a class="l0" href="#gloss"><b>G</b> Glossary</a>
+    <a class="l0" href="#refs"><b>R</b> References</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============================================================ PART 0 -->
+<section class="lecture l0" id="p0">
+  <div style="padding-top:2.5rem">
+  <div class="tierbanner">
+    <p><strong>Lecture: for understanding, not binding.</strong> The candidate changes in Part 6 are options, recorded as such in <code>sdd/design/rel-02/rel02_brainstorm.md</code> session S15. The owner decides. If this page and a Markdown file disagree, the Markdown wins.</p>
+    <p><strong>What is measured and what is not.</strong> Words, characters and lines were counted with <code>wc</code> on the task folders on 2026-10-16. Token figures come only from the <code>usage</code> fields that the saved transcripts record (<code>runs/&lt;run_id&gt;/agent.tgz</code>). No token count was estimated from words or characters. Dollar figures are Claude Code's <code>total_cost_usd</code>: an API-equivalent estimate on the subscription, not money spent. Everything else is marked as a judgement or as <em>to be measured</em>.</p>
+    <p><strong>Licence limit.</strong> Zero2Repo has no licence file. This page quotes short excerpts of the case006 specification and export to make a point, and never a whole file or any hidden test. The hidden tests were not opened.</p>
+  </div>
+  </div>
+
+  <div class="lechead">
+    <span class="lecnum">PART 0</span>
+    <div>
+      <h2>The frame, and the three short answers</h2>
+      <p>The earlier lecture explained how an agent consumes spec files and proposed the export (changes E1–E6). The export now exists and has been run. This lecture looks at what happened when it was read.</p>
+    </div>
+  </div>
+
+<pre><code>sddc compile ──► .sdd/ store ──sddc export──► export/ (MAP.md, CHECKLIST.md, export.meta.json, packs/*.md)
+                                                   │ copied by notes/build_task.py
+                                                   ▼
+                       Harbor task: instruction.md + environment/spec/  ──►  container /app/spec/
+                                                   │ harbor run -a claude-code
+                                                   ▼
+            printf instruction | claude --print ──► Claude Code ──► model API (Haiku 5.5 / Sonnet 5.5)</code></pre>
+
+  <div class="callout key">
+    <span class="lbl">The three answers</span>
+    <ol>
+      <li><strong>How many files?</strong> The export task's <code>spec/</code> holds <strong>23 files for case006</strong>: <code>MAP.md</code>, <code>CHECKLIST.md</code>, <code>export.meta.json</code> and 20 packs. case010 has 26 files (23 packs) and case016 has 38 (35 packs). (Part 2.)</li>
+      <li><strong>Which file reaches the agent first?</strong> None of the spec files. The first thing the model sees from the task is <code>instruction.md</code>, which Harbor pipes into <code>claude --print</code> as the user message. Claude Code puts its own system prompt and tool definitions in front of it. The instruction then names <code>spec/MAP.md</code> as the place to start. (Part 3.)</li>
+      <li><strong>Which file says how to read the others?</strong> <code>MAP.md</code>. Its "How to use" section is the only reading instruction in the export, and the F7 spec makes it the entry point (§4.7, CT-7.4). It is written by <code>map_md()</code> in <code>src/sdd_compiler/export/files.py</code>. (Part 4.)</li>
+    </ol>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">The finding that drives Part 6</span>
+    <p>All four case006 export runs read the specification text in full. <strong>Three of the four first stripped the export back to plain spec text</strong> with <code>sed</code> or <code>awk</code>. They kept only each pack's <code>## Text</code> section and dropped the <code>↳</code> tag lines. No run read the 1,356-line "Claims to implement" list of the largest pack, and no run read <code>CHECKLIST.md</code> beyond its first 20–40 lines and a few <code>grep</code>s. About 60% of the export's words (the claims lists and the checklist) went unread. The agents rebuilt something close to the Markdown by hand.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART 1 -->
+<section class="lecture l1" id="p1">
+  <div class="lechead">
+    <span class="lecnum">PART 1</span>
+    <div>
+      <h2>How a model like Claude processes a prompt</h2>
+      <p>The general part, for a reader new to the subject. Everything later rests on six facts: tokens, the context window, one token at a time, the agent loop, caching, and what long inputs do to accuracy.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">1.1</span>Tokens</h3>
+  <p>A language model does not read characters or words. Text is first cut into <strong>tokens</strong>: pieces of words, whole short words, punctuation, spaces. Every size limit and every price is counted in tokens. Claude's tokenizer is not published, so a token count can only come from the API itself. It is reported in the <code>usage</code> field of every response, or by the token-counting endpoint [1]. This lecture therefore gives token figures only where a transcript recorded them, and uses words and characters for files.</p>
+
+  <h3><span class="sn">1.2</span>The context window</h3>
+  <p>The <strong>context window</strong> is "all the text a language model can reference when generating a response, including the response itself" [1]. It is the model's only working memory. Everything in the request counts: "the system prompt, every message in <code>messages</code> (including tool results, images, and documents), and your tool definitions," and the output the model writes, thinking included [1]. Haiku 5.5 and Sonnet 5.5, the two models in round 13c, have a 1M-token window, and one request can write up to 128k output tokens [1].</p>
+  <p>Weights and context are different things. The weights hold what the model learned in training and never change during a run. The spec reaches the model only as text in the window. The earlier lecture develops this distinction (its §1.1).</p>
+
+  <h3><span class="sn">1.3</span>Reading everything, writing one token at a time</h3>
+  <p>At every step the model computes over the whole window and produces one next token. That token is appended, and the model computes again. There is no index and no lookup table of requirements. A spec sentence influences a line of code only by being in the window when that line is written. The earlier lecture's stages S4 and S6 cover this in more detail.</p>
+
+  <h3><span class="sn">1.4</span>The agent loop</h3>
+  <p>A coding agent wraps the model in a loop. Claude Code calls this "gather context, take action, verify results" and names the wrapper the <em>agentic harness</em>: "the layer around the model that provides the tools and manages the context the model sees" [2]. Mechanically, each pass is one API request:</p>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 760 250" role="img" aria-labelledby="f1t">
+      <title id="f1t">The agent loop: each tool result is appended to the context and the whole context is sent again</title>
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="svg-head"/></marker></defs>
+      <rect x="20" y="30" width="170" height="60" rx="5" class="svg-core"/>
+      <text x="105" y="56" text-anchor="middle" class="svg-ink">model (API request)</text>
+      <text x="105" y="74" text-anchor="middle" class="svg-soft">reads whole context</text>
+      <rect x="295" y="30" width="170" height="60" rx="5" class="svg-agent"/>
+      <text x="380" y="56" text-anchor="middle" class="svg-ink">tool call</text>
+      <text x="380" y="74" text-anchor="middle" class="svg-soft">Read, Bash, Write, Edit</text>
+      <rect x="570" y="30" width="170" height="60" rx="5" class="svg-comp"/>
+      <text x="655" y="56" text-anchor="middle" class="svg-ink">tool result</text>
+      <text x="655" y="74" text-anchor="middle" class="svg-soft">file text, command output</text>
+      <path d="M190,60 L293,60" class="svg-line" marker-end="url(#ah)"/>
+      <path d="M465,60 L568,60" class="svg-line" marker-end="url(#ah)"/>
+      <path d="M655,90 L655,120 L105,120 L105,92" class="svg-line" marker-end="url(#ah)"/>
+      <text x="380" y="114" text-anchor="middle" class="svg-faint">appended to the context; the next request sends all of it again</text>
+      <text x="20" y="160" class="svg-soft">context at request 1</text>
+      <rect x="200" y="148" width="40" height="16" class="svg-box"/>
+      <text x="20" y="190" class="svg-soft">request 2</text>
+      <rect x="200" y="178" width="40" height="16" class="svg-box"/><rect x="242" y="178" width="90" height="16" class="svg-comp"/>
+      <text x="20" y="220" class="svg-soft">request 3</text>
+      <rect x="200" y="208" width="40" height="16" class="svg-box"/><rect x="242" y="208" width="90" height="16" class="svg-comp"/><rect x="334" y="208" width="60" height="16" class="svg-agent"/><rect x="396" y="208" width="120" height="16" class="svg-comp"/>
+      <text x="530" y="160" class="svg-faint">grey: system, tools, task</text>
+      <text x="530" y="190" class="svg-faint">green: tool results (spec files)</text>
+      <text x="530" y="220" class="svg-faint">purple: the model's own output</text>
+    </svg>
+    </div>
+    <figcaption>Fig. 1. The loop and the growing prefix. Box lengths are a picture, not a measurement; Part 5 gives the measured context sizes.</figcaption>
+  </figure>
+
+  <h3><span class="sn">1.5</span>Why every file read is paid again on every turn, and what caching changes</h3>
+  <p>The API keeps no memory between requests. Each request carries the whole conversation: "previous turns are preserved completely" and each response "becomes part of the input for the next turn" [1]. A 30,000-token spec file read at turn 3 is therefore part of the input at turn 4, turn 5, and every turn after it.</p>
+  <p><strong>Prompt caching</strong> makes the repeat cheaper, not smaller. A request can resume "from specific prefixes" of an earlier one. The cache covers "<code>tools</code>, <code>system</code>, and <code>messages</code> (in that order)," and a hit requires "100% identical prompt segments" [3]. Reading from the cache costs "0.1 times the base input tokens price," with lower multipliers listed for some models (0.05× for Sonnet 5.5). Writing it costs 1.25× for a 5-minute entry or 2× for a 1-hour entry [3]. The round-13c transcripts show 1-hour cache writes (<code>ephemeral_1h_input_tokens</code>). Cached tokens still occupy the window: caching "changes what you pay for those tokens, not whether they count" [1].</p>
+  <p>The transcripts show this directly. Each request's input is split into <code>input_tokens</code>, <code>cache_creation_input_tokens</code> and <code>cache_read_input_tokens</code>. Summed over a run, the cache-read total is roughly the sum of every turn's prefix, and in round 13c it runs into the millions (Part 5). Every extra turn pays the whole accumulated prefix once more, at the cache-read rate.</p>
+
+  <h3><span class="sn">1.6</span>What happens as context fills</h3>
+  <p>If input plus output reaches the window, generation stops [1]. Claude Code acts before that point: "It clears older tool outputs first, then summarizes the conversation if needed," and "detailed instructions from early in the conversation may be lost" [2]. In round 13c no case006 run came near this. The peak context was 336,197 tokens of a 1M window, and no transcript shows a compaction (Part 5). The pressure in these runs is cost, turns and attention, not overflow.</p>
+  <p>The model's own <em>thinking</em> also counts. On Haiku 5.5 and Sonnet 5.5 "the API keeps previous thinking blocks by default, and they count toward the context window" [1]. In the transcripts, one long planning thought per run (54k–128k output tokens) is the largest single block that any run adds (Part 5).</p>
+
+  <h3><span class="sn">1.7</span>What is known about long inputs</h3>
+  <p>Each source below was opened on 2026-10-16 at its abstract or documentation page. Full texts were not read, so only what the abstract states is used.</p>
+  <ul>
+    <li><strong>Position.</strong> Performance "is often highest when relevant information occurs at the beginning or end of the input context." It drops when models must use information in the middle of long contexts [4].</li>
+    <li><strong>Same content, longer input.</strong> Padding the same questions with extra text produced "a notable degradation in LLMs' reasoning performance at much shorter input lengths than their technical maximum" [5].</li>
+    <li><strong>Advertised versus effective length.</strong> On RULER, "almost all models exhibit large performance drops as the context length increases" [6]. These are models from 2024; how Claude 5.5 models behave at these lengths is not measured here.</li>
+    <li><strong>Irrelevant text.</strong> On math problems with distracting sentences, "model performance is dramatically decreased when irrelevant information is included" [7].</li>
+    <li><strong>Anthropic's own wording.</strong> As token count grows, "accuracy and recall degrade, a phenomenon known as <em>context rot</em>" [1]. Context is "a finite resource" with an "attention budget," and the goal is "the smallest set of high-signal tokens that maximize the likelihood of your desired outcome" [8].</li>
+  </ul>
+  <p>For the export, the inference is simple: words that the agent reads but does not need are not free, even when caching makes them cheap. How much they hurt the code on these tasks is <em>to be measured</em>. Round 13c gives no test-level evidence that they hurt (Part 5.6).</p>
+
+  <h3><span class="sn">1.8</span>Formatting sensitivity</h3>
+  <p>The same content in a different template can change results. He et al. formatted identical contexts as plain text, Markdown, JSON and YAML and report that GPT-3.5-turbo's performance "varies by up to 40% in a code translation task depending on the prompt template," while larger models were "more robust" [9]. Sclar et al. found open-source models "extremely sensitive to subtle changes in prompt formatting in few-shot settings," with gaps up to 76 accuracy points [10]. Neither tested Claude or a coding agent. They show that format is a real variable, not which format is better for us.</p>
+
+  <h3><span class="sn">1.9</span>Maps for agents, and context engineering</h3>
+  <ul>
+    <li><strong>Repository map (Aider).</strong> A compact list of files, key classes and functions and their signatures. It is ranked with a graph algorithm over file dependencies and held to a token budget (<code>--map-tokens</code>, 1k by default). The model uses it to understand the codebase and to ask for the files it needs [11].</li>
+    <li><strong>GraphRAG.</strong> It builds an entity graph, then pre-generates summaries of related groups, because plain retrieval fails on questions about a whole corpus [12]. Its summaries are written by an LLM. Ours must not be (F7 §4.1 rule 2).</li>
+    <li><strong>Agent-computer interface (SWE-agent).</strong> A custom interface for editing, navigating and running tests improved a fixed model's results. The authors argue that agents are a new kind of user who needs interfaces built for them [13]. For us, the export's file layout <em>is</em> that interface.</li>
+    <li><strong>Context engineering.</strong> Anthropic's term for "curating and maintaining the optimal set of tokens" during inference. Its techniques: keep "lightweight identifiers (file paths, stored queries, web links, etc.)" and load detail just in time, use "progressive disclosure," compact, take structured notes, and clear tool results [8].</li>
+  </ul>
+  <p>The earlier lecture already drew from these the case for a computed map, a checklist and one pack per unit. Part 5 tests that case against what agents actually did.</p>
+</section>
+
+<!-- ============================================================ PART 2 -->
+<section class="lecture l2" id="p2">
+  <div class="lechead">
+    <span class="lecnum">PART 2</span>
+    <div>
+      <h2>The export on disk: 23 files for case006</h2>
+      <p>What each kind of file holds, how big it is, and how its words divide.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">2.1</span>Why case006</h3>
+  <p>case006 is a command-line-interface library, renamed "Optlyn" (it is click under a new name). The specification is 14,138 Markdown words in three files. The export is 75,090 words in 23 files, and the case has 476 hidden tests. It is the only case where the formats differed test by test: for Haiku, 2 tests passed only on the export and 3 only on the Markdown. It has no benchmark fault. case010 was not chosen because 20 of its tests cannot be scored in our tasks. case016 was not chosen because it is the largest export (38 files). Nothing in the files suggested another choice.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Case</th><th>Markdown words · chars</th><th>Export words (×) · chars</th><th>Files in <code>spec/</code></th><th>Packs</th><th>Largest pack (words)</th><th>CHECKLIST words</th></tr></thead>
+    <tbody>
+      <tr><td>case010</td><td>8,412 · 56,259</td><td>42,230 (5.0) · 247,299</td><td>26</td><td>23</td><td>pack 22, 13,692</td><td>11,523</td></tr>
+      <tr><td><strong>case006</strong></td><td>14,138 · 89,491</td><td>75,090 (5.3) · 418,183</td><td>23</td><td>20</td><td>pack 19, 32,520</td><td>23,151</td></tr>
+      <tr><td>case016</td><td>18,964 · 119,064</td><td>100,089 (5.3) · 566,064</td><td>38</td><td>35</td><td>pack 34, 30,289</td><td>25,989</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cm" style="font-size:var(--fs-sm)">Source: <code>wc -w</code>, <code>wc -m</code> on <code>harness/trials/r13c-zero2repo-3cases/work/tasks/&lt;case&gt;-{markdown,export}/environment/spec/</code>, 2026-10-16. Export words count the <code>.md</code> files, as the task builder and <code>TRIAL.md</code> do; <code>export.meta.json</code> adds 126, 136 and 222 words. Export characters include <code>export.meta.json</code>. The export's own <code>chars.export_total</code> (300,938 for case006) counts the packs only. The case006 task's <code>spec/</code> is byte-identical to <code>work/compile-case006/export/</code> (<code>diff -rq</code>).</p>
+
+  <h3><span class="sn">2.2</span>The four kinds of file</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>File</th><th>What it holds</th><th>case006 size</th></tr></thead>
+    <tbody>
+      <tr><td><code>MAP.md</code></td><td>Banners; "Read first"; the units in build order (one table row per pack); needs against the order; contracts; decisions; "How to use"; counts</td><td>882 words · 5,809 chars · 89 lines</td></tr>
+      <tr><td><code>CHECKLIST.md</code></td><td>Every node once, under its home pack, with a tick box, kind, modality, layer, label and the first 80 characters of its text</td><td>23,151 words · 109,370 chars · 1,076 lines · 1,012 items</td></tr>
+      <tr><td><code>export.meta.json</code></td><td>Schema version, store hash, profile keys, counts, backward needs, character counts. For tools, not for reading</td><td>136 words · 2,066 chars · 78 lines</td></tr>
+      <tr><td><code>packs/NN-*.md</code> (20)</td><td>One per unit (source file × second-level heading). Sections in fixed order: Text, Claims to implement, Acceptance criteria, Constraints in scope, Related elsewhere, Conflicts, Terms</td><td>From 221 words (pack 04) to 32,520 words (pack 19); 51,057 words in all</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Excerpts</h4>
+  <p><code>CHECKLIST.md</code>, the first items:</p>
+<pre><code>## Pack 02 — 02-hardware-requirements--summary.md
+
+- [ ] N-000761 · constraint · MUST · C · — · with no compiled extensions, native code, or GPU/accelerator requirements
+- [ ] N-000762 · constraint · MUST · C · — · It has zero declared runtime dependencies</code></pre>
+  <p>Pack 12 (shell completion), the <code>## Text</code> section. The verbatim block is followed by its <code>↳</code> tag line:</p>
+<pre><code>- Values: `&lt;shell&gt;_source` or `&lt;shell&gt;_complete`, with `&lt;shell&gt;` one of `bash`, `zsh`, `fish`, `powershell`.
+↳ N-000985 requirement · MUST · L1</code></pre>
+  <p>The same pack, <code>## Claims to implement</code>. The same sentence is repeated as a claim, with its dependencies:</p>
+<pre><code>- [N-000985] requirement · MUST · L1 — &lt;shell&gt;_source` or `&lt;shell&gt;_complete`, with `&lt;shell&gt;` one of `bash`, `zsh`, `fish`, `powershell
+  needs: none</code></pre>
+  <p>A claim is often a <em>fragment</em> of a sentence. Pack 19 lists N-000074 as "and with a trailing <code>_command</code>, <code>_cmd</code>, <code>_group</code>, or <code>_grp</code> suffix stripped when present." Read alone, the list makes sense only beside the Text it was cut from.</p>
+
+  <h3><span class="sn">2.3</span>Where the words are</h3>
+  <p>Splitting every pack at its section headings, and the <code>## Text</code> section into verbatim lines and <code>↳</code> tag lines, gives the following for case006:</p>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 780 290" role="img" aria-labelledby="f2t">
+      <title id="f2t">case006 export words by part, against the Markdown</title>
+      <text x="0" y="20" class="svg-soft">Markdown spec (reference)</text>
+      <rect x="250" y="8" width="317.6" height="18" rx="2" class="svg-box"><title>Markdown: 14,138 words</title></rect>
+      <text x="575" y="21" class="svg-ink">14,138</text>
+      <line x1="250" y1="38" x2="770" y2="38" class="svg-line" stroke-dasharray="3 3"/>
+      <text x="0" y="58" class="svg-soft">Pack Text, verbatim lines</text>
+      <rect x="250" y="46" width="319.8" height="18" rx="2" class="svg-core"><title>Text, verbatim: 14,238 words</title></rect>
+      <text x="577" y="59" class="svg-ink">14,238</text>
+      <text x="0" y="88" class="svg-soft">Pack Text, ↳ tag lines</text>
+      <rect x="250" y="76" width="170.4" height="18" rx="2" class="svg-core"><title>↳ tag lines: 7,585 words</title></rect>
+      <text x="428" y="89" class="svg-ink">7,585</text>
+      <text x="0" y="118" class="svg-soft">Pack "Claims to implement"</text>
+      <rect x="250" y="106" width="497.0" height="18" rx="2" class="svg-core"><title>Claims to implement: 22,128 words</title></rect>
+      <text x="740" y="119" class="svg-ink" text-anchor="end">22,128</text>
+      <text x="0" y="148" class="svg-soft">CHECKLIST.md</text>
+      <rect x="250" y="136" width="520" height="18" rx="2" class="svg-core"><title>CHECKLIST.md: 23,151 words</title></rect>
+      <text x="764" y="149" class="svg-ink" text-anchor="end">23,151</text>
+      <text x="0" y="178" class="svg-soft">Pack "Related elsewhere"</text>
+      <rect x="250" y="166" width="117.5" height="18" rx="2" class="svg-core"><title>Related elsewhere: 5,233 words</title></rect>
+      <text x="375" y="179" class="svg-ink">5,233</text>
+      <text x="0" y="208" class="svg-soft">Other pack sections</text>
+      <rect x="250" y="196" width="42.1" height="18" rx="2" class="svg-core"><title>Other pack parts: 1,873 words</title></rect>
+      <text x="300" y="209" class="svg-ink">1,873</text>
+      <text x="0" y="238" class="svg-soft">MAP.md</text>
+      <rect x="250" y="226" width="19.8" height="18" rx="2" class="svg-core"><title>MAP.md: 882 words</title></rect>
+      <text x="277" y="239" class="svg-ink">882</text>
+      <text x="250" y="275" class="svg-faint">0</text>
+      <text x="770" y="275" class="svg-faint" text-anchor="end">23,151 words</text>
+    </svg>
+    </div>
+    <figcaption>Fig. 2. case006 export, 75,090 words, by part (hover a bar for its value). The verbatim spec text (14,238) matches the Markdown (14,138); the difference is the headings each pack repeats. Source: a section-splitting count over <code>work/tasks/case006-export/environment/spec/</code>, 2026-10-16. The table below gives the same figures for all three cases.</figcaption>
+  </figure>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Part (words)</th><th>case010</th><th>case006</th><th>case016</th></tr></thead>
+    <tbody>
+      <tr><td>Pack Text, verbatim lines</td><td>8,559</td><td>14,238</td><td>19,151</td></tr>
+      <tr><td>Pack Text, <code>↳</code> tag lines</td><td>3,832</td><td>7,585</td><td>8,014</td></tr>
+      <tr><td>Claims to implement</td><td>11,265</td><td>22,128</td><td>26,529</td></tr>
+      <tr><td><code>CHECKLIST.md</code></td><td>11,523</td><td>23,151</td><td>25,989</td></tr>
+      <tr><td>Related elsewhere</td><td>3,453</td><td>5,233</td><td>12,905</td></tr>
+      <tr><td>Headers, AC, constraints in scope, conflicts, terms</td><td>2,612</td><td>1,873</td><td>6,048</td></tr>
+      <tr><td><code>MAP.md</code></td><td>986</td><td>882</td><td>1,453</td></tr>
+      <tr><td><strong>Total</strong> (Markdown)</td><td>42,230 (8,412)</td><td>75,090 (14,138)</td><td>100,089 (18,964)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <span class="lbl">Reading the figure</span>
+    <p>The export holds the spec text once, as F7 requires, plus four layers on top of it. The claims list and the checklist <strong>each repeat the node texts</strong>: the claims list in full, the checklist as an 80-character prefix. Together they are 45,279 of 75,090 words (60%). The tag lines add 10% more. The 5× ratio is not "the graph is bigger than the spec". It is the spec plus three restatements of it.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART 3 -->
+<section class="lecture l3" id="p3">
+  <div class="lechead">
+    <span class="lecnum">PART 3</span>
+    <div>
+      <h2>Which file reaches the agent first</h2>
+      <p>From <code>instruction.md</code> on the host to the first API request inside the container.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">3.1</span>The chain, step by step</h3>
+  <ol>
+    <li><strong>The task builder</strong> (<code>notes/build_task.py</code>) copies the export into the task's <code>environment/spec/</code>, which the Dockerfile copies to <code>/app/spec</code>. It writes <code>instruction.md</code>, whose only format-specific sentence is: <em>"The specification is the compiled export in <code>spec/</code>. Start with <code>spec/MAP.md</code>; account for every id in <code>spec/CHECKLIST.md</code>."</em> The Markdown task says instead: <em>"The specification is the Markdown files in <code>spec/</code>: <code>spec/Full_PRD.md</code>, <code>spec/Hardware_Requirements.md</code>, <code>spec/Interface_Contract.md</code>."</em> The rest is identical (build contract, <code>PYTHONPATH=src</code>, "Keep <code>spec/</code> as it is", hidden tests).</li>
+    <li><strong>The driver</strong> (<code>harness/trials/run_queue.sh</code>, line 153) runs <code>harbor run -p &lt;task&gt; -a claude-code -m &lt;model&gt; --ak version=2.1.296 --ak max_budget_usd=10 --ak disallowed_tools=…</code>, with <code>ANTHROPIC_API_KEY</code> unset. <code>trial.env</code> pins Claude Code 2.1.296, a $10 ceiling and a 9,000 s run timeout.</li>
+    <li><strong>Harbor's Claude Code agent</strong> (<code>harness/platforms/harbor/download/.venv/…/harbor/agents/installed/claude_code.py</code>, <code>run()</code>, lines 1862–1976) takes the task's instruction text. It puts the text in an environment variable and runs, inside the container:<br><code>printf "%s" "$instruction" | claude --verbose --output-format=stream-json &lt;flags&gt; --print 2&gt;&amp;1 | tee …/claude-code.txt</code><br>The flags include <code>--max-budget-usd</code>, <code>--disallowedTools</code> and <code>--permission-mode=bypassPermissions</code> (the default, lines 91–102). Harbor also sets <code>CLAUDE_CONFIG_DIR</code>, so the session transcript lands in the saved job folder.</li>
+    <li><strong>Claude Code</strong> receives the instruction on standard input as the first user message. It sends the first API request, which holds its system prompt, the tool definitions, some attachments and the instruction.</li>
+  </ol>
+  <p>The first user step in each transcript (<code>agent/trajectory.json</code>, step 1) is the text of <code>instruction.md</code>, word for word. <strong>No spec file is in the window when the model first runs.</strong> The first spec text arrives as the result of the model's own first tool call.</p>
+
+  <h3><span class="sn">3.2</span>What Claude Code adds in front, and what can and cannot be seen</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Part of the first request</th><th>Visible in the saved transcript?</th></tr></thead>
+    <tbody>
+      <tr><td>System prompt</td><td><span class="pill no">No</span> Not recorded. Harbor's own converter notes that "Claude Code sessions carry no system-prompt events" (<code>claude_code.py</code> line 367). Its content is <strong>not verified</strong> here</td></tr>
+      <tr><td>Tool definitions</td><td><span class="pill">Names only</span> The <code>init</code> event in <code>claude-code.txt</code> lists <code>"tools":["Bash","Edit","Read","Write"]</code>. The other tools are removed by <code>--disallowedTools</code>. The definitions' text is not recorded</td></tr>
+      <tr><td>Skills and slash commands</td><td><span class="pill">Names only</span> Listed in <code>init</code> (for example <code>deep-research</code>, <code>code-review</code>). The <code>Skill</code> tool is disallowed, so the model cannot call them</td></tr>
+      <tr><td>Attachments Claude Code injects</td><td><span class="pill ok">Yes</span> In the session JSONL: <code>environment</code>, <code>model</code> identity, <code>date</code>, <code>session_context</code>, and before each request a <code>budget_usd</code> reminder (used / total / remaining) and a <code>total_tokens_reminder</code>. In haiku-case006-export-1 there are 56 of each</td></tr>
+      <tr><td>The instruction</td><td><span class="pill ok">Yes</span> Verbatim</td></tr>
+      <tr><td>Size of all of the above</td><td><span class="pill ok">Yes, as tokens</span> The first request's input (uncached + cache write + cache read) is <strong>6,248 tokens</strong> for the Haiku export runs, 6,261 for the Haiku Markdown runs, and 5,471 / 5,484 for Sonnet. The 13-token difference between formats is the instruction sentence</td></tr>
+      <tr><td>The model's thinking</td><td><span class="pill no">No</span> Thinking blocks are saved with empty text and a signature. Only their token counts are visible</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout fresh">
+    <span class="lbl">A side finding: the "partial build" run</span>
+    <p><code>haiku-case006-markdown-2</code> stopped after 26 turns ($0.11 est.), and <code>TRIAL.md</code> Finding 7 records it as a valid run that scored 0. The transcript shows why. Haiku's second request ended at the 128,000-token output limit inside one thought (<code>stop_reason: max_tokens</code>). Claude Code then injected "Output token limit hit. Resume directly…". Haiku replied: "The budget is nearly spent ($0.0014 of $10 left), so I can't build the full library." The budget reminder at that point read <code>used 0.0014045, total 10, remaining 9.9985955</code>. <strong>Haiku read "used" as "left".</strong> The early stop came from a misreading of a reminder that Claude Code injects, not from the specification format.</p>
+  </div>
+</section>
+
+<!-- ============================================================ PART 4 -->
+<section class="lecture l2" id="p4">
+  <div class="lechead">
+    <span class="lecnum">PART 4</span>
+    <div>
+      <h2>MAP.md is the reading instruction</h2>
+      <p>Confirmed from three places: its text, the spec that governs it, and the code that writes it.</p>
+    </div>
+  </div>
+  <ul>
+    <li><strong>The spec.</strong> <code>sdd/specs/ownership.yaml</code> maps <code>src/sdd_compiler/export/**</code> to <code>sdd/specs/F7_agent_export/spec.md</code>. F7 §4.7 calls <code>MAP.md</code> "The entry point (CT-7.4)", and item 7, "How to use", is the fixed reading text.</li>
+    <li><strong>The code.</strong> <code>map_md()</code> in <code>src/sdd_compiler/export/files.py</code> writes the sections in the CT-7.4 order and ends with <code>"## How to use", HOW_TO_USE</code>. No other export file contains reading instructions. Packs have only a header line, and <code>CHECKLIST.md</code> has one line: "Every id below must end implemented, tested, or listed as not done with a reason."</li>
+    <li><strong>The text</strong> (case006):</li>
+  </ul>
+<pre><code>## How to use
+
+1. Read pack 00 (the foundation) first, if there is one, then each pack in the order of the table above.
+2. Every id in `CHECKLIST.md` must end in one of three states: implemented, tested, or listed as
+   not done with a reason.
+3. Mark code with `# spec: &lt;id&gt;` beside what satisfies an id. …
+4. Fields named *derived* (layer, modality, kind, relation) were assigned by the compiler. The
+   verbatim text of a block wins over them.
+5. A block tagged `no node` carries spec text that formed no claim; read it, it is still the spec.</code></pre>
+
+  <h3><span class="sn">4.1</span>What the map does not tell the agent</h3>
+  <ul>
+    <li><strong>Nothing to read first.</strong> case006 has no <code>vision.md</code> or <code>constitution.md</code>, so the map opens with "⚠ No foundation pack" and "Read first: None." Zero2Repo's files are named <code>Full_PRD.md</code>, <code>Interface_Contract.md</code> and <code>Hardware_Requirements.md</code>, and the default <code>foundation_globs</code> match none of them.</li>
+    <li><strong>No sizes.</strong> The units table gives blocks and claims, not words. Every run measured the files itself (<code>wc -c</code>) before reading (Part 5.1).</li>
+    <li><strong>Nothing about which part of a pack is the spec.</strong> "How to use" never says that <code>## Text</code> is the full spec and the lists after it are indexes of the same text. The agents worked it out and cut the lists away.</li>
+    <li><strong>One unit swamps the order.</strong> Pack 19 ("Feature points") holds 210 of 465 blocks, 677 of 1,012 nodes and 32,520 words. That is 43% of the export and 2.3× the whole Markdown. "Each pack in order" means one file the tools cannot return in one piece (Part 5.2).</li>
+    <li><strong>A count that reads as a contradiction.</strong> The Contracts section lists 9 code blocks, while Counts says "contracts: 0". By F7 §4.8, <code>counts.contracts</code> counts <code>CT-</code> contract nodes, not code blocks. That is correct to the spec but easy to misread.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ PART 5 -->
+<section class="lecture l4" id="p5">
+  <div class="lechead">
+    <span class="lecnum">PART 5</span>
+    <div>
+      <h2>What the agents actually did</h2>
+      <p>Eight case006 runs: Haiku and Sonnet, Markdown and export, two each. Every spec access was read from <code>agent/sessions/projects/-app/*.jsonl</code> inside <code>runs/&lt;run_id&gt;/agent.tgz</code>.</p>
+    </div>
+  </div>
+
+  <h3><span class="sn">5.1</span>The order of reads</h3>
+  <p>"Call" is the index of the model request that issued the tool call. Characters are the length of the tool result as the model received it. For <code>Read</code>, that includes the line-number prefixes.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Run</th><th>Spec reads in order</th></tr></thead>
+    <tbody>
+      <tr><td>haiku-export-1<br><span class="pill">425 / 476</span></td><td>c1 <code>cat MAP.md</code> (+ file list) · c2 <code>wc -c</code> all files, <code>head -50 export.meta.json</code>, <code>head -40 CHECKLIST.md</code> · c3–c5 <code>Read</code> of packs 05–13, then 01, 14–18 and 20, <strong>whole</strong>, in parallel (16 files) · c6 <code>grep</code> headings of pack 19 · c7–c8 <code>Read</code> pack 19 lines 1–300 and 300–669 (38,708 + 46,754 chars). That is the whole <code>## Text</code> section, which ends at line 666 · c10 <code>sed -n 2023,2035p</code> pack 19 (AC and constraints) · c48 <code>grep</code> 14 ids in CHECKLIST · c52 Python over CHECKLIST ids · c54 inserts <code># spec:</code> markers. <strong>Never opened:</strong> packs 02, 03, 04; pack 19 lines 670–2272 (claims, related, terms)</td></tr>
+      <tr><td>haiku-export-2<br><span class="pill">467 / 476</span></td><td>c1 <code>cat MAP.md</code> · c2 <code>wc -c</code>, meta head, <code>head -40 CHECKLIST.md</code> · c3 <code>cat</code> packs 01–05 whole · c4–c6 <code>awk</code>: <strong>only the <code>## Text</code> section</strong> of packs 06–18 and 20 · c7 the same for pack 19 with <code>↳</code> lines and blank lines removed, into <code>/tmp/fp_text.md</code>. The output was too large and was saved to a file · c8 <code>Read /tmp/fp_text.md</code> (58,561 chars). No later spec read</td></tr>
+      <tr><td>sonnet-export-1<br><span class="pill">473 / 476</span></td><td>c1 <code>cat MAP.md</code>, <code>wc -c CHECKLIST.md</code> · c2 <code>wc -c</code> packs, <code>cat</code> packs 01–05 · c3–c5 <code>sed</code>: <strong>Text sections only</strong> of packs 06–18 and 20 · c6 pack 19 Text with <code>↳</code> removed; the output was too large and was saved to a file · c7 the same into <code>/tmp/fp.txt</code> · c8–c10 <code>Read /tmp/fp.txt</code> in three pages (70, 80 and 80 lines; the file has 228) · c27 <code>head -30 CHECKLIST.md</code> and a <code>grep</code></td></tr>
+      <tr><td>sonnet-export-2<br><span class="pill">470 / 476</span></td><td>c1 as above · c2 <code>cat</code> packs 01–06 · c3–c5 Text sections of 07–18 and 20 · c6 pack 19 Text without <code>↳</code>, first 400 lines; saved to a file · c7 <code>Read</code> that saved file (54,693 chars) · c8 lines 401 to the end · c27 <code>head -20 CHECKLIST.md</code>, <code>grep -c</code></td></tr>
+      <tr><td>haiku-markdown-1<br><span class="pill">452 / 476</span></td><td>c1 <code>wc -c</code>; <code>Read</code> Full_PRD.md (68,741 chars), Hardware_Requirements.md (1,102), Interface_Contract.md (22,547), whole, in parallel. No later spec read</td></tr>
+      <tr><td>haiku-markdown-2<br><span class="pill">0 (stopped)</span></td><td>Same as markdown-1. Stopped early (Part 3.2)</td></tr>
+      <tr><td>sonnet-markdown-1, -2<br><span class="pill">470, 469 / 476</span></td><td>c1 <code>cat</code> all three files (saved to a file: too large) · c2–c3 <code>Read</code> each file whole. No later spec read</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">5.2</span>Patterns</h3>
+  <ul>
+    <li><strong>Everything is read before any code is written, in both formats.</strong> No run read pack by pack while building, which is the traversal the earlier lecture proposed (its Fig. 2). Each run read the whole spec in its first 1–10 requests, then wrote code.</li>
+    <li><strong>The export is cut back to the Markdown.</strong> Three of four export runs extracted only <code>## Text</code>, and two also removed the <code>↳</code> lines. The fourth, haiku-export-1, read whole packs for the small units, but for pack 19 it read only the Text lines.</li>
+    <li><strong>Tool limits shaped the reading.</strong> Claude Code returns a Bash result inline "up to roughly 30,000 characters". Past that, the model gets a file path and a 2,000-character preview. <code>Read</code> returns at most 25,000 tokens per call and refuses a whole file over 256 KB [14]. Pack 19 (192,954 bytes) is under 256 KB but over the token limit, so it is read in pages. The Markdown runs hit the same Bash limit with <code>cat</code> and switched to <code>Read</code>. Every export run hit it on pack 19 and paged or saved to <code>/tmp</code>.</li>
+    <li><strong>Re-reads are rare.</strong> No spec file was read in full twice. Only small re-reads occurred: line 300 of pack 19 twice in haiku-export-1, lines 2023–2035, and <code>grep</code>s of CHECKLIST.</li>
+    <li><strong>The checklist was counted, not read.</strong> At most its first 40 lines, plus <code>grep</code> and <code>grep -c</code>. haiku-export-1 wrote a <code>SPEC_COVERAGE.md</code> that accounts for the 1,012 ids by pack ranges, and it says so: "I did not mark every id individually." No run ticked items.</li>
+    <li><strong>Never opened by any run:</strong> the "Claims to implement", "Related elsewhere" and "Terms" sections of pack 19, and <code>CHECKLIST.md</code> beyond line 40. Sonnet never opened <code>export.meta.json</code>.</li>
+    <li><strong>The model knows the original.</strong> The spec never says "click". Six of the eight runs wrote the word into their code anyway (for example <code>ClickException</code> in sonnet-export-1). Recall of the public library affects both formats.</li>
+  </ul>
+
+  <h3><span class="sn">5.3</span>Tokens, as recorded</h3>
+  <p>From the session JSONL, one row per model request (deduplicated by message id). "Context" is input + cache write + cache read for that request. "After spec reading" is the context of the request right after the last opening spec read. "Turns" is Claude Code's <code>num_turns</code> from <code>claude-code.txt</code>, as in <code>TRIAL.md</code>. It differs from the number of API requests.</p>
+  <div class="tablewrap"><table class="nw">
+    <thead><tr><th>Run</th><th>Turns</th><th>Requests</th><th>Context, request 1</th><th>After spec reading</th><th>Peak (last)</th><th>Σ cache read</th><th>Σ cache write</th><th>Σ output</th><th>$ est.</th></tr></thead>
+    <tbody>
+      <tr><td>haiku-export-1</td><td>77</td><td>57</td><td>6,248</td><td>95,632</td><td>247,411</td><td>9,164,878</td><td>259,635</td><td>270,645</td><td>1.0045</td></tr>
+      <tr><td>haiku-export-2</td><td>63</td><td>63</td><td>6,248</td><td>48,734</td><td>336,197</td><td>13,910,304</td><td>330,832</td><td>272,250</td><td>1.4731</td></tr>
+      <tr><td>haiku-markdown-1</td><td>42</td><td>39</td><td>6,261</td><td>37,296</td><td>253,183</td><td>7,724,852</td><td>247,818</td><td>207,420</td><td>0.9022</td></tr>
+      <tr><td>haiku-markdown-2</td><td>26</td><td>19</td><td>6,261</td><td>37,294</td><td>76,395</td><td>960,954</td><td>107,426</td><td>166,711</td><td>0.1145</td></tr>
+      <tr><td>sonnet-export-1</td><td>30</td><td>30</td><td>5,471</td><td>52,691</td><td>176,908</td><td>2,943,270</td><td>172,323</td><td>118,521</td><td>2.1689</td></tr>
+      <tr><td>sonnet-export-2</td><td>31</td><td>31</td><td>5,471</td><td>55,634</td><td>212,456</td><td>3,904,632</td><td>207,871</td><td>154,437</td><td>2.7664</td></tr>
+      <tr><td>sonnet-markdown-1</td><td>26</td><td>25</td><td>5,484</td><td>37,216</td><td>182,094</td><td>3,091,382</td><td>178,916</td><td>137,604</td><td>2.4009</td></tr>
+      <tr><td>sonnet-markdown-2</td><td>24</td><td>23</td><td>5,484</td><td>37,327</td><td>181,105</td><td>2,607,209</td><td>176,520</td><td>138,843</td><td>2.3553</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cm" style="font-size:var(--fs-sm)">Uncached input was 38–126 tokens per run. The cost column is <code>total_cost_usd</code>; the trajectory's own <code>final_metrics</code> agree (for example haiku-export-1: 9,164,878 cached, $1.00446). Per-request context series were computed and are reproducible with the script described in the brainstorm session S15.</p>
+
+  <h4>What the numbers say</h4>
+  <ul>
+    <li><strong>The spec costs 31k tokens of context as Markdown. As the export it costs 42k–89k, depending on how much the agent cut away.</strong> Markdown runs went from 6.2k to 37.3k tokens. haiku-export-2, which kept only the Text without tag lines, went to 48.7k. The Sonnet export runs (Text only, with tag lines for packs 06+) went to 52.7k and 55.6k. haiku-export-1, which read whole packs, went to 95.6k.</li>
+    <li><strong>One planning thought dominates every run's output.</strong> After reading, each run made one request whose output was 54k–128k tokens, nearly all hidden thinking. That happened in both formats (Haiku Markdown 110k and 128k; Haiku export 128k and 95k; Sonnet 54k–69k). Two Haiku runs hit the 128,000 cap (<code>stop_reason: max_tokens</code>). In haiku-export-1 the cut-off thought did not stay in context (the next request is +64 tokens). In haiku-export-2 the 94,689-token thought did stay (context 48,734 → 143,721), which fits the documentation that Haiku 5.5 keeps previous thinking [1].</li>
+    <li><strong>Turns, not reading, drive the cache-read total.</strong> haiku-export-2 read the spec in 8 tool calls, as few as Sonnet did, yet made 63 requests. Its cache-read total (13.9M) is 1.8× haiku-markdown-1's (7.7M). The extra requests were writing, editing and smoke-testing code, not reading spec. Why Haiku wrote and tested in more, smaller steps on the export is <strong>not known</strong>. One candidate is the larger prefix after reading. Another is the instruction's "account for every id", which led haiku-export-1 into id-marking work (c52–c54). Neither is shown.</li>
+    <li><strong>No compaction.</strong> The peak context was 336,197 tokens of 1M. Compaction, the risk the earlier lecture expected the checklist to guard against (its stage S8), did not occur.</li>
+  </ul>
+
+  <h3><span class="sn">5.4</span>Where round 13c confirms or contradicts the earlier lecture</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Earlier lecture (2026-09-25)</th><th>Round 13c evidence</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Discovery and reading are where requirements get lost (S2, S3); a map fixes "what exists"</td><td>Every export run started at <code>MAP.md</code> as told and opened nearly every pack. No pack was missed through a failed search, though haiku-export-1 skipped packs 02–04 (hardware and introduction, 2,069 words)</td><td><span class="pill ok">Confirmed in part</span> The map was followed. The Markdown runs also read everything, so there was little to fix</td></tr>
+      <tr><td>One pack per unit, read while it is needed, "small enough to read in full" (§3.4, E2, E4)</td><td>All runs read everything up front. Pack 19 is 43% of the export and cannot be returned in one tool call</td><td><span class="pill no">Contradicted</span> Second-level headings make one oversized unit on these PRDs</td></tr>
+      <tr><td>Size check: total pack characters no more than the Markdown's (§5.2)</td><td><code>export.meta.json</code> itself records packs 300,938 chars against Markdown 89,491 (3.4×). The check was never enforced</td><td><span class="pill no">Not met</span></td></tr>
+      <tr><td>Links as short id lists, so as not to add noise (E4)</td><td>Claims lists repeat each node's text (22,128 words). Tag lines add 7,585 words. Agents removed both</td><td><span class="pill no">Contradicted</span> by the agents' own filtering</td></tr>
+      <tr><td>The checklist keeps obligations on disk, safe from compaction and from a plan that drops them (E6)</td><td>No compaction occurred. The checklist was counted, not read. Accounting was by ranges</td><td><span class="pill">Not tested</span> The protection was never needed in these runs</td></tr>
+      <tr><td>Settled before served: no unsettled contradiction reaches the agent (E5)</td><td>All 68 contradictions were judged false; the export shows none. In round 13 an unsettled export misled Haiku</td><td><span class="pill ok">Confirmed</span></td></tr>
+      <tr><td>Smaller models should benefit more from structure (§5.1, a hypothesis)</td><td>Haiku: 2 test gains and 3 losses on 2 runs per format, and more turns. Sonnet: unchanged</td><td><span class="pill">Not supported</span> on these clean, single-author specs</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="sn">5.5</span>Round 13 had a different result, and why that matters</h3>
+  <p>On case004 (round 13), the settled export was 6.1× the Markdown's words, yet Haiku's turns came down to 20–35, against 24–26 on the Markdown. Only the <em>unsettled</em> export there had 46–75 turns. So size alone does not explain the extra turns in round 13c. case004's export is 30,875 words, and case006's is 75,090 with one 32,520-word pack. Whether the difference comes from absolute size, from the oversized pack, or from something else is <em>to be measured</em>.</p>
+
+  <h3><span class="sn">5.6</span>And the tests</h3>
+  <p>The format changed no test in case010 or case016. In case006 it changed 5 for Haiku: 2 gains (a required prompting option; UUID inference) and 3 losses (completion items printed as objects; one help-text ellipsis). In each of these the rule is present in both formats (<code>TRIAL.md</code>, "Why tests fail"). Nothing in the reading traces explains the 3 losses. Both export runs read the relevant Text, pack 12 and pack 19 in full.</p>
+</section>
+
+<!-- ============================================================ PART 6 -->
+<section class="lecture l5" id="p6">
+  <div class="lechead">
+    <span class="lecnum">PART 6</span>
+    <div>
+      <h2>What to change: candidate options, each tied to evidence</h2>
+      <p>Recorded as options, not decisions, in <a href="../../sdd/design/rel-02/rel02_brainstorm.md"><code>rel02_brainstorm.md</code> S15</a>. Word counts after a change are computed from the measured parts in Part 2.3. No such export has been built.</p>
+    </div>
+  </div>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Option</th><th>Evidence</th><th>Expected effect</th><th>What it drops</th></tr></thead>
+    <tbody>
+      <tr><td>X1</td><td><strong>Claims list as ids only.</strong> <code>- [N-…] kind · modality · layer</code> plus <code>needs:</code>, with no node text. The text is already in Text beside its <code>↳</code> tag</td><td>22,128 words (29%). Never read past pack 18. Sonnet cut it with <code>sed</code>. Claims are often sentence fragments that only make sense beside the Text</td><td>−12,688 words on case006: an ids-only list with the <code>needs:</code> lines kept is 9,440 words (computed by stripping the text from each item)</td><td>Reading one claim's exact slice without looking up the Text. F7 §4.5 item 3 changes</td></tr>
+      <tr><td>X2</td><td><strong>Checklist as ids only</strong>, grouped by pack, with no 80-character prefix</td><td>23,151 words (31%). Read to line 40 at most, then counted and <code>grep</code>ped. An ids-only version of the same file is 4,166 words (computed)</td><td>−18,985 words on case006</td><td>A human-readable preview beside each box. F7 §4.8 changes</td></tr>
+      <tr><td>X3</td><td><strong>Tag lines out of the reading path.</strong> Either a compact form (<code>↳ N-000991–998</code>) or the block → node map in a separate index file</td><td>7,585 words (10%). Three of four runs deleted them with <code>grep -v '^↳'</code> before reading</td><td>Up to −7,585 words</td><td>Seeing a sentence's ids at the point of reading. Modality and layer per node move to the claims list</td></tr>
+      <tr><td>X4</td><td><strong>Split oversized units</strong> at the next heading level when a unit passes a size limit. The limit is to be set, for example below the 30,000-character Bash inline ceiling [14]</td><td>Pack 19: 32,520 words, 43% of the export. All four export runs had to page it or save it to a file</td><td>The same words in 14 FP-sized packs. Fewer persisted outputs and partial reads. Allows real unit-by-unit reading</td><td>The simple key "source × H2". More files (case006: 20 → 33)</td></tr>
+      <tr><td>X5</td><td><strong>Say it in MAP.md.</strong> Per-pack word counts in the units table. "How to use" says that Text is the specification and the lists after it are indexes</td><td>Every run measured sizes itself (<code>wc -c</code>) and inferred which section to keep</td><td>Saves 1–2 exploratory calls. Removes guessing</td><td>Nothing. It adds about 50 words</td></tr>
+      <tr><td>X6</td><td><strong>Trim "Related elsewhere"</strong> to duplicates and "same as" (which carry text); drop <code>refines</code> and <code>subsumes</code> id pairs</td><td>5,233 words on case006, 12,905 on case016. No run read it in pack 19. Weak evidence: smaller packs were read whole, so it is not known whether it was used</td><td>−3,000 to −5,000 words (to be measured)</td><td>Cross-unit hints the agent might use for ordering</td></tr>
+      <tr><td>X7</td><td><strong>Instruction sentence.</strong> Drop "account for every id in <code>spec/CHECKLIST.md</code>" from the task, or reword it to "use it to check coverage at the end"</td><td>haiku-export-1's id-marking work (c52–c54) and its range-based coverage file</td><td>Possibly fewer Haiku turns (to be measured)</td><td>The coverage prompt that E6 intended. It changes the task, not the compiler</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout key">
+    <span class="lbl">Combined, and the recommendation</span>
+    <p>X1 + X2 + X3 (with the tag lines fully moved out) together take case006 from 75,090 to <strong>35,832 words (2.5× the Markdown)</strong>. case010 goes from 42,230 to 22,460 (2.7×) and case016 from 100,089 to 54,549 (2.9×). These are computed by removing or stripping the measured parts of the current files, not by building a new export. What remains above the Markdown is mostly the <code>needs:</code> lines (part of the 9,440 words), "Related elsewhere" and the ids-only checklist. Add X4 so that no unit outruns the tools, and X5 so the agent does not have to guess.</p>
+    <p><strong>Recommendation:</strong> X1–X5 together, then rerun the four Haiku case006 runs. What it drops: the export stops restating node texts. Anyone who wants a node's words in isolation must look them up in the Text or in the store. The test that decides it: do Haiku's turns and context after reading fall toward the Markdown's, with no test lost? n = 2 cannot show a test-level effect. It can show a turn and token effect of the size seen here (63–87 against 33–47).</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lbl">What none of this addresses</span>
+    <p>Round 13c's failing tests are mostly rules that the model misses in both formats (TRIAL Finding 4), not reading failures. A smaller export should cut cost and turns. It is not expected to raise scores on clean, single-author specifications. The case for the graph still rests on messy specifications, where the export gathers and settles what the Markdown scatters.</p>
+  </div>
+
+  <div class="exercises">
+    <h4>Check your understanding</h4>
+    <ol>
+      <li>Why does a file read at turn 3 cost something at turn 40, and why does caching lower that cost without freeing any context?</li>
+      <li>The Markdown runs hit the same 30,000-character Bash limit as the export runs. Why did that matter more for the export?</li>
+      <li>Three agents cut the export back to its Text sections. What does that say about principle E4, "links as short id lists"?</li>
+      <li>Why does round 13 (case004) argue against "the export is too big" as the whole explanation for Haiku's extra turns?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ GLOSSARY -->
+<section class="lecture l0" id="gloss">
+  <div class="lechead">
+    <span class="lecnum">GLOSSARY</span>
+    <div><h2>Words used here</h2></div>
+  </div>
+  <div class="tablewrap"><table>
+    <tbody>
+      <tr><td><strong>Token</strong></td><td>The unit a model reads and writes: a word piece, short word or symbol. Limits and prices are in tokens</td></tr>
+      <tr><td><strong>Context window</strong></td><td>Everything the model can see in one request, its own output included. 1M tokens for Haiku 5.5 and Sonnet 5.5 [1]</td></tr>
+      <tr><td><strong>Request / turn</strong></td><td>A request is one API call. A "turn" in this repo's tables is Claude Code's <code>num_turns</code>, which is close to but not equal to the number of requests</td></tr>
+      <tr><td><strong>Tool call / tool result</strong></td><td>The model asks Claude Code to run Read, Bash, Write or Edit. The output comes back as text appended to the context</td></tr>
+      <tr><td><strong>Prompt caching</strong></td><td>Reuse of an identical prefix from an earlier request, billed at a fraction of the input price. Cached tokens still fill the window [3]</td></tr>
+      <tr><td><strong>Compaction</strong></td><td>Claude Code clearing old tool output and then summarising when the window fills [2]</td></tr>
+      <tr><td><strong>Thinking</strong></td><td>Output the model writes before acting, not shown in our transcripts. Counted as output, and kept in context on the 5.5 models [1]</td></tr>
+      <tr><td><strong>Harbor</strong></td><td>The platform that builds a task's container, runs the agent with <code>instruction.md</code>, and scores it with hidden tests</td></tr>
+      <tr><td><strong>Export</strong></td><td><code>sddc export</code> output: <code>MAP.md</code>, <code>CHECKLIST.md</code>, <code>export.meta.json</code>, <code>packs/</code> (F7)</td></tr>
+      <tr><td><strong>Pack / unit</strong></td><td>A unit is a source file × second-level heading. A pack is the Markdown file for one unit</td></tr>
+      <tr><td><strong>Node / claim / <code>↳</code> tag line</strong></td><td>A node is one atomic claim the compiler extracted from a block of spec text. The tag line under a block lists that block's node ids</td></tr>
+      <tr><td><strong>Persisted output</strong></td><td>A Bash result too large to return inline. Claude Code saves it to a file and returns a path and a 2,000-character preview [14]</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============================================================ REFERENCES -->
+<section class="lecture l0" id="refs">
+  <div class="lechead">
+    <span class="lecnum">REFS</span>
+    <div>
+      <h2>References</h2>
+      <p>Each was opened on 2026-10-16. Papers: the arXiv abstract page only, so only abstract claims are used. Documentation: the page itself. Proposal reference numbers (<code>docs/MIA5150-Project/project-proposal/project-proposal.md</code>) are given in brackets.</p>
+    </div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Source</th><th>Used for</th></tr></thead>
+    <tbody>
+            <tr><td>1</td><td>Anthropic. <em>Context windows.</em> platform.claude.com/docs/en/build-with-claude/context-windows</td><td>Definition; what counts; 1M window and 128k output for the 5.5 models; thinking kept; overflow; caching does not free space; context rot</td></tr>
+      <tr><td>2</td><td>Anthropic. <em>How Claude Code works.</em> code.claude.com/docs/en/how-claude-code-works</td><td>Agentic loop and harness; what the window holds; what happens when it fills</td></tr>
+      <tr><td>3</td><td>Anthropic. <em>Prompt caching.</em> platform.claude.com/docs/en/build-with-claude/prompt-caching (first 100,000 characters read)</td><td>Prefix order, exact match, read and write multipliers, lifetime</td></tr>
+      <tr><td>4</td><td>Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, Liang. <em>Lost in the Middle: How Language Models Use Long Contexts.</em> TACL. arXiv:2307.03172 [24]</td><td>Position effect</td></tr>
+      <tr><td>5</td><td>Levy, Jacoby, Goldberg. <em>Same Task, More Tokens.</em> ACL 2024. arXiv:2402.14848 [28]</td><td>Degradation with input length below the maximum</td></tr>
+      <tr><td>6</td><td>Hsieh et al. <em>RULER: What's the Real Context Size of Your Long-Context Language Models?</em> COLM 2024. arXiv:2404.06654 [29]</td><td>Drops as context length grows</td></tr>
+      <tr><td>7</td><td>Shi et al. <em>Large Language Models Can Be Easily Distracted by Irrelevant Context.</em> ICML 2023. arXiv:2302.00093 [30]</td><td>Irrelevant text lowers accuracy</td></tr>
+      <tr><td>8</td><td>Rajasekaran, Dixon, Ryan, Hadfield. <em>Effective context engineering for AI agents.</em> Anthropic Engineering, 2025-09-29 [36]</td><td>Definition; attention budget; high-signal tokens; identifiers; progressive disclosure; compaction; notes; tool-result clearing</td></tr>
+      <tr><td>9</td><td>He, Rungta, Koleczek, Sekhon, Wang, Hasan. <em>Does Prompt Formatting Have Any Impact on LLM Performance?</em> arXiv:2411.10541 [33]</td><td>Template changes results; larger models more robust</td></tr>
+      <tr><td>10</td><td>Sclar, Choi, Tsvetkov, Suhr. <em>Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design…</em> ICLR 2024. arXiv:2310.11324 [34]</td><td>Formatting sensitivity, up to 76 points</td></tr>
+      <tr><td>11</td><td>Aider. <em>Repository map.</em> aider.chat/docs/repomap.html [35]</td><td>Ranked, budgeted map</td></tr>
+      <tr><td>12</td><td>Edge et al. <em>From Local to Global: A Graph RAG Approach to Query-Focused Summarization.</em> arXiv:2404.16130 [32]</td><td>Graph index with pre-generated group summaries</td></tr>
+      <tr><td>13</td><td>Yang et al. <em>SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.</em> arXiv:2405.15793 [31]</td><td>Interface design affects agent results</td></tr>
+      <tr><td>14</td><td>Anthropic. <em>Tools reference.</em> code.claude.com/docs/en/tools-reference</td><td>Bash inline about 30,000 chars, then file and preview; Read 25,000 tokens per call, 256 KB whole-file limit</td></tr>
+    </tbody>
+  </table></div>
+  <p>Not verified: the content of Claude Code's system prompt and tool definitions (not in the transcripts); whether the documentation pages describe Claude Code 2.1.296 exactly (they were read on 2026-10-16, and the runs used 2.1.296); any claim in the papers beyond their abstracts. The <code>platform.claude.com</code> context-awareness section was read but is not used, because it does not apply to the 5.5 models.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Lecture, non-authoritative. Written 2026-10-16. Figures from <code>harness/trials/r13c-zero2repo-3cases/</code> (task folders in git-ignored <code>work/</code>; transcripts in <code>runs/&lt;run_id&gt;/agent.tgz</code>). Candidate changes X1–X7 are options in <code>sdd/design/rel-02/rel02_brainstorm.md</code> S15, not decisions. Companion: <a href="lecture-agent-reads-spec-graph.html">lecture-agent-reads-spec-graph.html</a>.</p>
+  </div>
+</footer>
+
+</html>
