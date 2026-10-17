@@ -1,0 +1,85 @@
+run	item	noticed	stated	built	note
+r2-haiku-markdown-1	P1	yes	A	A	"removed on exit when no temp_dir is given"
+r2-haiku-markdown-1	P2	yes	A	A	stderr
+r2-haiku-markdown-1	P3	no	-	A
+r2-haiku-markdown-1	P4	yes	A	A	"FP-03 is the more specific rule"
+r2-haiku-markdown-1	P6	no	-	A
+r2-haiku-markdown-1	P7	no	-	A
+r2-haiku-markdown-1	R1	no	-	A
+r2-haiku-markdown-2	P1	yes	A	A	"as the first sentence says"
+r2-haiku-markdown-2	P2	yes	A	A
+r2-haiku-markdown-2	P3	no	-	A
+r2-haiku-markdown-2	P4	yes	A	A
+r2-haiku-markdown-2	P6	yes	A	A	help 80; wrap_text 100
+r2-haiku-markdown-2	P7	yes	A	A
+r2-haiku-markdown-2	R1	yes	A	A	"The Contract itself defers behaviour to the PRD"
+r2-haiku-export-1	P1	yes	B	B	listed CF-000152
+r2-haiku-export-1	P2	yes	A	A	listed CF-000146
+r2-haiku-export-1	P3	yes	A	A	listed CF-000150
+r2-haiku-export-1	P4	yes	A	A	found while reading
+r2-haiku-export-1	P6	yes	A	A	found while reading
+r2-haiku-export-1	P7	no	-	A
+r2-haiku-export-1	R1	yes	A	A	listed CF-000151
+r2-haiku-export-2	P1	yes	A	A	listed
+r2-haiku-export-2	P2	yes	A	A	listed
+r2-haiku-export-2	P3	yes	A	A	listed
+r2-haiku-export-2	P4	yes	A	A	found while reading
+r2-haiku-export-2	P6	yes	A	A	help 80; wrap_text 100
+r2-haiku-export-2	P7	yes	A	A
+r2-haiku-export-2	R1	yes	A	A	listed
+r2-haiku-export-3	P1	yes	B	B	listed
+r2-haiku-export-3	P2	yes	A	A	listed
+r2-haiku-export-3	P3	yes	A	A	listed
+r2-haiku-export-3	P4	yes	A	A	found while reading
+r2-haiku-export-3	P6	yes	A	A	found while reading
+r2-haiku-export-3	P7	no	-	A
+r2-haiku-export-3	R1	yes	A	A	listed
+r3-haiku-markdown-decisions-1	P1	yes	B	B	ruled in DECISIONS.md
+r3-haiku-markdown-decisions-1	P2	yes	B	B	ruled
+r3-haiku-markdown-decisions-1	P3	yes	B	A	ruled; NOTES.md states the ruling but the code reads the environment before the default map (command.py _resolve_one)
+r3-haiku-markdown-decisions-1	P4	yes	A	A
+r3-haiku-markdown-decisions-1	P6	no	-	A
+r3-haiku-markdown-decisions-1	P7	no	-	A
+r3-haiku-markdown-decisions-1	R1	yes	B	B	ruled
+r3-haiku-markdown-decisions-2	P1	yes	B	B	ruled
+r3-haiku-markdown-decisions-2	P2	yes	B	B	ruled
+r3-haiku-markdown-decisions-2	P3	yes	B	B	ruled
+r3-haiku-markdown-decisions-2	P4	yes	split	B	runs when a default is declared, not otherwise; the probe's option has no default
+r3-haiku-markdown-decisions-2	P6	yes	A	A	help 80; wrap_text 100
+r3-haiku-markdown-decisions-2	P7	no	-	A
+r3-haiku-markdown-decisions-2	R1	yes	B	B	ruled
+r3-haiku-markdown-decisions-3	P1	yes	B	B	ruled
+r3-haiku-markdown-decisions-3	P2	yes	B	B	ruled
+r3-haiku-markdown-decisions-3	P3	yes	B	B	ruled
+r3-haiku-markdown-decisions-3	P4	yes	A	A
+r3-haiku-markdown-decisions-3	P6	yes	A	A
+r3-haiku-markdown-decisions-3	P7	no	-	A
+r3-haiku-markdown-decisions-3	R1	yes	B	B	ruled
+r3-haiku-export-settled-1	P1	yes	B	B	ruled (settled CF-000152)
+r3-haiku-export-settled-1	P2	yes	B	B	ruled
+r3-haiku-export-settled-1	P3	yes	B	B	ruled
+r3-haiku-export-settled-1	P4	yes	A	A
+r3-haiku-export-settled-1	P6	yes	A	A
+r3-haiku-export-settled-1	P7	yes	A	A
+r3-haiku-export-settled-1	R1	yes	B	B	ruled
+r3-haiku-export-settled-2	P1	yes	B	B	ruled
+r3-haiku-export-settled-2	P2	yes	B	B	ruled
+r3-haiku-export-settled-2	P3	yes	B	B	ruled
+r3-haiku-export-settled-2	P4	yes	A	A
+r3-haiku-export-settled-2	P6	yes	A	A	help 80; wrap_text 100
+r3-haiku-export-settled-2	P7	yes	A	A
+r3-haiku-export-settled-2	R1	yes	B	B	ruled
+r3-haiku-export-settled-3	P1	yes	B	B	ruled
+r3-haiku-export-settled-3	P2	yes	B	B	ruled
+r3-haiku-export-settled-3	P3	yes	B	B	ruled
+r3-haiku-export-settled-3	P4	yes	A	A
+r3-haiku-export-settled-3	P6	yes	A	A
+r3-haiku-export-settled-3	P7	yes	B	B	metavar is the destination name, as in the example
+r3-haiku-export-settled-3	R1	yes	B	B	ruled
+r2-haiku-markdown-4	P1	yes	A	A	"removed when no parent is given"
+r2-haiku-markdown-4	P2	yes	A	A	stderr
+r2-haiku-markdown-4	P3	no	-	A	
+r2-haiku-markdown-4	P4	yes	A	A	
+r2-haiku-markdown-4	P6	yes	A	A	help 80; wrap_text 80
+r2-haiku-markdown-4	P7	no	-	A	
+r2-haiku-markdown-4	R1	no	-	A	

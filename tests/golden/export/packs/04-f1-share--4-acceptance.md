@@ -7,7 +7,7 @@ blocks 1 · nodes 1 (verification 1) · AC labels: AC-1.1
 ## 4. Acceptance
 
 AC-1.1: Given a link, then it expires.
-↳ AC-1.1 verification · MUST · V
+↳ AC-1.1
 
 ## Claims to implement
 None.

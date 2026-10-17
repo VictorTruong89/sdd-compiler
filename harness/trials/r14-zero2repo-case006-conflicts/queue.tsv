@@ -1,0 +1,14 @@
+run_id	task	model	status	job	attempts	last_message
+r2-haiku-markdown-1	work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-markdown-1	1	
+r2-haiku-export-1	work/tasks/case006-planted-export-unsettled	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-export-1	1	
+r2-haiku-markdown-2	work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-markdown-2	1	
+r2-haiku-export-2	work/tasks/case006-planted-export-unsettled	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-export-2	1	
+r2-haiku-markdown-3	work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-markdown-3	1	
+r2-haiku-export-3	work/tasks/case006-planted-export-unsettled	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-export-3	1	
+r3-haiku-markdown-decisions-1	work/tasks/case006-planted-markdown-decisions	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r3-haiku-markdown-decisions-1	1	
+r3-haiku-export-settled-1	work/tasks/case006-planted-export-settled	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r3-haiku-export-settled-1	1	
+r3-haiku-markdown-decisions-2	work/tasks/case006-planted-markdown-decisions	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r3-haiku-markdown-decisions-2	1	
+r3-haiku-export-settled-2	work/tasks/case006-planted-export-settled	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r3-haiku-export-settled-2	1	
+r3-haiku-markdown-decisions-3	work/tasks/case006-planted-markdown-decisions	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r3-haiku-markdown-decisions-3	1	
+r3-haiku-export-settled-3	work/tasks/case006-planted-export-settled	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r3-haiku-export-settled-3	1	
+r2-haiku-markdown-4	work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	r14-zero2repo-case006-conflicts-r2-haiku-markdown-4	1	

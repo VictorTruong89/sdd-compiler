@@ -7,11 +7,10 @@ blocks 1 · nodes 1 (requirement 1) · AC labels: none
 ## Why
 
 The product shares exports.
-↳ N-000001 requirement · — · L0
+↳ N-000001
 
 ## Claims to implement
-- [N-000001] requirement · — · L0 — The product shares exports.
-  needs: none
+- [N-000001] requirement · — · L0
 
 ## Acceptance criteria
 None.

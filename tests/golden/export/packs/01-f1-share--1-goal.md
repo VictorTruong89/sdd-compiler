@@ -7,11 +7,10 @@ blocks 1 · nodes 1 (requirement 1) · AC labels: none
 ## 1. Goal
 
 A share link MUST expire after 30 days.
-↳ N-000002 requirement · MUST · L1
+↳ N-000002
 
 ## Claims to implement
-- [N-000002] requirement · MUST · L1 — A share link MUST expire after 30 days.
-  needs: none
+- [N-000002] requirement · MUST · L1
 
 ## Acceptance criteria
 None.

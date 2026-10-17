@@ -9,6 +9,7 @@
 > **Governs:** `constitution.md` §1 (id families).
 > **⚑ Drafting choices:** where this spec had to fill a detail that no reviewed decision covered, the
 > decision in §7 is marked ⚑. Review those first.
+> **Amended:** 2026-10-16 (rel02 D26): D22, an example becomes a verification node (§4.1, AC-2.30).
 
 ---
 
@@ -52,7 +53,9 @@ mapping rule · the family rule · component allocation · status derivation and
 `requirement` · `constraint` · `assumption` · `verification` · `decision`.
 Definitions become term-registry entries: a `definition` sentence is attached to the registered term it
 opens with, as that term's `definition` and `defined_by` (F3 §4.5 step 9, F3 D38). Rationale and
-examples become annotations. Neither is a node.
+examples become annotations. Neither is a node. **Amended by D22:** an example becomes a `verification`
+node of the claim it illustrates (F3 D41), so it is compared with that claim like any other node; an
+example in a block with no claim stays an annotation. Rationale stays an annotation.
 
 ### 4.2 Layers — hardcoded (D8, P-7)
 
@@ -366,6 +369,12 @@ record is `open`.
 
 ## 7. Decisions
 
+- **AC-2.30** *(an example is a verification node; D22)* — **Given** a block whose claim "the default
+  metavar is the type name in uppercase" is followed by the example "an integer option `--count`
+  appears as `--count COUNT`", **when** it is formed, **then** the example is a node of kind
+  `verification`, layer `V`, whose `verifies` holds the claim's id and whose family is the claim's
+  (D18); **given** a block whose only sentences are an example and context, **then** the example is an
+  annotation and no node is formed. → *unit.*
 - **D1 — Status is derived from facts, never stored independently** (implements D9/D15/D17).
   *Rejected:* setting status directly — status and facts would drift apart.
 - **D2 — ⚑ One `status` field replaces the proposals' `draft_status` × `check_status`.** rel01 has a
@@ -448,6 +457,16 @@ record is `open`.
   (M3 gate review, I-56). "Exhaustive mode" had about five claims and no family, because components never
   seeded one. Placed last, it takes only nodes that would otherwise be null. Actors and categories
   still never seed a family.
+- **D22 — ⚑ An example is a verification node of the claim it illustrates** (rel02 round 14,
+  2026-10-16; amends §4.1). As an annotation an example was never compared with anything, so an example
+  that contradicts its own rule could not be found: planted in case006 (round 14, P7, `--count COUNT`
+  against "the type name in uppercase") and missed. (`lend`'s P10 is a worked example written as a
+  table in its own block; its rows are claims already, F3 D34, so its miss has another cause.) An
+  example states an observable outcome in one case, which is what a check of the claim states, so it
+  becomes a `V` node verifying that claim, and F5's same-block and same-family sources pair them.
+  *Rejected:* keeping examples as annotations and judging them in F6 (a conflict's members are nodes;
+  F6 and F7 would need a second member shape); making examples requirements (an example does not add an
+  obligation, it instances one).
 - **D20 — ⚑ Local labels** (M3 gate review, I-56). A table row that opens with an id (`S1`, `T1`, bold
   or not), or a list item that opens with a bold one (`**D1 — …**`), gives its nodes that `label`. A
   local label is **never adopted** as a node id and never fails a build as a duplicate (D10 still
@@ -477,3 +496,4 @@ closed 2026-09-18 as D12. Q3 closed 2026-09-18 as D13.*
 | AC-2.28 · D20 | `tests/test_model_records.py::test_f2_d20_…` (8 cases) · `tests/test_atomize_pipeline.py::test_f2_d20_…` (3) | `src/sdd_compiler/model/ids.py` · `schema.py` · `atomize/forming.py` · `pipeline.py` |
 | AC-2.23 · D14 | `tests/test_store_graph.py::test_f2_ac_2_23_deleting_a_node_cascades` | `src/sdd_compiler/store/graph.py` |
 | AC-2.29 *(tier gap: specified integration, tested at unit level — added at the rel01 close)* | `tests/test_atomize_contracts.py::test_ac_2_29_the_contract_carries_the_id_and_the_title_only_the_label` | `src/sdd_compiler/atomize/contracts.py` |
+| AC-2.30 · D22 | `tests/test_atomize_pipeline.py::test_ac_3_40_ac_2_30_*`, `::test_ac_2_30_an_example_in_a_block_with_no_claim_forms_no_node` | `src/sdd_compiler/atomize/forming.py::example_pieces` · `pipeline.py` |

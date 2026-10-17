@@ -584,6 +584,154 @@ X1 + X2 + X3 (tag lines fully moved): case006 75 090 → 35 832 words (2.5× Mar
   `chars` field, never enforced), "links as short id lists" (claims repeat text). Confirmed: the map
   was followed as the entry point; settled conflicts.
 
+### S16 — 2026-10-16 — round 13d: the lean export does not cut Haiku's turns
+
+- **Done (D24):** X1–X5 built (F7 D15, D16); case006 lean export 39 162 words (75 090 before); 2 Haiku
+  runs. Detail: `harness/trials/r13d-zero2repo-case006-lean-export/TRIAL.md`.
+- **Result:** tests 447, 415 (13c old export 425, 467; Markdown 452); turns 95, 71 (old 77, 63;
+  Markdown 42); $0.9954, $0.5920 est. Reading improved (no pack over the tools' limits, nothing saved
+  to a file), turns did not.
+- **Reading:** the extra turns are code write/edit calls (71, 45 vs 27 on Markdown). Both runs hit the
+  128k output cap in one planning thought; Claude Code's recovery message says "Break remaining work
+  into smaller pieces", and Haiku then wrote small files. 4 of 6 case006 Haiku runs so far hit the cap
+  in planning, in both formats. Association on 6 runs; not shown as the cause.
+- **Options (owner decides):**
+  (a) test the cap: same task, both formats, Haiku with thinking capped (Harbor passes
+  `MAX_THINKING_TOKENS` to Claude Code) so planning never hits 128k, n = 2 each; costs ≈ 4 runs
+  (*to be measured*; 13d's two cost $1.59 est.);
+  (b) more runs of the current pair (lean export vs Markdown) to see whether the turn gap holds without
+  changing conditions;
+  (c) keep the lean export as the default (smaller, no overflow, no test loss shown) and move on to
+  messy specifications, where the export has work to do;
+  (d) drop the lists from the reading path (Text-only packs plus one index file), since agents strip
+  them anyway.
+  Recommendation: (c) now, plus (a) if the turn count matters to the report; (a) answers whether the
+  format or the cap drives turns.
+
+### S17 — 2026-10-16 — planting conflicts in case006: design and tests (options, nothing decided)
+
+Owner's request: plant conflicts in case006, justify the design, and say whether the existing tests
+should change; the owner leans to "keep the existing tests, add tests for how conflicts are found and
+resolved", and wants to avoid an agent missing a planted conflict by chance. No file built, no model call.
+
+**Why designed conflicts, not random ones.** A random edit can land where no test or probe looks, or
+in a feature some agents build badly (FP-09 tests failed in 7 of the 9 past case006 runs, FP-10 in 4), so "missed"
+cannot be told from "not built"; it can break an unknown number of hidden tests; it is usually a
+plain value swap, so the hard kinds (rule inside a definition, example against its rule) are absent;
+and it cannot be balanced, so a result cannot be put down to distance or kind. Each planted item
+below is one cell of a small factor table, with an answer key written before any run, as for `lend`.
+
+**Selection rules** (each item must meet all):
+1. *Built in every past run*: the tests nearest the touched behaviour (by name, in the judges'
+   reports) passed in all, or all but one, of the 9 case006 runs so far (13c, 13d), so every agent
+   writes that code. Whole feature points are too coarse: FP-07 has failures in 5 of 9 runs, but its
+   prefix tests failed at most once.
+2. *Both sides observable*: each side gives a different black-box result (exit status, stream, path,
+   value), so a probe reads A, B, mixed or neither in every run; no item can come out "unknown".
+3. *Narrow footprint*: at most 3 existing hidden tests change outcome between side A and side B,
+   **measured** without reading the tests (below); an item over that is dropped.
+4. *Side A is click's behaviour* (what the hidden tests and the model's memory both hold); side B is
+   not. An unaided agent can land on A from memory without noticing anything, so side alone is never
+   read as detection.
+5. *Mixed where possible*: the two sides govern two code paths, so an agent that does not notice
+   builds both, and the probe reads "mixed", a miss seen without any notes.
+6. *Real drift*: one document edited, in the spec's own voice, no marker.
+
+**Draft items** (A is the current text; B is planted; footprints *to be measured*):
+
+| # | Distance | Kind | A (kept) | B (planted) | Probe |
+|---|---|---|---|---|---|
+| P1 | same paragraph (control) | direct | FP-14: isolated filesystem without a parent is removed on exit | same bullet: "always left in place" | directory exists after the block? |
+| P2 | across files | prose vs table, mixed | Contract channels: deprecation warnings on standard error | FP-01: a deprecated *command's* warning on standard output | command and option warnings' streams |
+| P3 | across files | precedence | FP-03, FP-07: environment beats default map | Contract §6 `default_map` row: "takes precedence over environment variables" | value and source with both set |
+| P4 | far, same file | rule in a definition | FP-06: a leaf with no arguments is not help by default | Terminology, new row "Leaf": a bare leaf invocation shows help | help page on a bare leaf with a required argument? |
+| P5 | same section | example against its rule | FP-07: top-level command name not in the prefix key | an example key that includes it | which variable fills the option |
+| P6 | far, same file | direct, mixed | FP-02: maximum content width defaults to 80 | FP-11: help and text wrapping default to 100 columns | help wrap and `wrap_text` widths |
+
+Reserve: standalone confirm's other answers ("asks again" vs "means no"); eager-flag order inside the
+Terminology row (its test already failed in 2 of 9 runs, so weaker). Not planted: a superseded rule
+(case006 has no changelog) and decoys: the 68 rule-and-exception pairs the compiler already flags in
+case006 are natural decoys, and the existing tests already score them.
+
+**Tests: options.**
+- (T1) Keep all 476 tests and score them as they are: a build that takes side B, which a verdict may
+  require, loses the tests that pin A; totals then mix "chose B" with "built badly". Rejected.
+- (T2) Edit the existing tests to the verdict: needs opening the hidden tests, breaks comparison with
+  13c and 13d, and has no answer for unsettled items. Rejected.
+- (T3) **Freeze the existing tests and add new ones, with the footprint taken out (recommended; the
+  owner's idea plus one step).** Footprint: patch a past build (13c `sonnet-case006-export-1`, 473 / 476)
+  to side A and to side B of each item and run the hidden tests through Harbor's oracle agent (no
+  model call); the tests that flip are that item's footprint. The *core score* is the 476 minus the
+  union of footprints, and 13c and 13d can be rescored on the same subset from their saved reports,
+  so the baselines cost nothing. New tests, in a separate suite outside Zero2Repo's reward, written from
+  the answer key and the Contract's API only: per item a side probe (A, B, mixed, neither), and in the
+  settled round a verdict test. The same patched builds check every probe (as `lend`'s
+  `check_scoring.py` did).
+
+**Against a miss by chance** (the owner's concern): rules 1, 2 and 5 above; an exposure check per item
+and run from the transcript (did the agent's tool output include both planted sentences, each unique
+text), which splits "never read" from "read, not noticed" from "noticed"; each kind planted twice;
+n = 3 runs per cell; report per item and run, not one total.
+
+**Rounds (each needs the owner's go-ahead where it spends):**
+0. Build, no model: plant script (edits a copy in git-ignored `work/`), answer key, probes, footprint
+   runs. Drop items that fail rule 3 or whose probe does not separate A from B.
+1. Compile the planted case006 (13c's compile: 853 calls, $4.2647 est.; *to be measured*); compiler
+   recall against the key; other contradictions judged as in 13c.
+2. Unsettled: Haiku, Markdown vs export (planted ones left open), n = 3 each. Measures detection.
+3. Settled: the owner's verdicts, all to side B; export settled vs Markdown plus `DECISIONS.md`, n = 3
+   each, from the same compile. Measures whether decisions reach the code.
+Runs cost $0.59–1.47 est. each for Haiku on case006 so far (13c, 13d).
+
+**Open choice: one instruction line.** Adding "If parts of the specification disagree, choose one and
+list each choice in `NOTES.md`" to both formats makes detection readable without guessing from
+transcripts. It drops realism (agents are not told in practice) and changes the instruction against
+13c and 13d. Recommended, because the measure it gives is cleaner than transcript keywords, which were
+wrong on first contact in `lend`.
+
+### S18 — 2026-10-16 — round 14: planted conflicts in case006 (S17 run as recommended)
+
+- **Done (D25):** S17 steps 0–3 with the instruction line. Detail and method:
+  `harness/trials/r14-zero2repo-case006-conflicts/TRIAL.md`; report draft R5.
+- **Build (no model):** 9 candidates; footprints measured by running the hidden tests on patched copies
+  of a good build through Harbor's oracle agent. 7 kept, 2 dropped (7 and 238 tests).
+- **Compiler:** incremental compile, 35 calls, $0.124 est.; reported 4 of 7 (both across-file prose vs
+  table items, the precedence item, the same-paragraph control); missed the glossary rule, the far-apart
+  default and the example (as in `lend`); 2 false alarms on one planted sentence.
+- **Result (Haiku, n = 3):** unsettled, the export runs named 19 of 21 planted conflicts against 13 of
+  21 (12 of 12 against 7 of 12 on the ones the export lists), but built side A almost always in both
+  formats; settled, rulings reached the code 12 of 12 (export) and 11 of 12 (`DECISIONS.md`, one stated
+  and not built). Core scores overlap. Every run read both sides of every item.
+- **Reading:** the evidence for the product is now "the compiler surfaces conflicts an agent would not
+  report, and a ruling travels to the code"; not "better code" by tests. The compiler's 3 misses bound
+  what the export can surface.
+- **Options (owner decides):**
+  (a) compiler work on the two missed kinds (rules inside definitions, examples against their rules)
+  and the far-apart value, spec-first (O-a), then re-measure recall on this answer key at no agent
+  cost;
+  (b) the same round on Sonnet (6 runs per round; Sonnet case006 runs cost $2.17–2.77 est. in 13c);
+  (c) an owner audit of `notes/detection.tsv` (time only) to give the detection counts a second reader;
+  (d) plant into a second case (case016 or case010) to see whether the pattern holds outside click.
+  Recommendation: (a) then (c); (a) is the lever that changes what the export can show.
+
+### S19 — 2026-10-16 — S18 (a) and (c): compiler recall 4 → 6 of 7; audit sheet ready
+
+- **Done (D26):** traced the three misses in round 14's store (no model): P6 lost to the incremental
+  compile (only the new end was checked; the old end ranked it inside its cap); P7 because examples are
+  annotations, never judged, and the annotation was dropped beside an unchanged claim; P4 to ranking
+  (7th of 171, cap 6).
+- **Changed, spec-first** (suite 766 passed): F5 D14 either end (AC-5.18); F2 D22, F3 D41 an example is
+  a verification node of the claim before it, formed in code (AC-2.30, AC-3.40); F3 D42 an unchanged
+  node takes its block's annotations (AC-3.41).
+- **Re-measured:** the same incremental compile with round 14's lock replayed: 29 calls, $0.0732 est.;
+  **6 of 7** found (P6, P7 added); P4 still missed; false alarms 2 → 3.
+- **(c):** `harness/trials/r14-zero2repo-case006-conflicts/notes/detection_audit.md`, one table per item,
+  the agent's own notes beside the assistant's reading, an empty column for the owner.
+- **Not tuned:** a cap of 7 would catch P4, but that fits the answer key. **Options:** (a) rerun the
+  round 14 agent cells on the 6-of-7 export (12 Haiku runs); (b) a measured choice for P4 (cap for
+  checked nodes in an incremental run, or split glossary rows), tested on another key first; (d) plant
+  into a second case.
+
 ## Decisions log
 
 - **rel02 D1 — 2026-10-11 — rel02 has two objectives: O-a, the graph is ready for a coding agent to
@@ -679,6 +827,23 @@ X1 + X2 + X3 (tag lines fully moved): case006 75 090 → 35 832 words (2.5× Mar
   overall result as draft report sections, no model calls. Owner.
 - **rel02 D23 — 2026-10-14 — Round 11: Sonnet on `lice`, `arxiv-digest`, `stocktrends`, both formats,
   one run each, exactly as the Haiku runs; results summarised in the report draft.** Owner.
+- **rel02 D24 — 2026-10-16 — S15 options X1–X5 adopted; round 13d tests them.** Owner: "implement
+  X1-X5 ; then run Haiku case006 export only 2 runs to compare with previous trial." F7 amended (D15
+  lists carry ids, not text; D16 units over 20 000 characters split at the next heading; AC-7.25–7.27).
+  X6, X7 not adopted. Round 13d: `harness/trials/r13d-zero2repo-case006-lean-export/`, the lean export
+  of round 13c's case006 store (39 162 words against 75 090), 2 Haiku runs.
+
+- **rel02 D25 — 2026-10-16 — round 14: plant conflicts in case006 and run S17 as recommended.** Owner:
+  "Run steps 0-4 as you recommend above. After conflicts builts, run trials as you suggested. After
+  trials complete, note down all results finding and properly explain the conflict-building and
+  testing methodology for future report writing." Includes S17's instruction line (`NOTES.md`), the
+  existing tests frozen with the footprint taken out (T3), and all rulings to side B. The assistant
+  judged the 2 false alarms and wrote the 4 rulings on the owner's behalf, as recommended in S17. One
+  Markdown run that stopped early was replaced to keep n = 3.
+
+- **rel02 D26 — 2026-10-16 — compiler work on round 14's misses (S18 (a)) and the audit sheet (S18
+  (c)).** Owner: "do a and c as recommended". F5 D14, F2 D22, F3 D41, D42 as in S19; recall
+  re-measured on the same answer key at no agent cost. The audit itself is the owner's.
 
 ## Rejected alternatives
 

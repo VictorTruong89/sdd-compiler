@@ -7,16 +7,14 @@ blocks 2 · nodes 2 (requirement 2) · AC labels: none
 ## 2. Rules
 
 A deleted archive MUST NOT be served.
-↳ N-000011 requirement · MUST NOT · C
+↳ N-000011
 
 Backups SHOULD be encrypted.
-↳ N-000012 requirement · SHOULD · L5
+↳ N-000012
 
 ## Claims to implement
-- [N-000011] requirement · MUST NOT · C — A deleted archive MUST NOT be served.
-  needs: none
-- [N-000012] requirement · SHOULD · L5 — Backups SHOULD be encrypted.
-  needs: none
+- [N-000011] requirement · MUST NOT · C
+- [N-000012] requirement · SHOULD · L5
 
 ## Acceptance criteria
 None.

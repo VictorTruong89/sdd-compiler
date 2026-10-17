@@ -1,0 +1,10 @@
+2026-10-16T07:41:54-04:00	start trial r13d-zero2repo-case006-lean-export, claude 2.1.296, budget 10, one=0
+2026-10-16T07:41:54-04:00	run haiku-case006-export-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-export
+2026-10-16T08:05:33-04:00	harbor haiku-case006-export-1 exit 0 after 1418 s
+2026-10-16T08:05:33-04:00	done haiku-case006-export-1 turns 95 cost_usd_est 0.995384 reward {"reward": 0.9390756302521008, "tests_passed": 447, "tests_total": 476, "tests_failed": 29, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T08:05:33-04:00	usage five_hour 0.37 (resets 2026-10-16T11:50:00-04:00) seven_day 0.72 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T08:07:33-04:00	run haiku-case006-export-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-export
+2026-10-16T08:24:51-04:00	harbor haiku-case006-export-2 exit 0 after 1038 s
+2026-10-16T08:24:51-04:00	done haiku-case006-export-2 turns 71 cost_usd_est 0.59199259 reward {"reward": 0.8718487394957983, "tests_passed": 415, "tests_total": 476, "tests_failed": 61, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T08:24:51-04:00	usage five_hour 0.45 (resets 2026-10-16T11:50:00-04:00) seven_day 0.72 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T08:26:51-04:00	end no pending or limited row left

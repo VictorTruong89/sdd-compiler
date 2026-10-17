@@ -1,6 +1,7 @@
 """F7 §4.3–§4.4 — work units, the foundation, omitted headings, and build order.
 
-A unit is `(source, heading_path[:2])`. Every block of a foundation-glob file joins one foundation
+A unit is `(source, heading_path[:2])`; one whose block texts pass `MAX_UNIT_CHARS` splits at its
+next heading (⚑ D16). Every block of a foundation-glob file joins one foundation
 unit, first in the order. The specs, not the sections, are ordered: by the fewest `depends_on` links
 pointing to a later spec, since those links are model verdicts — votes, not facts (⚑ D3, I-96).
 """
@@ -17,6 +18,7 @@ from ..ingest.identity import heading_skipped, is_live
 
 UnitKey = tuple[str, tuple[str, ...]]
 FOUNDATION_KEY: UnitKey = ("", ("foundation",))
+MAX_UNIT_CHARS = 20_000          # D16: block text per unit, below Claude Code's ≈ 30 000-char inline limit
 
 
 @dataclass
@@ -83,8 +85,25 @@ def form_units(blocks: Iterable[Mapping[str, Any]], foundation_globs: Sequence[s
         foundation_blocks.sort(key=lambda gb: (gb[0], gb[1]["source"], gb[1]["lines"][0]))
         foundation = Unit(FOUNDATION_KEY, [b["id"] for _, b in foundation_blocks],
                           foundation_blocks[0][1]["lines"][0])
-    units = sorted(by_key.values(), key=lambda u: u.sort_key)
+    by_id = {b["id"]: b for b in live}
+    units = sorted((part for unit in by_key.values() for part in _split(unit, by_id)),
+                   key=lambda u: u.sort_key)
     return Units(units, foundation, omitted, dropped)
+
+
+def _split(unit: Unit, blocks: Mapping[str, Mapping[str, Any]]) -> list[Unit]:
+    """D16 — over `MAX_UNIT_CHARS`, one heading level deeper; the lead text keeps the parent key."""
+    depth = len(unit.headings)
+    paths = [blocks[i]["heading_path"] for i in unit.block_ids]
+    if sum(len(blocks[i]["text"]) for i in unit.block_ids) <= MAX_UNIT_CHARS \
+            or not any(len(p) > depth for p in paths):
+        return [unit]
+    parts: dict[UnitKey, Unit] = {}
+    for block_id, path in zip(unit.block_ids, paths):
+        key = (unit.source, tuple(path[:depth + 1])) if len(path) > depth else unit.key
+        parts.setdefault(key, Unit(key, first_line=blocks[block_id]["lines"][0])).block_ids.append(block_id)
+    return [piece for part in parts.values()
+            for piece in (_split(part, blocks) if part.key != unit.key else [part])]
 
 
 def compute_needs(links: Iterable[Mapping[str, Any]], home: Mapping[str, UnitKey],

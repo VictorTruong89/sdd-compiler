@@ -685,3 +685,67 @@ def test_r13_the_description_question_resolves_references_before_flagging():
     from sdd_compiler.atomize.describe import build_question
     prompt = build_question([], None).prompt
     assert "resolve" in prompt.lower() and "only when" in prompt.lower()
+
+
+# -- F3 D41, F2 D22: an example becomes a verification node (AC-3.40, AC-2.30) ---------------
+
+RULE = "The default metavar is the type name in uppercase."
+EXAMPLE = "For example, an integer option appears as COUNT."
+FLAG = "A flag has no metavar."
+
+
+def metavar_answers(block_id, sentences, atoms):
+    metavar = [{"name": "metavar", "kind": "data", "role": "subject", "quote": "metavar"}]
+    return [
+        {"blocks": [{"block_id": block_id,
+                     "sentences": [{"quote": q, "role": r} for q, r in sentences],
+                     "atoms": [{"kind": "requirement", "quotes": [q]} for q in atoms]}]},
+        q_desc(*[q_desc_entry(f"{block_id}#{n}", subject="metavar", response="hold", q_yes={"Q3": q},
+                              terms=metavar) for n, q in enumerate(atoms, start=1)]),
+    ]
+
+
+def test_ac_3_40_ac_2_30_an_example_becomes_a_verification_node_of_the_claim_before_it():
+    """Round 14 (rel02): "for example, an integer option `--count` appears as `--count COUNT`" sat
+    in the bullet of "the default metavar is the type name in uppercase", contradicting it. As an
+    annotation the example was never compared with anything (F2 §4.1), so the compiler could not
+    report it. Formed in code: the fake backend has no answer left for a third call."""
+    text = f"{RULE} {EXAMPLE} {FLAG}"
+    draft, backend = run([block("B-000001", text)], metavar_answers(
+        "B-000001", [(RULE, "requirement"), (EXAMPLE, "example"), (FLAG, "requirement")], [RULE, FLAG]))
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc"]
+
+    by_text = {n["text"]: n for n in draft.nodes.values()}
+    assert sorted(by_text) == sorted([RULE, EXAMPLE, FLAG])
+    example, rule = by_text[EXAMPLE], by_text[RULE]
+    for node in draft.nodes.values():
+        validate("node", node)
+    assert (example["kind"], example["layer"]) == ("verification", "V")
+    assert example["verifies"] == [rule["id"]]
+    assert example["family"] == rule["family"] == "term:metavar"
+    assert example["canonical"]["subject"] == "metavar" and example["canonical"]["response"] == EXAMPLE
+    assert example["source"]["spans"] == [[text.index(EXAMPLE), text.index(EXAMPLE) + len(EXAMPLE)]]
+    assert example["judgments"] == rule["judgments"] and example["terms"] == []
+    assert not [a for n in draft.nodes.values() for a in n["annotations"] if a["role"] == "example"]
+    assert ("verifies", rule["id"]) in {(l["type"], l["to"]) for l in draft.links if l["from"] == example["id"]}
+
+
+def test_ac_3_40_an_example_that_comes_first_verifies_the_first_claim():
+    text = f"{EXAMPLE} {RULE} {FLAG}"
+    draft, _ = run([block("B-000001", text)], metavar_answers(
+        "B-000001", [(EXAMPLE, "example"), (RULE, "requirement"), (FLAG, "requirement")], [RULE, FLAG]))
+    by_text = {n["text"]: n for n in draft.nodes.values()}
+    assert by_text[EXAMPLE]["verifies"] == [by_text[RULE]["id"]]
+
+
+def test_ac_2_30_an_example_in_a_block_with_no_claim_forms_no_node():
+    text = f"Some background. {EXAMPLE}"
+    draft, backend = run([block("B-000001", text)], [
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": "Some background.", "role": "context"},
+                                   {"quote": EXAMPLE, "role": "example"}],
+                     "atoms": []}]},
+    ])
+    assert draft.nodes == {}
+    assert draft.completed == {"B-000001": "sha256:B-000001"}
+    assert [q.kind for q in backend.asked] == ["q-atom"]

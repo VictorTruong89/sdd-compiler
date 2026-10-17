@@ -7,6 +7,8 @@
 > §5–§6 · rel01 D26 (batch) · the F5 conflict list of 2026-09-16 (items 5.1–5.5).
 > **Depends on:** F2 (node properties) · F4 (indexes). **Feeds:** F6 (pair judgment).
 > **⚑ Drafting choices** are marked in §7.
+> **Amended:** 2026-10-16 (rel02 D26): D14, a pair is proposed from either end, checked or not (§4.3,
+> AC-5.18, CT-5.3 `pairs_from_unchecked_end`).
 
 ---
 
@@ -79,6 +81,10 @@ score = 3.0 · S1 + 2.0 · S2(per shared term, max 4.0) + 2.0 · S3 + 1.0 · S4
 - Candidates below `min_score` (default 1.0) are dropped.
 - The rest are ranked by score, then by node id, and the top `max_pairs_per_node` (default 6, D13) are
   returned.
+- **Either end (⚑ D14).** A pair touching a checked node is also proposed when the checked node is
+  within the cap of the *other* node's own ranking, even though that other node is not checked in this
+  run. So an incremental run proposes the same pairs touching its checked nodes as a full compile, in
+  which both ends would be checked.
 - Both numbers live in the profile (CT-5.2). They are **starting values to tune with measurement**, not
   findings.
 
@@ -127,8 +133,12 @@ retrieval:
 **CT-5.3 — Run record additions** (F1 CT-1.3; written at `conflicts.retrieval`, F6 CT-6.2)
 ```json
 { "retrieval": {"nodes_checked": 0, "candidates_proposed": 0, "pairs_capped": 0,
-                "dropped_below_min_score": 0, "dropped_by_cap": 0, "replayed": 0} }
+                "dropped_below_min_score": 0, "dropped_by_cap": 0, "replayed": 0,
+                "pairs_from_unchecked_end": 0} }
 ```
+`pairs_from_unchecked_end` (D14) counts the distinct pairs added because the checked node is within the
+cap of an unchecked node's ranking; it is outside AC-5.16's identity, which counts proposals made from
+checked nodes.
 
 ## 6. Acceptance criteria
 
@@ -160,6 +170,10 @@ retrieval:
   and `term:workspace_export`, both recorded `broader: term:export`, **then** S8 contributes naming the
   shared parent, and S2 does not; **given** a term and its own parent, **then** S2 contributes and S8
   does not; **given** unrelated terms, **then** neither. → *unit.*
+- **AC-5.18** *(either end; D14)* — **Given** an unchecked node B whose own ranking puts a checked
+  node A within its cap, while A's ranking puts B beyond A's cap, **then** the pair (A, B) is proposed
+  and counted in `pairs_from_unchecked_end`; **given** the same graph with B checked too, **then** the
+  same pair is proposed and the count is 0. → *unit.*
 - **AC-5.8** *(first node of a family)* — **Given** a graph where a node's family, terms and block are
   unique to it, **when** candidates are gathered, **then** any candidate comes from S5 or S6, and the
   result may legitimately be empty. → *unit.*
@@ -247,6 +261,17 @@ retrieval:
   proposals. The pairs handed to F6 hold each `pair_key` once (AC-5.13). *Rejected:* counting distinct
   pairs everywhere — the identity would fail on any graph where both ends are checked, which is most of
   a first compile.
+- **D14 — ⚑ A pair is proposed from either end, checked or not** (rel02 round 14, 2026-10-16). In an
+  incremental compile only new and changed nodes are checked, and a pair was proposed only from the
+  checked end. A planted conflict was missed that way: the old claim "a maximum content width that
+  defaults to 80 columns" ranked the new "maximum content width of 100 columns" 5th of 9, inside its
+  cap, but was not checked; from the new node's side it ranked 54th of 80, behind six help-page claims
+  sharing a term. A full compile, checking both, would have proposed it. Now an unchecked node's own
+  ranking is computed for every node it is a candidate of, and the pair is proposed when the checked
+  node is within that ranking's cap. Cost: more pairs in an incremental run, never more than a full
+  compile would propose for the same nodes; none in a full compile, where every node is checked.
+  *Rejected:* checking every neighbour of a changed node in full (it would re-judge pairs that do not
+  touch the change); raising the cap for changed nodes (a tuning knob, not the defect).
 - **D5 — Deferred: `checked_against` per node** (conflict-list item 5.4). A batch run checks the whole
   graph, so the cheaper `last_checked_run` plus `stale_reasons` is enough for rel01. It returns with
   incremental checking.
@@ -265,4 +290,5 @@ retrieval:
 | AC-5.12 *(pair key)* · D4 | `tests/test_retrieval_select.py::test_ac_5_12_…` (2) | `src/sdd_compiler/retrieval/select.py::pair_key` |
 | CT-5.2 *(profile)* | `tests/test_retrieval_select.py` · `tests/test_profile.py` | `src/sdd_compiler/profile.py` |
 | CT-5.3, AC-5.16 *(counts; the run record wired by I-97, 2026-09-30)* | `tests/test_retrieval_select.py::test_ct_5_3_…`, `::test_ac_5_10_…`, `tests/test_compile.py::test_ac_5_16_ct_6_2_…` | `src/sdd_compiler/retrieval/select.py` |
+| AC-5.18 · D14 *(either end)* · CT-5.3 `pairs_from_unchecked_end` | `tests/test_retrieval_select.py::test_ac_5_18_…` (2) | `src/sdd_compiler/retrieval/select.py` |
 | AC-5.15 *(exhaustive mode)* | *(deferred: `sddc pairs` is M5, build plan B2)* | `src/sdd_compiler/retrieval/select.py` · `cli.py` |

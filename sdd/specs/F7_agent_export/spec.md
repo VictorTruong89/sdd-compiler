@@ -9,6 +9,10 @@
 > (non-binding).
 > **Revised:** 2026-09-30 (Phase A of `HANDOVER_code_ready_graph.md`; owner answers: definitions shown,
 > one omit key; D12, D13, Q1–Q3) — **approved by the owner 2026-09-30**.
+> **Amended:** 2026-10-16 (rel02 S15, options X1–X5, owner: "implement X1-X5"): lists carry ids, not
+> restated text (D15); oversized units split at the next heading (D16); `MAP.md` gives pack sizes and
+> says what Text is. Evidence: round 13c transcripts, lecture
+> [`lecture-export-to-agent.html`](../../../docs/lectures/lecture-export-to-agent.html).
 > **Depends on:** F1 (blocks, sources, profile) · F2 (node, term and conflict records; `covers`) · F4
 > (store, `check_store`, transactions) · F6 (conflict records, adjudications).
 > **Governs:** `constitution.md` (§1 id families — no new family; §4 test tiers). **⚑ Drafting
@@ -108,6 +112,13 @@ Pending blocks (not yet atomized) do **not** stop the export. They render verbat
   `needs:`, `Related elsewhere` or a checklist link) is rewritten to its kept node. The owner cannot
   choose which side stays: a wrong side is fixed by editing the specs.
 - A unit with no live, non-omitted, non-excluded block is not emitted.
+- **Oversized units split (⚑ D16).** When the characters of a unit's block texts sum to more than
+  `MAX_UNIT_CHARS` (20 000), the unit is split one heading level deeper: each distinct
+  `heading_path[:d+1]` (where `d` is the length of the unit's heading key) becomes a unit, and the
+  unit's blocks with no heading at that depth (its lead text) form a unit that keeps the parent key.
+  The rule applies again to any resulting unit still over the limit. A unit whose blocks have no
+  deeper heading stays whole, whatever its size. The foundation is never split. Split units are
+  ordinary units: they keep source order, are numbered, and are homes for nodes.
 
 ### 4.4 Order
 
@@ -136,14 +147,18 @@ One Markdown file per unit (CT-7.3). Sections always appear in this order, and a
 1. **Header.** The unit's source and heading, and counts: blocks, nodes by kind, AC labels.
 2. **Text.** The unit's blocks, verbatim, in source order. Headings are re-emitted from
    `heading_path` when it changes, at their depth. After each block comes one tag line listing its
-   nodes: `↳ N-000412 requirement · MUST · L3 · AC-4.7`, or `↳ no node`, or `↳ no node (pending)`.
+   nodes by **id only** (⚑ D15): `↳ N-000412`, with a label that differs from the id in parentheses
+   (`↳ N-000412 (AC-4.7)`); three or more consecutive unlabelled `N-` ids are written as a range
+   (`↳ N-000991–N-000998`); ids are separated by `, `. Or `↳ no node`, or `↳ no node (pending)`.
+   Kind, modality and layer are in the Claims list.
    Consecutive `table_row` blocks with the same `table_header` render as one table: the header, the
    separator, then the rows, followed by one tag line per row, numbered. Code blocks render verbatim,
    fences included.
 3. **Claims to implement.** Every node homed here of kind `requirement`, `constraint`, `decision` or
-   `assumption`, as `- [N-…] <kind> · <modality or —> · <layer> — <node text>`. Each is followed by
-   `needs:` with the ids of its `depends_on` targets and their pack number when elsewhere. A decision
-   adds `chosen:` and `rejected:` from its `decision` field. **A contract node** (its id is a `CT-…`
+   `assumption`, as `- [N-…] <kind> · <modality or —> · <layer or —>`, then ` · <label>` when the
+   label differs from the id, then ` · needs <ids>` when it has `depends_on` targets (each with
+   `(pack NN)` when homed elsewhere). **No node text** (⚑ D15): the text is in Text, beside the
+   block's tag line. A decision adds `chosen:` and `rejected:` from its `decision` field. **A contract node** (its id is a `CT-…`
    id and its block is `code`; F3 D39, F2 D21) is listed as `- [CT-5.1] contract · <layer> — <lead
    line> (fence in Text)`, where the lead line is the first line of the nearest preceding non-code block
    of the same source that starts with `**<id>` (verbatim), or absent. The fence itself is not repeated
@@ -167,6 +182,8 @@ One Markdown file per unit (CT-7.3). Sections always appear in this order, and a
    (D5). A term with neither is not listed: its name is already in the text.
 
 The text comes first and the lists after it: long material ahead of the task-shaped part (⚑ D6).
+Acceptance criteria, constraints in scope and the `same as` / `covered by` lines keep their text:
+the first are not in Claims, and the others are homed in other packs.
 
 ### 4.6 The conflict gate and how conflicts render
 
@@ -194,23 +211,27 @@ The entry point (CT-7.4). In order:
    foundation.
 2. **Read first:** pack `00` and what it holds.
 3. **Units in build order:** one row per pack, giving pack file, source and heading, block count,
-   claims by kind, AC count, and the packs it needs.
+   claims by kind, AC count, the packs it needs, and the pack's size in words (whitespace-separated,
+   ⚑ D15).
 4. **Needs against the order:** each cross-file need that points to a later pack, as
    `- pack NN needs pack MM (k links)`, or `None.`
 5. **Contracts:** every code block and every `CT-…` label → its home pack.
 6. **Decisions:** every `decision` node's label (or id) → its home pack.
-7. **How to use:** fixed text (CT-7.4). Read the foundation, then each pack in order. Every id in
-   `CHECKLIST.md` must end implemented, tested or listed as not done with a reason. Mark code with
-   `# spec: <id>`. Fields named *derived* were assigned by the compiler, and the verbatim text wins
-   over them.
+7. **How to use:** fixed text (CT-7.4). Read the foundation, then each pack in order. A pack's
+   `## Text` is the specification for its unit, verbatim; the `↳` line after a block names the ids of
+   its claims; the sections after Text index the same text (ids, needs) and add what is homed
+   elsewhere (constraints, related claims, settled conflicts, terms). A unit too large to read at
+   once is split at its next heading. Every id in `CHECKLIST.md` must end implemented, tested or
+   listed as not done with a reason. Mark code with `# spec: <id>`. Fields named *derived* were
+   assigned by the compiler, and the verbatim text wins over them.
 8. **Counts:** from `export.meta.json`.
 
 ### 4.8 `CHECKLIST.md`
 
 Every live, non-omitted node exactly once, grouped under its home pack in build order, as
-`- [ ] N-000412 · <kind> · <modality or —> · <layer> · <label or —> · <first 80 characters of its text>…`.
-A contract node's text is its whole fence, so its item shows the lead line of §4.5 in place of the
-prefix. Contracts are counted in `export.meta.json` (`counts.contracts`).
+`- [ ] N-000412`, with ` · <label>` when the label differs from the id (⚑ D15: ids only; kind,
+modality, layer and text are in the pack). Contracts are counted in `export.meta.json`
+(`counts.contracts`).
 **Every kind is listed, not only MUST (⚑ D8).** On the pilot graph, 186 requirement and constraint
 nodes carry no modality (166 + 20).
 
@@ -240,8 +261,9 @@ nodes carry no modality (166 + 20).
 ```
 
 `spec-slug`: the spec's parent directory name when the file is `spec.md`, otherwise the file stem.
-`section-slug`: `heading_path[1]` (or `[0]`, or `root`), lower-cased, non-alphanumerics collapsed to
-`-`, at most 40 characters. Two units with the same slug get `-2`, `-3` in order.
+`section-slug`: the last heading of the unit's key (`heading_path[1]` for an unsplit unit; the
+deeper heading for a split one, D16; `heading_path[0]` for a depth-1 unit; or `root`), lower-cased,
+non-alphanumerics collapsed to `-`, at most 40 characters. Two units with the same slug get `-2`, `-3` in order.
 
 **CT-7.2: profile keys** (an F1 CT-1.4 addition: strict, and unknown keys are errors)
 
@@ -382,10 +404,24 @@ character count of the source files recorded in `sources.jsonl`.
   excluded node is shown as a link to the kept one; **and given** the same duplication judged `false`,
   or stale, **then** both blocks appear. **And** a block with two nodes of which only one is a real
   duplicate is kept. → *unit.* (§4.3, §4.6, D13)
+- **AC-7.25** *(lists carry ids, not text)*: **Given** a unit with a requirement that depends on a
+  node in another unit, a decision with a label, and a block holding four consecutive nodes, **when**
+  the export runs, **then** no node text appears in Claims to implement or `CHECKLIST.md`; the
+  requirement's claim line ends ` · needs <id> (pack NN)`; the decision's line and checklist item show
+  its label; and the block's tag line is `↳ <first>–<last>`. → *unit.* (§4.5 items 2–3, §4.8, D15)
+- **AC-7.26** *(oversized units split)*: **Given** a unit whose block texts sum to more than
+  `MAX_UNIT_CHARS`, with lead text and two third-level headings, and a second oversized unit with no
+  deeper heading, **when** units are formed, **then** the first becomes three units in source order
+  (lead text under the parent key, then one per third-level heading) and the second stays whole; and
+  every block is still in exactly one unit. → *unit.* (§4.3, D16)
+- **AC-7.27** *(map sizes and reading text)*: **Given** the fixture store, **when** the export runs,
+  **then** each row of *Units in build order* gives its pack's word count, equal to the
+  whitespace-separated word count of that pack file, and *How to use* states that Text is the
+  specification. → *unit.* (§4.7, D15)
 - **AC-7.21** *(contracts)*: **Given** a contract node `CT-1.1` whose block is a fenced `json` block
   under a lead paragraph `**CT-1.1 — Block record** (…)`, **when** the export runs, **then** the fence
   appears once, verbatim, in its home pack's Text; the Claims list has one `CT-1.1` line with the lead
-  line and `(fence in Text)`; `CHECKLIST.md` lists it once with the lead line; and `MAP.md`'s Contracts
+  line and `(fence in Text)`; `CHECKLIST.md` lists its id once; and `MAP.md`'s Contracts
   index points to its pack. → *unit.* (§4.5, §4.8, §4.7 item 5, D12)
 - **AC-7.22** *(definitions)*: **Given** three terms used by a unit — one with a `definition`, one
   with aliases only, one with neither — **when** the pack renders, **then** the first shows its
@@ -458,6 +494,24 @@ character count of the source files recorded in `sources.jsonl`.
   (size is checked, G3-3 §6). *Rejected:* the fence in Claims too (the handover's first suggestion;
   owner to confirm).
 
+- **D15 — ⚑ The lists after Text carry ids, not restated text; the map says what Text is** (owner
+  2026-10-16, rel02 S15 options X1, X2, X3, X5). Measured on round 13c's case006 export (75 090
+  words, 5.3× the Markdown): Claims to implement 22 128 words and `CHECKLIST.md` 23 151 restated node
+  texts; the tag lines took 7 585. In the 4 export runs, 3 agents cut each pack back to its Text
+  with `sed`/`awk` and 2 deleted the tag lines; none read pack 19's claims list or the checklist past
+  line 40. *Cost:* a claim's exact words must be found in Text by its id on the tag line; a claim
+  that is a fragment of a sentence is read in its sentence. *Rejected:* dropping the lists (they
+  carry needs, decisions, cross-pack constraints and settled conflicts); dropping the tag lines (the
+  ids would no longer point into the text).
+- **D16 — ⚑ A unit over 20 000 characters of block text splits at its next heading** (owner
+  2026-10-16, rel02 S15 option X4; revises D2's "adaptive splitting … only if measured pack sizes
+  call for it" and answers Q2). Measured: case006's "Feature points" unit was 32 520 words, 43% of
+  the export, 2.3× the whole Markdown; in every export run it exceeded Claude Code's Bash inline
+  limit (≈ 30 000 characters) and its Read limit (25 000 tokens), so agents paged it or saved it to a
+  file. *Why 20 000:* a pack is its block text plus tags and lists, so the limit is set below the
+  30 000-character inline limit; it is a drafting choice, not a measurement. *Rejected:* a profile key
+  (no second spec set needs another value yet); splitting by size alone (would cut inside a section).
+
 ## 8. Open questions
 
 Answered by the owner 2026-09-30: **Q1** (global constraints) — once, in pack 00, as drafted (§4.5);
@@ -466,7 +520,7 @@ Answered by the owner 2026-09-30: **Q1** (global constraints) — once, in pack 
 - **Q1 — ✅ answered (once in pack 00). Global constraints: once in pack 00, or repeated in every pack?** Drafted as once (§4.5),
   because R18 has 32 global `C` nodes, and repeating them in 68 packs adds text an agent has already
   read. Revisit if the pilot shows global rules being missed. Blocks nothing.
-- **Q2 — ✅ answered (no limit). A pack size limit.** None is set, because a number now would be invented. Measure pack sizes
+- **Q2 — ✅ answered (no limit), revised 2026-10-16 by D16 (split above 20 000 characters). A pack size limit.** None is set, because a number now would be invented. Measure pack sizes
   on the R18 export (CT-7.5 `chars`), then decide whether oversized units split (D2 "adaptive").
   Blocks nothing. Sizes are still reported (CT-7.5 `chars`).
 - **Q3 — ✅ answered (option a).** Duplicates are excluded after a `real` adjudication (§4.3, D13); a
@@ -500,3 +554,6 @@ Answered by the owner 2026-09-30: **Q1** (global constraints) — once, in pack 
 | AC-7.22 | `tests/test_export_packs.py::test_ac_7_22_*` | `src/sdd_compiler/export/packs.py (`_terms`)` |
 | AC-7.23 | `tests/test_export_gate.py::test_ac_7_23_*` | `src/sdd_compiler/export/model.py (`_real_duplicates`)` |
 | AC-7.24 | `tests/test_export_packs.py::test_ac_7_24_*` | `src/sdd_compiler/export/packs.py (`_related`)` |
+| AC-7.25 | `tests/test_export_packs.py::test_ac_7_25_*` | `src/sdd_compiler/export/packs.py (`_claims`, `_tag_line`) · files.py (`checklist`)` |
+| AC-7.26 | `tests/test_export_units.py::test_ac_7_26_*` | `src/sdd_compiler/export/units.py (`_split`)` |
+| AC-7.27 | `tests/test_export_pipeline.py::test_ac_7_27_*` | `src/sdd_compiler/export/files.py (`map_md`, `HOW_TO_USE`)` |

@@ -1,0 +1,572 @@
+{
+ "13c/haiku-case006-export-1": {
+  "core": 419,
+  "core_total": 469,
+  "cost": 1.0044596000000001,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 425,
+  "total": 476,
+  "turns": 77
+ },
+ "13c/haiku-case006-export-2": {
+  "core": 460,
+  "core_total": 469,
+  "cost": 1.4731282000000003,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 467,
+  "total": 476,
+  "turns": 63
+ },
+ "13c/haiku-case006-markdown-1": {
+  "core": 446,
+  "core_total": 469,
+  "cost": 0.9022201600000003,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 452,
+  "total": 476,
+  "turns": 42
+ },
+ "13c/haiku-case006-markdown-2": {
+  "core": null,
+  "core_total": 469,
+  "cost": 0.11445404,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "neither",
+   "P3": "A",
+   "P4": "A",
+   "P6": "neither",
+   "P7": "A",
+   "R1": "error"
+  },
+  "tests": 0,
+  "total": 0,
+  "turns": 26
+ },
+ "13c/sonnet-case006-export-1": {
+  "core": 466,
+  "core_total": 469,
+  "cost": 2.1689489999999996,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 473,
+  "total": 476,
+  "turns": 30
+ },
+ "13c/sonnet-case006-export-2": {
+  "core": 463,
+  "core_total": 469,
+  "cost": 2.7664412,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 470,
+  "total": 476,
+  "turns": 31
+ },
+ "13c/sonnet-case006-markdown-1": {
+  "core": 463,
+  "core_total": 469,
+  "cost": 2.4009422,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 470,
+  "total": 476,
+  "turns": 26
+ },
+ "13c/sonnet-case006-markdown-2": {
+  "core": 462,
+  "core_total": 469,
+  "cost": 2.3553229,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 469,
+  "total": 476,
+  "turns": 24
+ },
+ "13d/haiku-case006-export-1": {
+  "core": 442,
+  "core_total": 469,
+  "cost": 0.995384,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "neither",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 447,
+  "total": 476,
+  "turns": 95
+ },
+ "13d/haiku-case006-export-2": {
+  "core": 409,
+  "core_total": 469,
+  "cost": 0.59199259,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": false
+   },
+   "P2": {
+    "A": true,
+    "B": false
+   },
+   "P3": {
+    "A": true,
+    "B": false
+   },
+   "P4": {
+    "A": true,
+    "B": false
+   },
+   "P6": {
+    "A": true,
+    "B": false
+   },
+   "P7": {
+    "A": true,
+    "B": false
+   },
+   "R1": {
+    "A": true,
+    "B": false
+   }
+  },
+  "notes_md": false,
+  "notes_mentions": {
+   "P1": false,
+   "P2": false,
+   "P3": false,
+   "P4": false,
+   "P6": false,
+   "P7": false,
+   "R1": false
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 415,
+  "total": 476,
+  "turns": 71
+ }
+}

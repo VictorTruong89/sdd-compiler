@@ -1,6 +1,6 @@
 """F7 §4.5 — the unit pack: Text with tags, then the lists.
 
-Covers AC-7.14, AC-7.15, AC-7.21, AC-7.22 and the rendering halves of AC-7.11 … AC-7.13.
+Covers AC-7.14, AC-7.15, AC-7.21, AC-7.22, AC-7.25 and the rendering halves of AC-7.11 … AC-7.13.
 Tier: unit.
 """
 from __future__ import annotations
@@ -41,7 +41,7 @@ def test_text_is_verbatim_with_tags_and_headings_re_emitted(tmp_path):
     blocks[1]["atomized_hash"] = None                                # pending
     nodes = [n("N-000001", "B-1", modality="MUST", layer="L1", label="D5")]
     text = pack_for(packs(tmp_path, blocks, nodes), A)
-    assert "A link MUST expire.\n↳ N-000001 requirement · MUST · L1 · D5\n" in text
+    assert "A link MUST expire.\n↳ N-000001 (D5)\n" in text
     assert "### Sub\n" in text and text.count("### Sub") == 1
     assert "Pending words.\n↳ no node (pending)\n" in text
     assert "No node here.\n↳ no node\n" in text
@@ -57,7 +57,7 @@ def test_ac_7_15_a_table_renders_once_with_one_tag_line_per_row(tmp_path):
     text = pack_for(packs(tmp_path, blocks, nodes), A)
     assert text.count(head) == 1
     assert "| ID | What |\n| --- | --- |\n| 1 | one |\n| 2 | two |\n| 3 | three |\n" in text
-    assert "↳ row 1: no node\n↳ row 2: N-000001 requirement · MUST · L3\n↳ row 3: no node\n" in text
+    assert "↳ row 1: no node\n↳ row 2: N-000001\n↳ row 3: no node\n" in text
     assert "```json\n{\"a\": 1}\n```\n↳ no node\n" in text
 
 
@@ -70,9 +70,9 @@ def test_claims_list_needs_with_pack_numbers_and_decisions(tmp_path):
     links = [link("N-000001", "depends_on", "N-000002")]
     result = packs(tmp_path, blocks, nodes, links=links)
     a = pack_for(result, A)
-    assert "- [N-000001] requirement · — · L3 — First claim.\n  needs: N-000002 (pack 01)\n" in a
+    assert "- [N-000001] requirement · — · L3 · needs N-000002 (pack 01)\n" in a
     bpack = pack_for(result, B)
-    assert "- [N-000002] decision · MUST · L3 — Chosen one.\n  needs: none\n" in bpack
+    assert "- [N-000002] decision · MUST · L3\n  chosen: use X\n" in bpack
     assert "  chosen: use X\n  rejected: Y — slow\n" in bpack
 
 
@@ -170,3 +170,23 @@ def test_ac_7_12_settled_unsettled_and_dismissed_contradictions(tmp_path):
             assert "Settled: CF-000001" in section
             assert "UNSETTLED: CF-000003" in section and "CF-000002" not in section
             assert 'N-000002 "quote of N-000002"' in section and "rationale: the rationale" in section
+
+
+def test_ac_7_25_lists_carry_ids_not_text(tmp_path):
+    blocks = [b("B-1", A, ("T", "S"), 1, "One. Two. Three. Four."), b("B-2", A, ("T", "S"), 3, "Pick X."),
+              b("B-3", B, ("T", "S"), 1, "Base rule.")]
+    four = [n(f"N-00000{i}", "B-1", text=w) for i, w in zip(range(1, 5), ("One.", "Two.", "Three.", "Four."))]
+    nodes = [*four, n("N-000005", "B-2", text="Pick X.", kind="decision", label="D5",
+               decision={"chosen": "X", "rejected": [{"option": "Y", "reason": "slow"}], "affects": []}),
+             n("N-000006", "B-3", text="Base rule.")]
+    links = [link("N-000001", "depends_on", "N-000006")]
+    result = packs(tmp_path, blocks, nodes, links=links)
+    a = pack_for(result, A)
+    claims = a.split("## Claims to implement")[1].split("## Acceptance criteria")[0]
+    for word in ("One.", "Two.", "Three.", "Four.", "Pick X."):
+        assert word not in claims
+    assert "- [N-000001] requirement · MUST · L3 · needs N-000006 (pack 01)\n" in claims
+    assert "- [N-000002] requirement · MUST · L3\n" in claims
+    assert "- [N-000005] decision · MUST · L3 · D5\n" in claims
+    assert "One. Two. Three. Four.\n↳ N-000001–N-000004\n" in a
+    assert "Pick X.\n↳ N-000005 (D5)\n" in a

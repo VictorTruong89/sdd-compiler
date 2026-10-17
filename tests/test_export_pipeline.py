@@ -1,6 +1,6 @@
 """F7 §4.2, §4.7–§4.9, CT-7.5, CT-7.6 — `sddc export` end to end.
 
-Covers AC-7.1 … AC-7.4, AC-7.8 … AC-7.11, AC-7.16 … AC-7.20. Tier: as each test says.
+Covers AC-7.1 … AC-7.4, AC-7.8 … AC-7.11, AC-7.16 … AC-7.20, AC-7.25 (checklist part), AC-7.27. Tier: as each test says.
 """
 from __future__ import annotations
 
@@ -67,7 +67,7 @@ def test_ac_7_8_traceability_is_in_no_file_and_is_counted(tmp_path):
 def test_ac_7_9_the_checklist_has_every_kept_node_once_under_its_pack(tmp_path):
     root, result, files = export_fixture(tmp_path)
     graph = load_graph(root / ".sdd")
-    items = re.findall(r"^- \[ \] (\S+) ", files["CHECKLIST.md"], re.M)
+    items = re.findall(r"^- \[ \] (\S+)", files["CHECKLIST.md"], re.M)
     assert sorted(items) == sorted(set(graph.nodes) - {"N-000010"})   # N-000010 is the excluded twin
     assert len(items) == len(set(items)) == result.meta["counts"]["checklist_items"]
     section = files["CHECKLIST.md"].split("## Pack 01")[1].split("## Pack")[0]
@@ -251,7 +251,7 @@ def test_map_reads_the_foundation_first_and_indexes_contracts_and_decisions(tmp_
     assert "packs/00-foundation.md" in text.split("## Read first")[1].split("##")[0]
     assert "- CT-1.1 → pack 03" in text and "code block B-06" in text
     row = next(line for line in text.splitlines() if line.startswith("| 05 |"))
-    assert row.endswith("| 01 |")                                      # F2's goal needs F1's
+    assert row.split("|")[-3].strip() == "01"                          # F2's goal needs F1's
     assert "Mark code with `# spec: <id>`" in text
 
 
@@ -273,7 +273,31 @@ def test_ac_7_20_the_planted_repository_compiles_and_exports(tmp_path):
     blocks = [json.loads(x) for x in (repo / ".sdd/blocks.jsonl").read_text().splitlines()]
     packs = "\n".join(t for k, t in tree(result.out).items() if k.startswith("packs/"))
     assert all(x["text"] in packs for x in blocks)                       # AC-7.1 on real data
-    checklist = re.findall(r"^- \[ \] (\S+) ", (result.out / "CHECKLIST.md").read_text(), re.M)
+    checklist = re.findall(r"^- \[ \] (\S+)", (result.out / "CHECKLIST.md").read_text(), re.M)
     assert sorted(checklist) == sorted(graph.nodes)                      # AC-7.9
     assert result.meta["counts"]["blocks_pending"] == 4                  # the four AC blocks that failed
     assert "no node (pending)" in packs and "pending" in (result.out / "MAP.md").read_text().split("## Read first")[0]
+
+
+# -- AC-7.25 (checklist), AC-7.27 ---------------------------------------------------------------
+
+def test_ac_7_25_checklist_items_are_ids_without_text(tmp_path):
+    root, _, files = export_fixture(tmp_path)
+    graph = load_graph(root / ".sdd")
+    for line in files["CHECKLIST.md"].splitlines():
+        if line.startswith("- [ ] "):
+            node_id, _, rest = line[6:].partition(" · ")
+            label = graph.nodes[node_id]["label"]
+            assert rest == (label if label and label != node_id else ""), line
+
+
+def test_ac_7_27_map_gives_each_pack_its_word_count_and_says_text_is_the_spec(tmp_path):
+    _, _, files = export_fixture(tmp_path)
+    rows = [line for line in files["MAP.md"].split("## Units in build order")[1]
+            .split("## Needs")[0].splitlines() if line.startswith("| ") and "`" in line]
+    assert rows
+    for row in rows:
+        cells = [c.strip() for c in row.strip("|").split("|")]
+        name = cells[1].strip("`")
+        assert cells[-1] == str(len(files[f"packs/{name}"].split())), row
+    assert "`## Text` is the specification" in files["MAP.md"]

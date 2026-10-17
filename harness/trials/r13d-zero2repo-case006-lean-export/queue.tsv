@@ -1,0 +1,3 @@
+run_id	task	model	status	job	attempts	last_message
+haiku-case006-export-1	work/tasks/case006-export	anthropic/claude-haiku-5-5	done	r13d-zero2repo-case006-lean-export-haiku-case006-export-1	1	
+haiku-case006-export-2	work/tasks/case006-export	anthropic/claude-haiku-5-5	done	r13d-zero2repo-case006-lean-export-haiku-case006-export-2	1	

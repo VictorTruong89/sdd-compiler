@@ -1,0 +1,57 @@
+2026-10-16T15:13:18-04:00	start trial r14-zero2repo-case006-conflicts, claude 2.1.296, budget 10, one=0
+2026-10-16T15:13:18-04:00	run r2-haiku-markdown-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown
+2026-10-16T15:32:43-04:00	harbor r2-haiku-markdown-1 exit 0 after 1165 s
+2026-10-16T15:32:43-04:00	done r2-haiku-markdown-1 turns 54 cost_usd_est 0.6249287099999999 reward {"reward": 0.9012605042016807, "tests_passed": 429, "tests_total": 476, "tests_failed": 47, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T15:32:43-04:00	usage five_hour 0.22 (resets 2026-10-16T19:20:00-04:00) seven_day 0.75 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T15:34:43-04:00	run r2-haiku-export-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-unsettled
+2026-10-16T15:56:09-04:00	harbor r2-haiku-export-1 exit 0 after 1286 s
+2026-10-16T15:56:10-04:00	done r2-haiku-export-1 turns 43 cost_usd_est 0.52717408 reward {"reward": 0.9117647058823529, "tests_passed": 434, "tests_total": 476, "tests_failed": 42, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T15:56:10-04:00	usage five_hour 0.27 (resets 2026-10-16T19:20:00-04:00) seven_day 0.76 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T15:58:10-04:00	run r2-haiku-markdown-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown
+2026-10-16T16:16:05-04:00	harbor r2-haiku-markdown-2 exit 0 after 1075 s
+2026-10-16T16:16:05-04:00	done r2-haiku-markdown-2 turns 57 cost_usd_est 1.3020310400000004 reward {"reward": 0.9726890756302521, "tests_passed": 463, "tests_total": 476, "tests_failed": 13, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T16:16:05-04:00	usage five_hour 0.37 (resets 2026-10-16T19:20:00-04:00) seven_day 0.77 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T16:18:05-04:00	run r2-haiku-export-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-unsettled
+2026-10-16T16:35:32-04:00	harbor r2-haiku-export-2 exit 0 after 1047 s
+2026-10-16T16:35:32-04:00	done r2-haiku-export-2 turns 60 cost_usd_est 1.2927143800000005 reward {"reward": 0.9852941176470589, "tests_passed": 469, "tests_total": 476, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T16:35:32-04:00	usage five_hour 0.46 (resets 2026-10-16T19:20:00-04:00) seven_day 0.77 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T16:37:32-04:00	run r2-haiku-markdown-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown
+2026-10-16T16:47:50-04:00	harbor r2-haiku-markdown-3 exit 0 after 618 s
+2026-10-16T16:47:50-04:00	done r2-haiku-markdown-3 turns 16 cost_usd_est 0.08520189 reward {"reward": 0.0, "tests_passed": 0, "tests_total": 0, "tests_failed": 0, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T16:47:50-04:00	usage five_hour 0.47 (resets 2026-10-16T19:20:00-04:00) seven_day 0.78 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T16:49:50-04:00	run r2-haiku-export-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-unsettled
+2026-10-16T17:07:40-04:00	harbor r2-haiku-export-3 exit 0 after 1070 s
+2026-10-16T17:07:40-04:00	done r2-haiku-export-3 turns 90 cost_usd_est 1.09344241 reward {"reward": 0.8466386554621849, "tests_passed": 403, "tests_total": 476, "tests_failed": 73, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T17:07:40-04:00	usage five_hour 0.58 (resets 2026-10-16T19:20:00-04:00) seven_day 0.78 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T17:09:40-04:00	run r3-haiku-markdown-decisions-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown-decisions
+2026-10-16T17:28:56-04:00	harbor r3-haiku-markdown-decisions-1 exit 0 after 1156 s
+2026-10-16T17:28:56-04:00	done r3-haiku-markdown-decisions-1 turns 48 cost_usd_est 0.53463576 reward {"reward": 0.8991596638655462, "tests_passed": 428, "tests_total": 476, "tests_failed": 48, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T17:28:56-04:00	usage five_hour 0.62 (resets 2026-10-16T19:20:00-04:00) seven_day 0.79 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T17:30:56-04:00	run r3-haiku-export-settled-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-settled
+2026-10-16T17:47:14-04:00	harbor r3-haiku-export-settled-1 exit 0 after 978 s
+2026-10-16T17:47:14-04:00	done r3-haiku-export-settled-1 turns 39 cost_usd_est 0.7982400200000002 reward {"reward": 0.9747899159663865, "tests_passed": 464, "tests_total": 476, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T17:47:14-04:00	usage five_hour 0.69 (resets 2026-10-16T19:20:00-04:00) seven_day 0.79 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T17:49:14-04:00	run r3-haiku-markdown-decisions-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown-decisions
+2026-10-16T18:05:40-04:00	harbor r3-haiku-markdown-decisions-2 exit 0 after 986 s
+2026-10-16T18:05:40-04:00	done r3-haiku-markdown-decisions-2 turns 56 cost_usd_est 0.9534320799999999 reward {"reward": 0.9558823529411765, "tests_passed": 455, "tests_total": 476, "tests_failed": 21, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T18:05:41-04:00	usage five_hour 0.78 (resets 2026-10-16T19:20:00-04:00) seven_day 0.8 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T18:07:41-04:00	run r3-haiku-export-settled-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-settled
+2026-10-16T18:28:56-04:00	harbor r3-haiku-export-settled-2 exit 0 after 1275 s
+2026-10-16T18:28:56-04:00	done r3-haiku-export-settled-2 turns 80 cost_usd_est 2.02387264 reward {"reward": 0.9684873949579832, "tests_passed": 461, "tests_total": 476, "tests_failed": 15, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T18:28:56-04:00	usage five_hour 0.93 (resets 2026-10-16T19:20:00-04:00) seven_day 0.81 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T18:28:56-04:00	limit usage near the limit; pausing new runs until 2026-10-16T19:20:00-04:00 + 5 min
+2026-10-16T19:27:57-04:00	run r3-haiku-markdown-decisions-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown-decisions
+2026-10-16T19:47:12-04:00	harbor r3-haiku-markdown-decisions-3 exit 0 after 1155 s
+2026-10-16T19:47:12-04:00	done r3-haiku-markdown-decisions-3 turns 58 cost_usd_est 0.5810483599999999 reward {"reward": 0.8676470588235294, "tests_passed": 413, "tests_total": 476, "tests_failed": 63, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T19:47:12-04:00	usage five_hour 0.05 (resets 2026-10-17T00:20:00-04:00) seven_day 0.82 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T19:49:12-04:00	run r3-haiku-export-settled-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-settled
+2026-10-16T20:06:22-04:00	harbor r3-haiku-export-settled-3 exit 0 after 1030 s
+2026-10-16T20:06:22-04:00	done r3-haiku-export-settled-3 turns 44 cost_usd_est 1.0370165499999997 reward {"reward": 0.9495798319327731, "tests_passed": 452, "tests_total": 476, "tests_failed": 24, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T20:06:22-04:00	usage five_hour 0.13 (resets 2026-10-17T00:20:00-04:00) seven_day 0.82 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T20:08:22-04:00	end no pending or limited row left
+2026-10-16T20:10:23-04:00	start trial r14-zero2repo-case006-conflicts, claude 2.1.296, budget 10, one=0
+2026-10-16T20:10:23-04:00	run r2-haiku-markdown-4 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown
+2026-10-16T20:30:03-04:00	harbor r2-haiku-markdown-4 exit 0 after 1180 s
+2026-10-16T20:30:03-04:00	done r2-haiku-markdown-4 turns 73 cost_usd_est 0.6574510600000001 reward {"reward": 0.9537815126050421, "tests_passed": 454, "tests_total": 476, "tests_failed": 22, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T20:30:03-04:00	usage five_hour 0.25 (resets 2026-10-17T00:20:00-04:00) seven_day 0.84 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T20:32:03-04:00	end no pending or limited row left

@@ -512,7 +512,7 @@ html{scroll-behavior:smooth;scroll-padding-top:4rem}
       <tr><td>sonnet-markdown-2</td><td>24</td><td>23</td><td>5,484</td><td>37,327</td><td>181,105</td><td>2,607,209</td><td>176,520</td><td>138,843</td><td>2.3553</td></tr>
     </tbody>
   </table></div>
-  <p class="cm" style="font-size:var(--fs-sm)">Uncached input was 38–126 tokens per run. The cost column is <code>total_cost_usd</code>; the trajectory's own <code>final_metrics</code> agree (for example haiku-export-1: 9,164,878 cached, $1.00446). Per-request context series were computed and are reproducible with the script described in the brainstorm session S15.</p>
+  <p class="cm" style="font-size:var(--fs-sm)">Uncached input was 38–126 tokens per run. The cost column is <code>total_cost_usd</code>; the trajectory's own <code>final_metrics</code> agree (for example haiku-export-1: 9,164,878 cached, $1.00446). Per-run figures can be reproduced with <code>harness/trials/r13d-zero2repo-case006-lean-export/notes/reading_trace.py</code> (written after this lecture; it reports the context entering the largest-output request, which is within 1k tokens of the "after spec reading" column here).</p>
 
   <h4>What the numbers say</h4>
   <ul>

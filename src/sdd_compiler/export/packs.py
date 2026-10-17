@@ -64,7 +64,7 @@ def _spec_slug(source: str) -> str:
 
 
 def _section_slug(headings: tuple[str, ...]) -> str:
-    heading = headings[1] if len(headings) > 1 else headings[0] if headings else "root"
+    heading = headings[-1] if headings else "root"                  # CT-7.1: the key's last heading
     return _slug(heading, 40) or "root"
 
 
@@ -96,13 +96,35 @@ def shown(model: Model, node: dict[str, Any]) -> str:
     return node["text"].replace("\n", "\n    ")
 
 
-def tag(node: dict[str, Any]) -> str:
-    parts = [f"{node['id']} {node['kind']}", node["canonical"]["modality"] or "—"]
-    if node["layer"]:
-        parts.append(node["layer"])
-    if node["label"] and node["label"] != node["id"]:
-        parts.append(node["label"])
-    return " · ".join(parts)
+_RUN_ID = re.compile(r"^N-(\d+)$")
+
+
+def _label(node: dict[str, Any]) -> str | None:
+    return node["label"] if node["label"] and node["label"] != node["id"] else None
+
+
+def tag(nodes: list[dict[str, Any]]) -> str:
+    """D15 — ids only, a label in parentheses, three or more consecutive unlabelled `N-` ids as a range."""
+    out: list[str] = []
+    run: list[str] = []
+
+    def flush() -> None:
+        out.extend([f"{run[0]}–{run[-1]}"] if len(run) >= 3 else run)
+        run.clear()
+
+    for node in nodes:
+        match = _RUN_ID.match(node["id"])
+        if _label(node) or not match:
+            flush()
+            out.append(f"{node['id']} ({_label(node)})" if _label(node) else node["id"])
+            continue
+        previous = _RUN_ID.match(run[-1]) if run else None
+        if previous and not (int(match.group(1)) == int(previous.group(1)) + 1
+                             and len(match.group(1)) == len(previous.group(1))):
+            flush()
+        run.append(node["id"])
+    flush()
+    return ", ".join(out)
 
 
 def _test_name(node: dict[str, Any]) -> str:
@@ -223,7 +245,7 @@ def _text(ctx: _Context, unit: Unit) -> str:
 
 def _tag_line(model: Model, block: dict[str, Any], nodes: list[dict[str, Any]]) -> str:
     if nodes:
-        return " ; ".join(tag(n) for n in nodes)
+        return tag(nodes)
     profile = model.profile
     pending = pending_status(block, profile.include_code_blocks, profile.skip_headings,
                              profile.contract_languages)
@@ -240,12 +262,14 @@ def _claims(ctx: _Context, nodes: list[dict[str, Any]]) -> str:
     for node in nodes:
         if node["kind"] not in CLAIM_KINDS:
             continue
-        label = "contract" if is_contract(model, node) else node["kind"]
-        modality = "" if label == "contract" else f"{node['canonical']['modality'] or '—'} · "
-        out.append(f"- [{node['id']}] {label} · {modality}{node['layer'] or '—'} — {shown(model, node)}")
         needs = [f"{t}" + (f" (pack {ctx.numbers[model.home[t]]})" if model.home.get(t) not in
                            (None, model.home[node['id']]) else "") for t in sorted(set(targets.get(node["id"], [])))]
-        out.append(f"  needs: {', '.join(needs) if needs else 'none'}")
+        tail = (f" · {_label(node)}" if _label(node) else "") + (f" · needs {', '.join(needs)}" if needs else "")
+        if is_contract(model, node):                                 # D12: the lead line points at the fence
+            out.append(f"- [{node['id']}] contract · {node['layer'] or '—'}{tail} — {shown(model, node)}")
+        else:                                                        # D15: no node text; it is in Text
+            out.append(f"- [{node['id']}] {node['kind']} · {node['canonical']['modality'] or '—'} · "
+                       f"{node['layer'] or '—'}{tail}")
         if node["kind"] == "decision" and node["decision"]:
             out.append(f"  chosen: {node['decision']['chosen']}")
             rejected = "; ".join(f"{r['option']} — {r['reason']}" for r in node["decision"]["rejected"])

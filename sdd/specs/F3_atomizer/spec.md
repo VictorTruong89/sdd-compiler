@@ -10,6 +10,8 @@
 > (old D4). See D8 below.
 > **Depends on:** F1 (pending blocks, CT-1.5) · F2 (node, term, link contracts; placement).
 > **⚑ Drafting choices** are marked in §7.
+> **Amended:** 2026-10-16 (rel02 D26): D41, an example forms a verification node in code (§4.5 step 3a,
+> AC-3.40); D42, an `unchanged` node takes its block's current annotations (§4.6, AC-3.41).
 
 ---
 
@@ -132,6 +134,15 @@ For each validated atom:
    - `unsure` → a `proposed` term, a `term_unsure` review item, and ambiguity `pending_review` on the
      node until reviewed (D16).
 3. Compute quantities, `keywords`, spans and lines.
+3a. **Examples (D41, F2 D22).** Each `example` sentence located in a block that formed at least one
+   claim becomes one more atom, formed by code with **no model call**: kind `verification`, its text the
+   example's quote, its span located in the block. It verifies the claim whose first span starts
+   nearest **before** it (the block's first claim when the example comes first): its `verifies_text` is
+   that claim's id, resolved as any citation (F2 D13), so it takes that claim's family (F2 D18). Its
+   canonical is the claim's subject with the example as response, no modality, no state, trigger or
+   scope, no quantities; it has no terms; every layer answer is `no` (a `V` node ignores them, F2
+   AC-2.4); its `judgments` are the claim's. It is aligned with the block's other atoms (§4.6). An
+   example in a block with no claim stays an annotation.
 4. Call F2 placement (layer, family, components).
 5. Create `uses_term` links (provenance `code`).
 6. Set `last_checked_run: null`. Status derives to `unchecked` or `ambiguous` (F2).
@@ -176,7 +187,7 @@ When a `changed` block is re-atomized, new atoms are aligned to the block's exis
 
 | Alignment | Result |
 |---|---|
-| `unchanged` | Same id; record untouched except `source.lines` |
+| `unchanged` | Same id; record untouched except `source.lines` and `annotations`, which are the block's current ones (D42) |
 | `edited` | Same id; fields replaced; every judged link touching it gains a `stale_reasons` entry |
 | `split` | Old id kept by the best-overlapping atom; others get new ids |
 | `merged` | Best-overlapping old id kept; other old nodes deleted (F2 §4.9) |
@@ -424,6 +435,15 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
 
 ## 7. Decisions
 
+- **AC-3.40** *(an example forms a verification node, no model call; D41)* — **Given** a Q-ATOM answer
+  for one block with two requirement atoms and an `example` sentence between them, **when** the block is
+  formed with a backend that fails on any call after Q-ATOM and Q-DESC, **then** three nodes are formed,
+  the third of kind `verification` with the example's text, `verifies` = the first requirement's id, and
+  no annotation of role `example` remains on any node; **given** the example first, **then** it verifies
+  the first requirement. → *unit.*
+- **AC-3.41** *(an unchanged node refreshes its annotations; D42)* — **Given** a compiled block whose
+  node N carries no annotation, **when** a rationale sentence is added to the block and it is re-atomized
+  with N's text unchanged, **then** N keeps its id and record and carries the new rationale. → *unit.*
 - **D1 — Headless Claude Code is the default backend** (rel01 D7). *Rejected:* prompt hooks — they
   return only `ok`/`reason`.
 - **D2 — Fake backend for tests.** *Rejected:* live model calls in tests — cost, non-determinism.
@@ -620,6 +640,18 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   duplicates). What the judge makes of them is **to be measured** by a live run before any suppression
   rule is added.
 
+- **D41 — ⚑ An example forms a verification node in code** (rel02 round 14, 2026-10-16; F2 D22).
+  Q-ATOM already labels example sentences; code turns each into a `V` atom verifying the claim before
+  it. *Why no Q-DESC call:* a describe failure fails the whole block (AC-3.16), and an example needs
+  nothing a model would add: its subject is its claim's, and a `V` node ignores layer answers. *Why the
+  claim before it:* an example follows the rule it shows ("…in uppercase; for example, …"), as round 14's
+  planted one does; not measured beyond it. ⚠ An example that illustrates a later claim is linked to
+  the wrong one; the pair is still proposed by S7. Only examples inside a block's prose are covered: a
+  worked example written as a table is rows, and rows are claims already (D34).
+- **D42 — An `unchanged` node takes its block's current annotations** (rel02 round 14, 2026-10-16, a
+  defect). §4.6 kept an `unchanged` node's record whole, so a rationale or example added to the block
+  next to an unchanged claim was dropped: in round 14 the planted example sat beside an unchanged
+  claim and was lost. Annotations belong to the block, not to the claim's text, so they are refreshed.
 - **D38 — ⚑ A definition is attached by code, to the term it opens with** (I-92, closing I-59's open
   half, 2026-09-27). Q-ATOM has always labelled `definition` sentences and F2 §4.1 always said they
   become term entries, but nothing wrote them: on R18, 68 definition sentences were labelled and **0 of
@@ -678,3 +710,5 @@ change of alias is visible.*
 | AC-3.39 · D40 | `tests/test_atomize_contracts.py::test_ac_3_39_*` | `src/sdd_compiler/atomize/describe.py` · `pipeline.py` · `src/sdd_compiler/report.py` |
 | AC-3.35 … AC-3.38 · D39 · §4.5a · F2 AC-2.29, D21 | `tests/test_atomize_contracts.py` · `tests/test_compile.py::test_ac_3_35_*`, `::test_ac_3_38_*`, `::test_ac_2_29_*` | `src/sdd_compiler/atomize/contracts.py` · `describe.py` · `pipeline.py` · `src/sdd_compiler/model/ids.py` |
 | AC-3.31 … AC-3.34 · D38 · §4.6 skipped sections | `tests/test_atomize_definitions.py` · `tests/test_compile.py::test_ac_3_31_*`, `::test_ac_3_33_*`, `::test_ac_3_34_*` | `src/sdd_compiler/atomize/definitions.py` · `qatom.py` · `src/sdd_compiler/pipeline.py` · `report.py` |
+| AC-3.40 · D41 · §4.5 step 3a | `tests/test_atomize_pipeline.py::test_ac_3_40_*` (2) | `src/sdd_compiler/atomize/forming.py::example_pieces` · `pipeline.py` |
+| AC-3.41 · D42 · §4.6 | `tests/test_compile.py::test_ac_3_41_an_unchanged_node_takes_its_blocks_current_annotations` | `src/sdd_compiler/atomize/forming.py::NodeDraft.record` |

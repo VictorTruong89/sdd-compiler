@@ -147,4 +147,47 @@ def test_ct_5_1_a_candidate_record_carries_what_the_contract_says():
 def test_ct_5_3_the_counts_a_run_records():
     result = propose(graph_of([node("N-000001"), node("N-000002")]), terms=TERMS, settings=SETTINGS)
     assert sorted(result.counts) == ["candidates_proposed", "dropped_below_min_score",
-                                     "dropped_by_cap", "nodes_checked", "pairs_capped", "replayed"]
+                                     "dropped_by_cap", "nodes_checked", "pairs_capped",
+                                     "pairs_from_unchecked_end", "replayed"]
+
+
+# -- D14 either end (AC-5.18) ---------------------------------------------------------------
+
+CAP_TWO = RetrievalSettings(**{**DEFAULT_RETRIEVAL, "max_pairs_per_node": 2})
+
+
+def either_end_graph(b_status):
+    """A (checked) has three same-block neighbours that outrank B; B's only candidate is A.
+    Round 14's shape: the old "defaults to 80 columns" ranked the new "100 columns" 5th of 9, the new
+    node ranked the old one 54th of 80, and only the new node was checked."""
+    a = node("N-000009", family="term:a", block="B-1", keywords=["alpha", "beta"])
+    xs = [node("N-00000%d" % n, family="term:a", block="B-1", status="validated") for n in (1, 2, 3)]
+    b = node("N-000005", family="term:b", block="B-2", keywords=["alpha", "beta"], status=b_status)
+    return graph_of([a, *xs, b])
+
+
+def test_ac_5_18_a_pair_is_proposed_from_the_unchecked_end():
+    result = propose(either_end_graph("validated"), terms=TERMS, settings=CAP_TWO)
+    pairs = {(c["a"], c["b"]) for c in result.pairs}
+    assert ("N-000005", "N-000009") in pairs                    # within B's cap, beyond A's
+    assert ("N-000001", "N-000009") in pairs and ("N-000002", "N-000009") in pairs
+    assert ("N-000003", "N-000009") not in pairs                # A is 3rd in N-000003's own ranking
+    assert result.counts["pairs_from_unchecked_end"] == 1
+    assert result.checked == ["N-000009"]                       # B is still not checked
+    counts = result.counts                                      # AC-5.16's identity is untouched
+    assert counts["candidates_proposed"] == (counts["pairs_capped"] + counts["dropped_below_min_score"]
+                                             + counts["dropped_by_cap"])
+
+
+def test_ac_5_18_with_both_ends_checked_the_same_pair_comes_from_the_checked_end():
+    result = propose(either_end_graph("unchecked"), terms=TERMS, settings=CAP_TWO)
+    assert ("N-000005", "N-000009") in {(c["a"], c["b"]) for c in result.pairs}
+    assert result.counts["pairs_from_unchecked_end"] == 0
+
+
+def test_ac_5_18_a_settled_pair_is_not_proposed_again_from_the_unchecked_end():
+    graph = either_end_graph("validated")
+    settled = pair_key(graph["N-000005"], graph["N-000009"])
+    result = propose(graph, terms=TERMS, settings=CAP_TWO, judged=[settled])
+    assert ("N-000005", "N-000009") not in {(c["a"], c["b"]) for c in result.pairs}
+    assert result.counts["pairs_from_unchecked_end"] == 0

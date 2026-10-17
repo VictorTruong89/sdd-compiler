@@ -7,11 +7,10 @@ blocks 1 · nodes 1 (requirement 1) · AC labels: none
 ## 1. Goal
 
 An archive MUST be kept 30 days.
-↳ N-000009 requirement · MUST · L1
+↳ N-000009
 
 ## Claims to implement
-- [N-000009] requirement · MUST · L1 — An archive MUST be kept 30 days.
-  needs: N-000002 (pack 01)
+- [N-000009] requirement · MUST · L1 · needs N-000002 (pack 01)
 
 ## Acceptance criteria
 None.

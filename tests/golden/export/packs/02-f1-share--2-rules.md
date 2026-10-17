@@ -11,11 +11,10 @@ blocks 2 · nodes 1 (requirement 1) · AC labels: none
 | R1 | one |
 | R2 | two |
 ↳ row 1: no node
-↳ row 2: N-000003 requirement · MUST · L5
+↳ row 2: N-000003
 
 ## Claims to implement
-- [N-000003] requirement · MUST · L5 — R2: two.
-  needs: none
+- [N-000003] requirement · MUST · L5
 
 ## Acceptance criteria
 None.

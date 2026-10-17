@@ -362,3 +362,106 @@ and rerun $4.37, compiles $11.16 (386, 853 and 939 Haiku calls).
 **What this does not cover.** n = 2 per cell; a time-of-day difference between formats cannot be
 excluded (the Markdown runs went first); case010's 20 unscorable tests are not rescored with the model
 files installed (possible without a model call, from the saved code); famous upstreams; Python only.
+
+## R5. Planted conflicts in a large specification (Zero2Repo case006) — draft, round 14 (2026-10-16)
+
+### Why this round
+
+Rounds 13–13d showed no test-level effect of the export on carefully written specifications, where
+every contradiction the compiler raised was false. The product's claim is about specifications that
+disagree with themselves. No public benchmark has such specifications (rel02 D13), so this round plants
+conflicts, by design and with an answer key, into one large public case: Zero2Repo case006 (14 138
+words, 476 hidden tests; the `click` library renamed Optlyn). Record:
+`harness/trials/r14-zero2repo-case006-conflicts/` (`TRIAL.md`, `ANSWER_KEY.md`); design in
+`rel02_brainstorm.md` S17.
+
+### How the conflicts were built
+
+**Designed, not random.** A random edit can fall where no agent builds working code, so a miss cannot be
+told from an unbuilt feature; it can change any number of hidden tests; it is usually a plain value
+swap, so the kinds a compiler finds hard are missing; and it cannot be balanced over distance and kind.
+Each planted item was therefore chosen by five rules and written down, with both sides, before any
+compile or agent run:
+
+1. **Built in every past run.** The hidden tests closest to the behaviour passed in all, or all but one,
+   of the 9 earlier case006 runs, so every agent writes the code the conflict touches.
+2. **Both sides observable.** Each side gives a different result seen from outside the code (a stream,
+   a value, a file, a help line), so a probe can say which side a build took.
+3. **Narrow footprint, measured.** At most 3 hidden tests may change result between the two sides.
+   Measured without opening the tests: one good earlier build (473 / 476) was patched to each side and
+   the hidden tests run on every copy through Harbor's oracle agent (no model). The tests that flip are
+   the item's footprint. Two candidates failed this rule and were dropped (7 tests; 238 tests).
+4. **Side A is the original library's behaviour**, which the hidden tests check and the model may
+   remember. A build on side A is therefore never taken as evidence that the agent noticed anything,
+   and every ruling goes to side B.
+5. **Real drift.** One sentence or table row in one place, in the specification's own voice, with no
+   marker; the other place keeps side A.
+
+Seven items were kept, spread over distance and kind: two in the same paragraph or bullet (a direct
+control, and an example that contradicts its rule), three across the two documents (prose against a
+table, and a precedence order), and two far apart in one document (a rule inside a glossary
+definition, and a numeric default). Footprints: 0–3 tests each, 7 tests in all.
+
+### How the builds were tested
+
+- **The benchmark's tests and judge are unchanged.** A build that follows a ruling to side B fails that
+  item's footprint tests by design, so builds are compared on the **core score**: the 469 tests
+  outside the footprints. Earlier rounds were rescored on the same 469 from their saved reports.
+- **New tests outside the reward:** one black-box probe per item, written from the answer key and the
+  interface document only, run afterwards on each build's saved code in a container with no network.
+  Checked before use: the base build reads side A on every item, and each patched copy reads side B on
+  its own item only.
+- **Exposure:** one phrase per side, unique in the specification; a run is exposed to a side when a
+  tool result in its transcript contains the phrase. This separates "never read" from "read, not
+  noticed", the risk that a planted conflict is missed by chance.
+- **Stated detection:** one instruction line, the same in every cell, asks the agent to list each
+  disagreement it finds and the choice it made in `NOTES.md`. The notes are read item by item.
+- **Compiler recall:** which planted items the compile reports, against the answer key.
+
+### Design of the runs
+
+The compile reused the finished store of the earlier round: the 7 changed blocks were re-ingested and
+compiled (35 calls, $0.124 est.). Haiku, Claude Code 2.1.296 in Harbor, n = 3 per cell. Round 2
+(unsettled): Markdown against the export with the reported planted conflicts left open (`UNSETTLED`,
+both quotes in both packs). Round 3 (settled): the owner's rulings, all to side B, given for the 4
+reported conflicts; the settled export against the Markdown with the same rulings as a plain
+`DECISIONS.md`. One Markdown run stopped early on a misread budget message and was replaced.
+
+### Results
+
+| Cell | Core of 469, mean (range) | Noticed: the 4 reported | Noticed: the 3 not reported | Rulings built |
+|---|---|---|---|---|
+| Markdown | 443.0 (424–457) | 7 / 12 | 6 / 9 | — |
+| Export, unsettled | 431.0 (400–462) | 12 / 12 | 7 / 9 | — |
+| Markdown + `DECISIONS.md` | 428.3 (410–452) | ruled | 5 / 9 | 11 / 12 |
+| Export, settled | 455.7 (450–460) | ruled | 9 / 9 | 12 / 12 |
+
+Compiler recall: 4 of 7 (missed the glossary rule, the far-apart default and the example). Every run
+read both sides of every item. Cost: $11.64 est. (13 runs and the compile).
+
+### Findings
+
+- **The export made Haiku report more of the conflicts it lists** (12 of 12 against 7 of 12 from the
+  Markdown); a precedence conflict across the two documents was reported by no Markdown run and by
+  every export run. On conflicts the compiler did not list, the formats were close when unsettled.
+- **Reporting a conflict did not change the build.** Unsettled, 40 of 42 item-runs took the original
+  library's side in both formats, with reasons such as "the more specific rule".
+- **Rulings reached the code from both carriers** (12 of 12, 11 of 12); the one miss was a ruling
+  stated in the notes and not built, caught by the probes only.
+- **No effect on the rest of the build** can be claimed: core means overlap and sit inside the earlier
+  Haiku spread on the unplanted specification (409–460).
+
+### The compiler's misses, traced and changed (after the runs)
+
+P6 was lost to the incremental compile itself (only the new end of the pair was ranked; the old end
+ranked it inside its cap), P7 because examples were annotations that nothing compared, and P4 to
+ranking (7th, one past the cap). The compiler was changed so that an incremental run proposes a pair
+from either end, and an example becomes a verification node of the claim it follows (rel02 D26). The
+same compile, with the same model answers replayed, then found 6 of 7 (29 calls, $0.0732 est.), with
+one more false alarm (3). P4 was left as is: widening the cap to catch it would fit the answer key.
+The agent runs above used the 4-of-7 export and were not repeated.
+
+### What this does not cover
+
+n = 3; one reader of the notes, not blind to format (the export's conflict ids would defeat
+blinding); rounds run in sequence; Haiku only; one case, from a library the model knows; 7 items.

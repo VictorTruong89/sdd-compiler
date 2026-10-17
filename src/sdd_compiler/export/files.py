@@ -18,11 +18,15 @@ HOW_TO_USE = """\
 1. Read pack 00 (the foundation) first, if there is one, then each pack in the order of the table above.
 2. Every id in `CHECKLIST.md` must end in one of three states: implemented, tested, or listed as
    not done with a reason.
-3. Mark code with `# spec: <id>` beside what satisfies an id. Name a test after the acceptance
+3. A pack's `## Text` is the specification for its unit, verbatim. The `↳` line after a block names
+   the ids of the claims in it. The sections after Text index the same text (ids, needs, decisions)
+   and add what is homed elsewhere: constraints, related claims, settled conflicts, terms. A unit
+   too large to read at once is split at its next heading; its packs follow each other above.
+4. Mark code with `# spec: <id>` beside what satisfies an id. Name a test after the acceptance
    criterion's label (`test_AC_4_7_…`) or the node id.
-4. Fields named *derived* (layer, modality, kind, relation) were assigned by the compiler. The
+5. Fields named *derived* (layer, modality, kind, relation) were assigned by the compiler. The
    verbatim text of a block wins over them.
-5. A block tagged `no node` carries spec text that formed no claim; read it, it is still the spec.\
+6. A block tagged `no node` carries spec text that formed no claim; read it, it is still the spec.\
 """
 
 _STORE_FILES = (BLOCKS_FILE, SOURCES_FILE, "terms.jsonl", "conflicts.jsonl", "adjudications.jsonl",
@@ -42,7 +46,8 @@ def _short(text: str, limit: int = 80) -> str:
 
 def checklist(model: Model, packs: Packs) -> tuple[str, int]:
     out = ["# Checklist", "",
-           "Every id below must end implemented, tested, or listed as not done with a reason.", ""]
+           "Every id below must end implemented, tested, or listed as not done with a reason. "
+           "Its kind, modality, layer and text are in its pack.", ""]
     count = 0
     by_unit: dict[Any, list[dict[str, Any]]] = {}
     for node_id, key in model.home.items():
@@ -51,10 +56,9 @@ def checklist(model: Model, packs: Packs) -> tuple[str, int]:
         nodes = sorted(by_unit.get(unit.key, []),
                        key=lambda x: (x["source"]["file"], x["source"]["lines"][0], x["id"]))
         out += [f"## Pack {packs.numbers[unit.key]} — {packs.names[unit.key]}", ""]
-        for node in nodes:
-            text = lead_line(model, node) or node["id"] if is_contract(model, node) else node["text"]
-            out.append(f"- [ ] {node['id']} · {node['kind']} · {node['canonical']['modality'] or '—'} · "
-                       f"{node['layer'] or '—'} · {node['label'] or '—'} · {_short(text)}")
+        for node in nodes:                                           # D15: ids only
+            label = node["label"] if node["label"] and node["label"] != node["id"] else None
+            out.append(f"- [ ] {node['id']}" + (f" · {label}" if label else ""))
             count += 1
         if not nodes:
             out.append("None.")
@@ -86,8 +90,8 @@ def map_md(model: Model, packs: Packs, meta: dict[str, Any], pending: list[str],
     else:
         out.append("None.")
     out += ["", "## Units in build order", "",
-            "| Pack | File | Source · heading | Blocks | Claims | AC | Needs |",
-            "|---|---|---|---|---|---|---|"]
+            "| Pack | File | Source · heading | Blocks | Claims | AC | Needs | Words |",
+            "|---|---|---|---|---|---|---|---|"]
     by_unit: dict[Any, list[dict[str, Any]]] = {}
     for node_id, key in model.home.items():
         by_unit.setdefault(key, []).append(model.graph.nodes[node_id])
@@ -105,9 +109,10 @@ def map_md(model: Model, packs: Packs, meta: dict[str, Any], pending: list[str],
         needs = ", ".join(sorted(packs.numbers[k] for k in needs_of.get(unit.key, ()))) or "—"
         out.append(f"| {packs.numbers[unit.key]} | `{packs.names[unit.key]}` | {label} | "
                    f"{len(unit.block_ids)} | {', '.join(f'{k} {v}' for k, v in sorted(kinds.items())) or '—'} | "
-                   f"{sum(1 for x in nodes if x['layer'] == 'V')} | {needs} |")
+                   f"{sum(1 for x in nodes if x['layer'] == 'V')} | {needs} | "
+                   f"{len(packs.files['packs/' + packs.names[unit.key]].split())} |")
     if not packs.order:
-        out.append("| — | — | — | — | — | — | — |")
+        out.append("| — | — | — | — | — | — | — | — |")
 
     out += ["", "## Needs against the order", ""]
     out += [f"- pack {b['from']} needs pack {b['to']} ({b['links']} link{'s' if b['links'] != 1 else ''})"

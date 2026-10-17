@@ -41,15 +41,15 @@
  "backward_needs": [],
  "chars": {
   "source_markdown": 381,
-  "export_total": 4171,
+  "export_total": 3704,
   "packs": {
-   "00-foundation.md": 467,
-   "01-f1-share--1-goal.md": 762,
-   "02-f1-share--2-rules.md": 508,
-   "03-f1-share--3-contracts.md": 542,
-   "04-f1-share--4-acceptance.md": 508,
-   "05-f2-keep--1-goal.md": 626,
-   "06-f2-keep--2-rules.md": 758
+   "00-foundation.md": 402,
+   "01-f1-share--1-goal.md": 682,
+   "02-f1-share--2-rules.md": 459,
+   "03-f1-share--3-contracts.md": 505,
+   "04-f1-share--4-acceptance.md": 484,
+   "05-f2-keep--1-goal.md": 566,
+   "06-f2-keep--2-rules.md": 606
   }
  }
 }

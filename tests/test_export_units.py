@@ -1,6 +1,6 @@
 """F7 §4.3–§4.4 — units, foundation, omitted headings, build order (D3, I-96).
 
-Covers AC-7.5, AC-7.6, AC-7.7, AC-7.8 (unit part). Tier: unit and property.
+Covers AC-7.5, AC-7.6, AC-7.7, AC-7.8 (unit part), AC-7.26. Tier: unit and property.
 """
 from __future__ import annotations
 
@@ -143,3 +143,23 @@ def test_needs_count_depends_on_links_between_different_non_foundation_units():
              {"from": "N-1", "type": "depends_on", "to": "N-4"},      # foundation
              {"from": "N-2", "type": "refines", "to": "N-1"}]         # not depends_on
     assert compute_needs(links, home, foundation="F") == Counter({("X", "Y"): 2})
+
+
+def test_ac_7_26_an_oversized_unit_splits_at_its_next_heading():
+    from sdd_compiler.export.units import MAX_UNIT_CHARS
+    big = "x" * (MAX_UNIT_CHARS // 2)
+    blocks = [block("B-1", "a.md", ["T", "Big"], 1), block("B-2", "a.md", ["T", "Big", "One"], 2),
+              block("B-3", "a.md", ["T", "Big", "One"], 3), block("B-4", "a.md", ["T", "Big", "Two"], 4),
+              block("B-5", "a.md", ["T", "Flat"], 5), block("B-6", "a.md", ["T", "Flat"], 6),
+              block("B-7", "a.md", ["T", "Flat"], 7)]
+    for x in ("B-2", "B-4", "B-5", "B-6", "B-7"):
+        next(b for b in blocks if b["id"] == x)["text"] = big
+    units = form_units(blocks, (), ())
+    assert [(u.headings, u.block_ids) for u in units.units] == [
+        (("T", "Big"), ["B-1"]), (("T", "Big", "One"), ["B-2", "B-3"]), (("T", "Big", "Two"), ["B-4"]),
+        (("T", "Flat"), ["B-5", "B-6", "B-7"])]
+
+
+def test_ac_7_26_a_unit_under_the_limit_is_not_split():
+    blocks = [block("B-1", "a.md", ["T", "S"], 1), block("B-2", "a.md", ["T", "S", "Sub"], 2)]
+    assert [u.block_ids for u in form_units(blocks, (), ()).units] == [["B-1", "B-2"]]

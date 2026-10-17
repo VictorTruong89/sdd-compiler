@@ -24,6 +24,8 @@ from ..model.status import derive_status
 from .describe import Description
 from .guards import GuardFailure, locate_quote
 from .placement_types import PlacedAtom
+from .qatom import Atom
+from ..model.placement import place
 
 _CITATION = re.compile(r"(?<![\w.-])((?:AC|CT)-\d+\.\d+|N-\d{6,})(?!\w|\.\d)")
 _LOCAL_CITATION = re.compile(r"(?<![\w.-])([A-Z]{1,2}\d{1,3})(?![\w.-]\w)")    # F2 D20
@@ -60,8 +62,10 @@ class NodeDraft:
     def record(self, run_id: str) -> dict[str, Any]:
         if self.alignment == "unchanged" and self.old is not None:
             # Same text: the record is kept — judgments, check state and all —
-            # except where the claim now sits (F3 §4.6).
-            return {**self.old, "label": self.label, "source": self._source()}
+            # except where the claim now sits (F3 §4.6) and the block's current
+            # annotations, which belong to the block, not to the claim (F3 D42).
+            return {**self.old, "label": self.label, "source": self._source(),
+                    "annotations": self.annotations}
         description = self.description
         placement = self.placed.placement
         selector = (scope_selector(self.terms, description.scope_layers)
@@ -196,6 +200,43 @@ def block_annotations(
             continue
         kept.append({"role": role, "text": quote, "spans": [list(span)]})
     return kept, dropped
+
+
+def example_pieces(
+    block: Mapping[str, Any], placed: Sequence[PlacedAtom], annotations: Sequence[Mapping[str, Any]]
+) -> tuple[list[tuple[PlacedAtom, int]], list[dict[str, Any]]]:
+    """F3 D41, F2 D22 — each located example becomes a `verification` atom, with no model call.
+
+    It verifies the claim whose first span starts nearest before it, or the block's first claim
+    when it comes first: `(piece, index of that claim in placed)`. The claim's id is not known yet,
+    so the caller sets `verifies_text` once ids are assigned. With no claim in the block an example
+    stays an annotation. Returns the pieces and the annotations left (rationale, or every one).
+    """
+    if not placed:
+        return [], list(annotations)
+    pieces, kept = [], []
+    starts = [piece.atom.spans[0][0] for piece in placed]
+    for annotation in annotations:
+        if annotation["role"] != "example":
+            kept.append(dict(annotation))
+            continue
+        start, end = annotation["spans"][0]
+        before = [n for n, at in enumerate(starts) if at <= start]
+        claim = placed[max(before, key=lambda n: starts[n]) if before else 0]
+        description = Description(
+            atom_id=f"{block['id']}#example{len(pieces) + 1}", block_id=block["id"], kind="verification",
+            canonical={"state": None, "trigger": None, "scope": None,
+                       "subject": claim.description.canonical["subject"], "modality": None,
+                       "response": annotation["text"], "quantities": []},
+            layer_answers={q: {"answer": "no", "quote": None} for q in QUESTIONS},
+            terms=[])
+        atom = Atom(block_id=block["id"], kind="verification", quotes=[annotation["text"]],
+                    spans=[(start, end)])
+        pieces.append((PlacedAtom(atom=atom, description=description,
+                                  placement=place("verification", description.layer_answers),
+                                  judgments=list(claim.judgments)),
+                       placed.index(claim)))
+    return pieces, kept
 
 
 def layer_hint(heading_path: Sequence[str], hints: Mapping[str, Mapping[str, Any]] | None) -> str | None:

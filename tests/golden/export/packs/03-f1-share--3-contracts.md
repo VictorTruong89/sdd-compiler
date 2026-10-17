@@ -12,11 +12,10 @@ blocks 2 · nodes 1 (requirement 1) · AC labels: none
 ```json
 {"id": "L-1"}
 ```
-↳ CT-1.1 requirement · MUST · C
+↳ CT-1.1
 
 ## Claims to implement
 - [CT-1.1] contract · C — **CT-1.1 — Link record** (the record) (fence in Text)
-  needs: none
 
 ## Acceptance criteria
 None.

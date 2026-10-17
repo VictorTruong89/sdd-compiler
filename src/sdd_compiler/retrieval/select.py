@@ -9,6 +9,11 @@ order, score it against every other node; drop what scores below `min_score`; ke
 number counts the same thing, and a pair both of whose ends were checked is proposed twice.
 So `candidates_proposed`, `pairs_capped` and both `dropped_` counts are per proposal, while
 `pairs` — what F6 judges — holds each `pair_key` once (AC-5.13).
+
+⚑ **F5 D14 — either end** (rel02 round 14). An incremental run checks only new and changed nodes.
+A pair is also proposed when the checked node is within the cap of the *other* node's own ranking,
+so the run proposes what a full compile would for the nodes it checks. Counted apart, in
+`pairs_from_unchecked_end`, outside AC-5.16's identity.
 """
 from __future__ import annotations
 
@@ -65,10 +70,11 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
     result = Retrieval()
     counts = dict.fromkeys(
         ("nodes_checked", "candidates_proposed", "pairs_capped",
-         "dropped_below_min_score", "dropped_by_cap", "replayed"), 0)
+         "dropped_below_min_score", "dropped_by_cap", "replayed", "pairs_from_unchecked_end"), 0)
     settled = set(judged)
     seen: dict[str, dict[str, Any]] = {}
 
+    unchecked_ends: set[str] = set()
     for node in checking_order([n for n in nodes.values() if needs_checking(n)]):
         result.checked.append(node["id"])
         counts["nodes_checked"] += 1
@@ -80,6 +86,8 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
             if not evidence:
                 continue
             counts["candidates_proposed"] += 1
+            if not needs_checking(other):
+                unchecked_ends.add(other["id"])
             key = pair_key(node, other)
             if key in settled:
                 counts["replayed"] += 1
@@ -101,7 +109,37 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
                 "pair_key": candidate["pair_key"], "a": first, "b": second,
                 "score": candidate["score"], "evidence": candidate["evidence"]})
 
+    checked = set(result.checked)
+    for other_id in sorted(unchecked_ends):                        # D14: the unchecked end's ranking
+        for candidate in _ranking(nodes[other_id], nodes, terms, settings, settled):
+            if candidate["other"]["id"] in checked and candidate["pair_key"] not in seen:
+                first, second = sorted((other_id, candidate["other"]["id"]))
+                seen[candidate["pair_key"]] = {
+                    "pair_key": candidate["pair_key"], "a": first, "b": second,
+                    "score": candidate["score"], "evidence": candidate["evidence"]}
+                counts["pairs_from_unchecked_end"] += 1
+
     ranked = sorted(seen.values(), key=lambda c: (-c["score"], c["a"], c["b"]))
     result.pairs = [{**candidate, "rank": rank} for rank, candidate in enumerate(ranked, start=1)]
     result.counts = counts
     return result
+
+
+def _ranking(node: Mapping[str, Any], nodes: Mapping[str, Mapping[str, Any]],
+             terms: Mapping[str, Mapping[str, Any]], settings: Any, settled: set[str]) -> list[dict[str, Any]]:
+    """One node's own ranking, as a full compile would make it (F5 §4.3): settled pairs and pairs
+    below `min_score` left out, then score, then node id, then the cap."""
+    scored = []
+    for other in nodes.values():
+        if other["id"] == node["id"]:
+            continue
+        evidence = evidence_for(node, other, terms=terms, settings=settings)
+        if not evidence:
+            continue
+        key = pair_key(node, other)
+        score = score_of(evidence)
+        if key in settled or score < settings.min_score:
+            continue
+        scored.append({"pair_key": key, "score": score, "evidence": evidence, "other": other})
+    scored.sort(key=lambda c: (-c["score"], c["other"]["id"]))
+    return scored[:settings.max_pairs_per_node]

@@ -31,7 +31,7 @@ from .contracts import annotate, contract_atom
 from .definitions import Definition, block_definitions
 from .describe import DescribeItem, describe_atoms
 from .align import NewAtom, align
-from .forming import NodeDraft, block_annotations, layer_hint, resolve_verifies
+from .forming import NodeDraft, block_annotations, example_pieces, layer_hint, resolve_verifies
 from .placement_types import PlacedAtom
 from .qatom import Atom, AtomizeOutcome, atomize_blocks
 from .terms import TermResolution, normalize_name, resolve_terms
@@ -147,6 +147,8 @@ def atomize_pending(
             block = by_id[block_id]
             annotations, unlocatable = block_annotations(block, chunk.annotations.get(block_id, []))
             draft.annotations_dropped += unlocatable
+            examples, annotations = example_pieces(block, placed, annotations)      # F3 D41
+            placed = [*placed, *(piece for piece, _ in examples)]
             olds = list((previous or {}).get(block_id, []))
             aligned = align(olds, [
                 NewAtom(n, " … ".join(block["text"][s:e] for s, e in piece.atom.spans),
@@ -173,6 +175,9 @@ def atomize_pending(
                     alignment=kind if kept else "new",
                     old=next((o for o in olds if o["id"] == kept), None),
                 ))
+            ids = [d.node_id for d in node_drafts[len(node_drafts) - len(placed):]]
+            for piece, illustrated in examples:                     # F3 D41: cite the claim's id
+                piece.description.verifies_text = ids[illustrated]
                 _count_usage(block["source"], [t["term"] for t in terms], usage_total, usage_by_file)
             draft.completed[block_id] = block["text_hash"]
 

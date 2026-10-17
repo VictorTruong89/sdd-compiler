@@ -105,6 +105,26 @@ def test_an_edited_block_is_re_atomized_and_keeps_its_node_id(repo):
     assert check_store(repo / ".sdd") == []
 
 
+def test_ac_3_41_an_unchanged_node_takes_its_blocks_current_annotations(repo):
+    """Round 14 (rel02): an example added beside an unchanged claim was lost, because an
+    `unchanged` node kept its whole old record (F3 §4.6). Annotations belong to the block (D42)."""
+    first_compile(repo)
+    assert load_graph(repo / ".sdd").nodes["N-000001"]["annotations"] == []
+    spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
+    why = "Shorter links break sharing."
+    spec.write_text(spec.read_text().replace(EXPIRY, f"{EXPIRY} {why}"), encoding="utf-8")
+    backend = FakeBackend([
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": EXPIRY, "role": "requirement"}, {"quote": why, "role": "rationale"}],
+                     "atoms": [{"kind": "requirement", "quotes": [EXPIRY]}]}]},
+        {"atoms": [desc("B-000001#1", EXPIRY, "expire 30 days after it is created")]}, *no_conflicts()])
+    compile_graph(repo, backend=backend)
+    node = load_graph(repo / ".sdd").nodes["N-000001"]
+    assert node["text"] == EXPIRY                                    # same id, same claim
+    assert [(a["role"], a["text"]) for a in node["annotations"]] == [("rationale", why)]
+    assert check_store(repo / ".sdd") == []
+
+
 def test_a_removed_block_takes_its_nodes_with_it(repo):
     first_compile(repo)
     spec = repo / "sdd" / "specs" / "F9_demo" / "spec.md"
