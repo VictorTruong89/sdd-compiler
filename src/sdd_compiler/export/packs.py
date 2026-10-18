@@ -260,6 +260,9 @@ def _claims(ctx: _Context, nodes: list[dict[str, Any]]) -> str:
         if link["type"] == "depends_on":
             targets.setdefault(link["from"], []).append(link["to"])
     for node in nodes:
+        if _is_example(node):                                        # D17: beside the claims, no text
+            out.append(f"- [{node['id']}] example of {', '.join(sorted(node['verifies'] or [])) or 'none'}")
+            continue
         if node["kind"] not in CLAIM_KINDS:
             continue
         needs = [f"{t}" + (f" (pack {ctx.numbers[model.home[t]]})" if model.home.get(t) not in
@@ -277,6 +280,11 @@ def _claims(ctx: _Context, nodes: list[dict[str, Any]]) -> str:
     return "\n".join(out)
 
 
+def _is_example(node: dict[str, Any]) -> bool:
+    """F7 D17: a `V` node formed from an example sentence (F3 D41) carries the flag `example`."""
+    return "example" in (node.get("flags") or [])
+
+
 def _criteria(ctx: _Context, nodes: list[dict[str, Any]]) -> str:
     model = ctx.model
     verifies: dict[str, list[str]] = {}
@@ -285,7 +293,7 @@ def _criteria(ctx: _Context, nodes: list[dict[str, Any]]) -> str:
             verifies.setdefault(link["from"], []).append(link["to"])
     out = []
     for node in nodes:
-        if node["layer"] != "V":
+        if node["layer"] != "V" or _is_example(node):                 # D17: an example is not a criterion
             continue
         ids = sorted(set(verifies.get(node["id"], [])) | set(node["verifies"] or []))
         out += [f"- [{node['label'] or node['id']}] {shown(model, node)}",

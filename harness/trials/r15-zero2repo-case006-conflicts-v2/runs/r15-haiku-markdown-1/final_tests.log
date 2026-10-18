@@ -1,0 +1,221 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-8.4.1, pluggy-1.6.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 0 items / 19 errors
+
+==================================== ERRORS ====================================
+___________________ ERROR collecting tests/F01_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F01_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F01_acceptance.py:17: in <module>
+    from optlyn import INT, command, group, option
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F02_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F02_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F02_acceptance.py:19: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+____________________ ERROR collecting tests/F02_helpers.py _____________________
+ImportError while importing test module '/tests/final/tests/F02_helpers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F02_helpers.py:25: in <module>
+    from optlyn import command
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F03_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F03_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F03_acceptance.py:21: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+____________________ ERROR collecting tests/F03_helpers.py _____________________
+ImportError while importing test module '/tests/final/tests/F03_helpers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F03_helpers.py:18: in <module>
+    from optlyn import command
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F04_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F04_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F04_acceptance.py:17: in <module>
+    from optlyn import STRING, Path, argument, group, option
+E   ModuleNotFoundError: No module named 'optlyn'
+____________________ ERROR collecting tests/F04_helpers.py _____________________
+ImportError while importing test module '/tests/final/tests/F04_helpers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F04_helpers.py:15: in <module>
+    from optlyn import command
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F05_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F05_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F05_acceptance.py:19: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+____________________ ERROR collecting tests/F05_helpers.py _____________________
+ImportError while importing test module '/tests/final/tests/F05_helpers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F05_helpers.py:15: in <module>
+    from optlyn import ParamType, command
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F06_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F06_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F06_acceptance.py:19: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+____________________ ERROR collecting tests/F06_helpers.py _____________________
+ImportError while importing test module '/tests/final/tests/F06_helpers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F06_helpers.py:18: in <module>
+    from optlyn import Group, command, group
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F07_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F07_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F07_acceptance.py:20: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F08_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F08_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F08_acceptance.py:16: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F09_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F09_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F09_acceptance.py:20: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F10_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F10_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F10_acceptance.py:22: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F11_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F11_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F11_acceptance.py:30: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F12_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F12_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F12_acceptance.py:21: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F13_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F13_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F13_acceptance.py:17: in <module>
+    from optlyn import (
+E   ModuleNotFoundError: No module named 'optlyn'
+___________________ ERROR collecting tests/F14_acceptance.py ___________________
+ImportError while importing test module '/tests/final/tests/F14_acceptance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/final/tests/F14_acceptance.py:26: in <module>
+    from optlyn import File, argument, command, echo, group, option, style, unstyle
+E   ModuleNotFoundError: No module named 'optlyn'
+=========================== short test summary info ============================
+ERROR ../tests/final/tests/F01_acceptance.py
+ERROR ../tests/final/tests/F02_acceptance.py
+ERROR ../tests/final/tests/F02_helpers.py
+ERROR ../tests/final/tests/F03_acceptance.py
+ERROR ../tests/final/tests/F03_helpers.py
+ERROR ../tests/final/tests/F04_acceptance.py
+ERROR ../tests/final/tests/F04_helpers.py
+ERROR ../tests/final/tests/F05_acceptance.py
+ERROR ../tests/final/tests/F05_helpers.py
+ERROR ../tests/final/tests/F06_acceptance.py
+ERROR ../tests/final/tests/F06_helpers.py
+ERROR ../tests/final/tests/F07_acceptance.py
+ERROR ../tests/final/tests/F08_acceptance.py
+ERROR ../tests/final/tests/F09_acceptance.py
+ERROR ../tests/final/tests/F10_acceptance.py
+ERROR ../tests/final/tests/F11_acceptance.py
+ERROR ../tests/final/tests/F12_acceptance.py
+ERROR ../tests/final/tests/F13_acceptance.py
+ERROR ../tests/final/tests/F14_acceptance.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 19 errors during collection !!!!!!!!!!!!!!!!!!!
+============================== 19 errors in 0.64s ==============================
+CODING_BENCH_COLLECTION_AUDIT={"collected": [], "issues": ["no tests collected"], "reports": {}, "selected": []}

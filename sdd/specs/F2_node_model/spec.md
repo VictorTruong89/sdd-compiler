@@ -55,7 +55,8 @@ Definitions become term-registry entries: a `definition` sentence is attached to
 opens with, as that term's `definition` and `defined_by` (F3 §4.5 step 9, F3 D38). Rationale and
 examples become annotations. Neither is a node. **Amended by D22:** an example becomes a `verification`
 node of the claim it illustrates (F3 D41), so it is compared with that claim like any other node; an
-example in a block with no claim stays an annotation. Rationale stays an annotation.
+example in a block with no claim stays an annotation. Rationale stays an annotation. Such a node
+carries the flag `example`, so a reader can tell it from a written check (F7 D17).
 
 ### 4.2 Layers — hardcoded (D8, P-7)
 
@@ -216,7 +217,7 @@ Id counters are never rewound.
   "related_conflict_nodes": ["N-000017"],
   "stale_reasons": [{"link": ["N-000042", "refines", "N-000009"], "since_run": "R-0012"}],
   "last_checked_run": "R-0011 | null",
-  "flags": ["inferred", "pinned_family", "allocation_proposed", "family_disputed"],
+  "flags": ["inferred", "pinned_family", "allocation_proposed", "family_disputed", "example"],
   "status": "unchecked | validated | conflict | ambiguous | stale",
   "judgments": ["J-000321"]
 }

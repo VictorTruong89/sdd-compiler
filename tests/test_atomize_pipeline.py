@@ -726,6 +726,7 @@ def test_ac_3_40_ac_2_30_an_example_becomes_a_verification_node_of_the_claim_bef
     assert example["canonical"]["subject"] == "metavar" and example["canonical"]["response"] == EXAMPLE
     assert example["source"]["spans"] == [[text.index(EXAMPLE), text.index(EXAMPLE) + len(EXAMPLE)]]
     assert example["judgments"] == rule["judgments"] and example["terms"] == []
+    assert example["flags"] == ["example"] and rule["flags"] == []          # F7 D17 reads the flag
     assert not [a for n in draft.nodes.values() for a in n["annotations"] if a["role"] == "example"]
     assert ("verifies", rule["id"]) in {(l["type"], l["to"]) for l in draft.links if l["from"] == example["id"]}
 

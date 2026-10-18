@@ -229,7 +229,7 @@ def example_pieces(
                        "subject": claim.description.canonical["subject"], "modality": None,
                        "response": annotation["text"], "quantities": []},
             layer_answers={q: {"answer": "no", "quote": None} for q in QUESTIONS},
-            terms=[])
+            terms=[], flags=["example"])                                   # F7 D17 reads it
         atom = Atom(block_id=block["id"], kind="verification", quotes=[annotation["text"]],
                     spans=[(start, end)])
         pieces.append((PlacedAtom(atom=atom, description=description,

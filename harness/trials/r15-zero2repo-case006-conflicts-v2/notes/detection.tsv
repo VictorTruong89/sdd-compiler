@@ -1,0 +1,29 @@
+run	item	noticed	stated	built	note
+r15-haiku-markdown-1	P1	no	-	error	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-markdown-1	P2	no	-	neither	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-markdown-1	P3	no	-	error	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-markdown-1	P4	no	-	error	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-markdown-1	P6	no	-	error	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-markdown-1	P7	no	-	neither	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-markdown-1	R1	no	-	error	No NOTES.md; scorer probe failed because optlyn was not built.
+r15-haiku-export-1	P1	yes	B	B	Selected always left in place.
+r15-haiku-export-1	P2	yes	A	A	Selected standard error.
+r15-haiku-export-1	P3	yes	A	A	Selected environment above default map.
+r15-haiku-export-1	P4	yes	A	A	Selected callback runs for a missing parameter.
+r15-haiku-export-1	P6	yes	A	A	Selected 80-column default.
+r15-haiku-export-1	P7	yes	B	B	Selected the COUNT example.
+r15-haiku-export-1	R1	yes	A	A	Selected ask again on an unrecognised answer.
+r15-haiku-markdown-2	P1	yes	A	A	Selected removed on exit with no parent.
+r15-haiku-markdown-2	P2	yes	A	A	Selected standard error.
+r15-haiku-markdown-2	P3	no	-	A	not named: NOTES.md lists 11 disagreements and this is not one (corrected 2026-10-17 by Claude Code; Copilot had "yes")
+r15-haiku-markdown-2	P4	yes	A	A	Selected callback runs for a missing parameter.
+r15-haiku-markdown-2	P6	yes	A	A	Selected 80-column default.
+r15-haiku-markdown-2	P7	yes	B	B	Selected the COUNT example.
+r15-haiku-markdown-2	R1	no	-	A	not named: NOTES.md lists 11 disagreements and this is not one (corrected 2026-10-17 by Claude Code; Copilot had "yes")
+r15-haiku-export-2	P1	yes	A	A	Selected removed on exit with no parent.
+r15-haiku-export-2	P2	yes	A	A	Selected standard error.
+r15-haiku-export-2	P3	yes	A	A	Selected environment above default map.
+r15-haiku-export-2	P4	yes	A	A	Selected callback runs for a missing parameter.
+r15-haiku-export-2	P6	yes	A	A	Selected 80-column default.
+r15-haiku-export-2	P7	yes	B	B	Selected the COUNT example.
+r15-haiku-export-2	R1	yes	A	A	Selected ask again on an unrecognised answer.

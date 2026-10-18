@@ -190,3 +190,22 @@ def test_ac_7_25_lists_carry_ids_not_text(tmp_path):
     assert "- [N-000005] decision · MUST · L3 · D5\n" in claims
     assert "One. Two. Three. Four.\n↳ N-000001–N-000004\n" in a
     assert "Pick X.\n↳ N-000005 (D5)\n" in a
+
+
+def test_ac_7_28_an_example_is_listed_as_example_of_not_as_an_acceptance_criterion(tmp_path):
+    """Round 15 (rel02): the planted example `--count COUNT` was listed under Acceptance criteria;
+    both export runs built its side, one calling it "the acceptance criterion" (F7 D17)."""
+    rule, example, check = "Metavar is the type name.", "For example, it shows COUNT.", "Check it."
+    blocks = [b("B-1", A, ("T", "S"), 1, f"{rule} {example}"), b("B-2", A, ("T", "S"), 3, check)]
+    nodes = [n("N-000001", "B-1", text=rule),
+             n("N-000002", "B-1", text=example, kind="verification", layer="V", modality=None,
+               verifies=["N-000001"], flags=["example"]),
+             n("N-000003", "B-2", text=check, kind="verification", layer="V", modality=None,
+               verifies=["N-000001"])]
+    a = pack_for(packs(tmp_path, blocks, nodes), A)
+    claims = a.split("## Claims to implement")[1].split("## Acceptance criteria")[0]
+    criteria = a.split("## Acceptance criteria")[1].split("## Constraints in scope")[0]
+    assert "- [N-000002] example of N-000001\n" in claims
+    assert example not in claims                                   # D15: the text is in Text only
+    assert "N-000002" not in criteria
+    assert "- [N-000003] Check it." in criteria                     # a written check stays

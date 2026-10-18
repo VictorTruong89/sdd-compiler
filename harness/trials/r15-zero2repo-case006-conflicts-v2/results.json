@@ -1,0 +1,264 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 4.0498,
+ "groups": {
+  "work/tasks/case006-planted-export-v2 | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r15-haiku-export-1",
+    "r15-haiku-export-2"
+   ],
+   "tests_passed": [
+    457,
+    460
+   ],
+   "mean_tests_passed": 458.5,
+   "turns": [
+    91,
+    97
+   ],
+   "cost_usd_est": [
+    1.4449980299999998,
+    1.7415361599999999
+   ]
+  },
+  "work/tasks/case006-planted-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r15-haiku-markdown-1",
+    "r15-haiku-markdown-2"
+   ],
+   "tests_passed": [
+    0,
+    436
+   ],
+   "mean_tests_passed": 218,
+   "turns": [
+    6,
+    38
+   ],
+   "cost_usd_est": [
+    0.07793976,
+    0.7853136000000002
+   ]
+  }
+ },
+ "runs": {
+  "r15-haiku-export-1": {
+   "task": "work/tasks/case006-planted-export-v2",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9600840336134454,
+     "tests_passed": 457,
+     "tests_total": 476,
+     "tests_failed": 19,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line",
+      "../tests/final/tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name",
+      "../tests/final/tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80",
+      "../tests/final/tests/F03_acceptance.py::test_leaf_mixing_can_be_disabled",
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_missing_parameter_still_runs_its_callback",
+      "../tests/final/tests/F04_acceptance.py::test_named_env_fills_when_position_omitted",
+      "../tests/final/tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive",
+      "../tests/final/tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag",
+      "../tests/final/tests/F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments",
+      "../tests/final/tests/F11_acceptance.py::test_pager_strips_styles_when_destination_is_not_a_terminal",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+      "../tests/final/tests/F11_acceptance.py::test_getchar_reads_terminal_even_when_stdin_is_a_pipe",
+      "../tests/final/tests/F11_acceptance.py::test_getchar_interrupt_and_eof_are_distinct_failures_not_raw_characters",
+      "../tests/final/tests/F11_acceptance.py::test_pause_prints_and_waits_when_interactive",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token",
+      "../tests/final/tests/F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent",
+      "../tests/final/tests/F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 457,
+    "failed": 19,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 91,
+   "subtype": "success",
+   "agent_seconds": 981.7,
+   "total_cost_usd_est": 1.4449980299999998,
+   "exception_info": null
+  },
+  "r15-haiku-export-2": {
+   "task": "work/tasks/case006-planted-export-v2",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9663865546218487,
+     "tests_passed": 460,
+     "tests_total": 476,
+     "tests_failed": 16,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name",
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_slash_and_plus_prefixes",
+      "../tests/final/tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F04_acceptance.py::test_deprecated_argument_cannot_be_required",
+      "../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+      "../tests/final/tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag",
+      "../tests/final/tests/F11_acceptance.py::test_pager_writable_stream_launches_when_interactive",
+      "../tests/final/tests/F11_acceptance.py::test_pager_flushes_chunks_before_generator_finishes",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+      "../tests/final/tests/F11_acceptance.py::test_getchar_reads_terminal_even_when_stdin_is_a_pipe",
+      "../tests/final/tests/F11_acceptance.py::test_getchar_interrupt_and_eof_are_distinct_failures_not_raw_characters",
+      "../tests/final/tests/F12_acceptance.py::test_nested_group_completes_immediate_child_not_grandchild",
+      "../tests/final/tests/F12_acceptance.py::test_bash_file_completion_registers_and_lists_directory_candidates",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 460,
+    "failed": 16,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 97,
+   "subtype": "success",
+   "agent_seconds": 1091.7,
+   "total_cost_usd_est": 1.7415361599999999,
+   "exception_info": null
+  },
+  "r15-haiku-markdown-1": {
+   "task": "work/tasks/case006-planted-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.0,
+     "tests_passed": 0,
+     "tests_total": 0,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": "pytest execution was incomplete; see the collection audit in final_tests.log",
+     "official_reward_raw": 0.0,
+     "failed_tests": null,
+     "error_tests": null
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 6,
+   "subtype": "success",
+   "agent_seconds": 563.8,
+   "total_cost_usd_est": 0.07793976,
+   "exception_info": null
+  },
+  "r15-haiku-markdown-2": {
+   "task": "work/tasks/case006-planted-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9159663865546218,
+     "tests_passed": 436,
+     "tests_total": 476,
+     "tests_failed": 40,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name",
+      "../tests/final/tests/F03_acceptance.py::test_callable_default_runs_only_when_no_earlier_source",
+      "../tests/final/tests/F03_acceptance.py::test_group_mixing_can_be_enabled",
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_parameter_callback_runs_for_prompt_source",
+      "../tests/final/tests/F04_acceptance.py::test_omitted_variadic_empty_unless_required",
+      "../tests/final/tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest",
+      "../tests/final/tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive",
+      "../tests/final/tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred",
+      "../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+      "../tests/final/tests/F07_acceptance.py::test_source_distinguishes_five_origins_for_the_same_value",
+      "../tests/final/tests/F07_acceptance.py::test_command_line_source_does_not_consume_prompt_stdin",
+      "../tests/final/tests/F07_acceptance.py::test_undeclared_extra_key_is_not_converted_or_tracked",
+      "../tests/final/tests/F07_acceptance.py::test_lowercase_normalizer_matches_choice_value",
+      "../tests/final/tests/F08_acceptance.py::test_omitted_prompted_option_reads_converted_stdin",
+      "../tests/final/tests/F08_acceptance.py::test_command_line_value_skips_prompt",
+      "../tests/final/tests/F08_acceptance.py::test_custom_prompt_string_replaces_name_derived_prompt",
+      "../tests/final/tests/F08_acceptance.py::test_environment_value_skips_prompt_even_on_eof",
+      "../tests/final/tests/F08_acceptance.py::test_static_declared_default_still_prompts",
+      "../tests/final/tests/F08_acceptance.py::test_callable_default_still_prompts_and_is_invoked",
+      "../tests/final/tests/F08_acceptance.py::test_default_map_value_still_prompts",
+      "../tests/final/tests/F08_acceptance.py::test_empty_line_answer_uses_shown_default",
+      "../tests/final/tests/F08_acceptance.py::test_standalone_prompt_strips_ansi_when_stream_is_not_a_terminal",
+      "../tests/final/tests/F08_acceptance.py::test_standalone_confirm_strips_ansi_when_stream_is_not_a_terminal",
+      "../tests/final/tests/F08_acceptance.py::test_hidden_input_not_echoed_visible_prompt_is",
+      "../tests/final/tests/F08_acceptance.py::test_confirmation_prompt_asks_twice_and_reasks_on_mismatch",
+      "../tests/final/tests/F08_acceptance.py::test_password_option_accepts_matching_hidden_lines",
+      "../tests/final/tests/F08_acceptance.py::test_option_prompt_reasks_on_conversion_failure",
+      "../tests/final/tests/F08_acceptance.py::test_option_prompt_eof_after_invalid_is_abort_not_usage",
+      "../tests/final/tests/F08_acceptance.py::test_deprecated_plus_prompt_declaration_is_refused",
+      "../tests/final/tests/F09_acceptance.py::test_declared_text_encoding_is_used",
+      "../tests/final/tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+      "../tests/final/tests/F12_acceptance.py::test_choice_argument_completes_without_a_dash",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token",
+      "../tests/final/tests/F14_acceptance.py::test_visible_prompt_echoes_typed_line_and_shows_prompt",
+      "../tests/final/tests/F14_acceptance.py::test_hidden_prompt_does_not_echo_typed_line",
+      "../tests/final/tests/F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2",
+      "../tests/final/tests/F14_acceptance.py::test_invoke_color_setting_is_in_force"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 436,
+    "failed": 40,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 38,
+   "subtype": "success",
+   "agent_seconds": 827.3,
+   "total_cost_usd_est": 0.7853136000000002,
+   "exception_info": null
+  }
+ }
+}

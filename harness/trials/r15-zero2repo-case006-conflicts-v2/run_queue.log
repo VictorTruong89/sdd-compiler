@@ -1,0 +1,18 @@
+2026-10-16T23:16:51-04:00	start trial r15-zero2repo-case006-conflicts-v2, claude 2.1.296, budget 10, one=0
+2026-10-16T23:16:51-04:00	run r15-haiku-markdown-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown
+2026-10-16T23:26:35-04:00	harbor r15-haiku-markdown-1 exit 0 after 584 s
+2026-10-16T23:26:35-04:00	done r15-haiku-markdown-1 turns 6 cost_usd_est 0.07793976 reward {"reward": 0.0, "tests_passed": 0, "tests_total": 0, "tests_failed": 0, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T23:26:35-04:00	usage five_hour 0.56 (resets 2026-10-17T00:20:00-04:00) seven_day 0.88 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T23:28:35-04:00	run r15-haiku-export-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-v2
+2026-10-16T23:45:55-04:00	harbor r15-haiku-export-1 exit 0 after 1040 s
+2026-10-16T23:45:55-04:00	done r15-haiku-export-1 turns 91 cost_usd_est 1.4449980299999998 reward {"reward": 0.9600840336134454, "tests_passed": 457, "tests_total": 476, "tests_failed": 19, "tests_error": 0, "official_reward": 0.0} 
+2026-10-16T23:45:55-04:00	usage five_hour 0.68 (resets 2026-10-17T00:20:00-04:00) seven_day 0.89 (resets 2026-10-19T17:00:00-04:00)
+2026-10-16T23:47:55-04:00	run r15-haiku-markdown-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-markdown
+2026-10-17T00:02:42-04:00	harbor r15-haiku-markdown-2 exit 0 after 887 s
+2026-10-17T00:02:42-04:00	done r15-haiku-markdown-2 turns 38 cost_usd_est 0.7853136000000002 reward {"reward": 0.9159663865546218, "tests_passed": 436, "tests_total": 476, "tests_failed": 40, "tests_error": 0, "official_reward": 0.0} 
+2026-10-17T00:02:42-04:00	usage five_hour 0.76 (resets 2026-10-17T00:20:00-04:00) seven_day 0.89 (resets 2026-10-19T17:00:00-04:00)
+2026-10-17T00:04:42-04:00	run r15-haiku-export-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted-export-v2
+2026-10-17T00:23:30-04:00	harbor r15-haiku-export-2 exit 0 after 1128 s
+2026-10-17T00:23:30-04:00	done r15-haiku-export-2 turns 97 cost_usd_est 1.7415361599999999 reward {"reward": 0.9663865546218487, "tests_passed": 460, "tests_total": 476, "tests_failed": 16, "tests_error": 0, "official_reward": 0.0} 
+2026-10-17T00:23:30-04:00	usage five_hour 0.03 (resets 2026-10-17T05:20:00-04:00) seven_day 0.91 (resets 2026-10-19T17:00:00-04:00)
+2026-10-17T00:25:30-04:00	end no pending or limited row left

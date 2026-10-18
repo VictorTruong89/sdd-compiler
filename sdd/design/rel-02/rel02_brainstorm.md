@@ -732,6 +732,23 @@ wrong on first contact in `lend`.
   checked nodes in an incremental run, or split glossary rows), tested on another key first; (d) plant
   into a second case.
 
+### S20 — 2026-10-18 — round 15 reviewed; example rendering fixed; report written
+
+- **Round 15** (Copilot CLI as operator, Haiku in Harbor, n = 2): reviewed and corrected (the trial's
+  "Review"). Both rounds together, conflicts open: named 33 of 35 (export) against 18 of 28 (Markdown),
+  the gap in the two across-file conflicts (P3 0 of 4 vs 5 of 5; R1 1 of 4 vs 5 of 5); core means 440.2
+  and 439.8.
+- **Done (D27):** F7 D17: an example node is listed in Claims as `example of N-…`, not under
+  Acceptance criteria (AC-7.28; suite 767 passed). Checked on a scratch copy of round 15's store with
+  the flag set by hand: pack 20 lists `- [N-001013] example of N-000326`. **The real stores predate the
+  flag**: a fresh compile (round 14's lock replayed; expected to replay nearly every answer, *to be
+  measured*) is needed before any run uses the fixed export.
+- **Report:** R5 gains round 15, the combined table and the Haiku early-stop note.
+- **Owner, 2026-10-18:** no thinking cap; a stopped run is rerun and the behaviour noted in the report.
+- **Next options:** (a) rebuild the fixed 6-of-7 export (compile, small) and add the missing round 15
+  Markdown run (1 run) after the usage reset of 2026-10-19; (b) plant conflicts into a second case;
+  (c) the owner's audit of the detection readings.
+
 ## Decisions log
 
 - **rel02 D1 — 2026-10-11 — rel02 has two objectives: O-a, the graph is ready for a coding agent to
@@ -844,6 +861,10 @@ wrong on first contact in `lend`.
 - **rel02 D26 — 2026-10-16 — compiler work on round 14's misses (S18 (a)) and the audit sheet (S18
   (c)).** Owner: "do a and c as recommended". F5 D14, F2 D22, F3 D41, D42 as in S19; recall
   re-measured on the same answer key at no agent cost. The audit itself is the owner's.
+
+- **rel02 D27 — 2026-10-18 — an example node is shown as `example of`, not as an acceptance
+  criterion (F7 D17), and round 15 goes into the report.** Owner: "start on steps 1 and 3. do not set
+  MAX_THINKING_TOKENS, we can simply rerun and add a note about this finding in report project."
 
 ## Rejected alternatives
 

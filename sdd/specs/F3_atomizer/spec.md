@@ -141,7 +141,7 @@ For each validated atom:
    that claim's id, resolved as any citation (F2 D13), so it takes that claim's family (F2 D18). Its
    canonical is the claim's subject with the example as response, no modality, no state, trigger or
    scope, no quantities; it has no terms; every layer answer is `no` (a `V` node ignores them, F2
-   AC-2.4); its `judgments` are the claim's. It is aligned with the block's other atoms (§4.6). An
+   AC-2.4); its `judgments` are the claim's; it carries the flag `example` (F2 D22, F7 D17). It is aligned with the block's other atoms (§4.6). An
    example in a block with no claim stays an annotation.
 4. Call F2 placement (layer, family, components).
 5. Create `uses_term` links (provenance `code`).

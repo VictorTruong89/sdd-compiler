@@ -13,6 +13,8 @@
 > restated text (D15); oversized units split at the next heading (D16); `MAP.md` gives pack sizes and
 > says what Text is. Evidence: round 13c transcripts, lecture
 > [`lecture-export-to-agent.html`](../../../docs/lectures/lecture-export-to-agent.html).
+> **Amended:** 2026-10-18 (rel02 round 15 review): a node formed from an example is listed in Claims
+> as `example of <ids>`, not as an acceptance criterion (D17, AC-7.28).
 > **Depends on:** F1 (blocks, sources, profile) · F2 (node, term and conflict records; `covers`) · F4
 > (store, `check_store`, transactions) · F6 (conflict records, adjudications).
 > **Governs:** `constitution.md` (§1 id families — no new family; §4 test tiers). **⚑ Drafting
@@ -162,8 +164,10 @@ One Markdown file per unit (CT-7.3). Sections always appear in this order, and a
    id and its block is `code`; F3 D39, F2 D21) is listed as `- [CT-5.1] contract · <layer> — <lead
    line> (fence in Text)`, where the lead line is the first line of the nearest preceding non-code block
    of the same source that starts with `**<id>` (verbatim), or absent. The fence itself is not repeated
-   here; it stays once, verbatim, in Text (⚑ D12).
-4. **Acceptance criteria.** Every `V` node homed here, as `- [<label or id>] <node text>`, then
+   here; it stays once, verbatim, in Text (⚑ D12). **An example node** (flag `example`, F3 D41) is
+   listed here too, as `- [N-…] example of <the ids it verifies>`, with no text (D15), and **not** under
+   Acceptance criteria (⚑ D17).
+4. **Acceptance criteria.** Every `V` node homed here, except example nodes (D17), as `- [<label or id>] <node text>`, then
    `verifies:` ids, then `test name: test_<label or id with non-alphanumerics as _>_…`.
 5. **Constraints in scope (⚑ D14).** Every `C` node homed elsewhere whose selector **names** a
    family, term or category and `covers` (F2 D13, `model/scope.py`) at least one node homed here, as
@@ -418,6 +422,10 @@ character count of the source files recorded in `sources.jsonl`.
   **then** each row of *Units in build order* gives its pack's word count, equal to the
   whitespace-separated word count of that pack file, and *How to use* states that Text is the
   specification. → *unit.* (§4.7, D15)
+- **AC-7.28** *(an example is not an acceptance criterion; D17)*: **Given** a requirement `N-1` and a
+  `V` node `N-2` flagged `example` verifying it, both homed in one unit, **when** the export runs,
+  **then** the pack's Claims list has the line `- [N-2] example of N-1`, its Acceptance criteria
+  section does not list `N-2`, and a `V` node without the flag is still listed there. → *unit.*
 - **AC-7.21** *(contracts)*: **Given** a contract node `CT-1.1` whose block is a fenced `json` block
   under a lead paragraph `**CT-1.1 — Block record** (…)`, **when** the export runs, **then** the fence
   appears once, verbatim, in its home pack's Text; the Claims list has one `CT-1.1` line with the lead
@@ -512,6 +520,15 @@ character count of the source files recorded in `sources.jsonl`.
   30 000-character inline limit; it is a drafting choice, not a measurement. *Rejected:* a profile key
   (no second spec set needs another value yet); splitting by size alone (would cut inside a section).
 
+- **D17 — ⚑ A node formed from an example is listed as `example of`, not as an acceptance criterion**
+  (2026-10-18, rel02 round 15 review). F3 D41 made an example sentence a `V` node, so the export listed
+  it under Acceptance criteria. In round 15 the planted example `--count COUNT`, which contradicts its
+  rule, appeared there; both export runs built the example's side, one calling it "the acceptance
+  criterion". The Markdown run also built that side, so the rendering is not shown to be the cause;
+  but a heading that tells the agent "this is required" gives an example more weight than the text
+  does. An example illustrates the claim it verifies, so it is listed next to the claims. *Rejected:*
+  leaving examples out of the export (the conflict line would then cite an id with no entry).
+
 ## 8. Open questions
 
 Answered by the owner 2026-09-30: **Q1** (global constraints) — once, in pack 00, as drafted (§4.5);
@@ -557,3 +574,4 @@ Answered by the owner 2026-09-30: **Q1** (global constraints) — once, in pack 
 | AC-7.25 | `tests/test_export_packs.py::test_ac_7_25_*` | `src/sdd_compiler/export/packs.py (`_claims`, `_tag_line`) · files.py (`checklist`)` |
 | AC-7.26 | `tests/test_export_units.py::test_ac_7_26_*` | `src/sdd_compiler/export/units.py (`_split`)` |
 | AC-7.27 | `tests/test_export_pipeline.py::test_ac_7_27_*` | `src/sdd_compiler/export/files.py (`map_md`, `HOW_TO_USE`)` |
+| AC-7.28 · D17 | `tests/test_export_packs.py::test_ac_7_28_*` | `src/sdd_compiler/export/packs.py (`_claims`, `_criteria`)` |

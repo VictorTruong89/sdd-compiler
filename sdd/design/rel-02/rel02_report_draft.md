@@ -461,6 +461,54 @@ same compile, with the same model answers replayed, then found 6 of 7 (29 calls,
 one more false alarm (3). P4 was left as is: widening the cap to catch it would fit the answer key.
 The agent runs above used the 4-of-7 export and were not repeated.
 
+### Round 15: the 6-of-7 export, and both rounds together (2026-10-16 to 18)
+
+Round 15 repeated round 2's question with the improved compiler's export, which lists 6 of the 7
+planted conflicts as open (`harness/trials/r15-zero2repo-case006-conflicts-v2/`). Haiku, Markdown
+against export, 2 runs each. The runs were operated by GitHub Copilot CLI from a written procedure
+(`rel02_handover_copilot_r15.md`); its write-up was checked against the run data and corrected in four
+places (the trial's "Review" section). One Markdown run stopped early (below), leaving 1 valid Markdown
+run and 2 export runs.
+
+**Both rounds, conflicts left open** (round 14's 3 + 3 runs and round 15's 1 + 2; detection from each
+run's `NOTES.md`):
+
+| Planted conflict | Named, Markdown (4 runs) | Named, export (5 runs) |
+|---|---|---|
+| P1 isolated folder, same paragraph | 4 | 5 |
+| P2 warning channel, prose vs table | 4 | 5 |
+| **P3 environment vs default map, across files** | **0** | **5** |
+| P4 glossary rule, far apart (never listed) | 4 | 5 |
+| P6 80 vs 100 columns, far apart | 3 | 5 |
+| P7 example against its rule | 2 | 3 |
+| **R1 confirm, across files** | **1** | **5** |
+| All | 18 of 28 | 33 of 35 |
+| Core score, mean (range) | 439.8 (424–457) | 440.2 (400–462) |
+
+- **The export makes the agent report the conflicts it lists, and the difference is in the
+  conflicts that span the two documents** (P3 and R1). Conflicts inside one paragraph, or the glossary
+  rule against its section, were named from either format.
+- **It does not change the tests passed:** the core means differ by 0.4 tests out of 469, and the
+  ranges overlap. Nor does naming a conflict change what is built: unruled, both formats built the
+  original library's side on almost every item.
+- **A rendering fault, found and fixed:** the improved compiler formed the P7 example as a
+  verification node, and the export listed it under *Acceptance criteria*. Both round 15 export runs
+  built the example's side, one calling it "the acceptance criterion" (the Markdown run did too, so the
+  heading is not shown to be the cause). The export now lists such a node beside the claims, as
+  `example of N-…` (F7 D17, rel02 D27). Round 15's export runs predate the fix.
+
+### A Haiku failure that costs runs (observed, not a format finding)
+
+On case006, Haiku sometimes spends its whole first answer planning: it thinks until it reaches the
+128 000-token output limit. Claude Code then cuts the answer and tells it to continue in smaller
+pieces. In some runs Haiku next reads Claude Code's budget reminder as money left ("The run is out of
+budget: $0.0008 of the $10 remains"), writes no code and stops, having used about $0.08 of its $10
+ceiling. The judge then finds nothing to test. This happened in **3 of 12 Haiku Markdown runs** on
+case006 (13c, round 14, round 15) and in **none of 12 Haiku export runs**. That difference may be
+chance at this size and is not claimed as an effect. The stopped runs are recorded and left out of the
+scores, and a stopped run is simply run again. The study does not cap Haiku's thinking, so the runs
+keep the same conditions throughout (owner, 2026-10-18).
+
 ### What this does not cover
 
 n = 3; one reader of the notes, not blind to format (the export's conflict ids would defeat

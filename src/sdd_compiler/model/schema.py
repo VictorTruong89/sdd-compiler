@@ -32,7 +32,8 @@ AMBIGUITY_KINDS = (
     "low_confidence_verdict",        # F6 CT-6.1: a judged verdict the model was unsure of
 )
 FAMILY_RULES = ("subject", "response", "verification", "constraint", "mention", "component", "pinned", "fallback")  # F2 D19: component
-FLAGS = ("inferred", "pinned_family", "allocation_proposed", "family_disputed")
+FLAGS = ("inferred", "pinned_family", "allocation_proposed", "family_disputed",
+         "example")                                            # F2 D22, F7 D17: formed from an example
 STATUSES = ("unchecked", "validated", "conflict", "ambiguous", "stale")
 TERM_KINDS = ("entity", "data", "event", "actor", "component", "external_system",
               "category", "external_reference")
