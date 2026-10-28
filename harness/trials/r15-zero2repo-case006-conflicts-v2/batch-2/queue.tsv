@@ -1,0 +1,6 @@
+run_id	task	model	status	job	attempts	last_message
+r15b-haiku-markdown-1	../work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	batch-2-r15b-haiku-markdown-1	1	
+r15b-haiku-export-1	../work/tasks/case006-planted-export-v2	anthropic/claude-haiku-5-5	done	batch-2-r15b-haiku-export-1	1	
+r15b-haiku-markdown-2	../work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	batch-2-r15b-haiku-markdown-2	1	
+r15b-haiku-export-2	../work/tasks/case006-planted-export-v2	anthropic/claude-haiku-5-5	done	batch-2-r15b-haiku-export-2	1	
+r15b-haiku-markdown-3	../work/tasks/case006-planted-markdown	anthropic/claude-haiku-5-5	done	batch-2-r15b-haiku-markdown-3	1	

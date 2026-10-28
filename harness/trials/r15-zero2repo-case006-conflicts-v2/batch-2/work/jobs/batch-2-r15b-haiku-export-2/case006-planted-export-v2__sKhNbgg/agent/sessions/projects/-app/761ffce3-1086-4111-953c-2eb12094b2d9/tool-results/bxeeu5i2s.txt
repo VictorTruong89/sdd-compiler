@@ -1,0 +1,613 @@
+=== 19-full-prd--fp-01-command-declaration-naming-and-inv.md
+# Pack 19 — sdd/specs/Full_PRD.md · Optlyn — Full Product Requirements Document › Feature points › FP-01: Command declaration, naming, and invocation
+blocks 11 · nodes 30 (constraint 1, requirement 29) · AC labels: none
+
+## Text
+# Optlyn — Full Product Requirements Document
+
+## Feature points
+
+### FP-01: Command declaration, naming, and invocation
+
+**Public entry:** Optlyn’s command declaration (applied to an ordinary Python function) and invoking the resulting command as a program — by calling it, by running it as a script, or as an installed console script. A group’s command-registration helper is also an entry for attaching a leaf command (FP-06).
+↳ no node
+
+**Normal behavior:**
+↳ no node
+
+- Decorating a function with no extra arguments produces a command whose name is the function name converted to lowercase, with underscores replaced by dashes, and with a trailing `_command`, `_cmd`, `_group`, or `_grp` suffix stripped when present. Passing an explicit name uses that name instead, and then only that name is accepted: the name derived from the function is not.
+↳ N-000073–N-000076
+
+- Invoking the command with a valid argument list runs the function once and returns a successful process exit when used as a program. The function body is the command’s work: whatever it writes appears, and it is not run more than once.
+↳ N-000077–N-000079
+
+- A command marked deprecated still runs and still succeeds. On invocation, Optlyn emits a deprecation warning on standard output, ahead of the command’s own output, that is distinguishable from ordinary command output and from a usage failure. A custom deprecation note, when the author supplies one, appears in that warning; the command does not refuse to run merely because it is deprecated. An unknown option on a deprecated command is still a usage error.
+↳ N-000080–N-000084
+
+- Parameters declared on the command are converted and passed into the function under the destination names inferred or declared for those parameters (FP-03). A command with no parameters still runs when invoked with an empty extra-argument list. Creating a command or group moves declarations previously attached to the function onto the new command and removes them from the function; decorating the same function again starts from an empty declaration list.
+↳ N-000085–N-000089
+
+- When the command is invoked as a standalone program, Optlyn handles the failure classes in FP-13 and exits the process. When the integrator disables standalone program mode, failures propagate to the caller and the command’s return value is available to the caller instead of being discarded.
+↳ N-000090–N-000093
+
+**Boundary / error behavior:**
+↳ no node
+
+- Unknown option tokens, missing required parameters, and values that fail conversion do not run the command callback. They fail as usage errors (FP-13).
+↳ N-000094, N-000095
+
+- An ASCII-only environment encoding does not abort execution: the same command still runs and produces the same successful outcome as in a Unicode locale.
+↳ N-000096, N-000097
+
+- Leftover tokens beyond the declared arity that no variadic argument collects are a usage error, unless the command is configured to allow extra arguments. With extra arguments allowed, leftover tokens that are not option-shaped are tolerated and the callback runs; each declared argument still receives only the tokens that fill its own arity. An option-shaped leftover token (a leading dash, not after `--`) remains a usage error under that setting alone; consuming it as an argument requires the ignore-unknown-options setting (FP-03) or a preceding `--`.
+↳ N-000098–N-000102
+
+## Claims to implement
+- [N-000073] requirement · MUST · L1
+- [N-000074] requirement · MUST · L1
+- [N-000075] requirement · MUST · L1
+- [N-000076] requirement · MUST NOT · L1
+- [N-000077] requirement · MUST · L1
+- [N-000078] requirement · MUST · L1 · needs N-000022 (pack 16)
+- [N-000079] requirement · MUST · L1
+- [N-000080] requirement · MUST · L1
+- [N-000081] requirement · MUST · L1
+- [N-000082] requirement · MUST · L1 · needs N-000081
+- [N-000083] requirement · MUST NOT · L1
+- [N-000084] requirement · MUST · L1
+- [N-000085] requirement · MUST · L1
+- [N-000086] requirement · MUST · L1
+- [N-000087] requirement · MUST · L1
+- [N-000088] requirement · MUST · L2 · needs N-000165 (pack 21)
+- [N-000089] requirement · MUST · L4
+- [N-000090] requirement · MUST · L1
+- [N-000091] requirement · MUST · L1
+- [N-000092] requirement · MUST · L1
+- [N-000093] requirement · MUST NOT · L1
+- [N-000094] constraint · MUST NOT · L1
+- [N-000095] requirement · MUST · L1
+- [N-000096] requirement · MUST NOT · L1
+- [N-000097] requirement · MUST · L1
+- [N-000098] requirement · MUST · L1 · needs N-000944 (pack 10)
+- [N-000099] requirement · MUST · L1
+- [N-000100] requirement · MUST · L1
+- [N-000101] requirement · MUST · L1
+- [N-000102] requirement · MUST · L1 · needs N-000945 (pack 10)
+
+## Acceptance criteria
+None.
+
+## Constraints in scope
+- [N-000011] (pack 14) This document specifies **user- and integrator-observable behavior only**.
+- [N-000749] (pack 32) commands that write files must actually write them inside the sandbox
+plus the broad constraints in pack 01
+
+## Related elsewhere
+- N-000060 duplicates N-000096 (pack 17) An ASCII-only environment encoding does not abort invocation (FP-11).
+- N-000073 refines N-000021 (pack 16)
+- N-000075 refines N-000418 (pack 24)
+- N-000084 refines N-000255 (pack 21)
+- N-000087 refines N-000036 (pack 16)
+- N-000096 same as N-000060 (pack 17) An ASCII-only environment encoding does not abort invocation (FP-11).
+- N-000098 duplicates N-000311 (pack 22) Extra tokens beyond declared arity, when no variadic argument collects them and extra arguments are not allowed, are a usage error.
+- N-000098 same as N-000311 (pack 22) Extra tokens beyond declared arity, when no variadic argument collects them and extra arguments are not allowed, are a usage error.
+- N-000160 refines N-000095 (pack 20)
+- N-000166 refines N-000088 (pack 21)
+- N-000191 refines N-000102 (pack 21)
+- N-000312 refines N-000102 (pack 22)
+- N-000364 refines N-000085 (pack 23)
+- N-000509 refines N-000091 (pack 26)
+- N-000611 refines N-000096 (pack 29)
+- N-000707 subsumes N-000095 (pack 31)
+- N-000709 subsumes N-000094 (pack 31)
+- N-000716 refines N-000091 (pack 31)
+- N-000718 subsumes N-000092 (pack 31)
+- N-000811 refines N-000082 (pack 06)
+
+## Conflicts
+- UNSETTLED: CF-000146 — N-000081 "emits a deprecation warning on standard output" vs N-000803 "standard error"
+  rationale: Both claims govern the same deprecation warning at the same time, but A requires it on standard output and B requires it on standard error, so both cannot hold.
+
+## Terms
+- callback — defined: "`callback`: the author function."
+- group — defined: "Groups are how Optlyn nests CLIs."
+- optlyn — defined: "**Optlyn** is a Python package for creating command line interfaces in a composable way with as little code as necessary."
+- standalone program mode (aliases: standalone mode)
+=== 20-full-prd--fp-02-automatic-help-pages-and-eager-doc.md
+# Pack 20 — sdd/specs/Full_PRD.md · Optlyn — Full Product Requirements Document › Feature points › FP-02: Automatic help pages and eager documentation flags
+blocks 20 · nodes 68 (requirement 67, verification 1) · AC labels: none
+
+## Text
+# Optlyn — Full Product Requirements Document
+
+## Feature points
+
+### FP-02: Automatic help pages and eager documentation flags
+
+**Public entry:** The automatic help option on every command (default `--help`, overridable through the invocation context’s help-option names); the command’s docstring and per-option / per-argument help text; the ready-made version option and the ready-made custom-version option; optional epilog, short-help override, metavar, show-default, and show-environment-variable switches.
+↳ no node
+
+**Normal behavior:**
+↳ no node
+
+- Asking for help on a command prints a help page and does **not** run the command callback. The page includes a usage line, the command’s description, and a documented options section. Intentional help exits successfully (exit status zero).
+↳ N-000103–N-000106
+
+- If the function has a docstring, that docstring is the command description, unless the author supplies an explicit help string. A form-feed character in the docstring truncates the help: text after that character is omitted from the help page; text before it remains. The form-feed character itself does not appear on the page.
+↳ N-000107–N-000110
+
+- Option help strings appear next to those options. Argument help, when the author supplies it, appears in a positional-arguments section; without it, that section does not carry the argument. Arguments may also be described in the docstring by name.
+↳ N-000111–N-000114
+
+- For subcommands listed on a group help page, the short help is the first sentence of the docstring by default, ellipsized if it cannot fit on one line at the wrap width, or an explicit short-help string when the author sets one (which then replaces the first sentence).
+↳ N-000115–N-000117
+
+- Group help lists subcommands, the group’s options, positional arguments, and an epilog when one is set. The epilog is printed at the end of the help page, after everything else on it.
+↳ N-000118, N-000119
+
+- The usage line brackets optional elements and leaves required elements unbracketed. A variadic argument is marked with a trailing ellipsis. The default options placeholder is bracketed and occupies its own place on the usage line, distinct from any argument placeholder; an author override of that placeholder is used as given, without added brackets. A group that can run without a subcommand also brackets the leading command token; a chaining group brackets the extra command-and-args unit as optional and repeatable.
+↳ N-000120–N-000125
+
+- Help text is rewrapped to the terminal width; a maximum content width that defaults to 80 columns and can be raised by the caller caps auto-detected width only, and an explicit caller-supplied terminal width is the wrap width as-is (whatever the maximum content width). Single newlines inside a paragraph are not preserved as hard breaks. A paragraph whose first line is only a backspace character is not rewrapped: subsequent lines of that paragraph keep their line breaks, and the backspace line itself is stripped from the rendered help.
+↳ N-000126–N-000131
+
+- The default metavar for an argument is the argument name in uppercase. For an option that takes a value, the default metavar is the type name in uppercase, unless that type supplies its own placeholder (a choice type does); for example, an integer option `--count` appears on the help page as `--count COUNT`; a flag or counting option has no metavar. Authors may override the usage-line options placeholder and per-parameter metavars; an author metavar replaces the type-name placeholder.
+↳ N-000325–N-000329, N-001013
+
+- The help entry of an option whose type is a closed choice lists the allowed values; an option of the plain text type does not.
+↳ N-000132
+
+- When show-default is enabled, the help page shows the default in that option’s entry. Show-default may be enabled per parameter or for the whole invocation via the context. The author may supply a custom default description, shown instead of the raw default value. For a single-option boolean flag whose default is off (false), that default remains hidden even if show-default is on; a flag whose default is on (true) shows it. When show-environment-variable is enabled, the associated environment variable name appears in that option’s entry; when disabled, it does not.
+↳ N-000133–N-000138
+
+- The help page of a deprecated command carries a deprecation mark that the page of an otherwise identical non-deprecated command does not.
+↳ N-000139
+
+- Hidden options, hidden commands, and hidden groups are omitted from help (and from completion — FP-12) but remain invocable if the user types their names.
+↳ N-000140, N-000141
+
+- Help-option names default to `--help`. The invocation context may replace that list; the new names then print help and a name no longer in the list is an unknown option. If an author-declared option reuses every help-option name, the automatic help option is dropped and the author’s option wins; if it reuses only some of those names, the overlapping name runs the author’s option and the remaining names still print help. A parameter merely *named* `help` (for example a positional argument called `help`) does not disable automatic help: both keep working. Authors may also attach an extra help option that prints help and exits the same way as the automatic option; it does not remove the automatic one.
+↳ N-000142–N-000148
+
+- The ready-made version option is eager: it prints a version identity and exits without running the command callback, even when other required parameters are missing or present. If the author supplies the version string, the identity contains it. If the author does not supply it, Optlyn detects it from the installed distribution of the given package name; if that name is not an installed distribution, it is treated as an import name and the version of the distribution that provides that import is used. A module’s own version attribute is not consulted. The ready-made custom-version option is the same eager flag, except the whole printed identity is exactly the string returned by an author callback that receives the invocation context: that return value is printed as-is, not wrapped in the built-in package/prog/version template or any other surrounding label. If both help and version appear on the command line, whichever eager flag the user typed first wins and exits; the other’s output does not appear.
+↳ N-000149–N-000156
+
+**Boundary / error behavior:**
+↳ no node
+
+- Help shown because the user invoked a group with no subcommand under the default “no arguments means help” policy is a **usage failure**, not a successful help request: the help page is printed, the group callback is not run (unless the group is configured to invoke without a command — FP-06), and the exit status is the usage-error class (FP-13), not zero.
+↳ N-000157–N-000160
+
+- Incorrect usage of a command that causes Optlyn to show help (missing subcommand, and similar no-args-is-help paths) likewise uses the usage-error exit class. Passing the help option explicitly uses the success exit class.
+↳ N-000161, N-000162
+
+- A command may disable automatic help. Then `--help` is an unknown option unless the author declared it (for example with an extra help option of that name, which restores it).
+↳ N-000163, N-000164
+
+## Claims to implement
+- [N-000103] requirement · MUST · L1
+- [N-000104] requirement · MUST NOT · L1
+- [N-000105] requirement · MUST · L1 · needs N-000007 (pack 14)
+- [N-000106] requirement · MUST · L1
+- [N-000107] requirement · MUST · L1
+- [N-000108] requirement · MUST · L1
+- [N-000109] requirement · MUST · L1
+- [N-000110] requirement · MUST NOT · L1 · needs N-000007 (pack 14)
+- [N-000111] requirement · MUST · L1
+- [N-000112] requirement · MUST · L1
+- [N-000113] requirement · MUST NOT · L1
+- [N-000114] requirement · MAY · —
+- [N-000115] requirement · MUST · L1
+- [N-000116] requirement · MUST · L1
+- [N-000117] requirement · MUST · L1
+- [N-000118] requirement · MUST · L1
+- [N-000119] requirement · MUST · L1 · needs N-000158
+- [N-000120] requirement · MUST · L1
+- [N-000121] requirement · MUST · L1
+- [N-000122] requirement · MUST · L1
+- [N-000123] requirement · MUST · L1 · needs N-000328
+- [N-000124] requirement · MUST · L1 · needs N-000394 (pack 24)
+- [N-000125] requirement · MUST · L1
+- [N-000126] requirement · MUST · L1
+- [N-000127] requirement · MUST · L1
+- [N-000128] requirement · MUST · L1
+- [N-000129] requirement · MUST NOT · L1
+- [N-000130] requirement · MUST NOT · L1
+- [N-000131] requirement · MUST · L1
+- [N-000325] requirement · MUST · L1
+- [N-000326] requirement · MUST · L1
+- [N-000327] requirement · MUST NOT · L1
+- [N-000328] requirement · MAY · L1
+- [N-000329] requirement · MUST · L1 · needs N-000326
+- [N-000132] requirement · MUST · L1
+- [N-000133] requirement · MUST · L1 · needs N-000943 (pack 10)
+- [N-000134] requirement · MAY · L1
+- [N-000135] requirement · MAY · L1
+- [N-000136] requirement · MUST · L1
+- [N-000137] requirement · MUST · L1
+- [N-000138] requirement · MUST · L1
+- [N-000139] requirement · MUST · L1
+- [N-000140] requirement · MUST · L1
+- [N-000141] requirement · MUST · L1
+- [N-000142] requirement · MUST · L1
+- [N-000143] requirement · MUST · L1
+- [N-000144] requirement · MUST · L1 · needs N-000142
+- [N-000145] requirement · MUST · L1 · needs N-000142
+- [N-000146] requirement · MUST · L1 · needs N-000142
+- [N-000147] requirement · MUST NOT · L1
+- [N-000148] requirement · MAY · L1 · needs N-000023 (pack 16)
+- [N-000149] requirement · MUST · L1
+- [N-000150] requirement · MUST · L1
+- [N-000151] requirement · MUST · L1
+- [N-000152] requirement · MUST · L1
+- [N-000153] requirement · MUST NOT · L1
+- [N-000154] requirement · MUST · L1
+- [N-000155] requirement · MUST · L1
+- [N-000156] requirement · MUST · L1 · needs N-000024 (pack 16)
+- [N-000157] requirement · MUST · L1 · needs N-000396 (pack 24)
+- [N-000158] requirement · MUST · L1 · needs N-000002 (pack 14)
+- [N-000159] requirement · MUST NOT · L1
+- [N-000160] requirement · MUST · —
+- [N-000161] requirement · MUST · — · needs N-000789 (pack 06)
+- [N-000162] requirement · MUST · —
+- [N-000163] requirement · MAY · L1
+- [N-000164] requirement · MUST · L1
+
+## Acceptance criteria
+- [N-001013] for example, an integer option `--count` appears on the help page as `--count COUNT`;
+  verifies: N-000326
+  test name: test_N_001013_…
+
+## Constraints in scope
+- [N-000749] (pack 32) commands that write files must actually write them inside the sandbox
+- [N-000779] (pack 05) no runtime dependencies
+- [N-001014] (pack 29) Help pages and wrapped text use a maximum content width of 100 columns unless the caller sets another.
+plus the broad constraints in pack 01
+
+## Related elsewhere
+- N-000104 duplicates N-000709 (pack 31) The command callback does not run.
+- N-000104 same as N-000709 (pack 31) The command callback does not run.
+- N-000106 refines N-000788 (pack 06)
+- N-000118 refines N-000007 (pack 14)
+- N-000118 refines N-000828 (pack 06)
+- N-000119 refines N-000828 (pack 06)
+- N-000122 refines N-000814 (pack 06)
+- N-000132 refines N-000825 (pack 06)
+- N-000133 refines N-000825 (pack 06)
+- N-000135 refines N-000055 (pack 17)
+- N-000140 duplicates N-000759 (pack 33) Omitted from help (FP-02) and completion (FP-12)
+- N-000140 same as N-000759 (pack 33) Omitted from help (FP-02) and completion (FP-12)
+- N-000141 duplicates N-000701 (pack 30) Hidden names that are omitted from suggestions remain valid if fully typed
+- N-000141 same as N-000701 (pack 30) Hidden names that are omitted from suggestions remain valid if fully typed
+- N-000145 refines N-000023 (pack 16)
+- N-000147 refines N-000023 (pack 16)
+- N-000149 refines N-000019 (pack 15)
+- N-000149 refines N-000024 (pack 16)
+- N-000154 duplicates N-000919 (pack 08) custom_version_option`: the identity is the string `callback(ctx)` returns.
+- N-000154 refines N-000008 (pack 14)
+- N-000154 refines N-000913 (pack 08)
+- N-000154 same as N-000919 (pack 08) custom_version_option`: the identity is the string `callback(ctx)` returns.
+- N-000156 refines N-000019 (pack 15)
+- N-000157 refines N-000751 (pack 33)
+- N-000160 duplicates N-000367 (pack 23) non-zero usage-class exit
+- N-000160 refines N-000035 (pack 16)
+- N-000160 refines N-000095 (pack 19)
+- N-000160 same as N-000367 (pack 23) non-zero usage-class exit
+- N-000325 duplicates N-000818 (pack 06) by default the argument name in uppercase
+- N-000325 same as N-000818 (pack 06) by default the argument name in uppercase
+- N-000367 subsumes N-000161 (pack 23)
+- N-000401 refines N-000157 (pack 24)
+- N-000402 refines N-000159 (pack 24)
+- N-000420 refines N-000159 (pack 24)
+- N-000704 subsumes N-000106 (pack 31)
+- N-000710 refines N-000158 (pack 31)
+- N-000720 refines N-000157 (pack 31)
+- N-000750 refines N-000104 (pack 33)
+- N-000750 refines N-000106 (pack 33)
+- N-000789 refines N-000160 (pack 06)
+- N-000822 refines N-000105 (pack 06)
+- N-000831 refines N-000150 (pack 06)
+- N-000917 subsumes N-000150 (pack 08)
+- N-000931 refines N-000326 (pack 09)
+
+## Conflicts
+- UNSETTLED: CF-000152 — N-000326 "the default metavar is the type name in uppercase" vs N-001013 "an integer option `--count` appears on the help page as `--count COUNT`"
+  rationale: For an integer option with a value, the first claim makes the default metavar the type name in uppercase (INTEGER), while the second states the same kind of option shows as `--count COUNT`, so both cannot hold for that option.
+- UNSETTLED: CF-000155 — N-000127 "defaults to 80 columns" vs N-001014 "use a maximum content width of 100 columns unless the caller sets another"
+  rationale: Both set a default maximum content width for the same wrapped text, one at 80 columns and the other at 100, and both cannot hold for the same caller who sets nothing.
+
+## Terms
+- callback — defined: "`callback`: the author function."
+- group — defined: "Groups are how Optlyn nests CLIs."
+- maximum content width (aliases: max content width)
+- optlyn — defined: "**Optlyn** is a Python package for creating command line interfaces in a composable way with as little code as necessary."
+=== 21-full-prd--fp-03-options.md
+# Pack 21 — sdd/specs/Full_PRD.md · Optlyn — Full Product Requirements Document › Feature points › FP-03: Options
+blocks 26 · nodes 108 (constraint 4, requirement 104) · AC labels: none
+
+## Text
+# Optlyn — Full Product Requirements Document
+
+## Feature points
+
+### FP-03: Options
+
+**Public entry:** Optlyn’s option declaration on a command or group. Ready-made combinations that are still options (password option, confirmation option) are specified under FP-08; the version option under FP-02.
+↳ no node
+
+**Normal behavior:**
+↳ no node
+
+- Declarations attached as options (or arguments) live on the function until a command or group is created from it: those declarations are then moved onto the new command and removed from the function. Decorating the same function again starts from an empty declaration list. Several options on one command are independent: each fills only its own destination.
+↳ N-000165–N-000168
+
+- An option is optional by default. If it is omitted and has no default, the callback receives an absent value. If a default is set, Optlyn infers the type from that default when the author does not set a type (FP-05). A default that is already of the converted type is delivered unchanged. A default may be a callable; that callable is invoked when no earlier value source produced a value.
+↳ N-000169–N-000174
+
+- One option may be declared with several names (a short name and a long name, and additional aliases) that all set the same destination. Long options use a double-dash prefix and may take a value as `--name=value` or `--name value`. Short options use a single dash and a single character. Single-character short flags may be stacked: a stack is equivalent to each flag given separately. If the last flag in a stack takes a value, that value may be the next token or attached directly after it, whether alone or at the end of a stack. Multi-character short names are not supported: a single-dash token of several characters is a stack of single-character flags, not one option.
+↳ N-000175–N-000180
+
+- When the author does not give a destination name, it is inferred from the declared option names: a name that is already a valid identifier wins; otherwise the first long name; otherwise the first short name. A leading dash prefix is stripped and remaining dashes become underscores.
+↳ N-000181, N-000182
+
+- On a leaf command, options and positional arguments may be mixed: an option after an argument is parsed the same as before it. On a group, mixing is off by default: the subcommand name ends that group’s own option parsing, so group options must appear before the subcommand name. Authors may enable mixing on a group, in which case a group option after the subcommand name is still delivered to the group and the subcommand still runs.
+↳ N-000183–N-000186
+
+- An option may be required. Then omitting it is a usage error and the callback does not run, unless another source (environment, automatic prefix, default map) supplies it.
+↳ N-000187, N-000188
+
+- Boolean flags: a flag declared as a flag, when omitted, yields false unless the author set a true default; when present, it yields true. After `--`, a token spelled like the flag is an argument, not the flag. An explicit on/off pair (declared with either prefix style) yields true for the on token and false for the off token. Several flags may share one destination as a feature-switch group: the callback receives the flag value of the winning flag (see value resolution below).
+↳ N-000189–N-000193
+
+- A counting option yields how many times it occurred (zero if omitted). Each flag in a stack counts.
+↳ N-000194, N-000195
+
+- A repeatable option may be given several times; the callback receives the sequence of values in command-line order. If it is omitted and has no default, the callback receives an empty tuple, not an absent value. A declared default for a repeatable option must be a sequence (list or tuple) of values, delivered as a tuple in that order when the option is omitted. A multi-value option takes a fixed number of tokens per occurrence (strictly positive; not “consume the rest”): it is delivered as an indexable sequence of that length, a following token is left for the next parameter, and too few tokens is a usage error. Combined with repetition, each occurrence takes that many tokens. A tuple type on an option sets that arity to the tuple length and converts each position with the corresponding inner type.
+↳ N-000196–N-000207
+
+- An option may take an optional value: the flag alone yields the author’s flag-value; the flag plus a token yields that token; omitting the flag entirely yields the default. (A value option without this form, given with no value, is a missing-value usage error.)
+↳ N-000208–N-000212
+
+- Authors may declare prefixes other than `-`, including `/` and `+`.
+↳ N-000213
+
+- Environment variables: an option may name one variable or a list of names (first one set wins). Names are matched exactly and are not whitespace-trimmed as names. An absent variable, or a variable present with a truly empty value, is treated as not supplying a value (the next source wins). An environment value is converted with the option’s type and may satisfy a required option. For a repeatable or multi-value option, the type splits a non-empty variable’s string: default split is whitespace; file and path types split on the platform path separator (`:` on Unix), keeping left-to-right order.
+↳ N-000214–N-000220
+
+- For boolean flags, environment values are strings interpreted as follows after stripping surrounding whitespace and ignoring case. Activation: `true`, `1`, `yes`, `on`, `t`, `y`. Deactivation: `false`, `0`, `no`, `off`, `f`, `n`. A whitespace-only value strips to empty and deactivates. Any other non-empty string is a conversion usage error, not a silent deactivation. If the flag has a non-boolean flag-value, a variable whose text equals that flag-value also activates; recognized true/false tokens activate or deactivate as above; unrecognized and empty values are treated as unset (the next source wins), not as a usage error. A paired on/off option recognizes only the single environment name the author attached, not a magically derived negative name.
+↳ N-000221–N-000229
+
+- A value is filled from command line, then environment, then the default map on the invocation context (FP-07), then the parameter’s declared default; the first of those that produces a value wins. Those four, plus an interactive prompt when one ran (FP-08), are ranked from most explicit to least as: prompt, command line, environment, default map, declared default.
+↳ N-000230–N-000232
+
+- Feature-switch groups (several options sharing one destination): the option whose source is most explicit wins. Within the default tier, an explicit declared default beats an auto-derived default (bare boolean flags auto-derive default false). If still tied, the last declared option wins.
+↳ N-000233–N-000236
+
+- A parameter callback sees the invocation context, the parameter, and the converted value, and may replace the value or refuse it. A refusal is a usage error: non-zero usage-class exit, a message on standard error that distinguishes the failure from success, the command callback not run, and the refused value not delivered. Callbacks run for every source including environment, default map, and prompts. An eager flag can finish the invocation even when required non-eager options are missing; when it is not given, the missing required option is still a usage error. A missing parameter still runs its callback, so that callback can default from an earlier parameter’s value (the values already bound are readable on the context). A repeated parameter fires its callback once, with all gathered values.
+↳ N-000237–N-000250
+
+- A parameter may be hidden from the callback (not passed as a function argument) while still being parsed — used by help, version, and confirmation flags. Its name is still accepted on the command line.
+↳ N-000251, N-000252
+
+- A deprecated option still parses. A deprecation warning is emitted only when the user actually supplied that option, not when the value came only from a default.
+↳ N-000253, N-000254
+
+**Boundary / error behavior:**
+↳ no node
+
+- An unknown option is a usage error, unless the command is configured to ignore unknown options, in which case option-like tokens may be consumed as arguments without `--`, and leftover option-like tokens become extra arguments that a variadic pass-through argument can collect (FP-04). Unknown long options are left intact. Unknown short options may be split: a known short flag inside a stack is consumed and the unknown rest of the stack stays leftover. An option-like token left over beyond the declared arity is still a usage error unless extra arguments are allowed (FP-01).
+↳ N-000255–N-000261
+
+- A missing value for an option that requires one is a usage error.
+↳ N-000262
+
+- A bare string (or other non-sequence) default on a repeatable option is a usage error whose report identifies the option and says that it needs an iterable (sequence) default, so that report is distinct from the report for a missing required option; it is not treated as a sequence of characters and not as a single string element. Authors who want one default string must pass a one-element sequence.
+↳ N-000263–N-000267
+
+- A deprecated option cannot also be required, and cannot use a prompt. Declaring that combination is refused at declaration time.
+↳ N-000268–N-000270
+
+- Option values belonging to a command must appear after that command’s name and before a nested command name (FP-06). A help option before a subcommand name is help for the parent, not for the subcommand.
+↳ N-000271, N-000272
+
+## Claims to implement
+- [N-000165] requirement · MUST · L2 · needs N-000021 (pack 16)
+- [N-000166] requirement · MUST · L2
+- [N-000167] requirement · MUST · L4
+- [N-000168] requirement · MUST · L1
+- [N-000169] requirement · MUST · L1
+- [N-000170] requirement · MUST · L1
+- [N-000171] requirement · MUST · L1
+- [N-000172] requirement · MUST · L1
+- [N-000173] requirement · MAY · L1
+- [N-000174] requirement · MUST · L1 · needs N-000173
+- [N-000175] requirement · MAY · L1
+- [N-000176] requirement · MUST · L1
+- [N-000177] requirement · MUST · L1
+- [N-000178] requirement · MAY · L1
+- [N-000179] requirement · MAY · L1 · needs N-000178
+- [N-000180] requirement · MUST NOT · L1 · needs N-000178
+- [N-000181] requirement · MUST · L1 · needs N-000175
+- [N-000182] requirement · MUST · L1
+- [N-000183] requirement · MAY · L1
+- [N-000184] requirement · MUST NOT · L1
+- [N-000185] requirement · MUST · L1
+- [N-000186] requirement · MUST · L1
+- [N-000187] requirement · MAY · L1
+- [N-000188] requirement · MUST NOT · L1
+- [N-000189] requirement · MUST · L1
+- [N-000190] requirement · MUST · L1
+- [N-000191] requirement · MUST · L1
+- [N-000192] requirement · MUST · L1
+- [N-000193] requirement · MUST · L3
+- [N-000194] requirement · MUST · L1
+- [N-000195] requirement · MUST · L1
+- [N-000196] requirement · MAY · L1
+- [N-000197] requirement · MUST · L3
+- [N-000198] requirement · MUST · L3
+- [N-000199] constraint · MUST · L4
+- [N-000200] requirement · MUST · L1 · needs N-000199
+- [N-000201] requirement · MUST · L1
+- [N-000202] requirement · MUST · L1
+- [N-000203] requirement · MUST · L1
+- [N-000204] requirement · MUST · L1 · needs N-000201
+- [N-000205] requirement · MUST · L1
+- [N-000206] requirement · MUST · L1
+- [N-000207] requirement · MUST · L1
+- [N-000208] requirement · MAY · L1
+- [N-000209] requirement · MUST · L1 · needs N-000208
+- [N-000210] requirement · MUST · L1 · needs N-000208
+- [N-000211] requirement · MUST · L1
+- [N-000212] requirement · MUST · L1 · needs N-000208
+- [N-000213] requirement · MAY · L1
+- [N-000214] requirement · MAY · L1
+- [N-000215] requirement · MUST · L1
+- [N-000216] requirement · MUST · L1
+- [N-000217] requirement · MUST · L1
+- [N-000218] requirement · MAY · L1
+- [N-000219] requirement · MUST · L1
+- [N-000220] requirement · MUST · L1
+- [N-000221] requirement · MUST · L1
+- [N-000222] requirement · MUST · L1
+- [N-000223] requirement · MUST · L1
+- [N-000224] requirement · MUST · L1
+- [N-000225] requirement · MUST · L1
+- [N-000226] requirement · MUST · L1
+- [N-000227] requirement · MUST · L1 · needs N-000192
+- [N-000228] requirement · MUST · L1
+- [N-000229] requirement · MUST · L1
+- [N-000230] requirement · MUST · L1
+- [N-000231] requirement · MUST · L1 · needs N-000232
+- [N-000232] requirement · MUST · L1
+- [N-000233] requirement · MUST · L1
+- [N-000234] requirement · MUST · L1
+- [N-000235] requirement · MUST · L1
+- [N-000236] requirement · MUST · L1
+- [N-000237] requirement · MUST · L3
+- [N-000238] requirement · MAY · L1
+- [N-000239] requirement · MUST · L1
+- [N-000240] requirement · MUST · — · needs N-000239
+- [N-000241] requirement · MUST · L1
+- [N-000242] requirement · MUST NOT · L1
+- [N-000243] requirement · MUST NOT · L1 · needs N-000238
+- [N-000244] requirement · MUST · L1
+- [N-000245] requirement · MAY · L1
+- [N-000246] requirement · MUST · L1 · needs N-000187
+- [N-000247] requirement · MUST · L1
+- [N-000248] requirement · MAY · L1
+- [N-000249] requirement · MUST · —
+- [N-000250] requirement · MUST · L1
+- [N-000251] requirement · MAY · L1
+- [N-000252] requirement · MUST · L1
+- [N-000253] requirement · MUST · L1
+- [N-000254] requirement · MUST · L1
+- [N-000255] requirement · MUST · L1
+- [N-000256] requirement · MAY · L1
+- [N-000257] requirement · MUST · L1
+- [N-000258] requirement · MUST · L1
+- [N-000259] requirement · MAY · L1
+- [N-000260] requirement · MUST · L1 · needs N-000178
+- [N-000261] requirement · MUST · L1
+- [N-000262] requirement · MUST · L1
+- [N-000263] requirement · MUST · L1
+- [N-000264] requirement · MUST · L1
+- [N-000265] requirement · MUST · L1
+- [N-000266] requirement · MUST NOT · L1
+- [N-000267] requirement · MUST · L1
+- [N-000268] constraint · MUST NOT · L1
+- [N-000269] constraint · MUST NOT · L1
+- [N-000270] requirement · MUST · L1
+- [N-000271] constraint · MUST · L1
+- [N-000272] requirement · MUST · L1
+
+## Acceptance criteria
+None.
+
+## Constraints in scope
+- [N-000749] (pack 32) commands that write files must actually write them inside the sandbox
+- [N-000807] (pack 06) Wording of every report, warning and indication is the implementer’s choice
+plus the broad constraints in pack 01
+
+## Related elsewhere
+- N-000015 subsumes N-000169 (pack 15)
+- N-000015 subsumes N-000187 (pack 15)
+- N-000018 subsumes N-000238 (pack 15)
+- N-000054 refines N-000184 (pack 17)
+- N-000084 refines N-000255 (pack 19)
+- N-000166 refines N-000088 (pack 19)
+- N-000170 duplicates N-000282 (pack 22) or an absent value (neither a string nor a sequence) when there is none
+- N-000170 same as N-000282 (pack 22) or an absent value (neither a string nor a sequence) when there is none
+- N-000174 refines N-000489 (pack 26)
+- N-000176 refines N-000051 (pack 17)
+- N-000183 refines N-000053 (pack 17)
+- N-000187 covered by N-000015 (pack 15) Options are optional unless the author marks them required. … They appear fully on the help page.
+- N-000191 refines N-000102 (pack 19)
+- N-000191 refines N-000292 (pack 22)
+- N-000194 refines N-000907 (pack 08)
+- N-000199 refines N-000873 (pack 08)
+- N-000201 duplicates N-000879 (pack 08) nargs` | positive int: tokens per occurrence
+- N-000201 same as N-000879 (pack 08) nargs` | positive int: tokens per occurrence
+- N-000205 duplicates N-000879 (pack 08) nargs` | positive int: tokens per occurrence
+- N-000205 same as N-000879 (pack 08) nargs` | positive int: tokens per occurrence
+- N-000211 duplicates N-000484 (pack 26) still uses the default when fully omitted
+- N-000211 same as N-000484 (pack 26) still uses the default when fully omitted
+- N-000216 duplicates N-000301 (pack 22) An absent or truly empty variable is treated as not supplying a value.
+- N-000216 same as N-000301 (pack 22) An absent or truly empty variable is treated as not supplying a value.
+- N-000217 duplicates N-000436 (pack 25) That value is converted with the option’s type
+- N-000217 same as N-000436 (pack 25) That value is converted with the option’s type
+- N-000218 duplicates N-000302 (pack 22) An environment value may satisfy a required argument
+- N-000218 duplicates N-000437 (pack 25) can satisfy a required option
+- N-000218 same as N-000302 (pack 22) An environment value may satisfy a required argument
+- N-000218 same as N-000437 (pack 25) can satisfy a required option
+- N-000221 refines N-000436 (pack 25)
+- N-000222 refines N-000335 (pack 23)
+- N-000223 refines N-000335 (pack 23)
+- N-000225 refines N-000323 (pack 23)
+- N-000230 subsumes N-000446 (pack 25)
+- N-000232 refines N-000454 (pack 25)
+- N-000238 covered by N-000018 (pack 15) Command callbacks receive converted parameter values. … Parameter callbacks receive the converted value and may replace it or refuse it. … A parameter callback is not called for a parameter that was omitted and received no value from any source.
+- N-000240 duplicates N-000367 (pack 23) non-zero usage-class exit
+- N-000240 same as N-000367 (pack 23) non-zero usage-class exit
+- N-000241 duplicates N-000368 (pack 23) message on standard error that distinguishes this failure from success
+- N-000241 refines N-000708 (pack 31)
+- N-000241 same as N-000368 (pack 23) message on standard error that distinguishes this failure from success
+- N-000242 duplicates N-000709 (pack 31) The command callback does not run.
+- N-000242 same as N-000709 (pack 31) The command callback does not run.
+- N-000246 refines N-000707 (pack 31)
+- N-000249 duplicates N-001000 (pack 12) ctx.params` holds the values already parsed,
+- N-000249 same as N-001000 (pack 12) ctx.params` holds the values already parsed,
+- N-000254 duplicates N-000317 (pack 22) A deprecation warning is emitted only when the user actually supplied that argument, not when the value came only from a default.
+- N-000254 same as N-000317 (pack 22) A deprecation warning is emitted only when the user actually supplied that argument, not when the value came only from a default.
+- N-000256 duplicates N-000312 (pack 22) With ignore-unknown-options enabled, option-shaped tokens may be consumed as arguments without needing `--`.
+- N-000256 same as N-000312 (pack 22) With ignore-unknown-options enabled, option-shaped tokens may be consumed as arguments without needing `--`.
+- N-000259 refines N-000051 (pack 17)
+- N-000267 refines N-000343 (pack 23)
+- N-000269 duplicates N-000513 (pack 26) Combining deprecated with prompt is refused
+- N-000269 same as N-000513 (pack 26) Combining deprecated with prompt is refused
+- N-000270 duplicates N-000316 (pack 22) Declaring that combination is refused at declaration time.
+- N-000270 duplicates N-000896 (pack 08) An invalid combination of keywords (as the PRD defines) raises at declaration, when the decorator is applied.
+- N-000270 same as N-000316 (pack 22) Declaring that combination is refused at declaration time.
+- N-000270 same as N-000896 (pack 08) An invalid combination of keywords (as the PRD defines) raises at declaration, when the decorator is applied.
+- N-000287 refines N-000204 (pack 22)
+- N-000310 subsumes N-000242 (pack 22)
+- N-000311 subsumes N-000261 (pack 22)
+- N-000342 refines N-000196 (pack 23)
+- N-000343 refines N-000199 (pack 23)
+- N-000386 subsumes N-000185 (pack 24)
+- N-000489 refines N-000173 (pack 26)
+- N-000565 refines N-000217 (pack 27)
+- N-000565 refines N-000220 (pack 27)
+- N-000570 subsumes N-000188 (pack 27)
+- N-000570 subsumes N-000242 (pack 27)
+- N-000690 refines N-000242 (pack 30)
+- N-000760 refines N-000251 (pack 33)
+- N-000899 subsumes N-000270 (pack 08)
+
+## Conflicts
+- UNSETTLED: CF-000150 — N-000230 "then environment, then the default map on the invocation context" vs N-000937 "its values take precedence over environment variables"
+  rationale: Claim A ranks environment above the default map, while claim B says default-map values take precedence over environment variables, so both cannot hold for the same value.
+
+## Terms
+- callback — defined: "`callback`: the author function."
+- group — defined: "Groups are how Optlyn nests CLIs."
+- optlyn — defined: "**Optlyn** is a Python package for creating command line interfaces in a composable way with as little code as necessary."

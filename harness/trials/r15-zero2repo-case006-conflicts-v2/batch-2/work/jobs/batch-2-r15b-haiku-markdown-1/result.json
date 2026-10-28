@@ -1,0 +1,69 @@
+{
+    "id": "53c47baf-1d65-4535-96d0-b8b2aeb42c0a",
+    "started_at": "2026-10-18T01:06:59.411598",
+    "updated_at": "2026-10-18T01:24:35.308773",
+    "finished_at": "2026-10-18T01:24:35.308773",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "claude-code__claude-haiku-5-5__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "official_reward": 0.0,
+                        "reward": 0.9012605042016807,
+                        "tests_error": 0.0,
+                        "tests_failed": 47.0,
+                        "tests_passed": 429.0,
+                        "tests_total": 476.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.9012605042016807": [
+                            "case006-planted-markdown__VnUEvk8"
+                        ]
+                    },
+                    "tests_passed": {
+                        "429": [
+                            "case006-planted-markdown__VnUEvk8"
+                        ]
+                    },
+                    "tests_total": {
+                        "476": [
+                            "case006-planted-markdown__VnUEvk8"
+                        ]
+                    },
+                    "tests_failed": {
+                        "47": [
+                            "case006-planted-markdown__VnUEvk8"
+                        ]
+                    },
+                    "tests_error": {
+                        "0": [
+                            "case006-planted-markdown__VnUEvk8"
+                        ]
+                    },
+                    "official_reward": {
+                        "0.0": [
+                            "case006-planted-markdown__VnUEvk8"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 3762782,
+        "n_cache_tokens": 3568421,
+        "n_output_tokens": 243391,
+        "cost_usd": 0.46830855000000005
+    }
+}

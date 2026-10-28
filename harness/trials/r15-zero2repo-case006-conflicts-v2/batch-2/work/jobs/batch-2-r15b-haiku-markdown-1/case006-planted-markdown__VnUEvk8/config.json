@@ -1,0 +1,17 @@
+{
+    "task": {
+        "path": "/home/victor/Workspace/sdd-compiler/harness/trials/r15-zero2repo-case006-conflicts-v2/batch-2/../work/tasks/case006-planted-markdown"
+    },
+    "trial_name": "case006-planted-markdown__VnUEvk8",
+    "trials_dir": "jobs/batch-2-r15b-haiku-markdown-1",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "anthropic/claude-haiku-5-5",
+        "kwargs": {
+            "version": "2.1.296",
+            "max_budget_usd": 10,
+            "disallowed_tools": "Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow"
+        }
+    },
+    "job_id": "53c47baf-1d65-4535-96d0-b8b2aeb42c0a"
+}

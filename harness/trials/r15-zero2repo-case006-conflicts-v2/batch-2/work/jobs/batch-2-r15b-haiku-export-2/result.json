@@ -1,0 +1,69 @@
+{
+    "id": "e7621d5f-5b4a-4e67-bb41-9fed45f4c84b",
+    "started_at": "2026-10-19T17:44:51.043041",
+    "updated_at": "2026-10-19T18:03:25.300239",
+    "finished_at": "2026-10-19T18:03:25.300239",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "claude-code__claude-haiku-5-5__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "official_reward": 0.0,
+                        "reward": 0.9054621848739496,
+                        "tests_error": 0.0,
+                        "tests_failed": 45.0,
+                        "tests_passed": 431.0,
+                        "tests_total": 476.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.9054621848739496": [
+                            "case006-planted-export-v2__sKhNbgg"
+                        ]
+                    },
+                    "tests_passed": {
+                        "431": [
+                            "case006-planted-export-v2__sKhNbgg"
+                        ]
+                    },
+                    "tests_total": {
+                        "476": [
+                            "case006-planted-export-v2__sKhNbgg"
+                        ]
+                    },
+                    "tests_failed": {
+                        "45": [
+                            "case006-planted-export-v2__sKhNbgg"
+                        ]
+                    },
+                    "tests_error": {
+                        "0": [
+                            "case006-planted-export-v2__sKhNbgg"
+                        ]
+                    },
+                    "official_reward": {
+                        "0.0": [
+                            "case006-planted-export-v2__sKhNbgg"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 7381293,
+        "n_cache_tokens": 7159882,
+        "n_output_tokens": 254167,
+        "cost_usd": 0.8177993600000001
+    }
+}

@@ -470,32 +470,34 @@ against export, 2 runs each. The runs were operated by GitHub Copilot CLI from a
 places (the trial's "Review" section). One Markdown run stopped early (below), leaving 1 valid Markdown
 run and 2 export runs.
 
-**Both rounds, conflicts left open** (round 14's 3 + 3 runs and round 15's 1 + 2; detection from each
-run's `NOTES.md`):
+**Both rounds, conflicts left open** (round 14's 3 + 3 runs and round 15's 4 + 4, batch 2 added
+2026-10-19; detection from each run's `NOTES.md`):
 
-| Planted conflict | Named, Markdown (4 runs) | Named, export (5 runs) |
+| Planted conflict | Named, Markdown (7 runs) | Named, export (7 runs) |
 |---|---|---|
-| P1 isolated folder, same paragraph | 4 | 5 |
-| P2 warning channel, prose vs table | 4 | 5 |
-| **P3 environment vs default map, across files** | **0** | **5** |
-| P4 glossary rule, far apart (never listed) | 4 | 5 |
-| P6 80 vs 100 columns, far apart | 3 | 5 |
-| P7 example against its rule | 2 | 3 |
-| **R1 confirm, across files** | **1** | **5** |
-| All | 18 of 28 | 33 of 35 |
-| Core score, mean (range) | 439.8 (424–457) | 440.2 (400–462) |
+| P1 isolated folder, same paragraph | 7 | 7 |
+| P2 warning channel, prose vs table | 7 | 7 |
+| **P3 environment vs default map, across files** | **0** | **7** |
+| P4 glossary rule, far apart (never listed) | 7 | 6 |
+| P6 80 vs 100 columns, far apart | 6 | 7 |
+| P7 example against its rule | 3 | 5 |
+| **R1 confirm, across files** | **3** | **7** |
+| All | 33 of 49 | 46 of 49 |
+| Core score, mean (range) | 440.6 (423–457) | 437.7 (400–462) |
 
 - **The export makes the agent report the conflicts it lists, and the difference is in the
   conflicts that span the two documents** (P3 and R1). Conflicts inside one paragraph, or the glossary
   rule against its section, were named from either format.
-- **It does not change the tests passed:** the core means differ by 0.4 tests out of 469, and the
+- **It does not change the tests passed:** the core means differ by 2.9 tests out of 469, and the
   ranges overlap. Nor does naming a conflict change what is built: unruled, both formats built the
   original library's side on almost every item.
 - **A rendering fault, found and fixed:** the improved compiler formed the P7 example as a
   verification node, and the export listed it under *Acceptance criteria*. Both round 15 export runs
   built the example's side, one calling it "the acceptance criterion" (the Markdown run did too, so the
-  heading is not shown to be the cause). The export now lists such a node beside the claims, as
-  `example of N-…` (F7 D17, rel02 D27). Round 15's export runs predate the fix.
+  heading is not shown to be the cause). After batch 2: all 4 round 15 export runs built the example's
+  side, 3 of them calling it the acceptance criterion, against 1 of 7 Markdown runs. The export now
+  lists such a node beside the claims, as `example of N-…` (F7 D17, rel02 D27); round 15's export runs
+  predate the fix, and an export with it has not been run.
 
 ### A Haiku failure that costs runs (observed, not a format finding)
 
@@ -503,8 +505,8 @@ On case006, Haiku sometimes spends its whole first answer planning: it thinks un
 128 000-token output limit. Claude Code then cuts the answer and tells it to continue in smaller
 pieces. In some runs Haiku next reads Claude Code's budget reminder as money left ("The run is out of
 budget: $0.0008 of the $10 remains"), writes no code and stops, having used about $0.08 of its $10
-ceiling. The judge then finds nothing to test. This happened in **3 of 12 Haiku Markdown runs** on
-case006 (13c, round 14, round 15) and in **none of 12 Haiku export runs**. That difference may be
+ceiling. The judge then finds nothing to test. This happened in **3 of 15 Haiku Markdown runs** on
+case006 (13c, round 14, round 15) and in **none of 14 Haiku export runs** (counts as of 2026-10-19). That difference may be
 chance at this size and is not claimed as an effect. The stopped runs are recorded and left out of the
 scores, and a stopped run is simply run again. The study does not cap Haiku's thinking, so the runs
 keep the same conditions throughout (owner, 2026-10-18).

@@ -1,0 +1,69 @@
+{
+    "id": "458a0f60-d958-4dbd-8ff2-0dd54d781f4b",
+    "started_at": "2026-10-19T17:28:35.230791",
+    "updated_at": "2026-10-19T17:42:50.007004",
+    "finished_at": "2026-10-19T17:42:50.007004",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "claude-code__claude-haiku-5-5__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "official_reward": 0.0,
+                        "reward": 0.9726890756302521,
+                        "tests_error": 0.0,
+                        "tests_failed": 13.0,
+                        "tests_passed": 463.0,
+                        "tests_total": 476.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.9726890756302521": [
+                            "case006-planted-markdown__Ah2TTAk"
+                        ]
+                    },
+                    "tests_passed": {
+                        "463": [
+                            "case006-planted-markdown__Ah2TTAk"
+                        ]
+                    },
+                    "tests_total": {
+                        "476": [
+                            "case006-planted-markdown__Ah2TTAk"
+                        ]
+                    },
+                    "tests_failed": {
+                        "13": [
+                            "case006-planted-markdown__Ah2TTAk"
+                        ]
+                    },
+                    "tests_error": {
+                        "0": [
+                            "case006-planted-markdown__Ah2TTAk"
+                        ]
+                    },
+                    "official_reward": {
+                        "0.0": [
+                            "case006-planted-markdown__Ah2TTAk"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 5800370,
+        "n_cache_tokens": 5569387,
+        "n_output_tokens": 192011,
+        "cost_usd": 0.7842156899999999
+    }
+}

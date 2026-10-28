@@ -1,0 +1,22 @@
+FF False True
+NAME 0
+OPTIONAL FLAG
+ v
+ DEF
+
+STACK True True ('x',)
+ 
+STACKUNK 2 Error: No such option: -k
+ENUM (<Color.GREEN: 2>, ('a', 'b'), 'zz')
+ (<Color.RED: 1>, ('x',), 'zz')
+
+DEPARG DeprecationWarning: The argument 'DEP' is deprecated.
+LVL 1 10
+TUP (3, 'x')
+BOOLOPT True 2
+RO ['cb None', 'result 1'] ['cb rc', 'result 5']
+HOPT 0 2
+MULT (1, 2) ()
+STDIN 0
+READ filedata fromstdin
+READMISS 2 Error: Invalid value for '--f': Could not open file 'missing.txt': No such file or directory

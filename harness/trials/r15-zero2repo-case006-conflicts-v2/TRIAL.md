@@ -215,3 +215,9 @@ usually A; P7 was B in all three valid runs and P1 was B in one export run. The 
 scored 454/469 core and the valid Markdown run 430/469, but one Markdown run did not load tests, so
 the result is not a format claim. Limits are n = 2, Haiku only, one case, one reader of the notes,
 and round-14 runs made at another time.
+
+## Batch 2 (2026-10-18 to 19)
+
+Five more runs, same tasks and export: `batch-2/TRIAL.md`. Round 15 now has 4 valid runs per
+condition: Markdown core mean 438.8 (423–456), named 20 of 28; export core mean 442.8 (428–454), named
+27 of 28 (P3: 0 of 4 vs 4 of 4; R1: 2 of 4 vs 4 of 4). P7's example side built in all 4 export runs.

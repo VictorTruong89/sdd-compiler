@@ -1,0 +1,507 @@
+{
+ "r15b-haiku-export-1": {
+  "core": 435,
+  "core_total": 469,
+  "cost": 1.2665892800000003,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": true
+   },
+   "P2": {
+    "A": true,
+    "B": true
+   },
+   "P3": {
+    "A": true,
+    "B": true
+   },
+   "P4": {
+    "A": true,
+    "B": true
+   },
+   "P6": {
+    "A": true,
+    "B": true
+   },
+   "P7": {
+    "A": true,
+    "B": true
+   },
+   "R1": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "P1": true,
+   "P2": true,
+   "P3": true,
+   "P4": true,
+   "P6": true,
+   "P7": true,
+   "R1": true
+  },
+  "probe_evidence": {
+   "P1": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "P2": {
+    "command": [
+     "0",
+     "BODY\n",
+     "DeprecationWarning: The command 'old' is deprecated.\n"
+    ],
+    "option_warning_on": "stderr"
+   },
+   "P3": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "P4": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "P6": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     "d word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "P7": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count COUNT\n  --help         Show this message and exit.\n",
+    ""
+   ],
+   "R1": [
+    "0",
+    "Go? [y/N]: maybe\nGo? [y/N]: y\nRESULT=True\n",
+    "Error: invalid input\n"
+   ]
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "B",
+   "R1": "A"
+  },
+  "tests": 441,
+  "total": 476,
+  "turns": 64
+ },
+ "r15b-haiku-export-2": {
+  "core": 428,
+  "core_total": 469,
+  "cost": 0.8177993600000001,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": true
+   },
+   "P2": {
+    "A": true,
+    "B": true
+   },
+   "P3": {
+    "A": true,
+    "B": true
+   },
+   "P4": {
+    "A": true,
+    "B": true
+   },
+   "P6": {
+    "A": true,
+    "B": true
+   },
+   "P7": {
+    "A": true,
+    "B": true
+   },
+   "R1": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "P1": true,
+   "P2": true,
+   "P3": true,
+   "P4": true,
+   "P6": true,
+   "P7": true,
+   "R1": true
+  },
+  "probe_evidence": {
+   "P1": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "P2": {
+    "command": [
+     "0",
+     "BODY\n",
+     "DeprecationWarning: The command 'old' is deprecated.\n"
+    ],
+    "option_warning_on": "stderr"
+   },
+   "P3": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "P4": [
+    "0",
+    "X=None\n",
+    ""
+   ],
+   "P6": {
+    "longest_line": 78,
+    "longest_line_with_cap_150": 148,
+    "run": [
+     "0",
+     "d word word word word word word word word word word word word word word\nword word word word word word word word word word word word word word word\nword\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "P7": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count COUNT\n  --help         Show this message and exit.\n",
+    ""
+   ],
+   "R1": [
+    "0",
+    "Go? [y/N]: RESULT=False\n",
+    ""
+   ]
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "B",
+   "P6": "A",
+   "P7": "B",
+   "R1": "B"
+  },
+  "tests": 431,
+  "total": 476,
+  "turns": 60
+ },
+ "r15b-haiku-markdown-1": {
+  "core": 423,
+  "core_total": 469,
+  "cost": 0.46830855000000005,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": true
+   },
+   "P2": {
+    "A": true,
+    "B": true
+   },
+   "P3": {
+    "A": true,
+    "B": true
+   },
+   "P4": {
+    "A": true,
+    "B": true
+   },
+   "P6": {
+    "A": true,
+    "B": true
+   },
+   "P7": {
+    "A": true,
+    "B": true
+   },
+   "R1": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "P1": true,
+   "P2": true,
+   "P3": false,
+   "P4": true,
+   "P6": true,
+   "P7": false,
+   "R1": false
+  },
+  "probe_evidence": {
+   "P1": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "P2": {
+    "command": [
+     "0",
+     "BODY\n",
+     "DeprecationWarning: The command 'old' is deprecated.\n"
+    ],
+    "option_warning_on": "stderr"
+   },
+   "P3": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "P4": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "P6": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "P7": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "R1": [
+    "0",
+    "Go? [y/N]: maybe\nGo? [y/N]: y\nRESULT=True\n",
+    ""
+   ]
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 429,
+  "total": 476,
+  "turns": 66
+ },
+ "r15b-haiku-markdown-2": {
+  "core": 456,
+  "core_total": 469,
+  "cost": 0.7842156899999999,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": true
+   },
+   "P2": {
+    "A": true,
+    "B": true
+   },
+   "P3": {
+    "A": true,
+    "B": true
+   },
+   "P4": {
+    "A": true,
+    "B": true
+   },
+   "P6": {
+    "A": true,
+    "B": true
+   },
+   "P7": {
+    "A": true,
+    "B": true
+   },
+   "R1": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "P1": true,
+   "P2": true,
+   "P3": true,
+   "P4": true,
+   "P6": true,
+   "P7": true,
+   "R1": true
+  },
+  "probe_evidence": {
+   "P1": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "P2": {
+    "command": [
+     "0",
+     "BODY\n",
+     "DeprecationWarning: The command 'old' is deprecated.\n"
+    ],
+    "option_warning_on": "stderr"
+   },
+   "P3": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "P4": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "P6": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     " word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n\n",
+     ""
+    ]
+   },
+   "P7": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n\n",
+    ""
+   ],
+   "R1": [
+    "0",
+    "Go? [y/N]: maybe\nError: invalid input\nGo? [y/N]: y\nRESULT=True\n",
+    ""
+   ]
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 463,
+  "total": 476,
+  "turns": 41
+ },
+ "r15b-haiku-markdown-3": {
+  "core": 446,
+  "core_total": 469,
+  "cost": 1.02572786,
+  "exposure": {
+   "P1": {
+    "A": true,
+    "B": true
+   },
+   "P2": {
+    "A": true,
+    "B": true
+   },
+   "P3": {
+    "A": true,
+    "B": true
+   },
+   "P4": {
+    "A": true,
+    "B": true
+   },
+   "P6": {
+    "A": true,
+    "B": true
+   },
+   "P7": {
+    "A": true,
+    "B": true
+   },
+   "R1": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "P1": true,
+   "P2": true,
+   "P3": false,
+   "P4": true,
+   "P6": true,
+   "P7": false,
+   "R1": true
+  },
+  "probe_evidence": {
+   "P1": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "P2": {
+    "command": [
+     "0",
+     "BODY\n",
+     "DeprecationWarning: The command 'old' is deprecated.\n"
+    ],
+    "option_warning_on": "stderr"
+   },
+   "P3": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "P4": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "P6": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     "d word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "P7": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "R1": [
+    "0",
+    "Go? [y/N]: maybe\nGo? [y/N]: y\nRESULT=True\n",
+    ""
+   ]
+  },
+  "sides": {
+   "P1": "A",
+   "P2": "A",
+   "P3": "A",
+   "P4": "A",
+   "P6": "A",
+   "P7": "A",
+   "R1": "A"
+  },
+  "tests": 452,
+  "total": 476,
+  "turns": 53
+ }
+}

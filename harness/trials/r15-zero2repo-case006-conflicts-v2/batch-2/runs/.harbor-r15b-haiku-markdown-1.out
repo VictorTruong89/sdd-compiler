@@ -1,0 +1,25 @@
+  1/1 Official_Reward: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:17:35 0:00:00
+adhoc • claude-code • claude-haiku-5-5
+┏━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
+┃ Trials ┃ Except… ┃ Offici… ┃ Reward ┃ Tests_… ┃ Tests_… ┃ Tests_P… ┃ Tests_… ┃
+┡━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
+│      1 │       0 │   0.000 │  0.901 │   0.000 │  47.000 │  429.000 │ 476.000 │
+└────────┴─────────┴─────────┴────────┴─────────┴─────────┴──────────┴─────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.9012605042016807 │     1 │
+│ 429                │     1 │
+│ 476                │     1 │
+│ 47                 │     1 │
+│ 0                  │     1 │
+│ 0.0                │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 17m 35s
+Results written to jobs/batch-2-r15b-haiku-markdown-1/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload jobs/batch-2-r15b-haiku-markdown-1`
+

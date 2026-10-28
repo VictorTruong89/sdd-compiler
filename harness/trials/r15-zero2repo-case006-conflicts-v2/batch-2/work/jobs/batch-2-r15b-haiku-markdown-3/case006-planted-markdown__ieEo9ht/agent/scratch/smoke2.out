@@ -1,0 +1,35 @@
+A Age: 42
+('envname', ('a', 'b'), (1, 2), 'Fast', 5, 2, False, 42, ('--x', 'y'))
+
+B ('x', (), (0, 0), 'Fast', 0, 0, True, 3, ())
+
+C 2
+C2 Usage: cmd [OPTIONS] [REST]...
+Try 'cmd --help' for help.
+
+Error: Missing option '--name'.
+
+D 0 Age: abc
+Error: 'abc' is not a valid integer.
+Age: 7
+('q', (), (0, 0), 'Fast', 1, 0, True, 7, ())
+
+E results=[2, 50]
+
+F Sure? [y/N]: n
+Aborted!
+ Sure? [y/N]: y
+ran
+ ran
+
+G tool, version 1.2.3
+ tool, version 1.2.3
+
+H 0 hi
+H2 0 'hi\n'
+I [CompletionItem('red', None, 'plain'), CompletionItem('blue', None, 'plain')]
+J ['--color', '--kind', '--help']
+K _comp_completion() {
+    local cw="${COMP_WORDS[*]}"
+    local IFS=$'\n'
+    loc

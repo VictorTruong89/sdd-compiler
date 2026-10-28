@@ -1,0 +1,64 @@
+== ['--help'] -> 0
+Usage: demo [OPTIONS] COMMAND [ARGS]...
+
+Demo tool.
+
+Long text here.
+
+Options:
+  --verbose, -v  Be loud.
+  --help         Show this message and exit.
+
+Commands:
+  bye
+  hello  Say hello.
+
+== ['hello', '--count', '2', 'bob'] -> 0
+hello bob verbose=False
+hello bob verbose=False
+
+== ['-v', 'hello', 'x'] -> 0
+hello x verbose=True
+
+== ['hello'] -> 2
+Usage: demo hello [OPTIONS] NAME
+Try 'demo hello --help' for help.
+
+Error: Missing argument 'NAME'.
+
+== ['hello', '--count', 'x', 'y'] -> 2
+Usage: demo hello [OPTIONS] NAME
+Try 'demo hello --help' for help.
+
+Error: Invalid value for '--count': 'x' is not a valid integer.
+
+== ['bye', '--shout'] -> 0
+bye!
+
+== [] -> 2
+Usage: demo [OPTIONS] COMMAND [ARGS]...
+
+Demo tool.
+
+Long text here.
+
+Options:
+  --verbose, -v  Be loud.
+  --help         Show this message and exit.
+
+Commands:
+  bye
+  hello  Say hello.
+
+== ['nope'] -> 2
+Usage: demo [OPTIONS] COMMAND [ARGS]...
+Try 'demo --help' for help.
+
+Error: No such command 'nope'.
+
+== ['bye', '--bogus'] -> 2
+Usage: demo bye [OPTIONS]
+Try 'demo bye --help' for help.
+
+Error: No such option: --bogus
+

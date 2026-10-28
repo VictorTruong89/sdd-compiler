@@ -1,0 +1,78 @@
+A (2, 'envname', True, 'Fast', ('x',))
+ParameterSource.ENVIRONMENT
+ParameterSource.ENVIRONMENT
+
+A2 (0, 'n', False, 'Fast', ())
+ParameterSource.COMMANDLINE
+ParameterSource.COMMANDLINE
+
+HELP Usage: p [OPTIONS]
+
+Options:
+  -n, --n
+  --name TEXT
+  --flag/--no-flag
+  --mode [Fast|Slow]  [choices: Fast, Slow]
+  --tag TEXT
+  --help              Show this message and exit.
+
+BADFLAG Usage: cmd [OPTIONS]
+Try 'cmd --help' for help.
+
+Error: Invalid value for '--flag' / '--no-flag': 'maybe' is not a valid boolean.
+
+S True
+ False
+ False
+
+DEP DeprecationWarning: The option '--old' is deprecated.
+DeprecationWarning: The command 'dep' is deprecated.
+body
+
+DEP2 DeprecationWarning: The command 'dep' is deprecated.
+body
+
+HELPDEP Usage: dep [OPTIONS]
+
+(Deprecated)
+
+Options:
+  --old TEXT  (deprecated)
+  --help      Show this message and exit.
+
+GRP group x=0 sub=None
+ group x=0 sub=child
+child
+
+NEST outer cb
+inner cb
+leaf
+
+NEST2 2 outer cb
+Usage: outer inner [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  leaf
+
+PW Pw: 
+Repeat for confirmation: 
+pw=secret
+
+PW2 Pw: 
+Repeat for confirmation: 
+Error: The two entered values do not match.
+Pw: 
+Repeat for confirmation: 
+pw=c
+
+PATH Usage: pth [OPTIONS] P
+Try 'pth --help' for help.
+
+Error: Invalid value for 'P': 'nope' does not exist.
+
+PATH2 x
+
+ENVHELP ['  --flag/--no-flag', '  --mode [Fast|Slow]  [choices: Fast, Slow]', '  --tag TEXT', '  --help              Show this message and exit.']

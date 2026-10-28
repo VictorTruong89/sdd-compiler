@@ -1,0 +1,42 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "case006-planted-markdown",
+        "version": "0.0.1",
+        "type": "local",
+        "digest": "sha256:6a9932894f1dd424e7af2cef4e5d525792da0a497a90e3d62c1331c5180cc314",
+        "path": "/home/victor/Workspace/sdd-compiler/harness/trials/r15-zero2repo-case006-conflicts-v2/batch-2/../work/tasks/case006-planted-markdown"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "claude-code",
+        "model_name": "anthropic/claude-haiku-5-5",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "version": "2.1.296",
+            "max_budget_usd": 10,
+            "disallowed_tools": "Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow"
+        },
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "stream": false,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

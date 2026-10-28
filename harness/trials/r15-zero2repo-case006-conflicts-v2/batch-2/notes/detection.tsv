@@ -1,0 +1,36 @@
+run	item	noticed	stated	built	note
+r15b-haiku-export-1	P1	yes	A	A	NOTES 37-38 CF-000153
+r15b-haiku-export-1	P2	yes	A	A	NOTES 29-30 CF-000146
+r15b-haiku-export-1	P3	yes	A	A	NOTES 31-32 CF-000150
+r15b-haiku-export-1	P4	yes	A	A	NOTES 41-42, found while reading
+r15b-haiku-export-1	P6	yes	A	A	NOTES 39-40 CF-000155
+r15b-haiku-export-1	P7	yes	B	B	NOTES 35-36 CF-000152, "satisfying the acceptance criterion"
+r15b-haiku-export-1	R1	yes	A	A	NOTES 33-34 CF-000151
+r15b-haiku-export-2	P1	yes	A	A	NOTES 30 CF-000153
+r15b-haiku-export-2	P2	yes	A	A	NOTES 26 CF-000146
+r15b-haiku-export-2	P3	yes	A	A	NOTES 27 CF-000150
+r15b-haiku-export-2	P4	no	-	B	not named; the code does not call the callback (probe B), a choice not stated
+r15b-haiku-export-2	P6	yes	A	A	NOTES 31 CF-000155
+r15b-haiku-export-2	P7	yes	B	B	NOTES 29 CF-000152, "(acceptance criterion)"
+r15b-haiku-export-2	R1	yes	B	B	NOTES 28 CF-000151
+r15b-haiku-markdown-1	P1	yes	A	A	NOTES 16-18
+r15b-haiku-markdown-1	P2	yes	A	A	NOTES 8-10
+r15b-haiku-markdown-1	P3	no	-	A	
+r15b-haiku-markdown-1	P4	yes	A	A	NOTES 20-24
+r15b-haiku-markdown-1	P6	yes	A	A	NOTES 12-14
+r15b-haiku-markdown-1	P7	no	-	A	
+r15b-haiku-markdown-1	R1	no	-	A	
+r15b-haiku-markdown-2	P1	yes	A	A	NOTES 36-38
+r15b-haiku-markdown-2	P2	yes	A	A	NOTES 11-13
+r15b-haiku-markdown-2	P3	no	-	A	item 11 is about a declared default, not the environment/default-map order
+r15b-haiku-markdown-2	P4	yes	A	A	NOTES 15-20
+r15b-haiku-markdown-2	P6	yes	A	A	NOTES 27-30
+r15b-haiku-markdown-2	P7	yes	A	A	NOTES 22-25
+r15b-haiku-markdown-2	R1	yes	A	A	NOTES 32-34
+r15b-haiku-markdown-3	P1	yes	A	A	NOTES 39-42
+r15b-haiku-markdown-3	P2	yes	A	A	NOTES 21-23
+r15b-haiku-markdown-3	P3	no	-	A	
+r15b-haiku-markdown-3	P4	yes	A	A	NOTES 25-29
+r15b-haiku-markdown-3	P6	yes	A	A	NOTES 35-37
+r15b-haiku-markdown-3	P7	no	-	A	
+r15b-haiku-markdown-3	R1	yes	A	A	NOTES 31-33

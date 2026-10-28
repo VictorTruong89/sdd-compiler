@@ -1,0 +1,36 @@
+DM 5 d zz
+ParameterSource.DEFAULT_MAP
+
+AUTO 7 bx2 None
+ParameterSource.ENVIRONMENT
+
+ENV-ORDER 3 bx2 None
+ParameterSource.COMMANDLINE
+
+DM2 v=9
+
+INV inner a=20
+inner a=2
+
+STYLE '\x1b[31;1mx\x1b[0m' 'x'
+BADCOLOR ok Unknown color 'nope'.
+PB 'work\ndone\n'
+ABORT 1 'start\nAborted!\n'
+EXIT 4
+LOOSE ('a', '--zzz', 'b')
+
+LOOSE2 ('a', '-zq')
+
+HH 0 2
+TYPED ('AB', ('x', 3), datetime.datetime(2024, 1, 2, 3, 4, 5), None)
+
+TYPED2 Error: Invalid value for '--u': ab must be upper
+TYPED3 Error: Invalid value for '--fr': 0.0 is not in the range > 0.0 and <= 1.0.
+TYPED4 0
+NONSTD 8
+NONSTD2 skip
+osline
+FD 'osline\n' 'py line\n'
+SYS '' 'py line\n'
+ASCII héllo
+

@@ -1,0 +1,32 @@
+LAZY-HELP ['', 'Commands:', '  alpha  Alpha command.'] ['alpha', 'beta']
+LAZY-RUN alpha ran
+ ['alpha']
+COLL collection
+two
+ ['', 'Commands:', '  one', '  two']
+HIDDEN True False
+ False
+FSW 'fast'
+ 'slow'
+ False
+
+EAGER eager-check
+body
+
+PWOPT Password: 
+Repeat for confirmation: 
+len=2
+
+OBJ obj v=0
+ None
+ARGS2 ((1, 2), 'zz')
+ Error: Argument 'PTS' takes 2 values.
+APPDIR /root/.config/my-app /root/.my-app
+FN b.txt x\udcff.bin
+EXC 1 ValueError('boom')
+ECHOSTYLE 'hi\n'
+PAGER-NI 'ab'
+PAUSE ''
+CONFIRM-NOABORT ok? [Y/n]: 
+True
+
