@@ -1,0 +1,29 @@
+run	item	noticed	stated	built	note
+r16-sonnet-markdown-1	P1	yes	A	A	NOTES 19-20
+r16-sonnet-markdown-1	P2	yes	A	A	NOTES 7-9
+r16-sonnet-markdown-1	P3	no	-	A	
+r16-sonnet-markdown-1	P4	yes	A	A	NOTES 14-16
+r16-sonnet-markdown-1	P6	yes	A	A	NOTES 12-13
+r16-sonnet-markdown-1	P7	yes	A	A	NOTES 17-18, "Built: the rule"
+r16-sonnet-markdown-1	R1	yes	A	A	NOTES 10-11
+r16-sonnet-markdown-2	P1	yes	A	A	NOTES 14
+r16-sonnet-markdown-2	P2	yes	A	A	NOTES 8
+r16-sonnet-markdown-2	P3	yes	A	A	NOTES 9 (Contract §6 vs PRD FP-03/FP-07)
+r16-sonnet-markdown-2	P4	yes	A	A	NOTES 10
+r16-sonnet-markdown-2	P6	yes	A	A	NOTES 11
+r16-sonnet-markdown-2	P7	yes	A	A	NOTES 12
+r16-sonnet-markdown-2	R1	yes	A	A	NOTES 13 (PRD FP-08 vs Contract §7)
+r16-sonnet-export-1	P1	yes	A	A	NOTES 22-23 CF-000153
+r16-sonnet-export-1	P2	yes	A	A	NOTES 13-14 CF-000146
+r16-sonnet-export-1	P3	yes	A	A	NOTES 15-17 CF-000150
+r16-sonnet-export-1	P4	yes	A	A	NOTES 32, "(FP-03), despite the Terminology wording"
+r16-sonnet-export-1	P6	yes	A	A	NOTES 24-25 CF-000155
+r16-sonnet-export-1	P7	yes	A	A	NOTES 20-21 CF-000152; not called an acceptance criterion
+r16-sonnet-export-1	R1	yes	A	A	NOTES 18-19 CF-000151
+r16-sonnet-export-2	P1	yes	A	A	NOTES 29-30 CF-000153
+r16-sonnet-export-2	P2	yes	A	A	NOTES 19-20 CF-000146
+r16-sonnet-export-2	P3	yes	A	A	NOTES 23-24 CF-000150
+r16-sonnet-export-2	P4	no	-	A	"callback" lines 20 and 36 are about the deprecation order and the result callback
+r16-sonnet-export-2	P6	yes	A	A	NOTES 21-22 CF-000155
+r16-sonnet-export-2	P7	yes	A	A	NOTES 27-28 CF-000152; not called an acceptance criterion
+r16-sonnet-export-2	R1	yes	A	A	NOTES 25-26 CF-000151

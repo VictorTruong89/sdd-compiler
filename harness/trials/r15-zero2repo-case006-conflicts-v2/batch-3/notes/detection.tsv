@@ -1,0 +1,22 @@
+run	item	noticed	stated	built	note
+r15c-haiku-export-1	P1	yes	B	B	NOTES 18 CF-000153, "always left in place, following the later, explicit claim"
+r15c-haiku-export-1	P2	yes	A	A	NOTES 13 CF-000146
+r15c-haiku-export-1	P3	yes	A	A	NOTES 14 CF-000150
+r15c-haiku-export-1	P4	no	B	B	NOTES 22 states the planted rule (PRD terminology) under "spec was silent or underspecified"; FP-03's opposite sentence not mentioned. Borderline, for the owner's audit
+r15c-haiku-export-1	P6	yes	A	A	NOTES 17 CF-000155
+r15c-haiku-export-1	P7	yes	A	A	NOTES 16 CF-000152, "following the general rule"; not called an acceptance criterion
+r15c-haiku-export-1	R1	yes	A	A	NOTES 15 CF-000151
+r15c-haiku-export-2	P1	yes	A	A	NOTES 36 CF-000153
+r15c-haiku-export-2	P2	yes	A	A	NOTES 32 CF-000146
+r15c-haiku-export-2	P3	yes	A	A	NOTES 33 CF-000150
+r15c-haiku-export-2	P4	yes	A	A	NOTES 41-43, found while reading (FP-03 vs terminology)
+r15c-haiku-export-2	P6	yes	A	A	NOTES 37 CF-000155
+r15c-haiku-export-2	P7	yes	A	A	NOTES 35 CF-000152, "following the stated rule"; not called an acceptance criterion
+r15c-haiku-export-2	R1	yes	A	A	NOTES 34 CF-000151
+r15c-haiku-export-3	P1	yes	A	A	NOTES 24 CF-000153
+r15c-haiku-export-3	P2	yes	A	A	NOTES 19 CF-000146
+r15c-haiku-export-3	P3	yes	A	A	NOTES 22 CF-000150
+r15c-haiku-export-3	P4	yes	A	A	NOTES 28, found while reading (terminology vs FP-03)
+r15c-haiku-export-3	P6	yes	A	A	NOTES 21 CF-000155; help capped at 80, but wrap_text with no width uses 100 (split)
+r15c-haiku-export-3	P7	yes	A	A	NOTES 23 CF-000152; not called an acceptance criterion
+r15c-haiku-export-3	R1	yes	A	A	NOTES 20 CF-000151

@@ -1,0 +1,22 @@
+2026-10-28T10:28:25-04:00	start trial r16-zero2repo-case006-conflicts-sonnet, claude 2.1.296, budget 10, one=0
+2026-10-28T10:28:25-04:00	run r16-sonnet-markdown-1 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted-markdown
+2026-10-28T11:07:26-04:00	harbor r16-sonnet-markdown-1 exit 0 after 2341 s
+2026-10-28T11:07:26-04:00	done r16-sonnet-markdown-1 turns 21 cost_usd_est 2.4638877999999993 reward {"reward": 0.0, "tests_passed": 0, "tests_total": 0, "tests_failed": 0, "tests_error": 0, "official_reward": 0.0} 
+2026-10-28T11:07:26-04:00	usage five_hour 0.84 (resets 2026-10-28T12:00:00-04:00) seven_day 0.07 (resets 2026-11-02T16:00:00-05:00)
+2026-10-28T11:09:26-04:00	run r16-sonnet-export-1 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted-export-v3
+2026-10-28T11:19:00-04:00	harbor r16-sonnet-export-1 exit 0 after 574 s
+2026-10-28T11:19:00-04:00	limited r16-sonnet-export-1 turns 12 cost_usd_est 1.3047581 message: You've hit your session limit · resets 4pm (UTC) 429
+2026-10-28T11:19:00-04:00	limit reset parsed: 2026-10-28T12:00:00-04:00; sleeping until 5 min after
+2026-10-28T12:05:01-04:00	run r16-sonnet-export-1 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted-export-v3
+2026-10-28T12:18:55-04:00	harbor r16-sonnet-export-1 exit 0 after 834 s
+2026-10-28T12:18:55-04:00	done r16-sonnet-export-1 turns 26 cost_usd_est 2.2644143999999997 reward {"reward": 0.9915966386554622, "tests_passed": 472, "tests_total": 476, "tests_failed": 4, "tests_error": 0, "official_reward": 0.0} 
+2026-10-28T12:18:55-04:00	usage five_hour 0.27 (resets 2026-10-28T17:00:00-04:00) seven_day 0.09 (resets 2026-11-02T16:00:00-05:00)
+2026-10-28T12:20:55-04:00	run r16-sonnet-markdown-2 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted-markdown
+2026-10-28T12:36:57-04:00	harbor r16-sonnet-markdown-2 exit 0 after 962 s
+2026-10-28T12:36:57-04:00	done r16-sonnet-markdown-2 turns 22 cost_usd_est 2.2430850999999996 reward {"reward": 0.9789915966386554, "tests_passed": 466, "tests_total": 476, "tests_failed": 10, "tests_error": 0, "official_reward": 0.0} 
+2026-10-28T12:36:57-04:00	usage five_hour 0.53 (resets 2026-10-28T17:00:00-04:00) seven_day 0.11 (resets 2026-11-02T16:00:00-05:00)
+2026-10-28T12:38:57-04:00	run r16-sonnet-export-2 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted-export-v3
+2026-10-28T12:54:59-04:00	harbor r16-sonnet-export-2 exit 0 after 962 s
+2026-10-28T12:55:00-04:00	done r16-sonnet-export-2 turns 27 cost_usd_est 2.542071199999999 reward {"reward": 0.9915966386554622, "tests_passed": 472, "tests_total": 476, "tests_failed": 4, "tests_error": 0, "official_reward": 0.0} 
+2026-10-28T12:55:00-04:00	usage five_hour 0.83 (resets 2026-10-28T17:00:00-04:00) seven_day 0.12 (resets 2026-11-02T16:00:00-05:00)
+2026-10-28T12:57:00-04:00	end no pending or limited row left

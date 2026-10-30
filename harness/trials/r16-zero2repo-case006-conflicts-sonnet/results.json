@@ -1,0 +1,207 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 9.5135,
+ "groups": {
+  "../r15-zero2repo-case006-conflicts-v2/work/tasks/case006-planted-export-v3 | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r16-sonnet-export-1",
+    "r16-sonnet-export-2"
+   ],
+   "tests_passed": [
+    472,
+    472
+   ],
+   "mean_tests_passed": 472,
+   "turns": [
+    26,
+    27
+   ],
+   "cost_usd_est": [
+    2.2644143999999997,
+    2.542071199999999
+   ]
+  },
+  "../r15-zero2repo-case006-conflicts-v2/work/tasks/case006-planted-markdown | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r16-sonnet-markdown-1",
+    "r16-sonnet-markdown-2"
+   ],
+   "tests_passed": [
+    0,
+    466
+   ],
+   "mean_tests_passed": 233,
+   "turns": [
+    21,
+    22
+   ],
+   "cost_usd_est": [
+    2.4638877999999993,
+    2.2430850999999996
+   ]
+  }
+ },
+ "runs": {
+  "r16-sonnet-export-1": {
+   "task": "../r15-zero2repo-case006-conflicts-v2/work/tasks/case006-planted-export-v3",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9915966386554622,
+     "tests_passed": 472,
+     "tests_total": 476,
+     "tests_failed": 4,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied",
+      "../tests/final/tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 472,
+    "failed": 4,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 26,
+   "subtype": "success",
+   "agent_seconds": 775.6,
+   "total_cost_usd_est": 2.2644143999999997,
+   "exception_info": null
+  },
+  "r16-sonnet-export-2": {
+   "task": "../r15-zero2repo-case006-conflicts-v2/work/tasks/case006-planted-export-v3",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9915966386554622,
+     "tests_passed": 472,
+     "tests_total": 476,
+     "tests_failed": 4,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied",
+      "../tests/final/tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error",
+      "../tests/final/tests/F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash",
+      "../tests/final/tests/F09_acceptance.py::test_text_and_binary_modes"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 472,
+    "failed": 4,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 27,
+   "subtype": "success",
+   "agent_seconds": 934.5,
+   "total_cost_usd_est": 2.542071199999999,
+   "exception_info": null
+  },
+  "r16-sonnet-markdown-1": {
+   "task": "../r15-zero2repo-case006-conflicts-v2/work/tasks/case006-planted-markdown",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.0,
+     "tests_passed": 0,
+     "tests_total": 0,
+     "tests_failed": 0,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": "acceptance did not produce a parseable executed-test summary (empty output, total=0, or unparsed runner log)",
+     "official_reward_raw": 0.0,
+     "failed_tests": null,
+     "error_tests": null
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 21,
+   "subtype": "success",
+   "agent_seconds": 891.4,
+   "total_cost_usd_est": 2.4638877999999993,
+   "exception_info": null
+  },
+  "r16-sonnet-markdown-2": {
+   "task": "../r15-zero2repo-case006-conflicts-v2/work/tasks/case006-planted-markdown",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9789915966386554,
+     "tests_passed": 466,
+     "tests_total": 476,
+     "tests_failed": 10,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_first_eager_flag_on_command_line_wins",
+      "../tests/final/tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied",
+      "../tests/final/tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F07_acceptance.py::test_default_map_string_splits_like_environment",
+      "../tests/final/tests/F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash",
+      "../tests/final/tests/F09_acceptance.py::test_text_and_binary_modes",
+      "../tests/final/tests/F09_acceptance.py::test_open_helper_keeps_stdio_open_and_closes_real_files",
+      "../tests/final/tests/F09_acceptance.py::test_open_helper_lazy_forced_on_write_does_not_truncate_until_used",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 466,
+    "failed": 10,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 22,
+   "subtype": "success",
+   "agent_seconds": 903.4,
+   "total_cost_usd_est": 2.2430850999999996,
+   "exception_info": null
+  }
+ }
+}

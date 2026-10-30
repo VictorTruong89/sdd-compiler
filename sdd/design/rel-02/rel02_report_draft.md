@@ -497,7 +497,22 @@ run and 2 export runs.
   heading is not shown to be the cause). After batch 2: all 4 round 15 export runs built the example's
   side, 3 of them calling it the acceptance criterion, against 1 of 7 Markdown runs. The export now
   lists such a node beside the claims, as `example of N-…` (F7 D17, rel02 D27); round 15's export runs
-  predate the fix, and an export with it has not been run.
+  predate the fix; the export with it was run on 2026-10-28 (next section).
+
+### The example fix and a Sonnet check (2026-10-28)
+
+**Export v3, Haiku, 3 runs** (`harness/trials/r15-zero2repo-case006-conflicts-v2/batch-3/`). The 6-of-7
+export was rebuilt with F7 D17 by replaying round 14's model answers (0 calls, $0.00); it differs from
+round 15's export only in listing P7's example as `example of N-000326`. P7 was built on the rule's side
+(A) in **3 of 3** runs, against the example's side in 4 of 4 before the fix; no run called the example an
+acceptance criterion. Named 20 of 21; core 433, 452, 453.
+
+**Sonnet, Markdown vs export v3, 2 + 2 runs, interleaved**
+(`harness/trials/r16-zero2repo-case006-conflicts-sonnet/`). Named 13 of 14 from either format. From the
+Markdown, Sonnet named R1 in 2 of 2 runs and P3 in 1 of 2 (Haiku: 3 of 7 and 0 of 7). Every item was built
+on side A in all 4 runs. Core: export 465, 465; Markdown 460, plus one run with no test score (the judge's
+test run stopped: the agent's code looped on one test until it ran out of memory). Haiku's cross-document gap did not appear for Sonnet; with
+n = 2 this neither confirms nor rules out a smaller gap.
 
 ### A Haiku failure that costs runs (observed, not a format finding)
 
@@ -514,4 +529,4 @@ keep the same conditions throughout (owner, 2026-10-18).
 ### What this does not cover
 
 n = 3; one reader of the notes, not blind to format (the export's conflict ids would defeat
-blinding); rounds run in sequence; Haiku only; one case, from a library the model knows; 7 items.
+blinding); rounds run in sequence (round 16 interleaved); Haiku, plus 4 Sonnet runs; one case, from a library the model knows; 7 items.

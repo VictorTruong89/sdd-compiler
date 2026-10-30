@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.1, pluggy-1.7.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 476 items
+
+../tests/final/tests/F01_acceptance.py ...........................       [  5%]
+../tests/final/tests/F02_acceptance.py ................................. [ 12%]
+...........                                                              [ 14%]
+../tests/final/tests/F03_acceptance.py ................................. [ 21%]
+.............................................                            [ 31%]
+../tests/final/tests/F04_acceptance.py ........................          [ 36%]
+../tests/final/tests/F05_acceptance.py .............................     [ 42%]
+../tests/final/tests/F06_acceptance.py ...............................   [ 48%]
+../tests/final/tests/F07_acceptance.py ................................. [ 55%]
+........                                                                 [ 57%]
+../tests/final/tests/F08_acceptance.py ......................

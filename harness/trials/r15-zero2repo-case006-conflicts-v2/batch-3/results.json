@@ -1,0 +1,212 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 2.8534,
+ "groups": {
+  "../work/tasks/case006-planted-export-v3 | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r15c-haiku-export-1",
+    "r15c-haiku-export-2",
+    "r15c-haiku-export-3"
+   ],
+   "tests_passed": [
+    436,
+    459,
+    460
+   ],
+   "mean_tests_passed": 451.67,
+   "turns": [
+    84,
+    58,
+    66
+   ],
+   "cost_usd_est": [
+    0.6927345300000001,
+    1.11754899,
+    1.0431244000000002
+   ]
+  }
+ },
+ "runs": {
+  "r15c-haiku-export-1": {
+   "task": "../work/tasks/case006-planted-export-v3",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9159663865546218,
+     "tests_passed": 436,
+     "tests_total": 476,
+     "tests_failed": 40,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line",
+      "../tests/final/tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80",
+      "../tests/final/tests/F03_acceptance.py::test_destination_inferred_from_long_then_short",
+      "../tests/final/tests/F03_acceptance.py::test_leaf_mixing_can_be_disabled",
+      "../tests/final/tests/F03_acceptance.py::test_group_mixing_can_be_enabled",
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_feature_switch_more_explicit_source_wins",
+      "../tests/final/tests/F03_acceptance.py::test_missing_parameter_still_runs_its_callback",
+      "../tests/final/tests/F04_acceptance.py::test_optional_or_defaulted_argument_may_be_omitted",
+      "../tests/final/tests/F04_acceptance.py::test_fixed_arity_delivers_sequence_not_joined_string",
+      "../tests/final/tests/F04_acceptance.py::test_omitted_variadic_empty_unless_required",
+      "../tests/final/tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest",
+      "../tests/final/tests/F04_acceptance.py::test_empty_or_absent_env_does_not_supply",
+      "../tests/final/tests/F04_acceptance.py::test_auto_prefix_does_not_fill_argument",
+      "../tests/final/tests/F04_acceptance.py::test_deprecated_argument_warns_only_when_user_supplied",
+      "../tests/final/tests/F04_acceptance.py::test_deprecated_argument_cannot_be_required",
+      "../tests/final/tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive",
+      "../tests/final/tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred",
+      "../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+      "../tests/final/tests/F06_acceptance.py::test_group_options_or_arguments_only_is_usage_error_without_help_page",
+      "../tests/final/tests/F07_acceptance.py::test_automatic_prefix_does_not_fill_sibling_argument",
+      "../tests/final/tests/F07_acceptance.py::test_nested_default_map_fills_omitted_argument",
+      "../tests/final/tests/F07_acceptance.py::test_source_distinguishes_cli_map_declared_for_argument",
+      "../tests/final/tests/F07_acceptance.py::test_lowercase_normalizer_matches_choice_value",
+      "../tests/final/tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag",
+      "../tests/final/tests/F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash",
+      "../tests/final/tests/F09_acceptance.py::test_text_and_binary_modes",
+      "../tests/final/tests/F09_acceptance.py::test_declared_text_encoding_is_used",
+      "../tests/final/tests/F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments",
+      "../tests/final/tests/F10_acceptance.py::test_empty_chain_with_invoke_without_command_runs_result_callback_not_help",
+      "../tests/final/tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent",
+      "../tests/final/tests/F10_acceptance.py::test_consume_rest_on_non_last_child_is_declared_and_eats_later_names",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token",
+      "../tests/final/tests/F12_acceptance.py::test_custom_type_completion_unlike_string_sibling",
+      "../tests/final/tests/F12_acceptance.py::test_zsh_and_fish_include_author_help_next_to_value",
+      "../tests/final/tests/F12_acceptance.py::test_bash_and_powershell_suggest_value_without_requiring_help",
+      "../tests/final/tests/F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent",
+      "../tests/final/tests/F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 436,
+    "failed": 40,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 84,
+   "subtype": "success",
+   "agent_seconds": 1284.8,
+   "total_cost_usd_est": 0.6927345300000001,
+   "exception_info": null
+  },
+  "r15c-haiku-export-2": {
+   "task": "../work/tasks/case006-planted-export-v3",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9642857142857143,
+     "tests_passed": 459,
+     "tests_total": 476,
+     "tests_failed": 17,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line",
+      "../tests/final/tests/F03_acceptance.py::test_destination_inferred_from_long_then_short",
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F04_acceptance.py::test_omitted_variadic_empty_unless_required",
+      "../tests/final/tests/F04_acceptance.py::test_non_unary_env_splits_like_multivalue_option",
+      "../tests/final/tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive",
+      "../tests/final/tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred",
+      "../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+      "../tests/final/tests/F07_acceptance.py::test_arity1_repeatable_default_map_string_is_refused",
+      "../tests/final/tests/F09_acceptance.py::test_declared_text_encoding_is_used",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token",
+      "../tests/final/tests/F12_acceptance.py::test_custom_type_completion_unlike_string_sibling",
+      "../tests/final/tests/F12_acceptance.py::test_zsh_and_fish_include_author_help_next_to_value",
+      "../tests/final/tests/F12_acceptance.py::test_bash_and_powershell_suggest_value_without_requiring_help",
+      "../tests/final/tests/F13_acceptance.py::test_keyboard_interrupt_is_abort_not_success"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 459,
+    "failed": 17,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 58,
+   "subtype": "success",
+   "agent_seconds": 895.2,
+   "total_cost_usd_est": 1.11754899,
+   "exception_info": null
+  },
+  "r15c-haiku-export-3": {
+   "task": "../work/tasks/case006-planted-export-v3",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9663865546218487,
+     "tests_passed": 460,
+     "tests_total": 476,
+     "tests_failed": 16,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line",
+      "../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens",
+      "../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens",
+      "../tests/final/tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest",
+      "../tests/final/tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive",
+      "../tests/final/tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred",
+      "../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+      "../tests/final/tests/F08_acceptance.py::test_prompt_not_required_on_omit_asks_when_flag_has_no_value",
+      "../tests/final/tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag",
+      "../tests/final/tests/F09_acceptance.py::test_open_helper_keeps_stdio_open_and_closes_real_files",
+      "../tests/final/tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent",
+      "../tests/final/tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+      "../tests/final/tests/F12_acceptance.py::test_four_complete_modes_all_suggest_visible_subcommand_names",
+      "../tests/final/tests/F12_acceptance.py::test_four_complete_modes_honour_nonempty_prefix",
+      "../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token",
+      "../tests/final/tests/F12_acceptance.py::test_unrecognized_instruction_skips_callback_and_is_neither_source_nor_complete"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 460,
+    "failed": 16,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 66,
+   "subtype": "success",
+   "agent_seconds": 957.3,
+   "total_cost_usd_est": 1.0431244000000002,
+   "exception_info": null
+  }
+ }
+}
