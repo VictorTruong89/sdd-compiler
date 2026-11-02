@@ -35,6 +35,7 @@ DEFAULT_RETRIEVAL: dict[str, Any] = {
     "max_pairs_per_node": 6,      # F5 D13 (R20): 10 cost 58 % more pairs and found nothing more
     "min_score": 1.0,
     "min_shared_keywords": 2,
+    "rare_keyword_share": 0.01,   # F5 D16: a keyword in at most this share of nodes is rare (S9)
 }
 
 #: F6 CT-6.3 — the check phase.
@@ -96,6 +97,7 @@ retrieval:
   max_pairs_per_node: {max_pairs_per_node}
   min_score: {min_score}
   min_shared_keywords: {min_shared_keywords}
+  rare_keyword_share: {rare_keyword_share}   # a keyword in at most this share of nodes is rare (F5 D16)
 
 # Read by the check phase (F6 CT-6.3): whether an ambiguous node is judged at all,
 # and whether a subsumption is a conflict only when the two claims differ (F6 D2).
@@ -134,6 +136,7 @@ class RetrievalSettings:
     max_pairs_per_node: int = 10
     min_score: float = 1.0
     min_shared_keywords: int = 2
+    rare_keyword_share: float = 0.01
 
 
 @dataclass(frozen=True)
@@ -275,9 +278,14 @@ def _retrieval(value: Any, source: str) -> RetrievalSettings:
     if not isinstance(settings["min_score"], (int, float)) or isinstance(settings["min_score"], bool) \
             or settings["min_score"] < 0:
         raise SddcError(f"{source}: retrieval.min_score must be a number ≥ 0", ExitCode.INPUT)
+    share = settings["rare_keyword_share"]
+    if not isinstance(share, (int, float)) or isinstance(share, bool) or not 0 < share <= 1:
+        raise SddcError(f"{source}: retrieval.rare_keyword_share must be a number above 0 and at most 1",
+                        ExitCode.INPUT)
     return RetrievalSettings(max_pairs_per_node=settings["max_pairs_per_node"],
                              min_score=float(settings["min_score"]),
-                             min_shared_keywords=settings["min_shared_keywords"])
+                             min_shared_keywords=settings["min_shared_keywords"],
+                             rare_keyword_share=float(share))
 
 
 def _conflicts(value: Any, source: str) -> ConflictSettings:

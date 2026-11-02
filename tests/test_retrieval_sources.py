@@ -26,6 +26,11 @@ TERMS = {
     "term:export_archive": {"id": "term:export_archive", "kind": "entity", "broader": "term:export"},
     "term:workspace_export": {"id": "term:workspace_export", "kind": "entity", "broader": "term:export"},
     "term:invoice": {"id": "term:invoice", "kind": "entity"},
+    # F5 D17: a topic named by the other node, by term or by its multi-word name in the text
+    "term:conversion_failure": {"id": "term:conversion_failure", "kind": "event", "canonical": "conversion failure",
+                                "aliases": []},
+    "term:exit_status": {"id": "term:exit_status", "kind": "data", "canonical": "exit status", "aliases": []},
+    "term:option": {"id": "term:option", "kind": "entity", "canonical": "option", "aliases": []},
 }
 
 
@@ -214,9 +219,80 @@ def test_ac_5_9_points_sum_to_the_score_over_many_random_pairs():
         score = score_of(evidence)
         assert score == round(sum(e["points"] for e in evidence), 4)
         assert all(e["points"] > 0 for e in evidence)
-        assert [e["source"] for e in evidence] == sorted(e["source"] for e in evidence)
+        assert [e["source"] for e in evidence] == sorted((e["source"] for e in evidence), key=lambda s: int(s[1:]))
 
 
 def test_the_weights_are_the_ones_the_spec_prints():
     assert WEIGHTS == {"S1": 3.0, "S2": 2.0, "S3": 2.0, "S4": 1.0, "S5": 0.5, "S6": 2.5, "S7": 1.5,
-                       "S8": 1.0}
+                       "S8": 1.0, "S9": 1.0, "S10": 2.0}
+
+
+# -- rel02 round 17: S1 follows broader (D15), a shared rare keyword (D16) ------------------
+
+def test_ac_5_19_a_family_that_is_a_kind_of_the_other_is_the_same_family():
+    """F5 D15: round 14's P4 — `parameter_callback` (a kind of `callback`) against `callback`."""
+    found = sources(node("N-000001", family="term:download_link"), node("N-000002", family="term:share_link"))
+    assert found["S1"]["points"] == 3.0
+    assert found["S1"]["detail"] == {"family": "term:download_link", "other_family": "term:share_link"}
+    deeper = sources(node("N-000001", family="term:share_link"), node("N-000002", family="term:expired_link"))
+    assert deeper["S1"]["points"] == 3.0                                   # any depth
+    siblings = sources(node("N-000001", family="term:export_archive"),
+                       node("N-000002", family="term:workspace_export"))
+    assert "S1" not in siblings                                            # S8's case, not S1's
+    assert "S1" not in sources(node("N-000001", family="(global)"), node("N-000002", family="term:share_link"))
+    assert sources(node("N-000001"), node("N-000002"))["S1"]["detail"] == {"family": "term:share_link"}
+
+
+def counts_with(**counts):
+    return {"nodes": 200, "counts": counts}
+
+
+def test_ac_5_20_one_shared_rare_keyword_is_evidence_and_a_common_one_is_not():
+    """F5 D16: "tilde" in 2 of 200 nodes is rare; "option" in 150 is not."""
+    rarity = counts_with(tilde=2, option=150)
+    a = node("N-000001", family="term:a", block="B-1", keywords=["tilde", "leading"])
+    b = node("N-000002", family="term:b", block="B-2", keywords=["tilde", "home"])
+    found = {e["source"]: e for e in evidence_for(a, b, terms=TERMS, settings=SETTINGS, keyword_counts=rarity)}
+    assert found["S9"] == {"source": "S9", "detail": {"keywords": ["tilde"]}, "points": 1.0}
+    assert "S5" not in found                                               # one shared keyword: below S5's minimum
+    c = node("N-000003", family="term:c", block="B-3", keywords=["option"])
+    d = node("N-000004", family="term:d", block="B-4", keywords=["option"])
+    assert evidence_for(c, d, terms=TERMS, settings=SETTINGS, keyword_counts=rarity) == []
+    loose = RetrievalSettings(**{**DEFAULT_RETRIEVAL, "rare_keyword_share": 0.5})
+    assert evidence_for(c, d, terms=TERMS, settings=loose, keyword_counts=rarity) == []   # 150 > 100
+    small = {"nodes": 20, "counts": {"tilde": 2}}                          # 1 % of 20 is under 2 nodes
+    assert "S9" not in {e["source"] for e in evidence_for(a, b, terms=TERMS, settings=SETTINGS, keyword_counts=small)}
+
+
+def test_ac_5_20_rare_keyword_points_are_capped_at_two_and_need_counts():
+    rarity = counts_with(alpha=2, beta=3, gamma=2)
+    a = node("N-000001", family="term:a", block="B-1", keywords=["alpha", "beta", "gamma"])
+    b = node("N-000002", family="term:b", block="B-2", keywords=["alpha", "beta", "gamma"])
+    found = {e["source"]: e for e in evidence_for(a, b, terms=TERMS, settings=SETTINGS, keyword_counts=rarity)}
+    assert found["S9"]["points"] == 2.0
+    assert "S9" not in {e["source"] for e in evidence_for(a, b, terms=TERMS, settings=SETTINGS)}   # no counts, no S9
+
+
+def test_ac_5_20_keyword_counts_are_counted_once_over_the_graph():
+    from sdd_compiler.retrieval.sources import keyword_counts
+    graph = [node("N-000001", keywords=["a", "b"]), node("N-000002", keywords=["a", "a"]), node("N-000003")]
+    assert keyword_counts(graph) == {"nodes": 3, "counts": {"a": 2, "b": 1}}
+
+
+def test_ac_5_21_a_topic_named_in_the_other_nodes_text_or_terms_is_evidence():
+    """F5 D17 (round 17, C18): "Prompts re-ask on conversion failure" against the Usage-errors
+    sentence that says "conversion failure", filed under `exit_status`."""
+    a = node("N-000001", family="term:conversion_failure", block="B-1", text="Prompts re-ask on conversion failure")
+    b = node("N-000002", family="term:exit_status", block="B-2",
+             text="Usage errors — conversion failure (including a value typed at a prompt) — yield 2")
+    found = sources(a, b)
+    assert found["S10"]["points"] == 2.0
+    assert found["S10"]["detail"]["family"] == "term:conversion_failure"
+    tagged = node("N-000003", family="term:exit_status", block="B-3", text="Usage errors yield 2",
+                  terms=["term:conversion_failure"], role="trigger")
+    assert "S10" in sources(a, tagged)
+    one_word = node("N-000004", family="term:option", block="B-4", text="An option is optional")
+    says_option = node("N-000005", family="term:exit_status", block="B-5", text="every option is listed")
+    assert "S10" not in sources(one_word, says_option)
+    same = node("N-000006", family="term:conversion_failure", block="B-6", text="conversion failure is a usage error")
+    assert "S1" in sources(a, same) and "S10" not in sources(a, same)

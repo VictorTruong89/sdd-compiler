@@ -866,6 +866,24 @@ wrong on first contact in `lend`.
   criterion (F7 D17), and round 15 goes into the report.** Owner: "start on steps 1 and 3. do not set
   MAX_THINKING_TOKENS, we can simply rerun and add a note about this finding in report project."
 
+- **rel02 D28 — 2026-10-30 — compiler recall on round 17's 24 planted conflicts: start with table
+  rows (F3 D43).** Owner, after the pair-ranking of step 1a showed 11 of 24 pairs reaching the judge
+  (`harness/trials/r17-zero2repo-case006-conflicts-24/TRIAL.md`): "go ahead, start with the table-row
+  merging fix". One cause at a time, spec first, re-ranked after each; the other causes (an atomizer
+  loss, clauses cut from their subject, ranking across families) follow as separate decisions.
+
+- **rel02 D29 — 2026-10-30 — the ranking fix (F5 D15, D16).** Owner: "go ahead with your suggested
+  ranking fix". Three general rules tried offline first (no model call): S1 following `broader`, a
+  rare shared keyword, term names by their last word; the first two kept, the third found nothing.
+
+- **rel02 D30 — 2026-10-30 — atomizer fix: an atom keeps what it is about (F3 D44).** Owner: "go ahead
+  with option 2 as you suggested first". C17 (a sentence's subject quoted by no atom) and C22 (a
+  pronoun atom) traced in the lock; one rule for both, from the verbatim text, no model call.
+
+- **rel02 D31 — 2026-10-30 — option 3, the two sides' topics (F5 D17).** Owner: "go ahead with option 3
+  as you suggested". The tags of the 8 remaining pairs read first: most carry or name the other side's
+  topic. Done in retrieval, from tags already stored (no model call), instead of re-tagging terms.
+
 ## Rejected alternatives
 
 ## Open questions

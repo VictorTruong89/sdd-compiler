@@ -33,6 +33,7 @@ from .describe import DescribeItem, describe_atoms
 from .align import NewAtom, align
 from .forming import NodeDraft, block_annotations, example_pieces, layer_hint, resolve_verifies
 from .placement_types import PlacedAtom
+from .guards import GuardFailure, anchor_quotes
 from .qatom import Atom, AtomizeOutcome, atomize_blocks
 from .terms import TermResolution, normalize_name, resolve_terms
 
@@ -224,6 +225,9 @@ def _run_chunk(
     for block in blocks:
         if block["id"] in atoms_by_block:
             atoms_by_block[block["id"]] = one_criterion(block, atoms_by_block[block["id"]])
+            if not one_claim_block(block):            # F3 D44: an atom keeps what it is about
+                atoms_by_block[block["id"]] = keep_subjects(
+                    block, atoms_by_block[block["id"]], atomized.sentences.get(block["id"], []))
 
     by_id = {block["id"]: block for block in blocks}
     atom_judgments = dict(atomized.judgments)
@@ -251,7 +255,8 @@ def _run_chunk(
         # F3 D23 (I-42): this is the last chance. If the model again keeps one claim
         # across two layers — typically a bold title and its explanation — place it by
         # the first yes and flag it `mixed_layers`, rather than fail the block.
-        retried = _describe_and_place({block_id: again.atoms}, by_id, backend, weak_words, aliases,
+        again_atoms = keep_subjects(by_id[block_id], again.atoms, again.sentences.get(block_id, []))
+        retried = _describe_and_place({block_id: again_atoms}, by_id, backend, weak_words, aliases,
                                       chunk.failed, lock, atom_judgments, accept_mixed=True,
                                       names=names)
         if block_id not in retried:
@@ -340,12 +345,107 @@ def one_criterion(block: Mapping[str, Any], atoms: Sequence[Atom]) -> list[Atom]
     if criterion:
         if len(atoms) <= 1 and all(atom.kind == "verification" for atom in atoms):
             return list(atoms)
-    elif not row or len(atoms) <= 1:
+    elif not row or not atoms:
         return list(atoms)
     kind = "verification" if criterion else atoms[0].kind
     pairs = sorted({(span, quote) for atom in atoms for span, quote in zip(atom.spans, atom.quotes)})
-    return [Atom(block_id=block["id"], kind=kind,
-                 quotes=[quote for _, quote in pairs], spans=[span for span, _ in pairs])]
+    folded = Atom(block_id=block["id"], kind=kind,
+                  quotes=[quote for _, quote in pairs], spans=[span for span, _ in pairs])
+    return row_sentences(block, folded) if row else [folded]
+
+
+PRONOUNS = frozenset({"it", "its", "they", "their", "them", "this", "these", "that", "those"})
+
+
+def keep_subjects(block: Mapping[str, Any], atoms: Sequence[Atom], sentences: Sequence[str]) -> list[Atom]:
+    """F3 D44 (rel02 round 17): an atom keeps the words that say what it is about.
+
+    Q-ATOM may quote a sentence's predicates and none of its subject: "Abort — <its causes> —
+    yields …, writes …" became atoms with no cause in them (C17), and "…; it still prints its
+    message" a node about "it" (C22). For each claim sentence of the answer: (a) an opening no atom
+    covers leads every atom of the sentence; (b) otherwise an atom opening with a pronoun, not the
+    sentence's first, is led by the first atom's first quote. Verbatim spans only, no model call."""
+    text = block["text"]
+    leads: dict[int, tuple[tuple[int, int], str]] = {}       # atom index -> its lead
+    for sentence in sentences:
+        try:
+            [anchor] = anchor_quotes([sentence], text, [])
+        except GuardFailure:
+            continue                                         # not located: leave the atoms alone
+        start, end = anchor.span
+        inside = sorted((atom.spans[0][0], i) for i, atom in enumerate(atoms)
+                        if atom.spans and start <= atom.spans[0][0] < end)
+        if not inside:
+            continue
+        first_start, first_index = inside[0]
+        opening = text[start:first_start]
+        covered = any(s[0] < first_start and s[1] > start for atom in atoms for s in atom.spans)
+        if opening.strip() and any(ch.isalnum() for ch in opening) and not covered:
+            lead_text = opening.strip()
+            lead_start = start + opening.index(lead_text)
+            for _, i in inside:
+                leads[i] = ((lead_start, lead_start + len(lead_text)), lead_text)
+            continue
+        first = atoms[first_index]
+        for _, i in inside[1:]:
+            words = atoms[i].quotes[0].strip("`*_ ").split()
+            if words and words[0].lower().strip(",;:") in PRONOUNS:
+                leads[i] = (first.spans[0], first.quotes[0])
+    if not leads:
+        return list(atoms)
+    out = []
+    for i, atom in enumerate(atoms):
+        if i in leads:
+            span, quote = leads[i]
+            out.append(Atom(block_id=atom.block_id, kind=atom.kind,
+                            quotes=[quote, *atom.quotes], spans=[span, *atom.spans]))
+        else:
+            out.append(atom)
+    return out
+
+
+def _cells(text: str) -> list[tuple[int, int]]:
+    """The `(start, end)` of each cell of a table row, between unescaped `|` marks."""
+    marks = [i for i, ch in enumerate(text) if ch == "|" and (i == 0 or text[i - 1] != "\\")]
+    return [(a + 1, b) for a, b in zip(marks, marks[1:])]
+
+
+def row_sentences(block: Mapping[str, Any], atom: Atom) -> list[Atom]:
+    """F3 D43 (rel02 round 17): a cell that holds several quoted sentences is one claim per sentence.
+
+    D34 folds a row because its cells are the parts of one rule; an interface table's `form` cell
+    instead holds several sentences about the entry the first cell names, and folding them hid a
+    contradicting sentence from retrieval. Every sentence after a cell's first becomes its own atom;
+    each piece, and the row's remaining atom, is led by the first cell — its quotes, or its own text
+    located in the block when the answer quoted none — so a piece keeps its subject. A row whose
+    cells hold one quote each is returned unchanged (D34's case). No model call."""
+    text = block["text"]
+    cells = _cells(text)
+    if len(cells) < 2:
+        return [atom]
+
+    def cell_of(span: tuple[int, int]) -> int:
+        return next((i for i, (a, b) in enumerate(cells) if a <= span[0] < b), -1)
+
+    pairs = list(zip(atom.spans, atom.quotes))
+    by_cell: dict[int, list[tuple[tuple[int, int], str]]] = {}
+    for span, quote in pairs:
+        by_cell.setdefault(cell_of(span), []).append((span, quote))
+    extra = [p for c, ps in sorted(by_cell.items()) if c > 0 for p in ps[1:]]
+    if not extra:
+        return [atom]
+    key = by_cell.get(0)
+    if not key:
+        a, b = cells[0]
+        stripped = text[a:b].strip()
+        if not stripped:
+            return [atom]
+        start = text.index(stripped, a)
+        key = [((start, start + len(stripped)), stripped)]
+    rest = [p for p in pairs if p not in extra and p not in key]
+    pieces = [key + rest] + [key + [p] for p in extra]
+    return [Atom(block_id=atom.block_id, kind=atom.kind,
+                 quotes=[q for _, q in piece], spans=[s for s, _ in piece]) for piece in pieces]
 
 
 def vocabulary(

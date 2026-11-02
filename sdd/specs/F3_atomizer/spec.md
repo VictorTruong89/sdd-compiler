@@ -12,6 +12,11 @@
 > **⚑ Drafting choices** are marked in §7.
 > **Amended:** 2026-10-16 (rel02 D26): D41, an example forms a verification node in code (§4.5 step 3a,
 > AC-3.40); D42, an `unchanged` node takes its block's current annotations (§4.6, AC-3.41).
+> **Amended:** 2026-10-30 (rel02 D28): D43, a table-row cell that holds several sentences forms one
+> claim per sentence, each led by the row's first cell (§4.5 step 0, AC-3.42).
+> **Amended:** 2026-10-30 (rel02 D30): D44, an atom keeps the words that say what it is about — a
+> sentence's opening that no atom covers, or, for an atom opening with a pronoun, the sentence's first
+> atom (§4.5 step 0, AC-3.43).
 
 ---
 
@@ -123,6 +128,18 @@ punctuation must otherwise match. Code computes the offsets. A quote occurring m
   quantities.
 
 ### 4.5 Forming a node
+
+0. **One claim per block form (D28, D34, D43).** A block labelled `AC-…` is one verification atom
+   and a table row is one atom, its quotes kept in row order (`one_criterion`). Then **D43**: in a
+   table row, every quoted sentence after the first one of a cell (other than the row's first cell)
+   becomes an atom of its own, led by the row's first cell; the rest stays the row's one atom, also
+   led by the first cell. The lead is the first cell's quotes, or, when the answer quoted none, the
+   cell's own text located in the block.
+   Then **D44**, for every other block: for each sentence the answer labels a claim, (a) when no atom
+   covers the sentence's opening words, that opening leads every atom of the sentence; (b) otherwise an
+   atom whose text opens with a pronoun (*it, its, they, their, them, this, these, that, those*) and is
+   not the sentence's first atom is led by the first atom's first quote.
+   No model call: the sentences are the Q-ATOM answer's own quotes.
 
 For each validated atom:
 1. Resolve term tags against the registry. Exact names and aliases resolve directly.
@@ -441,6 +458,20 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   the third of kind `verification` with the example's text, `verifies` = the first requirement's id, and
   no annotation of role `example` remains on any node; **given** the example first, **then** it verifies
   the first requirement. → *unit.*
+- **AC-3.42** *(a cell of several sentences forms one claim per sentence; D43)* — **Given** a table
+  row `| key | First sentence. Second sentence. |` and a Q-ATOM answer giving one atom that quotes both
+  sentences, **when** the block is formed, **then** two nodes are formed: one whose text is the key and
+  the first sentence, one whose text is the key and the second sentence, both of the atom's kind, and
+  only those two atoms go to Q-DESC; **given** a row whose cells hold one sentence each (D34's case),
+  **then** one node is formed, as before. → *unit.*
+- **AC-3.43** *(an atom keeps what it is about; D44)* — **Given** the sentence "Abort — a declined
+  confirmation or end of file — exits with 1 and writes to standard error." and an answer whose two
+  atoms quote only "exits with 1" and "writes to standard error", **when** the block is formed, **then**
+  both nodes' texts begin with "Abort — a declined confirmation or end of file —"; **given** "Pause must
+  not block; it still prints its message." with atoms "Pause must not block" and "it still prints its
+  message", **then** the second node's text begins with "Pause must not block" and the first is
+  unchanged; **given** atoms that cover each sentence from its first word and open with no pronoun,
+  **then** the nodes are as before. → *unit.*
 - **AC-3.41** *(an unchanged node refreshes its annotations; D42)* — **Given** a compiled block whose
   node N carries no annotation, **when** a rationale sentence is added to the block and it is re-atomized
   with N's text unchanged, **then** N keeps its id and record and carries the new rationale. → *unit.*
@@ -652,6 +683,40 @@ weak_words: [fast, quickly, appropriate, user-friendly, as needed, etc, robust, 
   defect). §4.6 kept an `unchanged` node's record whole, so a rationale or example added to the block
   next to an unchanged claim was dropped: in round 14 the planted example sat beside an unchanged
   claim and was lost. Annotations belong to the block, not to the claim's text, so they are refreshed.
+- **D43 — ⚑ A table-row cell that holds several sentences is one claim per sentence** (rel02 round
+  17, 2026-10-30, owner: "start with the table-row merging fix"). D34 folds a row into one atom
+  because its *cells* are the parts of one rule. Interface tables break that premise: a `form` cell
+  often holds several independent sentences about the entry named in the first cell. Measured on
+  round 17's planted case006 (`harness/trials/r17-zero2repo-case006-conflicts-24/TRIAL.md`, step
+  1a): the `DateTime`, `Path` and `get_app_dir` rows each became one node of 3–4 sentences, so the
+  planted sentence inside shared no term with the PRD sentence it contradicts and ranked 57th to
+  134th, or scored nothing (C12, C20, C21). Haiku had labelled every sentence separately and then
+  joined them, as the prompt asks (`sentences` in the lock answer), so code can split with **no model
+  call and no re-ask**. *Why led by the first cell:* it names the entry, so each piece stands alone
+  ("Delivers a path, not an open file" alone has no subject), which keeps D34's reason for folding.
+  *Why only sentences after a cell's first:* a cell of one sentence or fragment stays with the row,
+  so D34's case (one fragment per cell, R15) is unchanged. ⚠ More nodes per such row means more
+  Q-DESC calls and more candidate pairs; both *to be measured*. Not covered: a list item that packs
+  several claims into one sentence (round 17's C06), and a sentence cut from its subject (C22).
+  *Rejected:* changing the prompt to ask for one atom per sentence — a prompt change re-asks every
+  block (D21); dropping D34 — R15's fragments come back.
+- **D44 — ⚑ An atom keeps the words that say what it is about** (rel02 round 17, 2026-10-30; rel02
+  D30). Q-ATOM splits a sentence into its predicates and may quote none of the part that names the
+  subject or the condition. In round 17's planted case006, "Abort — user declined a confirming abort,
+  two different values typed into a confirmation prompt, … — yields …, writes …, and does not run …"
+  became three atoms quoting only the three predicates, so the planted cause was in **no node** (C17);
+  and "Pause must not block …; it still prints its message there" left a node "it still prints its
+  message there" (C22). G3 passed both: it checks that an atom touches a sentence, not that it keeps
+  its subject. *Measured on round 17's store* (lock answers, no model call): 21 of 761 claim sentences
+  leave an opening of three or more words uncovered — often the condition ("For subcommands listed on
+  a group help page,", "In the in-process runner (FP-14),") — and 40 of 1 029 nodes open with a
+  pronoun. *Why code, from the verbatim text:* the answer already labels each sentence, and keywords
+  must come from the node's text (F2 D4), so Q-DESC's resolved subject ("Pause", in `canonical`) cannot
+  be borrowed for retrieval. ⚠ A lead repeats text across a sentence's nodes, and it changes those
+  atoms' Q-DESC input: more Q-DESC calls on the next full compile, *to be measured*. A pronoun that
+  points to an earlier sentence (the atom is its sentence's first) is not resolved. *Rejected:* a
+  prompt rule — it re-asks every block (D21); a stricter G3 — it would re-ask without telling the model
+  which words to keep.
 - **D38 — ⚑ A definition is attached by code, to the term it opens with** (I-92, closing I-59's open
   half, 2026-09-27). Q-ATOM has always labelled `definition` sentences and F2 §4.1 always said they
   become term entries, but nothing wrote them: on R18, 68 definition sentences were labelled and **0 of
@@ -711,4 +776,6 @@ change of alias is visible.*
 | AC-3.35 … AC-3.38 · D39 · §4.5a · F2 AC-2.29, D21 | `tests/test_atomize_contracts.py` · `tests/test_compile.py::test_ac_3_35_*`, `::test_ac_3_38_*`, `::test_ac_2_29_*` | `src/sdd_compiler/atomize/contracts.py` · `describe.py` · `pipeline.py` · `src/sdd_compiler/model/ids.py` |
 | AC-3.31 … AC-3.34 · D38 · §4.6 skipped sections | `tests/test_atomize_definitions.py` · `tests/test_compile.py::test_ac_3_31_*`, `::test_ac_3_33_*`, `::test_ac_3_34_*` | `src/sdd_compiler/atomize/definitions.py` · `qatom.py` · `src/sdd_compiler/pipeline.py` · `report.py` |
 | AC-3.40 · D41 · §4.5 step 3a | `tests/test_atomize_pipeline.py::test_ac_3_40_*` (2) | `src/sdd_compiler/atomize/forming.py::example_pieces` · `pipeline.py` |
+| AC-3.43 · D44 · §4.5 step 0 | `tests/test_atomize_pipeline.py::test_ac_3_43_*` (3) | `src/sdd_compiler/atomize/pipeline.py::keep_subjects` · `qatom.py` |
+| AC-3.42 · D43 · §4.5 step 0 | `tests/test_atomize_pipeline.py::test_ac_3_42_*` (2) | `src/sdd_compiler/atomize/pipeline.py::row_sentences` |
 | AC-3.41 · D42 · §4.6 | `tests/test_compile.py::test_ac_3_41_an_unchanged_node_takes_its_blocks_current_annotations` | `src/sdd_compiler/atomize/forming.py::NodeDraft.record` |

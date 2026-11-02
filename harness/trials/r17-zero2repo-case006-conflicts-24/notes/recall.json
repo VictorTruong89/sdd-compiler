@@ -1,0 +1,339 @@
+{
+ "store": "/home/victor/Workspace/sdd-compiler/harness/trials/r17-zero2repo-case006-conflicts-24/work/compile-full",
+ "found": 14,
+ "of": 24,
+ "items": {
+  "C01": {
+   "a_nodes": [
+    "N-000745"
+   ],
+   "b_nodes": [
+    "N-000747"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C02": {
+   "a_nodes": [
+    "N-000243"
+   ],
+   "b_nodes": [
+    "N-000955"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000034",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C03": {
+   "a_nodes": [
+    "N-000260",
+    "N-000261"
+   ],
+   "b_nodes": [
+    "N-000022"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C04": {
+   "a_nodes": [
+    "N-000134"
+   ],
+   "b_nodes": [
+    "N-000680"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000087",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C05": {
+   "a_nodes": [
+    "N-000140"
+   ],
+   "b_nodes": [
+    "N-000144"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000115",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C06": {
+   "a_nodes": [
+    "N-000115"
+   ],
+   "b_nodes": [
+    "N-000853"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C07": {
+   "a_nodes": [
+    "N-000207"
+   ],
+   "b_nodes": [
+    "N-000920"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000048",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C08": {
+   "a_nodes": [
+    "N-000211"
+   ],
+   "b_nodes": [
+    "N-000093"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000010",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C09": {
+   "a_nodes": [
+    "N-000227"
+   ],
+   "b_nodes": [
+    "N-000893"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000088",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C10": {
+   "a_nodes": [
+    "N-000238"
+   ],
+   "b_nodes": [
+    "N-000345"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C12": {
+   "a_nodes": [
+    "N-000354"
+   ],
+   "b_nodes": [
+    "N-000939"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C13": {
+   "a_nodes": [
+    "N-000356"
+   ],
+   "b_nodes": [
+    "N-000032"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000136",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C14": {
+   "a_nodes": [
+    "N-000362"
+   ],
+   "b_nodes": [
+    "N-000941"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000092",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C15": {
+   "a_nodes": [
+    "N-000364"
+   ],
+   "b_nodes": [
+    "N-000943"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000107",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C17": {
+   "a_nodes": [
+    "N-000511"
+   ],
+   "b_nodes": [
+    "N-000723",
+    "N-000724",
+    "N-000725"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000134",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C18": {
+   "a_nodes": [
+    "N-000520"
+   ],
+   "b_nodes": [
+    "N-000719"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C20": {
+   "a_nodes": [
+    "N-000558"
+   ],
+   "b_nodes": [
+    "N-000947"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C21": {
+   "a_nodes": [
+    "N-000676"
+   ],
+   "b_nodes": [
+    "N-001005"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000129",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C22": {
+   "a_nodes": [
+    "N-000663"
+   ],
+   "b_nodes": [
+    "N-000687"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000128",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C23": {
+   "a_nodes": [
+    "N-000700"
+   ],
+   "b_nodes": [
+    "N-001019"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C25": {
+   "a_nodes": [
+    "N-000149"
+   ],
+   "b_nodes": [
+    "N-000906"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C26": {
+   "a_nodes": [
+    "N-000122"
+   ],
+   "b_nodes": [
+    "N-000843"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000063",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C27": {
+   "a_nodes": [
+    "N-000126"
+   ],
+   "b_nodes": [
+    "N-000853"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000047",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C29": {
+   "a_nodes": [
+    "N-000348"
+   ],
+   "b_nodes": [
+    "N-000937"
+   ],
+   "conflicts": [],
+   "found": false
+  }
+ },
+ "store_conflicts": {
+  "duplication/open": 71,
+  "contradiction/open": 69,
+  "subsumption/open": 13
+ }
+}

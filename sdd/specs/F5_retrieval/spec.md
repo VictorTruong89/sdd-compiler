@@ -9,6 +9,10 @@
 > **⚑ Drafting choices** are marked in §7.
 > **Amended:** 2026-10-16 (rel02 D26): D14, a pair is proposed from either end, checked or not (§4.3,
 > AC-5.18, CT-5.3 `pairs_from_unchecked_end`).
+> **Amended:** 2026-10-30 (rel02 D29): D15, S1 also fires when one family is a kind of the other
+> (AC-5.19); D16, a new source S9 for a shared rare keyword (AC-5.20, CT-5.2 `rare_keyword_share`).
+> **Amended:** 2026-10-30 (rel02 D31): D17, a new source S10, one node's topic named by the other
+> (AC-5.21).
 
 ---
 
@@ -56,7 +60,7 @@ For node **A**, candidates are gathered from these sources. Each source records 
 
 | Source | Rule | Evidence recorded |
 |---|---|---|
-| **S1 same family** | Same `family` (not `(global)`) | family id |
+| **S1 same family** | Same `family` (not `(global)`), **or one family is a kind of the other** (`broader`, any depth; D15) | family id, and the other family when they differ |
 | **S2 shared subject term** | Shares a term of kind `entity`, `data` or `event`, **or one that is a kind of the other** (`broader`, D11) | the term ids, and the chain that matched |
 | **S3 constraint scope** | A `C` node whose `scope_selector` covers the other node, in either direction, by the rule of D9 | the selector that matched |
 | **S4 adjacent layer** | Same family and layer distance ≤ 1 in the order L0…L5 | both layers |
@@ -64,6 +68,8 @@ For node **A**, candidates are gathered from these sources. Each source records 
 | **S6 same measured property** | Both carry a quantity of the same dimension (time, size, count, percent), in claims sharing a term **or a keyword** (D11) | the dimension and both values |
 | **S7 same source block** | Both atomized from the same block | the block id |
 | **S8 two kinds of one thing** | Their terms are not shared, and neither is above the other, but both are kinds of one term (`broader`, D12) | the shared parent and both terms |
+| **S10 topic named** | S1 does not fire, and one node's `family` (not `(global)`) is among the other node's terms, in any role, or a name of that family's term of **two or more words** (canonical or alias) appears in the other node's text (D17) | the family, and where it was found |
+| **S9 shared rare keyword** | A common keyword found in at most `rare_keyword_share` (default 1 %) of the graph's nodes (D16); one is enough. Off when that share is under 2 nodes (a graph under 200 nodes at 1 %) | the rare keywords |
 
 **Why S5 and S6 exist (⚑ D1).** The pre-rel01 rule was family, shared term, constraint scope and
 adjacent layer only. That never proposes the first node of a family, and it misses conflicts whose
@@ -76,7 +82,11 @@ contradiction.
 ```text
 score = 3.0 · S1 + 2.0 · S2(per shared term, max 4.0) + 2.0 · S3 + 1.0 · S4
       + 0.5 · S5(per shared keyword, max 2.0) + 2.5 · S6 + 1.5 · S7 + 1.0 · S8
+      + 1.0 · S9(per rare keyword, max 2.0) + 2.0 · S10
 ```
+
+Keyword rarity is counted once per run over every node retrieval is given, so a score depends on the
+graph, not only on the two nodes; it stays deterministic.
 
 - Candidates below `min_score` (default 1.0) are dropped.
 - The rest are ranked by score, then by node id, and the top `max_pairs_per_node` (default 6, D13) are
@@ -128,6 +138,7 @@ retrieval:
   max_pairs_per_node: 6        # D13 (was 10)
   min_score: 1.0
   min_shared_keywords: 2
+  rare_keyword_share: 0.01     # D16: a keyword in at most this share of nodes is rare (S9)
 ```
 
 **CT-5.3 — Run record additions** (F1 CT-1.3; written at `conflicts.retrieval`, F6 CT-6.2)
@@ -174,6 +185,23 @@ checked nodes.
   node A within its cap, while A's ranking puts B beyond A's cap, **then** the pair (A, B) is proposed
   and counted in `pairs_from_unchecked_end`; **given** the same graph with B checked too, **then** the
   same pair is proposed and the count is 0. → *unit.*
+- **AC-5.19** *(a family that is a kind of the other; D15)* — **Given** two nodes of families
+  `term:download_link` (recorded `broader: term:share_link`) and `term:share_link`, **then** S1
+  contributes 3.0 naming both families; **given** families that are only siblings (both kinds of
+  `term:export`), **then** S1 does not contribute; **given** a family `(global)`, **then** S1 never
+  contributes. → *unit.*
+- **AC-5.20** *(a shared rare keyword; D16)* — **Given** a graph of 200 nodes in which `tilde` is a
+  keyword of 2 nodes and `option` of 150, **when** two nodes sharing only `tilde` are scored, **then**
+  S9 contributes 1.0 and S5 does not (one shared keyword); **when** two nodes share only `option`,
+  **then** S9 does not contribute; **given** `rare_keyword_share: 0.5`, **then** `option` is still not
+  rare (150 of 200); **given** a graph of 20 nodes, **then** S9 never contributes. → *unit.*
+- **AC-5.21** *(a node's topic named by the other; D17)* — **Given** node A of family
+  `term:conversion_failure` (canonical "conversion failure") and node B of another family whose text
+  says "… conversion failure (including a value typed at a prompt) …", **then** S10 contributes 2.0
+  naming the family; **given** B carries `term:conversion_failure` as a `trigger` term instead, **then**
+  S10 contributes; **given** A's family is a one-word term ("option") named only in B's text, **then**
+  S10 does not; **given** both nodes of the same family, **then** S1 contributes and S10 does not. →
+  *unit.*
 - **AC-5.8** *(first node of a family)* — **Given** a graph where a node's family, terms and block are
   unique to it, **when** candidates are gathered, **then** any candidate comes from S5 or S6, and the
   result may legitimately be empty. → *unit.*
@@ -272,6 +300,46 @@ checked nodes.
   compile would propose for the same nodes; none in a full compile, where every node is checked.
   *Rejected:* checking every neighbour of a changed node in full (it would re-judge pairs that do not
   touch the change); raising the cap for changed nodes (a tuning knob, not the defect).
+- **D15 — ⚑ S1 follows `broader` too** (rel02 round 17, 2026-10-30; rel02 D29). Round 14's P4 (round
+  17's C03) was missed in rounds 14–17: the glossary row was filed under `parameter_callback`, the rule
+  it contradicts under `callback`, and the registry records `parameter_callback` as a kind of
+  `callback`; S2 already followed that link, S1 did not, so the pair scored 5.0 and ranked 7th against a
+  cap of 6. A claim about a kind of X is a claim about X, as D11 already says for terms. Same weight as
+  an exact family: the link is recorded, not guessed. *Rejected:* matching term names by their last
+  word ("date time format" under "format"): measured offline on round 17's store, it found no further
+  pair.
+- **D16 — ⚑ S9: a shared rare keyword** (rel02 round 17, 2026-10-30; rel02 D29). S5 weighs every shared
+  keyword alike, so "option", "value" and "default", shared by hundreds of nodes, fill a node's top 6,
+  while "tilde", "clamp" or "xdg", shared by two, count the same 0.5 and need a second shared word to
+  count at all. A word that few claims use is strong evidence that two claims are about the same thing.
+  S9 adds 1.0 per shared keyword found in at most 1 % of the graph's nodes, capped at 2.0, and one
+  rare keyword is enough. It is off when 1 % of the graph is under 2 nodes: in a small graph a word
+  that two nodes share is in a large share of it (found by an existing test of a 2-node graph).
+  *Measured* (rel02 round 17, `harness/trials/r17-zero2repo-case006-conflicts-24/TRIAL.md` step 1c; no
+  model call): with D15 + D16 the compile proposes **12 of round 17's 24** planted pairs (11 before:
+  C03, C13, C20 gained; C14 and C15, 6th before, now 7th) for 1 896 pairs (1 884), and ranks **7 of 7**
+  of round 14's pairs within the cap (6 before). An offline sketch that scored a rare keyword inside S5
+  (0.5 + 1.0, one shared word enough, S5 capped at 3.0) had ranked 14 of 24; the rule above is the
+  simpler one, and the difference is recorded rather than tuned. ⚠ The 1 % threshold is a starting
+  value, tried on these two stores only (0.5 % found fewer on both). *Rejected:* full
+  inverse-document-frequency weighting of S5 — it changes every score in the graph for a gain the
+  simple rule already shows; embeddings (non-goal, §2).
+- **D17 — ⚑ S10: one node's topic named by the other** (rel02 round 17, 2026-10-30; rel02 D31). A
+  node's `family` is its topic (F2 §4.4). Two claims about one rule are often filed under different
+  topics, because each sentence names its own subject: in round 17's planted case006, "Prompts re-ask
+  on conversion failure …" is filed under `conversion_failure`, and the Usage-errors sentence that
+  contradicts it, which **says** "conversion failure", under `exit_status`; "A confirmation prompt …
+  asks twice" under `confirmation_prompt`, and the Abort sentence that says "confirmation prompt" under
+  `abort`; C14's two sides carry each other's topic as a term. S1 needs one family; S2 counts shared
+  terms but not "my topic is one of your terms". *Why two words or more for the text match:* a
+  one-word name is common in an interface spec ("option" is in 137 of round 17's 1 028 node texts,
+  "value" in 132, "command" in 136), so a match on it says little; the term-list match has no such limit, because a term was tagged on purpose. *Measured
+  offline* on round 17's store (with D15, D16, F3 D43, D44 in place; no model call): **16 of 24**
+  planted pairs within the cap (13 before; C14, C15, C17 gained, none lost) for 1 949 pairs (1 910);
+  round 14's store 7 of 7, as before, with P3 from 6th to 2nd. 3.0 points instead of 2.0 lost C03; the
+  text match alone found 14, the term-list match alone 15. *Rejected:* re-tagging terms with a new
+  Q-DESC rule — model calls for every node, and a prompt change re-asks every block (F3 D21); a
+  text match on one-word names too — measured, it found 14 of 24, not 16.
 - **D5 — Deferred: `checked_against` per node** (conflict-list item 5.4). A batch run checks the whole
   graph, so the cheaper `last_checked_run` plus `stale_reasons` is enough for rel01. It returns with
   incremental checking.
@@ -290,5 +358,8 @@ checked nodes.
 | AC-5.12 *(pair key)* · D4 | `tests/test_retrieval_select.py::test_ac_5_12_…` (2) | `src/sdd_compiler/retrieval/select.py::pair_key` |
 | CT-5.2 *(profile)* | `tests/test_retrieval_select.py` · `tests/test_profile.py` | `src/sdd_compiler/profile.py` |
 | CT-5.3, AC-5.16 *(counts; the run record wired by I-97, 2026-09-30)* | `tests/test_retrieval_select.py::test_ct_5_3_…`, `::test_ac_5_10_…`, `tests/test_compile.py::test_ac_5_16_ct_6_2_…` | `src/sdd_compiler/retrieval/select.py` |
+| AC-5.19 · D15 *(S1 follows `broader`)* | `tests/test_retrieval_sources.py::test_ac_5_19_*` | `src/sdd_compiler/retrieval/sources.py::_same_family` |
+| AC-5.20 · D16 *(S9 rare keyword)* · CT-5.2 `rare_keyword_share` | `tests/test_retrieval_sources.py::test_ac_5_20_*`, `tests/test_profile.py::test_d16_*` | `src/sdd_compiler/retrieval/sources.py` · `select.py` · `score.py` · `src/sdd_compiler/profile.py` |
+| AC-5.21 · D17 *(S10 topic named)* | `tests/test_retrieval_sources.py::test_ac_5_21_*` | `src/sdd_compiler/retrieval/sources.py::_topic_named` · `score.py` |
 | AC-5.18 · D14 *(either end)* · CT-5.3 `pairs_from_unchecked_end` | `tests/test_retrieval_select.py::test_ac_5_18_…` (2) | `src/sdd_compiler/retrieval/select.py` |
 | AC-5.15 *(exhaustive mode)* | *(deferred: `sddc pairs` is M5, build plan B2)* | `src/sdd_compiler/retrieval/select.py` · `cli.py` |

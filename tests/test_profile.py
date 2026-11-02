@@ -163,3 +163,13 @@ def test_ac_1_33_contract_languages_default_and_validation(tmp_path):
     with pytest.raises(SddcError) as excinfo:
         load_profile(write(tmp_path, "contract_languages: json\n"))
     assert excinfo.value.exit_code is ExitCode.INPUT and "contract_languages" in str(excinfo.value)
+
+
+def test_d16_rare_keyword_share_defaults_and_is_validated(tmp_path):
+    """F5 D16, CT-5.2: a share of nodes, above 0 and at most 1."""
+    assert load_profile(write(tmp_path, "")).retrieval.rare_keyword_share == 0.01
+    assert load_profile(write(tmp_path, "retrieval: {rare_keyword_share: 0.05}\n")).retrieval.rare_keyword_share == 0.05
+    for bad in ("0", "1.5", "yes"):
+        with pytest.raises(SddcError) as excinfo:
+            load_profile(write(tmp_path, f"retrieval: {{rare_keyword_share: {bad}}}\n"))
+        assert "rare_keyword_share" in str(excinfo.value)

@@ -1,7 +1,7 @@
 {
  "schema_version": "export/1",
  "compiler_version": "<version>",
- "store_hash": "sha256:0dc535850c02efdd782e40bb56204bb6fe167d487840aea12cadd4f35cee8e7a",
+ "store_hash": "sha256:c0375ade089e19bf288163193887a33be59aed3da33615fee7413ab3d79ba447",
  "profile_export": {
   "foundation_globs": [
    "**/vision.md",

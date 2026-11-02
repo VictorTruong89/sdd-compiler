@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from .score import score_of
-from .sources import evidence_for
+from .sources import evidence_for, keyword_counts
 
 CHECK_STATUSES = ("unchecked", "stale", "conflict")
 
@@ -74,6 +74,7 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
     settled = set(judged)
     seen: dict[str, dict[str, Any]] = {}
 
+    rarity = keyword_counts(nodes.values())                      # F5 D16: once per run, over the graph
     unchecked_ends: set[str] = set()
     for node in checking_order([n for n in nodes.values() if needs_checking(n)]):
         result.checked.append(node["id"])
@@ -82,7 +83,7 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
         for other in sorted(nodes.values(), key=lambda n: n["id"]):
             if other["id"] == node["id"]:                       # never its own candidate (AC-5.13)
                 continue
-            evidence = evidence_for(node, other, terms=terms, settings=settings)
+            evidence = evidence_for(node, other, terms=terms, settings=settings, keyword_counts=rarity)
             if not evidence:
                 continue
             counts["candidates_proposed"] += 1
@@ -111,7 +112,7 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
 
     checked = set(result.checked)
     for other_id in sorted(unchecked_ends):                        # D14: the unchecked end's ranking
-        for candidate in _ranking(nodes[other_id], nodes, terms, settings, settled):
+        for candidate in _ranking(nodes[other_id], nodes, terms, settings, settled, rarity):
             if candidate["other"]["id"] in checked and candidate["pair_key"] not in seen:
                 first, second = sorted((other_id, candidate["other"]["id"]))
                 seen[candidate["pair_key"]] = {
@@ -126,14 +127,15 @@ def propose(nodes: Mapping[str, Mapping[str, Any]], *, terms: Mapping[str, Mappi
 
 
 def _ranking(node: Mapping[str, Any], nodes: Mapping[str, Mapping[str, Any]],
-             terms: Mapping[str, Mapping[str, Any]], settings: Any, settled: set[str]) -> list[dict[str, Any]]:
+             terms: Mapping[str, Mapping[str, Any]], settings: Any, settled: set[str],
+             rarity: Mapping[str, Any] | None = None) -> list[dict[str, Any]]:
     """One node's own ranking, as a full compile would make it (F5 §4.3): settled pairs and pairs
     below `min_score` left out, then score, then node id, then the cap."""
     scored = []
     for other in nodes.values():
         if other["id"] == node["id"]:
             continue
-        evidence = evidence_for(node, other, terms=terms, settings=settings)
+        evidence = evidence_for(node, other, terms=terms, settings=settings, keyword_counts=rarity)
         if not evidence:
             continue
         key = pair_key(node, other)

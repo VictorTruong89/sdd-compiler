@@ -134,6 +134,7 @@ class AtomizeOutcome:
     judgments: dict[str, str] = field(default_factory=dict)       # block id -> J id (with a lock)
     empty: dict[str, list[str]] = field(default_factory=dict)     # block id -> its sentence roles (F3 D33)
     definitions: dict[str, list[str]] = field(default_factory=dict)   # block id -> quotes (F3 D38)
+    sentences: dict[str, list[str]] = field(default_factory=dict)     # block id -> claim sentences (F3 D44)
 
 
 def build_question(blocks: list[dict[str, Any]], note: str | None = None) -> Question:
@@ -223,6 +224,9 @@ def _accept(block: dict[str, Any], payload: dict[str, Any], outcome: AtomizeOutc
     ]
     if annotations:
         outcome.annotations[block["id"]] = annotations
+    claims = [sentence["quote"] for sentence in payload["sentences"] if sentence["role"] in ATOM_KINDS]
+    if claims:
+        outcome.sentences[block["id"]] = claims
     definitions = [sentence["quote"] for sentence in payload["sentences"] if sentence["role"] == "definition"]
     if definitions:
         outcome.definitions[block["id"]] = definitions

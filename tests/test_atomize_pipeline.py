@@ -269,6 +269,109 @@ def test_r16_a_table_row_is_never_split_into_its_cells():
     assert [a["kind"] for a in node["ambiguity"] if a["kind"] == "mixed_layers"] == ["mixed_layers"]
 
 
+def test_ac_3_42_a_cell_of_several_sentences_forms_one_claim_per_sentence():
+    """F3 D43 (rel02 round 17): an interface table's `form` cell holds several independent
+    sentences about the entry in the first cell. D34 joined them into one node, and the planted
+    sentence inside could not be paired with the prose it contradicts. Each sentence after a
+    cell's first is its own claim, led by the row's first cell; no model call is added."""
+    key, first, second = "`get_dir(name)`", "Returns the path as text.", "On Unix it is under the home."
+    row = f"| {key} | {first} {second} |"
+    draft, backend = run([block("B-000001", row, kind="table_row")], [
+        q_atom(("B-000001", [("requirement", [key, first, second])])),
+        q_desc(*(q_desc_entry(f"B-000001#{n}", subject="get_dir", response=text, q_yes={"Q3": text},
+                              terms=[{"name": "path", "kind": "entity", "role": "subject", "quote": "the"}])
+                 for n, text in ((1, first), (2, second)))),
+    ])
+    assert [q.kind for q in backend.asked] == ["q-atom", "q-desc"]
+    assert [q.payload["atom_ids"] for q in backend.asked if q.kind == "q-desc"] == [["B-000001#1", "B-000001#2"]]
+    texts = sorted(n["text"] for n in draft.nodes.values())
+    assert len(texts) == 2
+    assert all("get_dir(name)" in t for t in texts)                 # led by the first cell
+    assert any(t.endswith(first) for t in texts) and any(t.endswith(second) for t in texts)
+    assert not any(first in t and second in t for t in texts)
+    assert all(n["kind"] == "requirement" for n in draft.nodes.values())
+
+
+def test_ac_3_42_a_key_cell_without_a_quote_still_leads_each_sentence():
+    """F3 D43: the `DateTime` row's answer quoted only the `form` cell; the first cell's own text
+    is located in the block and leads each piece, so "Delivers …" keeps its subject."""
+    row = "| `When(x=None)` | `x` is a list. Delivers a date |"
+    draft, _ = run([block("B-000001", row, kind="table_row")], [
+        q_atom(("B-000001", [("requirement", ["`x` is a list.", "Delivers a date"])])),
+        q_desc(*(q_desc_entry(f"B-000001#{n}", subject="When", response=text, q_yes={"Q3": text},
+                              terms=[{"name": "date", "kind": "entity", "role": "subject", "quote": "When"}])
+                 for n, text in ((1, "is a list"), (2, "Delivers a date")))),
+    ])
+    texts = sorted(n["text"] for n in draft.nodes.values())
+    assert len(texts) == 2
+    assert all("When(x=None)" in t for t in texts)
+    assert any(t.endswith("Delivers a date") for t in texts) and any("is a list." in t for t in texts)
+
+
+def test_ac_3_42_a_row_of_one_sentence_cells_stays_one_claim():
+    """F3 D43 leaves D34's case alone: one fragment per cell is one rule."""
+    row = "| **S3 constraint scope** | A `C` node whose selector covers the other node | the selector |"
+    cells = ["A `C` node whose selector covers the other node", "the selector"]
+    draft, _ = run([block("B-000001", row, kind="table_row")], [
+        q_atom(("B-000001", [("requirement", [cells[0]]), ("requirement", [cells[1]])])),
+        q_desc(q_desc_entry("B-000001#1", subject="candidate", response="covers the other node", q_yes={},
+                            terms=[{"name": "candidate", "kind": "data", "role": "subject", "quote": "covers"}])),
+    ])
+    [node] = draft.nodes.values()
+    assert node["text"] == " … ".join(cells)
+
+
+def _two_described(first, second, subject="abort"):
+    return q_desc(*(q_desc_entry(f"B-000001#{n}", subject=subject, response=text, q_yes={"Q3": text},
+                                 terms=[{"name": "abort", "kind": "event", "role": "subject", "quote": text.split()[0]}])
+                    for n, text in ((1, first), (2, second))))
+
+
+def test_ac_3_43_an_opening_no_atom_quotes_leads_every_atom_of_its_sentence():
+    """F3 D44 (rel02 round 17, C17): the atoms quoted only the predicates, so the sentence's subject —
+    the list of what counts as an abort — was in no node."""
+    lead = "Abort — a declined confirmation or end of file —"
+    sentence = f"{lead} exits with 1 and writes to standard error."
+    draft, _ = run([block("B-000001", f"- {sentence}", kind="list_item")], [
+        {"blocks": [{"block_id": "B-000001", "sentences": [{"quote": sentence, "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": ["exits with 1"]},
+                               {"kind": "requirement", "quotes": ["writes to standard error"]}]}]},
+        _two_described("exits with 1", "writes to standard error"),
+    ])
+    texts = sorted(n["text"] for n in draft.nodes.values())
+    assert len(texts) == 2
+    assert all(t.startswith(lead) for t in texts)
+    assert texts[0].endswith("exits with 1") and texts[1].endswith("writes to standard error")
+
+
+def test_ac_3_43_an_atom_opening_with_a_pronoun_is_led_by_its_sentences_first_atom():
+    """F3 D44 (C22): "it still prints its message" said nothing about what "it" was."""
+    first, second = "Pause must not block", "it still prints its message"
+    sentence = f"{first}; {second}."
+    draft, _ = run([block("B-000001", f"- {sentence}", kind="list_item")], [
+        {"blocks": [{"block_id": "B-000001", "sentences": [{"quote": sentence, "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": [first]},
+                               {"kind": "requirement", "quotes": [second]}]}]},
+        _two_described(first, second, subject="pause"),
+    ])
+    texts = sorted(n["text"] for n in draft.nodes.values())
+    assert texts == sorted([first, f"{first} … {second}"])
+
+
+def test_ac_3_43_atoms_that_keep_their_subject_are_unchanged():
+    first, second = "The service stores each link", "The API returns 404 for an expired link"
+    text = f"{first}. {second}."
+    draft, _ = run([block("B-000001", text)], [
+        {"blocks": [{"block_id": "B-000001",
+                     "sentences": [{"quote": f"{first}.", "role": "requirement"},
+                                   {"quote": f"{second}.", "role": "requirement"}],
+                     "atoms": [{"kind": "requirement", "quotes": [first]},
+                               {"kind": "requirement", "quotes": [second]}]}]},
+        _two_described(first, second, subject="link"),
+    ])
+    assert sorted(n["text"] for n in draft.nodes.values()) == sorted([first, second])
+
+
 def test_i42_a_refused_split_forms_the_node_with_the_first_layer_flagged_mixed():
     """F3 D23: two refusals to split are evidence of one claim — form it, flag it, never fail it."""
     split = q_desc_entry("B-000001#1", subject="the service",

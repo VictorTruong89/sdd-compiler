@@ -1,0 +1,676 @@
+{
+ "cap": 6,
+ "min_score": 1.0,
+ "items": {
+  "C01": {
+   "a_nodes": [
+    "N-000732"
+   ],
+   "b_nodes": [
+    "N-001025"
+   ],
+   "pairs": [
+    {
+     "a": "N-000732",
+     "b": "N-001025",
+     "score": 6.5,
+     "sources": [
+      "S1",
+      "S2",
+      "S7"
+     ],
+     "rank_from_b": 2,
+     "of_b": 32,
+     "rank_from_a": 4,
+     "of_a": 55,
+     "proposed": true,
+     "family_a": "term:directory",
+     "family_b": "term:new_directory"
+    }
+   ]
+  },
+  "C02": {
+   "a_nodes": [
+    "N-000230"
+   ],
+   "b_nodes": [
+    "N-000937"
+   ],
+   "pairs": [
+    {
+     "a": "N-000230",
+     "b": "N-000937",
+     "score": 8.0,
+     "sources": [
+      "S2",
+      "S5",
+      "S10"
+     ],
+     "rank_from_b": 2,
+     "of_b": 219,
+     "rank_from_a": 29,
+     "of_a": 311,
+     "proposed": true,
+     "family_a": "term:value",
+     "family_b": "term:default_map"
+    }
+   ]
+  },
+  "C03": {
+   "a_nodes": [
+    "N-000247"
+   ],
+   "b_nodes": [
+    "N-001014"
+   ],
+   "pairs": [
+    {
+     "a": "N-000247",
+     "b": "N-001014",
+     "score": 8.0,
+     "sources": [
+      "S1",
+      "S2",
+      "S5"
+     ],
+     "rank_from_b": 7,
+     "of_b": 252,
+     "rank_from_a": 5,
+     "of_a": 140,
+     "proposed": true,
+     "family_a": "term:callback",
+     "family_b": "term:parameter_callback"
+    }
+   ]
+  },
+  "C04": {
+   "a_nodes": [
+    "N-000127"
+   ],
+   "b_nodes": [
+    "N-001021"
+   ],
+   "pairs": [
+    {
+     "a": "N-000127",
+     "b": "N-001021",
+     "score": 6.0,
+     "sources": [
+      "S5",
+      "S9",
+      "S10"
+     ],
+     "rank_from_b": 8,
+     "of_b": 94,
+     "rank_from_a": 3,
+     "of_a": 23,
+     "proposed": true,
+     "family_a": "term:maximum_content_width",
+     "family_b": "(global)"
+    }
+   ]
+  },
+  "C05": {
+   "a_nodes": [
+    "N-000326"
+   ],
+   "b_nodes": [
+    "N-001018"
+   ],
+   "pairs": [
+    {
+     "a": "N-000326",
+     "b": "N-001018",
+     "score": 4.5,
+     "sources": [
+      "S1",
+      "S7"
+     ],
+     "rank_from_b": 2,
+     "of_b": 76,
+     "rank_from_a": 28,
+     "of_a": 220,
+     "proposed": true,
+     "family_a": "term:metavar",
+     "family_b": "term:metavar"
+    }
+   ]
+  },
+  "C06": {
+   "a_nodes": [
+    "N-000108"
+   ],
+   "b_nodes": [
+    "N-001027"
+   ],
+   "pairs": [
+    {
+     "a": "N-000108",
+     "b": "N-001027",
+     "score": 3.0,
+     "sources": [
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 16,
+     "of_b": 140,
+     "rank_from_a": 47,
+     "of_a": 57,
+     "proposed": false,
+     "family_a": "term:help_page",
+     "family_b": "term:attrs_keyword"
+    }
+   ]
+  },
+  "C07": {
+   "a_nodes": [
+    "N-000194"
+   ],
+   "b_nodes": [
+    "N-000907"
+   ],
+   "pairs": [
+    {
+     "a": "N-000194",
+     "b": "N-000907",
+     "score": 7.5,
+     "sources": [
+      "S1",
+      "S2",
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 1,
+     "of_b": 125,
+     "rank_from_a": 1,
+     "of_a": 127,
+     "proposed": true,
+     "family_a": "term:counting_option",
+     "family_b": "term:counting_option"
+    }
+   ]
+  },
+  "C08": {
+   "a_nodes": [
+    "N-000198"
+   ],
+   "b_nodes": [
+    "N-001016"
+   ],
+   "pairs": [
+    {
+     "a": "N-000198",
+     "b": "N-001016",
+     "score": 10.0,
+     "sources": [
+      "S1",
+      "S2",
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 1,
+     "of_b": 285,
+     "rank_from_a": 1,
+     "of_a": 173,
+     "proposed": true,
+     "family_a": "term:repeatable_option",
+     "family_b": "term:repeatable_option"
+    }
+   ]
+  },
+  "C09": {
+   "a_nodes": [
+    "N-000214"
+   ],
+   "b_nodes": [
+    "N-001028"
+   ],
+   "pairs": [
+    {
+     "a": "N-000214",
+     "b": "N-001028",
+     "score": 6.0,
+     "sources": [
+      "S2",
+      "S5",
+      "S10"
+     ],
+     "rank_from_b": 1,
+     "of_b": 77,
+     "rank_from_a": 51,
+     "of_a": 160,
+     "proposed": true,
+     "family_a": "term:option",
+     "family_b": "term:environment_variable_name"
+    }
+   ]
+  },
+  "C10": {
+   "a_nodes": [
+    "N-000225"
+   ],
+   "b_nodes": [
+    "N-001020"
+   ],
+   "pairs": [
+    {
+     "a": "N-000225",
+     "b": "N-001020",
+     "score": 4.0,
+     "sources": [
+      "S2",
+      "S10"
+     ],
+     "rank_from_b": 27,
+     "of_b": 84,
+     "rank_from_a": 55,
+     "of_a": 217,
+     "proposed": false,
+     "family_a": "term:environment_value",
+     "family_b": "term:boolean_flag"
+    }
+   ]
+  },
+  "C12": {
+   "a_nodes": [
+    "N-000345"
+   ],
+   "b_nodes": [
+    "N-001030"
+   ],
+   "pairs": [
+    {
+     "a": "N-000345",
+     "b": "N-001030",
+     "score": 1.0,
+     "sources": [
+      "S9"
+     ],
+     "rank_from_b": 194,
+     "of_b": 210,
+     "rank_from_a": 21,
+     "of_a": 22,
+     "proposed": false,
+     "family_a": "term:date_time_format",
+     "family_b": "term:parameter_type"
+    }
+   ]
+  },
+  "C13": {
+   "a_nodes": [
+    "N-000347"
+   ],
+   "b_nodes": [
+    "N-001015"
+   ],
+   "pairs": [
+    {
+     "a": "N-000347",
+     "b": "N-001015",
+     "score": 2.5,
+     "sources": [
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 9,
+     "of_b": 67,
+     "rank_from_a": 3,
+     "of_a": 25,
+     "proposed": true,
+     "family_a": "term:format_string_list",
+     "family_b": "term:date_time_format_list"
+    }
+   ]
+  },
+  "C14": {
+   "a_nodes": [
+    "N-000353"
+   ],
+   "b_nodes": [
+    "N-001032"
+   ],
+   "pairs": [
+    {
+     "a": "N-000353",
+     "b": "N-001032",
+     "score": 6.0,
+     "sources": [
+      "S2",
+      "S5",
+      "S9",
+      "S10"
+     ],
+     "rank_from_b": 3,
+     "of_b": 49,
+     "rank_from_a": 31,
+     "of_a": 174,
+     "proposed": true,
+     "family_a": "term:value",
+     "family_b": "term:bound"
+    }
+   ]
+  },
+  "C15": {
+   "a_nodes": [
+    "N-000355"
+   ],
+   "b_nodes": [
+    "N-001034"
+   ],
+   "pairs": [
+    {
+     "a": "N-000355",
+     "b": "N-001034",
+     "score": 5.0,
+     "sources": [
+      "S2",
+      "S9",
+      "S10"
+     ],
+     "rank_from_b": 65,
+     "of_b": 242,
+     "rank_from_a": 6,
+     "of_a": 17,
+     "proposed": true,
+     "family_a": "term:bound",
+     "family_b": "term:value"
+    }
+   ]
+  },
+  "C17": {
+   "a_nodes": [
+    "N-000501"
+   ],
+   "b_nodes": [
+    "N-000711",
+    "N-001023",
+    "N-001024"
+   ],
+   "pairs": [
+    {
+     "a": "N-000501",
+     "b": "N-000711",
+     "score": 3.0,
+     "sources": [
+      "S5",
+      "S10"
+     ],
+     "rank_from_b": 9,
+     "of_b": 56,
+     "rank_from_a": 2,
+     "of_a": 38,
+     "proposed": true,
+     "family_a": "term:confirmation_prompt",
+     "family_b": "term:abort"
+    },
+    {
+     "a": "N-000501",
+     "b": "N-001023",
+     "score": 3.0,
+     "sources": [
+      "S5",
+      "S10"
+     ],
+     "rank_from_b": 13,
+     "of_b": 117,
+     "rank_from_a": 4,
+     "of_a": 38,
+     "proposed": true,
+     "family_a": "term:confirmation_prompt",
+     "family_b": "term:abort_indication"
+    },
+    {
+     "a": "N-000501",
+     "b": "N-001024",
+     "score": 3.0,
+     "sources": [
+      "S5",
+      "S10"
+     ],
+     "rank_from_b": 97,
+     "of_b": 186,
+     "rank_from_a": 5,
+     "of_a": 38,
+     "proposed": true,
+     "family_a": "term:confirmation_prompt",
+     "family_b": "term:command"
+    }
+   ]
+  },
+  "C18": {
+   "a_nodes": [
+    "N-000510"
+   ],
+   "b_nodes": [
+    "N-000707"
+   ],
+   "pairs": [
+    {
+     "a": "N-000510",
+     "b": "N-000707",
+     "score": 3.5,
+     "sources": [
+      "S5",
+      "S10"
+     ],
+     "rank_from_b": 13,
+     "of_b": 156,
+     "rank_from_a": 43,
+     "of_a": 173,
+     "proposed": false,
+     "family_a": "term:conversion_failure",
+     "family_b": "term:exit_status"
+    }
+   ]
+  },
+  "C20": {
+   "a_nodes": [
+    "N-000549"
+   ],
+   "b_nodes": [
+    "N-001036"
+   ],
+   "pairs": [
+    {
+     "a": "N-000549",
+     "b": "N-001036",
+     "score": 3.0,
+     "sources": [
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 75,
+     "of_b": 164,
+     "rank_from_a": 1,
+     "of_a": 31,
+     "proposed": true,
+     "family_a": "term:leading_tilde",
+     "family_b": "term:path"
+    }
+   ]
+  },
+  "C21": {
+   "a_nodes": [
+    "N-000666"
+   ],
+   "b_nodes": [
+    "N-001039"
+   ],
+   "pairs": [
+    {
+     "a": "N-000666",
+     "b": "N-001039",
+     "score": 2.0,
+     "sources": [
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 43,
+     "of_b": 63,
+     "rank_from_a": 36,
+     "of_a": 53,
+     "proposed": false,
+     "family_a": "term:application_directory",
+     "family_b": "term:path"
+    }
+   ]
+  },
+  "C22": {
+   "a_nodes": [
+    "N-000653"
+   ],
+   "b_nodes": [
+    "N-001022"
+   ],
+   "pairs": [
+    {
+     "a": "N-000653",
+     "b": "N-001022",
+     "score": 3.0,
+     "sources": [
+      "S5",
+      "S9"
+     ],
+     "rank_from_b": 30,
+     "of_b": 74,
+     "rank_from_a": 3,
+     "of_a": 16,
+     "proposed": true,
+     "family_a": "term:pause",
+     "family_b": "term:terminal_helper"
+    }
+   ]
+  },
+  "C23": {
+   "a_nodes": [
+    "N-000688"
+   ],
+   "b_nodes": [
+    "N-001041"
+   ],
+   "pairs": [
+    {
+     "a": "N-000688",
+     "b": "N-001041",
+     "score": 4.0,
+     "sources": [
+      "S2",
+      "S10"
+     ],
+     "rank_from_b": 95,
+     "of_b": 278,
+     "rank_from_a": 110,
+     "of_a": 129,
+     "proposed": false,
+     "family_a": "term:option",
+     "family_b": "term:suggestion"
+    }
+   ]
+  },
+  "C25": {
+   "a_nodes": [
+    "N-000136"
+   ],
+   "b_nodes": [
+    "N-001029"
+   ],
+   "pairs": [
+    {
+     "a": "N-000136",
+     "b": "N-001029",
+     "score": 4.0,
+     "sources": [
+      "S2",
+      "S5"
+     ],
+     "rank_from_b": 81,
+     "of_b": 283,
+     "rank_from_a": 114,
+     "of_a": 276,
+     "proposed": false,
+     "family_a": "term:default_value",
+     "family_b": "term:parameter"
+    }
+   ]
+  },
+  "C26": {
+   "a_nodes": [
+    "N-000115"
+   ],
+   "b_nodes": [
+    "N-001026"
+   ],
+   "pairs": [
+    {
+     "a": "N-000115",
+     "b": "N-001026",
+     "score": 7.0,
+     "sources": [
+      "S1",
+      "S2",
+      "S4",
+      "S5"
+     ],
+     "rank_from_b": 1,
+     "of_b": 29,
+     "rank_from_a": 8,
+     "of_a": 170,
+     "proposed": true,
+     "family_a": "term:short_help",
+     "family_b": "term:short_help"
+    }
+   ]
+  },
+  "C27": {
+   "a_nodes": [
+    "N-000119"
+   ],
+   "b_nodes": [
+    "N-001027"
+   ],
+   "pairs": [
+    {
+     "a": "N-000119",
+     "b": "N-001027",
+     "score": 7.5,
+     "sources": [
+      "S2",
+      "S5",
+      "S9",
+      "S10"
+     ],
+     "rank_from_b": 2,
+     "of_b": 140,
+     "rank_from_a": 2,
+     "of_a": 51,
+     "proposed": true,
+     "family_a": "term:epilog",
+     "family_b": "term:attrs_keyword"
+    }
+   ]
+  },
+  "C29": {
+   "a_nodes": [
+    "N-000339"
+   ],
+   "b_nodes": [
+    "N-000924"
+   ],
+   "pairs": [
+    {
+     "a": "N-000339",
+     "b": "N-000924",
+     "score": 0.0,
+     "sources": [],
+     "rank_from_b": null,
+     "of_b": 32,
+     "rank_from_a": null,
+     "of_a": 18,
+     "proposed": false,
+     "family_a": "term:choice_matching",
+     "family_b": "term:choice"
+    }
+   ]
+  }
+ }
+}
