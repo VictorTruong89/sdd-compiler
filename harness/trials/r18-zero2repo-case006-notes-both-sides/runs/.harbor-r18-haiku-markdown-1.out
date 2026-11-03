@@ -1,0 +1,27 @@
+  1/1 Official_Reward: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:16:38 0:00:00
+adhoc • claude-code • claude-haiku-5-5
+┏━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
+┃ Trials ┃ Except… ┃ Offici… ┃ Reward ┃ Tests_… ┃ Tests_… ┃ Tests_P… ┃ Tests_… ┃
+┡━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
+│      1 │       0 │   0.000 │  0.863 │   0.000 │  65.000 │  411.000 │ 476.000 │
+└────────┴─────────┴─────────┴────────┴─────────┴─────────┴──────────┴─────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.8634453781512605 │     1 │
+│ 411                │     1 │
+│ 476                │     1 │
+│ 65                 │     1 │
+│ 0                  │     1 │
+│ 0.0                │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 16m 38s
+Results written to 
+jobs/r18-zero2repo-case006-notes-both-sides-r18-haiku-markdown-1/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload 
+jobs/r18-zero2repo-case006-notes-both-sides-r18-haiku-markdown-1`
+

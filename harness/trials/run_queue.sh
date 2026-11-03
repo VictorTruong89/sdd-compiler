@@ -11,7 +11,12 @@
 # task is a Harbor task folder relative to <trial-dir> (normally work/tasks/<name>); model is a Harbor
 # model id (anthropic/claude-haiku-5-5 ...). status: pending | running | done | limited | failed | hold.
 # A `done` row is never rerun. Conditions come from <trial-dir>/trial.env (CLAUDE_VERSION, BUDGET_USD,
-# DISALLOW, RUN_TIMEOUT) so they are recorded with the trial.
+# DISALLOW, RUN_TIMEOUT, EARLYSTOP_RERUN) so they are recorded with the trial. An empty BUDGET_USD
+# passes no --max-budget-usd (added 2026-11-02, round 18).
+# EARLYSTOP_RERUN=1 (added 2026-11-02, round 18): a finished run that passed fewer than
+# EARLYSTOP_MIN_PASSED tests AND whose session log shows an output-limit cut (stop_reason max_tokens) or whose last message
+# talks about a budget or token limit is set aside as `<run_id>.earlystop-<ts>` (job and runs/ copy)
+# and rerun once; the rerun counts whatever it scores. Cause: rounds 14-17, TRIAL.md of round 17.
 # Each run's job goes to <trial-dir>/work/jobs/<trial>-<run_id>; its files are copied to runs/<run_id>/.
 # Spends model calls (the owner's subscription): start it only with the owner's go-ahead.
 set -u
@@ -31,6 +36,8 @@ PROBE_EVERY=1800
 USAGE_FIVE_HOUR_MAX=0.90    # pause new runs at this share of the 5-hour window (rate_limit_event)
 USAGE_SEVEN_DAY_MAX=0.95    # and of the 7-day window
 MAX_ATTEMPTS=3
+EARLYSTOP_RERUN=0
+EARLYSTOP_MIN_PASSED=0   # "fewer than half its tests": set per trial (case006: 238 of 476)
 # shellcheck disable=SC1091
 [ -f "$T/trial.env" ] && source "$T/trial.env"
 LIMIT_RE='usage limit|rate.?limit|limit reached|hit your limit|out of (extra )?usage|resets? (at )?[0-9]|status.{0,4}429'
@@ -135,7 +142,7 @@ print(f.get("utilization", ""), f.get("resetsAt", ""), s.get("utilization", ""),
   while [ "$(date +%s)" -lt $((until + 300)) ]; do [ -f "$T/STOP" ] && return 1; sleep 60; done
 }
 
-log "start" "trial $TRIAL, claude $CLAUDE_VERSION, budget $BUDGET_USD, one=$ONE"
+log "start" "trial $TRIAL, claude $CLAUDE_VERSION, budget ${BUDGET_USD:-none}, earlystop_rerun $EARLYSTOP_RERUN, one=$ONE"
 while :; do
   [ -f "$T/STOP" ] && { log "stop" "STOP file found; exiting between runs"; break; }
   R="$(next_row)"
@@ -149,9 +156,10 @@ while :; do
   fi
   set_row "$R" running "$JOB" "$ATT" ""
   log "run" "$R attempt $ATT model $MODEL task $(basename "$TASK")"
+  BUDGET_ARGS=(); [ -n "$BUDGET_USD" ] && BUDGET_ARGS=(--ak max_budget_usd="$BUDGET_USD")
   T0=$(date +%s)
   ( cd "$T/work" && timeout "$RUN_TIMEOUT" env -u ANTHROPIC_API_KEY "$H" run -p "$TASK" -a claude-code -m "$MODEL" \
-      --ak version="$CLAUDE_VERSION" --ak max_budget_usd="$BUDGET_USD" --ak disallowed_tools="$DISALLOW" \
+      --ak version="$CLAUDE_VERSION" "${BUDGET_ARGS[@]}" --ak disallowed_tools="$DISALLOW" \
       -o jobs --job-name "$JOB" ) > "$T/runs/.harbor-$R.out" 2>&1
   RC=$?
   log "harbor" "$R exit $RC after $(( $(date +%s) - T0 )) s"
@@ -184,8 +192,37 @@ except Exception:
   if [ -n "$REWARD" ] && [ -z "$EXC" ] && { [ "$IS_ERR" = "false" ] || [[ "$SUB" == error_max* ]]; }; then
     save_run "$R" "$TD" "$JOBDIR"
     NOTE=""; [ "$SUB" != "success" ] && NOTE="subtype $SUB"
+    EARLY=""
+    if [ "$EARLYSTOP_RERUN" = "1" ] && [ ! -e "$T/work/earlystop-$R" ]; then
+      EARLY="$(python3 - "$TD" "$RES" "$EARLYSTOP_MIN_PASSED" <<'PY'
+import glob, json, re, sys
+td, res = sys.argv[1], sys.argv[2]
+try:
+    r = json.load(open(f"{td}/verifier/reward.json"))
+    passed = r.get("tests_passed") or 0
+except Exception:
+    passed = 0
+cut = any('"stop_reason":"max_tokens"' in open(f).read() for f in glob.glob(f"{td}/agent/sessions/projects/*/*.jsonl"))
+try:
+    text = str(json.loads(res).get("result", ""))
+except Exception:
+    text = ""
+says = bool(re.search(r"budget|token limit|out of tokens|output limit", text, re.I))
+if passed < int(sys.argv[3]) and (cut or says):
+    print(f"passed {passed}; output-limit cut {cut}; last message cites a limit {says}")
+PY
+)"
+    fi
+    if [ -n "$EARLY" ]; then
+      STAMP="$(date +%Y%m%dT%H%M%S)"
+      mv "$T/runs/$R" "$T/runs/$R.earlystop-$STAMP"; mv "$JOBDIR" "$JOBDIR.earlystop-$STAMP"
+      printf '%s\n' "$EARLY" > "$T/work/earlystop-$R"
+      set_row "$R" pending "$JOB" "$ATT" "early stop set aside: $EARLY"
+      log "earlystop" "$R turns $TURNS cost_usd_est $COST reward $REWARD; set aside as $R.earlystop-$STAMP and queued once more: $EARLY"
+    else
     set_row "$R" done "$JOB" "$ATT" "$NOTE"
     log "done" "$R turns $TURNS cost_usd_est $COST reward $REWARD $NOTE"
+    fi
   else
     MSG="$( { printf '%s\n' "$RES" | python3 -c 'import json,sys
 try: d=json.loads(sys.stdin.read()); print(d.get("result",""), d.get("api_error_status") or "")

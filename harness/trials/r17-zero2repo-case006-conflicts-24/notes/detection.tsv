@@ -1,0 +1,289 @@
+run	item	named	stated	flagged	built	note
+r17-haiku-markdown-1	C01	yes	AB	no	B	
+r17-haiku-markdown-1	C02	no	-	no	A	
+r17-haiku-markdown-1	C03	yes	AB	no	A	
+r17-haiku-markdown-1	C04	yes	AB	no	A	
+r17-haiku-markdown-1	C05	yes	AB	no	A	
+r17-haiku-markdown-1	C06	yes	AB	no	A	
+r17-haiku-markdown-1	C07	yes	AB	no	A	
+r17-haiku-markdown-1	C08	no	-	no	A	
+r17-haiku-markdown-1	C09	no	-	no	A	
+r17-haiku-markdown-1	C10	no	-	no	A	
+r17-haiku-markdown-1	C12	yes	AB	no	A	
+r17-haiku-markdown-1	C13	no	-	no	A	
+r17-haiku-markdown-1	C14	yes	AB	no	A	
+r17-haiku-markdown-1	C15	yes	AB	no	A	
+r17-haiku-markdown-1	C17	no	-	no	A	
+r17-haiku-markdown-1	C18	no	-	no	A	
+r17-haiku-markdown-1	C20	yes	AB	no	A	
+r17-haiku-markdown-1	C21	yes	AB	no	A	
+r17-haiku-markdown-1	C22	yes	AB	no	B	
+r17-haiku-markdown-1	C23	yes	AB	no	A	
+r17-haiku-markdown-1	C25	yes	AB	no	A	
+r17-haiku-markdown-1	C26	yes	AB	no	A	
+r17-haiku-markdown-1	C27	no	-	no	A	
+r17-haiku-markdown-1	C29	no	-	no	A	
+r17-haiku-markdown-2	C01	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C02	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C03	no	-	no	error	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C04	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C05	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C06	no	-	no	B	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C07	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C08	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C09	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C10	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C12	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C13	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C14	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C15	no	-	no	A	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C17	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C18	no	-	no	B	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C20	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C21	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C22	no	-	no	error	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C23	no	-	no	error	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C25	no	-	no	error	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C26	no	-	no	A	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C27	no	-	no	A	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-2	C29	no	-	no	neither	Stopped after 15 turns ($0.09), partial build; tests failed at import. Left out of means (as round 15's stopped run).
+r17-haiku-markdown-3	C01	no	-	no	A	
+r17-haiku-markdown-3	C02	no	-	no	A	
+r17-haiku-markdown-3	C03	yes	AB	no	A	
+r17-haiku-markdown-3	C04	yes	AB	no	A	
+r17-haiku-markdown-3	C05	no	-	no	A	
+r17-haiku-markdown-3	C06	no	-	no	A	
+r17-haiku-markdown-3	C07	no	-	no	B	
+r17-haiku-markdown-3	C08	no	-	no	A	
+r17-haiku-markdown-3	C09	yes	AB	no	A	
+r17-haiku-markdown-3	C10	no	-	no	A	
+r17-haiku-markdown-3	C12	no	-	no	B	
+r17-haiku-markdown-3	C13	no	-	no	A	
+r17-haiku-markdown-3	C14	no	-	no	A	
+r17-haiku-markdown-3	C15	no	-	no	A	
+r17-haiku-markdown-3	C17	no	-	no	A	
+r17-haiku-markdown-3	C18	no	-	no	A	
+r17-haiku-markdown-3	C20	yes	AB	no	B	
+r17-haiku-markdown-3	C21	no	-	no	A	
+r17-haiku-markdown-3	C22	no	-	no	A	
+r17-haiku-markdown-3	C23	yes	AB	no	A	
+r17-haiku-markdown-3	C25	no	-	no	A	
+r17-haiku-markdown-3	C26	no	-	no	B	
+r17-haiku-markdown-3	C27	yes	AB	no	A	
+r17-haiku-markdown-3	C29	yes	AB	no	A	
+r17-sonnet-markdown-1	C01	yes	AB	no	A	
+r17-sonnet-markdown-1	C02	no	-	no	A	
+r17-sonnet-markdown-1	C03	yes	AB	no	A	
+r17-sonnet-markdown-1	C04	yes	AB	no	A	
+r17-sonnet-markdown-1	C05	yes	AB	no	A	
+r17-sonnet-markdown-1	C06	yes	AB	no	B	
+r17-sonnet-markdown-1	C07	yes	AB	no	B	
+r17-sonnet-markdown-1	C08	no	-	no	A	
+r17-sonnet-markdown-1	C09	yes	AB	no	B	
+r17-sonnet-markdown-1	C10	yes	AB	no	A	
+r17-sonnet-markdown-1	C12	yes	AB	no	B	
+r17-sonnet-markdown-1	C13	no	A	no	A	Built side only: 'Custom formats replace the default list' (inside the DateTime row).
+r17-sonnet-markdown-1	C14	no	-	no	A	
+r17-sonnet-markdown-1	C15	no	A	no	A	Built side only: clamped open FloatRange raises DeclarationError.
+r17-sonnet-markdown-1	C17	no	-	no	A	
+r17-sonnet-markdown-1	C18	no	-	no	A	
+r17-sonnet-markdown-1	C20	yes	AB	no	B	
+r17-sonnet-markdown-1	C21	yes	AB	no	B	
+r17-sonnet-markdown-1	C22	yes	AB	no	B	
+r17-sonnet-markdown-1	C23	yes	AB	no	B	
+r17-sonnet-markdown-1	C25	yes	AB	no	B	
+r17-sonnet-markdown-1	C26	no	-	no	A	Row 'Short help in group listings' gives only the built rule (first sentence / first paragraph, 45); not presented as two sides.
+r17-sonnet-markdown-1	C27	yes	AB	no	A	
+r17-sonnet-markdown-1	C29	yes	AB	no	A	
+r17-sonnet-markdown-2	C01	yes	AB	no	A	
+r17-sonnet-markdown-2	C02	no	-	no	A	
+r17-sonnet-markdown-2	C03	yes	AB	no	A	
+r17-sonnet-markdown-2	C04	yes	AB	no	A	
+r17-sonnet-markdown-2	C05	yes	AB	no	A	
+r17-sonnet-markdown-2	C06	yes	AB	no	B	
+r17-sonnet-markdown-2	C07	yes	AB	no	B	
+r17-sonnet-markdown-2	C08	no	-	no	A	
+r17-sonnet-markdown-2	C09	yes	AB	no	B	
+r17-sonnet-markdown-2	C10	yes	AB	no	A	
+r17-sonnet-markdown-2	C12	yes	AB	no	B	
+r17-sonnet-markdown-2	C13	no	A	no	A	Built side only: 'custom list replaces the defaults'.
+r17-sonnet-markdown-2	C14	no	-	no	A	
+r17-sonnet-markdown-2	C15	no	-	no	A	
+r17-sonnet-markdown-2	C17	no	-	no	A	
+r17-sonnet-markdown-2	C18	yes	AB	no	A	
+r17-sonnet-markdown-2	C20	yes	AB	no	B	
+r17-sonnet-markdown-2	C21	yes	AB	no	A	
+r17-sonnet-markdown-2	C22	no	-	no	B	
+r17-sonnet-markdown-2	C23	yes	AB	no	B	
+r17-sonnet-markdown-2	C25	yes	AB	no	B	
+r17-sonnet-markdown-2	C26	no	-	no	A	
+r17-sonnet-markdown-2	C27	yes	AB	no	A	
+r17-sonnet-markdown-2	C29	no	B	no	A	Disagreement column states only the Contract side (enum match ignores case).
+r17-sonnet-markdown-3	C01	yes	AB	no	A	
+r17-sonnet-markdown-3	C02	no	-	no	A	
+r17-sonnet-markdown-3	C03	yes	AB	no	A	
+r17-sonnet-markdown-3	C04	yes	AB	no	A	
+r17-sonnet-markdown-3	C05	yes	AB	no	A	
+r17-sonnet-markdown-3	C06	yes	AB	no	A	
+r17-sonnet-markdown-3	C07	yes	AB	no	A	
+r17-sonnet-markdown-3	C08	no	-	no	A	
+r17-sonnet-markdown-3	C09	yes	AB	no	A	
+r17-sonnet-markdown-3	C10	yes	AB	no	A	
+r17-sonnet-markdown-3	C12	yes	AB	no	A	
+r17-sonnet-markdown-3	C13	yes	AB	no	A	
+r17-sonnet-markdown-3	C14	yes	AB	no	A	
+r17-sonnet-markdown-3	C15	yes	AB	no	A	
+r17-sonnet-markdown-3	C17	no	-	no	A	
+r17-sonnet-markdown-3	C18	no	-	no	A	
+r17-sonnet-markdown-3	C20	yes	AB	no	A	
+r17-sonnet-markdown-3	C21	yes	AB	no	A	
+r17-sonnet-markdown-3	C22	yes	AB	no	B	
+r17-sonnet-markdown-3	C23	yes	AB	no	A	
+r17-sonnet-markdown-3	C25	yes	AB	no	A	
+r17-sonnet-markdown-3	C26	yes	AB	no	A	
+r17-sonnet-markdown-3	C27	yes	AB	no	A	
+r17-sonnet-markdown-3	C29	yes	AB	no	A	
+r17-haiku-export-1	C01	yes	AB	yes	B	
+r17-haiku-export-1	C02	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-haiku-export-1	C03	yes	AB	yes	A	
+r17-haiku-export-1	C04	yes	AB	yes	A	
+r17-haiku-export-1	C05	yes	AB	yes	A	
+r17-haiku-export-1	C06	yes	AB	yes	B	
+r17-haiku-export-1	C07	yes	AB	yes	A	
+r17-haiku-export-1	C08	yes	AB	yes	A	
+r17-haiku-export-1	C09	yes	AB	yes	A	
+r17-haiku-export-1	C10	yes	AB	yes	A	
+r17-haiku-export-1	C12	yes	AB	yes	A	
+r17-haiku-export-1	C13	yes	AB	yes	A	
+r17-haiku-export-1	C14	yes	AB	yes	A	
+r17-haiku-export-1	C15	yes	AB	yes	A	
+r17-haiku-export-1	C17	yes	AB	yes	A	
+r17-haiku-export-1	C18	yes	AB	yes	A	
+r17-haiku-export-1	C20	yes	AB	yes	A	
+r17-haiku-export-1	C21	yes	AB	yes	A	
+r17-haiku-export-1	C22	yes	AB	yes	B	
+r17-haiku-export-1	C23	yes	AB	yes	A	
+r17-haiku-export-1	C25	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-haiku-export-1	C26	yes	AB	yes	A	
+r17-haiku-export-1	C27	yes	AB	yes	A	
+r17-haiku-export-1	C29	yes	AB	yes	A	
+r17-haiku-export-2	C01	yes	AB	yes	B	
+r17-haiku-export-2	C02	yes	AB	yes	A	
+r17-haiku-export-2	C03	yes	AB	yes	A	
+r17-haiku-export-2	C04	yes	AB	yes	A	
+r17-haiku-export-2	C05	yes	AB	yes	A	
+r17-haiku-export-2	C06	yes	AB	yes	A	
+r17-haiku-export-2	C07	yes	AB	yes	A	
+r17-haiku-export-2	C08	yes	AB	yes	A	
+r17-haiku-export-2	C09	yes	AB	yes	A	
+r17-haiku-export-2	C10	yes	AB	yes	A	
+r17-haiku-export-2	C12	yes	AB	yes	A	
+r17-haiku-export-2	C13	yes	AB	yes	A	
+r17-haiku-export-2	C14	yes	AB	yes	A	
+r17-haiku-export-2	C15	yes	AB	yes	A	
+r17-haiku-export-2	C17	yes	AB	yes	A	
+r17-haiku-export-2	C18	yes	AB	yes	A	
+r17-haiku-export-2	C20	yes	AB	yes	A	
+r17-haiku-export-2	C21	yes	AB	yes	A	
+r17-haiku-export-2	C22	yes	AB	yes	B	
+r17-haiku-export-2	C23	yes	AB	yes	A	
+r17-haiku-export-2	C25	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-haiku-export-2	C26	yes	AB	yes	A	
+r17-haiku-export-2	C27	yes	AB	yes	A	
+r17-haiku-export-2	C29	yes	AB	yes	A	
+r17-haiku-export-3	C01	yes	AB	yes	A	
+r17-haiku-export-3	C02	yes	AB	yes	A	
+r17-haiku-export-3	C03	yes	AB	yes	A	
+r17-haiku-export-3	C04	yes	AB	yes	A	
+r17-haiku-export-3	C05	yes	AB	yes	A	
+r17-haiku-export-3	C06	yes	AB	yes	A	
+r17-haiku-export-3	C07	yes	AB	yes	A	
+r17-haiku-export-3	C08	yes	AB	yes	A	
+r17-haiku-export-3	C09	yes	AB	yes	A	
+r17-haiku-export-3	C10	yes	AB	yes	A	
+r17-haiku-export-3	C12	yes	AB	yes	A	
+r17-haiku-export-3	C13	yes	AB	yes	A	
+r17-haiku-export-3	C14	yes	AB	yes	A	
+r17-haiku-export-3	C15	yes	AB	yes	A	
+r17-haiku-export-3	C17	yes	AB	yes	A	
+r17-haiku-export-3	C18	yes	AB	yes	A	
+r17-haiku-export-3	C20	yes	AB	yes	A	
+r17-haiku-export-3	C21	yes	AB	yes	A	
+r17-haiku-export-3	C22	yes	AB	yes	B	
+r17-haiku-export-3	C23	yes	AB	yes	A	
+r17-haiku-export-3	C25	yes	AB	yes	A	
+r17-haiku-export-3	C26	yes	AB	yes	A	
+r17-haiku-export-3	C27	yes	AB	yes	A	
+r17-haiku-export-3	C29	yes	AB	yes	A	
+r17-sonnet-export-1	C01	yes	AB	yes	A	
+r17-sonnet-export-1	C02	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C03	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C04	yes	AB	yes	A	
+r17-sonnet-export-1	C05	yes	AB	yes	A	
+r17-sonnet-export-1	C06	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C07	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C08	yes	AB	yes	A	
+r17-sonnet-export-1	C09	yes	AB	yes	A	
+r17-sonnet-export-1	C10	yes	AB	yes	A	
+r17-sonnet-export-1	C12	yes	AB	yes	A	
+r17-sonnet-export-1	C13	yes	AB	yes	A	
+r17-sonnet-export-1	C14	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C15	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C17	yes	AB	yes	A	
+r17-sonnet-export-1	C18	yes	AB	yes	A	
+r17-sonnet-export-1	C20	no	B	yes	A	Row heading states one side only ('expands ~'); built 'no tilde expansion'.
+r17-sonnet-export-1	C21	yes	AB	yes	A	
+r17-sonnet-export-1	C22	yes	AB	yes	A	
+r17-sonnet-export-1	C23	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C25	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C26	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C27	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-1	C29	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C01	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C02	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C03	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C04	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C05	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C06	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C07	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C08	yes	AB	yes	A	
+r17-sonnet-export-2	C09	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C10	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C12	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C13	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C14	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C15	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C17	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C18	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C20	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C21	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C22	no	-	yes	B	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C23	no	-	yes	B	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C25	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C26	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C27	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-2	C29	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C01	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C02	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C03	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C04	yes	AB	yes	A	
+r17-sonnet-export-3	C05	yes	AB	yes	B	
+r17-sonnet-export-3	C06	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C07	yes	AB	yes	A	
+r17-sonnet-export-3	C08	yes	AB	yes	A	
+r17-sonnet-export-3	C09	yes	AB	yes	A	
+r17-sonnet-export-3	C10	yes	AB	yes	A	
+r17-sonnet-export-3	C12	yes	AB	yes	A	
+r17-sonnet-export-3	C13	yes	AB	yes	A	
+r17-sonnet-export-3	C14	yes	AB	yes	A	
+r17-sonnet-export-3	C15	yes	AB	yes	A	
+r17-sonnet-export-3	C17	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C18	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C20	no	-	yes	B	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C21	yes	AB	yes	A	
+r17-sonnet-export-3	C22	no	-	yes	B	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C23	yes	AB	yes	B	
+r17-sonnet-export-3	C25	no	-	yes	B	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C26	yes	AB	yes	A	
+r17-sonnet-export-3	C27	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.
+r17-sonnet-export-3	C29	no	-	yes	A	Listed by CF id with a topic only; sides' content not stated.

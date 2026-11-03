@@ -1,0 +1,13 @@
+run_id	task	model	status	job	attempts	last_message
+r17-haiku-markdown-1	work/tasks/case006-planted24-markdown	anthropic/claude-haiku-5-5	done	r17-zero2repo-case006-conflicts-24-r17-haiku-markdown-1	1	
+r17-haiku-export-1	work/tasks/case006-planted24-export-oracle	anthropic/claude-haiku-5-5	done	r17-zero2repo-case006-conflicts-24-r17-haiku-export-1	1	
+r17-haiku-markdown-2	work/tasks/case006-planted24-markdown	anthropic/claude-haiku-5-5	done	r17-zero2repo-case006-conflicts-24-r17-haiku-markdown-2	1	
+r17-haiku-export-2	work/tasks/case006-planted24-export-oracle	anthropic/claude-haiku-5-5	done	r17-zero2repo-case006-conflicts-24-r17-haiku-export-2	1	
+r17-haiku-markdown-3	work/tasks/case006-planted24-markdown	anthropic/claude-haiku-5-5	done	r17-zero2repo-case006-conflicts-24-r17-haiku-markdown-3	1	
+r17-haiku-export-3	work/tasks/case006-planted24-export-oracle	anthropic/claude-haiku-5-5	done	r17-zero2repo-case006-conflicts-24-r17-haiku-export-3	1	
+r17-sonnet-markdown-1	work/tasks/case006-planted24-markdown	anthropic/claude-sonnet-5-5	done	r17-zero2repo-case006-conflicts-24-r17-sonnet-markdown-1	1	
+r17-sonnet-export-1	work/tasks/case006-planted24-export-oracle	anthropic/claude-sonnet-5-5	done	r17-zero2repo-case006-conflicts-24-r17-sonnet-export-1	1	
+r17-sonnet-markdown-2	work/tasks/case006-planted24-markdown	anthropic/claude-sonnet-5-5	done	r17-zero2repo-case006-conflicts-24-r17-sonnet-markdown-2	1	
+r17-sonnet-export-2	work/tasks/case006-planted24-export-oracle	anthropic/claude-sonnet-5-5	done	r17-zero2repo-case006-conflicts-24-r17-sonnet-export-2	1	
+r17-sonnet-markdown-3	work/tasks/case006-planted24-markdown	anthropic/claude-sonnet-5-5	done	r17-zero2repo-case006-conflicts-24-r17-sonnet-markdown-3	1	
+r17-sonnet-export-3	work/tasks/case006-planted24-export-oracle	anthropic/claude-sonnet-5-5	done	r17-zero2repo-case006-conflicts-24-r17-sonnet-export-3	1	

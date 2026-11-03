@@ -1,0 +1,56 @@
+2026-11-02T09:21:27-05:00	start trial r18-zero2repo-case006-notes-both-sides, claude 2.1.316, budget none, earlystop_rerun 1, one=1
+2026-11-02T09:21:27-05:00	run r18-sonnet-export-1 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-export-oracle
+2026-11-02T09:35:52-05:00	harbor r18-sonnet-export-1 exit 0 after 865 s
+2026-11-02T09:35:52-05:00	done r18-sonnet-export-1 turns 27 cost_usd_est 2.1391307000000004 reward {"reward": 0.9810924369747899, "tests_passed": 467, "tests_total": 476, "tests_failed": 9, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T09:35:52-05:00	usage five_hour 0.38 (resets 2026-11-02T11:40:00-05:00) seven_day 0.63 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T09:35:52-05:00	end --one: stopping after one run
+2026-11-02T12:13:25-05:00	start trial r18-zero2repo-case006-notes-both-sides, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-02T12:13:25-05:00	run r18-haiku-markdown-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted24-markdown
+2026-11-02T12:30:04-05:00	harbor r18-haiku-markdown-1 exit 0 after 999 s
+2026-11-02T12:30:04-05:00	done r18-haiku-markdown-1 turns 48 cost_usd_est 0.37584056 reward {"reward": 0.8634453781512605, "tests_passed": 411, "tests_total": 476, "tests_failed": 65, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T12:30:04-05:00	usage five_hour 0.07 (resets 2026-11-02T16:50:00-05:00) seven_day 0.64 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T12:32:04-05:00	run r18-haiku-export-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted24-export-oracle
+2026-11-02T12:49:56-05:00	harbor r18-haiku-export-1 exit 0 after 1072 s
+2026-11-02T12:49:56-05:00	done r18-haiku-export-1 turns 57 cost_usd_est 0.60617502 reward {"reward": 0.8403361344537815, "tests_passed": 400, "tests_total": 476, "tests_failed": 76, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T12:49:56-05:00	usage five_hour 0.14 (resets 2026-11-02T16:50:00-05:00) seven_day 0.64 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T12:51:56-05:00	run r18-haiku-markdown-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted24-markdown
+2026-11-02T13:10:43-05:00	harbor r18-haiku-markdown-2 exit 0 after 1127 s
+2026-11-02T13:10:43-05:00	done r18-haiku-markdown-2 turns 49 cost_usd_est 0.5328507000000001 reward {"reward": 0.8529411764705882, "tests_passed": 406, "tests_total": 476, "tests_failed": 70, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T13:10:43-05:00	usage five_hour 0.21 (resets 2026-11-02T16:50:00-05:00) seven_day 0.65 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T13:12:43-05:00	run r18-haiku-export-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted24-export-oracle
+2026-11-02T13:30:32-05:00	harbor r18-haiku-export-2 exit 0 after 1069 s
+2026-11-02T13:30:32-05:00	done r18-haiku-export-2 turns 74 cost_usd_est 1.16592857 reward {"reward": 0.930672268907563, "tests_passed": 443, "tests_total": 476, "tests_failed": 33, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T13:30:32-05:00	usage five_hour 0.33 (resets 2026-11-02T16:50:00-05:00) seven_day 0.65 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T13:32:32-05:00	run r18-haiku-markdown-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted24-markdown
+2026-11-02T13:51:39-05:00	harbor r18-haiku-markdown-3 exit 0 after 1147 s
+2026-11-02T13:51:39-05:00	done r18-haiku-markdown-3 turns 54 cost_usd_est 0.46244858999999994 reward {"reward": 0.8907563025210085, "tests_passed": 424, "tests_total": 476, "tests_failed": 52, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T13:51:39-05:00	usage five_hour 0.39 (resets 2026-11-02T16:50:00-05:00) seven_day 0.66 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T13:53:39-05:00	run r18-haiku-export-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-planted24-export-oracle
+2026-11-02T14:16:07-05:00	harbor r18-haiku-export-3 exit 0 after 1348 s
+2026-11-02T14:16:07-05:00	done r18-haiku-export-3 turns 77 cost_usd_est 1.8793353299999997 reward {"reward": 0.9684873949579832, "tests_passed": 461, "tests_total": 476, "tests_failed": 15, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T14:16:07-05:00	usage five_hour 0.53 (resets 2026-11-02T16:50:00-05:00) seven_day 0.67 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T14:18:07-05:00	run r18-sonnet-markdown-1 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-markdown
+2026-11-02T14:32:24-05:00	harbor r18-sonnet-markdown-1 exit 0 after 857 s
+2026-11-02T14:32:24-05:00	done r18-sonnet-markdown-1 turns 17 cost_usd_est 2.0410646999999997 reward {"reward": 0.9831932773109243, "tests_passed": 468, "tests_total": 476, "tests_failed": 8, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T14:32:24-05:00	usage five_hour 0.7 (resets 2026-11-02T16:50:00-05:00) seven_day 0.68 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T14:34:24-05:00	run r18-sonnet-markdown-2 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-markdown
+2026-11-02T14:49:58-05:00	harbor r18-sonnet-markdown-2 exit 0 after 934 s
+2026-11-02T14:49:59-05:00	done r18-sonnet-markdown-2 turns 24 cost_usd_est 2.1731548 reward {"reward": 0.9852941176470589, "tests_passed": 469, "tests_total": 476, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T14:49:59-05:00	usage five_hour 0.89 (resets 2026-11-02T16:50:00-05:00) seven_day 0.7 (resets 2026-11-02T16:00:00-05:00)
+2026-11-02T14:51:59-05:00	run r18-sonnet-export-2 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-export-oracle
+2026-11-02T15:02:30-05:00	harbor r18-sonnet-export-2 exit 0 after 631 s
+2026-11-02T15:02:30-05:00	limited r18-sonnet-export-2 turns 16 cost_usd_est 1.3325673999999998 message: You've hit your 5-hour limit · resets 9:50pm (UTC) 429
+2026-11-02T15:02:30-05:00	limit reset parsed: 2026-11-02T16:50:00-05:00; sleeping until 5 min after
+2026-11-02T16:55:30-05:00	run r18-sonnet-export-2 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-export-oracle
+2026-11-02T17:10:40-05:00	harbor r18-sonnet-export-2 exit 0 after 910 s
+2026-11-02T17:10:40-05:00	done r18-sonnet-export-2 turns 25 cost_usd_est 2.3808177000000006 reward {"reward": 0.9474789915966386, "tests_passed": 451, "tests_total": 476, "tests_failed": 25, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T17:10:40-05:00	usage five_hour 0.2 (resets 2026-11-02T21:50:00-05:00) seven_day 0.02 (resets 2026-11-09T16:00:00-05:00)
+2026-11-02T17:12:40-05:00	run r18-sonnet-markdown-3 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-markdown
+2026-11-02T17:27:12-05:00	harbor r18-sonnet-markdown-3 exit 0 after 872 s
+2026-11-02T17:27:13-05:00	done r18-sonnet-markdown-3 turns 23 cost_usd_est 2.1343909 reward {"reward": 0.9852941176470589, "tests_passed": 469, "tests_total": 476, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T17:27:13-05:00	usage five_hour 0.38 (resets 2026-11-02T21:50:00-05:00) seven_day 0.03 (resets 2026-11-09T16:00:00-05:00)
+2026-11-02T17:29:13-05:00	run r18-sonnet-export-3 attempt 1 model anthropic/claude-sonnet-5-5 task case006-planted24-export-oracle
+2026-11-02T17:43:38-05:00	harbor r18-sonnet-export-3 exit 0 after 865 s
+2026-11-02T17:43:38-05:00	done r18-sonnet-export-3 turns 27 cost_usd_est 2.1295159000000004 reward {"reward": 0.9558823529411765, "tests_passed": 455, "tests_total": 476, "tests_failed": 21, "tests_error": 0, "official_reward": 0.0} 
+2026-11-02T17:43:38-05:00	usage five_hour 0.56 (resets 2026-11-02T21:50:00-05:00) seven_day 0.05 (resets 2026-11-09T16:00:00-05:00)
+2026-11-02T17:45:38-05:00	end no pending or limited row left

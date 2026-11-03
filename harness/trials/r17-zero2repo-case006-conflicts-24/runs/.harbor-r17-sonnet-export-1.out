@@ -1,0 +1,27 @@
+  1/1 Official_Reward: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:14:50 0:00:00
+adhoc • claude-code • claude-sonnet-5-5
+┏━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
+┃ Trials ┃ Except… ┃ Offici… ┃ Reward ┃ Tests_… ┃ Tests_… ┃ Tests_P… ┃ Tests_… ┃
+┡━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
+│      1 │       0 │   0.000 │  0.987 │   0.000 │   6.000 │  470.000 │ 476.000 │
+└────────┴─────────┴─────────┴────────┴─────────┴─────────┴──────────┴─────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.9873949579831933 │     1 │
+│ 470                │     1 │
+│ 476                │     1 │
+│ 6                  │     1 │
+│ 0                  │     1 │
+│ 0.0                │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 14m 50s
+Results written to 
+jobs/r17-zero2repo-case006-conflicts-24-r17-sonnet-export-1/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload 
+jobs/r17-zero2repo-case006-conflicts-24-r17-sonnet-export-1`
+

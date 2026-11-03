@@ -1,6 +1,6 @@
 # r17-zero2repo-case006-conflicts-24
 
-> Opened 2026-10-30 by Claude Code. State: **compiler work** (step 0 done; step 1a pair ranking done; step 1b fix 1, F3 D43; step 1c fix 2, F5 D15–D16; step 1d fix 3, F3 D44; step 1e fix 4, F5 D17; step 2 full compile 2026-10-31: recall 14 of 24; step 3 baseline 11 of 24; step 4 options 1–2 offline, not built; step 5 oracle export, 24 of 24 flagged, tasks built); no agent run yet. Asked by the owner
+> Opened 2026-10-30 by Claude Code. State: **compiler work** (step 0 done; step 1a pair ranking done; step 1b fix 1, F3 D43; step 1c fix 2, F5 D15–D16; step 1d fix 3, F3 D44; step 1e fix 4, F5 D17; step 2 full compile 2026-10-31: recall 14 of 24; step 3 baseline 11 of 24; step 4 options 1–2 offline, not built; step 5 oracle export, 24 of 24 flagged, tasks built; step 6 agent runs 2026-11-01 19:44 to 11-02 02:24; step 7 results scored 2026-11-02, owner's audit pending). Asked by the owner
 > 2026-10-30: "I want stricter rules and redesign of conflicts. start new round with the same case006
 > as base for redesign conflicts. first, all planted conflicts should be covered by existing tests.
 > second, increase number of conflicts to at least 5% of test-quantity, so 476 x 5% = 23.8 = 24
@@ -560,19 +560,189 @@ second pairs); 44 506 words (export v3 of rounds 15–16: 40 197); hashes in `wo
 
 Instructions identical to round 15's (Markdown: byte for byte; export: apart from the word count).
 
+## Step 6: agent runs, Haiku 3 + 3 then Sonnet 3 + 3 (started 2026-11-01 19:44)
+
+Owner: "schedule to run Haiku 3 + 3 runs, then run Sonnet 3 + 3 runs, then score them. remember to
+avoid daily credit limit and resume works after the credit limit reset."
+
+| Item | Value |
+|---|---|
+| Formats | planted Markdown (`work/tasks/case006-planted24-markdown`) · oracle export, 24 of 24 flagged (`work/tasks/case006-planted24-export-oracle`; step 5) |
+| Order | Haiku: Markdown, export × 3, interleaved; then Sonnet the same (`queue.tsv`, 12 rows) |
+| Agent | Claude Code 2.1.296 in Harbor, tools `Bash Edit Read Write`, allow-list; `trial.env` as round 16 ($10 ceiling, 9 000 s) |
+| Driver | `../run_queue.sh` started detached (`nohup setsid`), log `run_queue.log`. It pauses new runs at 0.90 of the 5-hour window or 0.95 of the 7-day window, and a run stopped by a limit is renamed `.limited-<ts>` and rerun from the start after the reset |
+| Scoring | `notes/score.py` (round 15's, adapted: the 24 items, footprint union 31, **core 445**, `PHRASES` from `notes/plant.py`, keyword triage per item); dry run on round 16's `r16-sonnet-export-1` passed (472 / 476, core 441 / 445, all A); then `NOTES.md` read into `notes/detection.tsv` under the strict rule above, the three detection counts, and the owner's audit sheet |
+
+## Step 7: results (scored 2026-11-02)
+
+**Runs.** All 12 finished, 2026-11-01 19:44 to 2026-11-02 02:24 (`run_queue.log`). One limit
+pause before `r17-haiku-markdown-2` (17 min); one run cut off by the 5-hour limit
+(`r17-sonnet-export-2`, 15 turns, $1.50 est.; kept as
+`work/jobs/…-r17-sonnet-export-2.limited-20261101T225101`, not scored) and rerun after the reset.
+Scored runs cost **$18.95 est.** (`results.json`); with the cut-off attempt, $20.46 est. The
+subscription token is in none of the 12 agent archives (`grep` for its prefix: 0 hits each).
+
+⚠ **`r17-haiku-markdown-2` stopped early**: 15 turns, $0.09 est., one 13 kB file. Its last message:
+"I stopped here because the remaining budget is small", which is wrong ($10 ceiling). The hidden
+tests failed at import (`cannot import name 'INT'`), so 0 / 476. Like round 15's stopped run, it is
+**left out of the means** below and shown in the per-run columns. The Haiku Markdown arm is n = 2.
+
+**Sources.** Tests and sides: `notes/score.py runs/*/` → `notes/scores.json`. Named: Claude Code's
+reading of each `NOTES.md` under the strict rule → `notes/detection.tsv`, to be audited by the owner
+on `notes/detection_audit.md` (`notes/audit_sheet.py`). Percentages and means are computed from
+those two files.
+
+### The two validation sets
+
+| Model | Format | Set 1: core passed / 445, per run | Set 1 mean | Set 2: named / 24, per run | Set 2 mean | Mean of the two |
+|---|---|---|---|---|---|---|
+| Haiku | Markdown | 433 · *(stopped)* · 414 | 95.2 % | 15 · *(0)* · 7 | 45.8 % | 70.5 % |
+| Haiku | oracle export | 436 · 420 · 433 | 96.6 % | 22 · 23 · 24 | 95.8 % | 96.2 % |
+| Sonnet | Markdown | 431 · 439 · 442 | 98.3 % | 16 · 15 · 20 | 70.8 % | 84.6 % |
+| Sonnet | oracle export | 439 · 429 · 439 | 97.9 % | 12 · 1 · 13 | 36.1 % | 67.0 % |
+
+All 476 tests, for reference only (they include the footprint tests, which reward side A): Haiku
+Markdown 462 · 0 · 440; Haiku export 465 · 449 · 461; Sonnet Markdown 452 · 462 · 472; Sonnet export
+470 · 458 · 465.
+
+**Set 1.** The export did not make the code worse on the core: Haiku 96.6 % vs 95.2 %, Sonnet 97.9 %
+vs 98.3 %. Both differences are smaller than the spread between runs of one arm (Sonnet Markdown
+431–442, Sonnet export 429–439); with n = 3 (Haiku Markdown n = 2) no difference is shown either way.
+
+**Set 2, strict rule.** Haiku named far more with the export (95.8 % vs 45.8 %). Sonnet named
+fewer with the export (36.1 % vs 70.8 %), and one Sonnet export run named 1 of 24.
+
+⚠ **Why Sonnet's export score is low: its notes cite the export's conflict ids with a topic, not the
+two sides.** Every one of the 6 export runs lists **all 24** items in a table keyed by `CF-` id, each
+with the side it built (checked by id against `NOTES.md`). Haiku wrote both sides in each row
+("first set wins (FP-03) vs last set wins (Interface)"); Sonnet often wrote only a topic ("| 088 |
+envvar list | first name that is set wins |"). The rule, written before the runs, says a conflict id
+without both contents is not enough, so those rows count as misses. Under a looser reading
+(**listed with a choice**: the id plus the side built, the two sides being stated in the export's
+pack beside that id), every export run would score 24 / 24. That looser reading is not used for the
+headline; whether to adopt it is the owner's call (see Next steps).
+
+### The three detection counts
+
+| Count | Haiku | Sonnet |
+|---|---|---|
+| 1. Compiler recall: conflicts the export flags | oracle export **24 / 24** (forced, step 5); the compiler alone: 14 / 24 (step 2) | same |
+| 2. Named when flagged (export runs) | 22 · 23 · 24 of 24 | 12 · 1 · 13 of 24 |
+| 3. Named when not flagged (Markdown runs; the oracle export leaves no item unflagged) | 15 · *(stopped)* · 7 of 24 | 16 · 15 · 20 of 24 |
+
+### Named, and the side built (per run, from `detection.tsv`)
+
+| Run | Named, built A | Named, built B (scenario 3, acceptable) | Missed, built A (lucky) | Missed, built B |
+|---|---|---|---|---|
+| r17-haiku-markdown-1 | 13 | 2 | 9 | 0 |
+| r17-haiku-markdown-3 | 6 | 1 | 14 | 3 |
+| r17-sonnet-markdown-1 | 7 | 9 | 8 | 0 |
+| r17-sonnet-markdown-2 | 8 | 7 | 8 | 1 |
+| r17-sonnet-markdown-3 | 19 | 1 | 4 | 0 |
+| r17-haiku-export-1 | 19 | 3 | 2 | 0 |
+| r17-haiku-export-2 | 21 | 2 | 1 | 0 |
+| r17-haiku-export-3 | 23 | 1 | 0 | 0 |
+| r17-sonnet-export-1 | 12 | 0 | 12 | 0 |
+| r17-sonnet-export-2 | 1 | 0 | 21 | 2 |
+| r17-sonnet-export-3 | 11 | 2 | 8 | 3 |
+
+(`r17-haiku-markdown-2`: nothing named; its probes read A 3, B 2, the rest not built or errors.)
+Sonnet Markdown runs 1–2 built B on 9 and 8 items they named: their notes say "the Contract wins"
+(run 1) or follow the Contract item by item (run 2). That is scenario 3: it costs footprint tests
+(452, 462 of 476), not set 1 or set 2.
+
+### Per item: runs that named it
+
+| Item | Haiku Markdown (of 2) | Sonnet Markdown (of 3) | Haiku export (of 3) | Sonnet export (of 3) |
+|---|---|---|---|---|
+| C01 | 1 | 3 | 3 | 1 |
+| C02 | 0 | 0 | 2 | 0 |
+| C03 | 2 | 3 | 3 | 0 |
+| C04 | 2 | 3 | 3 | 2 |
+| C05 | 1 | 3 | 3 | 2 |
+| C06 | 1 | 3 | 3 | 0 |
+| C07 | 1 | 3 | 3 | 1 |
+| C08 | 0 | 0 | 3 | 3 |
+| C09 | 1 | 3 | 3 | 2 |
+| C10 | 0 | 3 | 3 | 2 |
+| C12 | 1 | 3 | 3 | 2 |
+| C13 | 0 | 1 | 3 | 2 |
+| C14 | 1 | 1 | 3 | 1 |
+| C15 | 1 | 1 | 3 | 1 |
+| C17 | 0 | 0 | 3 | 1 |
+| C18 | 0 | 1 | 3 | 1 |
+| C20 | 2 | 3 | 3 | 0 |
+| C21 | 1 | 3 | 3 | 2 |
+| C22 | 1 | 2 | 3 | 1 |
+| C23 | 2 | 3 | 3 | 1 |
+| C25 | 1 | 3 | 1 | 0 |
+| C26 | 1 | 1 | 3 | 1 |
+| C27 | 1 | 3 | 3 | 0 |
+| C29 | 1 | 2 | 3 | 0 |
+
+No Markdown run named C02, C08 or C17; every Haiku export run named C08 and C17, and two named C02.
+
+### Findings
+
+1. **Set 1: the export does not make the code worse** on the 445 core tests, for either model
+   (differences within run-to-run spread; n = 3, Haiku Markdown n = 2).
+2. **Haiku: the flagged export raised strict detection from 45.8 % to 95.8 %** (22–24 of 24 per run,
+   against 15 and 7 from the Markdown).
+3. **Sonnet: strict detection fell with the export (70.8 % → 36.1 %)**, but every Sonnet export run
+   listed all 24 by id with a choice. The drop is in how the notes are written (a pointer to the
+   export's conflict instead of restating it), which the strict rule counts as a miss. The rule does
+   not measure "noticed" alone when the input names the conflict for the agent.
+4. **One Haiku Markdown run quit after 15 turns** on a false belief that the budget was nearly used up.
+   Traced 2026-11-02 (below, "Why `r17-haiku-markdown-2` stopped").
+5. These figures use the **oracle export** (a labelled condition: 10 of the 24 flags were added from
+   the answer key). They show what the agent does with flagged conflicts, not what the compiler
+   finds (14 / 24, step 2).
+
+### Why `r17-haiku-markdown-2` stopped (traced 2026-11-02, no model call)
+
+Owner: "before starting r18, debug why the Haiku Markdown run 2 stopped early". Read from the run's
+Claude Code session log (`runs/r17-haiku-markdown-2/agent.tgz`, `sessions/projects/-app/*.jsonl`),
+then the same check on every saved run of rounds 14–17 (41 runs: 31 Haiku, 10 Sonnet).
+
+1. **The cut.** After reading the three spec files, Haiku's next response spent the whole output
+   limit thinking: 128 000 output tokens, `stop_reason: max_tokens`, no text and no tool call. The
+   thinking is not kept in the log.
+2. **The resume message.** Claude Code 2.1.296 then sent its stock message: "Output token limit hit.
+   Resume directly — no apology, no recap of what you were doing. Pick up mid-thought if that is
+   where the cut happened. Break remaining work into smaller pieces."
+3. **The misread budget.** Its next text: "Budget is nearly spent, so I'll write a minimal core
+   package". The last budget reminder before the cut said used **$0.000214**, remaining $9.9998 of
+   $10. Claude Code renders it as "USD budget: $used/$total; $remaining remaining". Haiku took the
+   *used* figure as what was left. Later reminders said $9.92 remaining; it did not correct itself.
+
+**Across rounds 14–17** (`grep` on each run's session log):
+
+| What | Runs |
+|---|---|
+| Hit the output limit once, while thinking, early in the run | 13 of 31 Haiku runs; 0 of 10 Sonnet runs |
+| …then read the budget as nearly spent | 4 of the 13. Each quoted the *used* figure as the amount left: $0.0002 (`r2-haiku-markdown-3`, round 14), $0.0004 (`r3-haiku-markdown-decisions-1`, round 14), $0.0008 (`r15-haiku-markdown-1`), "nearly spent" ($0.0002 used; `r17-haiku-markdown-2`) |
+| …and stopped with almost nothing built | 2: `r15-haiku-markdown-1` (no code), `r17-haiku-markdown-2` (0 / 476) |
+| …recovered at the next reminder | 2: `r2-haiku-markdown-3` ("The budget has been reset to about $9.92"; still 0 / 476, a partial build), `r3-haiku-markdown-decisions-1` ("The budget line I was reading earlier was stale"; 428 / 476) |
+| …continued normally | 9 of the 13 |
+
+So it is a fault of the harness and model together, not of the task or the spec format: 3 of 31
+Haiku runs (2 stopped, 1 recovered too late) lost their build to it, all in the Markdown arm so far.
+That the misreading is caused by the `used` figure is inferred from the quoted numbers matching it
+exactly in all 4 cases; the thinking that led there is not in the log. Newer Claude Code (2.1.316,
+installed on this laptop) sends a different message for a cut during thinking ("That reasoning was
+not kept [...] reason much more briefly"); whether that prevents the misreading is *to be measured*.
+
 ## Next steps (each needs the owner's go-ahead)
 
-1. **Compile** the planted Markdown (Haiku atomize and judge calls; round 14's incremental compile of
-   7 planted items cost $0.124 est., `../r14-zero2repo-case006-conflicts/TRIAL.md`; this one, with
-   about 24 changed blocks, *to be measured*). Then **compiler recall** (count 1) is read from the
-   store against this key: no agent needed. The export is made with `--allow-open` (conflicts
-   unsettled), the same compiler as export v3.
-2. **Tasks**: the planted Markdown task and the export task (`build_task.py` as round 15), each
-   checked with the do-nothing run. Instruction unchanged from rounds 14–16.
-3. **Agent runs**, Markdown vs export, interleaved. For scale only: Haiku runs on case006 cost
-   $0.69–1.12 est. each (batch 3), Sonnet $2.24–2.54 est. (round 16). Model and n: owner's choice.
-4. **Scoring**: set 1 core / 445, set 2 named / 24 under the strict rule, three detection counts;
-   `notes/score.py` and the audit sheet adapted to 24 items.
+1. **Audit** `notes/detection_audit.md` (24 tables, 11 runs): agree or correct each reading.
+2. **Decide the export reading** for set 2: keep the strict rule as written (headline above), or add
+   a second, labelled count, "listed with a choice", for runs whose notes cite the export's conflict
+   id plus the side built. Changing the rule after the results must be reported as such.
+3. Optional: **rerun `r17-haiku-markdown-2`** (about $0.7–1.0 est., from the other two Haiku
+   Markdown runs) to bring that arm to n = 3.
+4. Optional, cheaper than more runs: add one line to the task instruction asking the notes to state
+   both sides of each disagreement. This changes the instruction from rounds 14–16, so it would be a
+   new round, not a rerun.
 
 ## Files
 
@@ -582,6 +752,8 @@ Instructions identical to round 15's (Markdown: byte for byte; export: apart fro
 | `notes/sides.py`, `notes/probe.py`, `notes/probe.sh`, `notes/footprint.sh`, `notes/footprint.py`, `notes/plant.py` | yes | Step 0 tools |
 | `notes/footprint.json` | yes | Footprint per candidate (test names only) |
 | `notes/compile_full.sh`, `notes/compile_baseline.sh`, `notes/recall.py`, `notes/recall.json` | yes | Steps 2–3: full compile drivers (fixed, baseline), recall scorer, step 2's result |
+| `trial.env`, `queue.tsv`, `run_queue.log`, `runs/<run_id>/`, `notes/score.py` | yes | Step 6: run conditions, queue, driver log, per-run files, scorer |
+| `results.json`, `notes/scores.json`, `notes/detection.tsv`, `notes/audit_sheet.py`, `notes/detection_audit.md` | yes | Step 7: summary per run, scores and sides, detection readings, the owner's audit sheet and its builder |
 | `notes/oracle_store.py`, `notes/oracle_verdicts.tsv`, `notes/build_task.py`, `notes/check_nop.sh` | yes | Step 5: oracle store and its verdicts; task builder and do-nothing check |
 | `notes/compile_to_pairs.py`, `notes/rank_pairs.py`, `notes/pair_ranks.json` | yes | Steps 1a, 1b: compile to pair-picking, and each pair's rank (the json holds the latest run, now step 1e) |
 | `work/` | **no** | Base build, side-B copies, oracle tasks and jobs, planted spec (Zero2Repo has no licence file) |

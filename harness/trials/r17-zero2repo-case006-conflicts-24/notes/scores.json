@@ -1,0 +1,3422 @@
+{
+ "r17-haiku-export-1": {
+  "core": 436,
+  "core_total": 445,
+  "cost": 1.23617507,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": true,
+   "C09": true,
+   "C10": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C18": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "EXISTS\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     "d word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\nBefore part.After part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\nError: Invalid value for '--feature': 'maybe' is not a valid boolean for environment variable 'PZ_FEATURE'.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\nError: Invalid value for '--when': '2020-01-02' does not match the formats '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED DeclarationError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Secret: Repeat for confirmation: \nV=cc\n",
+    "Error: The two entered values do not match.\n"
+   ],
+   "C18": [
+    "0",
+    "Number: Number: \nV=5\n",
+    "Error: 'abc' is not a valid integer.\n"
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmpvdco5nwa/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\nDESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\nEPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "B",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "B",
+   "C23": "A",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 465,
+  "total": 476,
+  "turns": 59
+ },
+ "r17-haiku-export-2": {
+  "core": 420,
+  "core_total": 445,
+  "cost": 0.98304205,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": true,
+   "C09": true,
+   "C10": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C18": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "EXISTS\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     "d word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\nBefore part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Error: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the formats '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED ValueError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: aa\nRepeat for confirmation: bb\nSecret: cc\nRepeat for confirmation: cc\n\nV=cc\n",
+    "Error: the two entered values do not match\n"
+   ],
+   "C18": [
+    "0",
+    "Number: abc\nNumber: 5\n\nV=5\n",
+    "Error: 'abc' is not a valid integer.\n"
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmp7xhdq5o7/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...DONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\nDESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\nEPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "B",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "B",
+   "C23": "A",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 449,
+  "total": 476,
+  "turns": 48
+ },
+ "r17-haiku-export-3": {
+  "core": 433,
+  "core_total": 445,
+  "cost": 1.2343827900000004,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": true,
+   "C09": true,
+   "C10": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C18": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     " word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\nBefore part.\n\nOptions:\n  --help  Show this message and exit.\n\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the formats '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED TypeError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: aa\nRepeat for confirmation: bb\nSecret: cc\nRepeat for confirmation: cc\n\nV=cc\n",
+    "Error: The two entered values do not match.\n"
+   ],
+   "C18": [
+    "0",
+    "Number: abc\nNumber: 5\n\nV=5\n",
+    "Error: Invalid value: 'abc' is not a valid integer.\n"
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmpkf1iiu4k/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\nDESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\nEPILOGTEXT\n\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of Red.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "B",
+   "C23": "A",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 461,
+  "total": 476,
+  "turns": 69
+ },
+ "r17-haiku-markdown-1": {
+  "core": 433,
+  "core_total": 445,
+  "cost": 0.9841753499999998,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": false,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": false,
+   "C09": false,
+   "C10": false,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": false,
+   "C18": false,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": false,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "EXISTS\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 79,
+    "longest_line_with_cap_150": 149,
+    "run": [
+     "0",
+     " word word word word\nword word word word word word word word word word word word word word word word\nword word word word word word word word word word\n\nOptions:\n  --help  Show this message and exit.\n\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\nBefore part.\n\nOptions:\n  --help  Show this message and exit.\n\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': Environment variable 'PZ_FEATURE' holds 'maybe', which is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the formats '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED ValueError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Secret: Repeat for confirmation: \nV=cc\n",
+    "Error: the two entered values do not match\n"
+   ],
+   "C18": [
+    "0",
+    "Number: Number: \nV=5\n",
+    "Error: 'abc' is not a valid integer.\n"
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmpsqa_98cs/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\nDESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\nEPILOGTEXT\n\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "B",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "B",
+   "C23": "A",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 462,
+  "total": 476,
+  "turns": 45
+ },
+ "r17-haiku-markdown-2": {
+  "core": null,
+  "core_total": 445,
+  "cost": 0.08628166000000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C02": true,
+   "C03": true,
+   "C04": false,
+   "C05": false,
+   "C06": false,
+   "C07": false,
+   "C08": true,
+   "C09": false,
+   "C10": false,
+   "C12": false,
+   "C13": false,
+   "C14": false,
+   "C15": false,
+   "C17": true,
+   "C18": false,
+   "C20": false,
+   "C21": false,
+   "C22": false,
+   "C23": true,
+   "C25": false,
+   "C26": false,
+   "C27": false,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmp4zyeh96f/prog.py\", line 5, in <module>\n    from optlyn.testing import CliRunner\nModuleNotFoundError: No module named 'optlyn.testing'\n"
+   ],
+   "C02": [
+    "1",
+    "",
+    "var=\"PZ_NAME\")\n     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/optlyn/__init__.py\", line 350, in deco\n    return _attach(f, (cls or Option)(decls, **attrs))\n                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: Option.__init__() got an unexpected keyword argument 'envvar'\n"
+   ],
+   "C03": [
+    "1",
+    "",
+    "(\"--x\", callback=cb)\n     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/optlyn/__init__.py\", line 350, in deco\n    return _attach(f, (cls or Option)(decls, **attrs))\n                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: Option.__init__() got an unexpected keyword argument 'callback'\n"
+   ],
+   "C04": {
+    "longest_line": 658,
+    "longest_line_with_cap_150": 682,
+    "run": [
+     "1",
+     "",
+     "^\n  File \"/app/src/optlyn/__init__.py\", line 364, in deco\n    return (cls or Command)(name=cmd_name, callback=f, params=params, **attrs)\n           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: Command.__init__() got an unexpected keyword argument 'context_settings'\n"
+    ]
+   },
+   "C05": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpar0q7gnf/prog.py\", line 6, in <module>\n    @optlyn.option(\"--count\", type=optlyn.INT)\n                                   ^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'INT'\n"
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\nBefore part.\fAfter part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "1",
+    "",
+    " count=True)\n     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/optlyn/__init__.py\", line 350, in deco\n    return _attach(f, (cls or Option)(decls, **attrs))\n                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: Option.__init__() got an unexpected keyword argument 'count'\n"
+   ],
+   "C08": [
+    "1",
+    "",
+    "f._run(ctx, list(args))\n  File \"/app/src/optlyn/__init__.py\", line 249, in _run\n    return self.callback(**kwargs)\n           ~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/tmp/tmp9c_6m7ym/prog.py\", line 8, in c\n    optlyn.echo(f\"T={tag!r}\")\n    ^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'echo'\n"
+   ],
+   "C09": [
+    "1",
+    "",
+    "    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/optlyn/__init__.py\", line 350, in deco\n    return _attach(f, (cls or Option)(decls, **attrs))\n                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: Option.__init__() got an unexpected keyword argument 'envvar'\n"
+   ],
+   "C10": [
+    "1",
+    "",
+    "~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/optlyn/__init__.py\", line 350, in deco\n    return _attach(f, (cls or Option)(decls, **attrs))\n                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: Option.__init__() got an unexpected keyword argument 'envvar'\n"
+   ],
+   "C12": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmp8l8p38dc/prog.py\", line 6, in <module>\n    @optlyn.option(\"--when\", type=optlyn.DateTime(formats=[\"%Y-%m-%d\", \"%Y-%d-%m\"]))\n                                  ^^^^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'DateTime'\n"
+   ],
+   "C13": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpyimmp50o/prog.py\", line 6, in <module>\n    @optlyn.option(\"--when\", type=optlyn.DateTime(formats=[\"%d/%m/%Y\"]))\n                                  ^^^^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'DateTime'\n"
+   ],
+   "C14": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpuq9095d2/prog.py\", line 6, in <module>\n    @optlyn.option(\"--n\", type=optlyn.IntRange(0, 10, max_open=True, clamp=True))\n                               ^^^^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'IntRange'\n"
+   ],
+   "C15": [
+    "0",
+    "REFUSED AttributeError\n",
+    ""
+   ],
+   "C17": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmp8soijzq4/prog.py\", line 6, in <module>\n    v = optlyn.prompt(\"Secret\", confirmation_prompt=True)\n        ^^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'prompt'\n"
+   ],
+   "C18": [
+    "0",
+    "\nFAILED AttributeError\n",
+    ""
+   ],
+   "C20": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpgq5qwnuf/prog.py\", line 6, in <module>\n    @optlyn.option(\"--p\", type=optlyn.Path(resolve_path=True))\n                               ^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'Path'\n"
+   ],
+   "C21": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpv_9fhvzw/prog.py\", line 5, in <module>\n    print(\"D=\" + optlyn.get_app_dir(\"Foo Bar\"))\n                 ^^^^^^^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'get_app_dir'\n"
+   ],
+   "C22": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpzfgva9kx/prog.py\", line 5, in <module>\n    optlyn.pause()\n    ^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'pause'\n"
+   ],
+   "C23": [
+    "2",
+    "",
+    "Usage: cli [OPTIONS]\n\nOptions:\n  --help  Show this message and exit.\n  --opt\n\nCommands:\n  sub  \nUsage error: Missing command.\n"
+   ],
+   "C25": [
+    "1",
+    "",
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/optlyn/__init__.py\", line 350, in deco\n    return _attach(f, (cls or Option)(decls, **attrs))\n                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nTypeError: Option.__init__() got an unexpected keyword argument 'show_default'\n"
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS]\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\nDESCTEXT\n\nOptions:\n  --help  Show this message and exit.\n  --x  xhelp\n\nEPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "1",
+    "",
+    "Traceback (most recent call last):\n  File \"/tmp/tmpw3hfmf53/prog.py\", line 6, in <module>\n    @optlyn.option(\"--c\", type=optlyn.Choice([\"Red\"]))\n                               ^^^^^^^^^^^^^\nAttributeError: module 'optlyn' has no attribute 'Choice'\n"
+   ]
+  },
+  "sides": {
+   "C01": "neither",
+   "C02": "neither",
+   "C03": "error",
+   "C04": "neither",
+   "C05": "neither",
+   "C06": "B",
+   "C07": "neither",
+   "C08": "neither",
+   "C09": "neither",
+   "C10": "neither",
+   "C12": "neither",
+   "C13": "neither",
+   "C14": "neither",
+   "C15": "A",
+   "C17": "neither",
+   "C18": "B",
+   "C20": "neither",
+   "C21": "neither",
+   "C22": "error",
+   "C23": "error",
+   "C25": "error",
+   "C26": "A",
+   "C27": "A",
+   "C29": "neither"
+  },
+  "tests": 0,
+  "total": 0,
+  "turns": 15
+ },
+ "r17-haiku-markdown-3": {
+  "core": 414,
+  "core_total": 445,
+  "cost": 0.7402304799999997,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C02": false,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C07": false,
+   "C08": true,
+   "C09": true,
+   "C10": false,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": false,
+   "C17": false,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "C22": true,
+   "C23": true,
+   "C25": false,
+   "C26": false,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 78,
+    "longest_line_with_cap_150": 148,
+    "run": [
+     "0",
+     "d word word word word word word word word word word word word word word\nword word word word word word word word word word word word word word word\nword\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\nBefore part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=None\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Invalid value for --feature: 'maybe' is not a valid boolean.\nTry 'c --help' for help.\n"
+   ],
+   "C12": [
+    "0",
+    "M=2\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Invalid value for --when: '2020-01-02' does not match the formats %d/%m/%Y.\nTry 'c --help' for help.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED ValueError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Secret: Repeat for confirmation: \nV=cc\n",
+    "Error: the two entered values do not match\n"
+   ],
+   "C18": [
+    "0",
+    "Number: Number: \nV=5\n",
+    "Error: 'abc' is not a valid integer.\n"
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/pzhome/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "DONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it. Then more.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\nDESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\nEPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Invalid value for --c: 'red' is not 'Red'.\nTry 'c --help' for help.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "B",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "B",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "C22": "A",
+   "C23": "A",
+   "C25": "A",
+   "C26": "B",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 440,
+  "total": 476,
+  "turns": 59
+ },
+ "r17-sonnet-export-1": {
+  "core": 439,
+  "core_total": 445,
+  "cost": 2.3803857999999996,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": true,
+   "C09": true,
+   "C10": false,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C18": false,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  Before part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the format '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED TypeError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Error: The two entered values do not match.\nSecret: Repeat for confirmation: \nV=cc\n",
+    ""
+   ],
+   "C18": [
+    "0",
+    "Number: Error: 'abc' is not a valid integer.\nNumber: \nV=5\n",
+    ""
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmp7ri_3jw5/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "DONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  DESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\n  EPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "A",
+   "C23": "A",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 470,
+  "total": 476,
+  "turns": 29
+ },
+ "r17-sonnet-export-2": {
+  "core": 429,
+  "core_total": 445,
+  "cost": 2.0339784000000005,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": true,
+   "C09": true,
+   "C10": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C18": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  Before part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the formats '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED DeclarationError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Error: The two entered values do not match.\nSecret: Repeat for confirmation: \nV=cc\n",
+    ""
+   ],
+   "C18": [
+    "0",
+    "Number: Error: 'abc' is not a valid integer.\nNumber: \nV=5\n",
+    ""
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmpkg7b47vn/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\nplain,--opt\nplain,--help\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  DESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\n  EPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "B",
+   "C23": "B",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 458,
+  "total": 476,
+  "turns": 23
+ },
+ "r17-sonnet-export-3": {
+  "core": 439,
+  "core_total": 445,
+  "cost": 2.1642876,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": true,
+   "C09": true,
+   "C10": false,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C18": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count COUNT\n  --help         Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  Before part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the format '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED TypeError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Error: The two entered values do not match.\nSecret: Repeat for confirmation: \nV=cc\n",
+    ""
+   ],
+   "C18": [
+    "0",
+    "Number: Error: 'abc' is not a valid integer.\nNumber: \nV=5\n",
+    ""
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/pzhome/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\nplain,--opt\nplain,--help\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.  [default: False]\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  DESCTEXT\n\nOptions:\n  --x X   xhelp\n  --help  Show this message and exit.\n\n  EPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "B",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "C22": "B",
+   "C23": "B",
+   "C25": "B",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 465,
+  "total": 476,
+  "turns": 26
+ },
+ "r17-sonnet-markdown-1": {
+  "core": 431,
+  "core_total": 445,
+  "cost": 2.3416954,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": false,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": false,
+   "C09": true,
+   "C10": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": false,
+   "C18": false,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  Before part.After part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=None\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=two\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=2\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the format '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED DeclarationError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Error: The two entered values do not match.\nSecret: Repeat for confirmation: \nV=cc\n",
+    ""
+   ],
+   "C18": [
+    "0",
+    "Number: Error: 'abc' is not a valid integer.\nNumber: \nV=5\n",
+    ""
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/pzhome/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzhome/.config/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\nplain,--opt\nplain,--help\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.  [default: False]\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  DESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\n  EPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C07": "B",
+   "C08": "A",
+   "C09": "B",
+   "C10": "A",
+   "C12": "B",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "B",
+   "C22": "B",
+   "C23": "B",
+   "C25": "B",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 452,
+  "total": 476,
+  "turns": 21
+ },
+ "r17-sonnet-markdown-2": {
+  "core": 439,
+  "core_total": 445,
+  "cost": 2.4301625000000002,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": false,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": false,
+   "C09": true,
+   "C10": false,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": false,
+   "C17": false,
+   "C18": true,
+   "C20": true,
+   "C21": true,
+   "C22": false,
+   "C23": true,
+   "C25": true,
+   "C26": false,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  Before part.After part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=None\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=two\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=2\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the formats '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED TypeError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Error: The two entered values do not match.\nSecret: Repeat for confirmation: \nV=cc\n",
+    ""
+   ],
+   "C18": [
+    "0",
+    "Number: Error: 'abc' is not a valid integer.\nNumber: \nV=5\n",
+    ""
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/pzhome/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\nplain,--opt\nplain,--help\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.  [default: False]\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  DESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\n  EPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C07": "B",
+   "C08": "A",
+   "C09": "B",
+   "C10": "A",
+   "C12": "B",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "C22": "B",
+   "C23": "B",
+   "C25": "B",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 462,
+  "total": 476,
+  "turns": 20
+ },
+ "r17-sonnet-markdown-3": {
+  "core": 442,
+  "core_total": 445,
+  "cost": 2.3380085,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C07": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   },
+   "C27": {
+    "A": true,
+    "B": true
+   },
+   "C29": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": false,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C07": true,
+   "C08": false,
+   "C09": true,
+   "C10": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C17": false,
+   "C18": false,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "C26": true,
+   "C27": true,
+   "C29": true
+  },
+  "probe_evidence": {
+   "C01": [
+    "0",
+    "GONE\n",
+    ""
+   ],
+   "C02": [
+    "0",
+    "VALUE=from_env\n",
+    ""
+   ],
+   "C03": [
+    "0",
+    "CALLED\nX=None\n",
+    ""
+   ],
+   "C04": {
+    "longest_line": 76,
+    "longest_line_with_cap_150": 146,
+    "run": [
+     "0",
+     "rd word word word word word word word word word word word word\n  word word word word word word word word word word word word word word word\n  word word\n\nOptions:\n  --help  Show this message and exit.\n",
+     ""
+    ]
+   },
+   "C05": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --count INTEGER\n  --help           Show this message and exit.\n",
+    ""
+   ],
+   "C06": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  Before part.\n\nOptions:\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C07": [
+    "0",
+    "V=0\n",
+    ""
+   ],
+   "C08": [
+    "0",
+    "T=()\n",
+    ""
+   ],
+   "C09": [
+    "0",
+    "N=one\n",
+    ""
+   ],
+   "C10": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--feature': 'maybe' is not a valid boolean.\n"
+   ],
+   "C12": [
+    "0",
+    "M=1\n",
+    ""
+   ],
+   "C13": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--when': '2020-01-02' does not match the format '%d/%m/%Y'.\n"
+   ],
+   "C14": [
+    "0",
+    "N=9\n",
+    ""
+   ],
+   "C15": [
+    "0",
+    "REFUSED TypeError\n",
+    ""
+   ],
+   "C17": [
+    "0",
+    "Secret: Repeat for confirmation: Error: The two entered values do not match.\nSecret: Repeat for confirmation: \nV=cc\n",
+    ""
+   ],
+   "C18": [
+    "0",
+    "Number: Error: 'abc' is not a valid integer.\nNumber: \nV=5\n",
+    ""
+   ],
+   "C20": [
+    "0",
+    "P=/tmp/tmpsua5uyoc/~/x\n",
+    ""
+   ],
+   "C21": [
+    "0",
+    "D=/tmp/pzxdg/foo-bar\n",
+    ""
+   ],
+   "C22": [
+    "0",
+    "Press any key to continue...\nDONE\n",
+    ""
+   ],
+   "C23": [
+    "0",
+    "plain,sub\n",
+    ""
+   ],
+   "C25": [
+    "0",
+    "Usage: c [OPTIONS]\n\nOptions:\n  --flag  A flag.\n  --help  Show this message and exit.\n",
+    ""
+   ],
+   "C26": [
+    "0",
+    "Usage: cli [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  sub  Do it.\n",
+    ""
+   ],
+   "C27": [
+    "0",
+    "Usage: c [OPTIONS]\n\n  DESCTEXT\n\nOptions:\n  --x TEXT  xhelp\n  --help    Show this message and exit.\n\n  EPILOGTEXT\n",
+    ""
+   ],
+   "C29": [
+    "2",
+    "",
+    "Usage: c [OPTIONS]\nTry 'c --help' for help.\n\nError: Invalid value for '--c': 'red' is not one of 'Red'.\n"
+   ]
+  },
+  "sides": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C07": "A",
+   "C08": "A",
+   "C09": "A",
+   "C10": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "C22": "B",
+   "C23": "A",
+   "C25": "A",
+   "C26": "A",
+   "C27": "A",
+   "C29": "A"
+  },
+  "tests": 472,
+  "total": 476,
+  "turns": 23
+ }
+}

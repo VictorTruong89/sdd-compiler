@@ -1,0 +1,27 @@
+  1/1 Official_Reward: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:14:24 0:00:00
+adhoc • claude-code • claude-sonnet-5-5
+┏━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
+┃ Trials ┃ Except… ┃ Offici… ┃ Reward ┃ Tests_… ┃ Tests_… ┃ Tests_P… ┃ Tests_… ┃
+┡━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
+│      1 │       0 │   0.000 │  0.981 │   0.000 │   9.000 │  467.000 │ 476.000 │
+└────────┴─────────┴─────────┴────────┴─────────┴─────────┴──────────┴─────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.9810924369747899 │     1 │
+│ 467                │     1 │
+│ 476                │     1 │
+│ 9                  │     1 │
+│ 0                  │     1 │
+│ 0.0                │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 14m 24s
+Results written to 
+jobs/r18-zero2repo-case006-notes-both-sides-r18-sonnet-export-1/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload 
+jobs/r18-zero2repo-case006-notes-both-sides-r18-sonnet-export-1`
+

@@ -1,0 +1,14 @@
+{
+  "reward": 0.0,
+  "judge_error": "pytest execution was incomplete; see the collection audit in final_tests.log",
+  "judge_mode": "final_tests",
+  "final": null,
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}
