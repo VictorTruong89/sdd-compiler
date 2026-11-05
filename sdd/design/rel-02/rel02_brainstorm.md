@@ -884,6 +884,49 @@ wrong on first contact in `lend`.
   as you suggested". The tags of the 8 remaining pairs read first: most carry or name the other side's
   topic. Done in retrieval, from tags already stored (no model call), instead of re-tagging terms.
 
+- **rel02 D32 — 2026-11-04 — scope of the course project: verify the spec-graph format and the
+  usefulness of `sddc`, knowing the compiler is immature.** Owner: "This master course project aims at
+  verify the spec-graph format and usefulness of sdd-compiler/, knowing that sdd-compiler/ itself is
+  immature." The proposal (submitted, `docs/MIA5150-Project/project-proposal/latex/main.tex`) never
+  set compiler development as a goal (§1: "benchmark and empirical study"); the course project does not
+  try to raise the compiler's recall until it finds every conflict. Consequences for the report: the
+  claim is restated as the proposal's §5.3 hypothesis (the graph ties on clean specifications, helps on
+  messy ones), with set 1 and set 2 as the primary metrics; oracle exports (answer-key conflicts added)
+  are reported as an upper bound, labelled so, and the grader's comment ("Make sure the graph format
+  gives no extra information, such as flagged contradictions") is answered in the report. Proposal §10
+  ("Compiler gaps … scored as omission of the graph format") still stands for compiler-only exports.
+
+- **rel02 D33 — 2026-11-04 — hallucination is kept, with one primary metric: the invention rate on
+  planted gaps.** Owner: "Follow your primary recommendation, note this decision down for future
+  report writing and new test design." Design, as the planted conflicts (round 17's method): remove a
+  stated fact (a default, a limit, an edge rule) covered by 1–3 hidden tests; answer key written before
+  any compile or run; black-box probe per item; strict notes rule written before any run: an item is
+  **flagged** if `NOTES.md` says the spec does not state it (with what was assumed), **invented
+  silently** if the code takes a value with no such note. Primary metric: silent inventions / planted
+  gaps. The export carries no flag for gaps, so a difference between formats comes from the format
+  alone. Secondary, from saved runs at no model cost: package/import hallucination (Spracklen et al.
+  2025), CodeHalu-style classes of hidden-test failures (by name and message only), upstream leakage
+  (names or defaults of the real library absent from the spec). Sources opened 2026-11-03: UnderSpecBench
+  (arXiv 2607.02294), Panda 2026 (arXiv 2606.30689), ImpossibleBench (arXiv 2510.20270). Not yet
+  designed per case; model calls need the owner's go-ahead.
+
+- **rel02 D34 — 2026-11-04 — report what agents do with conflicts the compiler did not flag, from the
+  compiler-only data.** Owner: "retrieve data from the runs that we used only sdd-compiler/ and no opus
+  hardcoded conflicts … for whichever conflicts sdd-compiler/ failed to highlight in graph, claude
+  sonnet failed to identify too … This could prove the necessity of sdd-compiler/ and show part of our
+  efforts (although unsuccessful)." **Checked against the data the same day: the expected pattern does
+  not hold.** Compiler-only exports were run in rounds 14–16 (case006, 7 items; the compiler missed P4,
+  P6, P7 in round 14, P4 after). P4, never flagged, was named by Sonnet in 3 of 4 runs (round 16: export
+  1 of 2, Markdown 2 of 2) and by Haiku in most runs. In the Markdown runs of rounds 17–19, which do not
+  depend on the export, Sonnet named most of the compiler's misses (case006, round 18: 8 of 10 in every run, the other 2 in 2 of 3 runs; case010: 12 of
+  18 readings). Only C14 (case010) fits: missed by the compiler and by all 6 Markdown runs. **What the
+  data do show is the reverse direction, which also argues for the compiler:** conflicts the compiler
+  flags that agents never name from the Markdown: case006 C02, C08, C17 (0 of 11 Markdown runs, rounds
+  17–18), P3 (Haiku 0 of 7, rounds 14–15); case010 C21, C22 (0 of 6). The compiler and the agent find
+  different conflicts. The report shows both directions, with the compiler's recall work (4 → 6 of 7,
+  11 → 14 of 24, 9 of 15) as effort spent. A Sonnet run on a compiler-only export of the 24- or
+  15-conflict case is still *to be measured* (needs the owner's go-ahead).
+
 ## Rejected alternatives
 
 ## Open questions

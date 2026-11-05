@@ -1,0 +1,50 @@
+{
+  "reward": 0.0,
+  "judge_error": null,
+  "judge_mode": "final_tests",
+  "final": {
+    "final_step": "final",
+    "status": "failed",
+    "exit_code": 1,
+    "log": "/logs/verifier/final_tests.log",
+    "passed_count": 190,
+    "failed_count": 7,
+    "error_count": 0,
+    "skipped_count": 0,
+    "total_count": 197,
+    "pass_rate": 0.9644670050761421,
+    "test_framework": "pytest",
+    "counts_parsed": true,
+    "passed": 190,
+    "failed": 7,
+    "total": 197,
+    "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_runtime_cannot_splits",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two"
+    ],
+    "error_tests": [],
+    "test_files": [
+      "/tests/final/tests/F01_acceptance.py",
+      "/tests/final/tests/F02_acceptance.py",
+      "/tests/final/tests/F03_acceptance.py",
+      "/tests/final/tests/F04_acceptance.py",
+      "/tests/final/tests/F05_acceptance.py",
+      "/tests/final/tests/F06_acceptance.py",
+      "/tests/final/tests/F07_acceptance.py"
+    ],
+    "test_command_ran": "python3 -I /tests/pytest_launcher.py /tests/final/tests/F01_acceptance.py /tests/final/tests/F02_acceptance.py /tests/final/tests/F03_acceptance.py /tests/final/tests/F04_acceptance.py /tests/final/tests/F05_acceptance.py /tests/final/tests/F06_acceptance.py /tests/final/tests/F07_acceptance.py"
+  },
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}
