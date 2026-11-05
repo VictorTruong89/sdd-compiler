@@ -1,0 +1,143 @@
+{
+ "BASE_failed": [
+  "F02_acceptance.py::test_snowball_arabic_named_pairs"
+ ],
+ "G01": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G02": {
+  "newly_failed": [
+   "F07_acceptance.py::test_jaccard_disjoint_nonempty_sets_are_one",
+   "F07_acceptance.py::test_jaccard_identical_sets_are_zero"
+  ],
+  "newly_passed": []
+ },
+ "G03": {
+  "newly_failed": [
+   "F07_acceptance.py::test_empty_reference_recall_is_absent",
+   "F07_acceptance.py::test_fmeasure_absent_when_either_side_empty"
+  ],
+  "newly_passed": []
+ },
+ "G04": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G05": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G06": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G07": {
+  "newly_failed": [
+   "F02_acceptance.py::test_default_porter_two_word_string_is_one_token",
+   "F02_acceptance.py::test_lancaster_two_word_string_is_one_token"
+  ],
+  "newly_passed": []
+ },
+ "G08": {
+  "newly_failed": [
+   "F02_acceptance.py::test_snowball_klingon_fails_identifying_language_english_succeeds",
+   "F02_acceptance.py::test_snowball_runtime_unsupported_language_is_identified"
+  ],
+  "newly_passed": []
+ },
+ "G09": {
+  "newly_failed": [
+   "F02_acceptance.py::test_snowball_porter_generously_differs_from_english"
+  ],
+  "newly_passed": []
+ },
+ "G10": {
+  "newly_failed": [
+   "F02_acceptance.py::test_default_porter_oed_succeeds_as_o"
+  ],
+  "newly_passed": []
+ },
+ "G11": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G12": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G13": {
+  "newly_failed": [
+   "F01_acceptance.py::test_spans_on_muffin_recover_tokens_ordered_and_nonoverlapping",
+   "F01_acceptance.py::test_spans_on_runtime_currency_recover_tokens"
+  ],
+  "newly_passed": []
+ },
+ "G14": {
+  "newly_failed": [
+   "F01_acceptance.py::test_recommended_mortgage_keeps_grouped_and_decimal_amounts",
+   "F01_acceptance.py::test_recommended_runtime_grouped_and_decimal_amounts"
+  ],
+  "newly_passed": []
+ },
+ "G15": {
+  "newly_failed": [
+   "F01_acceptance.py::test_recommended_mortgage_keeps_grouped_and_decimal_amounts",
+   "F01_acceptance.py::test_recommended_runtime_grouped_and_decimal_amounts",
+   "F01_acceptance.py::test_recommended_word_with_sentence_split_three_points_no_glue",
+   "F01_acceptance.py::test_treebank_and_recommended_keep_muffin_decimal_unlike_wordpunct",
+   "F01_acceptance.py::test_treebank_and_recommended_keep_runtime_decimal_unlike_wordpunct"
+  ],
+  "newly_passed": []
+ },
+ "G16": {
+  "newly_failed": [
+   "F04_acceptance.py::test_np_grammar_whitespace_in_tag_pattern_ignored"
+  ],
+  "newly_passed": []
+ },
+ "G17": {
+  "newly_failed": [
+   "F04_acceptance.py::test_empty_tagged_list_sentence_root_no_children"
+  ],
+  "newly_passed": []
+ },
+ "G18": {
+  "newly_failed": [
+   "F04_acceptance.py::test_non_text_non_stage_grammar_is_refused"
+  ],
+  "newly_passed": []
+ },
+ "G19": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G20": {
+  "newly_failed": [
+   "F05_acceptance.py::test_changing_inner_np_label_to_x_breaks_equality_and_pretty_print",
+   "F05_acceptance.py::test_runtime_bracketed_tree_equals_constructed"
+  ],
+  "newly_passed": []
+ },
+ "G21": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G22": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G23": {
+  "newly_failed": [
+   "F06_acceptance.py::test_naive_bayes_unseen_feature_does_not_flip_or_zero_all_probs"
+  ],
+  "newly_passed": []
+ },
+ "G24": {
+  "newly_failed": [
+   "F06_acceptance.py::test_empty_of_training_features_returns_a_trained_label",
+   "F06_acceptance.py::test_naive_bayes_runtime_label_inventory_and_empty_query"
+  ],
+  "newly_passed": []
+ }
+}

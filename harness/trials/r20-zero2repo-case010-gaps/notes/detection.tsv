@@ -1,0 +1,169 @@
+run	item	flagged	built	note
+r20-haiku-export-1	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-haiku-export-1	G03	yes	upstream	NOTES.md:91-92 under 'Gaps': 'Recall with an empty reference: None'
+r20-haiku-export-1	G07	no	upstream	
+r20-haiku-export-1	G08	no	upstream	
+r20-haiku-export-1	G09	no	upstream	
+r20-haiku-export-1	G10	no	upstream	
+r20-haiku-export-1	G13	no	upstream	
+r20-haiku-export-1	G14	yes	upstream	NOTES.md:57-60 under 'Gaps': does not mention , or :; split unless between digits
+r20-haiku-export-1	G16	no	upstream	
+r20-haiku-export-1	G17	no	upstream	
+r20-haiku-export-1	G18	no	upstream	
+r20-haiku-export-1	G20	no	upstream	
+r20-haiku-export-1	G23	yes	upstream	NOTES.md:85-87 under 'Gaps': 'Features not seen in training are ignored'
+r20-haiku-export-1	G24	no	upstream	
+r20-haiku-export-2	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-haiku-export-2	G03	yes	upstream	NOTES.md:30-32: 'It does not say what recall does with an empty reference set. Built: None'
+r20-haiku-export-2	G07	no	upstream	
+r20-haiku-export-2	G08	no	upstream	
+r20-haiku-export-2	G09	yes	upstream	BORDERLINE: NOTES.md:16-18 under 'Conflicts': Snowball porter vs Porter modes; built original Porter; not said to be unstated
+r20-haiku-export-2	G10	no	upstream	
+r20-haiku-export-2	G13	no	upstream	
+r20-haiku-export-2	G14	yes	upstream	NOTES.md:20-23: 'This is an assumption on my part; the spec does not state it'; split unless followed by a digit
+r20-haiku-export-2	G16	no	upstream	
+r20-haiku-export-2	G17	no	upstream	
+r20-haiku-export-2	G18	no	upstream	
+r20-haiku-export-2	G20	no	upstream	
+r20-haiku-export-2	G23	yes	upstream	NOTES.md:65 under 'Gaps': 'Features absent from training are ignored at classification time'
+r20-haiku-export-2	G24	no	upstream	
+r20-haiku-export-3	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-haiku-export-3	G03	no	upstream	
+r20-haiku-export-3	G07	no	upstream	
+r20-haiku-export-3	G08	no	upstream	
+r20-haiku-export-3	G09	yes	upstream	NOTES.md:48-52 under '…ambiguities': Snowball porter = original algorithm, 'its results are not specified anywhere else'
+r20-haiku-export-3	G10	no	upstream	
+r20-haiku-export-3	G13	no	upstream	
+r20-haiku-export-3	G14	yes	upstream	NOTES.md:37-41 under 'conflicts and ambiguities': does not mention commas or colons; split except before a digit
+r20-haiku-export-3	G16	no	upstream	
+r20-haiku-export-3	G17	no	upstream	
+r20-haiku-export-3	G18	no	upstream	
+r20-haiku-export-3	G20	no	upstream	
+r20-haiku-export-3	G23	no	upstream	
+r20-haiku-export-3	G24	no	upstream	
+r20-haiku-markdown-1	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-haiku-markdown-1	G03	no	upstream	
+r20-haiku-markdown-1	G07	no	upstream	
+r20-haiku-markdown-1	G08	no	upstream	
+r20-haiku-markdown-1	G09	no	upstream	
+r20-haiku-markdown-1	G10	no	upstream	
+r20-haiku-markdown-1	G13	no	upstream	
+r20-haiku-markdown-1	G14	yes	upstream	NOTES.md:33 under 'Spec disagreements': list 'does not mention commas or colons'; split, except before a digit
+r20-haiku-markdown-1	G16	no	upstream	
+r20-haiku-markdown-1	G17	no	upstream	
+r20-haiku-markdown-1	G18	no	upstream	
+r20-haiku-markdown-1	G20	no	upstream	
+r20-haiku-markdown-1	G23	yes	upstream	BORDERLINE: NOTES.md:47 under 'Gaps filled by assumption': 'A (feature, value) pair never seen in training is ignored' (a pair, not a feature name)
+r20-haiku-markdown-1	G24	no	upstream	
+r20-haiku-markdown-2	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-haiku-markdown-2	G03	no	upstream	
+r20-haiku-markdown-2	G07	no	upstream	
+r20-haiku-markdown-2	G08	no	upstream	
+r20-haiku-markdown-2	G09	yes	upstream	BORDERLINE: NOTES.md:55 under 'Assumptions for points the spec does not state': 'Snowball, implemented: english (Porter2) and porter (the original Porter algorithm)'; a status line, not said to be unstated
+r20-haiku-markdown-2	G10	no	upstream	
+r20-haiku-markdown-2	G13	no	upstream	
+r20-haiku-markdown-2	G14	yes	upstream	NOTES.md:12-18 under 'Conflicts': commas and colons not in the list; built: not split at all ('the explicit list wins'); probe item 1,000 reads upstream, see note in TRIAL.md
+r20-haiku-markdown-2	G16	no	upstream	
+r20-haiku-markdown-2	G17	no	upstream	
+r20-haiku-markdown-2	G18	no	upstream	
+r20-haiku-markdown-2	G20	yes	upstream	NOTES.md:109 under 'Assumptions for points the spec does not state': 'Tree equality compares labels and children'
+r20-haiku-markdown-2	G23	yes	upstream	BORDERLINE: NOTES.md:113-114 under 'Assumptions…': 'A feature value never seen in training is ignored at classify time' (a value, not a feature name)
+r20-haiku-markdown-2	G24	no	upstream	
+r20-haiku-markdown-3	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-haiku-markdown-3	G03	yes	upstream	NOTES.md:49-52: 'says nothing about recall… Built: recall with an empty reference returns None'
+r20-haiku-markdown-3	G07	no	upstream	
+r20-haiku-markdown-3	G08	no	upstream	
+r20-haiku-markdown-3	G09	yes	upstream	NOTES.md:54-56 under '…ambiguities': Snowball porter listed separately; built: the original 1980 Porter
+r20-haiku-markdown-3	G10	no	upstream	
+r20-haiku-markdown-3	G13	no	upstream	
+r20-haiku-markdown-3	G14	yes	upstream	NOTES.md:31-34 under 'Spec disagreements and ambiguities': lists not , or :; split unless followed by a digit
+r20-haiku-markdown-3	G16	no	upstream	
+r20-haiku-markdown-3	G17	no	upstream	
+r20-haiku-markdown-3	G18	no	upstream	
+r20-haiku-markdown-3	G20	no	upstream	
+r20-haiku-markdown-3	G23	yes	upstream	NOTES.md:130 under 'Details the spec does not state': 'features never seen in training, are ignored'
+r20-haiku-markdown-3	G24	no	upstream	
+r20-sonnet-export-1	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-sonnet-export-1	G03	no	upstream	
+r20-sonnet-export-1	G07	no	upstream	
+r20-sonnet-export-1	G08	no	upstream	
+r20-sonnet-export-1	G09	no	upstream	
+r20-sonnet-export-1	G10	no	upstream	
+r20-sonnet-export-1	G13	no	upstream	
+r20-sonnet-export-1	G14	no	upstream	
+r20-sonnet-export-1	G16	no	upstream	
+r20-sonnet-export-1	G17	no	upstream	
+r20-sonnet-export-1	G18	no	upstream	
+r20-sonnet-export-1	G20	no	upstream	
+r20-sonnet-export-1	G23	no	upstream	
+r20-sonnet-export-1	G24	no	upstream	
+r20-sonnet-export-2	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-sonnet-export-2	G03	no	upstream	
+r20-sonnet-export-2	G07	no	upstream	
+r20-sonnet-export-2	G08	no	upstream	
+r20-sonnet-export-2	G09	no	upstream	
+r20-sonnet-export-2	G10	no	upstream	
+r20-sonnet-export-2	G13	no	upstream	
+r20-sonnet-export-2	G14	no	upstream	
+r20-sonnet-export-2	G16	no	upstream	
+r20-sonnet-export-2	G17	no	upstream	
+r20-sonnet-export-2	G18	no	upstream	
+r20-sonnet-export-2	G20	no	upstream	
+r20-sonnet-export-2	G23	no	upstream	
+r20-sonnet-export-2	G24	no	upstream	
+r20-sonnet-export-3	G02	no	upstream	
+r20-sonnet-export-3	G03	no	upstream	
+r20-sonnet-export-3	G07	no	upstream	
+r20-sonnet-export-3	G08	no	upstream	
+r20-sonnet-export-3	G09	no	upstream	
+r20-sonnet-export-3	G10	no	upstream	
+r20-sonnet-export-3	G13	no	upstream	
+r20-sonnet-export-3	G14	yes	upstream	BORDERLINE: NOTES.md:49-50 under 'Spec gaps / assumptions': commas/colons split 'like the reference Treebank tokenizer even though the PRD lists only some punctuation'; digit exception not written
+r20-sonnet-export-3	G16	no	upstream	
+r20-sonnet-export-3	G17	no	upstream	
+r20-sonnet-export-3	G18	no	upstream	
+r20-sonnet-export-3	G20	no	upstream	
+r20-sonnet-export-3	G23	yes	upstream	NOTES.md:35-36 under 'Spec gaps / assumptions': 'features never seen in training are ignored at classification time'
+r20-sonnet-export-3	G24	no	upstream	
+r20-sonnet-markdown-1	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-sonnet-markdown-1	G03	no	upstream	
+r20-sonnet-markdown-1	G07	no	upstream	
+r20-sonnet-markdown-1	G08	no	upstream	
+r20-sonnet-markdown-1	G09	no	upstream	
+r20-sonnet-markdown-1	G10	no	upstream	
+r20-sonnet-markdown-1	G13	no	upstream	
+r20-sonnet-markdown-1	G14	yes	upstream	NOTES.md:8 under 'Disagreements': list 'does not mention : and ,'; followed PTB (split unless between digits)
+r20-sonnet-markdown-1	G16	no	upstream	
+r20-sonnet-markdown-1	G17	no	upstream	
+r20-sonnet-markdown-1	G18	no	upstream	
+r20-sonnet-markdown-1	G20	no	upstream	
+r20-sonnet-markdown-1	G23	no	upstream	
+r20-sonnet-markdown-1	G24	no	upstream	
+r20-sonnet-markdown-2	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-sonnet-markdown-2	G03	no	upstream	
+r20-sonnet-markdown-2	G07	no	upstream	
+r20-sonnet-markdown-2	G08	no	upstream	
+r20-sonnet-markdown-2	G09	no	upstream	
+r20-sonnet-markdown-2	G10	no	upstream	
+r20-sonnet-markdown-2	G13	no	upstream	
+r20-sonnet-markdown-2	G14	no	upstream	
+r20-sonnet-markdown-2	G16	no	upstream	
+r20-sonnet-markdown-2	G17	no	upstream	
+r20-sonnet-markdown-2	G18	no	upstream	
+r20-sonnet-markdown-2	G20	no	upstream	
+r20-sonnet-markdown-2	G23	no	upstream	
+r20-sonnet-markdown-2	G24	no	upstream	
+r20-sonnet-markdown-3	G02	no	upstream	notes give jaccard of two empty sets only (not the definition)
+r20-sonnet-markdown-3	G03	no	upstream	
+r20-sonnet-markdown-3	G07	no	upstream	
+r20-sonnet-markdown-3	G08	no	upstream	
+r20-sonnet-markdown-3	G09	yes	upstream	NOTES.md:16-17: 'lists porter as a Snowball language without defining it; I used the original (unextended) Porter'
+r20-sonnet-markdown-3	G10	no	upstream	
+r20-sonnet-markdown-3	G13	no	upstream	
+r20-sonnet-markdown-3	G14	no	upstream	
+r20-sonnet-markdown-3	G16	no	upstream	
+r20-sonnet-markdown-3	G17	no	upstream	
+r20-sonnet-markdown-3	G18	no	upstream	
+r20-sonnet-markdown-3	G20	no	upstream	
+r20-sonnet-markdown-3	G23	no	upstream	
+r20-sonnet-markdown-3	G24	no	upstream	

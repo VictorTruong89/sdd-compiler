@@ -907,8 +907,10 @@ wrong on first contact in `lend`.
   alone. Secondary, from saved runs at no model cost: package/import hallucination (Spracklen et al.
   2025), CodeHalu-style classes of hidden-test failures (by name and message only), upstream leakage
   (names or defaults of the real library absent from the spec). Sources opened 2026-11-03: UnderSpecBench
-  (arXiv 2607.02294), Panda 2026 (arXiv 2606.30689), ImpossibleBench (arXiv 2510.20270). Not yet
-  designed per case; model calls need the owner's go-ahead.
+  (arXiv 2607.02294), Panda 2026 (arXiv 2606.30689), ImpossibleBench (arXiv 2510.20270). **Round 20
+  approved 2026-11-04** (owner: "approve all those steps above"): case010, at least 10 gaps, no
+  change to the compiler, the export format, Harbor or Zero2Repo; one new instruction sentence (both
+  formats); one compile and 12 runs. Steps in `harness/trials/r20_session_prompt.md`.
 
 - **rel02 D34 — 2026-11-04 — report what agents do with conflicts the compiler did not flag, from the
   compiler-only data.** Owner: "retrieve data from the runs that we used only sdd-compiler/ and no opus

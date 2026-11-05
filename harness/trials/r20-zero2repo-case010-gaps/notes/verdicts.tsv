@@ -1,0 +1,23 @@
+conflict	verdict	reason (round 20, judged on the owner's behalf, 2026-11-05, against the original case010 spec)	source
+CF-000003	false	as round 13c's CF-000004: rule and its stated case: a bare apostrophe ending a word is split (PRD 104); other apostrophes inside a word stay (PRD 106)	round 19 CF-000005 (both texts identical)
+CF-000006	false	one sentence cut in two: PRD 97 says the tokens are the word-character runs and the other non-whitespace runs, together	round 19 CF-000007 (both texts identical)
+CF-000016	false	different entries: Contract 118 is a tagger's training data (tagged pairs); Contract 180 is the grammar generator's output (token lists)	read in round 20
+CF-000019	false	as round 13c's CF-000023: different tokenizers: PRD 104 is the Penn Treebank tokenizer, PRD 122 the tweet tokenizer	round 19 CF-000033 (both texts identical)
+CF-000021	false	different entries: PRD 253 is the generator's output (token lists); Contract 118 is a tagger's training data (tagged pairs)	round 19 CF-000037 (both texts identical)
+CF-000022	false	different functions: Contract 69 is sent_tokenize / blankline_tokenize output (strings); Contract 180 is the grammar generator's output (token lists)	read in round 20
+CF-000024	false	as round 13c's CF-000014: different functions: Contract 230 is accuracy (lists), Contract 238 is precision/recall/f_measure (sets)	round 19 CF-000031 (both texts identical)
+CF-000033	false	different scopes: PRD 65 says text handled by the library is Unicode; Contract 145 says the chunk parser's result is a Tree, not text	read in round 20
+CF-000034	false	different tokenizers: PRD 65 is about the tweet tokenizer; PRD 97 is the word/punctuation tokenizer	read in round 20
+CF-000036	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 101 the Penn Treebank tokenizer	round 19 CF-000057 (both texts identical)
+CF-000037	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 108 the recommended word tokenizer	round 19 CF-000058 (both texts identical)
+CF-000038	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 110 the recommended word tokenizer	round 19 CF-000059 (both texts identical)
+CF-000039	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 111 the recommended word tokenizer	round 19 CF-000060 (both texts identical)
+CF-000040	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 124 the tweet tokenizer	round 19 CF-000061 (both texts identical)
+CF-000041	false	one sentence cut in two (PRD 97 lists word-character runs and other non-whitespace runs together) and PRD 123 is the tweet tokenizer: different tokenizers	read in round 20
+CF-000042	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 124 the tweet tokenizer	round 19 CF-000062 (both texts identical)
+CF-000043	false	different tokenizers: PRD 97 is the word/punctuation tokenizer, PRD 123 the tweet tokenizer	read in round 20
+CF-000044	false	default and option: @-handles are single tokens by default (PRD 124); with handle stripping on they are removed (PRD 125)	round 19 CF-000063 (both texts identical)
+CF-000051	false	different taggers: PRD 197 is the recommended English tagger (Penn Treebank), PRD 198 the recommended Russian tagger (RNC); PRD 188 states both	read in round 20
+CF-000057	false	as round 13c's CF-000042: no behaviour conflict: the WordNet lemmatizer is named alongside the listed stemmer families (PRD 142)	round 19 CF-000078 (both texts identical)
+CF-000058	false	as round 13c's CF-000042: no behaviour conflict: the WordNet lemmatizer is named alongside the listed stemmer families (PRD 142)	round 19 CF-000079 (both texts identical)
+CF-000060	false	different stemmers: PRD 153 is the Porter stemmer, PRD 172 the regular-expression stemmer	read in round 20

@@ -2,10 +2,11 @@
 
 > MIA 5150, Fall 2026 · draft opened 2026-10-28 by Claude Code for the owner; updated 2026-11-02
 > with rounds 17 and 18 (24 planted conflicts, §3.6 and §4.6); **updated 2026-11-03 with round 19**
-> (15 planted conflicts in a second case, case010, §3.7 and §4.7) · working Markdown, may move to LaTeX
+> (15 planted conflicts in a second case, case010, §3.7 and §4.7); **updated 2026-11-05 with round 20**
+> (14 planted gaps in case010, §4.8) · working Markdown, may move to LaTeX
 > later. Every figure names its source: a trial's `TRIAL.md` (under `harness/trials/` or
 > `harness/benchmarks/`), a run of the register in `sdd/design/rel-02/rel02_methodology_notes.md` §8
-> ("reg. *n*"; rounds 17–18 are reg. 117–147, round 19 reg. 148–160), or the report draft `sdd/design/rel-02/rel02_report_draft.md`
+> ("reg. *n*"; rounds 17–18 are reg. 117–147, round 19 reg. 148–160, round 20 reg. 161–173), or the report draft `sdd/design/rel-02/rel02_report_draft.md`
 > (R1–R5). Every `$`
 > is Claude Code's `total_cost_usd`: an **estimated** API-equivalent, not money spent (the runs used a
 > subscription). Trials T0–T2, run or prepared on 28 October, are in §4.5.
@@ -331,6 +332,7 @@ counts, the models, n = 3, alternated order and a gate run first. *(Source:
 | case006, 24 planted, compiler recall | (Haiku compiler) | 1 compile each | — | 14 / 24 fixed compiler; 11 / 24 before the fixes | §3.6; r17 `TRIAL.md` steps 2–3; reg. 120–121 |
 | case010, **15 planted**, oracle export, round 19 | Haiku, Sonnet | 3 | Core 91.9 vs 89.8 % (Haiku), 96.9 vs 97.1 % (Sonnet) | Named, strict: **95.6 vs 51.1 %** (Haiku), **93.3 vs 66.7 %** (Sonnet) | §4.7; r19 `TRIAL.md`; reg. 149–160 |
 | case010, 15 planted, compiler recall | (Haiku compiler) | 1 compile | — | 9 / 15 | §3.7; r19 `TRIAL.md` step 2; reg. 148 |
+| case010, **14 gaps** (facts removed), plain export, round 20 | Haiku, Sonnet | 3 | Core 159.7 vs 162.3 / 175 (Haiku), 171.7 vs 171.7 (Sonnet) | Silent inventions / 14: **11.00 vs 10.67** (Haiku), **13.33 vs 13.33** (Sonnet); all 168 gap builds upstream | §4.8; r20 `TRIAL.md`; reg. 161–173 |
 
 ### 4.2 Small specifications (R3)
 
@@ -617,6 +619,82 @@ Sonnet 13–17 and 21–25.
 its `notes/scores.json`, `notes/detection.tsv`, `notes/recall.json`, `results.json` and
 `run_queue.log`; reg. 148–160.*
 
+### 4.8 Planted gaps (round 20, case010, 4–5 November)
+
+**Design** (D33; written before any model call in `harness/trials/r20-zero2repo-case010-gaps/TRIAL.md`).
+A *gap* is a fact the specification states that is removed with no marker, while the hidden tests still
+check it. Candidates were found from test names only; each was built into an alternative copy of a
+base build (round 13c, 196 / 197) and probed, and its *footprint* (tests that change between the
+upstream and the alternative value) measured with Harbor's oracle agent, no model. **14 gaps kept**
+(7.1 % of 197): footprint 1–2 tests each, none shared, none among the 20 model-file tests; footprint
+union 22, so the core is 175. Kinds: value 3, edge rule 6, error case 5. The gapped Markdown (8 132
+words, from 8 412) was compiled with the unchanged compiler (356 calls, $1.35 est.); its 22
+contradictions were all judged false on the owner's behalf and **nothing was injected**, so the export
+carries no gap flag and no extra information. Both formats got one new instruction sentence: list in
+`NOTES.md` what the spec does not state, where you looked, and what you assumed. Strict rule: *flagged*
+= the notes name this point as unstated and give the value; otherwise *invented silently*; *not built*
+apart. n = 3 per cell; 12 of 12 runs scored, none stopped early or rerun.
+
+**The two validation sets** (set 1 = core / 175; set 2 = silent inventions / 14, lower is better):
+
+| Model | Format | Set 1: core, per run | Set 1 mean | Set 2: silent, per run | Set 2 mean | Flagged mean |
+|---|---|---|---|---|---|---|
+| Haiku | Markdown | 165 · 158 · 164 | 162.33 | 12 · 10 · 10 | **10.67** | 3.33 |
+| Haiku | export | 164 · 158 · 157 | 159.67 | 11 · 10 · 12 | **11.00** | 3.00 |
+| Sonnet | Markdown | 173 · 169 · 173 | 171.67 | 13 · 14 · 13 | **13.33** | 0.67 |
+| Sonnet | export | 171 · 171 · 173 | 171.67 | 14 · 14 · 12 | **13.33** | 0.67 |
+
+All 197 tests, for reference only: Haiku Markdown 187 · 179 · 186, export 186 · 179 · 178; Sonnet
+Markdown 195 · 191 · 195, export 193 · 193 · 195. Six readings are borderline; counting them as silent
+moves an arm mean by at most 0.67 (Haiku 11.67 vs 11.33, Sonnet 13.33 vs 13.67).
+
+**Result: no difference between formats on set 2**, as expected: the export does not make the agent
+say more often that the spec is silent. On set 1, Sonnet ties; Haiku's export mean is 2.7 tests lower
+with overlapping ranges, which n = 3 neither shows nor rules out (no margin was set).
+
+**Per gap** (runs that flagged it, of 3; all other readings silent):
+
+| Gap | Kind | Haiku Md | Haiku export | Sonnet Md | Sonnet export |
+|---|---|---|---|---|---|
+| G03 recall with an empty reference set | edge | 1 | 2 | 0 | 0 |
+| G09 Snowball *porter* is the original Porter | value | 2 | 2 | 1 | 0 |
+| G14 comma or colon split unless a digit follows | edge | 3 | 3 | 1 | 1 |
+| G20 tree equality compares labels | edge | 1 | 0 | 0 | 0 |
+| G23 Naive Bayes ignores an unseen feature | error | 3 | 2 | 0 | 1 |
+| G02, G07, G08, G10, G13, G16, G17, G18, G24 (Jaccard definition; stemmer input one token; error names the language; one-letter stem; span end exclusive; whitespace in tag pattern; empty tagged list; grammar of another type refused; no shared feature still labelled) | | 0 | 0 | 0 | 0 |
+
+**Every gap was built with the upstream value: 168 of 168 probe readings** (none alternative, none
+missing). An unflagged gap is therefore a silent invention *of the reference library's behaviour*:
+the agents filled the gaps from knowledge of `nltk`, not from the spec. The gaps flagged at all are
+mostly those where a **neighbouring sentence still shows the absence** (G14: a list of split
+characters without the comma; G03: a clause on precision and f-measure without recall; G09: *porter*
+named as a language but not defined). Where a whole bullet went and the upstream behaviour is the
+familiar one, no run noticed. Haiku flagged 19 of 84 readings, Sonnet 4 of 84; Haiku's notes are
+longer (78–655 lines against 26–57).
+
+**Secondary measures** (`notes/hallu_static.py`, no model call; descriptive):
+
+| Measure | Round 20 | Rounds 13c–19 | Blind to |
+|---|---|---|---|
+| Imports with no PyPI project (package hallucination) | 0 in 12 builds | 0 in 82 builds | a name that exists on PyPI but is not what was meant |
+| Failed hidden tests by exception class | all `AssertionError` (Haiku 39 / 48, Sonnet 10 / 10 Markdown / export) | mostly `AssertionError`; case010 `HarnessError` 152 (round 13c model files) | why a value is wrong |
+| Public names in `nltk` and not in the given spec, per run | Haiku 9–16 Md, 5–16 export; Sonnet 45–56 Md, 30–41 export | case010 Haiku 3–13, Sonnet 13–70 | memory of upstream vs common naming |
+
+**Run conditions checked** (all 12): Claude Code 2.1.316; no dollar ceiling; no output-limit cut; the
+token in no saved file; the driver paused 01:50–03:15 for the 5-hour usage window.
+
+**Cost.** Compile $1.35 est. (356 Haiku calls). Runs $15.15 est. for 12: Haiku Markdown $0.53–0.88,
+export $0.93–1.50; Sonnet Markdown $1.42–1.63, export $1.35–1.83. Turns: Haiku 34–55 and 53–91; Sonnet
+16–18 and 19–23.
+
+**Limits.** One case; n = 3; the gap readings are one reader's (the assistant's), not blind to format,
+to be audited by the owner (`notes/detection_audit.md`); one probe reads one input per gap (one probe
+limit found, G14 in one Haiku run).
+
+*Sources: `harness/trials/r20-zero2repo-case010-gaps/TRIAL.md` (steps 0–8) and `ANSWER_KEY.md`; its
+`notes/scores.json`, `notes/detection.tsv`, `notes/hallu_static.json`, `results.json` and
+`run_queue.log`; reg. 161–173.*
+
 ## 5. Analysis
 
 **Why test scores do not move.** The rules the tests check are stated in both formats, word for
@@ -859,7 +937,9 @@ compares formats with no extra information. The design follows UnderSpecBench (J
 2607.02294), where underspecified instructions mostly make coding agents guess rather than fail.
 Secondary, from the saved runs at no model cost: package and import hallucination (Spracklen et al.
 2025), classes of hidden-test failures after CodeHalu (Tian et al. 2025), and *upstream leakage*
-(names or defaults of the real library that the renamed specification does not give). Not yet run.
+(names or defaults of the real library that the renamed specification does not give). **Round 20
+(§4.8, case010, 14 gaps): no difference between formats (silent inventions 10.67 vs 11.00 Haiku, 13.33
+vs 13.33 Sonnet, Markdown vs export); every gap built with the upstream value; secondary measures run.**
 
 **Conflicts the compiler did not flag (D34).** Data from the compiler-only rounds 14–16 and from the
 Markdown runs of rounds 17–19 (which do not depend on the export):

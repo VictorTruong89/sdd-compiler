@@ -1,0 +1,13 @@
+run_id	task	model	status	job	attempts	last_message
+r20-sonnet-export-1	work/tasks/case010-gaps-export	anthropic/claude-sonnet-5-5	done	r20-zero2repo-case010-gaps-r20-sonnet-export-1	1	
+r20-haiku-markdown-1	work/tasks/case010-gaps-markdown	anthropic/claude-haiku-5-5	done	r20-zero2repo-case010-gaps-r20-haiku-markdown-1	1	
+r20-haiku-export-1	work/tasks/case010-gaps-export	anthropic/claude-haiku-5-5	done	r20-zero2repo-case010-gaps-r20-haiku-export-1	1	
+r20-haiku-markdown-2	work/tasks/case010-gaps-markdown	anthropic/claude-haiku-5-5	done	r20-zero2repo-case010-gaps-r20-haiku-markdown-2	1	
+r20-haiku-export-2	work/tasks/case010-gaps-export	anthropic/claude-haiku-5-5	done	r20-zero2repo-case010-gaps-r20-haiku-export-2	1	
+r20-haiku-markdown-3	work/tasks/case010-gaps-markdown	anthropic/claude-haiku-5-5	done	r20-zero2repo-case010-gaps-r20-haiku-markdown-3	1	
+r20-haiku-export-3	work/tasks/case010-gaps-export	anthropic/claude-haiku-5-5	done	r20-zero2repo-case010-gaps-r20-haiku-export-3	1	
+r20-sonnet-markdown-1	work/tasks/case010-gaps-markdown	anthropic/claude-sonnet-5-5	done	r20-zero2repo-case010-gaps-r20-sonnet-markdown-1	1	
+r20-sonnet-markdown-2	work/tasks/case010-gaps-markdown	anthropic/claude-sonnet-5-5	done	r20-zero2repo-case010-gaps-r20-sonnet-markdown-2	1	
+r20-sonnet-export-2	work/tasks/case010-gaps-export	anthropic/claude-sonnet-5-5	done	r20-zero2repo-case010-gaps-r20-sonnet-export-2	1	
+r20-sonnet-markdown-3	work/tasks/case010-gaps-markdown	anthropic/claude-sonnet-5-5	done	r20-zero2repo-case010-gaps-r20-sonnet-markdown-3	1	
+r20-sonnet-export-3	work/tasks/case010-gaps-export	anthropic/claude-sonnet-5-5	done	r20-zero2repo-case010-gaps-r20-sonnet-export-3	1	

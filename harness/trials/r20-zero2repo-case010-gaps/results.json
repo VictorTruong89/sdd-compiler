@@ -1,0 +1,639 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 15.1504,
+ "groups": {
+  "work/tasks/case010-gaps-export | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r20-haiku-export-1",
+    "r20-haiku-export-2",
+    "r20-haiku-export-3"
+   ],
+   "tests_passed": [
+    186,
+    179,
+    178
+   ],
+   "mean_tests_passed": 181,
+   "turns": [
+    73,
+    91,
+    53
+   ],
+   "cost_usd_est": [
+    1.4017582500000003,
+    1.5028382799999997,
+    0.9294403899999999
+   ]
+  },
+  "work/tasks/case010-gaps-markdown | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r20-haiku-markdown-1",
+    "r20-haiku-markdown-2",
+    "r20-haiku-markdown-3"
+   ],
+   "tests_passed": [
+    187,
+    179,
+    186
+   ],
+   "mean_tests_passed": 184,
+   "turns": [
+    46,
+    34,
+    55
+   ],
+   "cost_usd_est": [
+    0.65427732,
+    0.5328043400000001,
+    0.88309298
+   ]
+  },
+  "work/tasks/case010-gaps-export | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r20-sonnet-export-1",
+    "r20-sonnet-export-2",
+    "r20-sonnet-export-3"
+   ],
+   "tests_passed": [
+    193,
+    193,
+    195
+   ],
+   "mean_tests_passed": 193.67,
+   "turns": [
+    19,
+    20,
+    23
+   ],
+   "cost_usd_est": [
+    1.3549567999999999,
+    1.5852765999999998,
+    1.8264143
+   ]
+  },
+  "work/tasks/case010-gaps-markdown | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r20-sonnet-markdown-1",
+    "r20-sonnet-markdown-2",
+    "r20-sonnet-markdown-3"
+   ],
+   "tests_passed": [
+    195,
+    191,
+    195
+   ],
+   "mean_tests_passed": 193.67,
+   "turns": [
+    17,
+    18,
+    16
+   ],
+   "cost_usd_est": [
+    1.4171416000000001,
+    1.6261033,
+    1.4362890000000001
+   ]
+  }
+ },
+ "runs": {
+  "r20-haiku-export-1": {
+   "task": "work/tasks/case010-gaps-export",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9441624365482234,
+     "tests_passed": 186,
+     "tests_total": 197,
+     "tests_failed": 11,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 186,
+    "failed": 11,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 73,
+   "subtype": "success",
+   "agent_seconds": 1019.6,
+   "total_cost_usd_est": 1.4017582500000003,
+   "exception_info": null
+  },
+  "r20-haiku-export-2": {
+   "task": "work/tasks/case010-gaps-export",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9086294416243654,
+     "tests_passed": 179,
+     "tests_total": 197,
+     "tests_failed": 18,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_default_porter_nineteen_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str",
+      "../tests/final/tests/F06_acceptance.py::test_naive_bayes_nice_only_positive_bad_only_negative_with_ranked_probs",
+      "../tests/final/tests/F06_acceptance.py::test_naive_bayes_runtime_features_and_labels_rank_and_swap",
+      "../tests/final/tests/F06_acceptance.py::test_naive_bayes_unseen_feature_does_not_flip_or_zero_all_probs",
+      "../tests/final/tests/F06_acceptance.py::test_accuracy_classifier_pos_pos_neg_against_pos_neg_neg_is_two_thirds",
+      "../tests/final/tests/F06_acceptance.py::test_accuracy_classifier_length_four_is_half",
+      "../tests/final/tests/F06_acceptance.py::test_accuracy_classifier_same_bag_permutation_is_one_third"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 179,
+    "failed": 18,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 91,
+   "subtype": "success",
+   "agent_seconds": 1074.7,
+   "total_cost_usd_est": 1.5028382799999997,
+   "exception_info": null
+  },
+  "r20-haiku-export-3": {
+   "task": "work/tasks/case010-gaps-export",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9035532994923858,
+     "tests_passed": 178,
+     "tests_total": 197,
+     "tests_failed": 19,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_lancaster_maximum_is_maxim_default_porter_is_not",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_wordnet_lemmatizer_fails_without_wordnet_graded_stemmers_do_not",
+      "../tests/final/tests/F06_acceptance.py::test_naive_bayes_nice_only_positive_bad_only_negative_with_ranked_probs",
+      "../tests/final/tests/F06_acceptance.py::test_naive_bayes_runtime_features_and_labels_rank_and_swap",
+      "../tests/final/tests/F06_acceptance.py::test_naive_bayes_unseen_feature_does_not_flip_or_zero_all_probs",
+      "../tests/final/tests/F06_acceptance.py::test_accuracy_classifier_pos_pos_neg_against_pos_neg_neg_is_two_thirds",
+      "../tests/final/tests/F06_acceptance.py::test_accuracy_classifier_length_four_is_half",
+      "../tests/final/tests/F06_acceptance.py::test_accuracy_classifier_same_bag_permutation_is_one_third"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 178,
+    "failed": 19,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 53,
+   "subtype": "success",
+   "agent_seconds": 759.0,
+   "total_cost_usd_est": 0.9294403899999999,
+   "exception_info": null
+  },
+  "r20-haiku-markdown-1": {
+   "task": "work/tasks/case010-gaps-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.949238578680203,
+     "tests_passed": 187,
+     "tests_total": 197,
+     "tests_failed": 10,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 187,
+    "failed": 10,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 46,
+   "subtype": "success",
+   "agent_seconds": 733.1,
+   "total_cost_usd_est": 0.65427732,
+   "exception_info": null
+  },
+  "r20-haiku-markdown-2": {
+   "task": "work/tasks/case010-gaps-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9086294416243654,
+     "tests_passed": 179,
+     "tests_total": 197,
+     "tests_failed": 18,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_recommended_mortgage_keeps_grouped_and_decimal_amounts",
+      "../tests/final/tests/F01_acceptance.py::test_cli_tokenize_hello_world_joined_by_spaces",
+      "../tests/final/tests/F01_acceptance.py::test_cli_one_output_line_per_nonempty_input_line",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_chunks_two_separated_four_token_runs_not_term_jury",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_concatenated_runs_are_one_ten_token_chunk",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_runtime_separated_and_concatenated",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_runtime_length_threshold",
+      "../tests/final/tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_named_sentences"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 179,
+    "failed": 18,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 34,
+   "subtype": "success",
+   "agent_seconds": 645.4,
+   "total_cost_usd_est": 0.5328043400000001,
+   "exception_info": null
+  },
+  "r20-haiku-markdown-3": {
+   "task": "work/tasks/case010-gaps-markdown",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9441624365482234,
+     "tests_passed": 186,
+     "tests_total": 197,
+     "tests_failed": 11,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str",
+      "../tests/final/tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 186,
+    "failed": 11,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 55,
+   "subtype": "success",
+   "agent_seconds": 851.6,
+   "total_cost_usd_est": 0.88309298,
+   "exception_info": null
+  },
+  "r20-sonnet-export-1": {
+   "task": "work/tasks/case010-gaps-export",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9796954314720813,
+     "tests_passed": 193,
+     "tests_total": 197,
+     "tests_failed": 4,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 193,
+    "failed": 4,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 19,
+   "subtype": "success",
+   "agent_seconds": 476.9,
+   "total_cost_usd_est": 1.3549567999999999,
+   "exception_info": null
+  },
+  "r20-sonnet-export-2": {
+   "task": "work/tasks/case010-gaps-export",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9796954314720813,
+     "tests_passed": 193,
+     "tests_total": 197,
+     "tests_failed": 4,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 193,
+    "failed": 4,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 20,
+   "subtype": "success",
+   "agent_seconds": 658.4,
+   "total_cost_usd_est": 1.5852765999999998,
+   "exception_info": null
+  },
+  "r20-sonnet-export-3": {
+   "task": "work/tasks/case010-gaps-export",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9898477157360406,
+     "tests_passed": 195,
+     "tests_total": 197,
+     "tests_failed": 2,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 195,
+    "failed": 2,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 23,
+   "subtype": "success",
+   "agent_seconds": 692.1,
+   "total_cost_usd_est": 1.8264143,
+   "exception_info": null
+  },
+  "r20-sonnet-markdown-1": {
+   "task": "work/tasks/case010-gaps-markdown",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9898477157360406,
+     "tests_passed": 195,
+     "tests_total": 197,
+     "tests_failed": 2,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 195,
+    "failed": 2,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 17,
+   "subtype": "success",
+   "agent_seconds": 599.5,
+   "total_cost_usd_est": 1.4171416000000001,
+   "exception_info": null
+  },
+  "r20-sonnet-markdown-2": {
+   "task": "work/tasks/case010-gaps-markdown",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9695431472081218,
+     "tests_passed": 191,
+     "tests_total": 197,
+     "tests_failed": 6,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_english_skip_off_having_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_english_skip_on_does_not_construct_without_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_english_skip_on_leaves_having_when_wordlist_present",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_fails_with_only_english_wordlist",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 191,
+    "failed": 6,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 18,
+   "subtype": "success",
+   "agent_seconds": 699.7,
+   "total_cost_usd_est": 1.6261033,
+   "exception_info": null
+  },
+  "r20-sonnet-markdown-3": {
+   "task": "work/tasks/case010-gaps-markdown",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9898477157360406,
+     "tests_passed": 195,
+     "tests_total": 197,
+     "tests_failed": 2,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 195,
+    "failed": 2,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 16,
+   "subtype": "success",
+   "agent_seconds": 611.9,
+   "total_cost_usd_est": 1.4362890000000001,
+   "exception_info": null
+  }
+ }
+}
