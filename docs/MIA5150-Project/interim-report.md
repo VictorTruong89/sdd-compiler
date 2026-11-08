@@ -3,10 +3,13 @@
 > MIA 5150, Fall 2026 · draft opened 2026-10-28 by Claude Code for the owner; updated 2026-11-02
 > with rounds 17 and 18 (24 planted conflicts, §3.6 and §4.6); **updated 2026-11-03 with round 19**
 > (15 planted conflicts in a second case, case010, §3.7 and §4.7); **updated 2026-11-05 with round 20**
-> (14 planted gaps in case010, §4.8) · working Markdown, may move to LaTeX
+> (14 planted gaps in case010, §4.8); **updated 2026-11-06 with round 21** (17 conflicts and 16 gaps
+> in case016, three arms, §4.9); **checked 2026-11-08** against the round 18–21 records (figures
+> unchanged; §4.9 corrected on what the compiler export flags) and §1, §2, §3.8–3.9, §5, §6 and §7
+> brought up to rounds 20–21 · working Markdown, may move to LaTeX
 > later. Every figure names its source: a trial's `TRIAL.md` (under `harness/trials/` or
 > `harness/benchmarks/`), a run of the register in `sdd/design/rel-02/rel02_methodology_notes.md` §8
-> ("reg. *n*"; rounds 17–18 are reg. 117–147, round 19 reg. 148–160, round 20 reg. 161–173), or the report draft `sdd/design/rel-02/rel02_report_draft.md`
+> ("reg. *n*"; rounds 17–18 are reg. 117–147, round 19 reg. 148–160, round 20 reg. 161–173, round 21 reg. 174–200), or the report draft `sdd/design/rel-02/rel02_report_draft.md`
 > (R1–R5). Every `$`
 > is Claude Code's `total_cost_usd`: an **estimated** API-equivalent, not money spent (the runs used a
 > subscription). Trials T0–T2, run or prepared on 28 October, are in §4.5.
@@ -19,15 +22,18 @@
 | **Markdown (format)** | The specification files exactly as the benchmark gives them. One of the two formats an agent is given. |
 | **Graph** | The compiler's internal record of a specification, in the `.sdd/` folder: one *node* per requirement (a quoted claim from the source), the links between nodes, defined terms, and a *conflict record* for each pair of nodes judged to contradict. The coding agent never reads the graph itself. |
 | **Export** (also "graph export") | What the compiler writes *from* the graph for a coding agent to read: `MAP.md` (index and reading instructions), `CHECKLIST.md` (every node id) and one *pack* per area of the spec (the original text plus its claims and any conflicts, both sides quoted). It is the second format. "Export v2" and "export v3" are two exports of the same 7-conflict case006 (§4.5). |
-| **Oracle export** | Rounds 17–19 only: the compiler's export with the planted conflicts it missed added by hand from the answer key, so that all are flagged (24 of 24 in rounds 17–18, §3.6; 15 of 15 in round 19, §3.7). It measures what an agent does with flagged conflicts, **not** what the compiler finds. |
+| **Oracle export** | Rounds 17–19 and 21: the compiler's export with the planted conflicts it missed added by hand from the answer key, so that all are flagged (24 of 24 in rounds 17–18, §3.6; 15 of 15 in round 19, §3.7; 16 of 17 in round 21, §3.9). It measures what an agent does with flagged conflicts, **not** what the compiler finds. |
+| **Compiler export** | Rounds 20–21: the compiler's export exactly as `sddc` makes it. Contradictions that are not planted items are judged false on the owner's behalf, and nothing is added from the answer key. It flags only the planted conflicts the compiler found (10 of 17 in round 21). Round 20's "plain export" is the same kind (no conflicts planted, so nothing flagged). |
+| **Gap** | Rounds 20–21: a fact that the specification states (a default, a limit, an edge rule, an error case) and that we removed with no marker, while the hidden tests still check it (§3.8). The *upstream* value is the original library's; the *alternative* is a plausible other value, told apart by a probe. |
+| **Flagged / invented silently** | For a gap: *flagged* = the notes name the point as not stated and give the value assumed; *invented silently* = the code takes a value and the notes do not flag it; *not built* (the probe reads neither value) is counted apart. |
 | **Conflict / contradiction** | Two sentences of the specification that cannot both be built. *Planted* conflicts are ones we added on purpose (§3.4, §3.6). |
-| **Side A / side B** | The two sentences of a planted conflict. **A** is the case's original sentence (case006, or case010 in round 19): the real library's behaviour, and what the hidden tests check. **B** is the sentence we planted elsewhere that says the opposite. Example (P6): A "maximum content width 80 columns", B "100 columns". Nothing in the spec says which side is right. |
+| **Side A / side B** | The two sentences of a planted conflict. **A** is the case's original sentence (case006; case010 in round 19; case016 in round 21): the real library's behaviour, and what the hidden tests check. **B** is the sentence we planted elsewhere that says the opposite. Example (P6): A "maximum content width 80 columns", B "100 columns". Nothing in the spec says which side is right. |
 | **Unsettled / settled** | Unsettled: the export shows both sides and leaves the choice to the agent (`--allow-open`). Settled: the owner has ruled, and the export carries only the ruling. `DECISIONS.md` is the same rulings as a short plain file beside the Markdown. |
 | **Named (detection)** | Rounds 14–16: the agent's `NOTES.md` mentions both sides as a disagreement, or the choice it made between them. Rounds 17–18, **strict rule**: the notes state the *content* of both sides and present them as disagreeing; a conflict id or a topic alone does not count. Read by Claude Code, item by item. |
 | **Built side / probe** | Which side the agent's code actually follows, found by a small black-box check (*probe*) run on the saved code. |
 | **Footprint** | The hidden tests whose result changes when one planted conflict is built on side B instead of A, measured with no model. These are the tests *related to the conflicts*. |
-| **Core score (set 1)** | Hidden tests passed among those no planted conflict touches, i.e. all hidden tests **minus** the footprint tests: 469 of 476 with 7 conflicts (rounds 14–16), 445 of 476 with 24 (rounds 17–18; footprint union 31), 173 of 197 with 15 (round 19, case010; footprint union 24). The footprint tests are left out because they reward side A whether or not the agent noticed the conflict, and the spec does not say A is right. |
-| **Set 1, set 2** | Rounds 17–19 report two validation sets side by side: **set 1** = core passed / 445 (round 19: / 173) (build quality, one unit per test); **set 2** = named / 24 (round 19: / 15) under the strict rule (detection, one unit per conflict). Where one figure is wanted, it is the plain mean of the two percentages, shown next to both. |
+| **Core score (set 1)** | Hidden tests passed among those no planted conflict touches, i.e. all hidden tests **minus** the footprint tests: 469 of 476 with 7 conflicts (rounds 14–16), 445 of 476 with 24 (rounds 17–18; footprint union 31), 173 of 197 with 15 (round 19, case010; footprint union 24), 175 of 197 with 14 gaps (round 20; union 22), 338 of 388 with 17 conflicts and 16 gaps (round 21, case016; union 50). The footprint tests are left out because they reward side A whether or not the agent noticed the conflict, and the spec does not say A is right. |
+| **Set 1, set 2** | Rounds 17–19 report two validation sets side by side: **set 1** = core passed / 445 (round 19: / 173) (build quality, one unit per test); **set 2** = named / 24 (round 19: / 15) under the strict rule (detection, one unit per conflict). Where one figure is wanted, it is the plain mean of the two percentages, shown next to both. Round 20: **set 2** = silent inventions / 14 gaps (lower is better). Round 21 has both: **set 2a** = named / 17 conflicts, **set 2b** = silent inventions / 15 gaps. |
 | **Exposure** | Whether each side's wording appears in what the agent read (its tool results in the transcript). |
 | **`lend`** | Our own small benchmark task: a command-line tool for a library that lends tools. 7 Markdown files, 2 120 words, 4 contradictions written in by design, 24 hidden tests (R1). |
 | **Turns** | Claude Code's count of agent steps in a run (`num_turns` in its result line). Each turn is one model reply, usually with one or more tool calls (read a file, edit, run a command). More turns means more model calls and usually more cost. |
@@ -39,7 +45,7 @@
 
 **What is working.** The full pipeline runs end to end: our compiler (`sddc`) turns a folder of
 Markdown specifications into a graph and an export, and Claude Code builds the software inside the
-Harbor platform from either form, scored by hidden tests. The run register holds 160 model runs (agent runs,
+Harbor platform from either form, scored by hidden tests. The run register holds 200 rows (agent runs,
 including cut-off attempts, and compiles). The one number: **with 24 conflicts
 planted in a 14 435-word specification and all 24 flagged in the export, both Claude Haiku and Claude
 Sonnet named every one, with both sides, in all 3 runs each (24 of 24); from the plain Markdown
@@ -48,14 +54,20 @@ tests 98.4 % vs 98.6 %). Our compiler on its own flags 14 of the 24 (11 before t
 the other 10 flags were added from the answer key, so the 24 of 24 is an upper bound for the agent,
 not a compiler result. **A second case (round 19, 15 conflicts in case010) repeats the pattern:**
 named 93–96 % from the flagged export against 51–67 % from the Markdown, and the same core score from
-either format for Sonnet (96.9 % vs 97.1 %); the compiler alone flags 9 of the 15.
+either format for Sonnet (96.9 % vs 97.1 %); the compiler alone flags 9 of the 15. **A third case
+(round 21, case016) gave an agent the compiler's own export, with no flags added:** on the 10 conflicts
+it flags, naming rose from 72 % to 100 % (Haiku) and from 70 % to 87 % (Sonnet); on the ones it misses
+there was no gain. **On hallucination (facts removed from the spec, rounds 20–21), neither export
+changed anything:** in every run, from every format, agents filled 10 to 15 of the 14–15 missing facts
+without saying so.
 
 **What is blocked.** Nothing is hard-blocked. Three things slow us. (1) The subscription's usage
-limit: runs pause at the 5-hour and weekly windows (in each of rounds 16–18 one run was cut off and rerun).
+limit: runs pause at the 5-hour and weekly windows (in each of rounds 16–18 one run was cut off and
+rerun, in round 21 two; the driver reruns them unattended).
 (2) The check of how agents' notes were read is done by one reader so far; my own audit sheets for
-rounds 14–18 are prepared but not yet filled in. (3) Haiku's build quality fell in round 18 for a
-reason we cannot yet separate (three run conditions changed together, §4.6). Round 19 ran under
-round 18's conditions and its audit sheet is ready too (`r19-…/notes/detection_audit.md`).
+rounds 14–21 are prepared but not yet filled in. (3) Haiku's build quality fell in round 18 for a
+reason we cannot yet separate (three run conditions changed together, §4.6); rounds 19–21 ran under
+round 18's conditions.
 
 **What changed since the proposal.** Harbor is the platform; the public benchmarks are DevEval and
 Zero2Repo instead of ProjectEval, RealBench and Doc2Feat-Bench, which did not fit (inputs too small,
@@ -63,7 +75,9 @@ not obtainable, or edits to an existing codebase). The flat single-prompt format
 Opus was tried on one benchmark only and then dropped. We added conflicts planted on purpose, because
 no public benchmark has specifications that contradict themselves, and raised them from 7 to 24 (5 %
 of the hidden tests). The claim has narrowed: **the graph does not raise test scores** in any setting
-so far; what it does is make the agent **notice and report contradictions** in the specification.
+so far; what it does is make the agent **notice and report contradictions** in the specification,
+**when the export flags them**. Hallucination is now measured as silent invention of facts we
+removed (rounds 20–21), replacing the proposal's hallucination counts.
 
 **Plan or backup.** We are on a version of the **backup** (proposal §10): two formats (specification
 as written vs graph), Haiku and Sonnet. It differs from the backup in its main measure (tests passed
@@ -71,7 +85,8 @@ and conflicts noticed, not omission rate) and has more tasks and runs than the b
 
 *(Sources: §4 below; `harness/trials/r17-zero2repo-case006-conflicts-24/TRIAL.md`,
 `harness/trials/r18-zero2repo-case006-notes-both-sides/TRIAL.md`,
-`harness/trials/r19-zero2repo-case010-conflicts/TRIAL.md`.)*
+`harness/trials/r19-zero2repo-case010-conflicts/TRIAL.md`, `harness/trials/r20-zero2repo-case010-gaps/TRIAL.md`,
+`harness/trials/r21-zero2repo-case016-conflicts-gaps/TRIAL.md`.)*
 
 ## 2. Claim and question
 
@@ -83,26 +98,43 @@ prompt or as tiered SDD files*, measured by code quality, hallucination and spec
 - **Not supported: better code.** In every setting tested (three benchmarks, two
   models, 1 196 to 18 964 words of specification) the export did not change the hidden tests passed
   by a margin that survives reading the failures (§4). With 24 planted conflicts, the export did not
-  make Sonnet's code worse either (set 1, §4.6), nor with 15 on a second case (§4.7). Haiku's core
-  was higher from the export in both rounds 18 and 19, by less than its own run spread (§5).
+  make Sonnet's code worse either (set 1, §4.6), nor with 15 on a second case (§4.7), nor with
+  17 conflicts and 16 gaps on a third (§4.9). Haiku's core was higher from the export in rounds 18,
+  19 and 21, each time by less than its own run spread. Pooled over the three rounds, a permutation
+  test gives p = 0.060 (§5): suggestive, not shown. Round 20 (gaps only) went the other way for
+  Haiku, by 2.7 tests with overlapping ranges.
 - **Supported: detection, when the conflicts are flagged.** With 7 planted conflicts, the export made
   Haiku report more of them (46 of 49 vs 33 of 49), all of the gain in conflicts whose sides sit in
   different documents; Sonnet named almost all from either format (4 runs). With 24, the gain shows
   for **both** models: 100 % from the flagged export against 73.6 % (Sonnet) and 36.1 % (Haiku) from the
   Markdown (round 18). On a second case (round 19, 15 conflicts): 93.3 % and 95.6 % against 66.7 % and
-  51.1 %. Noticing did not by itself change which side was built.
+  51.1 %. On a third case (round 21), 94 % (Haiku) and 86 % (Sonnet) from the oracle export against
+  65 % and 71 % from the Markdown. Noticing did not by itself change which side was built.
+- **Supported on one case: the compiler's own export helps, but only where it flags** (round 21,
+  §4.9). This is the first run without flags added from the answer key. On the 10 conflicts it
+  flagged, naming rose from 72 % to 100 % (Haiku) and from 70 % to 87 % (Sonnet). On the 6 it missed,
+  it did no better than the Markdown (57 % vs 63 %; 83 % vs 83 %). Over all 17 it gave about half the
+  oracle's gain for Haiku (65 → 79 → 94 %, Markdown → compiler → oracle) and more for Sonnet
+  (71 → 80 → 86 %).
 - **A flag helps only if its rationale names the real difference.** In round 19 one conflict was
   flagged with the right pair but a rationale about another point; it was named in at most 1 of 6
   export runs (§4.7).
 - **Limited by the compiler's recall.** The 24-of-24 and 15-of-15 results use oracle exports. The
-  compiler alone flags 14 of 24 (every miss a pair never put to the judge, §4.6) and 9 of 15 (4 never
-  put to the judge, 2 judged wrongly, §3.7).
+  compiler alone flags 14 of 24 (every miss a pair never put to the judge, §4.6), 9 of 15 (4 never
+  put to the judge, 2 judged wrongly, §3.7) and 9 of 17 (one side of one conflict in no node at all,
+  §3.9).
+- **Not supported: less hallucination.** With 14 facts removed (round 20) and 15 (round 21), agents
+  invented most missing facts without saying so, the same from every format (arm means 10.7–14.0
+  silent inventions). Neither export flags a gap, so this compares formats with no extra information.
+  On case010 (`nltk`) every gap was filled with the real library's value; on case016, whose library is
+  not on PyPI, five gaps were filled in every run with a value the hidden tests reject (§4.8, §4.9).
 - **Supported: decisions travel.** When the owner rules on a contradiction, the ruling reaches the
   code whether it travels inside the export or as a short plain `DECISIONS.md`.
 
 The question for the rest of the term is therefore: *does a compiled graph help an agent find
 contradictions in a specification, how much of that help survives the compiler's own recall, and is
-it worth its cost?*
+it worth its cost?* Round 21 gives a first answer to the middle part on one case: the help follows
+the compiler's flags item by item.
 
 ## 3. Method
 
@@ -159,7 +191,8 @@ The compiler's model is always **Claude Haiku**, called through headless Claude 
 answer in every compile store on the project machine is Haiku's (78 854 answers, counted 2026-10-28
 from the stores' `lock` files). No Opus or Sonnet is used in the compiler. Opus and Sonnet appear
 only as coding agents (§3.1). The export is 4.7–6.4 times the Markdown's length (R1, R2, R4); the
-24-conflict oracle export is 3.1 times (44 506 vs 14 435 words, §3.6).
+24-conflict oracle export is 3.1 times (44 506 vs 14 435 words, §3.6), and round 21's exports 3.2 times
+(59 879 and 60 572 vs 18 845 words in the task's spec folder, §3.9).
 
 **One frozen task per condition.** Each condition is built once as a Harbor task, with its
 specification folder fixed. Every run of that condition uses that same task. We checked this for the
@@ -205,7 +238,14 @@ tests are counted (a fault where agent-written tests were counted was found and 
 R2). On `lend`, `lend_score.py` adds omissions and contradiction sides. On DevEval, each hidden test
 was classified by whether the specification states it (R2). On case006, `notes/score.py`,
 `probe.py` and `probe.sh` give core, probes and exposure; rounds 17 and 18 use the same scorer
-adapted to 24 items and core 445, unchanged between the two rounds.
+adapted to 24 items and core 445, unchanged between the two rounds. Rounds 19–21 copy it, with each
+case's items, footprint and core. Two fixes in round 21 left the method unchanged. (a) The transcript
+is split on newlines only: case016's prose has U+2028 inside JSON strings, and Python's `splitlines()`
+also breaks on that. (b) Turns are summed over all result lines: one run was woken for one more turn
+by a background command it had started. **Borderline readings** are marked in every round, but they
+are counted differently. Round 20 counts a borderline gap as *flagged*, with the effect of counting it
+silent shown beside it (at most 1.00 on an arm mean). Round 21 counts a borderline conflict or gap
+against the item (*not* named, *not* flagged) and lists the readings in `notes/readings.txt`.
 
 ### 3.6 Planted-conflict design, 24 conflicts (rounds 17–18)
 
@@ -312,6 +352,81 @@ counts, the models, n = 3, alternated order and a gate run first. *(Source:
    word stemmers; it **failed**, the queue stopped, and the owner chose to run the other 11 ("continue
    the other 11 runs, then score them").
 
+### 3.8 Planted-gap design: hallucination as silent invention (rounds 20–21)
+
+Decision D33 (§7.2) sets the hallucination measure. A **gap** is a stated fact that we remove from
+the specification, with no marker, while 1–3 hidden tests still check it. An agent that builds a value
+for it without saying the spec is silent has *invented it silently*. The method is round 17's
+conflict method, applied to removal. *(Source: `harness/trials/r20-zero2repo-case010-gaps/TRIAL.md`,
+"Design" and steps 1–4, and its `ANSWER_KEY.md`.)*
+
+1. **Candidates from test names only.** A candidate is a test name that points at one stated fact.
+   The fact must be stated in at most 2 places, so it can be removed cleanly. It must have a plausible
+   alternative value, and removing it must leave no dangling reference and no new contradiction.
+2. **Alternative builds and probes.** Each candidate is built into a copy of a base build (a full or
+   near-full earlier agent build) with the alternative value. A black-box probe must read *upstream* on
+   the base and *alternative* on its own copy.
+3. **Footprint 1–3 tests, none shared**, measured with Harbor's no-model oracle agent. On case010, none
+   of the 20 model-file tests and none of round 19's items may be touched.
+4. **Remove** every sentence that states the fact, and check that the gap's key phrase no longer
+   appears in the spec or in the export.
+5. **The export carries no gap flag.** The compiler has no gap detector, and its contradictions are
+   judged false on the owner's behalf, with nothing added. Any difference in set 2 therefore comes from
+   the format alone, which answers the grader's request that the graph give no extra information.
+6. **Instruction.** One sentence is added, the same in both formats: list in `NOTES.md` what the spec
+   does not state, where you looked, and what you assumed.
+7. **Strict rule, written before any run.** *Flagged* means the notes name this point as unstated and
+   give the value assumed. Otherwise, if the code takes a value, the gap counts as *invented silently*.
+   *Not built* is counted apart. Set 2 = silent inventions / gaps kept, and lower is better.
+
+**Round 20** (case010, `nltk` renamed lingora): 24 candidates, **14 gaps kept** (value 3, edge rule 6,
+error case 5). Footprint union 22, core 175 of 197. The gapped spec has 8 132 words (8 412 before).
+Its compile (356 calls, $1.35 est.) raised 22 contradictions, all judged false. Two formats, n = 3.
+
+### 3.9 Conflicts and gaps in one spec, three arms (round 21, case016)
+
+The owner asked for rounds 18–20 repeated on a third case, with conflicts and gaps in **one** spec.
+The owner's answers were "One spec", "Md + compiler + oracle" and "3 Sonnet, 5 Haiku". The case is
+Zero2Repo **case016** (`prosecheck`, a Python detector plus Node.js agent-plugin hooks; 18 964 words;
+**388** hidden tests). Its upstream, `sloptrim`, is not on PyPI, so agents are unlikely to recall its
+behaviour. *(Source: `harness/trials/r21-zero2repo-case016-conflicts-gaps/TRIAL.md`, "Design" and
+steps 0–4, and its `ANSWER_KEY.md`.)*
+
+1. **Candidates and selection.** Rounds 19 and 20's rules applied together: 25 conflict and 22 gap
+   candidates from test names, with 47 alternative builds, all probes checked (0 mismatches), and
+   footprints on a 388 / 388 base build (round 13c, Sonnet export run 2). Kept: footprint 1–3, with no
+   test shared between any two items of either kind. Three shared tests were rerun and confirmed before
+   their items were dropped. **17 conflicts and 16 gaps kept.** The design target was 20 of each (5 % of
+   388). The criteria were kept rather than relaxed after the footprints were seen. Footprint union 50,
+   so the **core is 338**. Side B of the 17 conflicts is in the PRD for 9 and in the Interface Contract
+   for 8.
+2. **Plant and remove:** 41 edits for 33 items; 18 845 words.
+3. **A gap that was not one.** The check run's notes cited G01's fact from a second sentence in other
+   words, which the key-phrase check had missed. G01 is kept in the spec (the same in all arms) and
+   reported apart, so **set 2b counts 15 gaps**. G21 can be derived from two definitions and is marked
+   *derivable*.
+4. **Compile** with the compiler unchanged (860 Haiku calls, $3.58 est., 1 126 nodes, 67
+   contradictions). Of the 67, 10 are planted pairs. Of the other 57, 51 were judged false on the
+   owner's behalf, and 6 were left open as real (a planted side B that also contradicts a second
+   original sentence).
+5. **Three arms**, the same spec content and instruction (round 20's notes lines, word for word):
+   - **Markdown**, the planted spec.
+   - **Compiler export** (16 unsettled contradictions). It flags the 9 planted conflicts the compiler
+     found, plus C13, caught through a second original sentence its side B contradicts: **10 of 17
+     flagged**, nothing injected.
+   - **Oracle export** (23 unsettled). The 7 injectable misses are added from the answer key, each with
+     its own rationale: **16 of 17 flagged**. C12 cannot be injected, because its side A is in no node
+     (§4.9).
+
+   `diff -r` showed that compiler and oracle exports differ only in `MAP.md`, `export.meta.json` and
+   the 9 packs carrying the injected conflicts.
+6. **Measures:** set 1 core / 338; set 2a named / 17 (round 19's strict rule); set 2b silent / 15
+   (round 20's strict rule). For conflicts, three detection counts: recall, named when flagged, and
+   named when not flagged. The last includes the unflagged items in the compiler export. That count is
+   the one only a compiler-export arm can give (§7.1, condition 1).
+7. **Runs:** 3 Sonnet and 5 Haiku per arm, interleaved, with a check run first (not a gate). The
+   early-stop threshold is 194 of 388. All other conditions are as in rounds 18–20.
+
 ## 4. Results so far
 
 ### 4.1 Overview
@@ -333,6 +448,8 @@ counts, the models, n = 3, alternated order and a gate run first. *(Source:
 | case010, **15 planted**, oracle export, round 19 | Haiku, Sonnet | 3 | Core 91.9 vs 89.8 % (Haiku), 96.9 vs 97.1 % (Sonnet) | Named, strict: **95.6 vs 51.1 %** (Haiku), **93.3 vs 66.7 %** (Sonnet) | §4.7; r19 `TRIAL.md`; reg. 149–160 |
 | case010, 15 planted, compiler recall | (Haiku compiler) | 1 compile | — | 9 / 15 | §3.7; r19 `TRIAL.md` step 2; reg. 148 |
 | case010, **14 gaps** (facts removed), plain export, round 20 | Haiku, Sonnet | 3 | Core 159.7 vs 162.3 / 175 (Haiku), 171.7 vs 171.7 (Sonnet) | Silent inventions / 14: **11.00 vs 10.67** (Haiku), **13.33 vs 13.33** (Sonnet); all 168 gap builds upstream | §4.8; r20 `TRIAL.md`; reg. 161–173 |
+| case016, **17 planted + 16 gaps**, compiler export and oracle export, round 21 | Haiku, Sonnet | 5 Haiku, 3 Sonnet | Core 312.8 / 329.8 / 326.8 of 338 (Haiku), 333.0 / 334.0 / 331.7 (Sonnet), Markdown / compiler / oracle | Named on the compiler's 10 flags: **72 → 100 %** (Haiku), **70 → 87 %** (Sonnet); on its misses no gain; silent inventions / 15: 12.4 / 12.4 / 13.2, 13.7 / 14.0 / 13.3 | §4.9; r21 `TRIAL.md`; reg. 175–200 |
+| case016, 17 planted, compiler recall | (Haiku compiler) | 1 compile | — | 9 / 17 (C12's side A in no node) | §4.9; r21 `TRIAL.md` step 3; reg. 174 |
 
 ### 4.2 Small specifications (R3)
 
@@ -621,19 +738,10 @@ its `notes/scores.json`, `notes/detection.tsv`, `notes/recall.json`, `results.js
 
 ### 4.8 Planted gaps (round 20, case010, 4–5 November)
 
-**Design** (D33; written before any model call in `harness/trials/r20-zero2repo-case010-gaps/TRIAL.md`).
-A *gap* is a fact the specification states that is removed with no marker, while the hidden tests still
-check it. Candidates were found from test names only; each was built into an alternative copy of a
-base build (round 13c, 196 / 197) and probed, and its *footprint* (tests that change between the
-upstream and the alternative value) measured with Harbor's oracle agent, no model. **14 gaps kept**
-(7.1 % of 197): footprint 1–2 tests each, none shared, none among the 20 model-file tests; footprint
-union 22, so the core is 175. Kinds: value 3, edge rule 6, error case 5. The gapped Markdown (8 132
-words, from 8 412) was compiled with the unchanged compiler (356 calls, $1.35 est.); its 22
-contradictions were all judged false on the owner's behalf and **nothing was injected**, so the export
-carries no gap flag and no extra information. Both formats got one new instruction sentence: list in
-`NOTES.md` what the spec does not state, where you looked, and what you assumed. Strict rule: *flagged*
-= the notes name this point as unstated and give the value; otherwise *invented silently*; *not built*
-apart. n = 3 per cell; 12 of 12 runs scored, none stopped early or rerun.
+Design and conditions in §3.8. **14 gaps kept** (7.1 % of 197; footprint 1–2 tests each, base build
+round 13c, 196 / 197); core 175. The export flags no gap and carries no extra information. n = 3 per
+cell; 12 of 12 runs scored, none stopped early or rerun. The expected result, written before any run,
+was no difference.
 
 **The two validation sets** (set 1 = core / 175; set 2 = silent inventions / 14, lower is better):
 
@@ -645,8 +753,8 @@ apart. n = 3 per cell; 12 of 12 runs scored, none stopped early or rerun.
 | Sonnet | export | 171 · 171 · 173 | 171.67 | 14 · 14 · 12 | **13.33** | 0.67 |
 
 All 197 tests, for reference only: Haiku Markdown 187 · 179 · 186, export 186 · 179 · 178; Sonnet
-Markdown 195 · 191 · 195, export 193 · 193 · 195. Six readings are borderline; counting them as silent
-moves an arm mean by at most 0.67 (Haiku 11.67 vs 11.33, Sonnet 13.33 vs 13.67).
+Markdown 195 · 191 · 195, export 193 · 193 · 195. Five readings are borderline; counting them as silent
+moves an arm mean by at most 1.00 (Haiku 11.67 vs 11.33, Sonnet 13.33 vs 13.67).
 
 **Result: no difference between formats on set 2**, as expected: the export does not make the agent
 say more often that the spec is silent. On set 1, Sonnet ties; Haiku's export mean is 2.7 tests lower
@@ -695,6 +803,81 @@ limit found, G14 in one Haiku run).
 `notes/scores.json`, `notes/detection.tsv`, `notes/hallu_static.json`, `results.json` and
 `run_queue.log`; reg. 161–173.*
 
+### 4.9 Conflicts and gaps in one spec, three arms (round 21, case016, 5–6 November)
+
+Design and conditions are in §3.9: 17 conflicts and 15 scored gaps in one spec, core 338, and three
+arms. The compiler export flags 10 of 17 conflicts and the oracle export 16 of 17. Each arm had 3
+Sonnet and 5 Haiku runs. All 24 runs were scored, with 0 early stops. Two runs were cut off by the
+5-hour usage limit; the driver reran them, and the cut-off attempts are not scored.
+
+**Compiler recall: 9 of 17** (860 calls, $3.58 est.). The compiler found C06, C08, C09, C11, C15, C16,
+C18, C21 and C23. Its export also flags **C13**, through a contradiction between C13's side B and a
+second original sentence, so it flags **10 of 17**. The 8 misses are C01, C12, C13, C17, C19, C20, C22
+and C25. One miss is an atomizer omission: C12's side A (a list item of the PRD) is in no node of the
+store, and the same holds in round 13c's compile, so no conflict check could reach it. The export
+packs still print its text. *Compiler defect, recorded, not fixed.*
+
+| Model | Arm | Set 1: core / 338, per run | Mean | Named / 17, per run | Silent / 15, per run | Mean silent |
+|---|---|---|---|---|---|---|
+| Sonnet | Markdown | 331 · 335 · 333 | 333.0 | 11 · 11 · 14 | 14 · 15 · 12 | 13.7 |
+| Sonnet | compiler export | 334 · 332 · 336 | 334.0 | 15 · 11 · 15 | 14 · 14 · 14 | 14.0 |
+| Sonnet | oracle export | 334 · 332 · 329 | 331.7 | 13 · 16 · 15 | 14 · 13 · 13 | 13.3 |
+| Haiku | Markdown | 316 · 331 · 281 · 306 · 330 | 312.8 | 10 · 10 · 11 · 12 · 12 | 11 · 14 · 12 · 13 · 12 | 12.4 |
+| Haiku | compiler export | 334 · 330 · 329 · 327 · 329 | 329.8 | 13 · 14 · 13 · 14 · 13 | 12 · 13 · 11 · 13 · 13 | 12.4 |
+| Haiku | oracle export | 323 · 328 · 332 · 327 · 324 | 326.8 | 16 · 16 · 16 · 16 · 16 | 12 · 14 · 13 · 12 · 15 | 13.2 |
+
+**Conflicts named on the same items** (runs × items):
+
+| Items | Model | Markdown | Compiler export | Oracle export |
+|---|---|---|---|---|
+| the 10 the compiler flagged | Sonnet | 70 % (21 / 30) | 87 % (26 / 30) | 93 % (28 / 30) |
+| | Haiku | 72 % (36 / 50) | **100 % (50 / 50)** | 100 % (50 / 50) |
+| the 6 only the oracle flagged | Sonnet | 83 % (15 / 18) | 83 % (15 / 18) | 89 % (16 / 18) |
+| | Haiku | 63 % (19 / 30) | 57 % (17 / 30) | **100 % (30 / 30)** |
+| C12, flagged nowhere | both | 0 / 8 | 0 / 8 | 0 / 8 |
+
+**Results.** (1) *Set 1:* no sign that either export makes the code worse (Sonnet 333.0 / 334.0 /
+331.7; Haiku's Markdown mean is lowest, pulled down by two runs; n = 3 and 5, descriptive).
+(2) *Set 2a:* **a flag helps, and the compiler-only export helps exactly where it flags**: on the
+conflicts it flagged, naming rose 70 → 87 % (Sonnet) and 72 → 100 % (Haiku); on those it missed it
+did no better than the Markdown, and the oracle's flags lifted them. This is the first agent run on a
+compiler-only export of a planted case (§7.2, D34: *to be measured*). Flagging 10 of 17, the
+compiler-only export got about half of the oracle's gain over all 17 for Haiku (65 → 79 → 94 %,
+Markdown → compiler → oracle) and about three-fifths for Sonnet (71 → 80 → 86 %). Which conflicts the
+Markdown runs missed differs by model. Haiku named none of C25 from the Markdown or the compiler export
+(0 of 10) and all of it from the oracle export (5 of 5). C13 was named from the Markdown in 1 of 8 runs
+and from both exports in every run. (3) *Set 2b:* **no format effect on silent invention**, as in
+round 20. Agents flagged at most 4 of 15 gaps per run, most often G13, G08 and G07. Ten gaps were never
+flagged by any run in any arm. For five gaps (G03, G04, G05, G11, G12), every run built the alternative
+value without a word, and the hidden tests reject that value. For four (G10, G13, G21, G30), every run
+built the upstream value.
+
+**Named against built** (probe, conflicts only; 136 item readings per arm). Side B unnamed: Markdown 3,
+compiler export 4, oracle export 0. All 7 readings are C20 in Haiku runs. C20 is unflagged in the
+compiler export. As in round 19 (and round 18: Markdown 8, export 0), **no flagged conflict was built on
+side B without being named**. *(Counted 2026-11-08 from `notes/detection.tsv`.)*
+
+**Set 1 pooled over rounds 18, 19 and 21** (computed 2026-11-08 from each round's `notes/scores.json`). Haiku's core was higher from the oracle export than
+from the Markdown in rounds 18, 19 and 21 (+4.2, +2.1 and +4.1 points). The permutation test of §5
+over the three rounds gives two-sided p = 0.060. With the compiler arm in place of the oracle arm for
+round 21 (+5.0 points), p = 0.041. That choice of arm was made after seeing the data, so it is not a
+test result. For Sonnet: −0.2, −0.2 and −0.4 points, p = 0.59. Round 21's Haiku Markdown mean is pulled
+down by two runs (281, 306).
+
+**Secondary measures** (no model call): no import of a package missing from PyPI in any arm (after
+fixing the measure for sibling modules; round 20's counts unchanged); failed tests mostly
+`AssertionError`; upstream leakage not measurable (`sloptrim` not on PyPI).
+
+**Cost.** Compile $3.58 est.; 24 runs $34.42 est.; 2 usage-limit cut-offs $3.37 est.; total $41.37 est.
+
+**Limits.** One reader (the assistant), not blind to format, borderline readings counted against the
+item and listed; the owner audits `notes/detection_audit.md`. 17 conflicts and 15 gaps, under the
+20-each target. 3 and 5 runs per cell.
+
+*Sources: `harness/trials/r21-zero2repo-case016-conflicts-gaps/TRIAL.md` (steps 0–8) and
+`ANSWER_KEY.md`; its `notes/scores.json`, `notes/readings.txt`, `notes/detection.tsv`,
+`notes/tables.json`, `notes/hallu_static.json` and `run_queue.log`; reg. 174–200.*
+
 ## 5. Analysis
 
 **Why test scores do not move.** The rules the tests check are stated in both formats, word for
@@ -708,18 +891,26 @@ on case006 (`batch-2/TRIAL.md`), bigger than any format difference seen. With 24
 same holds for set 1: Sonnet's core is within 1 % between formats in both rounds; Haiku's export core
 is higher than its Markdown core in both rounds, but by less than its own run spread (round 18 export
 376–431). Round 19 on case010 repeats this: Sonnet 96.9 vs 97.1 %, Haiku 91.9 vs 89.8 % with
-overlapping ranges (157–162 vs 151–164).
+overlapping ranges (157–162 vs 151–164). Round 21 on case016 too. Sonnet's three arms are within 2.3
+tests of 338 (333.0 / 334.0 / 331.7). Haiku's exports are ahead (329.8 and 326.8 against 312.8), with
+the Markdown's spread (281–331) covering both export ranges. In round 20 (gaps only), Haiku's export
+was 2.7 tests behind, also inside the spread.
 
 *Is Haiku's export lead in set 1 more than chance?* Pooling rounds 18 and 19 (Haiku core: export
 +4.2 and +2.1 points), an exact permutation test that shuffles the format labels inside each round
 (3 + 3 runs, 400 relabellings) gives two-sided p = 0.185; for Sonnet (−0.2 and −0.2 points)
 p = 0.68 (computed 2026-11-03 from both rounds' `notes/scores.json`). With 3 runs per format in one
 round the smallest p this test can reach is 0.10, so one round alone cannot show a difference at the
-usual 0.05 level. On the footprint tests (the conflict-related ones, which reward side A) the export
+usual 0.05 level. **Adding round 21** (5 + 5 Haiku runs; oracle arm against Markdown, so that the
+arm matches rounds 18–19) gives Haiku p = 0.060 over 100 800 relabellings (+4.2, +2.1, +4.1 points)
+and Sonnet p = 0.59 (computed 2026-11-08, same test). Haiku's lead is the same sign on three cases but
+not shown at 0.05. Round 20's opposite sign (−2.7 tests) comes from a different design (gaps only)
+and is not pooled. On the footprint tests (the conflict-related ones, which reward side A) the export
 did not help either: tests passed summed over 3 runs, export vs Markdown, round 18 Haiku 78 vs 71 and
 Sonnet 60 vs 90 of 93; round 19 Haiku 40 vs 40 and Sonnet 54 vs 54 of 72 (same source). The
 detection gap, by contrast, does not overlap in any of the four round-and-model cells (export runs
-14–24 named against Markdown 6–18).
+14–24 named against Markdown 6–18). In round 21 it does not overlap for Haiku (oracle 16 in every run,
+Markdown 10–12). For Sonnet it overlaps at one run: oracle 13–16, Markdown 11–14.
 
 **Why detection moves.** Every run, in both formats, read both sides of every planted item (rounds
 14–16), so the gap is not about reading but about connecting. With 7 conflicts, those within one
@@ -731,21 +922,47 @@ named from the Markdown in 11 runs. A flag removes the finding step: in round 18
 every flagged conflict, and in round 19 every flagged conflict whose rationale named the planted
 difference (85 of 90 readings; the 5 misses are all C18, whose rationale named another point). On
 case010 the Markdown runs also show what not connecting costs: the agent builds the planted side
-without noticing (15 of 90 readings), which never happened from the export. A competing explanation is that the export's `MAP.md` says how many unsettled
-contradictions exist and the packs show both sides, which tells the agent to look and where (§6,
-item 14).
+without noticing (15 of 90 readings), which never happened from the export. Rounds 18 and 21 agree:
+the Markdown runs built side B unnamed 8 and 3 times, and no flagged conflict was ever built on side B
+unnamed. Round 21 adds the cleanest evidence that the **flag**, not the format, does the work. In
+the compiler export, both sides of the 6 conflicts it does not flag are in the packs (step 3's leak
+check), in the same graph format as the 10 it does flag. They were named no more often than from the
+Markdown (Haiku 57 % vs 63 %). The same 6
+were named in every Haiku run once the oracle export flagged them. A competing explanation is that
+the export's `MAP.md` says how many unsettled contradictions exist and the packs show both sides,
+which tells the agent to look and where (§6, item 14). Round 21 narrows that explanation: the count
+was there in the compiler export, and the unflagged items did not gain.
 
 **What the compiler adds, and what it does not yet.** The compiler alone flags 14 of 24, and the
 agents' unaided finds partly fill the other 10: Sonnet's Markdown runs named 9–10 of the 10 the
 compiler misses, and the 3 items no Markdown run named are among the compiler's 14. So the compiler
 and the agent find different conflicts. Read together, the compiler's 14 and one Sonnet Markdown run's
 finds cover 23–24 of 24 in each round-18 run. That figure is a union computed from two separate
-measurements, not a run: an export carrying only the compiler's 14 flags was not given to an agent,
-and whether the agent would still find the other 10 with it is *to be measured*. On case010 the
+measurements, not a run: an export carrying only the compiler's 14 flags was not given to an agent.
+Round 21 ran that arm on case016 instead. The compiler export did **not** make agents miss the
+unflagged items more than the Markdown did for Sonnet (83 % vs 83 %). For Haiku it was slightly lower
+(57 % vs 63 %, 17 vs 19 of 30 readings), a difference of 2 readings. So the help from the compiler's
+flags added to the agent's own finds, at least on this case. On case010 the
 compiler finds 9 of 15 and the pattern is similar: the three items no Markdown run named by Haiku and
 Sonnet together (C14, C21, C22) include two the compiler finds, while C14 is a compiler miss. Round 19
 adds that recall should be counted with the rationale, not only the pair (C18), and that the
-atomizer can cut a claim from the condition that gives it meaning (C05, §3.7).
+atomizer can cut a claim from the condition that gives it meaning (C05, §3.7). Round 21 adds a third
+compiler failure: the atomizer can leave a stated rule in **no** node (C12's side A). No conflict check
+can reach such a rule, and no oracle injection either. C12 was named by none of the 24 runs.
+
+**Why gaps go unflagged, and what fills them (rounds 20–21).** The export cannot help here by design,
+because it carries no gap flag. The results show what the agents do instead. (1) **They rarely say the
+spec is silent.** Sonnet flagged 4 of 84 gap readings in round 20 and Haiku 19 of 84. In round 21, ten
+of 15 gaps were flagged by no run. (2) **The gaps flagged at all are mostly those where a neighbouring
+sentence still shows the absence**: in round 20, a list of split characters without the comma, or a
+clause on precision and f-measure without recall. Where a whole bullet went, nothing looked missing.
+(3) **What fills the gap depends on whether the model knows the library.** On case010 (`nltk`), all 168
+gap builds took the upstream value, so the silent inventions were recall of the real library, which
+the hidden tests reward. On case016 (`sloptrim`, not on PyPI), five gaps were built with the
+alternative value in every one of 24 runs and four with the upstream value in every run. There the
+agents took a value of their own (our reading: a common default; not tested), and where it differed
+from upstream the hidden tests failed it. The hallucination measure therefore depends on the case. On a famous library it is mostly
+invisible to the tests; on an unknown one it costs tests. In neither case did the format change it.
 
 **How the measure depends on the instruction.** Round 17's Sonnet export runs listed all 24 conflicts
 but often pointed at a conflict id without restating it, which the strict rule counts as a miss
@@ -761,7 +978,10 @@ Rulings change what is built, and a 92-word plain file carries them as well as t
 **Cost.** The export costs more to use: 1.3–2.7× the agent's run cost on small specs (R3), 1.4–1.9× on
 large ones for Haiku (R4), plus a compile ($0.22–0.50 est. small; $11.16 est. for three large cases;
 $2.89 est. for the 24-conflict case006). For Sonnet with 24 conflicts the run cost was about the same
-in both formats (round 18: $2.13–2.38 vs $2.04–2.17 est.). On careful specs the compiler's
+in both formats (round 18: $2.13–2.38 vs $2.04–2.17 est.). Rounds 20–21 agree. Haiku's export runs
+cost 1.9× the Markdown's (round 20) and 1.6× (compiler) and 1.7× (oracle, round 21). Sonnet's cost
+1.1× (round 20), and 0.9× and 0.8× (round 21), from arm totals ($ est.). Round 21's compile of an
+18 845-word spec cost $3.58 est. (860 calls). On careful specs the compiler's
 contradictions were all false (163 on Zero2Repo), and each had to be judged by hand before export: an
 unsettled false contradiction cost Haiku 2 tests on case004 (R4). On the planted case006 the full
 compile raised 55 contradictions that are not planted items; 51 were judged false, 4 real (§3.6).
@@ -770,21 +990,26 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
 
 1. **The headline claim is not supported.** No test-score difference survives reading in any setting.
    The supported result is narrower: detection of spec contradictions.
-2. **Small n.** 1–3 runs per cell in most rounds; 7 per format at best. Counts and ranges, plus one
-   exact permutation test on set 1 (§5); with 3 runs per format a single round cannot reach p < 0.10.
+2. **Small n.** 1–3 runs per cell in most rounds; 5 per arm for Haiku in round 21, 7 per format at
+   best (rounds 14–15). Counts and ranges, plus one exact permutation test on set 1 (§5); with 3 runs
+   per format a single round cannot reach p < 0.10.
 3. **One model family, one agent product:** Claude Haiku and Sonnet in Claude Code. The 7-conflict
    result rests on 14 Haiku runs; the 24-conflict result on 3 runs per model and format per round,
-   two rounds; the 15-conflict case010 result on one round of 3.
-4. **Two planted cases** (case006, case010), both from famous libraries, so the model may remember
-   side A. Side A is also what the tests check; hence rulings go to side B and the core score leaves
-   out the footprints.
+   two rounds; the 15-conflict case010 result on one round of 3; the compiler-export result
+   (round 21) on one case, 3 Sonnet and 5 Haiku runs per arm.
+4. **Three planted cases** (case006, case010, case016); the first two from famous libraries, so the
+   model may remember side A. Side A is also what the tests check; hence rulings go to side B and the
+   core score leaves out the footprints. case016's upstream is not on PyPI, which removes most of that
+   risk for round 21 but also makes upstream leakage unmeasurable there.
 5. **Detection is read by one non-blind reader** (Claude Code). The export's conflict ids make
-   blinding impossible. The owner's audit (T0, and the round 17–18 sheets) is prepared but not done.
-   The strict rule of rounds 17–18 is a judgement per item; borderline readings are marked in
-   `detection.tsv`.
+   blinding impossible. The owner's audit (T0, and the round 17–21 sheets) is prepared but not done.
+   The strict rule is a judgement per item; borderline readings are marked in `detection.tsv`, and
+   counted *for* the item in round 20 but *against* it in round 21 (§3.5).
 6. **The planted conflicts were designed by the assistant** that built the compiler and scores the
-   runs. Partly mitigated: answer key written before any compile or run; P4 not tuned for; in
-   rounds 17–18 candidates were chosen from test names with no hidden test body opened.
+   runs. Partly mitigated: answer key written before any compile or run; P4 not tuned for; from
+   round 17 on, candidates were chosen from test names with no hidden test body opened. The
+   key-phrase check of a removal can miss a restatement in other words (G01, round 21, found after the
+   check run and reported apart).
 7. **Compiler precision on real specs is poor:** all 163 contradictions raised on Zero2Repo's careful
    specs were false (2 real ones were found in DevEval's `arxiv-digest`, R2).
 8. **Benchmark faults:** DevEval tests check unstated details; 20 case010 tests were unscorable in our
@@ -798,7 +1023,7 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
     sample. Round 18 removed the budget reminder and added a rerun rule written in advance; no run
     stopped early. Not claimed as an effect (R5).
 11. **The export fix F7 D17 is tested on 3 Haiku runs only** (T1), against 4 runs before it.
-12. **Python only; specs up to about 19 000 words.** The case where a spec is too large to read is not
+12. **Python only (case016 adds Node.js hooks); specs up to about 19 000 words.** The case where a spec is too large to read is not
     reached: agents read every pack.
 13. **Cost is an API-equivalent estimate** from Claude Code, not money billed.
 14. **The export carries more than structure.** Its `MAP.md` states a count of unsettled
@@ -806,26 +1031,37 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
     from being told conflicts exist rather than from the graph (methodology notes §7 noted that the
     export adds instructions). A Markdown arm with the same count and no graph would separate the two;
     not run.
-15. **Proposal measures not done:** hallucination counts and blind omission audits (proposal §7, §9).
-    Omissions were scored on `lend` only.
+15. **Proposal measures changed or not done.** Hallucination is measured as silent invention on
+    planted gaps (rounds 20–21, D33) plus three static measures, not as the proposal's counts; it rests
+    on two cases (14 and 15 gaps) and found no format effect. Blind omission audits (proposal §7, §9)
+    were not done; omissions were scored on `lend` only.
 16. **One looping test leaves a run unscored.** One Sonnet Markdown run (T2) has no test score: its
     code loops on one hidden test until the test process runs out of memory, which stops the
     judge's whole run. The judge has no per-test time or memory limit.
 17. **The 24-conflict result uses an oracle export.** 10 of its 24 flags were added from the answer
     key; the compiler alone flags 14. The figures show what an agent does with flagged conflicts, not
     what the compiler achieves. The 10 added conflicts share one rationale wording, a possible tell.
-    An export with only the compiler's flags was not run.
+    An export with only the compiler's flags was not run on this case; it was run on case016
+    (round 21, §4.9).
 18. **Rounds 17 and 18 differ in three conditions at once** (instruction, Claude Code version, dollar
     ceiling), so neither Sonnet's rise in export detection nor Haiku's fall in build quality can be
     put down to one of them. Comparisons inside each round are clean.
 19. **Compiler recall comes from one full compile per arm** (14 vs 11 of 24); Haiku's topic tags varied
     enough between compiles to change 3 items, so the gain from the fixes is not shown to exceed
-    run-to-run variation. Round 19's 9 of 15 is also one compile.
+    run-to-run variation. Round 19's 9 of 15 and round 21's 9 of 17 are also one compile each.
 20. **Recall counted by pairs overstates the compiler.** A conflict counts as found when the right
     pair is flagged, even if the rationale names another difference (C18, round 19), and such a flag
     did not lead agents to the planted difference.
 21. **Round 19's gate failed and the round went on** by the owner's decision; the gate threshold on
     set 1 was taken from the best earlier builds and proved stricter than Sonnet's own spread (§4.7).
+22. **Round 21 is under its own target:** 17 conflicts and 15 scored gaps against 20 each (§3.9); G21
+    can be derived from two definitions. The one-spec design also means a conflict flag could draw the
+    agent's attention to a nearby gap; the gap results do not show it (no format effect).
+23. **The compiler can drop a stated rule entirely** (C12, round 21: in no node, in two compiles).
+    Recall by pairs cannot see this, and no oracle can repair it; recorded, not fixed (out of scope,
+    D32).
+24. **Gap probes read one input each.** A probe can read *upstream* while a footprint test still fails
+    (round 20: G14 in one run, G23 in two); those tests are out of the core either way.
 
 ## 7. Remaining plan to 4 December
 
@@ -835,8 +1071,10 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
 | 30 Oct–2 Nov | Done: round 17 (24 planted conflicts, four compiler fixes, full and baseline compiles, oracle export, 12 runs); round 18 (instruction asks for both sides, 2.1.316, no ceiling, 12 runs); this update | |
 | 2–3 Nov | Done: round 19 (case010 model files fixed for scoring, 15 planted conflicts, one compile, oracle export, gate run, 12 runs); this update | |
 | 3–5 Nov | Owner's detection audit (T0 and the round 17–19 sheets); decide on F3 D44 (carry a sentence's condition to every claim) and a rationale check in the pair judge | |
+| 4–5 Nov | Done: round 20 (14 planted gaps in case010, plain export, 12 runs, secondary measures); this update | |
+| 5–6 Nov | Done: round 21 (case016, 17 conflicts + 16 gaps in one spec, compiler export and oracle export, 24 runs unattended); this update | |
 | 6 Nov | Progress check-in on Brightspace (§1) | |
-| 9–13 Nov | Candidates: the compiler's own export (14 flags) on the 24-conflict case, to measure count 3 on unflagged items; one-condition-at-a-time runs to explain Haiku's round-18 drop; start the case series of §7.1 (case016 first), answer key first for each case | |
+| 9–13 Nov | Candidates: more cases of §7.1 (case016 done in round 21), answer key first for each, with the compiler-export arm; owner's detection audit (rounds 14–21); one-condition-at-a-time runs to explain Haiku's round-18 drop. *Owner to choose.* | |
 | 16–20 Nov | Final report draft in NeurIPS LaTeX; slides | |
 | 23–27 Nov | Rehearsal; presentation 27 Nov (or 4 Dec) | |
 | 30 Nov–4 Dec | Final report (6 pages); README with reproduction steps for the main table | |
@@ -851,9 +1089,10 @@ model is claimed on its own.
 1. *The export helps the agent pick up conflicts* (set 2, superiority). Test: sign test (or Wilcoxon
    signed-rank) on the per-case difference, export minus Markdown, in mean set 2. With every case in
    the same direction, **6 cases** give two-sided p = 2/64 = 0.031, **5 cases** one-sided p = 1/32 =
-   0.031; with the 2 cases so far the smallest possible p is 0.5. The effect so far is large (export
-   ahead by 26–64 points in all four round-and-model cells, with no overlap between runs, §5), so 3
-   runs per format per case suffice for this claim.
+   0.031; with the 3 cases so far (oracle export ahead in every case and model) the smallest possible
+   two-sided p is 0.25. The effect so far is large (export ahead by 26–64 points in all four round-18–19
+   cells with no overlap between runs, §5; round 21 oracle export ahead by 29 points for Haiku and 16
+   for Sonnet), so 3 runs per format per case suffice for this claim.
 2. *The export does not penalize code generation* (set 1, non-inferiority). "No significant
    difference" does not show this. A margin δ is fixed in advance, and the claim holds if the lower
    one-sided 95 % bound of the mean per-case difference in core %, export minus Markdown (t
@@ -876,28 +1115,31 @@ it is a range of guesses (Sonnet 0.5–1.5, Haiku 2–3 points):
 | Haiku, δ = 5, 5 runs | 0.43–0.52 | 0.75–0.86 | 0.94–0.98 | 0.98–1.00 |
 | Haiku, δ = 3, 10 runs | 0.37 | 0.65 | 0.88 | 0.94 |
 
-More cases raise power far more than more runs per case. **Plan: 8 cases** (case006, case010 and 6
-more), **3 runs per format for Sonnet, 5 for Haiku**, so 16 runs per case. Cost, scaled from rounds
+More cases raise power far more than more runs per case. **Plan: 8 cases** (case006, case010,
+case016 (done, round 21) and 5 more), **3 runs per format for Sonnet, 5 for Haiku**, so 16 runs per case. Cost, scaled from rounds
 18 and 19 ($18.02 and $13.52 est. for 12 runs): about $25–30 est. per case plus a compile of about
-$1.5–3 est., so about **$200–250 est.** for the 6 new cases. Not measured; smaller specifications may
-cost less.
+$1.5–3 est., so about **$200–250 est.** for the 6 new cases (5 left after round 21). Not measured; smaller specifications may
+cost less. Round 21 measured one case with three arms: $41.37 est. ($34.42 for 24 runs, $3.37 for 2
+cut-off attempts, $3.58 compile), which is about 1.3–1.5× that per-case estimate for a three-arm design.
 
 **Three conditions the case count does not replace.**
 
 1. **A compiler-only export arm** in each case. With oracle exports the claim is only that an export
    *flagging* the conflicts helps; a claim about the compiler's export needs an arm with the
-   compiler's own flags (count 3 on unflagged items).
+   compiler's own flags (count 3 on unflagged items). **Done in round 21 for case016**; to be repeated
+   in each new case.
 2. **A second, independent reader of the notes** for set 2, with agreement reported (e.g. Cohen's κ);
    one non-blind reader is the weakest point today (§6, item 5).
 3. **The same planting protocol** in every case (round 17's: candidates from test names only, answer
    key before any compile or run, at least 5 % of the tests, footprint 1–3 per item, no shared test).
 
 **Cases, Zero2Repo first.** Zero2Repo has 17 cases; 9 are Python, the only language our tasks run
-so far (round 13b). Two are done (case006, case010). The other seven:
+so far (round 13b). Three are done (case006, case010, case016). The other six, case016 kept in the
+table for its earlier result:
 
 | Case | Upstream | Spec words | Hidden tests | Conflicts at 5 % | Earlier result | Proposed |
 |---|---|---|---|---|---|---|
-| case016 | sloptrim | 18 964 | 388 | ≥ 20 | Haiku Markdown 370 / 388 (13b); 2 runs per arm in 13c | **yes** (rerun) |
+| case016 | sloptrim | 18 964 | 388 | ≥ 20 | Haiku Markdown 370 / 388 (13b); 2 runs per arm in 13c | **done** (round 21: 17 conflicts kept, under the 20 target) |
 | case005 | h11 | 7 915 | 395 | ≥ 20 | Haiku Markdown 395 / 395 (13b) | **yes** |
 | case011 | jmespath | 7 002 | 321 | ≥ 17 | Haiku Markdown 321 / 321 (13b) | **yes** |
 | case001 | tomli | 4 860 | 302 | ≥ 16 | Haiku Markdown 302 / 302 (13b) | **yes** |
@@ -910,7 +1152,8 @@ alone gives the 5 new cases plus case016 and a reserve; no other benchmark is ne
 Two cautions: (a) the 5 new cases sat at or near the test ceiling in earlier runs, so set 1 there
 can show harm but hardly a gain, which suits a non-inferiority claim but narrows it to specs of
 4 860–7 915 words; (b) whether each case yields enough candidates with a footprint of 1–3 tests is
-*to be measured* (case010 gave 18 candidates and 15 kept for 197 tests). The 8 non-Python cases
+*to be measured* (case010 gave 18 candidates and 15 kept for 197 tests; case016 gave 25 conflict
+candidates and 17 kept for 388 tests, so the 5 % target was not met there). The 8 non-Python cases
 (TypeScript case003 and case012; C/C++ case008, 014, 015; Go case009, 013; Zig case017) need their
 toolchains in the image, and TypeScript also the npm registry on the agent's allow-list; they are the
 route to a second language, not needed for the count.
@@ -939,24 +1182,31 @@ Secondary, from the saved runs at no model cost: package and import hallucinatio
 2025), classes of hidden-test failures after CodeHalu (Tian et al. 2025), and *upstream leakage*
 (names or defaults of the real library that the renamed specification does not give). **Round 20
 (§4.8, case010, 14 gaps): no difference between formats (silent inventions 10.67 vs 11.00 Haiku, 13.33
-vs 13.33 Sonnet, Markdown vs export); every gap built with the upstream value; secondary measures run.**
+vs 13.33 Sonnet, Markdown vs export); every gap built with the upstream value; secondary measures run.** **Round 21 (§4.9, case016, 15 gaps, three arms): again no format effect (silent 12.4 / 12.4 / 13.2
+Haiku, 13.7 / 14.0 / 13.3 Sonnet, Markdown / compiler / oracle).**
 
 **Conflicts the compiler did not flag (D34).** Data from the compiler-only rounds 14–16 and from the
-Markdown runs of rounds 17–19 (which do not depend on the export):
+Markdown runs of rounds 17–19 and 21 (which do not depend on the export):
 
 | Direction | Items | Agents' naming |
 |---|---|---|
 | Compiler missed, agents still named | P4 (case006, never flagged) | Sonnet 3 of 4 runs (round 16), Haiku most runs (rounds 14–15) |
 | | the 10 compiler misses of the 24 (case006) | Sonnet Markdown most of them; round 18: 8 of the 10 in every run, the other 2 in 2 of 3 runs (§4.6) |
 | | the 6 compiler misses of the 15 (case010) | Sonnet Markdown 12 of 18 readings, Haiku 10 of 18 (round 19) |
-| Compiler missed, agents missed | C14 (case010) | 0 of 6 Markdown runs |
+| | the 6 injectable compiler misses of the 17 (case016) | Sonnet Markdown 15 of 18 readings, Haiku 19 of 30 (round 21); C17, C19, C22 in all 8 runs |
+| Compiler missed, agents missed | C14 (case010); C12 (case016, side A in no node); C25 (case016, Haiku only) | 0 of 6; 0 of 8 (and 0 of 16 export runs); Haiku 0 of 5 (Sonnet 3 of 3) |
 | **Compiler flagged, agents never named from the Markdown** | C02, C08, C17 (case006); P3 (case006, Haiku); C21, C22 (case010) | 0 of 11; 0 of 11; 0 of 11; 0 of 7; 0 of 6; 0 of 6 |
+| Compiler flagged, agents rarely named from the Markdown | C13 (case016) | 1 of 8 Markdown runs; 8 of 8 from the compiler export |
 
-The pattern "what the compiler misses, the agent misses too" holds for one item only (C14). What the
+The pattern "what the compiler misses, the agent misses too" holds for C14 and C12, and for C25 with
+Haiku only. What the
 data support is that the compiler and the agent find **different** conflicts, and that the compiler
 flags conflicts the agent never finds alone, which argues for the compiler's use. The report shows both
-directions and the recall work (4 → 6 of 7, 11 → 14 of 24, 9 of 15). An agent run on a compiler-only
-export of the 24- or 15-conflict case is *to be measured*.
+directions and the recall work (4 → 6 of 7, 11 → 14 of 24, 9 of 15, 9 of 17). An agent run on a
+compiler-only export of the 24- or 15-conflict case was not made. **Round 21 (§4.9, case016) measured
+it on a third case.** On the 10 conflicts the compiler flagged, naming rose 72 → 100 % (Haiku) and
+70 → 87 % (Sonnet). On the 6 injectable ones it did not flag, the compiler export did no better than
+the Markdown (57 vs 63 %, 83 vs 83 %), and C12 was named nowhere.
 
 ## 8. Use of AI tools (draft for the report appendix)
 

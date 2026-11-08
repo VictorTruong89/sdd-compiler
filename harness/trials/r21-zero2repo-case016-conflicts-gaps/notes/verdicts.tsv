@@ -1,0 +1,68 @@
+conflict	verdict	reason (judged on the owner's behalf)	source
+CF-000005	false	different failure cases: Python cannot be launched (line says python not found) versus Python runs but returns no numeric score (it does not) (IC 556)	round 13c CF-000032
+CF-000011	open	planted pair C18 (answer key)	notes/recall.json
+CF-000013	false	such a document is the long document of the same sentence: under 300 words never fires; a longer one fires without semicolons or parentheticals (PRD 148)	round 13c CF-000003
+CF-000014	false	the second states the one allowed exception to the first (off and on may share a line)	read against the original case016 spec (round 21)
+CF-000020	false	the second restates the first; the first names the words outside the family	read against the original case016 spec (round 21)
+CF-000039	false	stated condition: the notice line is for two or more operands; a single operand prints none (IC 180)	round 13c CF-000118
+CF-000045	false	different conditions: the closer's content when a check fails vs. when all succeed	read against the original case016 spec (round 21)
+CF-000048	false	'base name only' means no full path; the record's other fields are not excluded	read against the original case016 spec (round 21)
+CF-000064	false	different states: closer when all checks succeed (IC 561) versus when a check fails (IC 563)	round 13c CF-000033
+CF-000065	false	different states: closer when a check fails (IC 563) versus when only the mode is off (IC 565)	round 13c CF-000034
+CF-000067	false	rule and its stated exception: title-case headings fire, all-capitals headings do not (PRD 154)	round 13c CF-000082
+CF-000080	open	planted pair C15 (answer key)	notes/recall.json
+CF-000081	open	planted side B of C09 against a second sentence stating side A	ANSWER_KEY.md
+CF-000082	open	planted side B of C09 against a second sentence stating side A	ANSWER_KEY.md
+CF-000083	open	planted pair C09 (answer key)	notes/recall.json
+CF-000086	open	planted side B of C06 against a second sentence stating side A	ANSWER_KEY.md
+CF-000087	false	BOM and CRLF are not counted as findings on a scan; cleanup's removal list keeps CR and LF	read against the original case016 spec (round 21)
+CF-000088	false	empty extracted prose and the unsupported .pdf/.rtf formats are separate cases	read against the original case016 spec (round 21)
+CF-000098	false	rule and its stated exception: PRD 298 (off writes nothing) over IC 41	round 13c CF-000158
+CF-000099	false	different conditions: init at level off writes nothing; at other levels it copies the rule	read against the original case016 spec (round 21)
+CF-000103	false	different conditions: init at level off writes nothing; at other levels it copies the rule	read against the original case016 spec (round 21)
+CF-000111	false	different conditions: init at level off writes nothing; at other levels it copies the rule	read against the original case016 spec (round 21)
+CF-000112	false	a binary file's ledger row is a different record kind from a scored file's row	read against the original case016 spec (round 21)
+CF-000113	false	'base names only' means no full path; the record's other fields are not excluded	read against the original case016 spec (round 21)
+CF-000114	open	planted pair C06 (answer key)	notes/recall.json
+CF-000115	false	successive steps of one confidence ladder, not alternatives	read against the original case016 spec (round 21)
+CF-000116	false	successive steps of one confidence ladder, not alternatives	read against the original case016 spec (round 21)
+CF-000117	false	different components: the saved-file hook exits successfully on a missing path (PRD 271); the detector command exits 1 (IC 73)	round 13c CF-000117
+CF-000129	false	different paths: a file written by a shell command never reaches the guard (PRD 69); IC 510 is the check command scoring a file the user names	round 13c CF-000096
+CF-000137	false	different components: saved-file hook (PRD 271) versus detector command (IC 175)	round 13c CF-000136
+CF-000142	false	different conditions: init at level off writes nothing; at other levels it writes AGENTS.md	read against the original case016 spec (round 21)
+CF-000147	false	different commands: one requires exit 0, the other leaves its exit status free	read against the original case016 spec (round 21)
+CF-000148	false	different commands: one requires exit 0, the other leaves its exit status free	read against the original case016 spec (round 21)
+CF-000151	false	stated in the same paragraph: ordinary prompts fall through to the reminder, and when the level is off stdout is empty (IC 415)	round 13c CF-000112
+CF-000152	false	one line naming four words is not a check's label; both hold	read against the original case016 spec (round 21)
+CF-000155	false	different record kinds of the ledger (scored vs. skipped for size)	read against the original case016 spec (round 21)
+CF-000156	false	different record kinds of the ledger (scored vs. failed)	read against the original case016 spec (round 21)
+CF-000163	false	the interval is the only extra in the report; the switch list names switches, not report extras	read against the original case016 spec (round 21)
+CF-000168	open	planted pair C21 (answer key)	notes/recall.json
+CF-000171	false	different conditions: init at level off writes nothing; at other levels it copies the rule	read against the original case016 spec (round 21)
+CF-000172	false	stated in IC 415: the fall-through reminder is empty at off; PRD 301 says only that non-command prompts are not blocked	round 13c CF-000186
+CF-000173	false	stated condition: rule not created when the write fails (IC 633)	round 13c CF-000141
+CF-000174	false	different objects: the report's findings vs. other members of another object	read against the original case016 spec (round 21)
+CF-000176	false	different levels: no --clean at one level, --clean asked at strict	read against the original case016 spec (round 21)
+CF-000177	false	three separate cases in one list: no output (IC 535), non-report output (IC 536)	round 13c CF-000173
+CF-000178	false	separate cases in one list: detector exits without failure (IC 535) or with one (IC 537)	round 13c CF-000174
+CF-000179	open	planted side B of C23 against a second sentence stating side A	ANSWER_KEY.md
+CF-000186	false	"different components: the saved-file hook ignores a directory (PRD 271); the check command replies ""not a file"" (IC 530)"	round 13c CF-000185
+CF-000192	false	the first is how extra operands follow FP-01; the second refers to it	read against the original case016 spec (round 21)
+CF-000194	false	after cleanup the count is zero hits (no finding); count is positive only when a finding is printed	read against the original case016 spec (round 21)
+CF-000195	open	planted side B of C16 against a second sentence stating side A	ANSWER_KEY.md
+CF-000196	open	planted pair C16 (answer key)	notes/recall.json
+CF-000197	false	different hooks: the prompt-submit hook may print a JSON envelope (PRD 230, IC 415); the session-start hook prints plain text (IC 196)	round 13c CF-000199
+CF-000198	false	the second is the all-successful case of the first	read against the original case016 spec (round 21)
+CF-000204	false	different subjects: the detector exits 1 (IC 175); IC 537 says the check reply need not state that exit status	round 13c CF-000210
+CF-000205	false	different places: the detector's exit code vs. a hook output whose exit status is free	read against the original case016 spec (round 21)
+CF-000206	false	different outputs: one names the level on the first line, the other's first line is a title	read against the original case016 spec (round 21)
+CF-000207	false	separate cases in one list (IC 536, 537)	round 13c CF-000175
+CF-000210	open	planted side B of C13 against a second sentence stating side A	ANSWER_KEY.md
+CF-000211	open	planted pair C08 (answer key)	notes/recall.json
+CF-000212	false	kept no-break spaces are not counted as non-standard spaces (they hold something together)	read against the original case016 spec (round 21)
+CF-000214	open	planted pair C08 (answer key)	notes/recall.json
+CF-000215	false	different programs: the detector prints JSON, the hook prints plain text	read against the original case016 spec (round 21)
+CF-000219	open	planted pair C11 (answer key)	notes/recall.json
+CF-000221	open	planted pair C23 (answer key)	notes/recall.json
+CF-000229	false	different things: a reported finding's count is positive (IC 148); with zero hits there is no finding to report	round 13c CF-000198
+CF-000232	false	"rule and its stated exception: banned words fire as bare words except ""Comprehensive"" and ""boast"" (PRD 237)"	round 13c CF-000214

@@ -1,0 +1,27 @@
+  1/1 Official_Reward: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:23:14 0:00:00
+adhoc • claude-code • claude-sonnet-5-5
+┏━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┓
+┃ Trials ┃ Except… ┃ Offici… ┃ Reward ┃ Tests_… ┃ Tests_… ┃ Tests_P… ┃ Tests_… ┃
+┡━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━┩
+│      1 │       0 │   0.000 │  0.954 │   0.000 │  18.000 │  370.000 │ 388.000 │
+└────────┴─────────┴─────────┴────────┴─────────┴─────────┴──────────┴─────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.9536082474226805 │     1 │
+│ 370                │     1 │
+│ 388                │     1 │
+│ 18                 │     1 │
+│ 0                  │     1 │
+│ 0.0                │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 23m 14s
+Results written to 
+jobs/r21-zero2repo-case016-conflicts-gaps-r21-sonnet-oracle-1/result.json
+Inspect results by running `harbor view jobs`
+Share results by running `harbor upload 
+jobs/r21-zero2repo-case016-conflicts-gaps-r21-sonnet-oracle-1`
+

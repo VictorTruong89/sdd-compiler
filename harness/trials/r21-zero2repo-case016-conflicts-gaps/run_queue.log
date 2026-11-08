@@ -1,0 +1,109 @@
+2026-11-06T00:18:48-05:00	start trial r21-zero2repo-case016-conflicts-gaps, claude 2.1.316, budget none, earlystop_rerun 1, one=1
+2026-11-06T00:18:48-05:00	run r21-sonnet-compiler-1 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-compiler
+2026-11-06T00:42:28-05:00	harbor r21-sonnet-compiler-1 exit 0 after 1420 s
+2026-11-06T00:42:29-05:00	done r21-sonnet-compiler-1 turns 39 cost_usd_est 2.1816427000000003 reward {"reward": 0.9484536082474226, "tests_passed": 368, "tests_total": 388, "tests_failed": 20, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T00:42:29-05:00	usage five_hour 0.36 (resets 2026-11-06T04:00:00-05:00) seven_day 0.51 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T00:42:29-05:00	end --one: stopping after one run
+2026-11-06T00:44:46-05:00	start trial r21-zero2repo-case016-conflicts-gaps, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-06T00:44:46-05:00	run r21-haiku-markdown-1 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-markdown
+2026-11-06T01:05:43-05:00	harbor r21-haiku-markdown-1 exit 0 after 1257 s
+2026-11-06T01:05:43-05:00	done r21-haiku-markdown-1 turns 30 cost_usd_est 0.81805967 reward {"reward": 0.9020618556701031, "tests_passed": 350, "tests_total": 388, "tests_failed": 38, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T01:05:43-05:00	usage five_hour 0.46 (resets 2026-11-06T04:00:00-05:00) seven_day 0.52 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T01:07:43-05:00	run r21-haiku-compiler-1 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-compiler
+2026-11-06T01:28:39-05:00	harbor r21-haiku-compiler-1 exit 0 after 1256 s
+2026-11-06T01:28:40-05:00	done r21-haiku-compiler-1 turns 60 cost_usd_est 1.0153200199999999 reward {"reward": 0.9407216494845361, "tests_passed": 365, "tests_total": 388, "tests_failed": 23, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T01:28:40-05:00	usage five_hour 0.54 (resets 2026-11-06T04:00:00-05:00) seven_day 0.53 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T01:30:40-05:00	run r21-haiku-oracle-1 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-oracle
+2026-11-06T01:54:16-05:00	harbor r21-haiku-oracle-1 exit 0 after 1416 s
+2026-11-06T01:54:17-05:00	done r21-haiku-oracle-1 turns 70 cost_usd_est 1.65009954 reward {"reward": 0.9304123711340206, "tests_passed": 361, "tests_total": 388, "tests_failed": 27, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T01:54:17-05:00	usage five_hour 0.67 (resets 2026-11-06T04:00:00-05:00) seven_day 0.54 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T01:56:17-05:00	run r21-sonnet-markdown-1 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-markdown
+2026-11-06T02:17:56-05:00	harbor r21-sonnet-markdown-1 exit 0 after 1299 s
+2026-11-06T02:17:56-05:00	done r21-sonnet-markdown-1 turns 26 cost_usd_est 2.1857283 reward {"reward": 0.9432989690721649, "tests_passed": 366, "tests_total": 388, "tests_failed": 22, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T02:17:56-05:00	usage five_hour 0.85 (resets 2026-11-06T04:00:00-05:00) seven_day 0.55 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T02:19:56-05:00	run r21-sonnet-oracle-1 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-oracle
+2026-11-06T02:39:41-05:00	harbor r21-sonnet-oracle-1 exit 0 after 1185 s
+2026-11-06T02:39:41-05:00	limited r21-sonnet-oracle-1 turns 34 cost_usd_est 1.8058384999999997 message: You've hit your 5-hour limit · resets 9am (UTC) 429
+2026-11-06T02:39:41-05:00	limit reset parsed: 2026-11-06T04:00:00-05:00; sleeping until 5 min after
+2026-11-06T04:05:42-05:00	run r21-sonnet-oracle-1 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-oracle
+2026-11-06T04:28:57-05:00	harbor r21-sonnet-oracle-1 exit 0 after 1395 s
+2026-11-06T04:28:57-05:00	done r21-sonnet-oracle-1 turns 34 cost_usd_est 2.0814209 reward {"reward": 0.9536082474226805, "tests_passed": 370, "tests_total": 388, "tests_failed": 18, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T04:28:57-05:00	usage five_hour 0.17 (resets 2026-11-06T09:00:00-05:00) seven_day 0.58 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T04:30:57-05:00	run r21-haiku-markdown-2 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-markdown
+2026-11-06T04:50:44-05:00	harbor r21-haiku-markdown-2 exit 0 after 1187 s
+2026-11-06T04:50:44-05:00	done r21-haiku-markdown-2 turns 41 cost_usd_est 0.7757171599999999 reward {"reward": 0.9355670103092784, "tests_passed": 363, "tests_total": 388, "tests_failed": 25, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T04:50:44-05:00	usage five_hour 0.23 (resets 2026-11-06T09:00:00-05:00) seven_day 0.58 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T04:52:44-05:00	run r21-haiku-compiler-2 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-compiler
+2026-11-06T05:13:14-05:00	harbor r21-haiku-compiler-2 exit 0 after 1230 s
+2026-11-06T05:13:14-05:00	done r21-haiku-compiler-2 turns 62 cost_usd_est 1.2143099299999998 reward {"reward": 0.9381443298969072, "tests_passed": 364, "tests_total": 388, "tests_failed": 24, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T05:13:14-05:00	usage five_hour 0.33 (resets 2026-11-06T09:00:00-05:00) seven_day 0.59 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T05:15:14-05:00	run r21-haiku-oracle-2 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-oracle
+2026-11-06T05:36:33-05:00	harbor r21-haiku-oracle-2 exit 0 after 1279 s
+2026-11-06T05:36:34-05:00	done r21-haiku-oracle-2 turns 63 cost_usd_est 1.30045497 reward {"reward": 0.9226804123711341, "tests_passed": 358, "tests_total": 388, "tests_failed": 30, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T05:36:34-05:00	usage five_hour 0.44 (resets 2026-11-06T09:00:00-05:00) seven_day 0.6 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T05:38:34-05:00	run r21-sonnet-markdown-2 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-markdown
+2026-11-06T06:00:28-05:00	harbor r21-sonnet-markdown-2 exit 0 after 1314 s
+2026-11-06T06:00:29-05:00	done r21-sonnet-markdown-2 turns 35 cost_usd_est 2.3400882 reward {"reward": 0.9484536082474226, "tests_passed": 368, "tests_total": 388, "tests_failed": 20, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T06:00:29-05:00	usage five_hour 0.63 (resets 2026-11-06T09:00:00-05:00) seven_day 0.62 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T06:02:29-05:00	run r21-sonnet-compiler-2 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-compiler
+2026-11-06T06:21:31-05:00	harbor r21-sonnet-compiler-2 exit 0 after 1142 s
+2026-11-06T06:21:31-05:00	done r21-sonnet-compiler-2 turns 34 cost_usd_est 1.7977529 reward {"reward": 0.9432989690721649, "tests_passed": 366, "tests_total": 388, "tests_failed": 22, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T06:21:31-05:00	usage five_hour 0.77 (resets 2026-11-06T09:00:00-05:00) seven_day 0.63 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T06:23:31-05:00	run r21-sonnet-oracle-2 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-oracle
+2026-11-06T06:43:27-05:00	harbor r21-sonnet-oracle-2 exit 0 after 1196 s
+2026-11-06T06:43:27-05:00	done r21-sonnet-oracle-2 turns 28 cost_usd_est 1.5271226000000002 reward {"reward": 0.9484536082474226, "tests_passed": 368, "tests_total": 388, "tests_failed": 20, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T06:43:27-05:00	usage five_hour 0.94 (resets 2026-11-06T09:00:00-05:00) seven_day 0.64 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T06:43:27-05:00	limit usage near the limit; pausing new runs until 2026-11-06T09:00:00-05:00 + 5 min
+2026-11-06T09:07:28-05:00	run r21-haiku-markdown-3 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-markdown
+2026-11-06T09:29:24-05:00	harbor r21-haiku-markdown-3 exit 0 after 1316 s
+2026-11-06T09:29:24-05:00	done r21-haiku-markdown-3 turns 33 cost_usd_est 0.8328319099999999 reward {"reward": 0.7989690721649485, "tests_passed": 310, "tests_total": 388, "tests_failed": 78, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T09:29:24-05:00	usage five_hour 0.1 (resets 2026-11-06T14:00:00-05:00) seven_day 0.65 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T09:31:24-05:00	run r21-haiku-compiler-3 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-compiler
+2026-11-06T09:56:50-05:00	harbor r21-haiku-compiler-3 exit 0 after 1526 s
+2026-11-06T09:56:50-05:00	done r21-haiku-compiler-3 turns 92 cost_usd_est 1.4483088600000003 reward {"reward": 0.9278350515463918, "tests_passed": 360, "tests_total": 388, "tests_failed": 28, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T09:56:50-05:00	usage five_hour 0.27 (resets 2026-11-06T14:00:00-05:00) seven_day 0.66 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T09:58:50-05:00	run r21-haiku-oracle-3 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-oracle
+2026-11-06T10:19:34-05:00	harbor r21-haiku-oracle-3 exit 0 after 1244 s
+2026-11-06T10:19:34-05:00	done r21-haiku-oracle-3 turns 58 cost_usd_est 1.1322983500000001 reward {"reward": 0.9278350515463918, "tests_passed": 360, "tests_total": 388, "tests_failed": 28, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T10:19:34-05:00	usage five_hour 0.4 (resets 2026-11-06T14:00:00-05:00) seven_day 0.67 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T10:21:34-05:00	run r21-sonnet-markdown-3 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-markdown
+2026-11-06T10:41:06-05:00	harbor r21-sonnet-markdown-3 exit 0 after 1172 s
+2026-11-06T10:41:06-05:00	done r21-sonnet-markdown-3 turns 26 cost_usd_est 1.8500954 reward {"reward": 0.9587628865979382, "tests_passed": 372, "tests_total": 388, "tests_failed": 16, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T10:41:06-05:00	usage five_hour 0.61 (resets 2026-11-06T14:00:00-05:00) seven_day 0.68 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T10:43:06-05:00	run r21-sonnet-compiler-3 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-compiler
+2026-11-06T10:57:26-05:00	harbor r21-sonnet-compiler-3 exit 0 after 860 s
+2026-11-06T10:57:26-05:00	done r21-sonnet-compiler-3 turns 22 cost_usd_est 1.6936327 reward {"reward": 0.9458762886597938, "tests_passed": 367, "tests_total": 388, "tests_failed": 21, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T10:57:26-05:00	usage five_hour 0.81 (resets 2026-11-06T14:00:00-05:00) seven_day 0.69 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T10:59:26-05:00	run r21-sonnet-oracle-3 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-oracle
+2026-11-06T11:19:49-05:00	harbor r21-sonnet-oracle-3 exit 0 after 1223 s
+2026-11-06T11:19:49-05:00	limited r21-sonnet-oracle-3 turns 24 cost_usd_est 1.5623268000000003 message: You've hit your 5-hour limit · resets 7pm (UTC) 429
+2026-11-06T11:19:49-05:00	limit reset parsed: 2026-11-06T14:00:00-05:00; sleeping until 5 min after
+2026-11-06T14:05:50-05:00	run r21-sonnet-oracle-3 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r21-export-oracle
+2026-11-06T14:23:25-05:00	harbor r21-sonnet-oracle-3 exit 0 after 1055 s
+2026-11-06T14:23:25-05:00	done r21-sonnet-oracle-3 turns 26 cost_usd_est 1.7220596999999997 reward {"reward": 0.9381443298969072, "tests_passed": 364, "tests_total": 388, "tests_failed": 24, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T14:23:25-05:00	usage five_hour 0.14 (resets 2026-11-06T19:00:00-05:00) seven_day 0.71 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T14:25:25-05:00	run r21-haiku-markdown-4 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-markdown
+2026-11-06T14:41:49-05:00	harbor r21-haiku-markdown-4 exit 0 after 984 s
+2026-11-06T14:41:49-05:00	done r21-haiku-markdown-4 turns 30 cost_usd_est 0.7389241599999999 reward {"reward": 0.8711340206185567, "tests_passed": 338, "tests_total": 388, "tests_failed": 50, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T14:41:49-05:00	usage five_hour 0.21 (resets 2026-11-06T19:00:00-05:00) seven_day 0.72 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T14:43:49-05:00	run r21-haiku-compiler-4 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-compiler
+2026-11-06T15:06:30-05:00	harbor r21-haiku-compiler-4 exit 0 after 1361 s
+2026-11-06T15:06:30-05:00	done r21-haiku-compiler-4 turns 62 cost_usd_est 1.02483924 reward {"reward": 0.9278350515463918, "tests_passed": 360, "tests_total": 388, "tests_failed": 28, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T15:06:30-05:00	usage five_hour 0.29 (resets 2026-11-06T19:00:00-05:00) seven_day 0.72 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T15:08:30-05:00	run r21-haiku-oracle-4 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-oracle
+2026-11-06T15:29:39-05:00	harbor r21-haiku-oracle-4 exit 0 after 1269 s
+2026-11-06T15:29:39-05:00	done r21-haiku-oracle-4 turns 63 cost_usd_est 1.3956517900000003 reward {"reward": 0.9355670103092784, "tests_passed": 363, "tests_total": 388, "tests_failed": 25, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T15:29:39-05:00	usage five_hour 0.4 (resets 2026-11-06T19:00:00-05:00) seven_day 0.73 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T15:31:39-05:00	run r21-haiku-markdown-5 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-markdown
+2026-11-06T15:53:05-05:00	harbor r21-haiku-markdown-5 exit 0 after 1286 s
+2026-11-06T15:53:05-05:00	done r21-haiku-markdown-5 turns 32 cost_usd_est 0.7978588199999999 reward {"reward": 0.9252577319587629, "tests_passed": 359, "tests_total": 388, "tests_failed": 29, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T15:53:05-05:00	usage five_hour 0.47 (resets 2026-11-06T19:00:00-05:00) seven_day 0.74 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T15:55:05-05:00	run r21-haiku-compiler-5 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-compiler
+2026-11-06T16:23:24-05:00	harbor r21-haiku-compiler-5 exit 0 after 1699 s
+2026-11-06T16:23:24-05:00	done r21-haiku-compiler-5 turns 1 cost_usd_est 1.5579592000000002 reward {"reward": 0.9304123711340206, "tests_passed": 361, "tests_total": 388, "tests_failed": 27, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T16:23:24-05:00	usage five_hour 0.59 (resets 2026-11-06T19:00:00-05:00) seven_day 0.75 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T16:25:25-05:00	run r21-haiku-oracle-5 attempt 1 model anthropic/claude-haiku-5-5 task case016-r21-export-oracle
+2026-11-06T16:50:14-05:00	harbor r21-haiku-oracle-5 exit 0 after 1489 s
+2026-11-06T16:50:14-05:00	done r21-haiku-oracle-5 turns 85 cost_usd_est 1.3413865300000005 reward {"reward": 0.9201030927835051, "tests_passed": 357, "tests_total": 388, "tests_failed": 31, "tests_error": 0, "official_reward": 0.0} 
+2026-11-06T16:50:14-05:00	usage five_hour 0.69 (resets 2026-11-06T19:00:00-05:00) seven_day 0.76 (resets 2026-11-09T16:00:00-05:00)
+2026-11-06T16:52:14-05:00	end no pending or limited row left

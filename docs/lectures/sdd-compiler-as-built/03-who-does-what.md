@@ -7,16 +7,21 @@
 | Split Markdown into blocks | **code** (markdown-it parser) | `ingest/segment.py` |
 | Give blocks stable ids, detect edits | **code** (hash, then position) | `ingest/identity.py` |
 | Break a block into atomic claims | **AI model** — question **Q-ATOM** | `atomize/qatom.py` |
+| Form a contract fence (`json`/`yaml`/`text`) as one atom, without asking Q-ATOM | **code** (F3 D39) | `atomize/contracts.py` |
+| Split a table cell of several sentences into one claim each; give an atom the subject or condition its sentence opened with | **code**, from Q-ATOM's own sentence labels (F3 D43, D44) | `atomize/forming.py` |
+| Turn an example sentence into a verification node of the claim before it | **code**, from Q-ATOM's `example` label (F3 D41) | `atomize/forming.py` (`example_pieces`) |
+| Attach a definition sentence to the term it defines | **code**, from Q-ATOM's `definition` label (F3 D38) | `atomize/definitions.py` |
 | Describe each claim: canonical form, seven layer answers, terms | **AI model** — question **Q-DESC** | `atomize/describe.py` |
 | Decide whether a new term is a synonym of an old one | **AI model** — question **Q-TERM** | `atomize/terms.py` |
 | Check every quote is really in the source | **code** (guards G2 … G6) | `atomize/guards.py` |
 | Choose the node's layer | **code**, from the model's seven yes/no answers | `model/placement.py` |
 | Choose the node's family | **code**, by a fixed rule list | `model/family.py` |
 | Ids, keywords, quantities, `verifies`, `uses_term` links | **code** | `model/ids.py`, `model/keywords.py`, `atomize/quantities.py`, `atomize/forming.py` |
-| Decide which pairs of nodes to compare | **code** (eight evidence sources, a score) | `retrieval/` |
+| Decide which pairs of nodes to compare | **code** (ten evidence sources, a score) | `retrieval/` |
 | Judge how two claims relate | **AI model** — question **Q-PAIR** | `conflicts/judge.py` |
 | Turn a verdict into links and conflict records | **code** | `conflicts/records.py` |
 | Write the graph, check it, render the views | **code** | `store/`, `views/` |
+| Write the agent export (map, packs, checklist) | **code**, no model call at all (F7 §4.1) | `export/` |
 
 **Which model?** One model answers all four questions: whatever `atomizer.model` names in the
 profile — **`haiku`** by default, i.e. Claude Haiku. By default it is reached through **headless
@@ -61,7 +66,7 @@ Asked about a batch of blocks. For each block the model returns:
 
 - every **sentence** with a **role**: `requirement`, `constraint`, `assumption`, `verification`,
   `decision` (these five become atoms) or `definition`, `rationale`, `example`, `context`,
-  `open_question` (these do not);
+  `open_question` (these do not become atoms in the answer);
 - the **atoms**: each one claim, as verbatim quotes, with its kind.
 
 The prompt gives the atom tests — one verdict decides it, parts could change independently, one layer,
@@ -69,8 +74,27 @@ stands alone — and rules learned from real failures: a heading line is `contex
 "*Why:*" or "*Rejected:*" is `rationale`; an acceptance criterion (Given/When/Then) is **one**
 verification atom; a table row is one claim.
 
+**What code does with the answer, without asking again.** The prompt has not changed since rel01
+(a prompt change is part of the lock key and would re-ask every block of every store, F3 D21), so
+every rel02 fix reads the sentence labels the model already gives:
+
+- an `example` sentence becomes a `verification` atom of the claim before it, flagged `example` (F3
+  D41); it used to be an annotation and was never compared with anything — a planted example that
+  contradicted its own rule was missed that way (rel02 round 14);
+- a `definition` sentence is attached to the term it opens with (F3 D38);
+- a table row is still one claim (F3 D34), **except** that a cell holding several sentences gives one
+  claim per sentence, each led by the row's first cell so it keeps its subject (F3 D43);
+- an atom that quotes only a sentence's predicate is given the sentence's uncovered opening — its
+  subject or condition — or, when it opens with a pronoun, the sentence's first atom (F3 D44).
+
+The last two came from rel02 round 17, where three planted conflicts sat inside multi-sentence table
+cells and one planted cause was in no node at all (F3 D43, D44 record the cases).
+
 *Toy example.* Block: "A share link must expire 30 days after it is created." → one sentence, role
 `requirement`; one atom, kind `requirement`, quote = the whole sentence.
+
+**Contracts skip Q-ATOM.** A fenced block in a `contract_languages` language is one claim by
+construction: code forms the one atom (F3 D39), and Q-DESC still places it and tags its subject.
 
 ### Q-DESC — "describe this claim"
 
@@ -133,11 +157,20 @@ different name is not a different object.
 | **G5** schema | The answer matches the question's JSON Schema | Re-ask |
 | **G6** weak words | Your profile's weak words in the quotes | Not a failure: ambiguity `vague_term` |
 
+One exception, for contracts only: a quote from a JSON or YAML fence that is not found is **replaced
+by the contract's whole text** instead of re-asked (F3 D40 in Q-DESC, F6 D23 in Q-PAIR). On the live
+contract run the model kept quoting key lists and summaries instead of the fence. A contract is one
+claim that is never split, so its whole span is the right quote. The replacement is counted in the
+run's `contract_quotes_replaced` and `quotes_replaced`.
+
 An item that fails twice is **not** guessed: its block stays pending, an `atomize_failed` attention
 item is opened, and the next compile tries again. In R18, 69 blocks failed on one run and succeeded on a
-later one; one block (a `*Rejected:*` sentence in F2) still fails every time (build-plan I-84).
+later one; one block (a `*Rejected:*` sentence in F2) still fails every time (build-plan I-84). At rel01
+close, 8 blocks failed on every retry (I-94, carried to rel02). For a pair that fails twice, the run's
+JSON now lists the pair and the reason its last answer was rejected (F6 D22). R21's last run: 1 such
+pair, a quote that was not verbatim (`compile-3.json`).
 
-## R18, by question
+## R18, by question (rel01 code)
 
 | Question | Accepted answers | Calls that produced one | Estimated API-equivalent |
 |---|---|---|---|
@@ -151,3 +184,6 @@ later one; one block (a `*Rejected:*` sentence in F2) still fails every time (bu
 The dollar figures are Claude Code's own
 `total_cost_usd` estimate, summed — an **API-equivalent estimate, not money spent**: the run was on a
 subscription (build-plan I-82).
+
+With the current code, the R21 store (450 blocks) took **860 calls, ≈ $3.58 est.** in three passes
+(300 + 300 + 260; methodology notes, register row 174). The split by question was not tallied for it.

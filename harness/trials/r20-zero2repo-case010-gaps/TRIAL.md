@@ -240,7 +240,7 @@ min) and went on by itself.
 `python3 summarize.py r20-zero2repo-case010-gaps` → `results.json`; `python3 notes/score.py runs/*` →
 `notes/scores.json` (tests, core, probes, turns, `$ est.` from each run's result line);
 `notes/detection.tsv` (168 rows: 12 runs × 14 gaps, read by the assistant under the strict rule, with
-`NOTES.md` line numbers; 6 rows marked BORDERLINE); `python3 notes/audit_sheet.py` →
+`NOTES.md` line numbers; 5 rows marked BORDERLINE); `python3 notes/audit_sheet.py` →
 `notes/detection_audit.md` (for the owner's audit; not blind to format).
 
 **Built (probe):** **168 of 168 readings are upstream.** No run built an alternative, an "other" value
@@ -267,7 +267,7 @@ run fails one G14 footprint test (`F01 recommended_mortgage_keeps_grouped_and_de
 | r20-sonnet-export-3 | 173 | 195 | 12 | 2 (1) | 23 | 1.826 |
 
 Source: `notes/scores.json`, `notes/detection.tsv`. Borderline rows count as flagged; with them counted
-as silent instead, the arm means below move by at most 0.67.
+as silent instead, the arm means below move by at most 1.00 (Haiku Markdown, 3 borderline rows: 10.67 → 11.67).
 
 ### Per arm (mean, range)
 
@@ -388,7 +388,7 @@ Each measure is descriptive (no test of significance) and blind to something:
    found, G14 in `r20-haiku-markdown-2`). The base build (round 13c) is itself an agent build.
    Spurious gaps checked on 8 runs only.
 
-**Next steps:** the owner audits `notes/detection_audit.md` (the 23 flagged and the 6 borderline
+**Next steps:** the owner audits `notes/detection_audit.md` (the 23 flagged and the 5 borderline
 rows); a second case, per interim report §7.1.
 
 ## Step 9: records (2026-11-05, no model call)
@@ -409,6 +409,7 @@ other model call (no second compile, no extra run, no Opus call).
 | Path | Tracked | What |
 |---|---|---|
 | `TRIAL.md`, `ANSWER_KEY.md` | yes | This description; the 14 gaps, the 10 dropped candidates |
+| `HALLUCINATION_EXPLAINED.md` | yes | Owner's explainer (2026-11-05): how gaps are verified, what was built, results and meaning, file guide |
 | `trial.env`, `queue.tsv`, `run_queue.log`, `results.json` | yes | Run conditions, queue, driver log, `../summarize.py` output |
 | `runs/<run_id>/` | yes | Per-run files, as round 19 (with `NOTES.md` copied out by `notes/score.py`) |
 | `notes/sides.py`, `probe.py`, `probe.sh`, `footprint.sh`, `footprint.py`, `footprint.json` | yes | Step 1: alternative builds, probes, footprint |

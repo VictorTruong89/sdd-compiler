@@ -123,6 +123,80 @@ the specification folder and that one line differs.
 full marks and the do-nothing agent zero. `lend_score.py` is checked against three variants of the
 reference whose behaviour is known (`check_scoring.py`).
 
+### 6.1 Cost measurement (added 2026-11-08, first applied to round 18)
+
+**What is counted.** The cost of *consuming* a format to build the code: the whole agent run, from
+reading the spec to writing `NOTES.md`. Generating the export (compile, oracle injection) is a
+separate cost, reported apart (register rows for compiles). The two arms differ only in the
+`spec/` folder and one instruction line ("Start with `spec/MAP.md`; account for every id in
+`spec/CHECKLIST.md`"), so the cost difference is everything the agent does differently because it
+has the export. Reading cost and the extra checklist work cannot be separated by this design.
+
+**Where each figure comes from, and what kind of figure it is.**
+
+| Figure | Source | Kind |
+|---|---|---|
+| Tokens: cache write, cache read, output (incl. thinking) | The `usage` block the Claude API returns with each response, saved by Claude Code in the session log (`agent.tgz` → `projects/-app/*.jsonl`) and totalled in its final record (`agent.tgz` → `claude-code.txt`) | **Measured** (API-reported) |
+| Turns | `num_turns` in the final record; also written to `run_queue.log` by the harness at run time | **Measured** |
+| API time | `duration_api_ms` in the final record | **Measured** |
+| Peak context | Largest per-response input (incl. cache) in the session log | Measured, maximum taken by script |
+| Dollars | `total_cost_usd` in the final record (`"costBasis": "list"`): Claude Code's measured tokens × list prices | **Estimate**, API-equivalent. The runs used the subscription; no invoice exists to check it against |
+| Means, differences, ratios, $ per extra conflict named | Arithmetic on the rows above | Derived |
+| Per-token prices | Least-squares fit of `total_cost_usd` on the three token counts, per model | Derived from the logs, not read from a price list |
+
+**Checks that the figures are not invented.** Run in this order; all were run on round 18 on
+2026-11-08 and passed.
+
+1. *Two records inside the log agree.* The sum of per-response `usage` over the session log (last
+   record per message id) equals the final record's totals, for every token type. Round 18: 12 of 12
+   runs equal exactly.
+2. *Harness log agrees.* `num_turns` and `total_cost_usd` equal the `done … turns … cost_usd_est`
+   line that `run_queue.log` wrote when the run ended. File dates (2026-11-02) are before the analysis.
+3. *An independent meter agrees in direction.* `run_queue.log` records the subscription's
+   `five_hour` utilisation after each run; Anthropic's servers keep it, not Claude Code. Its rise per run is coarse
+   (two decimals, rolling window, resets) but must rank runs the same way as the token totals.
+   Round 18 rises: Haiku Markdown +0.07, +0.06; Haiku export +0.07, +0.12, +0.14; Sonnet +0.17 to
+   +0.20 in both arms. It cannot confirm exact counts.
+4. *Prices reproduce the dollars.* For Sonnet the fit is exact (largest residual $0.000009): cache
+   write $4.00, cache read $0.10, output $10.00 per million tokens (cache writes are the 1-hour kind).
+   For Haiku a linear fit leaves residuals up to $0.031 and an implausible output price, so Haiku is
+   reported in tokens and Claude Code's dollar totals only, never split into dollar components.
+
+Script: `harness/trials/r18-zero2repo-case006-notes-both-sides/notes/cost_breakdown.py [--fit]`
+(prints per run: turns, cost, tokens, whether the per-response sum equals the final record, peak
+context, API time). Hand check of one run without the script:
+
+```bash
+tar xzOf runs/<run>/agent.tgz --wildcards '*claude-code.txt' | grep '"total_cost_usd"' | tail -1 \
+  | jq -c '{num_turns,total_cost_usd,usage}'
+grep "done <run>" run_queue.log
+```
+
+**Exclusions.** Attempts stopped by the subscription limit (429) are left out of the comparison and
+reported with their cost (round 18: one Sonnet export attempt, $1.33 est.). A measure dropped as
+unreliable is named, not used: a count of spec characters read per run (2026-11-08; the
+tool-result heuristic gave inconsistent totals).
+
+**First result (round 18, case006, 24 planted conflicts, oracle export, n = 3 per cell).**
+
+| | Markdown, $ per run | Export, $ per run | Change | Turns (Markdown → export) |
+|---|---|---|---|---|
+| Sonnet | 2.04 · 2.17 · 2.13 (mean 2.12) | 2.14 · 2.38 · 2.13 (mean 2.22) | +$0.10, +4.7 % | 17–24 → 25–27 |
+| Haiku | 0.38 · 0.53 · 0.46 (mean 0.46) | 0.61 · 1.17 · 1.88 (mean 1.22) | +$0.76, ×2.66; ranges do not overlap | 48–54 → 57–77 |
+
+- Sonnet, means: cache write 162 k → 177 k (+$0.058), cache read 2.17 M → 2.61 M (+$0.045), output
+  125 k → 125 k (−$0.002). API time 13.2 → 13.3 min.
+- Haiku, means: cache write 174 k → 289 k (×1.66), cache read 3.76 M → 12.7 M (×3.4), output 241 k →
+  258 k (×1.07); peak context 138–176 k → 186–404 k. API time 16.9 → 18.0 min.
+- Reading: output (the code) does not grow; the extra cost is input re-sent each turn, i.e. more
+  turns × a larger context. Cache-read cost scales with turns × context size, which is why Haiku's
+  extra turns cost so much more than Sonnet's.
+- Against set 2 (conflicts named, §4.6 of the interim report), the extra cost per additional conflict
+  named is Sonnet $0.10 / 6.3 ≈ $0.016 and Haiku $0.76 / 15.3 ≈ $0.05. Set 1 (core build quality)
+  is not changed measurably by the export at n = 3, so no cost is set against it.
+- Limits: n = 3 with a wide Haiku spread ($0.61–1.88); oracle export, not the compiler's; dollars
+  are list-price estimates; subscription cost is quota, not money.
+
 ## 7. Threats to validity noted so far
 
 - **Ceiling.** Sonnet scored full marks on all three pilot runs; tests passed cannot separate formats
@@ -386,6 +460,33 @@ Tokens for runs 8 and 9 (Harbor fields; "input" includes cache): Markdown 56 374
 | 171 | 2026-11-05 | Zero2Repo case010, **plain export** of the gapped spec (0 unsettled, no gap flagged), round 20 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points; model files in the verifier only | 193 / 197, core 171 / 175, silent inventions 14 / 14, flagged 0 / 14, official 0, 20 turns, 745 s | $1.5853 | `harness/trials/r20-zero2repo-case010-gaps/runs/r20-sonnet-export-2/` |
 | 172 | 2026-11-05 | Zero2Repo case010, Markdown, **14 gaps** (facts removed), round 20 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points; model files in the verifier only | 195 / 197, core 173 / 175, silent inventions 13 / 14, flagged 1 / 14, official 0, 16 turns, 699 s | $1.4363 | `harness/trials/r20-zero2repo-case010-gaps/runs/r20-sonnet-markdown-3/` |
 | 173 | 2026-11-05 | Zero2Repo case010, **plain export** of the gapped spec (0 unsettled, no gap flagged), round 20 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points; model files in the verifier only | 195 / 197, core 173 / 175, silent inventions 12 / 14, flagged 2 / 14, official 0, 23 turns, 780 s | $1.8264 | `harness/trials/r20-zero2repo-case010-gaps/runs/r20-sonnet-export-3/` |
+| 174 | 2026-11-05 | Compile, Zero2Repo case016 **17 planted conflicts + 16 gaps** (one spec), round 21 step 3: full from-scratch compile with judging | Haiku | compiler unchanged; round 13c case016 profile and lock replayed; 3 passes (call cap 300 per pass) | 860 calls (300 + 300 + 260); 1 126 nodes; 67 contradictions (51 judged false on the owner's behalf, 16 open), 141 duplications, 25 subsumptions; **compiler recall 9 of 17** (C12's side A in no node: atomizer omission) | $3.5773 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/TRIAL.md` step 3 |
+| 175 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21, **check run** | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 368 / 388, core 334 / 338, named 15 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 39 turns, 1420 s | $2.1816 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-compiler-1/` |
+| 176 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 350 / 388, core 316 / 338, named 10 / 17, silent inventions 11 / 15, flagged 4 / 15, official 0, 30 turns, 1257 s | $0.8181 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-markdown-1/` |
+| 177 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 365 / 388, core 334 / 338, named 13 / 17, silent inventions 12 / 15, flagged 3 / 15, official 0, 60 turns, 1256 s | $1.0153 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-compiler-1/` |
+| 178 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 361 / 388, core 323 / 338, named 16 / 17, silent inventions 12 / 15, flagged 3 / 15, official 0, 70 turns, 1416 s | $1.6501 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-oracle-1/` |
+| 179 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 366 / 388, core 331 / 338, named 11 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 26 turns, 1299 s | $2.1857 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-markdown-1/` |
+| 180 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | none: stopped by the subscription 5-hour limit (429) after 34 turns, 1185 s; job kept as `work/jobs/…-r21-sonnet-oracle-1.limited-20261106T023941`; rerun as 181 | $1.8058 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/run_queue.log` |
+| 181 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 370 / 388, core 334 / 338, named 13 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 34 turns, 1395 s | $2.0814 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-oracle-1/` |
+| 182 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 363 / 388, core 331 / 338, named 10 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 41 turns, 1187 s | $0.7757 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-markdown-2/` |
+| 183 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 364 / 388, core 330 / 338, named 14 / 17, silent inventions 13 / 15, flagged 2 / 15, official 0, 62 turns, 1230 s | $1.2143 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-compiler-2/` |
+| 184 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 358 / 388, core 328 / 338, named 16 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 63 turns, 1279 s | $1.3005 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-oracle-2/` |
+| 185 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 368 / 388, core 335 / 338, named 11 / 17, silent inventions 15 / 15, flagged 0 / 15, official 0, 35 turns, 1314 s | $2.3401 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-markdown-2/` |
+| 186 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 366 / 388, core 332 / 338, named 11 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 34 turns, 1142 s | $1.7978 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-compiler-2/` |
+| 187 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 368 / 388, core 332 / 338, named 16 / 17, silent inventions 13 / 15, flagged 1 / 15, official 0, 28 turns, 1196 s | $1.5271 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-oracle-2/` |
+| 188 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 310 / 388, core 281 / 338, named 11 / 17, silent inventions 12 / 15, flagged 3 / 15, official 0, 33 turns, 1316 s | $0.8328 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-markdown-3/` |
+| 189 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 360 / 388, core 329 / 338, named 13 / 17, silent inventions 11 / 15, flagged 3 / 15, official 0, 92 turns, 1526 s | $1.4483 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-compiler-3/` |
+| 190 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 360 / 388, core 332 / 338, named 16 / 17, silent inventions 13 / 15, flagged 2 / 15, official 0, 58 turns, 1244 s | $1.1323 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-oracle-3/` |
+| 191 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 372 / 388, core 333 / 338, named 14 / 17, silent inventions 12 / 15, flagged 2 / 15, official 0, 26 turns, 1172 s | $1.8501 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-markdown-3/` |
+| 192 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 367 / 388, core 336 / 338, named 15 / 17, silent inventions 14 / 15, flagged 1 / 15, official 0, 22 turns, 860 s | $1.6936 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-compiler-3/` |
+| 193 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | none: stopped by the subscription 5-hour limit (429) after 24 turns, 1223 s; job kept as `work/jobs/…-r21-sonnet-oracle-3.limited-20261106T111949`; rerun as 194 | $1.5623 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/run_queue.log` |
+| 194 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Sonnet | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 364 / 388, core 329 / 338, named 15 / 17, silent inventions 13 / 15, flagged 1 / 15, official 0, 26 turns, 1055 s | $1.7221 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-sonnet-oracle-3/` |
+| 195 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 338 / 388, core 306 / 338, named 12 / 17, silent inventions 13 / 15, flagged 1 / 15, official 0, 30 turns, 984 s | $0.7389 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-markdown-4/` |
+| 196 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 360 / 388, core 327 / 338, named 14 / 17, silent inventions 13 / 15, flagged 2 / 15, official 0, 62 turns, 1361 s | $1.0248 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-compiler-4/` |
+| 197 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 363 / 388, core 327 / 338, named 16 / 17, silent inventions 12 / 15, flagged 3 / 15, official 0, 63 turns, 1269 s | $1.3957 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-oracle-4/` |
+| 198 | 2026-11-06 | Zero2Repo case016, Markdown, **17 conflicts planted + 16 gaps removed**, round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 359 / 388, core 330 / 338, named 12 / 17, silent inventions 12 / 15, flagged 3 / 15, official 0, 32 turns, 1286 s | $0.7979 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-markdown-5/` |
+| 199 | 2026-11-06 | Zero2Repo case016, **compiler export** (10 of 17 flagged, 16 unsettled, nothing injected), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 361 / 388, core 329 / 338, named 13 / 17, silent inventions 13 / 15, flagged 2 / 15, official 0, 64 turns (63 + 1 after a background task woke it), 1699 s | $1.5580 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-compiler-5/` |
+| 200 | 2026-11-06 | Zero2Repo case016, **oracle export** (16 of 17 flagged, 23 unsettled), round 21 | Haiku | Harbor, **CC 2.1.316**, 4 tools, allow-list, Zero2Repo judge (report counts); **no dollar ceiling**; early-stop rerun rule; `NOTES.md` lines ask for both sides and for unstated points | 357 / 388, core 324 / 338, named 16 / 17, silent inventions 15 / 15, flagged 0 / 15, official 0, 85 turns, 1489 s | $1.3414 | `harness/trials/r21-zero2repo-case016-conflicts-gaps/runs/r21-haiku-oracle-5/` |
 
 Tokens for runs 10 and 11: Markdown 897 440 input incl. cache (821 287 cache read), 60 939 output of
 which 35 866 thinking; export 1 627 993 (1 525 588 cache read), 71 744 output of which 42 069 thinking.

@@ -1,0 +1,5503 @@
+{
+ "r21-haiku-compiler-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "alternative",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 334,
+  "core_total": 338,
+  "cost": 1.0153200199999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C19": [
+    "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "alternative",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 365,
+  "total": 388,
+  "turns": 60
+ },
+ "r21-haiku-compiler-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "upstream",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "alternative",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 330,
+  "core_total": 338,
+  "cost": 1.2143099299999998,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G06": [
+    "F03_acceptance.py::test_leading_blank_lines_dropped_four_space_indent_kept"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": true,
+   "G03": false,
+   "G04": true,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": true,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "upstream",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "alternative",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 364,
+  "total": 388,
+  "turns": 62
+ },
+ "r21-haiku-compiler-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 329,
+  "core_total": 338,
+  "cost": 1.4483088600000003,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 360,
+  "total": 388,
+  "turns": 92
+ },
+ "r21-haiku-compiler-4": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 327,
+  "core_total": 338,
+  "cost": 1.02483924,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": false,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 360,
+  "total": 388,
+  "turns": 62
+ },
+ "r21-haiku-compiler-5": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "core": 329,
+  "core_total": 338,
+  "cost": 1.5579592000000002,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": false,
+   "G09": false,
+   "G10": true,
+   "G11": true,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "tests": 361,
+  "total": 388,
+  "turns": 64
+ },
+ "r21-haiku-markdown-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "core": 316,
+  "core_total": 338,
+  "cost": 0.81805967,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G06": [
+    "F03_acceptance.py::test_leading_blank_lines_dropped_four_space_indent_kept"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": false,
+   "C15": true,
+   "C16": false,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": false,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "tests": 350,
+  "total": 388,
+  "turns": 30
+ },
+ "r21-haiku-markdown-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 331,
+  "core_total": 338,
+  "cost": 0.7757171599999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": false,
+   "C15": true,
+   "C16": false,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": false,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": true,
+   "G08": true,
+   "G09": true,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 363,
+  "total": 388,
+  "turns": 41
+ },
+ "r21-haiku-markdown-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 281,
+  "core_total": 338,
+  "cost": 0.8328319099999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C19": [
+    "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": false,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": false,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": true,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 310,
+  "total": 388,
+  "turns": 33
+ },
+ "r21-haiku-markdown-4": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "upstream",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 306,
+  "core_total": 338,
+  "cost": 0.7389241599999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G10": [
+    "F05_acceptance.py::test_instruction_names_any_case_are_skipped_and_not_recorded"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": false,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "upstream",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 338,
+  "total": 388,
+  "turns": 30
+ },
+ "r21-haiku-markdown-5": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "alternative",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 330,
+  "core_total": 338,
+  "cost": 0.7978588199999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C19": [
+    "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": false,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "alternative",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 359,
+  "total": 388,
+  "turns": 32
+ },
+ "r21-haiku-oracle-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 323,
+  "core_total": 338,
+  "cost": 1.65009954,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G06": [
+    "F03_acceptance.py::test_leading_blank_lines_dropped_four_space_indent_kept"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": true,
+   "G10": true,
+   "G11": true,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 361,
+  "total": 388,
+  "turns": 70
+ },
+ "r21-haiku-oracle-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 328,
+  "core_total": 338,
+  "cost": 1.30045497,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G06": [
+    "F03_acceptance.py::test_leading_blank_lines_dropped_four_space_indent_kept"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 358,
+  "total": 388,
+  "turns": 63
+ },
+ "r21-haiku-oracle-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "alternative",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 332,
+  "core_total": 338,
+  "cost": 1.1322983500000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C19": [
+    "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": false,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": true,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "alternative",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 360,
+  "total": 388,
+  "turns": 58
+ },
+ "r21-haiku-oracle-4": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "core": 327,
+  "core_total": 338,
+  "cost": 1.3956517900000003,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "tests": 363,
+  "total": 388,
+  "turns": 63
+ },
+ "r21-haiku-oracle-5": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 324,
+  "core_total": 338,
+  "cost": 1.3413865300000005,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 357,
+  "total": 388,
+  "turns": 85
+ },
+ "r21-sonnet-compiler-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 334,
+  "core_total": 338,
+  "cost": 2.1816427000000003,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 368,
+  "total": 388,
+  "turns": 39
+ },
+ "r21-sonnet-compiler-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 332,
+  "core_total": 338,
+  "cost": 1.7977529,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan"
+   ],
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": true,
+   "G30": true,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 366,
+  "total": 388,
+  "turns": 34
+ },
+ "r21-sonnet-compiler-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 336,
+  "core_total": 338,
+  "cost": 1.6936327,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C20": [
+    "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+    "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": true,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": false,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 367,
+  "total": 388,
+  "turns": 22
+ },
+ "r21-sonnet-markdown-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 331,
+  "core_total": 338,
+  "cost": 2.1857283,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": false,
+   "C15": false,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": true,
+   "G08": false,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": false,
+   "G30": true,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 366,
+  "total": 388,
+  "turns": 26
+ },
+ "r21-sonnet-markdown-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 335,
+  "core_total": 338,
+  "cost": 2.3400882,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C17": [
+    "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+    "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C19": [
+    "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": false,
+   "C15": false,
+   "C16": false,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": false,
+   "G30": true,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "alternative",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 368,
+  "total": 388,
+  "turns": 35
+ },
+ "r21-sonnet-markdown-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "upstream",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 333,
+  "core_total": 338,
+  "cost": 1.8500954,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": true,
+   "G10": false,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": false,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "upstream",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 372,
+  "total": 388,
+  "turns": 26
+ },
+ "r21-sonnet-oracle-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 334,
+  "core_total": 338,
+  "cost": 2.0814209,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G06": [
+    "F03_acceptance.py::test_leading_blank_lines_dropped_four_space_indent_kept"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": false,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "alternative",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "alternative",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 370,
+  "total": 388,
+  "turns": 34
+ },
+ "r21-sonnet-oracle-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 332,
+  "core_total": 338,
+  "cost": 1.5271226000000002,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C22": [
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": false,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": false,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 368,
+  "total": 388,
+  "turns": 28
+ },
+ "r21-sonnet-oracle-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 329,
+  "core_total": 338,
+  "cost": 1.7220596999999997,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": false,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": false,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": true,
+   "G30": false,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "upstream",
+   "C08": "upstream",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C17": "upstream",
+   "C18": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "C22": "upstream",
+   "C23": "upstream",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 364,
+  "total": 388,
+  "turns": 26
+ }
+}

@@ -1,0 +1,568 @@
+{
+ "BASE_failed": [],
+ "C01": {
+  "newly_failed": [
+   "F01_acceptance.py::test_hedge_stacking_does_not_raise_score",
+   "F01_acceptance.py::test_listed_writing_advice_numbers_do_not_move_the_score"
+  ],
+  "newly_passed": []
+ },
+ "C02": {
+  "newly_failed": [
+   "F01_acceptance.py::test_confidence_low_below_300_with_one_score_moving_family",
+   "F01_acceptance.py::test_listed_writing_advice_numbers_do_not_move_the_score",
+   "F01_acceptance.py::test_opener_repetition_does_not_raise_score",
+   "F01_acceptance.py::test_writing_advice_does_not_count_toward_family_diversity"
+  ],
+  "newly_passed": []
+ },
+ "C03": {
+  "newly_failed": [
+   "F01_acceptance.py::test_listed_writing_advice_numbers_do_not_move_the_score",
+   "F01_acceptance.py::test_trailing_spaces_finding_does_not_raise_score",
+   "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+  ],
+  "newly_passed": []
+ },
+ "C04": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "C05": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "C06": {
+  "newly_failed": [
+   "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+   "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+  ],
+  "newly_passed": []
+ },
+ "C07": {
+  "newly_failed": [
+   "F01_acceptance.py::test_empty_file_notebook_archive_pdf_rtf_fail_as_empty_extracted_prose",
+   "F01_acceptance.py::test_empty_stdin_fails_structured_and_without_traceback",
+   "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+   "F01_acceptance.py::test_unknown_option_fails_distinctly_from_empty_input",
+   "F03_acceptance.py::test_cleanup_of_unreadable_path_still_fails",
+   "F03_acceptance.py::test_cleanup_plus_unknown_option_still_fails_as_unknown_option"
+  ],
+  "newly_passed": []
+ },
+ "C08": {
+  "newly_failed": [
+   "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+   "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+   "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+  ],
+  "newly_passed": []
+ },
+ "C09": {
+  "newly_failed": [
+   "F01_acceptance.py::test_help_request_from_usage_prints_usage_and_succeeds",
+   "F01_acceptance.py::test_usage_names_cleanup_interval_double_dash_and_file_operand",
+   "F03_acceptance.py::test_usage_warns_that_redirecting_cleanup_over_a_document_is_misuse"
+  ],
+  "newly_passed": []
+ },
+ "C10": {
+  "newly_failed": [
+   "F01_acceptance.py::test_consecutive_blockquotes_do_not_fire",
+   "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+  ],
+  "newly_passed": []
+ },
+ "C11": {
+  "newly_failed": [
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[single-however]"
+  ],
+  "newly_passed": []
+ },
+ "C12": {
+  "newly_failed": [
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[from-0-to-100]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[from-9-to-5]"
+  ],
+  "newly_passed": []
+ },
+ "C13": {
+  "newly_failed": [
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[utm-other-domain]"
+  ],
+  "newly_passed": []
+ },
+ "C14": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "C15": {
+  "newly_failed": [
+   "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan",
+   "F03_acceptance.py::test_load_bearing_nbsp_before_french_punctuation_stays",
+   "F03_acceptance.py::test_narrow_nbsp_in_40_eur_stays"
+  ],
+  "newly_passed": []
+ },
+ "C16": {
+  "newly_failed": [
+   "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+  ],
+  "newly_passed": []
+ },
+ "C17": {
+  "newly_failed": [
+   "F05_acceptance.py::test_apply_patch_scores_at_most_sixteen_distinct_paths",
+   "F05_acceptance.py::test_duplicate_patch_path_is_one_scored_row"
+  ],
+  "newly_passed": []
+ },
+ "C18": {
+  "newly_failed": [
+   "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+  ],
+  "newly_passed": []
+ },
+ "C19": {
+  "newly_failed": [
+   "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+  ],
+  "newly_passed": []
+ },
+ "C20": {
+  "newly_failed": [
+   "F04_acceptance.py::test_after_session_start_later_hooks_see_the_stored_level",
+   "F04_acceptance.py::test_environment_level_applies_only_when_nothing_valid_is_stored"
+  ],
+  "newly_passed": []
+ },
+ "C21": {
+  "newly_failed": [
+   "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+  ],
+  "newly_passed": []
+ },
+ "C22": {
+  "newly_failed": [
+   "F06_acceptance.py::test_stats_non_assistant_text_does_not_move_the_session_prose_score",
+   "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+  ],
+  "newly_passed": []
+ },
+ "C23": {
+  "newly_failed": [
+   "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+  ],
+  "newly_passed": []
+ },
+ "C25": {
+  "newly_failed": [
+   "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+  ],
+  "newly_passed": []
+ },
+ "C26": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G01": {
+  "newly_failed": [
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[single-dialect]",
+   "F01_acceptance.py::test_single_dialect_word_does_not_fire_model_dialect"
+  ],
+  "newly_passed": []
+ },
+ "G02": {
+  "newly_failed": [
+   "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+   "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+  ],
+  "newly_passed": []
+ },
+ "G03": {
+  "newly_failed": [
+   "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+  ],
+  "newly_passed": []
+ },
+ "G04": {
+  "newly_failed": [
+   "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+  ],
+  "newly_passed": []
+ },
+ "G05": {
+  "newly_failed": [
+   "F01_acceptance.py::test_indented_code_block_does_not_fire",
+   "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+  ],
+  "newly_passed": []
+ },
+ "G06": {
+  "newly_failed": [
+   "F03_acceptance.py::test_leading_blank_lines_dropped_four_space_indent_kept"
+  ],
+  "newly_passed": []
+ },
+ "G07": {
+  "newly_failed": [
+   "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+  ],
+  "newly_passed": []
+ },
+ "G08": {
+  "newly_failed": [
+   "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+  ],
+  "newly_passed": []
+ },
+ "G09": {
+  "newly_failed": [
+   "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+  ],
+  "newly_passed": []
+ },
+ "G10": {
+  "newly_failed": [
+   "F05_acceptance.py::test_instruction_names_any_case_are_skipped_and_not_recorded"
+  ],
+  "newly_passed": []
+ },
+ "G11": {
+  "newly_failed": [
+   "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+  ],
+  "newly_passed": []
+ },
+ "G12": {
+  "newly_failed": [
+   "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+  ],
+  "newly_passed": []
+ },
+ "G13": {
+  "newly_failed": [
+   "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+  ],
+  "newly_passed": []
+ },
+ "G14": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G19": {
+  "newly_failed": [
+   "F01_acceptance.py::test_band_matches_documented_range_on_named_oracles",
+   "F01_acceptance.py::test_leftover_decisive_pairs_raise_score_to_at_least_65",
+   "F01_acceptance.py::test_named_line_126_oracles_are_not_a_constant_fifty",
+   "F01_acceptance.py::test_placeholder_plus_tracking_parameter_scores_at_least_65",
+   "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+   "F01_acceptance.py::test_two_decisive_families_raise_score_to_at_least_65",
+   "F01_acceptance.py::test_two_other_decisive_families_also_raise_score_to_at_least_65"
+  ],
+  "newly_passed": []
+ },
+ "G21": {
+  "newly_failed": [
+   "F01_acceptance.py::test_nbsp_fires_nonstandard_spaces_not_invisible",
+   "F01_acceptance.py::test_nbsp_moves_nonstandard_space_count",
+   "F03_acceptance.py::test_jobless_nbsp_and_ideographic_space_become_ordinary_space"
+  ],
+  "newly_passed": []
+ },
+ "G24": {
+  "newly_failed": [
+   "F01_acceptance.py::test_ai_register_sample_has_ten_findings_and_higher_score",
+   "F01_acceptance.py::test_at_cap_file_is_not_truncated",
+   "F01_acceptance.py::test_band_matches_documented_range_on_named_oracles",
+   "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+   "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+   "F01_acceptance.py::test_character_layer_findings_ignore_bytes_past_the_window",
+   "F01_acceptance.py::test_comma_plus_underscoring_fires_superficial_ing_tail",
+   "F01_acceptance.py::test_confidence_high_at_300_words",
+   "F01_acceptance.py::test_confidence_low_below_120_words",
+   "F01_acceptance.py::test_confidence_low_below_300_with_one_score_moving_family",
+   "F01_acceptance.py::test_confidence_moderate_below_300_with_more_families",
+   "F01_acceptance.py::test_confidence_none_below_40_words",
+   "F01_acceptance.py::test_consecutive_blockquotes_do_not_fire",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[adj-stack]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[article-title]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[chatbot]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[copula]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[cutoff]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[dialect]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[ecosystem]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[hedge]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[homoglyph]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[humble-mighty]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[ing-tail]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[ing-underscoring]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[nbsp]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[not-just]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[paving]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[pivot]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[placeholder]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[promo]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[ref-markup]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[resin-parallelism-17]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[simple-yet]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[synonym-companies]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[synonym]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[tag-block]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[tailing-neg]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[trailing]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[transition]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[utm-period]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[utm]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[vague]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[vocab-stack]",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[zw]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[biology-chemistry]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[boston-chicago]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[from-0-to-100]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[from-9-to-5]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[genuine-cyrillic]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[great-question-in]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[month-may]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[nanotech]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[native-mixed-name]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[non-latin-url]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[noun-list]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[ordinary-negation-sleep]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[ordinary-negation-teacher]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[single-dialect]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[single-however]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[trailing-newline]",
+   "F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[utm-other-domain]",
+   "F01_acceptance.py::test_default_scan_is_deterministic",
+   "F01_acceptance.py::test_dense_ai_vocabulary_cluster_leaves_clean_and_light_tells",
+   "F01_acceptance.py::test_detector_scan_opens_no_connection_to_a_proxy_sink",
+   "F01_acceptance.py::test_double_dash_then_dash_filename_scans",
+   "F01_acceptance.py::test_every_success_report_band_agrees_with_score",
+   "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+   "F01_acceptance.py::test_fenced_delve_does_not_fire_but_delve_after_fence_does",
+   "F01_acceptance.py::test_file_and_stdin_agree_on_short_factual_report",
+   "F01_acceptance.py::test_finding_has_label_count_and_at_most_three_samples",
+   "F01_acceptance.py::test_great_question_chatbot_punctuation_is_sycophantic_not_chatbot",
+   "F01_acceptance.py::test_hedge_stacking_does_not_raise_score",
+   "F01_acceptance.py::test_humanized_coding_sample_has_zero_findings",
+   "F01_acceptance.py::test_indented_code_block_does_not_fire",
+   "F01_acceptance.py::test_indented_paragraph_continuation_still_fires",
+   "F01_acceptance.py::test_interior_zero_width_adds_invisible_character_finding",
+   "F01_acceptance.py::test_interior_zero_width_moves_invisible_character_count",
+   "F01_acceptance.py::test_interval_omitted_when_fewer_than_four_sentences",
+   "F01_acceptance.py::test_interval_switch_adds_low_high_without_replacing_point_score",
+   "F01_acceptance.py::test_isolated_ai_vocabulary_stays_in_clean_or_light_tells",
+   "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+   "F01_acceptance.py::test_latin_run_homoglyph_moves_mixed_script_count",
+   "F01_acceptance.py::test_leading_utf8_bom_and_crlf_do_not_add_invisible_findings_or_mixed_band",
+   "F01_acceptance.py::test_leftover_decisive_pairs_raise_score_to_at_least_65",
+   "F01_acceptance.py::test_listed_writing_advice_numbers_do_not_move_the_score",
+   "F01_acceptance.py::test_long_document_five_and_six_family_floors",
+   "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+   "F01_acceptance.py::test_markdown_table_and_badge_and_front_matter_do_not_fire",
+   "F01_acceptance.py::test_metrics_include_named_fields_on_success",
+   "F01_acceptance.py::test_named_catalogue_18_probes_are_not_the_parallelism_form_17_fire",
+   "F01_acceptance.py::test_named_line_126_oracles_are_not_a_constant_fifty",
+   "F01_acceptance.py::test_nbsp_fires_nonstandard_spaces_not_invisible",
+   "F01_acceptance.py::test_nbsp_moves_nonstandard_space_count",
+   "F01_acceptance.py::test_nested_longer_opening_fence_keeps_inner_example_out",
+   "F01_acceptance.py::test_nine_no_detector_numbers_never_appear_as_findings",
+   "F01_acceptance.py::test_one_past_cap_marks_truncated_and_reports_262144_scanned",
+   "F01_acceptance.py::test_opener_repetition_does_not_raise_score",
+   "F01_acceptance.py::test_placeholder_plus_tracking_parameter_scores_at_least_65",
+   "F01_acceptance.py::test_rhythm_only_finding_present_cannot_exceed_40",
+   "F01_acceptance.py::test_sample_list_is_capped_and_hit_count_exceeds_sample_length_on_repeats",
+   "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+   "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+   "F01_acceptance.py::test_short_dense_slop_outscores_factual_by_at_least_20",
+   "F01_acceptance.py::test_short_document_three_families_raise_floor_45",
+   "F01_acceptance.py::test_short_document_two_families_raise_floor_25",
+   "F01_acceptance.py::test_short_factual_human_stays_at_or_below_40",
+   "F01_acceptance.py::test_single_decisive_above_low_confidence_raises_at_least_45",
+   "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+   "F01_acceptance.py::test_single_dialect_word_does_not_fire_model_dialect",
+   "F01_acceptance.py::test_tag_block_in_english_prose_fires_invisible_characters",
+   "F01_acceptance.py::test_trailing_spaces_finding_does_not_raise_score",
+   "F01_acceptance.py::test_two_decisive_families_raise_score_to_at_least_65",
+   "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+   "F01_acceptance.py::test_two_hits_of_one_family_do_not_take_the_two_family_floor",
+   "F01_acceptance.py::test_two_other_decisive_families_also_raise_score_to_at_least_65",
+   "F01_acceptance.py::test_unfired_catalogue_numbers_are_omitted",
+   "F01_acceptance.py::test_utf16_with_bom_is_decoded_as_text",
+   "F01_acceptance.py::test_utf8_stdin_scans_the_unicode_characters",
+   "F01_acceptance.py::test_writing_advice_does_not_count_toward_family_diversity",
+   "F02_acceptance.py::test_character_layer_ignores_invisible_mark_only_past_extracted_window",
+   "F02_acceptance.py::test_check_scores_at_archive_cap_and_refuses_one_byte_over",
+   "F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+   "F02_acceptance.py::test_check_scores_notebook_between_plain_text_and_archive_cap_and_refuses_one_byte_over",
+   "F02_acceptance.py::test_detector_reads_source_extension_as_plain_text[.js]",
+   "F02_acceptance.py::test_detector_reads_source_extension_as_plain_text[.py]",
+   "F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_archive_cap",
+   "F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+   "F02_acceptance.py::test_extracted_prose_at_cap_is_not_longer_than_window",
+   "F02_acceptance.py::test_extracted_prose_one_past_cap_is_longer_and_scans_262144",
+   "F02_acceptance.py::test_guard_leaves_source_code_extension_alone[.js]",
+   "F02_acceptance.py::test_guard_leaves_source_code_extension_alone[.py]",
+   "F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+   "F02_acceptance.py::test_guard_records_pdf_and_rtf_as_binary_on_the_ledger[note.pdf-%PDF-1.4\\n]",
+   "F02_acceptance.py::test_guard_records_pdf_and_rtf_as_binary_on_the_ledger[note.rtf-{\\rtf1\\n]",
+   "F02_acceptance.py::test_leading_utf8_bom_is_not_prose_and_not_an_invisible_finding",
+   "F02_acceptance.py::test_markdown_and_office_round_trip_keep_distinctive_words",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.adoc]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.markdown]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.md]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.mdx]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.org]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.rst]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.tex]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.text]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.txt]",
+   "F02_acceptance.py::test_notebook_list_of_string_markdown_source_is_joined",
+   "F02_acceptance.py::test_notebook_markdown_slop_is_scored_and_code_cell_is_not",
+   "F02_acceptance.py::test_office_and_epub_extraction_open_no_network",
+   "F02_acceptance.py::test_stone_bridge_human_docx_scores_below_40",
+   "F02_acceptance.py::test_utf16_with_bom_plain_text_decodes_without_invisible_finding",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.docm]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.docx]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.epub]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.odp]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.ods]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.odt]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.pptm]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.pptx]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.xlsm]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.xlsx]",
+   "F03_acceptance.py::test_cleanup_prints_cellulose_sentence_not_a_report",
+   "F03_acceptance.py::test_eight_thousand_tag_run_finishes_within_8_seconds_with_and_without_cleanup",
+   "F03_acceptance.py::test_folded_password_rescan_does_not_fire_mixed_script",
+   "F03_acceptance.py::test_jobless_invisible_codepoints_are_removed_and_rescan_is_quiet",
+   "F03_acceptance.py::test_jobless_nbsp_and_ideographic_space_become_ordinary_space",
+   "F03_acceptance.py::test_jobless_zero_width_space_is_removed_and_rescan_is_quiet",
+   "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan",
+   "F03_acceptance.py::test_load_bearing_nbsp_before_french_punctuation_stays",
+   "F03_acceptance.py::test_long_unspaced_token_finishes_within_8_seconds_with_and_without_cleanup",
+   "F03_acceptance.py::test_named_password_sentence_folds_cyrillic_vowels_to_ascii",
+   "F03_acceptance.py::test_narrow_nbsp_in_40_eur_stays",
+   "F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+   "F03_acceptance.py::test_thirty_two_thousand_space_run_finishes_within_8_seconds_with_and_without_cleanup",
+   "F03_acceptance.py::test_without_cleanup_the_same_probe_is_a_character_layer_report",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[crucial]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[delve]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[elevate]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[empower]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[fascinating]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[foster]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[game-changer]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[genuinely]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[holistic]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[journey]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[landscape]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[leverage]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[multifaceted]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[myriad]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[nuanced]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[pivotal]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[plethora]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[realm]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[robust]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[seamless]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[showcase]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[supercharge]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[tapestry]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[testament]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[underscore]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[unlock]",
+   "F04_acceptance.py::test_each_standalone_banned_word_except_context_only_fires_an_f01_family[vibrant]",
+   "F06_acceptance.py::test_check_without_findings_has_a_visible_indication[named]",
+   "F06_acceptance.py::test_check_without_findings_has_a_visible_indication[plain]",
+   "F06_acceptance.py::test_show_flagged_bit_only_when_the_row_has_labels"
+  ],
+  "newly_passed": []
+ },
+ "G25": {
+  "newly_failed": [
+   "F01_acceptance.py::test_ai_register_sample_has_ten_findings_and_higher_score",
+   "F01_acceptance.py::test_band_matches_documented_range_on_named_oracles",
+   "F01_acceptance.py::test_constructable_fires_match_named_probes[vocab-stack]",
+   "F01_acceptance.py::test_default_scan_is_deterministic",
+   "F01_acceptance.py::test_dense_ai_vocabulary_cluster_leaves_clean_and_light_tells",
+   "F01_acceptance.py::test_every_success_report_band_agrees_with_score",
+   "F01_acceptance.py::test_latin_run_homoglyph_moves_mixed_script_count",
+   "F01_acceptance.py::test_listed_writing_advice_numbers_do_not_move_the_score",
+   "F01_acceptance.py::test_named_line_126_oracles_are_not_a_constant_fifty",
+   "F01_acceptance.py::test_nine_no_detector_numbers_never_appear_as_findings",
+   "F01_acceptance.py::test_rhythm_only_finding_present_cannot_exceed_40",
+   "F01_acceptance.py::test_sample_list_is_capped_and_hit_count_exceeds_sample_length_on_repeats",
+   "F01_acceptance.py::test_short_dense_slop_outscores_factual_by_at_least_20",
+   "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+   "F01_acceptance.py::test_writing_advice_does_not_count_toward_family_diversity",
+   "F02_acceptance.py::test_check_scores_at_archive_cap_and_refuses_one_byte_over",
+   "F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+   "F02_acceptance.py::test_check_scores_notebook_between_plain_text_and_archive_cap_and_refuses_one_byte_over",
+   "F02_acceptance.py::test_detector_reads_source_extension_as_plain_text[.js]",
+   "F02_acceptance.py::test_detector_reads_source_extension_as_plain_text[.py]",
+   "F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_archive_cap",
+   "F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+   "F02_acceptance.py::test_guard_leaves_source_code_extension_alone[.js]",
+   "F02_acceptance.py::test_guard_leaves_source_code_extension_alone[.py]",
+   "F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+   "F02_acceptance.py::test_guard_records_pdf_and_rtf_as_binary_on_the_ledger[note.pdf-%PDF-1.4\\n]",
+   "F02_acceptance.py::test_guard_records_pdf_and_rtf_as_binary_on_the_ledger[note.rtf-{\\rtf1\\n]",
+   "F02_acceptance.py::test_leading_utf8_bom_is_not_prose_and_not_an_invisible_finding",
+   "F02_acceptance.py::test_markdown_and_office_round_trip_keep_distinctive_words",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.adoc]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.markdown]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.md]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.mdx]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.org]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.rst]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.tex]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.text]",
+   "F02_acceptance.py::test_nine_plain_text_extensions_extract_and_score_slop[.txt]",
+   "F02_acceptance.py::test_notebook_list_of_string_markdown_source_is_joined",
+   "F02_acceptance.py::test_notebook_markdown_slop_is_scored_and_code_cell_is_not",
+   "F02_acceptance.py::test_office_and_epub_extraction_open_no_network",
+   "F02_acceptance.py::test_utf16_with_bom_plain_text_decodes_without_invisible_finding",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.docm]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.docx]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.epub]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.odp]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.ods]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.odt]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.pptm]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.pptx]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.xlsm]",
+   "F02_acceptance.py::test_zip_based_slop_extracts_distinctive_words_without_markup_and_scores_at_least_40[.xlsx]"
+  ],
+  "newly_passed": []
+ },
+ "G30": {
+  "newly_failed": [
+   "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+  ],
+  "newly_passed": []
+ },
+ "G33": {
+  "newly_failed": [
+   "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+  ],
+  "newly_passed": []
+ },
+ "G60": {
+  "newly_failed": [
+   "F06_acceptance.py::test_namespaced_form_covers_every_subcommand",
+   "F06_acceptance.py::test_show_empty_ledger_names_the_deliverable_suffixes",
+   "F06_acceptance.py::test_show_omits_a_ledger_only_when_older_than_seven_days"
+  ],
+  "newly_passed": []
+ },
+ "G67": {
+  "newly_failed": [
+   "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+   "F02_acceptance.py::test_detector_reads_source_extension_as_plain_text[.js]",
+   "F02_acceptance.py::test_detector_reads_source_extension_as_plain_text[.py]"
+  ],
+  "newly_passed": []
+ }
+}

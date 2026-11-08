@@ -1,0 +1,25 @@
+# run | named conflicts | flagged gaps | borderline / remarks
+sonnet-markdown-1 | C08 C11 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G13 | G01 cites FP-04 "needs two hits" (stated)
+sonnet-markdown-2 | C06 C08 C11 C17 C18 C19 C20 C21 C22 C23 C25 | - | G13 behaviour given under disagreements, not called unstated
+sonnet-markdown-3 | C06 C08 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G08 G13 | G08: epub order OPF spine under Unstated
+sonnet-compiler-1 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G10 | G06 borderline (first-line leading spaces kept, under Unstated); G07 borderline (trailing CRLF restored)
+sonnet-compiler-2 | C06 C08 C09 C11 C13 C17 C18 C19 C20 C22 C25 | G10 | C15 C16 C21 C23: listed with CF ids but side contents not stated (not named)
+sonnet-compiler-3 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G13 |
+sonnet-oracle-1 | C01 C06 C08 C09 C11 C13 C15 C17 C18 C19 C21 C22 C25 | G13 | C16: only built side given; C20 "env vs stored level", C23 "named transcript vs newer one": topic in the title, contents not stated (borderline, not named)
+sonnet-oracle-2 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G13 |
+sonnet-oracle-3 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G13 | G01 "patterns 2 fires at two hits"
+haiku-markdown-1 | C01 C06 C08 C15 C17 C18 C19 C21 C22 C23 | G06 G07 G08 G13 | G10 borderline: listed as a deviation from PRD "exactly", not as unstated; G01 cited as stated in FP-04
+haiku-markdown-2 | C06 C08 C11 C15 C17 C18 C19 C21 C22 C23 | G13 | G07 borderline: CRLF to LF "before analysis" (not cleanup output); G08 borderline: epub files listed, no order
+haiku-markdown-3 | C06 C08 C15 C16 C17 C18 C19 C20 C21 C22 C23 | G07 G08 G13 | G13 in the disagreements list but worded "without stating the rule"; G07 "CR line endings are kept" under choices left open
+haiku-markdown-4 | C01 C06 C08 C09 C15 C16 C17 C18 C19 C21 C22 C23 | G13 |
+haiku-markdown-5 | C06 C08 C09 C11 C16 C17 C18 C19 C20 C21 C22 C23 | G07 G08 G13 |
+haiku-compiler-1 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C21 C22 C23 | G07 G08 G13 | G08 value: name order
+haiku-compiler-2 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 | G08 G13 | G08 value: archive order
+haiku-compiler-3 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C21 C22 C23 | G06 G08 G13 | G13 borderline-flagged: "not a stated conflict, but an interpretation"; G06 "the spec only names leading blank lines"
+haiku-compiler-4 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C21 C22 C23 | G10 G13 | G10 under "spec does not state", also notes PRD says "exactly" (borderline-flagged)
+haiku-compiler-5 | C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C21 C22 C23 | G07 G13 |
+haiku-oracle-1 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G06 G10 G13 | G07 borderline (final CRLF kept); G10 "spec says exactly; I read that as the file name, not the letter case" under Gaps
+haiku-oracle-2 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G13 |
+haiku-oracle-3 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G08 G13 | G07 borderline: CRLF to LF "before analysis" (cleanup output not stated)
+haiku-oracle-4 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G07 G08 G13 |
+haiku-oracle-5 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | - | G07 borderline: CRLF to LF "before scoring"; no stats de-dup mention
