@@ -1,0 +1,265 @@
+run	item	named	stated	flagged	built	note
+r23-sonnet-review-1	C01	yes	both		upstream	
+r23-sonnet-review-1	C06	yes	both		upstream	
+r23-sonnet-review-1	C08	yes	both		upstream	
+r23-sonnet-review-1	C09	yes	both		upstream	
+r23-sonnet-review-1	C11	yes	both		upstream	"C11 named although the list does not flag it (stray sentence of family 36 vs 37); G06 G07 borderline as in r21 sonnet-compiler-1 (first-line spaces; trailing CRLF restored); the list's false entry ""model-dialect needs two hits"" followed: one hit fires family 2 (probe G01 alternative)"
+r23-sonnet-review-1	C12	no			upstream	
+r23-sonnet-review-1	C13	yes	both		upstream	
+r23-sonnet-review-1	C15	yes	both		upstream	
+r23-sonnet-review-1	C16	yes	both		upstream	
+r23-sonnet-review-1	C17	yes	both		upstream	
+r23-sonnet-review-1	C18	yes	both		upstream	
+r23-sonnet-review-1	C19	yes	both		upstream	
+r23-sonnet-review-1	C20	yes	both		alternative	
+r23-sonnet-review-1	C21	yes	both		upstream	
+r23-sonnet-review-1	C22	yes	both		upstream	
+r23-sonnet-review-1	C23	yes	both		upstream	
+r23-sonnet-review-1	C25	yes	both		upstream	
+r23-sonnet-review-1	G01			no	alternative	"C11 named although the list does not flag it (stray sentence of family 36 vs 37); G06 G07 borderline as in r21 sonnet-compiler-1 (first-line spaces; trailing CRLF restored); the list's false entry ""model-dialect needs two hits"" followed: one hit fires family 2 (probe G01 alternative)"
+r23-sonnet-review-1	G02			no	alternative	
+r23-sonnet-review-1	G03			no	alternative	
+r23-sonnet-review-1	G04			no	alternative	
+r23-sonnet-review-1	G05			no	alternative	
+r23-sonnet-review-1	G06			no	upstream	"C11 named although the list does not flag it (stray sentence of family 36 vs 37); G06 G07 borderline as in r21 sonnet-compiler-1 (first-line spaces; trailing CRLF restored); the list's false entry ""model-dialect needs two hits"" followed: one hit fires family 2 (probe G01 alternative)"
+r23-sonnet-review-1	G07			no	upstream	"C11 named although the list does not flag it (stray sentence of family 36 vs 37); G06 G07 borderline as in r21 sonnet-compiler-1 (first-line spaces; trailing CRLF restored); the list's false entry ""model-dialect needs two hits"" followed: one hit fires family 2 (probe G01 alternative)"
+r23-sonnet-review-1	G08			yes	alternative	
+r23-sonnet-review-1	G09			no	alternative	
+r23-sonnet-review-1	G10			no	upstream	
+r23-sonnet-review-1	G11			no	alternative	
+r23-sonnet-review-1	G12			no	alternative	
+r23-sonnet-review-1	G13			yes	upstream	
+r23-sonnet-review-1	G21			no	upstream	
+r23-sonnet-review-1	G30			no	upstream	
+r23-sonnet-review-1	G33			no	alternative	
+r23-sonnet-review-2	C01	yes	both		upstream	
+r23-sonnet-review-2	C06	yes	both		upstream	
+r23-sonnet-review-2	C08	yes	both		upstream	
+r23-sonnet-review-2	C09	yes	both		upstream	
+r23-sonnet-review-2	C11	yes	both		upstream	all 17 named: C11 (21) and C12 (22, numeric span vs false range) are not in the list; list's model-dialect false entry followed (one hit)
+r23-sonnet-review-2	C12	yes	both		upstream	all 17 named: C11 (21) and C12 (22, numeric span vs false range) are not in the list; list's model-dialect false entry followed (one hit)
+r23-sonnet-review-2	C13	yes	both		upstream	
+r23-sonnet-review-2	C15	yes	both		upstream	
+r23-sonnet-review-2	C16	yes	both		upstream	
+r23-sonnet-review-2	C17	yes	both		upstream	
+r23-sonnet-review-2	C18	yes	both		upstream	
+r23-sonnet-review-2	C19	yes	both		upstream	
+r23-sonnet-review-2	C20	yes	both		upstream	
+r23-sonnet-review-2	C21	yes	both		upstream	
+r23-sonnet-review-2	C22	yes	both		upstream	
+r23-sonnet-review-2	C23	yes	both		upstream	
+r23-sonnet-review-2	C25	yes	both		upstream	
+r23-sonnet-review-2	G01			no	alternative	
+r23-sonnet-review-2	G02			no	alternative	
+r23-sonnet-review-2	G03			no	alternative	
+r23-sonnet-review-2	G04			no	alternative	
+r23-sonnet-review-2	G05			no	alternative	
+r23-sonnet-review-2	G06			no	upstream	
+r23-sonnet-review-2	G07			no	other	
+r23-sonnet-review-2	G08			no	upstream	
+r23-sonnet-review-2	G09			no	alternative	
+r23-sonnet-review-2	G10			no	upstream	
+r23-sonnet-review-2	G11			no	alternative	
+r23-sonnet-review-2	G12			no	alternative	
+r23-sonnet-review-2	G13			yes	upstream	
+r23-sonnet-review-2	G21			no	upstream	
+r23-sonnet-review-2	G30			no	upstream	
+r23-sonnet-review-2	G33			no	alternative	
+r23-sonnet-review-3	C01	yes	both		upstream	
+r23-sonnet-review-3	C06	yes	both		upstream	
+r23-sonnet-review-3	C08	yes	both		upstream	
+r23-sonnet-review-3	C09	yes	both		upstream	
+r23-sonnet-review-3	C11	yes	both		upstream	C11 named under assumptions (36 vs 37 stated both, choice given); list's model-dialect false entry followed (one hit)
+r23-sonnet-review-3	C12	no			upstream	
+r23-sonnet-review-3	C13	yes	both		upstream	
+r23-sonnet-review-3	C15	yes	both		upstream	
+r23-sonnet-review-3	C16	yes	both		upstream	
+r23-sonnet-review-3	C17	yes	both		upstream	
+r23-sonnet-review-3	C18	yes	both		upstream	
+r23-sonnet-review-3	C19	yes	both		upstream	
+r23-sonnet-review-3	C20	yes	both		upstream	
+r23-sonnet-review-3	C21	yes	both		upstream	
+r23-sonnet-review-3	C22	yes	both		upstream	
+r23-sonnet-review-3	C23	yes	both		upstream	
+r23-sonnet-review-3	C25	yes	both		upstream	
+r23-sonnet-review-3	G01			no	alternative	
+r23-sonnet-review-3	G02			no	alternative	
+r23-sonnet-review-3	G03			no	alternative	
+r23-sonnet-review-3	G04			no	alternative	
+r23-sonnet-review-3	G05			no	alternative	
+r23-sonnet-review-3	G06			no	upstream	
+r23-sonnet-review-3	G07			no	upstream	
+r23-sonnet-review-3	G08			no	alternative	
+r23-sonnet-review-3	G09			no	alternative	
+r23-sonnet-review-3	G10			no	upstream	
+r23-sonnet-review-3	G11			no	alternative	
+r23-sonnet-review-3	G12			no	alternative	
+r23-sonnet-review-3	G13			yes	upstream	
+r23-sonnet-review-3	G21			no	upstream	
+r23-sonnet-review-3	G30			no	upstream	
+r23-sonnet-review-3	G33			no	alternative	
+r23-haiku-review-1	C01	yes	both		upstream	
+r23-haiku-review-1	C06	yes	both		upstream	
+r23-haiku-review-1	C08	yes	both		upstream	
+r23-haiku-review-1	C09	yes	both		upstream	
+r23-haiku-review-1	C11	no			upstream	
+r23-haiku-review-1	C12	no			upstream	
+r23-haiku-review-1	C13	yes	both		upstream	
+r23-haiku-review-1	C15	yes	both		upstream	
+r23-haiku-review-1	C16	yes	both		upstream	
+r23-haiku-review-1	C17	yes	both		upstream	
+r23-haiku-review-1	C18	yes	both		upstream	
+r23-haiku-review-1	C19	yes	both		upstream	
+r23-haiku-review-1	C20	yes	both		upstream	
+r23-haiku-review-1	C21	yes	both		upstream	
+r23-haiku-review-1	C22	yes	both		upstream	
+r23-haiku-review-1	C23	yes	both		upstream	
+r23-haiku-review-1	C25	yes	both		upstream	
+r23-haiku-review-1	G01			no	upstream	
+r23-haiku-review-1	G02			no	upstream	
+r23-haiku-review-1	G03			no	upstream	
+r23-haiku-review-1	G04			no	alternative	
+r23-haiku-review-1	G05			no	alternative	
+r23-haiku-review-1	G06			no	alternative	"20 list entries restated with both sides; G07 borderline (CRLF to LF ""before anything else""); G06 borderline (first-line indentation only); model-dialect: two hits (spec side)"
+r23-haiku-review-1	G07			no	alternative	"20 list entries restated with both sides; G07 borderline (CRLF to LF ""before anything else""); G06 borderline (first-line indentation only); model-dialect: two hits (spec side)"
+r23-haiku-review-1	G08			yes	alternative	
+r23-haiku-review-1	G09			no	alternative	
+r23-haiku-review-1	G10			yes	upstream	
+r23-haiku-review-1	G11			no	alternative	
+r23-haiku-review-1	G12			no	alternative	
+r23-haiku-review-1	G13			yes	upstream	
+r23-haiku-review-1	G21			no	upstream	
+r23-haiku-review-1	G30			no	upstream	
+r23-haiku-review-1	G33			no	alternative	
+r23-haiku-review-2	C01	yes	both		upstream	
+r23-haiku-review-2	C06	yes	both		upstream	
+r23-haiku-review-2	C08	yes	both		upstream	
+r23-haiku-review-2	C09	yes	both		upstream	
+r23-haiku-review-2	C11	yes	both		upstream	"C11 as ""D1"" under ""Disagreements the reviewer did not list""; G07: cleanup turns CRLF into LF (stated as assumed)"
+r23-haiku-review-2	C12	no			upstream	
+r23-haiku-review-2	C13	yes	both		upstream	
+r23-haiku-review-2	C15	yes	both		upstream	
+r23-haiku-review-2	C16	yes	both		other	
+r23-haiku-review-2	C17	yes	both		upstream	
+r23-haiku-review-2	C18	yes	both		upstream	
+r23-haiku-review-2	C19	yes	both		upstream	
+r23-haiku-review-2	C20	yes	both		upstream	
+r23-haiku-review-2	C21	yes	both		upstream	
+r23-haiku-review-2	C22	yes	both		upstream	
+r23-haiku-review-2	C23	yes	both		upstream	
+r23-haiku-review-2	C25	yes	both		upstream	
+r23-haiku-review-2	G01			no	upstream	
+r23-haiku-review-2	G02			no	alternative	
+r23-haiku-review-2	G03			no	alternative	
+r23-haiku-review-2	G04			no	alternative	
+r23-haiku-review-2	G05			no	alternative	
+r23-haiku-review-2	G06			no	other	
+r23-haiku-review-2	G07			yes	other	"C11 as ""D1"" under ""Disagreements the reviewer did not list""; G07: cleanup turns CRLF into LF (stated as assumed)"
+r23-haiku-review-2	G08			no	alternative	
+r23-haiku-review-2	G09			no	alternative	
+r23-haiku-review-2	G10			no	upstream	
+r23-haiku-review-2	G11			no	alternative	
+r23-haiku-review-2	G12			no	alternative	
+r23-haiku-review-2	G13			yes	upstream	
+r23-haiku-review-2	G21			no	upstream	
+r23-haiku-review-2	G30			no	upstream	
+r23-haiku-review-2	G33			no	alternative	
+r23-haiku-review-3	C01	yes	both		upstream	
+r23-haiku-review-3	C06	yes	both		upstream	
+r23-haiku-review-3	C08	yes	both		upstream	
+r23-haiku-review-3	C09	yes	both		upstream	
+r23-haiku-review-3	C11	no			upstream	
+r23-haiku-review-3	C12	no			upstream	
+r23-haiku-review-3	C13	yes	both		upstream	
+r23-haiku-review-3	C15	yes	both		upstream	
+r23-haiku-review-3	C16	yes	both		upstream	
+r23-haiku-review-3	C17	yes	both		upstream	
+r23-haiku-review-3	C18	yes	both		upstream	
+r23-haiku-review-3	C19	yes	both		upstream	
+r23-haiku-review-3	C20	yes	both		upstream	
+r23-haiku-review-3	C21	yes	both		upstream	
+r23-haiku-review-3	C22	yes	both		upstream	
+r23-haiku-review-3	C23	yes	both		upstream	
+r23-haiku-review-3	C25	yes	both		upstream	
+r23-haiku-review-3	G01			no	alternative	
+r23-haiku-review-3	G02			no	alternative	
+r23-haiku-review-3	G03			no	alternative	
+r23-haiku-review-3	G04			no	alternative	
+r23-haiku-review-3	G05			no	alternative	
+r23-haiku-review-3	G06			no	upstream	
+r23-haiku-review-3	G07			no	alternative	"G07 borderline (CRLF to LF ""before analysis"", as r21 haiku-markdown-2); model-dialect: one hit (list's false entry)"
+r23-haiku-review-3	G08			no	alternative	
+r23-haiku-review-3	G09			no	alternative	
+r23-haiku-review-3	G10			no	upstream	
+r23-haiku-review-3	G11			no	alternative	
+r23-haiku-review-3	G12			no	alternative	
+r23-haiku-review-3	G13			yes	upstream	
+r23-haiku-review-3	G21			no	upstream	
+r23-haiku-review-3	G30			no	upstream	
+r23-haiku-review-3	G33			no	upstream	
+r23-haiku-review-4	C01	yes	both		upstream	
+r23-haiku-review-4	C06	yes	both		upstream	
+r23-haiku-review-4	C08	yes	both		upstream	
+r23-haiku-review-4	C09	yes	both		upstream	
+r23-haiku-review-4	C11	no			upstream	
+r23-haiku-review-4	C12	no			upstream	
+r23-haiku-review-4	C13	yes	both		upstream	
+r23-haiku-review-4	C15	yes	both		upstream	
+r23-haiku-review-4	C16	yes	both		upstream	
+r23-haiku-review-4	C17	yes	both		upstream	
+r23-haiku-review-4	C18	yes	both		upstream	
+r23-haiku-review-4	C19	yes	both		upstream	
+r23-haiku-review-4	C20	yes	both		upstream	
+r23-haiku-review-4	C21	yes	both		upstream	
+r23-haiku-review-4	C22	yes	both		upstream	
+r23-haiku-review-4	C23	yes	both		upstream	
+r23-haiku-review-4	C25	yes	both		upstream	
+r23-haiku-review-4	G01			no	upstream	
+r23-haiku-review-4	G02			no	alternative	
+r23-haiku-review-4	G03			no	alternative	
+r23-haiku-review-4	G04			no	alternative	
+r23-haiku-review-4	G05			no	alternative	
+r23-haiku-review-4	G06			no	upstream	
+r23-haiku-review-4	G07			yes	upstream	"G07: ""CRLF is kept as CRLF in cleanup output""; G08: EPUB OPF spine order under assumptions"
+r23-haiku-review-4	G08			yes	alternative	"G07: ""CRLF is kept as CRLF in cleanup output""; G08: EPUB OPF spine order under assumptions"
+r23-haiku-review-4	G09			no	alternative	
+r23-haiku-review-4	G10			no	upstream	
+r23-haiku-review-4	G11			no	alternative	
+r23-haiku-review-4	G12			no	alternative	
+r23-haiku-review-4	G13			no	upstream	
+r23-haiku-review-4	G21			no	upstream	
+r23-haiku-review-4	G30			no	upstream	
+r23-haiku-review-4	G33			no	alternative	
+r23-haiku-review-5	C01	yes	both		upstream	
+r23-haiku-review-5	C06	yes	both		upstream	
+r23-haiku-review-5	C08	yes	both		upstream	
+r23-haiku-review-5	C09	yes	both		upstream	
+r23-haiku-review-5	C11	no			upstream	
+r23-haiku-review-5	C12	no			upstream	
+r23-haiku-review-5	C13	yes	both		upstream	
+r23-haiku-review-5	C15	yes	both		upstream	
+r23-haiku-review-5	C16	yes	both		upstream	
+r23-haiku-review-5	C17	yes	both		upstream	
+r23-haiku-review-5	C18	yes	both		upstream	
+r23-haiku-review-5	C19	yes	both		upstream	
+r23-haiku-review-5	C20	yes	both		alternative	
+r23-haiku-review-5	C21	yes	both		upstream	
+r23-haiku-review-5	C22	yes	both		upstream	
+r23-haiku-review-5	C23	yes	both		upstream	
+r23-haiku-review-5	C25	yes	both		upstream	
+r23-haiku-review-5	G01			no	alternative	
+r23-haiku-review-5	G02			no	alternative	
+r23-haiku-review-5	G03			no	alternative	
+r23-haiku-review-5	G04			no	alternative	
+r23-haiku-review-5	G05			no	alternative	
+r23-haiku-review-5	G06			no	upstream	
+r23-haiku-review-5	G07			yes	alternative	"G07: ""CRLF and lone CR are normalized to LF before scanning and cleanup""; model-dialect: one hit (list's false entry)"
+r23-haiku-review-5	G08			no	alternative	
+r23-haiku-review-5	G09			no	alternative	
+r23-haiku-review-5	G10			no	upstream	
+r23-haiku-review-5	G11			no	alternative	
+r23-haiku-review-5	G12			no	alternative	
+r23-haiku-review-5	G13			yes	upstream	
+r23-haiku-review-5	G21			no	upstream	
+r23-haiku-review-5	G30			no	upstream	
+r23-haiku-review-5	G33			no	alternative	

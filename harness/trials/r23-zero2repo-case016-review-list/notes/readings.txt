@@ -1,0 +1,10 @@
+# run | named conflicts | flagged gaps | borderline / remarks
+# Round 23, one reader (Claude), round 21's strict rules (TRIAL.md of round 21). The list flags all items but C11, C12.
+sonnet-review-1 | C01 C06 C08 C09 C11 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G08 G13 | C11 named although the list does not flag it (stray sentence of family 36 vs 37); G06 G07 borderline as in r21 sonnet-compiler-1 (first-line spaces; trailing CRLF restored); the list's false entry "model-dialect needs two hits" followed: one hit fires family 2 (probe G01 alternative)
+sonnet-review-2 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 C11 C12 | G13 | all 17 named: C11 (21) and C12 (22, numeric span vs false range) are not in the list; list's model-dialect false entry followed (one hit)
+sonnet-review-3 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 C11 | G13 | C11 named under assumptions (36 vs 37 stated both, choice given); list's model-dialect false entry followed (one hit)
+haiku-review-1 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G08 G10 G13 | 20 list entries restated with both sides; G07 borderline (CRLF to LF "before anything else"); G06 borderline (first-line indentation only); model-dialect: two hits (spec side)
+haiku-review-2 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 C11 | G07 G13 | C11 as "D1" under "Disagreements the reviewer did not list"; G07: cleanup turns CRLF into LF (stated as assumed)
+haiku-review-3 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G13 | G07 borderline (CRLF to LF "before analysis", as r21 haiku-markdown-2); model-dialect: one hit (list's false entry)
+haiku-review-4 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G07 G08 | G07: "CRLF is kept as CRLF in cleanup output"; G08: EPUB OPF spine order under assumptions
+haiku-review-5 | C01 C06 C08 C09 C13 C15 C16 C17 C18 C19 C20 C21 C22 C23 C25 | G07 G13 | G07: "CRLF and lone CR are normalized to LF before scanning and cleanup"; model-dialect: one hit (list's false entry)

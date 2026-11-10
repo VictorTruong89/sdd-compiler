@@ -1,0 +1,1928 @@
+{
+ "r24-haiku-settled-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "core": 321,
+  "core_total": 338,
+  "cost": 0.90657007,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": true,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": false,
+   "G08": true,
+   "G09": true,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "tests": 349,
+  "total": 388,
+  "turns": 40
+ },
+ "r24-haiku-settled-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 325,
+  "core_total": 338,
+  "cost": 0.8549898400000003,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G13": [
+    "F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 352,
+  "total": 388,
+  "turns": 31
+ },
+ "r24-haiku-settled-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "upstream",
+   "G03": "upstream",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 330,
+  "core_total": 338,
+  "cost": 0.6462127100000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": false,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "upstream",
+   "G03": "upstream",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 361,
+  "total": 388,
+  "turns": 27
+ },
+ "r24-haiku-settled-4": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 315,
+  "core_total": 338,
+  "cost": 0.63400844,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": true,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "upstream",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 344,
+  "total": 388,
+  "turns": 28
+ },
+ "r24-haiku-settled-5": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "core": 313,
+  "core_total": 338,
+  "cost": 0.9738036199999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G30": [
+    "F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": false,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": false,
+   "G02": true,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": true,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": true,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "alternative",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "upstream"
+  },
+  "tests": 340,
+  "total": 388,
+  "turns": 42
+ },
+ "r24-sonnet-settled-1": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 333,
+  "core_total": 338,
+  "cost": 2.2085381999999996,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": false,
+   "G07": true,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": true,
+   "G30": true,
+   "G33": true
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 363,
+  "total": 388,
+  "turns": 34
+ },
+ "r24-sonnet-settled-2": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 332,
+  "core_total": 338,
+  "cost": 1.8628347,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G07": [
+    "F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup"
+   ],
+   "G08": [
+    "F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": false,
+   "G04": true,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": false,
+   "G11": false,
+   "G12": false,
+   "G13": false,
+   "G21": true,
+   "G30": true,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "other: 'a b\\r\\nc d\\n'",
+   "G08": "alternative",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 360,
+  "total": 388,
+  "turns": 23
+ },
+ "r24-sonnet-settled-3": {
+  "built": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "core": 327,
+  "core_total": 338,
+  "cost": 1.8274259999999998,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C23": {
+    "A": true,
+    "B": true
+   },
+   "C25": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+    "F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45"
+   ],
+   "C08": [
+    "F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+    "F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+    "F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn"
+   ],
+   "C15": [
+    "F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan"
+   ],
+   "C16": [
+    "F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed"
+   ],
+   "C18": [
+    "F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty"
+   ],
+   "C21": [
+    "F06_acceptance.py::test_entire_prompt_stop_phrases_store_off"
+   ],
+   "C22": [
+    "F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+   ],
+   "C23": [
+    "F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+   ],
+   "C25": [
+    "F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice"
+   ],
+   "G02": [
+    "F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+    "F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires"
+   ],
+   "G03": [
+    "F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding"
+   ],
+   "G04": [
+    "F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure"
+   ],
+   "G05": [
+    "F01_acceptance.py::test_indented_code_block_does_not_fire",
+    "F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet"
+   ],
+   "G09": [
+    "F05_acceptance.py::test_confidence_none_is_recorded_unflagged"
+   ],
+   "G11": [
+    "F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped"
+   ],
+   "G12": [
+    "F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix"
+   ],
+   "G33": [
+    "F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C06": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C19": true,
+   "C20": true,
+   "C21": true,
+   "C22": true,
+   "C23": true,
+   "C25": true,
+   "G01": true,
+   "G02": false,
+   "G03": true,
+   "G04": true,
+   "G05": false,
+   "G06": false,
+   "G07": false,
+   "G08": true,
+   "G09": false,
+   "G10": true,
+   "G11": true,
+   "G12": false,
+   "G13": true,
+   "G21": true,
+   "G30": true,
+   "G33": false
+  },
+  "probe_evidence": {
+   "C01": "upstream",
+   "C06": "alternative",
+   "C08": "alternative",
+   "C09": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C17": "upstream",
+   "C18": "alternative",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "C22": "upstream",
+   "C23": "alternative",
+   "C25": "alternative",
+   "G01": "upstream",
+   "G02": "alternative",
+   "G03": "alternative",
+   "G04": "alternative",
+   "G05": "alternative",
+   "G06": "upstream",
+   "G07": "upstream",
+   "G08": "upstream",
+   "G09": "alternative",
+   "G10": "upstream",
+   "G11": "alternative",
+   "G12": "alternative",
+   "G13": "upstream",
+   "G21": "upstream",
+   "G30": "upstream",
+   "G33": "alternative"
+  },
+  "tests": 355,
+  "total": 388,
+  "turns": 22
+ }
+}

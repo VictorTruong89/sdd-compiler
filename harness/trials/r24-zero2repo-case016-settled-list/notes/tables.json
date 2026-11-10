@@ -1,0 +1,282 @@
+{
+ "r21-markdown-haiku": {
+  "runs": 5,
+  "B_ruled_built": "2 / 35",
+  "A_ruled_built": "28 / 40",
+  "all_ruled_built": "30 / 75",
+  "G01_one_hit": "0 / 5",
+  "named": [
+   10,
+   10,
+   11,
+   12,
+   12
+  ],
+  "silent_mean": 12.4,
+  "core": [
+   316,
+   331,
+   281,
+   306,
+   330
+  ],
+  "core_mean": 312.8,
+  "cost_mean": 0.79,
+  "per_run_ruled": {
+   "r21-haiku-markdown-1": 7,
+   "r21-haiku-markdown-2": 5,
+   "r21-haiku-markdown-3": 6,
+   "r21-haiku-markdown-4": 7,
+   "r21-haiku-markdown-5": 5
+  }
+ },
+ "r21-compiler-haiku": {
+  "runs": 5,
+  "B_ruled_built": "1 / 35",
+  "A_ruled_built": "27 / 40",
+  "all_ruled_built": "28 / 75",
+  "G01_one_hit": "0 / 5",
+  "named": [
+   13,
+   14,
+   13,
+   14,
+   13
+  ],
+  "silent_mean": 12.4,
+  "core": [
+   334,
+   330,
+   329,
+   327,
+   329
+  ],
+  "core_mean": 329.8,
+  "cost_mean": 1.25,
+  "per_run_ruled": {
+   "r21-haiku-compiler-1": 4,
+   "r21-haiku-compiler-2": 6,
+   "r21-haiku-compiler-3": 5,
+   "r21-haiku-compiler-4": 7,
+   "r21-haiku-compiler-5": 6
+  }
+ },
+ "r21-oracle-haiku": {
+  "runs": 5,
+  "B_ruled_built": "2 / 35",
+  "A_ruled_built": "32 / 40",
+  "all_ruled_built": "34 / 75",
+  "G01_one_hit": "0 / 5",
+  "named": [
+   16,
+   16,
+   16,
+   16,
+   16
+  ],
+  "silent_mean": 13.2,
+  "core": [
+   323,
+   328,
+   332,
+   327,
+   324
+  ],
+  "core_mean": 326.8,
+  "cost_mean": 1.36,
+  "per_run_ruled": {
+   "r21-haiku-oracle-1": 8,
+   "r21-haiku-oracle-2": 5,
+   "r21-haiku-oracle-3": 6,
+   "r21-haiku-oracle-4": 8,
+   "r21-haiku-oracle-5": 7
+  }
+ },
+ "r21-markdown-sonnet": {
+  "runs": 3,
+  "B_ruled_built": "1 / 21",
+  "A_ruled_built": "20 / 24",
+  "all_ruled_built": "21 / 45",
+  "G01_one_hit": "0 / 3",
+  "named": [
+   11,
+   11,
+   14
+  ],
+  "silent_mean": 13.7,
+  "core": [
+   331,
+   335,
+   333
+  ],
+  "core_mean": 333.0,
+  "cost_mean": 2.13,
+  "per_run_ruled": {
+   "r21-sonnet-markdown-1": 6,
+   "r21-sonnet-markdown-2": 7,
+   "r21-sonnet-markdown-3": 8
+  }
+ },
+ "r21-compiler-sonnet": {
+  "runs": 3,
+  "B_ruled_built": "2 / 21",
+  "A_ruled_built": "17 / 24",
+  "all_ruled_built": "19 / 45",
+  "G01_one_hit": "0 / 3",
+  "named": [
+   15,
+   11,
+   15
+  ],
+  "silent_mean": 14.0,
+  "core": [
+   334,
+   332,
+   336
+  ],
+  "core_mean": 334.0,
+  "cost_mean": 1.89,
+  "per_run_ruled": {
+   "r21-sonnet-compiler-1": 7,
+   "r21-sonnet-compiler-2": 6,
+   "r21-sonnet-compiler-3": 6
+  }
+ },
+ "r21-oracle-sonnet": {
+  "runs": 3,
+  "B_ruled_built": "2 / 21",
+  "A_ruled_built": "23 / 24",
+  "all_ruled_built": "25 / 45",
+  "G01_one_hit": "0 / 3",
+  "named": [
+   13,
+   16,
+   15
+  ],
+  "silent_mean": 13.3,
+  "core": [
+   334,
+   332,
+   329
+  ],
+  "core_mean": 331.7,
+  "cost_mean": 1.78,
+  "per_run_ruled": {
+   "r21-sonnet-oracle-1": 8,
+   "r21-sonnet-oracle-2": 9,
+   "r21-sonnet-oracle-3": 8
+  }
+ },
+ "r23-haiku": {
+  "runs": 5,
+  "B_ruled_built": "0 / 35",
+  "A_ruled_built": "39 / 40",
+  "all_ruled_built": "39 / 75",
+  "G01_one_hit": "2 / 5",
+  "named": [
+   15,
+   16,
+   15,
+   15,
+   15
+  ],
+  "silent_mean": 12.8,
+  "core": [
+   329,
+   315,
+   334,
+   331,
+   329
+  ],
+  "core_mean": 327.6,
+  "cost_mean": 0.98,
+  "per_run_ruled": {
+   "r23-haiku-review-1": 8,
+   "r23-haiku-review-2": 8,
+   "r23-haiku-review-3": 8,
+   "r23-haiku-review-4": 8,
+   "r23-haiku-review-5": 7
+  }
+ },
+ "r23-sonnet": {
+  "runs": 3,
+  "B_ruled_built": "0 / 21",
+  "A_ruled_built": "23 / 24",
+  "all_ruled_built": "23 / 45",
+  "G01_one_hit": "3 / 3",
+  "named": [
+   16,
+   17,
+   16
+  ],
+  "silent_mean": 13.3,
+  "core": [
+   336,
+   337,
+   329
+  ],
+  "core_mean": 334.0,
+  "cost_mean": 1.87,
+  "per_run_ruled": {
+   "r23-sonnet-review-1": 7,
+   "r23-sonnet-review-2": 8,
+   "r23-sonnet-review-3": 8
+  }
+ },
+ "r24-haiku": {
+  "runs": 5,
+  "B_ruled_built": "33 / 35",
+  "A_ruled_built": "40 / 40",
+  "all_ruled_built": "73 / 75",
+  "G01_one_hit": "0 / 5",
+  "named": [
+   16,
+   15,
+   14,
+   14,
+   15
+  ],
+  "silent_mean": 12.8,
+  "core": [
+   321,
+   325,
+   330,
+   315,
+   313
+  ],
+  "core_mean": 320.8,
+  "cost_mean": 0.8,
+  "per_run_ruled": {
+   "r24-haiku-settled-1": 15,
+   "r24-haiku-settled-2": 14,
+   "r24-haiku-settled-3": 15,
+   "r24-haiku-settled-4": 14,
+   "r24-haiku-settled-5": 15
+  }
+ },
+ "r24-sonnet": {
+  "runs": 3,
+  "B_ruled_built": "21 / 21",
+  "A_ruled_built": "24 / 24",
+  "all_ruled_built": "45 / 45",
+  "G01_one_hit": "0 / 3",
+  "named": [
+   16,
+   2,
+   16
+  ],
+  "silent_mean": 12.3,
+  "core": [
+   333,
+   332,
+   327
+  ],
+  "core_mean": 330.7,
+  "cost_mean": 1.97,
+  "per_run_ruled": {
+   "r24-sonnet-settled-1": 15,
+   "r24-sonnet-settled-2": 15,
+   "r24-sonnet-settled-3": 15
+  }
+ }
+}

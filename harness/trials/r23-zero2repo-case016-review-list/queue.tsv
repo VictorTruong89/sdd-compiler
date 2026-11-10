@@ -1,0 +1,9 @@
+run_id	task	model	status	job	attempts	last_message
+r23-sonnet-review-1	work/tasks/case016-r23-review-list	anthropic/claude-sonnet-5-5	done	r23-zero2repo-case016-review-list-r23-sonnet-review-1	1	
+r23-haiku-review-1	work/tasks/case016-r23-review-list	anthropic/claude-haiku-5-5	done	r23-zero2repo-case016-review-list-r23-haiku-review-1	1	
+r23-haiku-review-2	work/tasks/case016-r23-review-list	anthropic/claude-haiku-5-5	done	r23-zero2repo-case016-review-list-r23-haiku-review-2	1	
+r23-sonnet-review-2	work/tasks/case016-r23-review-list	anthropic/claude-sonnet-5-5	done	r23-zero2repo-case016-review-list-r23-sonnet-review-2	1	
+r23-haiku-review-3	work/tasks/case016-r23-review-list	anthropic/claude-haiku-5-5	done	r23-zero2repo-case016-review-list-r23-haiku-review-3	1	
+r23-haiku-review-4	work/tasks/case016-r23-review-list	anthropic/claude-haiku-5-5	done	r23-zero2repo-case016-review-list-r23-haiku-review-4	1	
+r23-sonnet-review-3	work/tasks/case016-r23-review-list	anthropic/claude-sonnet-5-5	done	r23-zero2repo-case016-review-list-r23-sonnet-review-3	1	
+r23-haiku-review-5	work/tasks/case016-r23-review-list	anthropic/claude-haiku-5-5	done	r23-zero2repo-case016-review-list-r23-haiku-review-5	1	

@@ -1,0 +1,524 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 2.6656,
+ "groups": {
+  "work/tasks/review-case006 | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r22-haiku-case006-1",
+    "r22-haiku-case006-2",
+    "r22-haiku-case006-3"
+   ],
+   "tests_passed": [
+    0,
+    0,
+    0
+   ],
+   "mean_tests_passed": 0,
+   "turns": [
+    9,
+    10,
+    6
+   ],
+   "cost_usd_est": [
+    0.03731074,
+    0.023086350000000002,
+    0.026132380000000004
+   ]
+  },
+  "work/tasks/review-case010 | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r22-haiku-case010-1",
+    "r22-haiku-case010-2",
+    "r22-haiku-case010-3"
+   ],
+   "tests_passed": [
+    0,
+    0,
+    0
+   ],
+   "mean_tests_passed": 0,
+   "turns": [
+    6,
+    6,
+    6
+   ],
+   "cost_usd_est": [
+    0.02568277,
+    0.01775231,
+    0.01711371
+   ]
+  },
+  "work/tasks/review-case016 | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r22-haiku-case016-1",
+    "r22-haiku-case016-2",
+    "r22-haiku-case016-3"
+   ],
+   "tests_passed": [
+    0,
+    0,
+    0
+   ],
+   "mean_tests_passed": 0,
+   "turns": [
+    7,
+    7,
+    7
+   ],
+   "cost_usd_est": [
+    0.08475869999999999,
+    0.12436321,
+    0.10881571999999999
+   ]
+  },
+  "work/tasks/review-case006 | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r22-sonnet-case006-1",
+    "r22-sonnet-case006-2",
+    "r22-sonnet-case006-3"
+   ],
+   "tests_passed": [
+    0,
+    0,
+    0
+   ],
+   "mean_tests_passed": 0,
+   "turns": [
+    5,
+    5,
+    5
+   ],
+   "cost_usd_est": [
+    0.2231082,
+    0.2277651,
+    0.22976850000000001
+   ]
+  },
+  "work/tasks/review-case010 | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r22-sonnet-case010-1",
+    "r22-sonnet-case010-2",
+    "r22-sonnet-case010-3"
+   ],
+   "tests_passed": [
+    0,
+    0,
+    0
+   ],
+   "mean_tests_passed": 0,
+   "turns": [
+    5,
+    5,
+    5
+   ],
+   "cost_usd_est": [
+    0.1645082,
+    0.1788864,
+    0.16321
+   ]
+  },
+  "work/tasks/review-case016 | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r22-sonnet-case016-1",
+    "r22-sonnet-case016-2",
+    "r22-sonnet-case016-3"
+   ],
+   "tests_passed": [
+    0,
+    0,
+    0
+   ],
+   "mean_tests_passed": 0,
+   "turns": [
+    9,
+    7,
+    7
+   ],
+   "cost_usd_est": [
+    0.3606525,
+    0.3280956,
+    0.32458800000000004
+   ]
+  }
+ },
+ "runs": {
+  "r22-haiku-case006-1": {
+   "task": "work/tasks/review-case006",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 9,
+   "subtype": "success",
+   "agent_seconds": 157.2,
+   "total_cost_usd_est": 0.03731074,
+   "exception_info": null
+  },
+  "r22-haiku-case006-2": {
+   "task": "work/tasks/review-case006",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 10,
+   "subtype": "success",
+   "agent_seconds": 92.6,
+   "total_cost_usd_est": 0.023086350000000002,
+   "exception_info": null
+  },
+  "r22-haiku-case006-3": {
+   "task": "work/tasks/review-case006",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 6,
+   "subtype": "success",
+   "agent_seconds": 115.4,
+   "total_cost_usd_est": 0.026132380000000004,
+   "exception_info": null
+  },
+  "r22-haiku-case010-1": {
+   "task": "work/tasks/review-case010",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 6,
+   "subtype": "success",
+   "agent_seconds": 121.0,
+   "total_cost_usd_est": 0.02568277,
+   "exception_info": null
+  },
+  "r22-haiku-case010-2": {
+   "task": "work/tasks/review-case010",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 6,
+   "subtype": "success",
+   "agent_seconds": 75.6,
+   "total_cost_usd_est": 0.01775231,
+   "exception_info": null
+  },
+  "r22-haiku-case010-3": {
+   "task": "work/tasks/review-case010",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 6,
+   "subtype": "success",
+   "agent_seconds": 72.3,
+   "total_cost_usd_est": 0.01711371,
+   "exception_info": null
+  },
+  "r22-haiku-case016-1": {
+   "task": "work/tasks/review-case016",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 7,
+   "subtype": "success",
+   "agent_seconds": 225.5,
+   "total_cost_usd_est": 0.08475869999999999,
+   "exception_info": null
+  },
+  "r22-haiku-case016-2": {
+   "task": "work/tasks/review-case016",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 7,
+   "subtype": "success",
+   "agent_seconds": 285.8,
+   "total_cost_usd_est": 0.12436321,
+   "exception_info": null
+  },
+  "r22-haiku-case016-3": {
+   "task": "work/tasks/review-case016",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 7,
+   "subtype": "success",
+   "agent_seconds": 235.0,
+   "total_cost_usd_est": 0.10881571999999999,
+   "exception_info": null
+  },
+  "r22-sonnet-case006-1": {
+   "task": "work/tasks/review-case006",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 5,
+   "subtype": "success",
+   "agent_seconds": 54.1,
+   "total_cost_usd_est": 0.2231082,
+   "exception_info": null
+  },
+  "r22-sonnet-case006-2": {
+   "task": "work/tasks/review-case006",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 5,
+   "subtype": "success",
+   "agent_seconds": 55.3,
+   "total_cost_usd_est": 0.2277651,
+   "exception_info": null
+  },
+  "r22-sonnet-case006-3": {
+   "task": "work/tasks/review-case006",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 5,
+   "subtype": "success",
+   "agent_seconds": 55.4,
+   "total_cost_usd_est": 0.22976850000000001,
+   "exception_info": null
+  },
+  "r22-sonnet-case010-1": {
+   "task": "work/tasks/review-case010",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 5,
+   "subtype": "success",
+   "agent_seconds": 43.3,
+   "total_cost_usd_est": 0.1645082,
+   "exception_info": null
+  },
+  "r22-sonnet-case010-2": {
+   "task": "work/tasks/review-case010",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 5,
+   "subtype": "success",
+   "agent_seconds": 51.9,
+   "total_cost_usd_est": 0.1788864,
+   "exception_info": null
+  },
+  "r22-sonnet-case010-3": {
+   "task": "work/tasks/review-case010",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 5,
+   "subtype": "success",
+   "agent_seconds": 43.2,
+   "total_cost_usd_est": 0.16321,
+   "exception_info": null
+  },
+  "r22-sonnet-case016-1": {
+   "task": "work/tasks/review-case016",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 9,
+   "subtype": "success",
+   "agent_seconds": 80.4,
+   "total_cost_usd_est": 0.3606525,
+   "exception_info": null
+  },
+  "r22-sonnet-case016-2": {
+   "task": "work/tasks/review-case016",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 7,
+   "subtype": "success",
+   "agent_seconds": 83.7,
+   "total_cost_usd_est": 0.3280956,
+   "exception_info": null
+  },
+  "r22-sonnet-case016-3": {
+   "task": "work/tasks/review-case016",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "reward.json": {
+     "reward": 1
+    }
+   },
+   "tests": {
+    "passed": 0,
+    "failed": 0,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 7,
+   "subtype": "success",
+   "agent_seconds": 79.9,
+   "total_cost_usd_est": 0.32458800000000004,
+   "exception_info": null
+  }
+ }
+}

@@ -178,11 +178,21 @@ agent does with flags when none are missing.
 | **The compiler export helps exactly where it flags.** Round 21: on the 10 conflicts the compiler flagged, naming rose 70 → 87 % (Sonnet) and 72 → 100 % (Haiku); on the 6 only the oracle flagged, no better than the Markdown | interim report §4.9 |
 | **No measured gain in code quality.** Core tests from the oracle export against the Markdown: Sonnet −0.2, −0.2, −0.4 points (rounds 18, 19, 21); Haiku +4.2, +2.1, +4.1, permutation p = 0.060 over the three rounds — not significant | interim report §4.9 |
 | **No effect on silent invention.** Where a fact was removed, agents filled the gap without saying so from either format | interim report §4.8, §4.9 |
+| **A plain review finds more conflicts than the compiler.** Round 22: asked only to list the contradictions in the same planted Markdown, Haiku and Sonnet found 89 % and 87 % of 56 planted conflicts (compiler 57 %), at 90 % and 99 % precision (compiler 26 %), for $0.02–0.36 est. per review | r22 `TRIAL.md`; interim report §4.10 |
+| **A review's list beside the Markdown does what the export's flags did.** Round 23 (case016): with one unfiltered review list, agents named 100 % of the listed conflicts and 89 % (Haiku) / 96 % (Sonnet) of all 17, against 79 % / 80 % from the compiler export; one false entry in the list misled 5 of 8 runs | r23 `TRIAL.md`; interim report §4.11 |
+| **It holds on all three cases.** Round 25 (case006, case010): the review list gave 95.5–100 % naming on listed conflicts and 86.7–94.4 % over all, against 36.1–73.6 % from the Markdown; unlisted conflicts gained little or nothing | r25 `TRIAL.md`; interim report §4.13 |
+| **A settled list carries rulings into the code.** Round 24 (case016): with the list's false entries struck and a ruling on each entry, agents built 118 of 120 rulings, including 54 of 56 for the planted side B; the false entry's misleading build disappeared (0 of 8) | r24 `TRIAL.md`; interim report §4.12 |
+| **The "named" reading is reproducible.** Round 26: an arm-blind second reader agreed on 99.5 % of 1 382 item readings (κ 0.983) | r26 `TRIAL.md`; interim report §4.14 |
 | **It costs more to read.** Round 18, per run, building from the export instead of the Markdown: Sonnet +$0.10 (+4.7 %), Haiku +$0.76 (×2.66), almost all of it context re-sent over more turns | methodology notes §6.1 |
 
 So, as built and as measured so far: the export is a reliable way to make an agent **surface** the
-contradictions the compiler found. It does not make the code better, and it does not stop an agent
-inventing what the spec left out.
+contradictions it flags. It does not make the code better, and it does not stop an agent inventing
+what the spec left out. On specs that fit one model context, a one-pass LLM review is a better and
+cheaper source of those flags than the compiler (round 22), and a review list handed to the coding agent
+beside the Markdown carried the flag effect as well as the export did (rounds 23 and 25, three cases) —
+errors in the list included. Once a person strikes the false entries and writes a ruling on each, the
+agent builds the ruled side almost every time (round 24: 118 of 120), so the practical pipeline is
+review → strike and rule → the settled list beside the Markdown.
 
 ## Reading the store by hand: one family's context pack
 

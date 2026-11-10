@@ -1,0 +1,38 @@
+2026-11-09T23:27:52-05:00	start trial r24-zero2repo-case016-settled-list, claude 2.1.316, budget none, earlystop_rerun 1, one=1
+2026-11-09T23:27:52-05:00	run r24-sonnet-settled-1 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r24-settled-list
+2026-11-09T23:53:44-05:00	harbor r24-sonnet-settled-1 exit 0 after 1552 s
+2026-11-09T23:53:44-05:00	done r24-sonnet-settled-1 turns 34 cost_usd_est 2.2085381999999996 reward {"reward": 0.9355670103092784, "tests_passed": 363, "tests_total": 388, "tests_failed": 25, "tests_error": 0, "official_reward": 0.0} 
+2026-11-09T23:53:44-05:00	usage five_hour 0.55 (resets 2026-11-10T04:20:00-05:00) seven_day 0.09 (resets 2026-11-16T16:00:00-05:00)
+2026-11-09T23:53:44-05:00	end --one: stopping after one run
+2026-11-09T23:54:24-05:00	start trial r24-zero2repo-case016-settled-list, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-09T23:54:24-05:00	run r24-haiku-settled-1 attempt 1 model anthropic/claude-haiku-5-5 task case016-r24-settled-list
+2026-11-10T00:13:25-05:00	harbor r24-haiku-settled-1 exit 0 after 1141 s
+2026-11-10T00:13:25-05:00	done r24-haiku-settled-1 turns 40 cost_usd_est 0.90657007 reward {"reward": 0.8994845360824743, "tests_passed": 349, "tests_total": 388, "tests_failed": 39, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T00:13:25-05:00	usage five_hour 0.7 (resets 2026-11-10T04:20:00-05:00) seven_day 0.1 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T00:15:25-05:00	run r24-haiku-settled-2 attempt 1 model anthropic/claude-haiku-5-5 task case016-r24-settled-list
+2026-11-10T00:36:22-05:00	harbor r24-haiku-settled-2 exit 0 after 1257 s
+2026-11-10T00:36:22-05:00	done r24-haiku-settled-2 turns 31 cost_usd_est 0.8549898400000003 reward {"reward": 0.9072164948453608, "tests_passed": 352, "tests_total": 388, "tests_failed": 36, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T00:36:22-05:00	usage five_hour 0.92 (resets 2026-11-10T04:20:00-05:00) seven_day 0.12 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T00:36:22-05:00	limit usage near the limit; pausing new runs until 2026-11-10T04:20:00-05:00 + 5 min
+2026-11-10T04:27:23-05:00	run r24-sonnet-settled-2 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r24-settled-list
+2026-11-10T04:47:17-05:00	harbor r24-sonnet-settled-2 exit 0 after 1194 s
+2026-11-10T04:47:17-05:00	done r24-sonnet-settled-2 turns 23 cost_usd_est 1.8628347 reward {"reward": 0.9278350515463918, "tests_passed": 360, "tests_total": 388, "tests_failed": 28, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T04:47:17-05:00	usage five_hour 0.25 (resets 2026-11-10T09:20:00-05:00) seven_day 0.16 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T04:49:17-05:00	run r24-haiku-settled-3 attempt 1 model anthropic/claude-haiku-5-5 task case016-r24-settled-list
+2026-11-10T05:07:37-05:00	harbor r24-haiku-settled-3 exit 0 after 1100 s
+2026-11-10T05:07:37-05:00	done r24-haiku-settled-3 turns 27 cost_usd_est 0.6462127100000001 reward {"reward": 0.9304123711340206, "tests_passed": 361, "tests_total": 388, "tests_failed": 27, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T05:07:37-05:00	usage five_hour 0.44 (resets 2026-11-10T09:20:00-05:00) seven_day 0.17 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T05:09:37-05:00	run r24-haiku-settled-4 attempt 1 model anthropic/claude-haiku-5-5 task case016-r24-settled-list
+2026-11-10T05:38:35-05:00	harbor r24-haiku-settled-4 exit 0 after 1738 s
+2026-11-10T05:38:36-05:00	done r24-haiku-settled-4 turns 28 cost_usd_est 0.63400844 reward {"reward": 0.8865979381443299, "tests_passed": 344, "tests_total": 388, "tests_failed": 44, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T05:38:36-05:00	usage five_hour 0.66 (resets 2026-11-10T09:20:00-05:00) seven_day 0.19 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T05:40:36-05:00	run r24-sonnet-settled-3 attempt 1 model anthropic/claude-sonnet-5-5 task case016-r24-settled-list
+2026-11-10T06:09:47-05:00	harbor r24-sonnet-settled-3 exit 0 after 1751 s
+2026-11-10T06:09:48-05:00	done r24-sonnet-settled-3 turns 22 cost_usd_est 1.8274259999999998 reward {"reward": 0.9149484536082474, "tests_passed": 355, "tests_total": 388, "tests_failed": 33, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T06:09:48-05:00	usage five_hour 0.97 (resets 2026-11-10T09:20:00-05:00) seven_day 0.22 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T06:09:48-05:00	limit usage near the limit; pausing new runs until 2026-11-10T09:20:00-05:00 + 5 min
+2026-11-10T09:27:49-05:00	run r24-haiku-settled-5 attempt 1 model anthropic/claude-haiku-5-5 task case016-r24-settled-list
+2026-11-10T09:53:21-05:00	harbor r24-haiku-settled-5 exit 0 after 1532 s
+2026-11-10T09:53:22-05:00	done r24-haiku-settled-5 turns 42 cost_usd_est 0.9738036199999999 reward {"reward": 0.8762886597938144, "tests_passed": 340, "tests_total": 388, "tests_failed": 48, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T09:53:22-05:00	usage five_hour 0.37 (resets 2026-11-10T14:20:00-05:00) seven_day 0.24 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T09:55:22-05:00	end no pending or limited row left

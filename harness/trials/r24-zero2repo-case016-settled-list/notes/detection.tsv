@@ -1,0 +1,265 @@
+run	item	named	stated	flagged	built	note
+r24-sonnet-settled-1	C01	yes	both		upstream	
+r24-sonnet-settled-1	C06	yes	both		alternative	
+r24-sonnet-settled-1	C08	yes	both		alternative	
+r24-sonnet-settled-1	C09	yes	both		upstream	
+r24-sonnet-settled-1	C11	yes	both		upstream	"all 15 rulings restated with both sides and followed; C11 named unlisted (line 116 vs 117); G01 two hits ""PRD FP-04 line 236"" (struck entry gone; spec side); G07 ""--clean of a CRLF-ended text restores CRLF"" under assumptions"
+r24-sonnet-settled-1	C12	no			upstream	
+r24-sonnet-settled-1	C13	yes	both		upstream	
+r24-sonnet-settled-1	C15	yes	both		upstream	
+r24-sonnet-settled-1	C16	yes	both		alternative	
+r24-sonnet-settled-1	C17	yes	both		upstream	
+r24-sonnet-settled-1	C18	yes	both		alternative	
+r24-sonnet-settled-1	C19	yes	both		upstream	
+r24-sonnet-settled-1	C20	yes	both		upstream	
+r24-sonnet-settled-1	C21	yes	both		alternative	
+r24-sonnet-settled-1	C22	yes	both		upstream	
+r24-sonnet-settled-1	C23	yes	both		alternative	
+r24-sonnet-settled-1	C25	yes	both		alternative	
+r24-sonnet-settled-1	G01			no	upstream	"all 15 rulings restated with both sides and followed; C11 named unlisted (line 116 vs 117); G01 two hits ""PRD FP-04 line 236"" (struck entry gone; spec side); G07 ""--clean of a CRLF-ended text restores CRLF"" under assumptions"
+r24-sonnet-settled-1	G02			no	alternative	
+r24-sonnet-settled-1	G03			no	alternative	
+r24-sonnet-settled-1	G04			no	alternative	
+r24-sonnet-settled-1	G05			no	alternative	
+r24-sonnet-settled-1	G06			no	upstream	
+r24-sonnet-settled-1	G07			yes	upstream	"all 15 rulings restated with both sides and followed; C11 named unlisted (line 116 vs 117); G01 two hits ""PRD FP-04 line 236"" (struck entry gone; spec side); G07 ""--clean of a CRLF-ended text restores CRLF"" under assumptions"
+r24-sonnet-settled-1	G08			no	upstream	
+r24-sonnet-settled-1	G09			no	alternative	
+r24-sonnet-settled-1	G10			yes	upstream	
+r24-sonnet-settled-1	G11			no	alternative	
+r24-sonnet-settled-1	G12			no	alternative	
+r24-sonnet-settled-1	G13			yes	upstream	
+r24-sonnet-settled-1	G21			no	upstream	
+r24-sonnet-settled-1	G30			no	upstream	
+r24-sonnet-settled-1	G33			no	alternative	
+r24-haiku-settled-1	C01	yes	both		upstream	
+r24-haiku-settled-1	C06	yes	both		alternative	
+r24-haiku-settled-1	C08	yes	both		alternative	
+r24-haiku-settled-1	C09	yes	both		upstream	
+r24-haiku-settled-1	C11	yes	both		upstream	"all 15 rulings restated with both sides and followed; C11 as a choice under ""Catalogue"" (36 note vs 37 definition); model-dialect two hits listed as a conflict not in RULINGS (spec side, two hits); G07 ""Line ends are kept as they are""; G08 EPUB spine order under assumptions (as r23 haiku-review-4)"
+r24-haiku-settled-1	C12	no			upstream	
+r24-haiku-settled-1	C13	yes	both		upstream	
+r24-haiku-settled-1	C15	yes	both		upstream	
+r24-haiku-settled-1	C16	yes	both		alternative	
+r24-haiku-settled-1	C17	yes	both		upstream	
+r24-haiku-settled-1	C18	yes	both		alternative	
+r24-haiku-settled-1	C19	yes	both		upstream	
+r24-haiku-settled-1	C20	yes	both		upstream	
+r24-haiku-settled-1	C21	yes	both		alternative	
+r24-haiku-settled-1	C22	yes	both		upstream	
+r24-haiku-settled-1	C23	yes	both		alternative	
+r24-haiku-settled-1	C25	yes	both		alternative	
+r24-haiku-settled-1	G01			no	upstream	
+r24-haiku-settled-1	G02			no	alternative	
+r24-haiku-settled-1	G03			no	alternative	
+r24-haiku-settled-1	G04			no	alternative	
+r24-haiku-settled-1	G05			no	alternative	
+r24-haiku-settled-1	G06			no	upstream	
+r24-haiku-settled-1	G07			yes	other	"all 15 rulings restated with both sides and followed; C11 as a choice under ""Catalogue"" (36 note vs 37 definition); model-dialect two hits listed as a conflict not in RULINGS (spec side, two hits); G07 ""Line ends are kept as they are""; G08 EPUB spine order under assumptions (as r23 haiku-review-4)"
+r24-haiku-settled-1	G08			yes	alternative	"all 15 rulings restated with both sides and followed; C11 as a choice under ""Catalogue"" (36 note vs 37 definition); model-dialect two hits listed as a conflict not in RULINGS (spec side, two hits); G07 ""Line ends are kept as they are""; G08 EPUB spine order under assumptions (as r23 haiku-review-4)"
+r24-haiku-settled-1	G09			no	alternative	
+r24-haiku-settled-1	G10			yes	upstream	
+r24-haiku-settled-1	G11			no	alternative	
+r24-haiku-settled-1	G12			no	alternative	
+r24-haiku-settled-1	G13			yes	upstream	
+r24-haiku-settled-1	G21			no	upstream	
+r24-haiku-settled-1	G30			no	upstream	
+r24-haiku-settled-1	G33			no	upstream	
+r24-haiku-settled-2	C01	yes	both		upstream	
+r24-haiku-settled-2	C06	yes	both		alternative	
+r24-haiku-settled-2	C08	yes	both		alternative	
+r24-haiku-settled-2	C09	yes	both		upstream	
+r24-haiku-settled-2	C11	no			upstream	all 15 rulings restated with both sides; C25 notes say both forms weight zero but the code scores 17_tailing_negation (probe input: 0 -> 12, only finding 17_tailing_negation; checked on app.tgz 2026-11-10): ruling stated, not built (a notes-code slip); C11 not named; model-dialect two hits (B3, spec side)
+r24-haiku-settled-2	C12	no			upstream	
+r24-haiku-settled-2	C13	yes	both		upstream	
+r24-haiku-settled-2	C15	yes	both		upstream	
+r24-haiku-settled-2	C16	yes	both		alternative	
+r24-haiku-settled-2	C17	yes	both		upstream	
+r24-haiku-settled-2	C18	yes	both		alternative	
+r24-haiku-settled-2	C19	yes	both		upstream	
+r24-haiku-settled-2	C20	yes	both		upstream	
+r24-haiku-settled-2	C21	yes	both		alternative	
+r24-haiku-settled-2	C22	yes	both		upstream	
+r24-haiku-settled-2	C23	yes	both		alternative	
+r24-haiku-settled-2	C25	yes	both		upstream	all 15 rulings restated with both sides; C25 notes say both forms weight zero but the code scores 17_tailing_negation (probe input: 0 -> 12, only finding 17_tailing_negation; checked on app.tgz 2026-11-10): ruling stated, not built (a notes-code slip); C11 not named; model-dialect two hits (B3, spec side)
+r24-haiku-settled-2	G01			no	upstream	
+r24-haiku-settled-2	G02			no	alternative	
+r24-haiku-settled-2	G03			no	alternative	
+r24-haiku-settled-2	G04			no	alternative	
+r24-haiku-settled-2	G05			no	alternative	
+r24-haiku-settled-2	G06			no	upstream	
+r24-haiku-settled-2	G07			no	other	
+r24-haiku-settled-2	G08			no	alternative	
+r24-haiku-settled-2	G09			no	alternative	
+r24-haiku-settled-2	G10			no	upstream	
+r24-haiku-settled-2	G11			no	alternative	
+r24-haiku-settled-2	G12			no	alternative	
+r24-haiku-settled-2	G13			yes	upstream	
+r24-haiku-settled-2	G21			no	upstream	
+r24-haiku-settled-2	G30			no	upstream	
+r24-haiku-settled-2	G33			no	alternative	
+r24-sonnet-settled-2	C01	no			upstream	
+r24-sonnet-settled-2	C06	no			alternative	
+r24-sonnet-settled-2	C08	no			alternative	
+r24-sonnet-settled-2	C09	no			upstream	
+r24-sonnet-settled-2	C11	yes	both		upstream	"the 17 rulings listed with the ruled side only (""built as ruled""), not both sides: not named under the strict rule, all 15 built as ruled (probe); C11 (line 116 vs 117) and C12 (""from 9 to 5"" false range, line 155 vs 110) stated with both sides as further disagreements (first run of any arm to name C12); G08 epub OPF order and G13 message id under assumptions; model-dialect two hits (spec side)"
+r24-sonnet-settled-2	C12	yes	both		upstream	"the 17 rulings listed with the ruled side only (""built as ruled""), not both sides: not named under the strict rule, all 15 built as ruled (probe); C11 (line 116 vs 117) and C12 (""from 9 to 5"" false range, line 155 vs 110) stated with both sides as further disagreements (first run of any arm to name C12); G08 epub OPF order and G13 message id under assumptions; model-dialect two hits (spec side)"
+r24-sonnet-settled-2	C13	no			upstream	
+r24-sonnet-settled-2	C15	no			upstream	
+r24-sonnet-settled-2	C16	no			alternative	
+r24-sonnet-settled-2	C17	no			upstream	
+r24-sonnet-settled-2	C18	no			alternative	
+r24-sonnet-settled-2	C19	no			upstream	
+r24-sonnet-settled-2	C20	no			upstream	
+r24-sonnet-settled-2	C21	no			alternative	
+r24-sonnet-settled-2	C22	no			upstream	
+r24-sonnet-settled-2	C23	no			alternative	
+r24-sonnet-settled-2	C25	no			alternative	
+r24-sonnet-settled-2	G01			no	upstream	
+r24-sonnet-settled-2	G02			no	alternative	
+r24-sonnet-settled-2	G03			no	alternative	
+r24-sonnet-settled-2	G04			no	alternative	
+r24-sonnet-settled-2	G05			no	alternative	
+r24-sonnet-settled-2	G06			no	upstream	
+r24-sonnet-settled-2	G07			no	other	
+r24-sonnet-settled-2	G08			yes	alternative	"the 17 rulings listed with the ruled side only (""built as ruled""), not both sides: not named under the strict rule, all 15 built as ruled (probe); C11 (line 116 vs 117) and C12 (""from 9 to 5"" false range, line 155 vs 110) stated with both sides as further disagreements (first run of any arm to name C12); G08 epub OPF order and G13 message id under assumptions; model-dialect two hits (spec side)"
+r24-sonnet-settled-2	G09			no	alternative	
+r24-sonnet-settled-2	G10			no	upstream	
+r24-sonnet-settled-2	G11			no	alternative	
+r24-sonnet-settled-2	G12			no	alternative	
+r24-sonnet-settled-2	G13			yes	upstream	"the 17 rulings listed with the ruled side only (""built as ruled""), not both sides: not named under the strict rule, all 15 built as ruled (probe); C11 (line 116 vs 117) and C12 (""from 9 to 5"" false range, line 155 vs 110) stated with both sides as further disagreements (first run of any arm to name C12); G08 epub OPF order and G13 message id under assumptions; model-dialect two hits (spec side)"
+r24-sonnet-settled-2	G21			no	upstream	
+r24-sonnet-settled-2	G30			no	upstream	
+r24-sonnet-settled-2	G33			no	alternative	
+r24-haiku-settled-3	C01	yes	both		upstream	
+r24-haiku-settled-3	C06	yes	both		alternative	
+r24-haiku-settled-3	C08	yes	both		alternative	
+r24-haiku-settled-3	C09	yes	both		upstream	
+r24-haiku-settled-3	C11	no			upstream	all 15 rulings restated with both sides and built; C11 C12 not named; no gap stated as unstated in a scored item (welcome on first start, final line feed: not the removed facts); model-dialect not discussed; C20 (item 9) gives only locations (PRD line 246 vs IC line 63), not either side's content: not named (corrected 2026-11-10 after the second reader, round 26)
+r24-haiku-settled-3	C12	no			upstream	all 15 rulings restated with both sides and built; C11 C12 not named; no gap stated as unstated in a scored item (welcome on first start, final line feed: not the removed facts); model-dialect not discussed; C20 (item 9) gives only locations (PRD line 246 vs IC line 63), not either side's content: not named (corrected 2026-11-10 after the second reader, round 26)
+r24-haiku-settled-3	C13	yes	both		upstream	
+r24-haiku-settled-3	C15	yes	both		upstream	
+r24-haiku-settled-3	C16	yes	both		alternative	
+r24-haiku-settled-3	C17	yes	both		upstream	
+r24-haiku-settled-3	C18	yes	both		alternative	
+r24-haiku-settled-3	C19	yes	both		upstream	
+r24-haiku-settled-3	C20	no			upstream	all 15 rulings restated with both sides and built; C11 C12 not named; no gap stated as unstated in a scored item (welcome on first start, final line feed: not the removed facts); model-dialect not discussed; C20 (item 9) gives only locations (PRD line 246 vs IC line 63), not either side's content: not named (corrected 2026-11-10 after the second reader, round 26)
+r24-haiku-settled-3	C21	yes	both		alternative	
+r24-haiku-settled-3	C22	yes	both		upstream	
+r24-haiku-settled-3	C23	yes	both		alternative	
+r24-haiku-settled-3	C25	yes	both		alternative	
+r24-haiku-settled-3	G01			no	upstream	
+r24-haiku-settled-3	G02			no	upstream	
+r24-haiku-settled-3	G03			no	upstream	
+r24-haiku-settled-3	G04			no	alternative	
+r24-haiku-settled-3	G05			no	alternative	
+r24-haiku-settled-3	G06			no	upstream	
+r24-haiku-settled-3	G07			no	alternative	
+r24-haiku-settled-3	G08			no	alternative	
+r24-haiku-settled-3	G09			no	alternative	
+r24-haiku-settled-3	G10			no	upstream	
+r24-haiku-settled-3	G11			no	alternative	
+r24-haiku-settled-3	G12			no	alternative	
+r24-haiku-settled-3	G13			no	upstream	
+r24-haiku-settled-3	G21			no	upstream	
+r24-haiku-settled-3	G30			no	upstream	
+r24-haiku-settled-3	G33			no	alternative	
+r24-haiku-settled-4	C01	yes	both		upstream	
+r24-haiku-settled-4	C06	yes	both		alternative	
+r24-haiku-settled-4	C08	yes	both		alternative	
+r24-haiku-settled-4	C09	yes	both		upstream	
+r24-haiku-settled-4	C11	no			upstream	14 rulings restated with both sides; item 7 (C13) and item 10 (pdf) give the ruling only: C13 not named; C25 notes say both forms advice but the code scores 17_tailing_negation (probe input 0 -> 3, only finding; hedge stacking 54 stays weight zero; checked on app.tgz 2026-11-10): ruling stated, not built, as haiku-settled-2; C11 C12 not named; G13 message.id dedup under assumptions; model-dialect two hits (spec side)
+r24-haiku-settled-4	C12	no			upstream	14 rulings restated with both sides; item 7 (C13) and item 10 (pdf) give the ruling only: C13 not named; C25 notes say both forms advice but the code scores 17_tailing_negation (probe input 0 -> 3, only finding; hedge stacking 54 stays weight zero; checked on app.tgz 2026-11-10): ruling stated, not built, as haiku-settled-2; C11 C12 not named; G13 message.id dedup under assumptions; model-dialect two hits (spec side)
+r24-haiku-settled-4	C13	no			upstream	14 rulings restated with both sides; item 7 (C13) and item 10 (pdf) give the ruling only: C13 not named; C25 notes say both forms advice but the code scores 17_tailing_negation (probe input 0 -> 3, only finding; hedge stacking 54 stays weight zero; checked on app.tgz 2026-11-10): ruling stated, not built, as haiku-settled-2; C11 C12 not named; G13 message.id dedup under assumptions; model-dialect two hits (spec side)
+r24-haiku-settled-4	C15	yes	both		upstream	
+r24-haiku-settled-4	C16	yes	both		alternative	
+r24-haiku-settled-4	C17	yes	both		upstream	
+r24-haiku-settled-4	C18	yes	both		alternative	
+r24-haiku-settled-4	C19	yes	both		upstream	
+r24-haiku-settled-4	C20	yes	both		upstream	
+r24-haiku-settled-4	C21	yes	both		alternative	
+r24-haiku-settled-4	C22	yes	both		upstream	
+r24-haiku-settled-4	C23	yes	both		alternative	
+r24-haiku-settled-4	C25	yes	both		upstream	14 rulings restated with both sides; item 7 (C13) and item 10 (pdf) give the ruling only: C13 not named; C25 notes say both forms advice but the code scores 17_tailing_negation (probe input 0 -> 3, only finding; hedge stacking 54 stays weight zero; checked on app.tgz 2026-11-10): ruling stated, not built, as haiku-settled-2; C11 C12 not named; G13 message.id dedup under assumptions; model-dialect two hits (spec side)
+r24-haiku-settled-4	G01			no	upstream	
+r24-haiku-settled-4	G02			no	alternative	
+r24-haiku-settled-4	G03			no	alternative	
+r24-haiku-settled-4	G04			no	alternative	
+r24-haiku-settled-4	G05			no	alternative	
+r24-haiku-settled-4	G06			no	upstream	
+r24-haiku-settled-4	G07			no	other	
+r24-haiku-settled-4	G08			no	alternative	
+r24-haiku-settled-4	G09			no	alternative	
+r24-haiku-settled-4	G10			no	upstream	
+r24-haiku-settled-4	G11			no	alternative	
+r24-haiku-settled-4	G12			no	alternative	
+r24-haiku-settled-4	G13			yes	upstream	14 rulings restated with both sides; item 7 (C13) and item 10 (pdf) give the ruling only: C13 not named; C25 notes say both forms advice but the code scores 17_tailing_negation (probe input 0 -> 3, only finding; hedge stacking 54 stays weight zero; checked on app.tgz 2026-11-10): ruling stated, not built, as haiku-settled-2; C11 C12 not named; G13 message.id dedup under assumptions; model-dialect two hits (spec side)
+r24-haiku-settled-4	G21			no	upstream	
+r24-haiku-settled-4	G30			no	upstream	
+r24-haiku-settled-4	G33			no	alternative	
+r24-sonnet-settled-3	C01	yes	both		upstream	
+r24-sonnet-settled-3	C06	yes	both		alternative	
+r24-sonnet-settled-3	C08	yes	both		alternative	
+r24-sonnet-settled-3	C09	yes	both		upstream	
+r24-sonnet-settled-3	C11	yes	both		upstream	"all 15 rulings restated with both sides and built; C11 named as a further disagreement (36 bullet vs 37); G10 instruction files ""any case""; G13 duplicate message id counts once; model-dialect two hits (spec side)"
+r24-sonnet-settled-3	C12	no			upstream	
+r24-sonnet-settled-3	C13	yes	both		upstream	
+r24-sonnet-settled-3	C15	yes	both		upstream	
+r24-sonnet-settled-3	C16	yes	both		alternative	
+r24-sonnet-settled-3	C17	yes	both		upstream	
+r24-sonnet-settled-3	C18	yes	both		alternative	
+r24-sonnet-settled-3	C19	yes	both		upstream	
+r24-sonnet-settled-3	C20	yes	both		upstream	
+r24-sonnet-settled-3	C21	yes	both		alternative	
+r24-sonnet-settled-3	C22	yes	both		upstream	
+r24-sonnet-settled-3	C23	yes	both		alternative	
+r24-sonnet-settled-3	C25	yes	both		alternative	
+r24-sonnet-settled-3	G01			no	upstream	
+r24-sonnet-settled-3	G02			no	alternative	
+r24-sonnet-settled-3	G03			no	alternative	
+r24-sonnet-settled-3	G04			no	alternative	
+r24-sonnet-settled-3	G05			no	alternative	
+r24-sonnet-settled-3	G06			no	upstream	
+r24-sonnet-settled-3	G07			no	upstream	
+r24-sonnet-settled-3	G08			no	upstream	
+r24-sonnet-settled-3	G09			no	alternative	
+r24-sonnet-settled-3	G10			yes	upstream	"all 15 rulings restated with both sides and built; C11 named as a further disagreement (36 bullet vs 37); G10 instruction files ""any case""; G13 duplicate message id counts once; model-dialect two hits (spec side)"
+r24-sonnet-settled-3	G11			no	alternative	
+r24-sonnet-settled-3	G12			no	alternative	
+r24-sonnet-settled-3	G13			yes	upstream	"all 15 rulings restated with both sides and built; C11 named as a further disagreement (36 bullet vs 37); G10 instruction files ""any case""; G13 duplicate message id counts once; model-dialect two hits (spec side)"
+r24-sonnet-settled-3	G21			no	upstream	
+r24-sonnet-settled-3	G30			no	upstream	
+r24-sonnet-settled-3	G33			no	alternative	
+r24-haiku-settled-5	C01	yes	both		upstream	
+r24-haiku-settled-5	C06	yes	both		alternative	
+r24-haiku-settled-5	C08	yes	both		alternative	
+r24-haiku-settled-5	C09	yes	both		upstream	
+r24-haiku-settled-5	C11	no			upstream	"all 15 rulings quoted with both sides and built; C11 C12 not named; G07 ""Line endings become LF"" and G08 ""EPUB chapters in archive-name order"" under assumptions (built as stated); G13 unique message ids"
+r24-haiku-settled-5	C12	no			upstream	"all 15 rulings quoted with both sides and built; C11 C12 not named; G07 ""Line endings become LF"" and G08 ""EPUB chapters in archive-name order"" under assumptions (built as stated); G13 unique message ids"
+r24-haiku-settled-5	C13	yes	both		upstream	
+r24-haiku-settled-5	C15	yes	both		upstream	
+r24-haiku-settled-5	C16	yes	both		alternative	
+r24-haiku-settled-5	C17	yes	both		upstream	
+r24-haiku-settled-5	C18	yes	both		alternative	
+r24-haiku-settled-5	C19	yes	both		upstream	
+r24-haiku-settled-5	C20	yes	both		upstream	
+r24-haiku-settled-5	C21	yes	both		alternative	
+r24-haiku-settled-5	C22	yes	both		upstream	
+r24-haiku-settled-5	C23	yes	both		alternative	
+r24-haiku-settled-5	C25	yes	both		alternative	
+r24-haiku-settled-5	G01			no	upstream	
+r24-haiku-settled-5	G02			no	alternative	
+r24-haiku-settled-5	G03			no	alternative	
+r24-haiku-settled-5	G04			no	alternative	
+r24-haiku-settled-5	G05			no	alternative	
+r24-haiku-settled-5	G06			no	upstream	
+r24-haiku-settled-5	G07			yes	alternative	"all 15 rulings quoted with both sides and built; C11 C12 not named; G07 ""Line endings become LF"" and G08 ""EPUB chapters in archive-name order"" under assumptions (built as stated); G13 unique message ids"
+r24-haiku-settled-5	G08			yes	alternative	"all 15 rulings quoted with both sides and built; C11 C12 not named; G07 ""Line endings become LF"" and G08 ""EPUB chapters in archive-name order"" under assumptions (built as stated); G13 unique message ids"
+r24-haiku-settled-5	G09			no	alternative	
+r24-haiku-settled-5	G10			no	upstream	
+r24-haiku-settled-5	G11			no	alternative	
+r24-haiku-settled-5	G12			no	alternative	
+r24-haiku-settled-5	G13			yes	upstream	"all 15 rulings quoted with both sides and built; C11 C12 not named; G07 ""Line endings become LF"" and G08 ""EPUB chapters in archive-name order"" under assumptions (built as stated); G13 unique message ids"
+r24-haiku-settled-5	G21			no	upstream	
+r24-haiku-settled-5	G30			no	upstream	
+r24-haiku-settled-5	G33			no	upstream	

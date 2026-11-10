@@ -1,0 +1,630 @@
+{
+ "_about": "Built by harness/trials/summarize.py from runs/. Costs: Claude Code total_cost_usd, estimated API-equivalent.",
+ "total_cost_usd_est": 9.9144,
+ "groups": {
+  "work/tasks/case016-r24-settled-list | anthropic/claude-haiku-5-5": {
+   "runs": [
+    "r24-haiku-settled-1",
+    "r24-haiku-settled-2",
+    "r24-haiku-settled-3",
+    "r24-haiku-settled-4",
+    "r24-haiku-settled-5"
+   ],
+   "tests_passed": [
+    349,
+    352,
+    361,
+    344,
+    340
+   ],
+   "mean_tests_passed": 349.2,
+   "turns": [
+    40,
+    31,
+    27,
+    28,
+    42
+   ],
+   "cost_usd_est": [
+    0.90657007,
+    0.8549898400000003,
+    0.6462127100000001,
+    0.63400844,
+    0.9738036199999999
+   ]
+  },
+  "work/tasks/case016-r24-settled-list | anthropic/claude-sonnet-5-5": {
+   "runs": [
+    "r24-sonnet-settled-1",
+    "r24-sonnet-settled-2",
+    "r24-sonnet-settled-3"
+   ],
+   "tests_passed": [
+    363,
+    360,
+    355
+   ],
+   "mean_tests_passed": 359.33,
+   "turns": [
+    34,
+    23,
+    22
+   ],
+   "cost_usd_est": [
+    2.2085381999999996,
+    1.8628347,
+    1.8274259999999998
+   ]
+  }
+ },
+ "runs": {
+  "r24-haiku-settled-1": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.8994845360824743,
+     "tests_passed": 349,
+     "tests_total": 388,
+     "tests_failed": 39,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F04_acceptance.py::test_unreadable_mode_flag_still_succeeds",
+      "../tests/final/tests/F05_acceptance.py::test_unset_level_uses_full_threshold_not_strict",
+      "../tests/final/tests/F05_acceptance.py::test_score_equal_to_40_is_flagged_only_in_strict",
+      "../tests/final/tests/F05_acceptance.py::test_score_equal_to_20_is_not_flagged_in_strict",
+      "../tests/final/tests/F05_acceptance.py::test_score_above_20_and_not_above_40_is_flagged_only_in_strict",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_other_extensions_are_not_scored_or_handed_to_the_detector",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F05_acceptance.py::test_five_failure_reasons_stay_distinguishable",
+      "../tests/final/tests/F05_acceptance.py::test_missing_score_is_not_any_integer",
+      "../tests/final/tests/F05_acceptance.py::test_empty_result_shares_its_reason_with_unreadable",
+      "../tests/final/tests/F05_acceptance.py::test_detector_budgets_are_8s_plain_and_15s_archive",
+      "../tests/final/tests/F05_acceptance.py::test_hook_phrases_for_the_other_four_bands",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_help_names_the_threshold_integers_and_the_export_path[plain]",
+      "../tests/final/tests/F06_acceptance.py::test_help_names_the_threshold_integers_and_the_export_path[named]",
+      "../tests/final/tests/F06_acceptance.py::test_check_not_a_file_unreadable_and_pdf_rtf_differ",
+      "../tests/final/tests/F06_acceptance.py::test_check_names_the_file_only_for_no_output_and_stated_failure",
+      "../tests/final/tests/F06_acceptance.py::test_doctor_does_not_pass_without_running_the_detector",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 349,
+    "failed": 39,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 40,
+   "subtype": "success",
+   "agent_seconds": 886.0,
+   "total_cost_usd_est": 0.90657007,
+   "exception_info": null
+  },
+  "r24-haiku-settled-2": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9072164948453608,
+     "tests_passed": 352,
+     "tests_total": 388,
+     "tests_failed": 36,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_leftover_decisive_pairs_raise_score_to_at_least_65",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[synonym-companies]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[article-title]",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_sheets_emit_cell_text_in_sheet_order[write_xlsx-.xlsx]",
+      "../tests/final/tests/F02_acceptance.py::test_sheets_emit_cell_text_in_sheet_order[write_xlsm-.xlsm]",
+      "../tests/final/tests/F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix",
+      "../tests/final/tests/F03_acceptance.py::test_jobless_invisible_codepoints_are_removed_and_rescan_is_quiet",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_trailing_spaces_and_tabs_are_trimmed_newline_convention_kept",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_eight_thousand_tag_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F05_acceptance.py::test_five_failure_reasons_stay_distinguishable",
+      "../tests/final/tests/F05_acceptance.py::test_empty_result_shares_its_reason_with_unreadable",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_check_not_a_file_unreadable_and_pdf_rtf_differ",
+      "../tests/final/tests/F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line",
+      "../tests/final/tests/F06_acceptance.py::test_doctor_off_mode_and_faults_use_the_stated_spellings",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest",
+      "../tests/final/tests/F06_acceptance.py::test_stats_counts_assistant_turns_and_keeps_the_two_token_fields_distinct"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 352,
+    "failed": 36,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 31,
+   "subtype": "success",
+   "agent_seconds": 965.1,
+   "total_cost_usd_est": 0.8549898400000003,
+   "exception_info": null
+  },
+  "r24-haiku-settled-3": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9304123711340206,
+     "tests_passed": 361,
+     "tests_total": 388,
+     "tests_failed": 27,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+      "../tests/final/tests/F01_acceptance.py::test_leftover_decisive_pairs_raise_score_to_at_least_65",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[article-title]",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_trailing_spaces_and_tabs_are_trimmed_newline_convention_kept",
+      "../tests/final/tests/F03_acceptance.py::test_interior_tab_lf_cr_are_not_stripped_as_invisible",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F05_acceptance.py::test_five_failure_reasons_stay_distinguishable",
+      "../tests/final/tests/F05_acceptance.py::test_empty_result_shares_its_reason_with_unreadable",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_check_not_a_file_unreadable_and_pdf_rtf_differ",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 361,
+    "failed": 27,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 27,
+   "subtype": "success",
+   "agent_seconds": 820.5,
+   "total_cost_usd_est": 0.6462127100000001,
+   "exception_info": null
+  },
+  "r24-haiku-settled-4": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.8865979381443299,
+     "tests_passed": 344,
+     "tests_total": 388,
+     "tests_failed": 44,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[adj-stack]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[noun-list]",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_at_cap_file_is_not_truncated",
+      "../tests/final/tests/F01_acceptance.py::test_one_past_cap_marks_truncated_and_reports_262144_scanned",
+      "../tests/final/tests/F01_acceptance.py::test_character_layer_findings_ignore_bytes_past_the_window",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix",
+      "../tests/final/tests/F02_acceptance.py::test_extracted_prose_at_cap_is_not_longer_than_window",
+      "../tests/final/tests/F02_acceptance.py::test_extracted_prose_one_past_cap_is_longer_and_scans_262144",
+      "../tests/final/tests/F02_acceptance.py::test_character_layer_ignores_invisible_mark_only_past_extracted_window",
+      "../tests/final/tests/F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+      "../tests/final/tests/F03_acceptance.py::test_jobless_invisible_codepoints_are_removed_and_rescan_is_quiet",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_eight_thousand_tag_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_long_unspaced_token_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F05_acceptance.py::test_guard_opens_no_socket",
+      "../tests/final/tests/F06_acceptance.py::test_both_forms_show_help_and_cross_read_the_stored_level",
+      "../tests/final/tests/F06_acceptance.py::test_namespaced_form_covers_every_subcommand",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_help_lists_every_subcommand_except_itself",
+      "../tests/final/tests/F06_acceptance.py::test_check_over_cap_names_kilobytes_and_no_score",
+      "../tests/final/tests/F06_acceptance.py::test_check_names_the_window_only_when_truncated[plain]",
+      "../tests/final/tests/F06_acceptance.py::test_check_names_the_window_only_when_truncated[named]",
+      "../tests/final/tests/F06_acceptance.py::test_show_names_the_window_only_when_truncated",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 344,
+    "failed": 44,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 28,
+   "subtype": "success",
+   "agent_seconds": 814.4,
+   "total_cost_usd_est": 0.63400844,
+   "exception_info": null
+  },
+  "r24-haiku-settled-5": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-haiku-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.8762886597938144,
+     "tests_passed": 340,
+     "tests_total": 388,
+     "tests_failed": 48,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+      "../tests/final/tests/F01_acceptance.py::test_two_other_decisive_families_also_raise_score_to_at_least_65",
+      "../tests/final/tests/F01_acceptance.py::test_leftover_decisive_pairs_raise_score_to_at_least_65",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_moves_mixed_script_count",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[article-title]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_fires_match_named_probes[homoglyph]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[genuine-cyrillic]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[native-mixed-name]",
+      "../tests/final/tests/F01_acceptance.py::test_constructable_non_fires_stay_quiet_with_live_baselines[non-latin-url]",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_character_layer_findings_ignore_bytes_past_the_window",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix",
+      "../tests/final/tests/F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+      "../tests/final/tests/F03_acceptance.py::test_jobless_invisible_codepoints_are_removed_and_rescan_is_quiet",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_named_password_sentence_folds_cyrillic_vowels_to_ascii",
+      "../tests/final/tests/F03_acceptance.py::test_payment_and_script_homoglyphs_fold_to_ascii",
+      "../tests/final/tests/F03_acceptance.py::test_single_script_non_latin_url_run_is_not_folded",
+      "../tests/final/tests/F03_acceptance.py::test_folded_password_rescan_does_not_fire_mixed_script",
+      "../tests/final/tests/F03_acceptance.py::test_interior_tab_lf_cr_are_not_stripped_as_invisible",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_eight_thousand_tag_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F05_acceptance.py::test_five_failure_reasons_stay_distinguishable",
+      "../tests/final/tests/F05_acceptance.py::test_empty_result_shares_its_reason_with_unreadable",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_help_names_the_threshold_integers_and_the_export_path[plain]",
+      "../tests/final/tests/F06_acceptance.py::test_help_names_the_threshold_integers_and_the_export_path[named]",
+      "../tests/final/tests/F06_acceptance.py::test_check_over_cap_names_kilobytes_and_no_score",
+      "../tests/final/tests/F06_acceptance.py::test_doctor_python_missing_keeps_the_detector_line",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 340,
+    "failed": 48,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 42,
+   "subtype": "success",
+   "agent_seconds": 1039.5,
+   "total_cost_usd_est": 0.9738036199999999,
+   "exception_info": null
+  },
+  "r24-sonnet-settled-1": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9355670103092784,
+     "tests_passed": 363,
+     "tests_total": 388,
+     "tests_failed": 25,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_thirty_two_thousand_space_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_check_over_cap_names_kilobytes_and_no_score",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 363,
+    "failed": 25,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 34,
+   "subtype": "success",
+   "agent_seconds": 1034.1,
+   "total_cost_usd_est": 2.2085381999999996,
+   "exception_info": null
+  },
+  "r24-sonnet-settled-2": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9278350515463918,
+     "tests_passed": 360,
+     "tests_total": 388,
+     "tests_failed": 28,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_epub_reading_order_excludes_nav_style_script_and_survives_undeclared_prefix",
+      "../tests/final/tests/F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+      "../tests/final/tests/F03_acceptance.py::test_tag_payload_after_flag_terminator_is_removed_flag_stays",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_file_with_crlf_still_has_crlf_after_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_thirty_two_thousand_space_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_check_over_cap_names_kilobytes_and_no_score",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 360,
+    "failed": 28,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 23,
+   "subtype": "success",
+   "agent_seconds": 681.1,
+   "total_cost_usd_est": 1.8628347,
+   "exception_info": null
+  },
+  "r24-sonnet-settled-3": {
+   "task": "work/tasks/case016-r24-settled-list",
+   "model": "anthropic/claude-sonnet-5-5",
+   "status": "done",
+   "rewards": {
+    "official_reward.json": {
+     "reward": 0.0
+    },
+    "reward.json": {
+     "reward": 0.9149484536082474,
+     "tests_passed": 355,
+     "tests_total": 388,
+     "tests_failed": 33,
+     "tests_error": 0,
+     "official_reward": 0.0
+    },
+    "reward_detail.json": {
+     "judge_error": null,
+     "official_reward_raw": 0.0,
+     "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_catalogue_17_tailing_negation_moves_score_parallelism_is_advice",
+      "../tests/final/tests/F01_acceptance.py::test_single_decisive_at_low_or_none_does_not_take_45",
+      "../tests/final/tests/F01_acceptance.py::test_long_human_plus_one_decisive_stays_at_most_40_with_required_confidence",
+      "../tests/final/tests/F01_acceptance.py::test_indented_code_block_does_not_fire",
+      "../tests/final/tests/F01_acceptance.py::test_second_named_fire_inside_each_mask_also_stays_quiet",
+      "../tests/final/tests/F01_acceptance.py::test_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_second_banned_word_split_only_by_zero_width_still_fires",
+      "../tests/final/tests/F01_acceptance.py::test_latin_run_homoglyph_fires_66_and_the_ascii_vocabulary_finding",
+      "../tests/final/tests/F01_acceptance.py::test_two_file_operands_scan_the_first_and_warn_on_stderr",
+      "../tests/final/tests/F01_acceptance.py::test_extra_operands_are_not_dropped_silently",
+      "../tests/final/tests/F01_acceptance.py::test_character_layer_findings_ignore_bytes_past_the_window",
+      "../tests/final/tests/F01_acceptance.py::test_nul_without_utf16_bom_is_empty_input_failure",
+      "../tests/final/tests/F02_acceptance.py::test_detector_still_reads_a_path_over_the_plugin_plain_text_cap",
+      "../tests/final/tests/F02_acceptance.py::test_check_scores_at_plain_text_cap_and_refuses_one_byte_over",
+      "../tests/final/tests/F02_acceptance.py::test_guard_over_cap_write_exits_without_scoring_nudge",
+      "../tests/final/tests/F03_acceptance.py::test_markdown_hard_break_two_spaces_are_collapsed",
+      "../tests/final/tests/F03_acceptance.py::test_named_keep_sequences_are_byte_for_byte",
+      "../tests/final/tests/F03_acceptance.py::test_kept_characters_are_not_invisible_or_stray_space_on_the_original_scan",
+      "../tests/final/tests/F03_acceptance.py::test_thirty_two_thousand_space_run_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_long_unspaced_token_finishes_within_8_seconds_with_and_without_cleanup",
+      "../tests/final/tests/F03_acceptance.py::test_cleanup_extra_operands_scrub_the_first_file_and_warn",
+      "../tests/final/tests/F04_acceptance.py::test_welcome_is_not_shown_when_the_flag_cannot_be_written",
+      "../tests/final/tests/F05_acceptance.py::test_confidence_none_is_recorded_unflagged",
+      "../tests/final/tests/F05_acceptance.py::test_paths_under_vendor_git_and_memory_are_skipped",
+      "../tests/final/tests/F05_acceptance.py::test_ledger_keeps_at_most_the_newest_twenty",
+      "../tests/final/tests/F05_acceptance.py::test_saved_ledger_files_are_owner_only_without_a_fixed_prefix",
+      "../tests/final/tests/F06_acceptance.py::test_entire_prompt_stop_phrases_store_off",
+      "../tests/final/tests/F06_acceptance.py::test_check_over_cap_names_kilobytes_and_no_score",
+      "../tests/final/tests/F06_acceptance.py::test_check_names_the_window_only_when_truncated[plain]",
+      "../tests/final/tests/F06_acceptance.py::test_check_names_the_window_only_when_truncated[named]",
+      "../tests/final/tests/F06_acceptance.py::test_show_names_the_window_only_when_truncated",
+      "../tests/final/tests/F06_acceptance.py::test_stats_prefers_the_named_transcript_else_the_newest",
+      "../tests/final/tests/F06_acceptance.py::test_stats_scores_only_the_trimmed_unfenced_tail"
+     ],
+     "error_tests": []
+    }
+   },
+   "tests": {
+    "passed": 355,
+    "failed": 33,
+    "collection_errors": 0,
+    "source": "reward.json"
+   },
+   "turns": 22,
+   "subtype": "success",
+   "agent_seconds": 668.0,
+   "total_cost_usd_est": 1.8274259999999998,
+   "exception_info": null
+  }
+ }
+}

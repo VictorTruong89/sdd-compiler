@@ -1,0 +1,645 @@
+{
+ "runs": {
+  "r22-sonnet-case006-1": {
+   "case": "case006",
+   "found": 20,
+   "of": 24,
+   "entries": 20,
+   "planted_entries": 20,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C03",
+    "C05",
+    "C06",
+    "C17"
+   ],
+   "seconds": 118,
+   "turns": 5,
+   "cost": 0.2231082
+  },
+  "r22-sonnet-case006-2": {
+   "case": "case006",
+   "found": 20,
+   "of": 24,
+   "entries": 21,
+   "planted_entries": 20,
+   "real_other": 0,
+   "false": 1,
+   "missed": [
+    "C03",
+    "C13",
+    "C17",
+    "C18"
+   ],
+   "seconds": 116,
+   "turns": 5,
+   "cost": 0.2277651
+  },
+  "r22-sonnet-case006-3": {
+   "case": "case006",
+   "found": 21,
+   "of": 24,
+   "entries": 21,
+   "planted_entries": 21,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C03",
+    "C05",
+    "C17"
+   ],
+   "seconds": 122,
+   "turns": 5,
+   "cost": 0.22976850000000001
+  },
+  "r22-haiku-case006-1": {
+   "case": "case006",
+   "found": 22,
+   "of": 24,
+   "entries": 25,
+   "planted_entries": 22,
+   "real_other": 0,
+   "false": 3,
+   "missed": [
+    "C08",
+    "C22"
+   ],
+   "seconds": 225,
+   "turns": 9,
+   "cost": 0.03731074
+  },
+  "r22-haiku-case006-2": {
+   "case": "case006",
+   "found": 20,
+   "of": 24,
+   "entries": 22,
+   "planted_entries": 20,
+   "real_other": 0,
+   "false": 2,
+   "missed": [
+    "C03",
+    "C05",
+    "C13",
+    "C22"
+   ],
+   "seconds": 154,
+   "turns": 10,
+   "cost": 0.023086350000000002
+  },
+  "r22-haiku-case006-3": {
+   "case": "case006",
+   "found": 23,
+   "of": 24,
+   "entries": 25,
+   "planted_entries": 23,
+   "real_other": 0,
+   "false": 2,
+   "missed": [
+    "C05"
+   ],
+   "seconds": 178,
+   "turns": 6,
+   "cost": 0.026132380000000004
+  },
+  "r22-sonnet-case010-1": {
+   "case": "case010",
+   "found": 13,
+   "of": 15,
+   "entries": 13,
+   "planted_entries": 13,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C21",
+    "C22"
+   ],
+   "seconds": 105,
+   "turns": 5,
+   "cost": 0.1645082
+  },
+  "r22-sonnet-case010-2": {
+   "case": "case010",
+   "found": 13,
+   "of": 15,
+   "entries": 14,
+   "planted_entries": 13,
+   "real_other": 1,
+   "false": 0,
+   "missed": [
+    "C21",
+    "C22"
+   ],
+   "seconds": 115,
+   "turns": 5,
+   "cost": 0.1788864
+  },
+  "r22-sonnet-case010-3": {
+   "case": "case010",
+   "found": 12,
+   "of": 15,
+   "entries": 12,
+   "planted_entries": 12,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C14",
+    "C21",
+    "C22"
+   ],
+   "seconds": 105,
+   "turns": 5,
+   "cost": 0.16321
+  },
+  "r22-haiku-case010-1": {
+   "case": "case010",
+   "found": 13,
+   "of": 15,
+   "entries": 15,
+   "planted_entries": 13,
+   "real_other": 1,
+   "false": 1,
+   "missed": [
+    "C21",
+    "C22"
+   ],
+   "seconds": 184,
+   "turns": 6,
+   "cost": 0.02568277
+  },
+  "r22-haiku-case010-2": {
+   "case": "case010",
+   "found": 13,
+   "of": 15,
+   "entries": 13,
+   "planted_entries": 13,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C21",
+    "C22"
+   ],
+   "seconds": 139,
+   "turns": 6,
+   "cost": 0.01775231
+  },
+  "r22-haiku-case010-3": {
+   "case": "case010",
+   "found": 13,
+   "of": 15,
+   "entries": 14,
+   "planted_entries": 13,
+   "real_other": 0,
+   "false": 1,
+   "missed": [
+    "C21",
+    "C22"
+   ],
+   "seconds": 134,
+   "turns": 6,
+   "cost": 0.01711371
+  },
+  "r22-sonnet-case016-1": {
+   "case": "case016",
+   "found": 16,
+   "of": 17,
+   "entries": 16,
+   "planted_entries": 16,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C01"
+   ],
+   "seconds": 148,
+   "turns": 9,
+   "cost": 0.3606525
+  },
+  "r22-sonnet-case016-2": {
+   "case": "case016",
+   "found": 15,
+   "of": 17,
+   "entries": 15,
+   "planted_entries": 15,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C12",
+    "C13"
+   ],
+   "seconds": 146,
+   "turns": 7,
+   "cost": 0.3280956
+  },
+  "r22-sonnet-case016-3": {
+   "case": "case016",
+   "found": 16,
+   "of": 17,
+   "entries": 16,
+   "planted_entries": 16,
+   "real_other": 0,
+   "false": 0,
+   "missed": [
+    "C13"
+   ],
+   "seconds": 141,
+   "turns": 7,
+   "cost": 0.32458800000000004
+  },
+  "r22-haiku-case016-1": {
+   "case": "case016",
+   "found": 15,
+   "of": 17,
+   "entries": 20,
+   "planted_entries": 15,
+   "real_other": 2,
+   "false": 3,
+   "missed": [
+    "C11",
+    "C12"
+   ],
+   "seconds": 287,
+   "turns": 7,
+   "cost": 0.08475869999999999
+  },
+  "r22-haiku-case016-2": {
+   "case": "case016",
+   "found": 16,
+   "of": 17,
+   "entries": 18,
+   "planted_entries": 16,
+   "real_other": 0,
+   "false": 2,
+   "missed": [
+    "C12"
+   ],
+   "seconds": 347,
+   "turns": 7,
+   "cost": 0.12436321
+  },
+  "r22-haiku-case016-3": {
+   "case": "case016",
+   "found": 15,
+   "of": 17,
+   "entries": 19,
+   "planted_entries": 15,
+   "real_other": 1,
+   "false": 3,
+   "missed": [
+    "C12",
+    "C13"
+   ],
+   "seconds": 296,
+   "turns": 7,
+   "cost": 0.10881571999999999
+  }
+ },
+ "cells": {
+  "case006-haiku": {
+   "found": [
+    22,
+    20,
+    23
+   ],
+   "recall": 0.9027777777777778,
+   "correct": 65,
+   "entries": 72,
+   "cost": [
+    0.03731074,
+    0.023086350000000002,
+    0.026132380000000004
+   ],
+   "seconds": [
+    225,
+    154,
+    178
+   ]
+  },
+  "case006-sonnet": {
+   "found": [
+    20,
+    20,
+    21
+   ],
+   "recall": 0.8472222222222222,
+   "correct": 61,
+   "entries": 62,
+   "cost": [
+    0.2231082,
+    0.2277651,
+    0.22976850000000001
+   ],
+   "seconds": [
+    118,
+    116,
+    122
+   ]
+  },
+  "case010-haiku": {
+   "found": [
+    13,
+    13,
+    13
+   ],
+   "recall": 0.8666666666666667,
+   "correct": 40,
+   "entries": 42,
+   "cost": [
+    0.02568277,
+    0.01775231,
+    0.01711371
+   ],
+   "seconds": [
+    184,
+    139,
+    134
+   ]
+  },
+  "case010-sonnet": {
+   "found": [
+    13,
+    13,
+    12
+   ],
+   "recall": 0.8444444444444444,
+   "correct": 39,
+   "entries": 39,
+   "cost": [
+    0.1645082,
+    0.1788864,
+    0.16321
+   ],
+   "seconds": [
+    105,
+    115,
+    105
+   ]
+  },
+  "case016-haiku": {
+   "found": [
+    15,
+    16,
+    15
+   ],
+   "recall": 0.9019607843137255,
+   "correct": 49,
+   "entries": 57,
+   "cost": [
+    0.08475869999999999,
+    0.12436321,
+    0.10881571999999999
+   ],
+   "seconds": [
+    287,
+    347,
+    296
+   ]
+  },
+  "case016-sonnet": {
+   "found": [
+    16,
+    15,
+    16
+   ],
+   "recall": 0.9215686274509803,
+   "correct": 47,
+   "entries": 47,
+   "cost": [
+    0.3606525,
+    0.3280956,
+    0.32458800000000004
+   ],
+   "seconds": [
+    148,
+    146,
+    141
+   ]
+  }
+ },
+ "items": {
+  "case006-C01": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case006-C02": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C03": {
+   "review_runs": 2,
+   "compiler": false
+  },
+  "case006-C04": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C05": {
+   "review_runs": 2,
+   "compiler": true
+  },
+  "case006-C06": {
+   "review_runs": 5,
+   "compiler": false
+  },
+  "case006-C07": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C08": {
+   "review_runs": 5,
+   "compiler": true
+  },
+  "case006-C09": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C10": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case006-C12": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case006-C13": {
+   "review_runs": 4,
+   "compiler": true
+  },
+  "case006-C14": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C15": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C17": {
+   "review_runs": 3,
+   "compiler": true
+  },
+  "case006-C18": {
+   "review_runs": 5,
+   "compiler": false
+  },
+  "case006-C20": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case006-C21": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C22": {
+   "review_runs": 4,
+   "compiler": true
+  },
+  "case006-C23": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case006-C25": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case006-C26": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C27": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case006-C29": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case010-C01": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C03": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C04": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case010-C05": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case010-C08": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case010-C09": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C11": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C13": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case010-C14": {
+   "review_runs": 5,
+   "compiler": false
+  },
+  "case010-C15": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C16": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C17": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case010-C18": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case010-C21": {
+   "review_runs": 0,
+   "compiler": true
+  },
+  "case010-C22": {
+   "review_runs": 0,
+   "compiler": true
+  },
+  "case016-C01": {
+   "review_runs": 5,
+   "compiler": false
+  },
+  "case016-C06": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C08": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C09": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C11": {
+   "review_runs": 5,
+   "compiler": true
+  },
+  "case016-C12": {
+   "review_runs": 2,
+   "compiler": false
+  },
+  "case016-C13": {
+   "review_runs": 3,
+   "compiler": false
+  },
+  "case016-C15": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C16": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C17": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case016-C18": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C19": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case016-C20": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case016-C21": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C22": {
+   "review_runs": 6,
+   "compiler": false
+  },
+  "case016-C23": {
+   "review_runs": 6,
+   "compiler": true
+  },
+  "case016-C25": {
+   "review_runs": 6,
+   "compiler": false
+  }
+ },
+ "total_cost": 2.66559839
+}

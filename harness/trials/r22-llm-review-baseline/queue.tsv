@@ -1,0 +1,19 @@
+run_id	task	model	status	job	attempts	last_message
+r22-sonnet-case016-1	work/tasks/review-case016	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case016-1	1	
+r22-haiku-case006-1	work/tasks/review-case006	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case006-1	1	
+r22-sonnet-case006-1	work/tasks/review-case006	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case006-1	1	
+r22-haiku-case010-1	work/tasks/review-case010	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case010-1	1	
+r22-sonnet-case010-1	work/tasks/review-case010	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case010-1	1	
+r22-haiku-case016-1	work/tasks/review-case016	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case016-1	1	
+r22-haiku-case006-2	work/tasks/review-case006	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case006-2	1	
+r22-sonnet-case006-2	work/tasks/review-case006	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case006-2	1	
+r22-haiku-case010-2	work/tasks/review-case010	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case010-2	1	
+r22-sonnet-case010-2	work/tasks/review-case010	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case010-2	1	
+r22-haiku-case016-2	work/tasks/review-case016	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case016-2	1	
+r22-sonnet-case016-2	work/tasks/review-case016	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case016-2	1	
+r22-haiku-case006-3	work/tasks/review-case006	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case006-3	1	
+r22-sonnet-case006-3	work/tasks/review-case006	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case006-3	1	
+r22-haiku-case010-3	work/tasks/review-case010	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case010-3	1	
+r22-sonnet-case010-3	work/tasks/review-case010	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case010-3	1	
+r22-haiku-case016-3	work/tasks/review-case016	anthropic/claude-haiku-5-5	done	r22-llm-review-baseline-r22-haiku-case016-3	1	
+r22-sonnet-case016-3	work/tasks/review-case016	anthropic/claude-sonnet-5-5	done	r22-llm-review-baseline-r22-sonnet-case016-3	1	

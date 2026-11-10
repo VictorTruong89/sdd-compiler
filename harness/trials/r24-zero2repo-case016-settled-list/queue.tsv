@@ -1,0 +1,9 @@
+run_id	task	model	status	job	attempts	last_message
+r24-sonnet-settled-1	work/tasks/case016-r24-settled-list	anthropic/claude-sonnet-5-5	done	r24-zero2repo-case016-settled-list-r24-sonnet-settled-1	1	
+r24-haiku-settled-1	work/tasks/case016-r24-settled-list	anthropic/claude-haiku-5-5	done	r24-zero2repo-case016-settled-list-r24-haiku-settled-1	1	
+r24-haiku-settled-2	work/tasks/case016-r24-settled-list	anthropic/claude-haiku-5-5	done	r24-zero2repo-case016-settled-list-r24-haiku-settled-2	1	
+r24-sonnet-settled-2	work/tasks/case016-r24-settled-list	anthropic/claude-sonnet-5-5	done	r24-zero2repo-case016-settled-list-r24-sonnet-settled-2	1	
+r24-haiku-settled-3	work/tasks/case016-r24-settled-list	anthropic/claude-haiku-5-5	done	r24-zero2repo-case016-settled-list-r24-haiku-settled-3	1	
+r24-haiku-settled-4	work/tasks/case016-r24-settled-list	anthropic/claude-haiku-5-5	done	r24-zero2repo-case016-settled-list-r24-haiku-settled-4	1	
+r24-sonnet-settled-3	work/tasks/case016-r24-settled-list	anthropic/claude-sonnet-5-5	done	r24-zero2repo-case016-settled-list-r24-sonnet-settled-3	1	
+r24-haiku-settled-5	work/tasks/case016-r24-settled-list	anthropic/claude-haiku-5-5	done	r24-zero2repo-case016-settled-list-r24-haiku-settled-5	1	

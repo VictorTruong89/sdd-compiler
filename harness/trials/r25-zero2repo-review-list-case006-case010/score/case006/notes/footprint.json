@@ -1,0 +1,599 @@
+{
+ "BASE_failed": [
+  "F02_acceptance.py::test_first_eager_flag_on_command_line_wins",
+  "F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied",
+  "F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens"
+ ],
+ "C01": {
+  "newly_failed": [
+   "F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent"
+  ],
+  "newly_passed": []
+ },
+ "C02": {
+  "newly_failed": [
+   "F03_acceptance.py::test_feature_switch_more_explicit_source_wins",
+   "F03_acceptance.py::test_fill_order_command_line_env_map_declared",
+   "F07_acceptance.py::test_default_map_string_splits_like_environment"
+  ],
+  "newly_passed": []
+ },
+ "C03": {
+  "newly_failed": [
+   "F03_acceptance.py::test_missing_parameter_still_runs_its_callback"
+  ],
+  "newly_passed": []
+ },
+ "C04": {
+  "newly_failed": [
+   "F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80"
+  ],
+  "newly_passed": []
+ },
+ "C05": {
+  "newly_failed": [
+   "F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name"
+  ],
+  "newly_passed": []
+ },
+ "C06": {
+  "newly_failed": [
+   "F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted"
+  ],
+  "newly_passed": []
+ },
+ "C07": {
+  "newly_failed": [
+   "F03_acceptance.py::test_counting_option_zero_when_omitted_stacked_shorts_count",
+   "F03_acceptance.py::test_omitted_optional_without_default_is_absent"
+  ],
+  "newly_passed": []
+ },
+ "C08": {
+  "newly_failed": [
+   "F03_acceptance.py::test_repeatable_omitted_no_default_is_empty_tuple"
+  ],
+  "newly_passed": []
+ },
+ "C09": {
+  "newly_failed": [
+   "F03_acceptance.py::test_option_env_list_first_set_wins",
+   "F04_acceptance.py::test_env_name_list_first_set_wins"
+  ],
+  "newly_passed": []
+ },
+ "C10": {
+  "newly_failed": [
+   "F03_acceptance.py::test_unknown_boolean_env_is_usage_error_not_silent_off"
+  ],
+  "newly_passed": []
+ },
+ "C11": {
+  "newly_failed": [
+   "F03_acceptance.py::test_empty_env_is_unset_next_source_wins",
+   "F03_acceptance.py::test_option_env_list_first_set_wins",
+   "F03_acceptance.py::test_whitespace_only_boolean_env_deactivates_empty_unset",
+   "F04_acceptance.py::test_auto_prefix_does_not_fill_argument",
+   "F04_acceptance.py::test_empty_or_absent_env_does_not_supply",
+   "F04_acceptance.py::test_env_name_list_first_set_wins"
+  ],
+  "newly_passed": []
+ },
+ "C12": {
+  "newly_failed": [
+   "F05_acceptance.py::test_datetime_formats_tried_in_order_first_success_wins"
+  ],
+  "newly_passed": []
+ },
+ "C13": {
+  "newly_failed": [
+   "F05_acceptance.py::test_author_replaces_datetime_format_list"
+  ],
+  "newly_passed": []
+ },
+ "C14": {
+  "newly_failed": [
+   "F05_acceptance.py::test_integer_open_bound_clamp_uses_nearest_included"
+  ],
+  "newly_passed": []
+ },
+ "C15": {
+  "newly_failed": [
+   "F05_acceptance.py::test_float_range_refuses_clamp_when_bound_open"
+  ],
+  "newly_passed": []
+ },
+ "C16": {
+  "newly_failed": [
+   "F08_acceptance.py::test_callable_default_still_prompts_and_is_invoked",
+   "F08_acceptance.py::test_default_map_value_still_prompts",
+   "F08_acceptance.py::test_empty_line_answer_uses_shown_default",
+   "F08_acceptance.py::test_static_declared_default_still_prompts"
+  ],
+  "newly_passed": []
+ },
+ "C17": {
+  "newly_failed": [
+   "F08_acceptance.py::test_confirmation_prompt_asks_twice_and_reasks_on_mismatch",
+   "F08_acceptance.py::test_password_option_accepts_matching_hidden_lines"
+  ],
+  "newly_passed": []
+ },
+ "C18": {
+  "newly_failed": [
+   "F08_acceptance.py::test_option_prompt_eof_after_invalid_is_abort_not_usage",
+   "F08_acceptance.py::test_option_prompt_reasks_on_conversion_failure",
+   "F08_acceptance.py::test_standalone_prompt_reasks_until_valid_or_eof"
+  ],
+  "newly_passed": []
+ },
+ "C19": {
+  "newly_failed": [
+   "F09_acceptance.py::test_default_write_does_not_truncate_until_used",
+   "F09_acceptance.py::test_file_failures_identify_the_path",
+   "F09_acceptance.py::test_lazy_unopenable_write_is_general_file_error",
+   "F09_acceptance.py::test_non_lazy_unopenable_write_is_usage",
+   "F13_acceptance.py::test_lazy_file_failure_is_general_error_not_usage",
+   "F13_acceptance.py::test_non_standalone_general_error_propagates"
+  ],
+  "newly_passed": []
+ },
+ "C20": {
+  "newly_failed": [
+   "F09_acceptance.py::test_path_resolve_absolute_follows_symlinks_without_expanding_tilde"
+  ],
+  "newly_passed": []
+ },
+ "C21": {
+  "newly_failed": [
+   "F11_acceptance.py::test_app_dir_unix_default_xdg_override_and_posix_forced"
+  ],
+  "newly_passed": []
+ },
+ "C22": {
+  "newly_failed": [
+   "F11_acceptance.py::test_pause_does_nothing_when_not_interactive"
+  ],
+  "newly_passed": []
+ },
+ "C23": {
+  "newly_failed": [
+   "F12_acceptance.py::test_options_listed_only_after_a_dash"
+  ],
+  "newly_passed": []
+ },
+ "C24": {
+  "newly_failed": [
+   "F01_acceptance.py::test_ascii_environment_encoding_does_not_abort",
+   "F01_acceptance.py::test_conversion_failure_does_not_run_callback",
+   "F01_acceptance.py::test_custom_deprecation_note_appears_in_warning",
+   "F01_acceptance.py::test_declared_destination_receives_converted_value",
+   "F01_acceptance.py::test_deprecated_command_still_runs_and_exits_zero",
+   "F01_acceptance.py::test_deprecation_warning_distinct_from_greeting_and_usage_failure",
+   "F01_acceptance.py::test_explicit_name_overrides_mapped_name",
+   "F01_acceptance.py::test_function_name_lowercased_before_dash_mapping",
+   "F01_acceptance.py::test_greeting_absent_when_callback_does_not_run",
+   "F01_acceptance.py::test_help_marks_deprecated_unlike_nondeprecated_twin",
+   "F01_acceptance.py::test_inferred_destination_receives_converted_value",
+   "F01_acceptance.py::test_invocation_fails_when_package_not_importable",
+   "F01_acceptance.py::test_leftover_tokens_fail_unless_extra_arguments_allowed",
+   "F01_acceptance.py::test_missing_required_parameter_does_not_run_callback",
+   "F01_acceptance.py::test_non_standalone_success_returns_callback_value",
+   "F01_acceptance.py::test_parameterless_command_runs_on_empty_args",
+   "F01_acceptance.py::test_script_program_invocation_runs_callback",
+   "F01_acceptance.py::test_standalone_success_exits_zero_and_discards_return_value",
+   "F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_cmd]",
+   "F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_command]",
+   "F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_group]",
+   "F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_grp]",
+   "F01_acceptance.py::test_underscore_name_invoked_with_dash",
+   "F01_acceptance.py::test_valid_args_run_callback_once_exit_zero",
+   "F02_acceptance.py::test_argument_default_metavar_is_name_uppercased",
+   "F02_acceptance.py::test_argument_help_appears_in_positional_arguments_section",
+   "F02_acceptance.py::test_author_metavar_override_appears",
+   "F02_acceptance.py::test_author_option_wins_only_when_every_help_name_reused",
+   "F02_acceptance.py::test_author_options_placeholder_appears_on_usage",
+   "F02_acceptance.py::test_backspace_paragraph_keeps_breaks_and_strips_marker",
+   "F02_acceptance.py::test_chaining_group_usage_marks_repeatable_command_unit",
+   "F02_acceptance.py::test_choice_type_supplies_own_metavar_placeholder",
+   "F02_acceptance.py::test_context_replaces_help_option_names",
+   "F02_acceptance.py::test_custom_default_description_replaces_raw_default",
+   "F02_acceptance.py::test_custom_version_prints_callback_string_not_template",
+   "F02_acceptance.py::test_disabled_automatic_help_makes_help_unknown_unless_declared",
+   "F02_acceptance.py::test_docstring_is_description_unless_explicit_help",
+   "F02_acceptance.py::test_explicit_short_help_overrides_first_sentence",
+   "F02_acceptance.py::test_extra_help_option_prints_help_and_exits",
+   "F02_acceptance.py::test_flag_and_count_options_have_no_metavar",
+   "F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted",
+   "F02_acceptance.py::test_group_help_does_not_run_group_callback",
+   "F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end",
+   "F02_acceptance.py::test_help_eager_exits_without_required_params",
+   "F02_acceptance.py::test_help_page_contains_description_and_option_help",
+   "F02_acceptance.py::test_help_prints_page_without_running_callback_exits_zero",
+   "F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80",
+   "F02_acceptance.py::test_hidden_command_omitted_from_group_help_but_invocable",
+   "F02_acceptance.py::test_hidden_group_omitted_from_parent_help_but_invocable",
+   "F02_acceptance.py::test_hidden_option_omitted_from_help_but_accepted",
+   "F02_acceptance.py::test_invoke_without_command_brackets_leading_command_token",
+   "F02_acceptance.py::test_invoke_without_command_skips_no_args_help",
+   "F02_acceptance.py::test_leaf_no_args_is_help_is_usage_error",
+   "F02_acceptance.py::test_long_short_help_ellipsized_to_one_line",
+   "F02_acceptance.py::test_missing_subcommand_help_is_usage_error_not_success",
+   "F02_acceptance.py::test_off_boolean_flag_default_stays_hidden",
+   "F02_acceptance.py::test_parameter_named_help_does_not_disable_automatic_help",
+   "F02_acceptance.py::test_show_default_per_parameter_and_via_context",
+   "F02_acceptance.py::test_show_environment_variable_name_appears",
+   "F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks",
+   "F02_acceptance.py::test_subcommand_short_help_is_first_sentence",
+   "F02_acceptance.py::test_usage_brackets_optional_not_required_argument",
+   "F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name",
+   "F02_acceptance.py::test_variadic_argument_marked_with_trailing_ellipsis",
+   "F02_acceptance.py::test_version_detects_installed_distribution",
+   "F02_acceptance.py::test_version_option_eager_exits_without_required_params",
+   "F02_acceptance.py::test_version_resolves_import_name_to_distribution",
+   "F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error",
+   "F03_acceptance.py::test_boolean_env_off_tokens_deactivate[0]",
+   "F03_acceptance.py::test_boolean_env_off_tokens_deactivate[f]",
+   "F03_acceptance.py::test_boolean_env_off_tokens_deactivate[false]",
+   "F03_acceptance.py::test_boolean_env_off_tokens_deactivate[n]",
+   "F03_acceptance.py::test_boolean_env_off_tokens_deactivate[no]",
+   "F03_acceptance.py::test_boolean_env_off_tokens_deactivate[off]",
+   "F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[1]",
+   "F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[on]",
+   "F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[t]",
+   "F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[true]",
+   "F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[y]",
+   "F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[yes]",
+   "F03_acceptance.py::test_boolean_flag_omitted_false_unless_true_default",
+   "F03_acceptance.py::test_callable_default_runs_only_when_no_earlier_source",
+   "F03_acceptance.py::test_child_option_after_subcommand_is_parsed",
+   "F03_acceptance.py::test_command_line_beats_environment",
+   "F03_acceptance.py::test_command_line_value_must_never_prompt",
+   "F03_acceptance.py::test_counting_option_zero_when_omitted_stacked_shorts_count",
+   "F03_acceptance.py::test_declared_default_used_when_omitted",
+   "F03_acceptance.py::test_deprecated_option_cannot_be_required_or_prompted",
+   "F03_acceptance.py::test_deprecated_option_warns_only_when_user_supplied",
+   "F03_acceptance.py::test_destination_inferred_from_long_then_short",
+   "F03_acceptance.py::test_double_dash_ends_option_parsing",
+   "F03_acceptance.py::test_eager_flag_finishes_when_required_non_eager_missing",
+   "F03_acceptance.py::test_empty_env_is_unset_next_source_wins",
+   "F03_acceptance.py::test_env_delivers_converted_integer",
+   "F03_acceptance.py::test_feature_switch_explicit_default_beats_auto_false",
+   "F03_acceptance.py::test_feature_switch_more_explicit_source_wins",
+   "F03_acceptance.py::test_file_type_env_splits_on_os_pathsep",
+   "F03_acceptance.py::test_fill_order_command_line_env_map_declared",
+   "F03_acceptance.py::test_group_mixing_can_be_enabled",
+   "F03_acceptance.py::test_group_options_stop_at_subcommand_by_default",
+   "F03_acceptance.py::test_help_before_subcommand_is_help_for_parent",
+   "F03_acceptance.py::test_hidden_from_callback_still_parsed",
+   "F03_acceptance.py::test_identifier_name_wins_inference_over_dashed_long",
+   "F03_acceptance.py::test_ignore_unknown_leaves_long_option_intact_as_extra",
+   "F03_acceptance.py::test_ignore_unknown_may_split_short_stack",
+   "F03_acceptance.py::test_leaf_mixes_option_after_argument",
+   "F03_acceptance.py::test_leaf_mixing_can_be_disabled",
+   "F03_acceptance.py::test_long_option_equals_and_space_forms",
+   "F03_acceptance.py::test_missing_parameter_still_runs_its_callback",
+   "F03_acceptance.py::test_missing_value_for_required_value_option_is_usage_error",
+   "F03_acceptance.py::test_multi_value_fixed_arity_not_consume_rest",
+   "F03_acceptance.py::test_multichar_short_is_stacked_not_named_dbg",
+   "F03_acceptance.py::test_named_env_fills_when_flag_omitted",
+   "F03_acceptance.py::test_omitted_optional_without_default_is_absent",
+   "F03_acceptance.py::test_omitted_required_option_is_usage_error_naming_option",
+   "F03_acceptance.py::test_on_off_pair_tokens",
+   "F03_acceptance.py::test_one_element_sequence_is_the_way_to_default_one_string",
+   "F03_acceptance.py::test_option_declared_on_command_or_group",
+   "F03_acceptance.py::test_option_env_exact_match_not_whitespace_trimmed",
+   "F03_acceptance.py::test_option_env_list_first_set_wins",
+   "F03_acceptance.py::test_optional_value_flag_alone_token_or_default",
+   "F03_acceptance.py::test_paired_option_uses_only_attached_option_env",
+   "F03_acceptance.py::test_parameter_callback_may_refuse",
+   "F03_acceptance.py::test_parameter_callback_replaces_converted_value",
+   "F03_acceptance.py::test_parameter_callback_runs_for_env_and_map_sources",
+   "F03_acceptance.py::test_parameter_callback_runs_for_prompt_source",
+   "F03_acceptance.py::test_path_type_env_splits_on_os_pathsep",
+   "F03_acceptance.py::test_repeatable_and_multivalue_env_splits_on_whitespace",
+   "F03_acceptance.py::test_repeatable_omitted_default_delivered_as_tuple",
+   "F03_acceptance.py::test_repeatable_omitted_no_default_is_empty_tuple",
+   "F03_acceptance.py::test_repeatable_option_collects_sequence",
+   "F03_acceptance.py::test_repeatable_parameter_callback_fires_once_with_all_values",
+   "F03_acceptance.py::test_required_option_satisfied_from_named_env",
+   "F03_acceptance.py::test_short_long_and_alias_set_same_destination",
+   "F03_acceptance.py::test_short_value_next_token_or_attached",
+   "F03_acceptance.py::test_slash_and_plus_prefixes",
+   "F03_acceptance.py::test_stacked_last_flag_takes_attached_or_next_token",
+   "F03_acceptance.py::test_stacked_shorts_equivalent_to_separate_flags",
+   "F03_acceptance.py::test_tuple_type_sets_arity_and_converts_positions",
+   "F03_acceptance.py::test_type_inferred_from_integer_default",
+   "F03_acceptance.py::test_unknown_boolean_env_is_usage_error_not_silent_off",
+   "F03_acceptance.py::test_whitespace_only_boolean_env_deactivates_empty_unset",
+   "F04_acceptance.py::test_argument_declared_on_a_group_is_delivered_to_the_group_callback",
+   "F04_acceptance.py::test_argument_name_is_not_an_option_flag",
+   "F04_acceptance.py::test_auto_prefix_does_not_fill_argument",
+   "F04_acceptance.py::test_command_line_beats_argument_environment",
+   "F04_acceptance.py::test_deprecated_argument_cannot_be_required",
+   "F04_acceptance.py::test_deprecated_argument_warns_only_when_user_supplied",
+   "F04_acceptance.py::test_double_dash_protects_option_shaped_tokens",
+   "F04_acceptance.py::test_empty_or_absent_env_does_not_supply",
+   "F04_acceptance.py::test_env_name_list_first_set_wins",
+   "F04_acceptance.py::test_extra_tokens_beyond_arity_are_usage_error_unless_allowed_or_variadic",
+   "F04_acceptance.py::test_fixed_arity_delivers_sequence_not_joined_string",
+   "F04_acceptance.py::test_ignore_unknown_consumes_option_shaped_as_argument",
+   "F04_acceptance.py::test_ignore_unknown_leftover_option_shaped_beyond_arity_is_usage_error",
+   "F04_acceptance.py::test_minimal_argument_is_required_positional_text",
+   "F04_acceptance.py::test_missing_required_argument_is_usage_error_identifying_argument",
+   "F04_acceptance.py::test_named_env_fills_when_position_omitted",
+   "F04_acceptance.py::test_non_unary_env_splits_like_multivalue_option",
+   "F04_acceptance.py::test_omitted_variadic_empty_unless_required",
+   "F04_acceptance.py::test_option_shaped_token_without_separator_is_unknown",
+   "F04_acceptance.py::test_optional_or_defaulted_argument_may_be_omitted",
+   "F04_acceptance.py::test_two_unary_arguments_each_deliver_a_scalar",
+   "F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest",
+   "F04_acceptance.py::test_type_inferred_from_integer_default",
+   "F04_acceptance.py::test_unary_then_variadic_delivers_source_and_rest",
+   "F05_acceptance.py::test_argument_uses_attached_integer_type",
+   "F05_acceptance.py::test_author_replaces_datetime_format_list",
+   "F05_acceptance.py::test_boolean_used_automatically_for_flags",
+   "F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive",
+   "F05_acceptance.py::test_choice_must_be_unique_after_normalization",
+   "F05_acceptance.py::test_choice_returns_original_enum_member_case_insensitive",
+   "F05_acceptance.py::test_choice_returns_original_list_entry_case_insensitive",
+   "F05_acceptance.py::test_conversion_function_is_accepted_as_type",
+   "F05_acceptance.py::test_conversion_works_at_prompt_without_parameter",
+   "F05_acceptance.py::test_custom_type_converts_string_and_passes_through_ready_value",
+   "F05_acceptance.py::test_datetime_formats_tried_in_order_first_success_wins",
+   "F05_acceptance.py::test_default_datetime_formats_parse_naive_values",
+   "F05_acceptance.py::test_float_range_refuses_clamp_when_bound_open",
+   "F05_acceptance.py::test_float_range_same_rules_and_closed_clamp",
+   "F05_acceptance.py::test_float_type_or_float_default_delivers_float",
+   "F05_acceptance.py::test_help_lists_choice_values",
+   "F05_acceptance.py::test_integer_open_bound_clamp_uses_nearest_included",
+   "F05_acceptance.py::test_integer_range_clamp_replaces_with_nearest_included_bound",
+   "F05_acceptance.py::test_integer_range_closed_bounds_without_clamp",
+   "F05_acceptance.py::test_integer_range_open_or_omitted_bounds",
+   "F05_acceptance.py::test_integer_type_or_integer_default_delivers_int",
+   "F05_acceptance.py::test_passthrough_does_not_convert_token",
+   "F05_acceptance.py::test_repeatable_choice_default_is_sequence_of_originals",
+   "F05_acceptance.py::test_string_is_default_unicode_text",
+   "F05_acceptance.py::test_tuple_converts_each_position_with_inner_type",
+   "F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred",
+   "F06_acceptance.py::test_chaining_group_refuses_nested_group",
+   "F06_acceptance.py::test_command_collection_dispatches_union_of_sources",
+   "F06_acceptance.py::test_command_collection_help_lists_union",
+   "F06_acceptance.py::test_context_distinguishes_group_only_from_group_then_child",
+   "F06_acceptance.py::test_custom_listing_and_lookup_resolve_alias",
+   "F06_acceptance.py::test_custom_lookup_loads_only_the_requested_child",
+   "F06_acceptance.py::test_empty_group_args_use_usage_help_page",
+   "F06_acceptance.py::test_explicit_name_independent_of_function_name",
+   "F06_acceptance.py::test_grandchild_is_unreachable_without_middle_group",
+   "F06_acceptance.py::test_group_argument_then_child_binds_and_dispatches",
+   "F06_acceptance.py::test_group_command_helper_attaches_immediately",
+   "F06_acceptance.py::test_group_level_help_or_version_skips_group_and_does_not_group_run",
+   "F06_acceptance.py::test_group_option_does_not_leak_into_child",
+   "F06_acceptance.py::test_group_options_or_arguments_only_is_usage_error_without_help_page",
+   "F06_acceptance.py::test_help_before_subcommand_is_group_help",
+   "F06_acceptance.py::test_help_loads_immediate_children_not_grandchildren",
+   "F06_acceptance.py::test_hidden_child_omitted_from_parent_help_but_reachable",
+   "F06_acceptance.py::test_invoke_without_command_runs_group_on_empty_and_before_child",
+   "F06_acceptance.py::test_late_registration_from_another_module",
+   "F06_acceptance.py::test_late_registration_invokes_like_immediate",
+   "F06_acceptance.py::test_lazy_loaded_command_invokes_like_eager",
+   "F06_acceptance.py::test_leaf_default_empty_runs_leaf_not_help",
+   "F06_acceptance.py::test_named_child_help_or_version_still_runs_group",
+   "F06_acceptance.py::test_named_subcommand_runs_matching_callback_only",
+   "F06_acceptance.py::test_nested_group_empty_args_is_that_groups_help_page",
+   "F06_acceptance.py::test_nested_groups_run_outside_in",
+   "F06_acceptance.py::test_nested_option_ownership_at_every_layer",
+   "F06_acceptance.py::test_nested_resolve_loads_middle_then_group_leaf",
+   "F07_acceptance.py::test_automatic_prefix_does_not_fill_sibling_argument",
+   "F07_acceptance.py::test_callback_may_request_context_as_first_argument",
+   "F07_acceptance.py::test_child_reads_parent_author_object_flag",
+   "F07_acceptance.py::test_child_replaced_author_object_is_what_descendant_sees",
+   "F07_acceptance.py::test_command_line_beats_prefix_environment",
+   "F07_acceptance.py::test_command_line_source_does_not_consume_prompt_stdin",
+   "F07_acceptance.py::test_current_context_is_thread_local_unless_entered",
+   "F07_acceptance.py::test_dashed_command_and_option_names_build_prefix_key",
+   "F07_acceptance.py::test_dashed_prefix_is_normalized_in_the_key",
+   "F07_acceptance.py::test_default_map_from_command_declaration",
+   "F07_acceptance.py::test_default_map_sequence_is_used_as_is",
+   "F07_acceptance.py::test_default_map_string_splits_like_environment",
+   "F07_acceptance.py::test_each_command_name_is_in_the_prefix_key",
+   "F07_acceptance.py::test_echo_inherits_color_flag_only_on_entered_thread",
+   "F07_acceptance.py::test_ensure_creates_empty_typed_object_when_absent",
+   "F07_acceptance.py::test_ensure_reuses_typed_object_already_on_chain",
+   "F07_acceptance.py::test_forward_fills_from_current_command_values",
+   "F07_acceptance.py::test_group_resource_stays_open_through_child_and_closes_after_invoke",
+   "F07_acceptance.py::test_invocation_autodetect_strips_styles_on_pipe",
+   "F07_acceptance.py::test_invocation_force_color_off_strips_styles_on_terminal",
+   "F07_acceptance.py::test_invocation_force_color_on_keeps_styles_on_pipe",
+   "F07_acceptance.py::test_invoke_supplies_caller_chosen_values",
+   "F07_acceptance.py::test_lowercase_normalizer_matches_choice_value",
+   "F07_acceptance.py::test_lowercase_normalizer_matches_command_name",
+   "F07_acceptance.py::test_lowercase_normalizer_matches_option_name",
+   "F07_acceptance.py::test_nested_default_map_fills_omitted_argument",
+   "F07_acceptance.py::test_nested_default_map_used_when_flag_omitted_and_beaten_by_cli",
+   "F07_acceptance.py::test_nested_map_delivers_converted_integer",
+   "F07_acceptance.py::test_opted_out_option_uses_prefix_key_only_if_explicitly_named",
+   "F07_acceptance.py::test_option_may_opt_out_of_automatic_prefix",
+   "F07_acceptance.py::test_required_option_satisfied_from_nested_map",
+   "F07_acceptance.py::test_required_option_satisfied_from_prefix_key",
+   "F07_acceptance.py::test_resource_cleanup_runs_on_standalone_process_exit",
+   "F07_acceptance.py::test_source_distinguishes_cli_map_declared_for_argument",
+   "F07_acceptance.py::test_source_distinguishes_five_origins_for_the_same_value",
+   "F07_acceptance.py::test_toplevel_prefix_fills_omitted_option",
+   "F07_acceptance.py::test_typed_object_is_found_on_parent_chain",
+   "F07_acceptance.py::test_undeclared_extra_key_is_not_converted_or_tracked",
+   "F07_acceptance.py::test_wrong_nested_key_does_not_fill_this_child",
+   "F08_acceptance.py::test_callable_default_still_prompts_and_is_invoked",
+   "F08_acceptance.py::test_command_line_value_skips_prompt",
+   "F08_acceptance.py::test_confirmation_option_custom_flag_name",
+   "F08_acceptance.py::test_confirmation_option_omit_and_accept_runs_callback",
+   "F08_acceptance.py::test_confirmation_option_yes_flag_skips_question",
+   "F08_acceptance.py::test_confirmation_prompt_asks_twice_and_reasks_on_mismatch",
+   "F08_acceptance.py::test_custom_prompt_string_replaces_name_derived_prompt",
+   "F08_acceptance.py::test_default_map_value_still_prompts",
+   "F08_acceptance.py::test_deprecated_plus_prompt_declaration_is_refused",
+   "F08_acceptance.py::test_empty_line_answer_uses_shown_default",
+   "F08_acceptance.py::test_environment_value_skips_prompt_even_on_eof",
+   "F08_acceptance.py::test_hidden_input_not_echoed_visible_prompt_is",
+   "F08_acceptance.py::test_omitted_prompted_option_reads_converted_stdin",
+   "F08_acceptance.py::test_option_prompt_reasks_on_conversion_failure",
+   "F08_acceptance.py::test_password_option_accepts_matching_hidden_lines",
+   "F08_acceptance.py::test_prompt_not_required_on_omit_asks_when_flag_has_no_value",
+   "F08_acceptance.py::test_prompt_not_required_on_omit_uses_default_without_reading_stdin",
+   "F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag",
+   "F08_acceptance.py::test_required_prompt_still_skips_when_value_is_on_command_line",
+   "F08_acceptance.py::test_standalone_confirm_abort_on_no_is_abort_class",
+   "F08_acceptance.py::test_standalone_confirm_returns_boolean_without_abort",
+   "F08_acceptance.py::test_standalone_confirm_strips_ansi_when_stream_is_not_a_terminal",
+   "F08_acceptance.py::test_standalone_prompt_converts_with_declared_type",
+   "F08_acceptance.py::test_standalone_prompt_infers_type_from_default",
+   "F08_acceptance.py::test_standalone_prompt_reasks_until_valid_or_eof",
+   "F08_acceptance.py::test_standalone_prompt_strips_ansi_when_stream_is_not_a_terminal",
+   "F08_acceptance.py::test_static_declared_default_still_prompts",
+   "F09_acceptance.py::test_atomic_write_keeps_original_until_close_then_replaces",
+   "F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash",
+   "F09_acceptance.py::test_dash_means_stdin_on_read_and_stdout_on_write",
+   "F09_acceptance.py::test_declared_text_encoding_is_used",
+   "F09_acceptance.py::test_default_write_does_not_truncate_until_used",
+   "F09_acceptance.py::test_file_type_default_read_delivers_open_file",
+   "F09_acceptance.py::test_file_type_env_list_splits_on_os_pathsep",
+   "F09_acceptance.py::test_lazy_forced_off_opens_write_immediately",
+   "F09_acceptance.py::test_lazy_forced_on_write_does_not_truncate_until_used",
+   "F09_acceptance.py::test_lazy_unopenable_write_is_general_file_error",
+   "F09_acceptance.py::test_missing_path_skips_further_checks_when_exists_not_required",
+   "F09_acceptance.py::test_missing_read_target_is_usage_before_callback",
+   "F09_acceptance.py::test_non_lazy_unopenable_write_is_usage",
+   "F09_acceptance.py::test_open_helper_dash_obeys_same_stdin_stdout_rule",
+   "F09_acceptance.py::test_open_helper_keeps_stdio_open_and_closes_real_files",
+   "F09_acceptance.py::test_path_allow_dash_means_stream_token_without_opening",
+   "F09_acceptance.py::test_path_executable_readable_writable_checks",
+   "F09_acceptance.py::test_path_exists_accepts_present_rejects_missing_as_usage",
+   "F09_acceptance.py::test_path_file_and_directory_allowance_are_independent",
+   "F09_acceptance.py::test_path_produced_as_requested_object_type",
+   "F09_acceptance.py::test_path_resolve_absolute_follows_symlinks_without_expanding_tilde",
+   "F09_acceptance.py::test_path_type_delivers_path_not_open_file",
+   "F09_acceptance.py::test_path_type_env_list_splits_on_os_pathsep",
+   "F09_acceptance.py::test_text_and_binary_modes",
+   "F10_acceptance.py::test_attaching_a_group_under_a_chaining_group_is_refused_at_declaration",
+   "F10_acceptance.py::test_chained_child_file_closes_after_callback_group_file_stays_for_result_callback",
+   "F10_acceptance.py::test_chained_shared_name_lower_then_show_transforms_then_prints",
+   "F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent",
+   "F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments",
+   "F10_acceptance.py::test_chaining_result_callback_receives_ordered_sequence_of_returns",
+   "F10_acceptance.py::test_chaining_runs_each_subcommand_in_command_line_order",
+   "F10_acceptance.py::test_consume_rest_on_last_child_still_dispatches_earlier_children",
+   "F10_acceptance.py::test_empty_chain_with_invoke_without_command_runs_result_callback_not_help",
+   "F10_acceptance.py::test_non_chain_result_callback_receives_single_value_or_group_return",
+   "F10_acceptance.py::test_non_chaining_group_does_not_run_a_second_child_name",
+   "F10_acceptance.py::test_result_callback_receives_group_parameters",
+   "F11_acceptance.py::test_app_dir_unix_default_xdg_override_and_posix_forced",
+   "F11_acceptance.py::test_echo_autodetect_keeps_styles_on_terminal",
+   "F11_acceptance.py::test_echo_autodetect_strips_styles_on_pipe",
+   "F11_acceptance.py::test_echo_error_stream_flag_writes_stderr_not_stdout",
+   "F11_acceptance.py::test_echo_force_color_off_strips_styles_on_terminal",
+   "F11_acceptance.py::test_echo_force_color_on_keeps_named_style_on_pipe",
+   "F11_acceptance.py::test_echo_suppressed_newline_does_not_append_newline",
+   "F11_acceptance.py::test_echo_unicode_survives_misconfigured_ascii_stream",
+   "F11_acceptance.py::test_echo_writes_binary_payload",
+   "F11_acceptance.py::test_echo_writes_text_to_stdout_with_trailing_newline",
+   "F11_acceptance.py::test_pager_does_not_close_process_stdout",
+   "F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles",
+   "F11_acceptance.py::test_pager_noninteractive_writes_stdout_without_launching_pager",
+   "F11_acceptance.py::test_pager_string_chunk_iterator_and_writable_stream_deliver_text",
+   "F11_acceptance.py::test_pager_strips_styles_when_destination_is_not_a_terminal",
+   "F11_acceptance.py::test_pause_does_nothing_when_not_interactive",
+   "F11_acceptance.py::test_progress_bar_label_once_without_terminal_hidden_prints_nothing",
+   "F11_acceptance.py::test_progress_bar_visits_every_item_when_explicitly_hidden",
+   "F11_acceptance.py::test_progress_bar_visits_every_item_without_a_terminal",
+   "F11_acceptance.py::test_screen_clear_is_noop_off_terminal_and_unlike_on_terminal",
+   "F11_acceptance.py::test_style_default_reset_does_not_leak_into_later_text",
+   "F11_acceptance.py::test_styled_echo_is_echo_plus_styling_in_one_step",
+   "F12_acceptance.py::test_bash_complete_at_group_prints_suggestions_skips_callback",
+   "F12_acceptance.py::test_bash_source_prints_script_skips_callback",
+   "F12_acceptance.py::test_complete_does_not_load_grandchild",
+   "F12_acceptance.py::test_complete_stream_unlike_source_and_unlike_normal_run",
+   "F12_acceptance.py::test_hidden_command_still_runs_when_fully_typed",
+   "F12_acceptance.py::test_hidden_option_still_accepted_when_fully_typed",
+   "F12_acceptance.py::test_matching_complete_variable_enters_source_mode",
+   "F12_acceptance.py::test_python_script_run_ignores_installed_complete_variable",
+   "F12_acceptance.py::test_source_mode_is_not_the_help_page",
+   "F12_acceptance.py::test_unrecognized_instruction_skips_callback_and_is_neither_source_nor_complete",
+   "F12_acceptance.py::test_wrong_complete_variable_name_runs_command",
+   "F13_acceptance.py::test_author_abort_skips_remaining_work",
+   "F13_acceptance.py::test_author_clean_stop_defaults_to_zero",
+   "F13_acceptance.py::test_author_clean_stop_uses_supplied_status",
+   "F13_acceptance.py::test_confirm_decline_is_abort_skips_protected_callback",
+   "F13_acceptance.py::test_conversion_failure_is_usage_class_skips_callback",
+   "F13_acceptance.py::test_extra_token_is_usage_class_skips_callback",
+   "F13_acceptance.py::test_intentional_help_exits_zero_skips_callback",
+   "F13_acceptance.py::test_intentional_version_exits_zero_skips_callback",
+   "F13_acceptance.py::test_keyboard_interrupt_is_abort_not_success",
+   "F13_acceptance.py::test_lazy_file_failure_is_general_error_not_usage",
+   "F13_acceptance.py::test_missing_required_is_usage_class_skips_callback",
+   "F13_acceptance.py::test_missing_subcommand_help_is_usage_not_intentional_help",
+   "F13_acceptance.py::test_non_standalone_callback_return_bubbles",
+   "F13_acceptance.py::test_non_standalone_chaining_returns_bubble",
+   "F13_acceptance.py::test_option_missing_value_is_usage_class_skips_callback",
+   "F13_acceptance.py::test_prompt_eof_is_abort_not_success",
+   "F13_acceptance.py::test_success_usage_abort_are_mutually_distinguishable",
+   "F13_acceptance.py::test_successful_callback_exits_zero",
+   "F13_acceptance.py::test_unknown_option_is_usage_class_skips_callback",
+   "F13_acceptance.py::test_unknown_option_need_not_name_a_declared_parameter",
+   "F13_acceptance.py::test_unknown_subcommand_is_usage_class_skips_callback",
+   "F14_acceptance.py::test_default_capture_records_interpreter_streams_without_real_fd",
+   "F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2",
+   "F14_acceptance.py::test_extra_invoke_keywords_apply_as_context_settings_terminal_width",
+   "F14_acceptance.py::test_hidden_prompt_does_not_echo_typed_line",
+   "F14_acceptance.py::test_invoke_color_setting_is_in_force",
+   "F14_acceptance.py::test_invoke_environment_is_applied_for_that_run",
+   "F14_acceptance.py::test_invoke_help_exits_zero_shows_help_skips_callback",
+   "F14_acceptance.py::test_invoke_input_is_fed_to_stdin",
+   "F14_acceptance.py::test_invoke_plain_name_token_greets_that_name",
+   "F14_acceptance.py::test_invoke_runtime_token_greets_that_token_not_another_name",
+   "F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent",
+   "F14_acceptance.py::test_isolated_filesystem_parent_gets_child_dir_left_in_place",
+   "F14_acceptance.py::test_optional_mode_echoes_every_stdin_read_not_only_prompts",
+   "F14_acceptance.py::test_result_exposes_stderr_separately_from_stdout",
+   "F14_acceptance.py::test_result_exposes_stdout_text_and_bytes",
+   "F14_acceptance.py::test_standalone_raise_returns_result_with_status_and_inspectable_exception",
+   "F14_acceptance.py::test_subcommand_selected_by_tokens_after_group_option",
+   "F14_acceptance.py::test_visible_prompt_echoes_typed_line_and_shows_prompt"
+  ],
+  "newly_passed": []
+ },
+ "C25": {
+  "newly_failed": [
+   "F02_acceptance.py::test_off_boolean_flag_default_stays_hidden"
+  ],
+  "newly_passed": []
+ },
+ "C26": {
+  "newly_failed": [
+   "F02_acceptance.py::test_subcommand_short_help_is_first_sentence"
+  ],
+  "newly_passed": []
+ },
+ "C27": {
+  "newly_failed": [
+   "F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end"
+  ],
+  "newly_passed": []
+ },
+ "C28": {
+  "newly_failed": [
+   "F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80",
+   "F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks"
+  ],
+  "newly_passed": []
+ },
+ "C29": {
+  "newly_failed": [
+   "F07_acceptance.py::test_lowercase_normalizer_matches_choice_value"
+  ],
+  "newly_passed": []
+ },
+ "R3": {
+  "newly_failed": [],
+  "newly_passed": []
+ }
+}

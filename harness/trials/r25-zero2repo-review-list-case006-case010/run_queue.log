@@ -1,0 +1,56 @@
+2026-11-09T23:27:52-05:00	start trial r25-zero2repo-review-list-case006-case010, claude 2.1.316, budget none, earlystop_rerun 1, one=1
+2026-11-09T23:27:52-05:00	run r25-sonnet-case010-1 attempt 1 model anthropic/claude-sonnet-5-5 task case010-r25-review-list
+2026-11-09T23:38:46-05:00	harbor r25-sonnet-case010-1 exit 0 after 654 s
+2026-11-09T23:38:46-05:00	done r25-sonnet-case010-1 turns 14 cost_usd_est 1.2606889 reward {"reward": 0.9390862944162437, "tests_passed": 185, "tests_total": 197, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-11-09T23:38:46-05:00	usage five_hour 0.48 (resets 2026-11-10T04:20:00-05:00) seven_day 0.09 (resets 2026-11-16T16:00:00-05:00)
+2026-11-09T23:38:46-05:00	end --one: stopping after one run
+2026-11-09T23:54:24-05:00	start trial r25-zero2repo-review-list-case006-case010, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-09T23:54:24-05:00	run r25-haiku-case010-1 attempt 1 model anthropic/claude-haiku-5-5 task case010-r25-review-list
+2026-11-10T00:08:02-05:00	harbor r25-haiku-case010-1 exit 0 after 818 s
+2026-11-10T00:08:02-05:00	done r25-haiku-case010-1 turns 40 cost_usd_est 0.55924425 reward {"reward": 0.9035532994923858, "tests_passed": 178, "tests_total": 197, "tests_failed": 19, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T00:08:02-05:00	usage five_hour 0.67 (resets 2026-11-10T04:20:00-05:00) seven_day 0.1 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T00:10:02-05:00	run r25-haiku-case010-2 attempt 1 model anthropic/claude-haiku-5-5 task case010-r25-review-list
+2026-11-10T00:23:09-05:00	harbor r25-haiku-case010-2 exit 0 after 787 s
+2026-11-10T00:23:09-05:00	done r25-haiku-case010-2 turns 34 cost_usd_est 0.6075959300000001 reward {"reward": 0.868020304568528, "tests_passed": 171, "tests_total": 197, "tests_failed": 26, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T00:23:09-05:00	usage five_hour 0.76 (resets 2026-11-10T04:20:00-05:00) seven_day 0.11 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T00:25:09-05:00	run r25-sonnet-case010-2 attempt 1 model anthropic/claude-sonnet-5-5 task case010-r25-review-list
+2026-11-10T00:37:28-05:00	harbor r25-sonnet-case010-2 exit 0 after 739 s
+2026-11-10T00:37:28-05:00	done r25-sonnet-case010-2 turns 21 cost_usd_est 1.5847755000000003 reward {"reward": 0.9644670050761421, "tests_passed": 190, "tests_total": 197, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T00:37:28-05:00	usage five_hour 0.98 (resets 2026-11-10T04:20:00-05:00) seven_day 0.13 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T00:37:28-05:00	limit usage near the limit; pausing new runs until 2026-11-10T04:20:00-05:00 + 5 min
+2026-11-10T04:27:29-05:00	run r25-haiku-case010-3 attempt 1 model anthropic/claude-haiku-5-5 task case010-r25-review-list
+2026-11-10T04:40:57-05:00	harbor r25-haiku-case010-3 exit 0 after 808 s
+2026-11-10T04:40:57-05:00	done r25-haiku-case010-3 turns 49 cost_usd_est 0.6906039400000001 reward {"reward": 0.8781725888324873, "tests_passed": 173, "tests_total": 197, "tests_failed": 24, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T04:40:57-05:00	usage five_hour 0.26 (resets 2026-11-10T09:20:00-05:00) seven_day 0.16 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T04:42:57-05:00	run r25-sonnet-case010-3 attempt 1 model anthropic/claude-sonnet-5-5 task case010-r25-review-list
+2026-11-10T04:52:09-05:00	harbor r25-sonnet-case010-3 exit 0 after 552 s
+2026-11-10T04:52:09-05:00	done r25-sonnet-case010-3 turns 17 cost_usd_est 1.1669542999999998 reward {"reward": 0.9390862944162437, "tests_passed": 185, "tests_total": 197, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T04:52:09-05:00	usage five_hour 0.37 (resets 2026-11-10T09:20:00-05:00) seven_day 0.17 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T04:54:09-05:00	end no pending or limited row left
+2026-11-10T04:54:39-05:00	start trial r25-zero2repo-review-list-case006-case010, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-10T04:54:39-05:00	run r25-haiku-case006-1 attempt 1 model anthropic/claude-haiku-5-5 task case006-r25-review-list
+2026-11-10T05:13:53-05:00	harbor r25-haiku-case006-1 exit 0 after 1154 s
+2026-11-10T05:13:53-05:00	done r25-haiku-case006-1 turns 71 cost_usd_est 0.6285452000000001 reward {"reward": 0.8571428571428571, "tests_passed": 408, "tests_total": 476, "tests_failed": 68, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T05:13:53-05:00	usage five_hour 0.5 (resets 2026-11-10T09:20:00-05:00) seven_day 0.18 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T05:15:53-05:00	run r25-sonnet-case006-1 attempt 1 model anthropic/claude-sonnet-5-5 task case006-r25-review-list
+2026-11-10T05:28:29-05:00	harbor r25-sonnet-case006-1 exit 0 after 756 s
+2026-11-10T05:28:29-05:00	done r25-sonnet-case006-1 turns 21 cost_usd_est 1.9283924000000001 reward {"reward": 0.9831932773109243, "tests_passed": 468, "tests_total": 476, "tests_failed": 8, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T05:28:29-05:00	usage five_hour 0.73 (resets 2026-11-10T09:20:00-05:00) seven_day 0.2 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T05:30:29-05:00	run r25-haiku-case006-2 attempt 1 model anthropic/claude-haiku-5-5 task case006-r25-review-list
+2026-11-10T05:49:44-05:00	harbor r25-haiku-case006-2 exit 0 after 1155 s
+2026-11-10T05:49:44-05:00	done r25-haiku-case006-2 turns 63 cost_usd_est 0.7046938199999999 reward {"reward": 0.9117647058823529, "tests_passed": 434, "tests_total": 476, "tests_failed": 42, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T05:49:44-05:00	usage five_hour 0.9 (resets 2026-11-10T09:20:00-05:00) seven_day 0.21 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T05:49:44-05:00	limit usage near the limit; pausing new runs until 2026-11-10T09:20:00-05:00 + 5 min
+2026-11-10T09:27:45-05:00	run r25-sonnet-case006-2 attempt 1 model anthropic/claude-sonnet-5-5 task case006-r25-review-list
+2026-11-10T09:42:19-05:00	harbor r25-sonnet-case006-2 exit 0 after 874 s
+2026-11-10T09:42:19-05:00	done r25-sonnet-case006-2 turns 19 cost_usd_est 2.0438943000000003 reward {"reward": 0.9831932773109243, "tests_passed": 468, "tests_total": 476, "tests_failed": 8, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T09:42:19-05:00	usage five_hour 0.32 (resets 2026-11-10T14:20:00-05:00) seven_day 0.24 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T09:44:20-05:00	run r25-haiku-case006-3 attempt 1 model anthropic/claude-haiku-5-5 task case006-r25-review-list
+2026-11-10T10:02:30-05:00	harbor r25-haiku-case006-3 exit 0 after 1090 s
+2026-11-10T10:02:30-05:00	done r25-haiku-case006-3 turns 77 cost_usd_est 1.3496661399999998 reward {"reward": 0.9621848739495799, "tests_passed": 458, "tests_total": 476, "tests_failed": 18, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T10:02:30-05:00	usage five_hour 0.51 (resets 2026-11-10T14:20:00-05:00) seven_day 0.25 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T10:04:30-05:00	run r25-sonnet-case006-3 attempt 1 model anthropic/claude-sonnet-5-5 task case006-r25-review-list
+2026-11-10T10:19:07-05:00	harbor r25-sonnet-case006-3 exit 0 after 877 s
+2026-11-10T10:19:07-05:00	done r25-sonnet-case006-3 turns 21 cost_usd_est 2.0855954999999997 reward {"reward": 0.9852941176470589, "tests_passed": 469, "tests_total": 476, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-10T10:19:07-05:00	usage five_hour 0.77 (resets 2026-11-10T14:20:00-05:00) seven_day 0.26 (resets 2026-11-16T16:00:00-05:00)
+2026-11-10T10:21:07-05:00	end no pending or limited row left

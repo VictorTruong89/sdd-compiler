@@ -15,6 +15,14 @@ carries its corpus and sample size; nothing here is extrapolated unless it says 
 | Zero2Repo case010, round 19 | 15 | **9 of 15** | current | interim report §3.7 |
 | Zero2Repo case016, round 21 | 17 | **9 of 17** (its export flags 10, through a second sentence) | current | interim report §4.9 |
 
+**Against a plain review (rel02 round 22).** The same three planted specs, given to Haiku and Sonnet
+with only "list every place where two parts disagree" and no code: the reviews found **89 %** (Haiku)
+and **87 %** (Sonnet) of the 56 planted conflicts, against the compiler's **57 %**; their entries were
+real 90 % and 99 % of the time, against 26 % of the compiler's contradictions; a review cost $0.02–0.36
+est. against $1.49–3.58 per compile. Two items (case010 C21, C22) were found by the compiler and by no
+review. These specs fit in one model context (8 000–19 000 words); larger ones were not tried
+(`harness/trials/r22-llm-review-baseline/TRIAL.md`).
+
 Where the misses come from: in round 17 **all 10 misses were pairs never proposed** to the judge, and
 every planted pair that was proposed was called a contradiction. In round 19, 4 misses were never
 proposed and 2 were judged and rejected (one read as a subsumption; one side reached the judge as a

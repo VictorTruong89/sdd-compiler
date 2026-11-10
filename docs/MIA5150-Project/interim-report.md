@@ -6,8 +6,11 @@
 > (14 planted gaps in case010, §4.8); **updated 2026-11-06 with round 21** (17 conflicts and 16 gaps
 > in case016, three arms, §4.9); **checked 2026-11-08** against the round 18–21 records (figures
 > unchanged; §4.9 corrected on what the compiler export flags) and §1, §2, §3.8–3.9, §5, §6 and §7
-> brought up to rounds 20–21 · working Markdown, may move to LaTeX
-> later. Every figure names its source: a trial's `TRIAL.md` (under `harness/trials/` or
+> brought up to rounds 20–21; **updated 2026-11-09 with round 22** (a plain LLM review as a
+> baseline detector on the three planted cases, §3.10 and §4.10; reg. 201–218); **updated 2026-11-09
+> with round 23** (a review-list arm on case016: the Markdown plus a review's conflict list, §3.11 and
+> §4.11; reg. 219–226); **updated 2026-11-10 with rounds 24–26** (a settled list, §3.12 and §4.12; the review-list arm on case006 and case010, §4.13; an arm-blind second reader, §4.14; reg. 227–247) · working Markdown,
+> may move to LaTeX later. Every figure names its source: a trial's `TRIAL.md` (under `harness/trials/` or
 > `harness/benchmarks/`), a run of the register in `sdd/design/rel-02/rel02_methodology_notes.md` §8
 > ("reg. *n*"; rounds 17–18 are reg. 117–147, round 19 reg. 148–160, round 20 reg. 161–173, round 21 reg. 174–200), or the report draft `sdd/design/rel-02/rel02_report_draft.md`
 > (R1–R5). Every `$`
@@ -123,6 +126,26 @@ prompt or as tiered SDD files*, measured by code quality, hallucination and spec
   compiler alone flags 14 of 24 (every miss a pair never put to the judge, §4.6), 9 of 15 (4 never
   put to the judge, 2 judged wrongly, §3.7) and 9 of 17 (one side of one conflict in no node at all,
   §3.9).
+- **Not supported: the compiler as the better detector** (round 22, §4.10). The same models, asked
+  only to list the contradictions in the same planted Markdown, found 87 % (Sonnet) and 89 % (Haiku)
+  of the 56 planted conflicts against the compiler's 57 %. 99 % and 90 % of their entries were real,
+  against 26 % of the compiler's contradictions. A review cost $0.02–0.36 est., a compile $1.49–3.58.
+  The compiler found two items no review found (case010 C21, C22).
+- **Supported on one case: a review's conflict list carries the flag effect** (round 23, §4.11).
+  Given the Markdown plus one review's list (15 of 17 flagged, unfiltered), agents named every listed
+  conflict (100 %, both models) and 89 % (Haiku) and 96 % (Sonnet) of all 17, against 79 % and 80 %
+  from the compiler export and 65 % and 71 % from the Markdown. Core and silent inventions did not
+  change. One false entry in the list made 5 of 8 runs build one behaviour wrong.
+- **Supported on three cases: the review list carries the flag effect** (round 25, §4.13). On case006
+  and case010 the list arm named 95.5–100 % of listed conflicts and 86.7–94.4 % of all, against
+  36.1–73.6 % from the Markdown and 93.3–100 % from the oracle export; unlisted items gained little or
+  nothing; core unchanged.
+- **Supported on one case: a settled list carries the owner's rulings** (round 24, §4.12). With the
+  list's false entries struck and a ruling on each entry, agents built 118 of 120 rulings, including
+  54 of 56 rulings for the planted side B (0–2 per arm without rulings); the misleading build of round 23
+  disappeared (0 of 8). The 2 misses are one coding slip repeated in two Haiku runs.
+- **The naming reading is reproducible** (round 26, §4.14): an arm-blind second reader agreed on 1 375 of
+  1 382 item readings (κ 0.983); no arm comparison changes.
 - **Not supported: less hallucination.** With 14 facts removed (round 20) and 15 (round 21), agents
   invented most missing facts without saying so, the same from every format (arm means 10.7–14.0
   silent inventions). Neither export flags a gap, so this compares formats with no extra information.
@@ -134,7 +157,13 @@ prompt or as tiered SDD files*, measured by code quality, hallucination and spec
 The question for the rest of the term is therefore: *does a compiled graph help an agent find
 contradictions in a specification, how much of that help survives the compiler's own recall, and is
 it worth its cost?* Round 21 gives a first answer to the middle part on one case: the help follows
-the compiler's flags item by item.
+the compiler's flags item by item. Round 22 answers the last part against the obvious alternative:
+on specs of 8 000–19 000 words, a one-pass LLM review finds more, more precisely, for a tenth to a
+hundredth of the cost. What the compiler still offers is the structure (packs, order, checklist) and
+the items a whole-document read passes over; whether that is worth its cost on a spec too large to
+read in one pass is *not measured*. Round 23 closes the loop on one case: the review's list, handed to
+the coding agent beside the Markdown, gave the naming gain of the oracle export for the cost of one
+review.
 
 ## 3. Method
 
@@ -427,6 +456,66 @@ steps 0–4, and its `ANSWER_KEY.md`.)*
 7. **Runs:** 3 Sonnet and 5 Haiku per arm, interleaved, with a check run first (not a gate). The
    early-stop threshold is 194 of 388. All other conditions are as in rounds 18–20.
 
+### 3.10 A plain LLM review as a baseline detector (round 22, 8–9 November)
+
+The objection to the compiler as a detector is that a coding model asked directly might do as well.
+Round 22 asks it directly, on the text where the compiler's recall and precision are already known.
+
+1. **Input.** The planted Markdown of rounds 18 (case006, 24 conflicts), 19 (case010, 15) and 21
+   (case016, 17 conflicts and 16 removed facts), copied from each round's Markdown task and checked
+   identical with `diff -r`. The answer keys are those rounds' `ANSWER_KEY.md`; the gaps are not scored.
+2. **Task.** Review only, no code: list every place where two parts of the specification disagree in
+   `CONFLICTS.md`, each entry stating what both sides say and where, and why they cannot both hold;
+   no missing information or style (`harness/trials/r22-llm-review-baseline/notes/build_review_task.py`).
+3. **Conditions.** Claude Code 2.1.316 in Harbor, the same disallowed tools as rounds 18–21, network
+   only to `api.anthropic.com`, no dollar ceiling. Haiku and Sonnet, 3 runs per case, 18 runs; one
+   gate run first.
+4. **Scoring rule, written before any run.** *Found*: an entry (or entries that refer to each other)
+   states the content of side A and side B and presents them as disagreeing — round 17's strict
+   *named* rule. *Precision*: each entry is planted, real-other (a disagreement that holds in the
+   text, e.g. one already in the original spec), false, or not a conflict; precision = (planted +
+   real-other) / entries. One reader (Claude), not blind; every real-other entry checked against the
+   original Zero2Repo text.
+5. **Comparison.** The compiler's recall from one full compile per case (rounds 17, 19, 21) and the
+   share of its contradictions judged real (on the owner's behalf, same kind of reader). The compiler
+   is scored on contradictions only; it also raises duplications and subsumptions.
+
+### 3.11 A review's conflict list beside the Markdown (round 23, case016, 9 November)
+
+Round 22 showed a review flags more than the compiler; round 21 showed agents name what is flagged.
+Round 23 joins them: a fourth arm for round 21's case016, under round 21's conditions, so its three
+arms are the comparison.
+
+1. **Arm.** Round 21's Markdown task plus `spec/CONFLICTS.md`: the list of the first Haiku review of
+   case016 in round 22 (`r22-haiku-case016-1`), verbatim, chosen by that rule before any run. It flags
+   15 of the 17 planted conflicts (not C11, C12) and holds 5 other entries: 2 real disagreements of the
+   original spec and 3 false. It was not filtered; the compiler export's false contradictions had been
+   removed by verdicts.
+2. **Instruction.** Round 21's, with one sentence after the spec line: "`spec/CONFLICTS.md` is a
+   reviewer's list of places where those files disagree; it is not part of the specification."
+   `diff -r` against round 21's Markdown task: that sentence, the list and the task name.
+3. **Runs and measures.** Haiku 5, Sonnet 3, a check run first; round 21's scorer, probes, strict rules
+   and one reader, unchanged (`harness/trials/r23-zero2repo-case016-review-list/`).
+
+### 3.12 Rounds 24–26: settled list, review list on two more cases, second reader (9–10 November)
+
+- **Round 24, settled list (case016).** Round 23's list with its 3 false entries struck and a
+  `**Ruling:**` line added to each of the other 17 entries (`spec/RULINGS.md`); the instruction says
+  "where it rules, build what the ruling says". Rulings were recorded on the owner's behalf by a rule
+  fixed before any run: the 15 planted entries in list order alternate side A, side B, so side B is ruled
+  on 7 (C06 C25 C16 C21 C08 C18 C23). Measures: ruling built (probe), G01, core, silent inventions. Haiku 5,
+  Sonnet 3, round 21's conditions.
+- **Round 25, review list on case006 and case010.** Round 23's design on the other two planted cases:
+  the first Haiku review of each case from round 22 (case006: 22 of 24 flagged, 3 false entries; case010:
+  13 of 15, 1 false), unfiltered, beside rounds 18/19's Markdown tasks; their scorers and Markdown and
+  oracle-export arms are the comparison. Haiku 3, Sonnet 3 per case. Chosen instead of two new cases
+  (about $40 est. and days of planting each).
+- **Round 26, second reader.** Claude Sonnet, called once per run with no tools and an empty folder,
+  read each `NOTES.md` under the strict rule with the answer key's two sides per item, blind to run id,
+  arm, model and reader 1's reading (not to content: export notes cite conflict ids). Rounds 18, 19, 21,
+  23, 24, 25: 76 runs, 1 382 item readings. Reader 1's figures stay the report's; disagreements are
+  adjudicated against the notes.
+
 ## 4. Results so far
 
 ### 4.1 Overview
@@ -450,6 +539,11 @@ steps 0–4, and its `ANSWER_KEY.md`.)*
 | case010, **14 gaps** (facts removed), plain export, round 20 | Haiku, Sonnet | 3 | Core 159.7 vs 162.3 / 175 (Haiku), 171.7 vs 171.7 (Sonnet) | Silent inventions / 14: **11.00 vs 10.67** (Haiku), **13.33 vs 13.33** (Sonnet); all 168 gap builds upstream | §4.8; r20 `TRIAL.md`; reg. 161–173 |
 | case016, **17 planted + 16 gaps**, compiler export and oracle export, round 21 | Haiku, Sonnet | 5 Haiku, 3 Sonnet | Core 312.8 / 329.8 / 326.8 of 338 (Haiku), 333.0 / 334.0 / 331.7 (Sonnet), Markdown / compiler / oracle | Named on the compiler's 10 flags: **72 → 100 %** (Haiku), **70 → 87 %** (Sonnet); on its misses no gain; silent inventions / 15: 12.4 / 12.4 / 13.2, 13.7 / 14.0 / 13.3 | §4.9; r21 `TRIAL.md`; reg. 175–200 |
 | case016, 17 planted, compiler recall | (Haiku compiler) | 1 compile | — | 9 / 17 (C12's side A in no node) | §4.9; r21 `TRIAL.md` step 3; reg. 174 |
+| case016, **review list** beside the Markdown, round 23 | Haiku, Sonnet | 5, 3 | Core 327.6 (Haiku), 334.0 (Sonnet) of 338; round 21's arms in the row above | Named all 17: **89.4 %** (Haiku), **96.1 %** (Sonnet); on the 15 listed: 100 %, 100 %; silent / 15: 12.8, 13.3; side B built 1 / 85, 1 / 51 | §4.11; r23 `TRIAL.md`; reg. 219–226 |
+| case006, 010, 016, **plain LLM review** (no code), round 22 | Haiku, Sonnet | 3 per case | — | Recall **89.3 %** (Haiku), **86.9 %** (Sonnet) of 56, against the compiler's 57.1 %; precision 90.1 %, 99.3 % against 25.8 %; $0.02–0.36 est. per review | §4.10; r22 `TRIAL.md`; reg. 201–218 |
+| case016, **settled list** (rulings, false entries struck), round 24 | Haiku, Sonnet | 5, 3 | Core 320.8 (Haiku), 330.7 (Sonnet) of 338 | **Rulings built 118 / 120** (side B 54 / 56); G01 one-hit 0 / 8 (round 23: 5 / 8); silent / 15: 12.8, 12.3 | §4.12; r24 `TRIAL.md`; reg. 227–234 |
+| case006 and case010, **review list**, round 25 | Haiku, Sonnet | 3 per case | Core within 0.8 points of, or between, rounds 18/19's arms | Named on listed items 95.5–100 %; all items 86.7–94.4 % (Markdown 36.1–73.6 %, oracle 93.3–100 %) | §4.13; r25 `TRIAL.md`; reg. 235–246 |
+| Second reader, rounds 18–25, round 26 | (Sonnet reader) | 76 runs | — | Agreement 99.5 %, κ 0.983 over 1 382 readings | §4.14; r26 `TRIAL.md`; reg. 247 |
 
 ### 4.2 Small specifications (R3)
 
@@ -878,6 +972,151 @@ item and listed; the owner audits `notes/detection_audit.md`. 17 conflicts and 1
 `ANSWER_KEY.md`; its `notes/scores.json`, `notes/readings.txt`, `notes/detection.tsv`,
 `notes/tables.json`, `notes/hallu_static.json` and `run_queue.log`; reg. 174–200.*
 
+### 4.10 A plain LLM review as a baseline detector (round 22, 8–9 November)
+
+Design in §3.10. 18 of 18 runs scored; none retried, cut off or limited.
+
+| Case | Detector | Found per run | Mean recall | Correct entries / entries | Precision | $ est. per run |
+|---|---|---|---|---|---|---|
+| case006 (24) | Haiku review | 22 · 20 · 23 | 90.3 % | 65 / 72 | 90.3 % | 0.02–0.04 |
+| | Sonnet review | 20 · 20 · 21 | 84.7 % | 61 / 62 | 98.4 % | 0.22–0.23 |
+| | compiler (round 17) | 14 (1 compile) | 58.3 % | 18 / 69 contradictions | 26.1 % | 2.89 (757 calls) |
+| case010 (15) | Haiku review | 13 · 13 · 13 | 86.7 % | 40 / 42 | 95.2 % | 0.02–0.03 |
+| | Sonnet review | 13 · 13 · 12 | 84.4 % | 39 / 39 | 100 % | 0.16–0.18 |
+| | compiler (round 19) | 9 | 60.0 % | 13 / 46 | 28.3 % | 1.49 (386 calls) |
+| case016 (17) | Haiku review | 15 · 16 · 15 | 90.2 % | 49 / 57 | 86.0 % | 0.08–0.12 |
+| | Sonnet review | 16 · 15 · 16 | 92.2 % | 47 / 47 | 100 % | 0.32–0.36 |
+| | compiler (round 21) | 9 | 52.9 % | 16 / 67 | 23.9 % | 3.58 (860 calls) |
+
+**Over the three cases:** Haiku review 150 / 168 found (89.3 %), 154 / 171 entries correct (90.1 %);
+Sonnet review 146 / 168 (86.9 %), 147 / 148 (99.3 %); compiler 32 / 56 (57.1 %), 47 / 182
+contradictions real (25.8 %). The 18 reviews cost $2.67 est. in all; a review took 105–347 s.
+
+**Per item.**
+- **Found by the compiler and by no review: C21 and C22 of case010.** Both are exceptions in the
+  "recommended tokenizer's improvements" list, each against a rule a few lines earlier (PRD 112 vs
+  105, 108 vs 100). No coding agent named them from the Markdown either (round 19, 0 of 6).
+- Found by every review run and missed by the compiler: 17 items (case006 C01 C10 C12 C20 C23 C25
+  C29; case010 C04 C05 C08 C13 C17; case016 C17 C19 C20 C22 C25). Every other item was found by at least
+  one review run.
+- Sonnet missed case006 C03 and C17 in all three runs; Haiku found them in two and three. C17 is one
+  of the three items the coding agents never named from the Markdown (§7.2, D34); the compiler found
+  it.
+- The reviewers also found three real disagreements that were in the original spec and are not in
+  the key: case010's nonterminal symbol type (IC 169 vs 170), case016's "at most one file operand"
+  (IC 21 vs IC 82, 180) and its `show` message promising `.pdf` rows that are never scored.
+
+**False entries.** Sonnet made 1 in 148 (an ambiguous definition). Haiku made 17 in 171, mostly a
+rule read against its own stated exception or condition (a prompting option "not supplied" against
+the stated case where it is fully omitted; the model-dialect family "needs two hits", which the
+family rule also says).
+
+**A dedicated review against naming while coding.** The same models reading the same Markdown while
+building named 36.1 % (Haiku) and 73.6 % (Sonnet) of case006's 24 (round 18), 51.1 % and 66.7 % of
+case010's 15 (round 19), and 64.7 % and 70.6 % of case016's 17 (round 21). Asked only to review, they
+found 84–92 %.
+
+*Sources: `harness/trials/r22-llm-review-baseline/TRIAL.md`, `notes/readings.md`, `notes/score.py`,
+`notes/scores.json`, `results.json`, `run_queue.log`; reg. 201–218.*
+
+### 4.11 A review's conflict list beside the Markdown (round 23, case016, 9 November)
+
+Design in §3.11. 8 of 8 runs scored; none rerun; the queue paused 08:26–16:05 for the subscription's
+7-day window. Round 21's arms are recomputed from round 21's files by the same script and match §4.9.
+
+| Model | Arm | Named / 17 per run | Named, all 17 | On the 15 listed | On C11, C12 | Side B built | Silent / 15 | Core / 338 | $ est. per run |
+|---|---|---|---|---|---|---|---|---|---|
+| Haiku | Markdown (r21) | 10 · 10 · 11 · 12 · 12 | 64.7 % | 70.7 % | 2 / 10 | 14 / 85 | 12.4 | 312.8 | 0.79 |
+| | compiler export (r21) | 13 · 14 · 13 · 14 · 13 | 78.8 % | 82.7 % | 5 / 10 | 14 / 85 | 12.4 | 329.8 | 1.25 |
+| | oracle export (r21) | 16 × 5 | 94.1 % | 100 % | 5 / 10 | 10 / 85 | 13.2 | 326.8 | 1.36 |
+| | **review list** | 15 · 16 · 15 · 15 · 15 | **89.4 %** | **100 %** | 1 / 10 | **1 / 85** | 12.8 | 327.6 | 0.98 |
+| Sonnet | Markdown (r21) | 11 · 11 · 14 | 70.6 % | 73.3 % | 3 / 6 | 5 / 51 | 13.7 | 333.0 | 2.13 |
+| | compiler export (r21) | 15 · 11 · 15 | 80.4 % | 84.4 % | 3 / 6 | 9 / 51 | 14.0 | 334.0 | 1.89 |
+| | oracle export (r21) | 13 · 16 · 15 | 86.3 % | 91.1 % | 3 / 6 | 3 / 51 | 13.3 | 331.7 | 1.78 |
+| | **review list** | 16 · 17 · 16 | **96.1 %** | **100 %** | 4 / 6 | **1 / 51** | 13.3 | 334.0 | 1.87 |
+
+**Results.** (1) Every review-list run named all 15 listed conflicts. Over all 17 the arm is between
+the compiler export and the oracle export for Haiku, and above both for Sonnet. (2) On the 2 unlisted
+items it did no better than the Markdown (Haiku 1 / 10 vs 2 / 10; Sonnet 4 / 6 vs 3 / 6): the help is
+item by item, as with the compiler's flags. (3) The planted side was built in 1 of 85 Haiku readings
+and 1 of 51 Sonnet readings (both C20), against 3–14 in round 21's arms. (4) Core and silent inventions
+are in the range of round 21's export arms. (5) **The list's false entry misled.** It claims FP-01
+gives no two-hit condition for model-dialect words; PRD 102 gives one. 5 of 8 runs built one hit
+(probe G01; Sonnet 3 of 3, Haiku 2 of 5), against 0 of 24 runs in round 21. G01's tests are outside
+the core, so set 1 does not show it. (6) Cost: the list cost $0.08 est. to make; the coding runs cost
+$0.98 (Haiku) and $1.87 (Sonnet) est., about as the export arms did; the compiler route adds a $3.58
+compile and 51 verdicts.
+
+*Sources: `harness/trials/r23-zero2repo-case016-review-list/TRIAL.md`, `notes/readings.txt`,
+`notes/detection.tsv`, `notes/scores.json`, `notes/tables.py`, `notes/tables.json`; reg. 219–226.*
+
+### 4.12 A settled list (round 24, case016, 9–10 November)
+
+Design in §3.12. 8 of 8 runs scored; none rerun; paused twice for the 5-hour window.
+
+| Model | Arm | Side B built on the 7 side-B items | Side A built on the 8 side-A items | G01 one hit | Silent / 15 | Core / 338 | $ est. per run |
+|---|---|---|---|---|---|---|---|
+| Haiku | Markdown / compiler / oracle (r21) | 2 · 1 · 2 of 35 | 28 · 27 · 32 of 40 | 0 / 5 each | 12.4 · 12.4 · 13.2 | 312.8 · 329.8 · 326.8 | 0.79 · 1.25 · 1.36 |
+| | review list (r23) | 0 / 35 | 39 / 40 | 2 / 5 | 12.8 | 327.6 | 0.98 |
+| | **settled list** | **33 / 35** | **40 / 40** | **0 / 5** | 12.8 | 320.8 | 0.80 |
+| Sonnet | Markdown / compiler / oracle (r21) | 1 · 2 · 2 of 21 | 20 · 17 · 23 of 24 | 0 / 3 each | 13.7 · 14.0 · 13.3 | 333.0 · 334.0 · 331.7 | 2.13 · 1.89 · 1.78 |
+| | review list (r23) | 0 / 21 | 23 / 24 | 3 / 3 | 13.3 | 334.0 | 1.87 |
+| | **settled list** | **21 / 21** | **24 / 24** | **0 / 3** | 12.3 | 330.7 | 1.97 |
+
+**Results.** (1) **118 of 120 rulings were built**; per run Haiku 15 · 14 · 15 · 14 · 15, Sonnet 15 · 15 · 15. The
+2 misses are C25 in Haiku runs 2 and 4: both notes state the ruling and say it was built; both builds still
+score the tailing-negation form (checked on the saved code: score 0 → 12 and 0 → 3 with only that finding,
+while hedge stacking stays weight zero). (2) Striking the false entry removed round 23's misleading build
+(G01 one hit 0 / 8). (3) Silent inventions as every arm; Sonnet's core inside round 21's range; Haiku's
+320.8 between the Markdown (312.8) and the export arms (326.8–329.8), ranges overlapping. (4) Named
+(descriptive): Haiku 16 · 15 · 14 · 14 · 15, Sonnet 16 · 2 · 16 of 17; one Sonnet run restated each ruling by its ruled
+side only (not named under the strict rule) and built all 15. With rulings given, the build is the
+measure. Cost $9.91 est. for 8 runs.
+
+*Sources: `harness/trials/r24-zero2repo-case016-settled-list/TRIAL.md`, `notes/readings.txt`,
+`notes/detection.tsv`, `notes/scores.json`, `notes/tables.py`, `notes/tables.json`; reg. 227–234.*
+
+### 4.13 The review list on case006 and case010 (round 25, 9–10 November)
+
+Design in §3.12. 12 of 12 runs scored; none rerun.
+
+| Case | Model | Markdown | Oracle export | **Review list** | Review list on listed items | Unlisted named (list) | Core: Md / oracle / list |
+|---|---|---|---|---|---|---|---|
+| case006 (24) | Haiku | 36.1 % | 100 % | **94.4 %** | 100 % | 2 / 6 | 87.6 / 91.8 / 91.2 % |
+| | Sonnet | 73.6 % | 100 % | **90.3 %** | 95.5 % | 2 / 6 | 98.6 / 98.4 / 98.6 % |
+| case010 (15) | Haiku | 51.1 % | 95.6 % | **86.7 %** | 100 % | 0 / 6 | 89.8 / 91.9 / 92.5 % |
+| | Sonnet | 66.7 % | 93.3 % | **86.7 %** | 100 % | 0 / 6 | 97.1 / 96.9 / 96.3 % |
+
+**Results.** (1) Round 23's result holds: the list arm named 207 of 210 listed-item readings, and the 3
+misses (Sonnet, case006 C01 twice and C29) gave only the built behaviour. (2) Item by item again: case010's
+unlisted C21 and C22 were named in 0 of 12 readings and built on side B in every run, as from the Markdown;
+case006's unlisted C08 and C22 in 4 of 12 (Markdown 2 of 12). The oracle export's lead (5.6–9.7 points) is
+mostly those items. (3) Core unchanged. (4) The lists' 4 false entries caused no unsupported build. Cost
+$14.61 est. for 12 runs (lists $0.02–0.04 est. each, round 22).
+
+*Sources: `harness/trials/r25-zero2repo-review-list-case006-case010/TRIAL.md`, `notes/readings.txt`,
+`notes/detection.tsv`, `score/<case>/notes/scores.json`, `notes/tables.py`, `notes/tables.json`; reg. 235–246.*
+
+### 4.14 A second reader for "named" (round 26, 9–10 November)
+
+| Rounds | Item readings | Agreement | κ | Reader 1 / reader 2 named |
+|---|---|---|---|---|
+| 18 (case006) | 288 | 99.3 % | 0.980 | 223 / 223 |
+| 19 (case010) | 180 | 99.4 % | 0.985 | 138 / 137 |
+| 21 (case016) | 408 | 99.5 % | 0.985 | 323 / 325 |
+| 23, 24 (case016) | 136, 136 | 100 %, 100 % | 1.000, 1.000 | 125 / 125, 108 / 108 |
+| 25 (case006, case010) | 234 | 99.1 % | 0.950 | 211 / 213 |
+| **All** | **1 382** | **99.5 %** | **0.983** | 1 128 / 1 131 |
+
+8 disagreements: reader 1 held on 6 (reader 2 twice accepted one side plus a conflict id, twice a built
+behaviour alone, twice missed two stated sides); reader 2 was right once (round 24, C20 given by line numbers
+only; reader 1 corrected, round 24's figures above are after the correction); 1 borderline (round 18 C26). No
+arm comparison changes. Reader 2 is also a Claude model, saw the same answer key, and is blind to arm by
+label, not by content. $3.09 est. for 76 calls.
+
+*Sources: `harness/trials/r26-second-reader-detection/TRIAL.md`, `notes/reader2.py`, `notes/reader2.tsv`,
+`notes/agreement.json`; reg. 247.*
+
 ## 5. Analysis
 
 **Why test scores do not move.** The rules the tests check are stated in both formats, word for
@@ -950,6 +1189,41 @@ atomizer can cut a claim from the condition that gives it meaning (C05, §3.7). 
 compiler failure: the atomizer can leave a stated rule in **no** node (C12's side A). No conflict check
 can reach such a rule, and no oracle injection either. C12 was named by none of the 24 runs.
 
+**A plain review is the stronger detector on these specs (round 22).** Asked only to list the
+contradictions, both models found far more of the planted conflicts than the compiler (87–89 % against
+57 %), with far fewer false alarms (precision 90–99 % against 26 %), for $0.02–0.36 est. per review
+against $1.49–3.58 per compile. Three things follow for the report. (1) **The compiler's value as a
+detector is not shown** on specs that fit one model context (8 000–19 000 words here). The compiler
+reads pairs of atomized claims; a review reads the whole document, and the planted sentences are
+written in the spec's voice to be found by a careful reader. (2) **The compiler is not dominated
+item by item.** C21 and C22 of case010 were found only by the compiler, and its pairwise check is
+what reaches them. Every one of the 56 planted items was found by at least one detector: 54 by some
+review run, C21 and C22 only by the compiler. C12 of case016, whose side A the compiler drops, was
+found by 2 of the 6 reviews. A union of the two covers more than either, though one review alone
+already covers most of it. (3) **What carried the round-18 to round-21 gains was the flag, not the
+graph.** The agents named what was flagged (§4.6, §4.9). A flag list from a review would be the cheap
+way to supply it; that arm — the Markdown plus a review's `CONFLICTS.md` — was not run. The graph's
+remaining claims are structural (one pack per section, an order, a checklist, settled rulings) and the
+case where a spec is too large to read in one pass, neither measured as a detection benefit here.
+
+**Round 23 ran that arm.** On case016, the Markdown plus one unfiltered review list gave 100 % naming
+on the listed items for both models and 89–96 % over all 17, at or above the oracle export, and fewer
+planted sides built than any earlier arm. So on this case the cheap pipeline — review, then the list
+beside the Markdown — delivers what the export's flags delivered, for one review's cost. Two cautions.
+The list's quality is the ceiling: unlisted items gained nothing. And its errors travel: one false
+entry made 5 of 8 runs build a behaviour the spec does not state, where the compiler route had every
+contradiction judged first. A person's quick pass over a 20-entry list would have caught it — not
+measured.
+
+**Rounds 24–26 close the pipeline.** On three cases a one-pass review's list gives agents the flag
+effect (round 25 adds case006 and case010 to round 23's case016). Round 24 tested the step round 23
+called for: a person strikes the list's false entries and rules on each conflict. Agents then built the
+ruled side in 118 of 120 readings, including the planted side B, which unruled agents almost never build,
+and the false entry's misleading build disappeared. So the cheap pipeline is review → strike and rule →
+the settled list beside the Markdown; what is left unmeasured is how long the person's pass takes and how
+accurate it is when the person reads the list cold. Round 26 shows that the naming figures under all of
+this do not hinge on one reader.
+
 **Why gaps go unflagged, and what fills them (rounds 20–21).** The export cannot help here by design,
 because it carries no gap flag. The results show what the agents do instead. (1) **They rarely say the
 spec is silent.** Sonnet flagged 4 of 84 gap readings in round 20 and Haiku 19 of 84. In round 21, ten
@@ -1001,7 +1275,8 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
    model may remember side A. Side A is also what the tests check; hence rulings go to side B and the
    core score leaves out the footprints. case016's upstream is not on PyPI, which removes most of that
    risk for round 21 but also makes upstream leakage unmeasurable there.
-5. **Detection is read by one non-blind reader** (Claude Code). The export's conflict ids make
+5. **Detection is read by one non-blind reader** (Claude Code); an arm-blind second model reader (round 26,
+   §4.14) agrees on 99.5 % of 1 382 readings (κ 0.983). The export's conflict ids make full
    blinding impossible. The owner's audit (T0, and the round 17–21 sheets) is prepared but not done.
    The strict rule is a judgement per item; borderline readings are marked in `detection.tsv`, and
    counted *for* the item in round 20 but *against* it in round 21 (§3.5).
@@ -1062,6 +1337,22 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
     D32).
 24. **Gap probes read one input each.** A probe can read *upstream* while a footprint test still fails
     (round 20: G14 in one run, G23 in two); those tests are out of the core either way.
+25. **Round 22 compares unlike counts.** The review's precision counts every entry; the compiler's
+    counts contradictions only (it also raises duplications and subsumptions). The compiler has one
+    compile per case, the review three runs per cell. One non-blind reader scored both (the
+    compiler's verdicts in rounds 17–21, the reviews in round 22). The planted conflicts were written
+    by the assistant to be findable in the spec's voice, which may favour a whole-document read; the
+    specs fit one context, so the case the compiler's incremental design is for is not tested.
+26. **Round 23 is one case, one list, 8 runs.** The list was chosen by a rule fixed before the runs,
+    but its recall (15 of 17) comes from round 22; a weaker list would carry less. It was used
+    unfiltered, while the compiler export it is compared with had its false contradictions removed.
+    One non-blind reader scored all four arms.
+27. **Round 24's rulings were recorded by a fixed alternation on the owner's behalf**, not by a person
+    weighing each conflict, and the false entries were struck with knowledge of round 22's reading; a
+    person reading the list cold may miss or add entries. One case, 8 runs. Rounds 24 and 25 ran in
+    parallel (earlier rounds ran one run at a time).
+28. **Round 25 compares with arms run a week earlier** (rounds 18, 19), under the same conditions and tasks
+    but not interleaved; n = 3 per cell; one list per case.
 
 ## 7. Remaining plan to 4 December
 
@@ -1074,6 +1365,9 @@ compile raised 55 contradictions that are not planted items; 51 were judged fals
 | 4–5 Nov | Done: round 20 (14 planted gaps in case010, plain export, 12 runs, secondary measures); this update | |
 | 5–6 Nov | Done: round 21 (case016, 17 conflicts + 16 gaps in one spec, compiler export and oracle export, 24 runs unattended); this update | |
 | 6 Nov | Progress check-in on Brightspace (§1) | |
+| 8–9 Nov | Done: round 22 (plain LLM review as a baseline detector on case006, case010, case016; 18 runs, $2.67 est.); this update | |
+| 9 Nov | Done: round 23 (review-list arm on case016; 8 runs, $10.49 est.); this update | |
+| 9–10 Nov | Done: rounds 24 (settled list, case016; 8 runs, $9.91 est.), 25 (review list on case006 and case010; 12 runs, $14.61 est.), 26 (second reader over rounds 18–25; $3.09 est.); final report draft started (`final-report-draft.md`); this update | |
 | 9–13 Nov | Candidates: more cases of §7.1 (case016 done in round 21), answer key first for each, with the compiler-export arm; owner's detection audit (rounds 14–21); one-condition-at-a-time runs to explain Haiku's round-18 drop. *Owner to choose.* | |
 | 16–20 Nov | Final report draft in NeurIPS LaTeX; slides | |
 | 23–27 Nov | Rehearsal; presentation 27 Nov (or 4 Dec) | |
@@ -1207,6 +1501,12 @@ compiler-only export of the 24- or 15-conflict case was not made. **Round 21 (§
 it on a third case.** On the 10 conflicts the compiler flagged, naming rose 72 → 100 % (Haiku) and
 70 → 87 % (Sonnet). On the 6 injectable ones it did not flag, the compiler export did no better than
 the Markdown (57 vs 63 %, 83 vs 83 %), and C12 was named nowhere.
+
+**Round 22 (§4.10) qualifies D34.** "Never found by the agent alone" holds for agents *coding* from
+the Markdown. The same models asked only to *review* it found most of those items: case006 C02 in 6
+of 6 reviews, C08 in 5, C17 in 3; case010 C14 (a compiler miss) in 5; case016 C12 in 2 and C25 in 6.
+Only case010 C21 and C22 stayed compiler-only (0 of 6 reviews). So the compiler-only finds are fewer
+than D34's table suggests once a review pass is the comparison.
 
 ## 8. Use of AI tools (draft for the report appendix)
 
