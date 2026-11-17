@@ -1,0 +1,171 @@
+{
+ "store": "/home/victor/Workspace/sdd-compiler/harness/trials/r28-zero2repo-case011-conflicts-gaps/work/compile-full",
+ "found": 7,
+ "of": 12,
+ "items": {
+  "C02": {
+   "a_nodes": [
+    "N-000280"
+   ],
+   "b_nodes": [
+    "N-000268"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C05": {
+   "a_nodes": [
+    "N-000300"
+   ],
+   "b_nodes": [
+    "N-000022"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000015",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C08": {
+   "a_nodes": [
+    "N-000277"
+   ],
+   "b_nodes": [
+    "N-000026"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000035",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C12": {
+   "a_nodes": [
+    "N-000218"
+   ],
+   "b_nodes": [
+    "N-000212"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000011",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C14": {
+   "a_nodes": [
+    "N-000142"
+   ],
+   "b_nodes": [
+    "N-000157"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000007",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C15": {
+   "a_nodes": [
+    "N-000202"
+   ],
+   "b_nodes": [
+    "N-000259"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000005",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C17": {
+   "a_nodes": [
+    "N-000165"
+   ],
+   "b_nodes": [
+    "N-000031"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000027",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C19": {
+   "a_nodes": [
+    "N-000227"
+   ],
+   "b_nodes": [
+    "N-000239"
+   ],
+   "conflicts": [
+    {
+     "id": "CF-000049",
+     "kind": "contradiction",
+     "state": "open"
+    }
+   ],
+   "found": true
+  },
+  "C20": {
+   "a_nodes": [
+    "N-000152"
+   ],
+   "b_nodes": [
+    "N-000133"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C22": {
+   "a_nodes": [
+    "N-000234"
+   ],
+   "b_nodes": [
+    "N-000028"
+   ],
+   "conflicts": [],
+   "found": false
+  },
+  "C24": {
+   "a_nodes": [
+    "N-000260"
+   ],
+   "b_nodes": [],
+   "conflicts": [],
+   "found": false
+  },
+  "C26": {
+   "a_nodes": [
+    "N-000287"
+   ],
+   "b_nodes": [
+    "N-000023"
+   ],
+   "conflicts": [],
+   "found": false
+  }
+ },
+ "store_conflicts": {
+  "duplication/open": 28,
+  "contradiction/open": 25
+ }
+}

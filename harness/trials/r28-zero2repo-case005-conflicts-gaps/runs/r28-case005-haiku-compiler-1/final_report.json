@@ -1,0 +1,60 @@
+{
+  "reward": 0.0,
+  "judge_error": null,
+  "judge_mode": "final_tests",
+  "final": {
+    "final_step": "final",
+    "status": "failed",
+    "exit_code": 1,
+    "log": "/logs/verifier/final_tests.log",
+    "passed_count": 385,
+    "failed_count": 10,
+    "error_count": 0,
+    "skipped_count": 0,
+    "total_count": 395,
+    "pass_rate": 0.9746835443037974,
+    "test_framework": "pytest",
+    "counts_parsed": true,
+    "passed": 385,
+    "failed": 10,
+    "total": 395,
+    "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_set_cookie_byte_1_kept",
+      "../tests/final/tests/F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+      "../tests/final/tests/F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+      "../tests/final/tests/F03_acceptance.py::test_tabs_after_chunk_size_accepted",
+      "../tests/final/tests/F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit",
+      "../tests/final/tests/F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+      "../tests/final/tests/F06_acceptance.py::test_idle_already_closed_send_is_idempotent",
+      "../tests/final/tests/F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+      "../tests/final/tests/F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+      "../tests/final/tests/F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+    ],
+    "error_tests": [],
+    "test_files": [
+      "/tests/final/tests/F01_acceptance.py",
+      "/tests/final/tests/F01_helpers.py",
+      "/tests/final/tests/F02_acceptance.py",
+      "/tests/final/tests/F02_helpers.py",
+      "/tests/final/tests/F03_acceptance.py",
+      "/tests/final/tests/F03_helpers.py",
+      "/tests/final/tests/F04_acceptance.py",
+      "/tests/final/tests/F04_helpers.py",
+      "/tests/final/tests/F05_acceptance.py",
+      "/tests/final/tests/F05_helpers.py",
+      "/tests/final/tests/F06_acceptance.py",
+      "/tests/final/tests/F06_helpers.py",
+      "/tests/final/tests/F07_acceptance.py",
+      "/tests/final/tests/F07_helpers.py"
+    ],
+    "test_command_ran": "python3 -I /tests/pytest_launcher.py /tests/final/tests/F01_acceptance.py /tests/final/tests/F01_helpers.py /tests/final/tests/F02_acceptance.py /tests/final/tests/F02_helpers.py /tests/final/tests/F03_acceptance.py /tests/final/tests/F03_helpers.py /tests/final/tests/F04_acceptance.py /tests/final/tests/F04_helpers.py /tests/final/tests/F05_acceptance.py /tests/final/tests/F05_helpers.py /tests/final/tests/F06_acceptance.py /tests/final/tests/F06_helpers.py /tests/final/tests/F07_acceptance.py /tests/final/tests/F07_helpers.py"
+  },
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}

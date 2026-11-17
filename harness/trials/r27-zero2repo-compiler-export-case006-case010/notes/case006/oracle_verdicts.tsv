@@ -1,0 +1,56 @@
+conflict	verdict	reason (judged on the owner's behalf, 2026-11-01, against the planted spec)
+CF-000006	false	as round 13c's CF-000006: rule and its stated exception: leaf commands may mix options and arguments (PRD 134); within a chaining group they are not mixed (PRD 310)
+CF-000019	false	as round 13c's CF-000007: default and opt-in: group options before the subcommand name by default (PRD 221); an author may enable mixing on a group (PRD 134)
+CF-000020	false	as round 13c's CF-000081: two modes: default capture does not record descriptor writes; file-descriptor capture does (PRD 405)
+CF-000024	false	as round 13c's CF-000016: different flag kinds: PRD 142's conversion error is for plain boolean flags; "unrecognized values are unset" is for flags with a non-boolean flag-value
+CF-000026	false	as round 13c's CF-000084: rule and its stated exception: single newlines are not hard breaks, except in a paragraph led by a backspace line (PRD 107)
+CF-000050	false	as round 13c's CF-000031: different flag kinds: whitespace-only deactivates a plain boolean flag; for a flag with a non-boolean flag-value an empty value is unset (PRD 142)
+CF-000051	false	as round 13c's CF-000034: rule and its stated exception: a missing required option is a usage error (PRD 135, 145) unless a source supplies it; a prompt is such a source (PRD 269)
+CF-000052	false	as round 13c's CF-000035: stated outright: a deprecated argument cannot be required, an argument with no default or optional marking is required, so that combination is refused at declaration (PRD 177)
+CF-000058	false	as round 13c's CF-000080: default and mode: macOS default is Library/Application Support; the POSIX-forced mode is an explicit override on POSIX systems (PRD 339)
+CF-000060	false	as round 13c's CF-000102: different decorators: option nargs is a positive int (IC 136); argument nargs may be -1 for variadic (IC 163)
+CF-000068	false	as round 13c's CF-000050: different cases: an omitted optional option gets an absent value (PRD 131); an omitted required option is a usage error (PRD 135)
+CF-000078	false	as round 13c's CF-000061: different components: the open helper opens stdin for `-` (PRD 286); the Path type delivers `-` without reading a stream (PRD 292)
+CF-000079	false	as round 13c's CF-000062: different components: open helper (PRD 286) versus Path type with dash disallowed (PRD 292)
+CF-000094	false	as round 13c's CF-000076: different components: the dash is not special for the Path type (PRD 292); the stdin/stdout rule is for the File type and the open helper (PRD 420)
+CF-000102	false	as round 13c's CF-000097: different contexts: token normalization in parsing (PRD 250); suggestions for an incomplete token in completion (PRD 365)
+CF-000106	false	as round 13c's CF-000122: different types: open-bound clamping is for integer ranges (PRD 196); float ranges allow clamp only with closed bounds (PRD 197)
+CF-000108	false	as round 13c's CF-000125: word sense: a default-map sequence value (PRD 247) is not a terminal key sequence (PRD 334)
+CF-000118	false	as round 13c's CF-000117: no conflict: PRD 54 says it is intended to work on Linux, macOS and Windows and names Linux as the supported target; the hardware note says those hosts are sufficient to install and use it
+CF-000131	false	as round 13c's CF-000135: different values: an unrecognized completion instruction prints nothing (PRD 367); the source instruction prints the registration script (IC 309)
+CF-000137	false	as round 13c's CF-000130: rule and its stated exception: help text is rewrapped, except a backspace-led paragraph (PRD 107)
+CF-000002	false	rule and its stated exception: group options precede the subcommand by default; enabling mixing is the stated exception (PRD 134)
+CF-000003	false	stated condition: a consume-rest argument on a non-last chained command is not refused but eats later names (PRD 318)
+CF-000031	false	different cases: the planted C08 sentence is about an omitted repeatable option without prompting; PRD 268 is about a prompting option
+CF-000037	false	different modes: a chaining group is an explicit mode that refines FP-06 (cross-cutting FP-06 vs FP-10)
+CF-000038	false	stated feature: forwarding to another command is explicitly allowed (PRD 251)
+CF-000042	false	different modes: hidden prompts are not echoed; the optional runner mode echoing stdin reads is opt-in (PRD 404)
+CF-000049	false	different option kinds: an optional-value flag (PRD 139) vs a prompting option (PRD 269)
+CF-000053	false	stated configuration: a group configured so that no arguments is not help (PRD 225)
+CF-000054	false	stated case: a nested group named with nothing after it (PRD 226)
+CF-000056	false	optional check and default: executability is a selectable check, not checked by default (PRD 292)
+CF-000057	false	optional check and default: a dash is not special unless allowed (PRD 292)
+CF-000059	false	stated condition: unless the runner is told not to catch exceptions (PRD 410)
+CF-000066	false	different cases: a group invoked with no subcommand vs an author clean stop inside a callback that runs
+CF-000067	false	stated configuration: the empty-invocation failure without help applies when no-args-is-help is turned off (PRD 225)
+CF-000071	false	different cases: a feature-switch value vs a conversion failure that stops the callback
+CF-000075	false	different cases: a missing required argument stops the callback; otherwise it is called with keyword arguments
+CF-000077	false	different cases: a group that runs without a subcommand (PRD 224) vs a nested group named with nothing after it (PRD 226)
+CF-000081	false	different names: a paired option recognizes no magically derived negative name; the automatic prefix is a separate source (PRD 246)
+CF-000083	false	stated mode: POSIX-forced mode is the stated exception to the config-home rule (PRD 339)
+CF-000084	false	stated condition: return values reach the caller with standalone mode off (PRD 85, PRD 311)
+CF-000085	false	stated condition: return values reach the caller with standalone mode off (PRD 85, PRD 311)
+CF-000093	false	different types: the planted C14 sentence is about an integer range; PRD 197's clamp rule is about a float range
+CF-000095	false	different types: the path type's dash allowance (PRD 292) vs the file type and open helper's dash rule (PRD 420)
+CF-000103	false	stated exception: an explicitly hidden bar prints nothing (PRD 333)
+CF-000109	false	word sense: a style color (PRD 331) vs the context's `color` setting (Contract 239)
+CF-000110	false	word sense: a style color (PRD 331) vs the context's `color` setting (Contract 239)
+CF-000112	false	scope: the channels table says where output goes, not when it is written
+CF-000122	false	different cases: a repeatable option's values vs a usage error that stops the callback
+CF-000150	false	different modes: completion mode exits after printing; standalone mode off concerns ordinary invocation
+CF-000152	false	different parameter kinds: `nargs=-1` is listed for arguments (Contract 163), not options
+CF-000153	false	different cases: the confirmation flag passed (stdin not read) vs input fed by the runner
+CF-000016	open	planted C15 against PRD 196 (a second side-A sentence)
+CF-000072	open	planted C02 against PRD 143's ranking
+CF-000100	open	planted C15 against PRD 208 (listed in ANSWER_KEY.md as side A too)
+CF-000151	open	planted C10 against PRD 192, the bullet it was planted in

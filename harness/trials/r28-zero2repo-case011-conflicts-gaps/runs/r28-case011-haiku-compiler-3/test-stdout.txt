@@ -1,0 +1,56 @@
+{
+  "reward": 0.0,
+  "judge_error": null,
+  "judge_mode": "final_tests",
+  "final": {
+    "final_step": "final",
+    "status": "failed",
+    "exit_code": 1,
+    "log": "/logs/verifier/final_tests.log",
+    "passed_count": 317,
+    "failed_count": 4,
+    "error_count": 0,
+    "skipped_count": 0,
+    "total_count": 321,
+    "pass_rate": 0.9875389408099688,
+    "test_framework": "pytest",
+    "counts_parsed": true,
+    "passed": 317,
+    "failed": 4,
+    "total": 321,
+    "failed_tests": [
+      "../tests/final/tests/F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+      "../tests/final/tests/F05_acceptance.py::test_raw_string_quote_and_backslash",
+      "../tests/final/tests/F05_acceptance.py::test_runtime_raw_string",
+      "../tests/final/tests/F05_acceptance.py::test_compile_then_search_raw_string"
+    ],
+    "error_tests": [],
+    "test_files": [
+      "/tests/final/tests/F01_acceptance.py",
+      "/tests/final/tests/F01_helpers.py",
+      "/tests/final/tests/F02_acceptance.py",
+      "/tests/final/tests/F02_helpers.py",
+      "/tests/final/tests/F03_acceptance.py",
+      "/tests/final/tests/F03_helpers.py",
+      "/tests/final/tests/F04_acceptance.py",
+      "/tests/final/tests/F04_helpers.py",
+      "/tests/final/tests/F05_acceptance.py",
+      "/tests/final/tests/F05_helpers.py",
+      "/tests/final/tests/F06_acceptance.py",
+      "/tests/final/tests/F06_helpers.py",
+      "/tests/final/tests/F07_acceptance.py",
+      "/tests/final/tests/F07_helpers.py",
+      "/tests/final/tests/F08_acceptance.py",
+      "/tests/final/tests/F08_helpers.py"
+    ],
+    "test_command_ran": "python3 -I /tests/pytest_launcher.py /tests/final/tests/F01_acceptance.py /tests/final/tests/F01_helpers.py /tests/final/tests/F02_acceptance.py /tests/final/tests/F02_helpers.py /tests/final/tests/F03_acceptance.py /tests/final/tests/F03_helpers.py /tests/final/tests/F04_acceptance.py /tests/final/tests/F04_helpers.py /tests/final/tests/F05_acceptance.py /tests/final/tests/F05_helpers.py /tests/final/tests/F06_acceptance.py /tests/final/tests/F06_helpers.py /tests/final/tests/F07_acceptance.py /tests/final/tests/F07_helpers.py /tests/final/tests/F08_acceptance.py /tests/final/tests/F08_helpers.py"
+  },
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}

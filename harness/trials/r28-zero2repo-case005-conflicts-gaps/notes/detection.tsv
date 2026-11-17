@@ -1,0 +1,897 @@
+run	item	named	stated	flagged	built	note
+r28-case005-sonnet-markdown-1	C01	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C02	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C03	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C04	yes	both		alternative	
+r28-case005-sonnet-markdown-1	C05	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C06	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C09	no			upstream	
+r28-case005-sonnet-markdown-1	C10	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C11	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C12	no			upstream	
+r28-case005-sonnet-markdown-1	C13	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C14	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C15	no			upstream	
+r28-case005-sonnet-markdown-1	C16	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C18	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C20	yes	both		upstream	
+r28-case005-sonnet-markdown-1	C21	yes	both		upstream	
+r28-case005-sonnet-markdown-1	G06			no	upstream	
+r28-case005-sonnet-markdown-1	G09			no	upstream	
+r28-case005-sonnet-markdown-1	G14			no	upstream	
+r28-case005-sonnet-markdown-1	G16			no	alternative	
+r28-case005-sonnet-markdown-1	G21			yes	upstream	"G21: empty reason written as ""HTTP/1.1 200 "" under Unstated; G34: ConnectionClosed in CLOSED allowed (idempotent) under Unstated"
+r28-case005-sonnet-markdown-1	G22			no	upstream	
+r28-case005-sonnet-markdown-1	G33			no	upstream	
+r28-case005-sonnet-markdown-1	G34			yes	upstream	"G21: empty reason written as ""HTTP/1.1 200 "" under Unstated; G34: ConnectionClosed in CLOSED allowed (idempotent) under Unstated"
+r28-case005-sonnet-markdown-1	G47			no	upstream	
+r28-case005-sonnet-markdown-1	G48			no	upstream	
+r28-case005-sonnet-markdown-1	G49			no	upstream	
+r28-case005-sonnet-compiler-1	C01	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C02	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C03	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C04	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C05	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C06	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C09	no			upstream	C09 borderline (built rule given, side B not stated); G34: ConnectionClosed from CLOSED idempotent, under Unstated
+r28-case005-sonnet-compiler-1	C10	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C11	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C12	no			upstream	
+r28-case005-sonnet-compiler-1	C13	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C14	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C15	no			upstream	
+r28-case005-sonnet-compiler-1	C16	yes	both		alternative	
+r28-case005-sonnet-compiler-1	C18	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C20	yes	both		upstream	
+r28-case005-sonnet-compiler-1	C21	yes	both		upstream	
+r28-case005-sonnet-compiler-1	G06			no	upstream	
+r28-case005-sonnet-compiler-1	G09			no	upstream	
+r28-case005-sonnet-compiler-1	G14			no	upstream	
+r28-case005-sonnet-compiler-1	G16			no	alternative	
+r28-case005-sonnet-compiler-1	G21			no	upstream	
+r28-case005-sonnet-compiler-1	G22			no	upstream	
+r28-case005-sonnet-compiler-1	G33			no	upstream	
+r28-case005-sonnet-compiler-1	G34			yes	upstream	C09 borderline (built rule given, side B not stated); G34: ConnectionClosed from CLOSED idempotent, under Unstated
+r28-case005-sonnet-compiler-1	G47			no	upstream	
+r28-case005-sonnet-compiler-1	G48			no	upstream	
+r28-case005-sonnet-compiler-1	G49			no	upstream	
+r28-case005-sonnet-oracle-1	C01	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C02	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C03	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C04	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C05	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C06	yes	both		alternative	
+r28-case005-sonnet-oracle-1	C09	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C10	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C11	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C12	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C13	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C14	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C15	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C16	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C18	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C20	yes	both		upstream	
+r28-case005-sonnet-oracle-1	C21	yes	both		upstream	
+r28-case005-sonnet-oracle-1	G06			no	upstream	
+r28-case005-sonnet-oracle-1	G09			no	upstream	
+r28-case005-sonnet-oracle-1	G14			no	upstream	
+r28-case005-sonnet-oracle-1	G16			yes	upstream	G16: their_http_version kept across start_next_cycle, under Unstated
+r28-case005-sonnet-oracle-1	G21			no	upstream	
+r28-case005-sonnet-oracle-1	G22			no	upstream	
+r28-case005-sonnet-oracle-1	G33			no	upstream	
+r28-case005-sonnet-oracle-1	G34			no	upstream	
+r28-case005-sonnet-oracle-1	G47			no	upstream	
+r28-case005-sonnet-oracle-1	G48			no	upstream	
+r28-case005-sonnet-oracle-1	G49			no	upstream	
+r28-case005-sonnet-review-1	C01	yes	both		upstream	
+r28-case005-sonnet-review-1	C02	yes	both		upstream	
+r28-case005-sonnet-review-1	C03	yes	both		upstream	
+r28-case005-sonnet-review-1	C04	yes	both		upstream	
+r28-case005-sonnet-review-1	C05	yes	both		upstream	
+r28-case005-sonnet-review-1	C06	yes	both		upstream	
+r28-case005-sonnet-review-1	C09	yes	both		upstream	
+r28-case005-sonnet-review-1	C10	yes	both		upstream	
+r28-case005-sonnet-review-1	C11	yes	both		upstream	
+r28-case005-sonnet-review-1	C12	no			upstream	
+r28-case005-sonnet-review-1	C13	yes	both		upstream	
+r28-case005-sonnet-review-1	C14	yes	both		upstream	
+r28-case005-sonnet-review-1	C15	yes	both		upstream	
+r28-case005-sonnet-review-1	C16	no			upstream	"C16 borderline: ""Which 2xx accepts CONNECT. Built: any 2xx"" (sides not stated), counted not named"
+r28-case005-sonnet-review-1	C18	yes	both		upstream	
+r28-case005-sonnet-review-1	C20	yes	both		upstream	
+r28-case005-sonnet-review-1	C21	yes	both		upstream	
+r28-case005-sonnet-review-1	G06			no	upstream	
+r28-case005-sonnet-review-1	G09			no	upstream	
+r28-case005-sonnet-review-1	G14			no	upstream	
+r28-case005-sonnet-review-1	G16			no	upstream	
+r28-case005-sonnet-review-1	G21			no	upstream	
+r28-case005-sonnet-review-1	G22			no	upstream	
+r28-case005-sonnet-review-1	G33			no	upstream	
+r28-case005-sonnet-review-1	G34			no	upstream	
+r28-case005-sonnet-review-1	G47			no	upstream	
+r28-case005-sonnet-review-1	G48			no	upstream	
+r28-case005-sonnet-review-1	G49			no	upstream	
+r28-case005-haiku-markdown-1	C01	yes	both		alternative	
+r28-case005-haiku-markdown-1	C02	yes	both		upstream	
+r28-case005-haiku-markdown-1	C03	yes	both		alternative	
+r28-case005-haiku-markdown-1	C04	yes	both		upstream	
+r28-case005-haiku-markdown-1	C05	yes	both		upstream	
+r28-case005-haiku-markdown-1	C06	yes	both		upstream	
+r28-case005-haiku-markdown-1	C09	yes	both		alternative	
+r28-case005-haiku-markdown-1	C10	yes	both		upstream	
+r28-case005-haiku-markdown-1	C11	yes	both		upstream	
+r28-case005-haiku-markdown-1	C12	no			upstream	
+r28-case005-haiku-markdown-1	C13	no			upstream	
+r28-case005-haiku-markdown-1	C14	yes	both		alternative	
+r28-case005-haiku-markdown-1	C15	yes	both		alternative	
+r28-case005-haiku-markdown-1	C16	yes	both		alternative	
+r28-case005-haiku-markdown-1	C18	yes	both		upstream	
+r28-case005-haiku-markdown-1	C20	yes	both		upstream	
+r28-case005-haiku-markdown-1	C21	yes	both		upstream	
+r28-case005-haiku-markdown-1	G06			no	upstream	
+r28-case005-haiku-markdown-1	G09			no	upstream	
+r28-case005-haiku-markdown-1	G14			no	upstream	
+r28-case005-haiku-markdown-1	G16			no	upstream	
+r28-case005-haiku-markdown-1	G21			yes	upstream	G21: empty reason written with trailing space (Gaps); G22: peer DONE or MUST_CLOSE with bytes stored -> pulls return PAUSED (Gaps; alternative)
+r28-case005-haiku-markdown-1	G22			yes	alternative	G21: empty reason written with trailing space (Gaps); G22: peer DONE or MUST_CLOSE with bytes stored -> pulls return PAUSED (Gaps; alternative)
+r28-case005-haiku-markdown-1	G33			no	upstream	
+r28-case005-haiku-markdown-1	G34			no	alternative	
+r28-case005-haiku-markdown-1	G47			no	upstream	
+r28-case005-haiku-markdown-1	G48			no	upstream	
+r28-case005-haiku-markdown-1	G49			no	upstream	
+r28-case005-haiku-compiler-1	C01	yes	both		upstream	
+r28-case005-haiku-compiler-1	C02	yes	both		upstream	
+r28-case005-haiku-compiler-1	C03	yes	both		alternative	
+r28-case005-haiku-compiler-1	C04	yes	both		upstream	
+r28-case005-haiku-compiler-1	C05	yes	both		upstream	
+r28-case005-haiku-compiler-1	C06	yes	both		upstream	
+r28-case005-haiku-compiler-1	C09	yes	both		alternative	
+r28-case005-haiku-compiler-1	C10	yes	both		upstream	
+r28-case005-haiku-compiler-1	C11	yes	both		upstream	
+r28-case005-haiku-compiler-1	C12	no			upstream	
+r28-case005-haiku-compiler-1	C13	yes	both		upstream	
+r28-case005-haiku-compiler-1	C14	yes	both		upstream	
+r28-case005-haiku-compiler-1	C15	no			upstream	
+r28-case005-haiku-compiler-1	C16	yes	both		alternative	
+r28-case005-haiku-compiler-1	C18	no			upstream	
+r28-case005-haiku-compiler-1	C20	yes	both		alternative	
+r28-case005-haiku-compiler-1	C21	yes	both		upstream	
+r28-case005-haiku-compiler-1	G06			no	upstream	
+r28-case005-haiku-compiler-1	G09			no	upstream	
+r28-case005-haiku-compiler-1	G14			no	upstream	
+r28-case005-haiku-compiler-1	G16			yes	upstream	G16: start_next_cycle keeps the peer version; G21: trailing space when the reason is empty; G22: MUST_CLOSE pull raises RemoteProtocolError
+r28-case005-haiku-compiler-1	G21			yes	upstream	G16: start_next_cycle keeps the peer version; G21: trailing space when the reason is empty; G22: MUST_CLOSE pull raises RemoteProtocolError
+r28-case005-haiku-compiler-1	G22			yes	upstream	G16: start_next_cycle keeps the peer version; G21: trailing space when the reason is empty; G22: MUST_CLOSE pull raises RemoteProtocolError
+r28-case005-haiku-compiler-1	G33			no	upstream	
+r28-case005-haiku-compiler-1	G34			no	alternative	
+r28-case005-haiku-compiler-1	G47			no	upstream	
+r28-case005-haiku-compiler-1	G48			no	upstream	
+r28-case005-haiku-compiler-1	G49			no	upstream	
+r28-case005-haiku-oracle-1	C01	yes	both		upstream	
+r28-case005-haiku-oracle-1	C02	yes	both		upstream	
+r28-case005-haiku-oracle-1	C03	yes	both		upstream	
+r28-case005-haiku-oracle-1	C04	yes	both		upstream	
+r28-case005-haiku-oracle-1	C05	yes	both		upstream	
+r28-case005-haiku-oracle-1	C06	yes	both		upstream	
+r28-case005-haiku-oracle-1	C09	yes	both		upstream	
+r28-case005-haiku-oracle-1	C10	yes	both		upstream	
+r28-case005-haiku-oracle-1	C11	yes	both		upstream	
+r28-case005-haiku-oracle-1	C12	yes	both		upstream	
+r28-case005-haiku-oracle-1	C13	yes	both		upstream	
+r28-case005-haiku-oracle-1	C14	yes	both		upstream	
+r28-case005-haiku-oracle-1	C15	yes	both		upstream	
+r28-case005-haiku-oracle-1	C16	yes	both		upstream	
+r28-case005-haiku-oracle-1	C18	yes	both		upstream	
+r28-case005-haiku-oracle-1	C20	yes	both		alternative	
+r28-case005-haiku-oracle-1	C21	yes	both		upstream	
+r28-case005-haiku-oracle-1	G06			no	upstream	
+r28-case005-haiku-oracle-1	G09			no	upstream	
+r28-case005-haiku-oracle-1	G14			no	upstream	
+r28-case005-haiku-oracle-1	G16			no	alternative	
+r28-case005-haiku-oracle-1	G21			no	upstream	
+r28-case005-haiku-oracle-1	G22			no	alternative	
+r28-case005-haiku-oracle-1	G33			no	upstream	
+r28-case005-haiku-oracle-1	G34			no	alternative	
+r28-case005-haiku-oracle-1	G47			no	upstream	
+r28-case005-haiku-oracle-1	G48			yes	upstream	G48: whitespace around comma-separated Content-Length pieces tolerated (Assumptions)
+r28-case005-haiku-oracle-1	G49			no	upstream	
+r28-case005-haiku-review-1	C01	yes	both		upstream	
+r28-case005-haiku-review-1	C02	yes	both		upstream	
+r28-case005-haiku-review-1	C03	yes	both		upstream	
+r28-case005-haiku-review-1	C04	yes	both		upstream	
+r28-case005-haiku-review-1	C05	yes	both		upstream	
+r28-case005-haiku-review-1	C06	yes	both		upstream	
+r28-case005-haiku-review-1	C09	yes	both		upstream	
+r28-case005-haiku-review-1	C10	yes	both		upstream	
+r28-case005-haiku-review-1	C11	yes	both		upstream	
+r28-case005-haiku-review-1	C12	no			upstream	
+r28-case005-haiku-review-1	C13	yes	both		upstream	
+r28-case005-haiku-review-1	C14	yes	both		upstream	
+r28-case005-haiku-review-1	C15	yes	both		upstream	
+r28-case005-haiku-review-1	C16	yes	both		alternative	
+r28-case005-haiku-review-1	C18	yes	both		upstream	
+r28-case005-haiku-review-1	C20	yes	both		alternative	
+r28-case005-haiku-review-1	C21	yes	both		upstream	
+r28-case005-haiku-review-1	G06			no	upstream	
+r28-case005-haiku-review-1	G09			yes	upstream	G09: zero-length Data writes no bytes, never a 0 chunk (Gaps); G16: their_http_version kept across start_next_cycle; G21: empty reason with trailing space
+r28-case005-haiku-review-1	G14			no	upstream	
+r28-case005-haiku-review-1	G16			yes	upstream	G09: zero-length Data writes no bytes, never a 0 chunk (Gaps); G16: their_http_version kept across start_next_cycle; G21: empty reason with trailing space
+r28-case005-haiku-review-1	G21			yes	upstream	G09: zero-length Data writes no bytes, never a 0 chunk (Gaps); G16: their_http_version kept across start_next_cycle; G21: empty reason with trailing space
+r28-case005-haiku-review-1	G22			no	alternative	
+r28-case005-haiku-review-1	G33			no	upstream	
+r28-case005-haiku-review-1	G34			no	alternative	
+r28-case005-haiku-review-1	G47			no	upstream	
+r28-case005-haiku-review-1	G48			no	upstream	
+r28-case005-haiku-review-1	G49			no	upstream	
+r28-case005-sonnet-compiler-2	C01	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C02	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C03	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C04	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C05	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C06	yes	both		alternative	
+r28-case005-sonnet-compiler-2	C09	no			alternative	C09 borderline (built rule only); C14 not mentioned
+r28-case005-sonnet-compiler-2	C10	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C11	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C12	no			upstream	
+r28-case005-sonnet-compiler-2	C13	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C14	no			upstream	C09 borderline (built rule only); C14 not mentioned
+r28-case005-sonnet-compiler-2	C15	no			upstream	
+r28-case005-sonnet-compiler-2	C16	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C18	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C20	yes	both		upstream	
+r28-case005-sonnet-compiler-2	C21	yes	both		upstream	
+r28-case005-sonnet-compiler-2	G06			no	upstream	
+r28-case005-sonnet-compiler-2	G09			no	upstream	
+r28-case005-sonnet-compiler-2	G14			no	upstream	
+r28-case005-sonnet-compiler-2	G16			no	alternative	
+r28-case005-sonnet-compiler-2	G21			no	upstream	
+r28-case005-sonnet-compiler-2	G22			no	upstream	
+r28-case005-sonnet-compiler-2	G33			no	upstream	
+r28-case005-sonnet-compiler-2	G34			no	upstream	
+r28-case005-sonnet-compiler-2	G47			no	upstream	
+r28-case005-sonnet-compiler-2	G48			no	upstream	
+r28-case005-sonnet-compiler-2	G49			no	upstream	
+r28-case005-sonnet-oracle-2	C01	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C02	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C03	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C04	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C05	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C06	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C09	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C10	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C11	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C12	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C13	yes	both		alternative	
+r28-case005-sonnet-oracle-2	C14	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C15	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C16	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C18	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C20	yes	both		upstream	
+r28-case005-sonnet-oracle-2	C21	yes	both		alternative	
+r28-case005-sonnet-oracle-2	G06			no	upstream	
+r28-case005-sonnet-oracle-2	G09			no	upstream	
+r28-case005-sonnet-oracle-2	G14			no	upstream	
+r28-case005-sonnet-oracle-2	G16			no	upstream	
+r28-case005-sonnet-oracle-2	G21			no	upstream	G21 borderline: trailing-space empty reason given inside the CF-000005 row, not as unstated: not flagged
+r28-case005-sonnet-oracle-2	G22			no	upstream	
+r28-case005-sonnet-oracle-2	G33			no	upstream	
+r28-case005-sonnet-oracle-2	G34			no	upstream	
+r28-case005-sonnet-oracle-2	G47			no	upstream	
+r28-case005-sonnet-oracle-2	G48			no	upstream	
+r28-case005-sonnet-oracle-2	G49			no	upstream	
+r28-case005-sonnet-review-2	C01	yes	both		upstream	
+r28-case005-sonnet-review-2	C02	yes	both		upstream	
+r28-case005-sonnet-review-2	C03	yes	both		upstream	
+r28-case005-sonnet-review-2	C04	yes	both		upstream	
+r28-case005-sonnet-review-2	C05	yes	both		upstream	
+r28-case005-sonnet-review-2	C06	yes	both		upstream	
+r28-case005-sonnet-review-2	C09	yes	both		upstream	
+r28-case005-sonnet-review-2	C10	yes	both		upstream	
+r28-case005-sonnet-review-2	C11	yes	both		upstream	
+r28-case005-sonnet-review-2	C12	no			upstream	
+r28-case005-sonnet-review-2	C13	yes	both		upstream	
+r28-case005-sonnet-review-2	C14	yes	both		upstream	
+r28-case005-sonnet-review-2	C15	yes	both		upstream	
+r28-case005-sonnet-review-2	C16	yes	both		upstream	
+r28-case005-sonnet-review-2	C18	yes	both		upstream	
+r28-case005-sonnet-review-2	C20	yes	both		upstream	
+r28-case005-sonnet-review-2	C21	yes	both		alternative	
+r28-case005-sonnet-review-2	G06			no	upstream	
+r28-case005-sonnet-review-2	G09			no	upstream	
+r28-case005-sonnet-review-2	G14			no	upstream	
+r28-case005-sonnet-review-2	G16			yes	upstream	G16: their_http_version retained across start_next_cycle
+r28-case005-sonnet-review-2	G21			no	upstream	
+r28-case005-sonnet-review-2	G22			no	other	
+r28-case005-sonnet-review-2	G33			no	upstream	
+r28-case005-sonnet-review-2	G34			no	upstream	
+r28-case005-sonnet-review-2	G47			no	upstream	
+r28-case005-sonnet-review-2	G48			no	upstream	
+r28-case005-sonnet-review-2	G49			no	upstream	
+r28-case005-sonnet-markdown-2	C01	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C02	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C03	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C04	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C05	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C06	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C09	yes	both		alternative	
+r28-case005-sonnet-markdown-2	C10	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C11	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C12	no			upstream	
+r28-case005-sonnet-markdown-2	C13	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C14	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C15	no			upstream	
+r28-case005-sonnet-markdown-2	C16	yes	both		upstream	
+r28-case005-sonnet-markdown-2	C18	no			upstream	
+r28-case005-sonnet-markdown-2	C20	no			upstream	
+r28-case005-sonnet-markdown-2	C21	yes	both		upstream	
+r28-case005-sonnet-markdown-2	G06			no	upstream	
+r28-case005-sonnet-markdown-2	G09			no	upstream	
+r28-case005-sonnet-markdown-2	G14			no	upstream	
+r28-case005-sonnet-markdown-2	G16			yes	alternative	G16: their_http_version reset on start_next_cycle (alternative); G21: empty reason with trailing space
+r28-case005-sonnet-markdown-2	G21			yes	upstream	G16: their_http_version reset on start_next_cycle (alternative); G21: empty reason with trailing space
+r28-case005-sonnet-markdown-2	G22			no	upstream	
+r28-case005-sonnet-markdown-2	G33			no	upstream	
+r28-case005-sonnet-markdown-2	G34			no	alternative	
+r28-case005-sonnet-markdown-2	G47			no	upstream	
+r28-case005-sonnet-markdown-2	G48			no	upstream	
+r28-case005-sonnet-markdown-2	G49			no	upstream	
+r28-case005-haiku-compiler-2	C01	yes	both		upstream	
+r28-case005-haiku-compiler-2	C02	yes	both		upstream	
+r28-case005-haiku-compiler-2	C03	yes	both		upstream	
+r28-case005-haiku-compiler-2	C04	yes	both		upstream	
+r28-case005-haiku-compiler-2	C05	yes	both		upstream	
+r28-case005-haiku-compiler-2	C06	yes	both		upstream	
+r28-case005-haiku-compiler-2	C09	yes	both		alternative	
+r28-case005-haiku-compiler-2	C10	yes	both		upstream	
+r28-case005-haiku-compiler-2	C11	yes	both		upstream	
+r28-case005-haiku-compiler-2	C12	no			upstream	
+r28-case005-haiku-compiler-2	C13	yes	both		upstream	
+r28-case005-haiku-compiler-2	C14	yes	both		upstream	
+r28-case005-haiku-compiler-2	C15	no			upstream	
+r28-case005-haiku-compiler-2	C16	yes	both		upstream	
+r28-case005-haiku-compiler-2	C18	yes	both		upstream	
+r28-case005-haiku-compiler-2	C20	yes	both		alternative	
+r28-case005-haiku-compiler-2	C21	yes	both		upstream	
+r28-case005-haiku-compiler-2	G06			no	upstream	
+r28-case005-haiku-compiler-2	G09			no	upstream	
+r28-case005-haiku-compiler-2	G14			no	upstream	
+r28-case005-haiku-compiler-2	G16			no	upstream	
+r28-case005-haiku-compiler-2	G21			yes	upstream	
+r28-case005-haiku-compiler-2	G22			yes	alternative	"G22: MUST_CLOSE with buffered bytes returns PAUSED ""(not stated)"" (alternative)"
+r28-case005-haiku-compiler-2	G33			no	upstream	
+r28-case005-haiku-compiler-2	G34			no	alternative	
+r28-case005-haiku-compiler-2	G47			no	upstream	
+r28-case005-haiku-compiler-2	G48			no	upstream	
+r28-case005-haiku-compiler-2	G49			no	upstream	
+r28-case005-haiku-oracle-2	C01	yes	both		upstream	
+r28-case005-haiku-oracle-2	C02	yes	both		upstream	
+r28-case005-haiku-oracle-2	C03	yes	both		upstream	
+r28-case005-haiku-oracle-2	C04	yes	both		upstream	
+r28-case005-haiku-oracle-2	C05	yes	both		upstream	
+r28-case005-haiku-oracle-2	C06	yes	both		upstream	
+r28-case005-haiku-oracle-2	C09	yes	both		upstream	
+r28-case005-haiku-oracle-2	C10	yes	both		upstream	
+r28-case005-haiku-oracle-2	C11	yes	both		upstream	
+r28-case005-haiku-oracle-2	C12	yes	both		upstream	
+r28-case005-haiku-oracle-2	C13	yes	both		upstream	
+r28-case005-haiku-oracle-2	C14	yes	both		upstream	
+r28-case005-haiku-oracle-2	C15	yes	both		upstream	
+r28-case005-haiku-oracle-2	C16	yes	both		upstream	
+r28-case005-haiku-oracle-2	C18	yes	both		upstream	
+r28-case005-haiku-oracle-2	C20	yes	both		alternative	
+r28-case005-haiku-oracle-2	C21	yes	both		upstream	
+r28-case005-haiku-oracle-2	G06			no	upstream	
+r28-case005-haiku-oracle-2	G09			no	upstream	
+r28-case005-haiku-oracle-2	G14			no	upstream	
+r28-case005-haiku-oracle-2	G16			no	upstream	
+r28-case005-haiku-oracle-2	G21			yes	upstream	
+r28-case005-haiku-oracle-2	G22			yes	alternative	G22: DONE or MUST_CLOSE with leftover bytes gives PAUSED (alternative)
+r28-case005-haiku-oracle-2	G33			no	upstream	
+r28-case005-haiku-oracle-2	G34			no	alternative	
+r28-case005-haiku-oracle-2	G47			no	upstream	
+r28-case005-haiku-oracle-2	G48			no	upstream	
+r28-case005-haiku-oracle-2	G49			no	upstream	
+r28-case005-haiku-review-2	C01	yes	both		upstream	
+r28-case005-haiku-review-2	C02	yes	both		upstream	
+r28-case005-haiku-review-2	C03	yes	both		upstream	
+r28-case005-haiku-review-2	C04	yes	both		upstream	
+r28-case005-haiku-review-2	C05	yes	both		upstream	
+r28-case005-haiku-review-2	C06	yes	both		upstream	
+r28-case005-haiku-review-2	C09	yes	both		upstream	
+r28-case005-haiku-review-2	C10	yes	both		upstream	
+r28-case005-haiku-review-2	C11	yes	both		upstream	
+r28-case005-haiku-review-2	C12	no			upstream	
+r28-case005-haiku-review-2	C13	yes	both		upstream	
+r28-case005-haiku-review-2	C14	yes	both		upstream	
+r28-case005-haiku-review-2	C15	yes	both		alternative	
+r28-case005-haiku-review-2	C16	yes	both		upstream	
+r28-case005-haiku-review-2	C18	yes	both		upstream	
+r28-case005-haiku-review-2	C20	yes	both		alternative	
+r28-case005-haiku-review-2	C21	yes	both		upstream	
+r28-case005-haiku-review-2	G06			no	upstream	
+r28-case005-haiku-review-2	G09			yes	upstream	G09: zero-length Data sends nothing, never a terminating chunk (silent list); G21 borderline: trailing-space empty reason given inside conflict 6, not as unstated: not flagged
+r28-case005-haiku-review-2	G14			no	upstream	
+r28-case005-haiku-review-2	G16			no	upstream	
+r28-case005-haiku-review-2	G21			no	upstream	G09: zero-length Data sends nothing, never a terminating chunk (silent list); G21 borderline: trailing-space empty reason given inside conflict 6, not as unstated: not flagged
+r28-case005-haiku-review-2	G22			no	alternative	
+r28-case005-haiku-review-2	G33			no	upstream	
+r28-case005-haiku-review-2	G34			no	alternative	
+r28-case005-haiku-review-2	G47			no	upstream	
+r28-case005-haiku-review-2	G48			no	upstream	
+r28-case005-haiku-review-2	G49			no	upstream	
+r28-case005-haiku-markdown-2	C01	yes	both		upstream	
+r28-case005-haiku-markdown-2	C02	yes	both		upstream	
+r28-case005-haiku-markdown-2	C03	yes	both		alternative	
+r28-case005-haiku-markdown-2	C04	yes	both		upstream	
+r28-case005-haiku-markdown-2	C05	yes	both		upstream	
+r28-case005-haiku-markdown-2	C06	yes	both		upstream	
+r28-case005-haiku-markdown-2	C09	yes	both		alternative	
+r28-case005-haiku-markdown-2	C10	yes	both		upstream	
+r28-case005-haiku-markdown-2	C11	yes	both		upstream	
+r28-case005-haiku-markdown-2	C12	no			upstream	
+r28-case005-haiku-markdown-2	C13	yes	both		upstream	
+r28-case005-haiku-markdown-2	C14	yes	both		upstream	
+r28-case005-haiku-markdown-2	C15	no			upstream	
+r28-case005-haiku-markdown-2	C16	yes	both		alternative	
+r28-case005-haiku-markdown-2	C18	no			upstream	
+r28-case005-haiku-markdown-2	C20	yes	both		alternative	
+r28-case005-haiku-markdown-2	C21	yes	both		upstream	
+r28-case005-haiku-markdown-2	G06			no	upstream	
+r28-case005-haiku-markdown-2	G09			no	upstream	
+r28-case005-haiku-markdown-2	G14			no	upstream	
+r28-case005-haiku-markdown-2	G16			yes	upstream	"G16: their_http_version persists across cycles; G21: no reason written as ""HTTP/1.1 200 "" (Gaps); G48: whitespace around comma-separated Content-Length pieces stripped (Gaps)"
+r28-case005-haiku-markdown-2	G21			yes	upstream	"G16: their_http_version persists across cycles; G21: no reason written as ""HTTP/1.1 200 "" (Gaps); G48: whitespace around comma-separated Content-Length pieces stripped (Gaps)"
+r28-case005-haiku-markdown-2	G22			no	alternative	
+r28-case005-haiku-markdown-2	G33			no	upstream	
+r28-case005-haiku-markdown-2	G34			no	alternative	
+r28-case005-haiku-markdown-2	G47			no	upstream	
+r28-case005-haiku-markdown-2	G48			yes	upstream	"G16: their_http_version persists across cycles; G21: no reason written as ""HTTP/1.1 200 "" (Gaps); G48: whitespace around comma-separated Content-Length pieces stripped (Gaps)"
+r28-case005-haiku-markdown-2	G49			no	upstream	
+r28-case005-sonnet-oracle-3	C01	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C02	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C03	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C04	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C05	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C06	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C09	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C10	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C11	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C12	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C13	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C14	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C15	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C16	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C18	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C20	yes	both		upstream	
+r28-case005-sonnet-oracle-3	C21	yes	both		upstream	
+r28-case005-sonnet-oracle-3	G06			no	upstream	
+r28-case005-sonnet-oracle-3	G09			no	upstream	
+r28-case005-sonnet-oracle-3	G14			no	upstream	
+r28-case005-sonnet-oracle-3	G16			yes	alternative	G16: their_http_version reset by start_next_cycle (alternative), under Not stated
+r28-case005-sonnet-oracle-3	G21			no	upstream	
+r28-case005-sonnet-oracle-3	G22			no	upstream	
+r28-case005-sonnet-oracle-3	G33			no	upstream	
+r28-case005-sonnet-oracle-3	G34			no	upstream	
+r28-case005-sonnet-oracle-3	G47			no	upstream	
+r28-case005-sonnet-oracle-3	G48			no	upstream	
+r28-case005-sonnet-oracle-3	G49			no	upstream	
+r28-case005-sonnet-review-3	C01	yes	both		upstream	
+r28-case005-sonnet-review-3	C02	yes	both		upstream	
+r28-case005-sonnet-review-3	C03	yes	both		upstream	
+r28-case005-sonnet-review-3	C04	yes	both		upstream	
+r28-case005-sonnet-review-3	C05	yes	both		upstream	
+r28-case005-sonnet-review-3	C06	yes	both		upstream	
+r28-case005-sonnet-review-3	C09	yes	both		upstream	
+r28-case005-sonnet-review-3	C10	yes	both		upstream	
+r28-case005-sonnet-review-3	C11	yes	both		upstream	
+r28-case005-sonnet-review-3	C12	no			upstream	
+r28-case005-sonnet-review-3	C13	yes	both		upstream	
+r28-case005-sonnet-review-3	C14	yes	both		upstream	
+r28-case005-sonnet-review-3	C15	yes	both		upstream	
+r28-case005-sonnet-review-3	C16	yes	both		upstream	
+r28-case005-sonnet-review-3	C18	yes	both		upstream	
+r28-case005-sonnet-review-3	C20	yes	both		upstream	
+r28-case005-sonnet-review-3	C21	yes	both		alternative	
+r28-case005-sonnet-review-3	G06			no	upstream	
+r28-case005-sonnet-review-3	G09			no	upstream	
+r28-case005-sonnet-review-3	G14			no	upstream	
+r28-case005-sonnet-review-3	G16			yes	upstream	"G16: their_http_version kept across cycles; G21: empty reason written ""HTTP/1.1 200 ""; G34: ConnectionClosed sent from CLOSED stays CLOSED"
+r28-case005-sonnet-review-3	G21			yes	upstream	"G16: their_http_version kept across cycles; G21: empty reason written ""HTTP/1.1 200 ""; G34: ConnectionClosed sent from CLOSED stays CLOSED"
+r28-case005-sonnet-review-3	G22			no	upstream	
+r28-case005-sonnet-review-3	G33			no	upstream	
+r28-case005-sonnet-review-3	G34			yes	upstream	"G16: their_http_version kept across cycles; G21: empty reason written ""HTTP/1.1 200 ""; G34: ConnectionClosed sent from CLOSED stays CLOSED"
+r28-case005-sonnet-review-3	G47			no	upstream	
+r28-case005-sonnet-review-3	G48			no	upstream	
+r28-case005-sonnet-review-3	G49			no	upstream	
+r28-case005-sonnet-markdown-3	C01	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C02	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C03	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C04	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C05	yes	both		upstream	C05/C06 and C13/C14 named in combined items with both sides stated; G34: ConnectionClosed from CLOSED allowed (Unstated)
+r28-case005-sonnet-markdown-3	C06	yes	both		upstream	C05/C06 and C13/C14 named in combined items with both sides stated; G34: ConnectionClosed from CLOSED allowed (Unstated)
+r28-case005-sonnet-markdown-3	C09	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C10	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C11	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C12	no			upstream	
+r28-case005-sonnet-markdown-3	C13	yes	both		upstream	C05/C06 and C13/C14 named in combined items with both sides stated; G34: ConnectionClosed from CLOSED allowed (Unstated)
+r28-case005-sonnet-markdown-3	C14	yes	both		upstream	C05/C06 and C13/C14 named in combined items with both sides stated; G34: ConnectionClosed from CLOSED allowed (Unstated)
+r28-case005-sonnet-markdown-3	C15	no			upstream	
+r28-case005-sonnet-markdown-3	C16	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C18	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C20	yes	both		upstream	
+r28-case005-sonnet-markdown-3	C21	yes	both		upstream	
+r28-case005-sonnet-markdown-3	G06			no	upstream	
+r28-case005-sonnet-markdown-3	G09			no	upstream	
+r28-case005-sonnet-markdown-3	G14			no	upstream	
+r28-case005-sonnet-markdown-3	G16			no	upstream	
+r28-case005-sonnet-markdown-3	G21			no	upstream	
+r28-case005-sonnet-markdown-3	G22			no	upstream	
+r28-case005-sonnet-markdown-3	G33			no	upstream	
+r28-case005-sonnet-markdown-3	G34			yes	upstream	C05/C06 and C13/C14 named in combined items with both sides stated; G34: ConnectionClosed from CLOSED allowed (Unstated)
+r28-case005-sonnet-markdown-3	G47			no	upstream	
+r28-case005-sonnet-markdown-3	G48			no	upstream	
+r28-case005-sonnet-markdown-3	G49			no	upstream	
+r28-case005-sonnet-compiler-3	C01	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C02	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C03	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C04	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C05	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C06	yes	both		alternative	
+r28-case005-sonnet-compiler-3	C09	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C10	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C11	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C12	no			upstream	
+r28-case005-sonnet-compiler-3	C13	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C14	no			upstream	C14 not named (case-insensitive match only); G16: their_http_version resets on start_next_cycle (alternative); G21 borderline: trailing space given inside CF-000005, not as unstated
+r28-case005-sonnet-compiler-3	C15	no			upstream	
+r28-case005-sonnet-compiler-3	C16	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C18	no			upstream	
+r28-case005-sonnet-compiler-3	C20	yes	both		upstream	
+r28-case005-sonnet-compiler-3	C21	yes	both		alternative	
+r28-case005-sonnet-compiler-3	G06			no	upstream	
+r28-case005-sonnet-compiler-3	G09			no	upstream	
+r28-case005-sonnet-compiler-3	G14			no	upstream	
+r28-case005-sonnet-compiler-3	G16			yes	alternative	C14 not named (case-insensitive match only); G16: their_http_version resets on start_next_cycle (alternative); G21 borderline: trailing space given inside CF-000005, not as unstated
+r28-case005-sonnet-compiler-3	G21			no	upstream	C14 not named (case-insensitive match only); G16: their_http_version resets on start_next_cycle (alternative); G21 borderline: trailing space given inside CF-000005, not as unstated
+r28-case005-sonnet-compiler-3	G22			no	upstream	
+r28-case005-sonnet-compiler-3	G33			no	upstream	
+r28-case005-sonnet-compiler-3	G34			no	upstream	
+r28-case005-sonnet-compiler-3	G47			no	upstream	
+r28-case005-sonnet-compiler-3	G48			no	upstream	
+r28-case005-sonnet-compiler-3	G49			no	upstream	
+r28-case005-haiku-oracle-3	C01	yes	both		upstream	
+r28-case005-haiku-oracle-3	C02	yes	both		upstream	
+r28-case005-haiku-oracle-3	C03	yes	both		alternative	
+r28-case005-haiku-oracle-3	C04	yes	both		upstream	
+r28-case005-haiku-oracle-3	C05	yes	both		upstream	
+r28-case005-haiku-oracle-3	C06	yes	both		upstream	
+r28-case005-haiku-oracle-3	C09	yes	both		alternative	
+r28-case005-haiku-oracle-3	C10	yes	both		upstream	
+r28-case005-haiku-oracle-3	C11	yes	both		upstream	
+r28-case005-haiku-oracle-3	C12	yes	both		upstream	
+r28-case005-haiku-oracle-3	C13	yes	both		upstream	
+r28-case005-haiku-oracle-3	C14	yes	both		upstream	
+r28-case005-haiku-oracle-3	C15	yes	both		alternative	
+r28-case005-haiku-oracle-3	C16	yes	both		upstream	
+r28-case005-haiku-oracle-3	C18	yes	both		upstream	
+r28-case005-haiku-oracle-3	C20	yes	both		alternative	
+r28-case005-haiku-oracle-3	C21	yes	both		upstream	
+r28-case005-haiku-oracle-3	G06			no	upstream	
+r28-case005-haiku-oracle-3	G09			no	upstream	
+r28-case005-haiku-oracle-3	G14			no	upstream	
+r28-case005-haiku-oracle-3	G16			no	upstream	
+r28-case005-haiku-oracle-3	G21			yes	upstream	"G21: empty reason written with trailing space (Gaps); G22: MUST_CLOSE with bytes buffered returns PAUSED, ""the spec says nothing"" (alternative)"
+r28-case005-haiku-oracle-3	G22			yes	alternative	"G21: empty reason written with trailing space (Gaps); G22: MUST_CLOSE with bytes buffered returns PAUSED, ""the spec says nothing"" (alternative)"
+r28-case005-haiku-oracle-3	G33			no	upstream	
+r28-case005-haiku-oracle-3	G34			no	alternative	
+r28-case005-haiku-oracle-3	G47			no	upstream	
+r28-case005-haiku-oracle-3	G48			no	upstream	
+r28-case005-haiku-oracle-3	G49			no	upstream	
+r28-case005-haiku-review-3	C01	yes	both		upstream	
+r28-case005-haiku-review-3	C02	yes	both		upstream	
+r28-case005-haiku-review-3	C03	yes	both		upstream	
+r28-case005-haiku-review-3	C04	yes	both		upstream	
+r28-case005-haiku-review-3	C05	yes	both		upstream	
+r28-case005-haiku-review-3	C06	yes	both		upstream	
+r28-case005-haiku-review-3	C09	yes	both		upstream	
+r28-case005-haiku-review-3	C10	yes	both		upstream	
+r28-case005-haiku-review-3	C11	yes	both		upstream	
+r28-case005-haiku-review-3	C12	no			upstream	
+r28-case005-haiku-review-3	C13	yes	both		upstream	
+r28-case005-haiku-review-3	C14	yes	both		upstream	
+r28-case005-haiku-review-3	C15	yes	both		alternative	
+r28-case005-haiku-review-3	C16	yes	both		alternative	
+r28-case005-haiku-review-3	C18	yes	both		upstream	
+r28-case005-haiku-review-3	C20	yes	both		alternative	
+r28-case005-haiku-review-3	C21	yes	both		upstream	
+r28-case005-haiku-review-3	G06			no	upstream	
+r28-case005-haiku-review-3	G09			no	upstream	
+r28-case005-haiku-review-3	G14			no	upstream	
+r28-case005-haiku-review-3	G16			no	upstream	
+r28-case005-haiku-review-3	G21			no	upstream	G22: DONE or MUST_CLOSE with stored bytes returns PAUSED (assumptions; alternative); G21 borderline: trailing space given inside conflict 6
+r28-case005-haiku-review-3	G22			yes	alternative	G22: DONE or MUST_CLOSE with stored bytes returns PAUSED (assumptions; alternative); G21 borderline: trailing space given inside conflict 6
+r28-case005-haiku-review-3	G33			no	upstream	
+r28-case005-haiku-review-3	G34			no	alternative	
+r28-case005-haiku-review-3	G47			no	upstream	
+r28-case005-haiku-review-3	G48			no	upstream	
+r28-case005-haiku-review-3	G49			no	upstream	
+r28-case005-haiku-markdown-3	C01	yes	both		alternative	
+r28-case005-haiku-markdown-3	C02	yes	both		alternative	
+r28-case005-haiku-markdown-3	C03	yes	both		alternative	
+r28-case005-haiku-markdown-3	C04	yes	both		upstream	
+r28-case005-haiku-markdown-3	C05	yes	both		upstream	
+r28-case005-haiku-markdown-3	C06	yes	both		alternative	
+r28-case005-haiku-markdown-3	C09	yes	both		alternative	
+r28-case005-haiku-markdown-3	C10	yes	both		upstream	
+r28-case005-haiku-markdown-3	C11	yes	both		upstream	
+r28-case005-haiku-markdown-3	C12	no			upstream	
+r28-case005-haiku-markdown-3	C13	yes	both		alternative	
+r28-case005-haiku-markdown-3	C14	yes	both		upstream	
+r28-case005-haiku-markdown-3	C15	yes	both		upstream	
+r28-case005-haiku-markdown-3	C16	yes	both		alternative	
+r28-case005-haiku-markdown-3	C18	yes	both		upstream	
+r28-case005-haiku-markdown-3	C20	yes	both		alternative	
+r28-case005-haiku-markdown-3	C21	yes	both		upstream	
+r28-case005-haiku-markdown-3	G06			no	upstream	
+r28-case005-haiku-markdown-3	G09			no	upstream	"G16: their_http_version kept across cycles; G09 borderline: ""Empty data events produce no bytes"" under passthrough, chunked framing not named: not flagged"
+r28-case005-haiku-markdown-3	G14			no	upstream	
+r28-case005-haiku-markdown-3	G16			yes	upstream	"G16: their_http_version kept across cycles; G09 borderline: ""Empty data events produce no bytes"" under passthrough, chunked framing not named: not flagged"
+r28-case005-haiku-markdown-3	G21			no	upstream	
+r28-case005-haiku-markdown-3	G22			no	alternative	
+r28-case005-haiku-markdown-3	G33			no	upstream	
+r28-case005-haiku-markdown-3	G34			no	alternative	
+r28-case005-haiku-markdown-3	G47			no	upstream	
+r28-case005-haiku-markdown-3	G48			no	upstream	
+r28-case005-haiku-markdown-3	G49			no	upstream	
+r28-case005-haiku-compiler-3	C01	yes	both		alternative	
+r28-case005-haiku-compiler-3	C02	yes	both		upstream	
+r28-case005-haiku-compiler-3	C03	yes	both		alternative	
+r28-case005-haiku-compiler-3	C04	yes	both		upstream	
+r28-case005-haiku-compiler-3	C05	yes	both		upstream	
+r28-case005-haiku-compiler-3	C06	yes	both		upstream	
+r28-case005-haiku-compiler-3	C09	yes	both		alternative	
+r28-case005-haiku-compiler-3	C10	yes	both		upstream	
+r28-case005-haiku-compiler-3	C11	yes	both		upstream	
+r28-case005-haiku-compiler-3	C12	no			upstream	
+r28-case005-haiku-compiler-3	C13	yes	both		upstream	
+r28-case005-haiku-compiler-3	C14	yes	both		upstream	
+r28-case005-haiku-compiler-3	C15	yes	both		upstream	
+r28-case005-haiku-compiler-3	C16	yes	both		alternative	
+r28-case005-haiku-compiler-3	C18	yes	both		upstream	
+r28-case005-haiku-compiler-3	C20	yes	both		alternative	
+r28-case005-haiku-compiler-3	C21	yes	both		upstream	
+r28-case005-haiku-compiler-3	G06			no	upstream	
+r28-case005-haiku-compiler-3	G09			no	upstream	
+r28-case005-haiku-compiler-3	G14			no	upstream	
+r28-case005-haiku-compiler-3	G16			yes	alternative	"G16: start_next_cycle clears the recorded peer version (alternative); G21: empty reason written ""HTTP/1.1 <code> "" (unstated)"
+r28-case005-haiku-compiler-3	G21			yes	upstream	"G16: start_next_cycle clears the recorded peer version (alternative); G21: empty reason written ""HTTP/1.1 <code> "" (unstated)"
+r28-case005-haiku-compiler-3	G22			no	alternative	
+r28-case005-haiku-compiler-3	G33			no	upstream	
+r28-case005-haiku-compiler-3	G34			no	alternative	
+r28-case005-haiku-compiler-3	G47			no	upstream	
+r28-case005-haiku-compiler-3	G48			no	upstream	
+r28-case005-haiku-compiler-3	G49			no	upstream	
+r28-case005-haiku-review-4	C01	yes	both		upstream	
+r28-case005-haiku-review-4	C02	yes	both		upstream	
+r28-case005-haiku-review-4	C03	yes	both		upstream	
+r28-case005-haiku-review-4	C04	yes	both		upstream	
+r28-case005-haiku-review-4	C05	yes	both		upstream	
+r28-case005-haiku-review-4	C06	yes	both		upstream	
+r28-case005-haiku-review-4	C09	yes	both		upstream	
+r28-case005-haiku-review-4	C10	yes	both		upstream	
+r28-case005-haiku-review-4	C11	yes	both		upstream	
+r28-case005-haiku-review-4	C12	no			upstream	
+r28-case005-haiku-review-4	C13	yes	both		upstream	
+r28-case005-haiku-review-4	C14	yes	both		upstream	
+r28-case005-haiku-review-4	C15	yes	both		upstream	
+r28-case005-haiku-review-4	C16	yes	both		upstream	
+r28-case005-haiku-review-4	C18	yes	both		upstream	
+r28-case005-haiku-review-4	C20	yes	both		upstream	
+r28-case005-haiku-review-4	C21	yes	both		upstream	
+r28-case005-haiku-review-4	G06			no	upstream	
+r28-case005-haiku-review-4	G09			yes	upstream	G09: zero-length Data writes nothing, no empty chunk; G16: start_next_cycle keeps the peer's version; G21: empty reason written with the space
+r28-case005-haiku-review-4	G14			no	upstream	
+r28-case005-haiku-review-4	G16			yes	upstream	G09: zero-length Data writes nothing, no empty chunk; G16: start_next_cycle keeps the peer's version; G21: empty reason written with the space
+r28-case005-haiku-review-4	G21			yes	upstream	G09: zero-length Data writes nothing, no empty chunk; G16: start_next_cycle keeps the peer's version; G21: empty reason written with the space
+r28-case005-haiku-review-4	G22			no	alternative	
+r28-case005-haiku-review-4	G33			no	upstream	
+r28-case005-haiku-review-4	G34			no	alternative	
+r28-case005-haiku-review-4	G47			no	upstream	
+r28-case005-haiku-review-4	G48			no	upstream	
+r28-case005-haiku-review-4	G49			no	upstream	
+r28-case005-haiku-markdown-4	C01	yes	both		upstream	
+r28-case005-haiku-markdown-4	C02	yes	both		alternative	
+r28-case005-haiku-markdown-4	C03	yes	both		upstream	
+r28-case005-haiku-markdown-4	C04	yes	both		upstream	
+r28-case005-haiku-markdown-4	C05	yes	both		upstream	
+r28-case005-haiku-markdown-4	C06	yes	both		upstream	
+r28-case005-haiku-markdown-4	C09	yes	both		alternative	
+r28-case005-haiku-markdown-4	C10	no			upstream	C10 borderline: both rules given under assumptions as a reconciliation, not as a disagreement: not named; G16: their_http_version reset by start_next_cycle (alternative); G21: empty reason with trailing space
+r28-case005-haiku-markdown-4	C11	yes	both		upstream	
+r28-case005-haiku-markdown-4	C12	no			upstream	
+r28-case005-haiku-markdown-4	C13	yes	both		upstream	
+r28-case005-haiku-markdown-4	C14	yes	both		upstream	
+r28-case005-haiku-markdown-4	C15	yes	both		upstream	
+r28-case005-haiku-markdown-4	C16	yes	both		alternative	
+r28-case005-haiku-markdown-4	C18	yes	both		upstream	
+r28-case005-haiku-markdown-4	C20	yes	both		alternative	
+r28-case005-haiku-markdown-4	C21	yes	both		upstream	
+r28-case005-haiku-markdown-4	G06			no	upstream	
+r28-case005-haiku-markdown-4	G09			no	upstream	
+r28-case005-haiku-markdown-4	G14			no	upstream	
+r28-case005-haiku-markdown-4	G16			yes	alternative	C10 borderline: both rules given under assumptions as a reconciliation, not as a disagreement: not named; G16: their_http_version reset by start_next_cycle (alternative); G21: empty reason with trailing space
+r28-case005-haiku-markdown-4	G21			yes	upstream	C10 borderline: both rules given under assumptions as a reconciliation, not as a disagreement: not named; G16: their_http_version reset by start_next_cycle (alternative); G21: empty reason with trailing space
+r28-case005-haiku-markdown-4	G22			no	alternative	
+r28-case005-haiku-markdown-4	G33			no	upstream	
+r28-case005-haiku-markdown-4	G34			no	alternative	
+r28-case005-haiku-markdown-4	G47			no	upstream	
+r28-case005-haiku-markdown-4	G48			no	upstream	
+r28-case005-haiku-markdown-4	G49			no	upstream	
+r28-case005-haiku-compiler-4	C01	yes	both		upstream	
+r28-case005-haiku-compiler-4	C02	yes	both		upstream	
+r28-case005-haiku-compiler-4	C03	yes	both		alternative	
+r28-case005-haiku-compiler-4	C04	yes	both		upstream	
+r28-case005-haiku-compiler-4	C05	yes	both		upstream	
+r28-case005-haiku-compiler-4	C06	yes	both		upstream	
+r28-case005-haiku-compiler-4	C09	yes	both		alternative	
+r28-case005-haiku-compiler-4	C10	yes	both		upstream	
+r28-case005-haiku-compiler-4	C11	yes	both		upstream	
+r28-case005-haiku-compiler-4	C12	no			upstream	
+r28-case005-haiku-compiler-4	C13	yes	both		upstream	
+r28-case005-haiku-compiler-4	C14	yes	both		upstream	
+r28-case005-haiku-compiler-4	C15	yes	both		upstream	
+r28-case005-haiku-compiler-4	C16	yes	both		alternative	
+r28-case005-haiku-compiler-4	C18	yes	both		upstream	
+r28-case005-haiku-compiler-4	C20	yes	both		alternative	
+r28-case005-haiku-compiler-4	C21	yes	both		upstream	
+r28-case005-haiku-compiler-4	G06			no	upstream	
+r28-case005-haiku-compiler-4	G09			yes	upstream	"G09: empty Data produces no bytes, never an empty chunk; G21: empty reason written with trailing space (""not specified""); G22: MUST_CLOSE with stored bytes returns PAUSED (alternative)"
+r28-case005-haiku-compiler-4	G14			no	upstream	
+r28-case005-haiku-compiler-4	G16			no	upstream	
+r28-case005-haiku-compiler-4	G21			yes	upstream	"G09: empty Data produces no bytes, never an empty chunk; G21: empty reason written with trailing space (""not specified""); G22: MUST_CLOSE with stored bytes returns PAUSED (alternative)"
+r28-case005-haiku-compiler-4	G22			yes	alternative	"G09: empty Data produces no bytes, never an empty chunk; G21: empty reason written with trailing space (""not specified""); G22: MUST_CLOSE with stored bytes returns PAUSED (alternative)"
+r28-case005-haiku-compiler-4	G33			no	upstream	
+r28-case005-haiku-compiler-4	G34			no	alternative	
+r28-case005-haiku-compiler-4	G47			no	upstream	
+r28-case005-haiku-compiler-4	G48			no	upstream	
+r28-case005-haiku-compiler-4	G49			no	upstream	
+r28-case005-haiku-oracle-4	C01	yes	both		upstream	
+r28-case005-haiku-oracle-4	C02	yes	both		upstream	
+r28-case005-haiku-oracle-4	C03	yes	both		upstream	
+r28-case005-haiku-oracle-4	C04	yes	both		upstream	
+r28-case005-haiku-oracle-4	C05	yes	both		upstream	
+r28-case005-haiku-oracle-4	C06	yes	both		upstream	
+r28-case005-haiku-oracle-4	C09	yes	both		upstream	
+r28-case005-haiku-oracle-4	C10	yes	both		upstream	
+r28-case005-haiku-oracle-4	C11	yes	both		upstream	
+r28-case005-haiku-oracle-4	C12	yes	both		upstream	
+r28-case005-haiku-oracle-4	C13	yes	both		upstream	
+r28-case005-haiku-oracle-4	C14	yes	both		upstream	
+r28-case005-haiku-oracle-4	C15	yes	both		upstream	
+r28-case005-haiku-oracle-4	C16	yes	both		upstream	
+r28-case005-haiku-oracle-4	C18	yes	both		upstream	
+r28-case005-haiku-oracle-4	C20	yes	both		alternative	
+r28-case005-haiku-oracle-4	C21	yes	both		upstream	
+r28-case005-haiku-oracle-4	G06			no	upstream	
+r28-case005-haiku-oracle-4	G09			no	upstream	
+r28-case005-haiku-oracle-4	G14			no	upstream	
+r28-case005-haiku-oracle-4	G16			yes	upstream	G16: their_http_version kept across cycles; G21: empty reason sent with trailing space
+r28-case005-haiku-oracle-4	G21			yes	upstream	G16: their_http_version kept across cycles; G21: empty reason sent with trailing space
+r28-case005-haiku-oracle-4	G22			no	alternative	
+r28-case005-haiku-oracle-4	G33			no	upstream	
+r28-case005-haiku-oracle-4	G34			no	alternative	
+r28-case005-haiku-oracle-4	G47			no	upstream	
+r28-case005-haiku-oracle-4	G48			no	upstream	
+r28-case005-haiku-oracle-4	G49			no	upstream	
+r28-case005-haiku-markdown-5	C01	yes	both		upstream	
+r28-case005-haiku-markdown-5	C02	yes	both		upstream	
+r28-case005-haiku-markdown-5	C03	yes	both		upstream	
+r28-case005-haiku-markdown-5	C04	yes	both		upstream	
+r28-case005-haiku-markdown-5	C05	yes	both		upstream	
+r28-case005-haiku-markdown-5	C06	yes	both		upstream	
+r28-case005-haiku-markdown-5	C09	no			alternative	
+r28-case005-haiku-markdown-5	C10	yes	both		upstream	
+r28-case005-haiku-markdown-5	C11	yes	both		upstream	
+r28-case005-haiku-markdown-5	C12	no			upstream	
+r28-case005-haiku-markdown-5	C13	yes	both		upstream	
+r28-case005-haiku-markdown-5	C14	yes	both		upstream	
+r28-case005-haiku-markdown-5	C15	no			upstream	
+r28-case005-haiku-markdown-5	C16	yes	both		alternative	
+r28-case005-haiku-markdown-5	C18	yes	both		upstream	
+r28-case005-haiku-markdown-5	C20	yes	both		alternative	
+r28-case005-haiku-markdown-5	C21	yes	both		upstream	
+r28-case005-haiku-markdown-5	G06			no	upstream	
+r28-case005-haiku-markdown-5	G09			no	upstream	
+r28-case005-haiku-markdown-5	G14			no	upstream	
+r28-case005-haiku-markdown-5	G16			no	upstream	
+r28-case005-haiku-markdown-5	G21			yes	upstream	"G21: empty reason written ""HTTP/1.1 200 "" (does not state, G2)"
+r28-case005-haiku-markdown-5	G22			no	alternative	
+r28-case005-haiku-markdown-5	G33			no	upstream	
+r28-case005-haiku-markdown-5	G34			no	alternative	
+r28-case005-haiku-markdown-5	G47			no	upstream	
+r28-case005-haiku-markdown-5	G48			no	upstream	
+r28-case005-haiku-markdown-5	G49			no	upstream	
+r28-case005-haiku-compiler-5	C01	no			upstream	
+r28-case005-haiku-compiler-5	C02	yes	both		upstream	
+r28-case005-haiku-compiler-5	C03	yes	both		alternative	
+r28-case005-haiku-compiler-5	C04	yes	both		alternative	
+r28-case005-haiku-compiler-5	C05	yes	both		upstream	
+r28-case005-haiku-compiler-5	C06	yes	both		upstream	
+r28-case005-haiku-compiler-5	C09	yes	both		alternative	
+r28-case005-haiku-compiler-5	C10	yes	both		upstream	
+r28-case005-haiku-compiler-5	C11	no			upstream	"C11 borderline: both rules given under assumptions as a split, not as a disagreement: not named; G16: their_http_version retained across cycles, ""Not stated""; G21: trailing space kept; G22: MUST_CLOSE with buffered bytes returns PAUSED, ""Not stated"" (alternative)"
+r28-case005-haiku-compiler-5	C12	no			upstream	
+r28-case005-haiku-compiler-5	C13	yes	both		upstream	
+r28-case005-haiku-compiler-5	C14	yes	both		upstream	
+r28-case005-haiku-compiler-5	C15	no			upstream	
+r28-case005-haiku-compiler-5	C16	yes	both		alternative	
+r28-case005-haiku-compiler-5	C18	no			upstream	
+r28-case005-haiku-compiler-5	C20	yes	both		alternative	
+r28-case005-haiku-compiler-5	C21	yes	both		upstream	
+r28-case005-haiku-compiler-5	G06			no	upstream	
+r28-case005-haiku-compiler-5	G09			no	upstream	
+r28-case005-haiku-compiler-5	G14			no	upstream	
+r28-case005-haiku-compiler-5	G16			yes	upstream	"C11 borderline: both rules given under assumptions as a split, not as a disagreement: not named; G16: their_http_version retained across cycles, ""Not stated""; G21: trailing space kept; G22: MUST_CLOSE with buffered bytes returns PAUSED, ""Not stated"" (alternative)"
+r28-case005-haiku-compiler-5	G21			yes	upstream	"C11 borderline: both rules given under assumptions as a split, not as a disagreement: not named; G16: their_http_version retained across cycles, ""Not stated""; G21: trailing space kept; G22: MUST_CLOSE with buffered bytes returns PAUSED, ""Not stated"" (alternative)"
+r28-case005-haiku-compiler-5	G22			yes	alternative	"C11 borderline: both rules given under assumptions as a split, not as a disagreement: not named; G16: their_http_version retained across cycles, ""Not stated""; G21: trailing space kept; G22: MUST_CLOSE with buffered bytes returns PAUSED, ""Not stated"" (alternative)"
+r28-case005-haiku-compiler-5	G33			no	upstream	
+r28-case005-haiku-compiler-5	G34			no	alternative	
+r28-case005-haiku-compiler-5	G47			no	upstream	
+r28-case005-haiku-compiler-5	G48			no	upstream	
+r28-case005-haiku-compiler-5	G49			no	upstream	
+r28-case005-haiku-oracle-5	C01	yes	both		upstream	
+r28-case005-haiku-oracle-5	C02	yes	both		upstream	
+r28-case005-haiku-oracle-5	C03	yes	both		alternative	
+r28-case005-haiku-oracle-5	C04	yes	both		upstream	
+r28-case005-haiku-oracle-5	C05	yes	both		upstream	
+r28-case005-haiku-oracle-5	C06	yes	both		upstream	
+r28-case005-haiku-oracle-5	C09	yes	both		upstream	
+r28-case005-haiku-oracle-5	C10	yes	both		upstream	
+r28-case005-haiku-oracle-5	C11	yes	both		upstream	
+r28-case005-haiku-oracle-5	C12	yes	both		upstream	
+r28-case005-haiku-oracle-5	C13	yes	both		upstream	
+r28-case005-haiku-oracle-5	C14	yes	both		upstream	
+r28-case005-haiku-oracle-5	C15	yes	both		alternative	
+r28-case005-haiku-oracle-5	C16	yes	both		upstream	
+r28-case005-haiku-oracle-5	C18	yes	both		upstream	
+r28-case005-haiku-oracle-5	C20	yes	both		alternative	
+r28-case005-haiku-oracle-5	C21	yes	both		upstream	
+r28-case005-haiku-oracle-5	G06			no	upstream	
+r28-case005-haiku-oracle-5	G09			no	upstream	
+r28-case005-haiku-oracle-5	G14			no	upstream	
+r28-case005-haiku-oracle-5	G16			yes	upstream	"G16: their_http_version persists across cycles, under ""Assumptions (not stated)""; G21: empty reason written with trailing space, same section; Host-first bullet is about writing, not G47"
+r28-case005-haiku-oracle-5	G21			yes	upstream	"G16: their_http_version persists across cycles, under ""Assumptions (not stated)""; G21: empty reason written with trailing space, same section; Host-first bullet is about writing, not G47"
+r28-case005-haiku-oracle-5	G22			no	alternative	
+r28-case005-haiku-oracle-5	G33			no	upstream	
+r28-case005-haiku-oracle-5	G34			no	alternative	
+r28-case005-haiku-oracle-5	G47			no	upstream	"G16: their_http_version persists across cycles, under ""Assumptions (not stated)""; G21: empty reason written with trailing space, same section; Host-first bullet is about writing, not G47"
+r28-case005-haiku-oracle-5	G48			no	upstream	
+r28-case005-haiku-oracle-5	G49			no	upstream	
+r28-case005-haiku-review-5	C01	yes	both		upstream	
+r28-case005-haiku-review-5	C02	yes	both		upstream	
+r28-case005-haiku-review-5	C03	yes	both		upstream	
+r28-case005-haiku-review-5	C04	yes	both		upstream	
+r28-case005-haiku-review-5	C05	yes	both		upstream	
+r28-case005-haiku-review-5	C06	yes	both		upstream	
+r28-case005-haiku-review-5	C09	yes	both		upstream	
+r28-case005-haiku-review-5	C10	yes	both		upstream	
+r28-case005-haiku-review-5	C11	yes	both		upstream	
+r28-case005-haiku-review-5	C12	no			upstream	"C12 and C18 not in NOTES.md (second Transfer-Encoding 501 appears only in ""Error hints"", no collapse side); G16: their_http_version kept across cycles, ""does not state""; G21: trailing space; G22: PAUSED in MUST_CLOSE with bytes stored (alternative)"
+r28-case005-haiku-review-5	C13	yes	both		upstream	
+r28-case005-haiku-review-5	C14	yes	both		upstream	
+r28-case005-haiku-review-5	C15	yes	both		alternative	
+r28-case005-haiku-review-5	C16	yes	both		alternative	
+r28-case005-haiku-review-5	C18	no			upstream	"C12 and C18 not in NOTES.md (second Transfer-Encoding 501 appears only in ""Error hints"", no collapse side); G16: their_http_version kept across cycles, ""does not state""; G21: trailing space; G22: PAUSED in MUST_CLOSE with bytes stored (alternative)"
+r28-case005-haiku-review-5	C20	yes	both		alternative	
+r28-case005-haiku-review-5	C21	yes	both		upstream	
+r28-case005-haiku-review-5	G06			no	upstream	
+r28-case005-haiku-review-5	G09			no	upstream	
+r28-case005-haiku-review-5	G14			no	upstream	
+r28-case005-haiku-review-5	G16			yes	upstream	"C12 and C18 not in NOTES.md (second Transfer-Encoding 501 appears only in ""Error hints"", no collapse side); G16: their_http_version kept across cycles, ""does not state""; G21: trailing space; G22: PAUSED in MUST_CLOSE with bytes stored (alternative)"
+r28-case005-haiku-review-5	G21			yes	upstream	"C12 and C18 not in NOTES.md (second Transfer-Encoding 501 appears only in ""Error hints"", no collapse side); G16: their_http_version kept across cycles, ""does not state""; G21: trailing space; G22: PAUSED in MUST_CLOSE with bytes stored (alternative)"
+r28-case005-haiku-review-5	G22			yes	alternative	"C12 and C18 not in NOTES.md (second Transfer-Encoding 501 appears only in ""Error hints"", no collapse side); G16: their_http_version kept across cycles, ""does not state""; G21: trailing space; G22: PAUSED in MUST_CLOSE with bytes stored (alternative)"
+r28-case005-haiku-review-5	G33			no	upstream	
+r28-case005-haiku-review-5	G34			no	alternative	
+r28-case005-haiku-review-5	G47			no	upstream	
+r28-case005-haiku-review-5	G48			no	upstream	
+r28-case005-haiku-review-5	G49			no	upstream	

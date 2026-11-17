@@ -1,0 +1,6014 @@
+{
+ "r28-case005-haiku-compiler-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.7688698799999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": true,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 385,
+  "total": 395,
+  "turns": 55
+ },
+ "r28-case005-haiku-compiler-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6490556800000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": true,
+   "G34": true,
+   "G47": true,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 386,
+  "total": 395,
+  "turns": 37
+ },
+ "r28-case005-haiku-compiler-3": {
+  "built": {
+   "C01": "alternative",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6519960499999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C01": [
+    "F01_acceptance.py::test_eighteen_digit_content_length_succeeds",
+    "F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused",
+    "F01_acceptance.py::test_thirty_three_ones_content_length_refused"
+   ],
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": false,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": true,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "B",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 377,
+  "total": 395,
+  "turns": 57
+ },
+ "r28-case005-haiku-compiler-4": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.9116652199999997,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": false,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": false,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 382,
+  "total": 395,
+  "turns": 75
+ },
+ "r28-case005-haiku-compiler-5": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "alternative",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.5075246600000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C04": [
+    "F02_acceptance.py::test_last_header_may_be_folded",
+    "F02_acceptance.py::test_obsolete_fold_some_joins_named_value"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": true,
+   "G34": true,
+   "G47": true,
+   "G48": true,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "B",
+   "C04": "B",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 380,
+  "total": 395,
+  "turns": 52
+ },
+ "r28-case005-haiku-markdown-1": {
+  "built": {
+   "C01": "alternative",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "alternative",
+   "C15": "alternative",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.56795667,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C01": [
+    "F01_acceptance.py::test_eighteen_digit_content_length_succeeds",
+    "F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused",
+    "F01_acceptance.py::test_thirty_three_ones_content_length_refused"
+   ],
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C14": [
+    "F07_acceptance.py::test_expect_matching_is_case_insensitive",
+    "F07_acceptance.py::test_runtime_expect_sets_waiting_flags"
+   ],
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": true,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "B",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "B",
+   "C15": "B",
+   "C16": "B",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 376,
+  "total": 395,
+  "turns": 24
+ },
+ "r28-case005-haiku-markdown-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.5111461199999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": true,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 379,
+  "total": 395,
+  "turns": 33
+ },
+ "r28-case005-haiku-markdown-3": {
+  "built": {
+   "C01": "alternative",
+   "C02": "alternative",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "alternative",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "alternative",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.47287477,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C01": [
+    "F01_acceptance.py::test_eighteen_digit_content_length_succeeds",
+    "F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused",
+    "F01_acceptance.py::test_thirty_three_ones_content_length_refused"
+   ],
+   "C02": [
+    "F03_acceptance.py::test_chunk_size_longer_than_32_hex_digits_is_remote_error",
+    "F03_acceptance.py::test_runtime_overlong_chunk_size_is_remote_error"
+   ],
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C06": [
+    "F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C13": [
+    "F07_acceptance.py::test_http10_expect_does_not_set_waiting_flags",
+    "F07_acceptance.py::test_http11_versus_http10_expect_differs_only_in_waiting_flags"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "B",
+   "C02": "B",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 374,
+  "total": 395,
+  "turns": 34
+ },
+ "r28-case005-haiku-markdown-4": {
+  "built": {
+   "C01": "upstream",
+   "C02": "alternative",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.48711767,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F03_acceptance.py::test_chunk_size_longer_than_32_hex_digits_is_remote_error",
+    "F03_acceptance.py::test_runtime_overlong_chunk_size_is_remote_error"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "B",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 378,
+  "total": 395,
+  "turns": 24
+ },
+ "r28-case005-haiku-markdown-5": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.41105005,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 384,
+  "total": 395,
+  "turns": 27
+ },
+ "r28-case005-haiku-oracle-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.69521675,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": true,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 386,
+  "total": 395,
+  "turns": 54
+ },
+ "r28-case005-haiku-oracle-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6875113300000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 388,
+  "total": 395,
+  "turns": 55
+ },
+ "r28-case005-haiku-oracle-3": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "alternative",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.9790323,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": true,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "B",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 381,
+  "total": 395,
+  "turns": 52
+ },
+ "r28-case005-haiku-oracle-4": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 1.0249112599999997,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": true,
+   "G09": false,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 388,
+  "total": 395,
+  "turns": 49
+ },
+ "r28-case005-haiku-oracle-5": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "alternative",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "alternative",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 1.0256973499999997,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C03": [
+    "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+    "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+   ],
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": true,
+   "G47": true,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "B",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 383,
+  "total": 395,
+  "turns": 58
+ },
+ "r28-case005-haiku-review-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 328,
+  "core_total": 335,
+  "cost": 0.6398692699999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": false,
+   "G33": true,
+   "G34": true,
+   "G47": true,
+   "G48": false,
+   "G49": true
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 379,
+  "total": 395,
+  "turns": 49
+ },
+ "r28-case005-haiku-review-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "alternative",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6430636199999998,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": false,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": false,
+   "G47": true,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "B",
+   "C16": "A",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 385,
+  "total": 395,
+  "turns": 34
+ },
+ "r28-case005-haiku-review-3": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "alternative",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.46541767,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": true,
+   "G47": true,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "B",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 383,
+  "total": 395,
+  "turns": 25
+ },
+ "r28-case005-haiku-review-4": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.5993167,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": false,
+   "G33": true,
+   "G34": true,
+   "G47": true,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 388,
+  "total": 395,
+  "turns": 32
+ },
+ "r28-case005-haiku-review-5": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "alternative",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "alternative",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "alternative",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.4540015399999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C15": [
+    "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+    "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+    "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+   ],
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "C20": [
+    "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+    "F01_acceptance.py::test_set_cookie_byte_1_kept"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": true,
+   "G14": true,
+   "G16": true,
+   "G21": true,
+   "G22": true,
+   "G33": false,
+   "G34": true,
+   "G47": true,
+   "G48": true,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "B",
+   "C16": "B",
+   "C18": "A",
+   "C20": "B",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "B",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 383,
+  "total": 395,
+  "turns": 28
+ },
+ "r28-case005-sonnet-compiler-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "alternative",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.7503414999999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C16": [
+    "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+    "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": true,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 391,
+  "total": 395,
+  "turns": 11
+ },
+ "r28-case005-sonnet-compiler-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "alternative",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.7449222,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason"
+   ],
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": false,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 390,
+  "total": 395,
+  "turns": 10
+ },
+ "r28-case005-sonnet-compiler-3": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "alternative",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.648477,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason"
+   ],
+   "C21": [
+    "F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": false,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "B",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 391,
+  "total": 395,
+  "turns": 9
+ },
+ "r28-case005-sonnet-markdown-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "alternative",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6321387000000002,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C04": [
+    "F02_acceptance.py::test_last_header_may_be_folded",
+    "F02_acceptance.py::test_obsolete_fold_some_joins_named_value"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": true,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "B",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 391,
+  "total": 395,
+  "turns": 8
+ },
+ "r28-case005-sonnet-markdown-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "alternative",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "alternative",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6195029,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C09": [
+    "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+    "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+   ],
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ],
+   "G34": [
+    "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+    "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": false,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "B",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "B",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 389,
+  "total": 395,
+  "turns": 7
+ },
+ "r28-case005-sonnet-markdown-3": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6338870000000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {},
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": false,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 395,
+  "total": 395,
+  "turns": 7
+ },
+ "r28-case005-sonnet-oracle-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "alternative",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.704148,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C06": [
+    "F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": true,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": false,
+   "C14": false,
+   "C15": true,
+   "C16": false,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": false,
+   "G16": false,
+   "G21": true,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "B",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 394,
+  "total": 395,
+  "turns": 10
+ },
+ "r28-case005-sonnet-oracle-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "alternative",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.7551684999999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C13": [
+    "F07_acceptance.py::test_http10_expect_does_not_set_waiting_flags",
+    "F07_acceptance.py::test_http11_versus_http10_expect_differs_only_in_waiting_flags"
+   ],
+   "C21": [
+    "F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "B",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 392,
+  "total": 395,
+  "turns": 13
+ },
+ "r28-case005-sonnet-oracle-3": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "alternative",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6782145,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G16": [
+    "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+    "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": false,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": true,
+   "G34": true,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "B",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 393,
+  "total": 395,
+  "turns": 9
+ },
+ "r28-case005-sonnet-review-1": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "upstream",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.5876332000000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {},
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "A",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 395,
+  "total": 395,
+  "turns": 6
+ },
+ "r28-case005-sonnet-review-2": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "other",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.6751514999999999,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C21": [
+    "F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get"
+   ],
+   "G22": [
+    "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+    "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+    "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": true,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": false,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": false,
+   "G34": false,
+   "G47": false,
+   "G48": false,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "B",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "neither",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 391,
+  "total": 395,
+  "turns": 11
+ },
+ "r28-case005-sonnet-review-3": {
+  "built": {
+   "C01": "upstream",
+   "C02": "upstream",
+   "C03": "upstream",
+   "C04": "upstream",
+   "C05": "upstream",
+   "C06": "upstream",
+   "C09": "upstream",
+   "C10": "upstream",
+   "C11": "upstream",
+   "C12": "upstream",
+   "C13": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C16": "upstream",
+   "C18": "upstream",
+   "C20": "upstream",
+   "C21": "alternative",
+   "G06": "upstream",
+   "G09": "upstream",
+   "G14": "upstream",
+   "G16": "upstream",
+   "G21": "upstream",
+   "G22": "upstream",
+   "G33": "upstream",
+   "G34": "upstream",
+   "G47": "upstream",
+   "G48": "upstream",
+   "G49": "upstream"
+  },
+  "core": 335,
+  "core_total": 335,
+  "cost": 0.7246482000000001,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C06": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C10": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C21": [
+    "F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C02": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C06": false,
+   "C09": false,
+   "C10": true,
+   "C11": true,
+   "C12": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C18": true,
+   "C20": true,
+   "C21": false,
+   "G06": false,
+   "G09": false,
+   "G14": true,
+   "G16": false,
+   "G21": false,
+   "G22": false,
+   "G33": false,
+   "G34": true,
+   "G47": false,
+   "G48": true,
+   "G49": false
+  },
+  "probe_evidence": {
+   "C01": "A",
+   "C02": "A",
+   "C03": "A",
+   "C04": "A",
+   "C05": "A",
+   "C06": "A",
+   "C09": "A",
+   "C10": "A",
+   "C11": "A",
+   "C12": "A",
+   "C13": "A",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C18": "A",
+   "C20": "A",
+   "C21": "B",
+   "G06": "A",
+   "G09": "A",
+   "G14": "A",
+   "G16": "A",
+   "G21": "A",
+   "G22": "A",
+   "G33": "A",
+   "G34": "A",
+   "G47": "A",
+   "G48": "A",
+   "G49": "A"
+  },
+  "tests": 394,
+  "total": 395,
+  "turns": 7
+ }
+}

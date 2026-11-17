@@ -1,0 +1,312 @@
+{
+ "BASE_failed": [],
+ "C01": {
+  "newly_failed": [
+   "F01_acceptance.py::test_eighteen_digit_content_length_succeeds",
+   "F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused",
+   "F01_acceptance.py::test_thirty_three_ones_content_length_refused"
+  ],
+  "newly_passed": []
+ },
+ "C02": {
+  "newly_failed": [
+   "F03_acceptance.py::test_chunk_size_longer_than_32_hex_digits_is_remote_error",
+   "F03_acceptance.py::test_runtime_overlong_chunk_size_is_remote_error"
+  ],
+  "newly_passed": []
+ },
+ "C03": {
+  "newly_failed": [
+   "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+   "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit"
+  ],
+  "newly_passed": []
+ },
+ "C04": {
+  "newly_failed": [
+   "F02_acceptance.py::test_last_header_may_be_folded",
+   "F02_acceptance.py::test_obsolete_fold_some_joins_named_value"
+  ],
+  "newly_passed": []
+ },
+ "C05": {
+  "newly_failed": [
+   "F02_acceptance.py::test_lone_lf_200_is_accepted",
+   "F02_acceptance.py::test_mixed_line_endings_on_200_pull_as_that_response",
+   "F02_acceptance.py::test_request_header_block_accepts_lone_lf_and_mixed_endings"
+  ],
+  "newly_passed": []
+ },
+ "C06": {
+  "newly_failed": [
+   "F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason"
+  ],
+  "newly_passed": []
+ },
+ "C07": {
+  "newly_failed": [
+   "F02_acceptance.py::test_host_is_written_before_foo_even_when_not_first",
+   "F02_acceptance.py::test_runtime_host_is_first_among_headers"
+  ],
+  "newly_passed": []
+ },
+ "C08": {
+  "newly_failed": [
+   "F02_acceptance.py::test_encoded_header_names_keep_construction_casing",
+   "F02_acceptance.py::test_host_is_written_before_foo_even_when_not_first"
+  ],
+  "newly_passed": []
+ },
+ "C09": {
+  "newly_failed": [
+   "F03_acceptance.py::test_spaces_after_chunk_size_accepted",
+   "F03_acceptance.py::test_tabs_after_chunk_size_accepted"
+  ],
+  "newly_passed": []
+ },
+ "C10": {
+  "newly_failed": [
+   "F03_acceptance.py::test_response_te_and_content_length_to_http10_is_close_delimited",
+   "F03_acceptance.py::test_response_te_wins_over_content_length",
+   "F03_acceptance.py::test_runtime_response_te_wins_over_content_length"
+  ],
+  "newly_passed": []
+ },
+ "C11": {
+  "newly_failed": [
+   "F03_acceptance.py::test_content_length_0_response_keeps_content_length"
+  ],
+  "newly_passed": []
+ },
+ "C12": {
+  "newly_failed": [
+   "F04_acceptance.py::test_close_substring_in_other_token_does_not_disable_keepalive",
+   "F04_acceptance.py::test_runtime_close_substring_does_not_disable_keepalive"
+  ],
+  "newly_passed": []
+ },
+ "C13": {
+  "newly_failed": [
+   "F07_acceptance.py::test_http10_expect_does_not_set_waiting_flags",
+   "F07_acceptance.py::test_http11_versus_http10_expect_differs_only_in_waiting_flags"
+  ],
+  "newly_passed": []
+ },
+ "C14": {
+  "newly_failed": [
+   "F07_acceptance.py::test_expect_matching_is_case_insensitive",
+   "F07_acceptance.py::test_runtime_expect_sets_waiting_flags"
+  ],
+  "newly_passed": []
+ },
+ "C15": {
+  "newly_failed": [
+   "F07_acceptance.py::test_client_data_12345_clears_waiting_flags",
+   "F07_acceptance.py::test_client_end_of_message_clears_waiting_flags",
+   "F07_acceptance.py::test_runtime_data_clears_waiting_flags"
+  ],
+  "newly_passed": []
+ },
+ "C16": {
+  "newly_failed": [
+   "F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts",
+   "F07_acceptance.py::test_runtime_dual_proposal_accept_each"
+  ],
+  "newly_passed": []
+ },
+ "C17": {
+  "newly_failed": [
+   "F05_acceptance.py::test_big_header_4000a_fails_at_limit_4000_status_431",
+   "F05_acceptance.py::test_complete_framed_body_not_10000_succeeds_under_smaller_limit",
+   "F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes",
+   "F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit",
+   "F05_acceptance.py::test_limit_counts_line_plus_headers_not_value_alone",
+   "F05_acceptance.py::test_oversize_incomplete_headers_suggest_431",
+   "F05_acceptance.py::test_oversize_unfinished_response_headers_are_remote_431",
+   "F05_acceptance.py::test_pipelined_leftovers_fail_only_when_next_message_is_parsed",
+   "F05_acceptance.py::test_runtime_header_crosses_custom_limit",
+   "F05_acceptance.py::test_runtime_oversize_unfinished_response_headers",
+   "F05_acceptance.py::test_runtime_pipelined_leftovers_fail_only_when_parsed"
+  ],
+  "newly_passed": []
+ },
+ "C18": {
+  "newly_failed": [
+   "F01_acceptance.py::test_second_transfer_encoding_chunked_refused",
+   "F01_acceptance.py::test_second_transfer_encoding_mixed_case_names_refused"
+  ],
+  "newly_passed": []
+ },
+ "C19": {
+  "newly_failed": [
+   "F03_acceptance.py::test_response_before_any_request_is_close_delimited",
+   "F04_acceptance.py::test_runtime_final_response_from_idle_encodes",
+   "F04_acceptance.py::test_runtime_idle_final_with_close_completes_must_close",
+   "F04_acceptance.py::test_server_408_from_idle_encodes_without_request",
+   "F04_acceptance.py::test_server_sending_request_is_local_error",
+   "F05_acceptance.py::test_runtime_unparseable_line_is_remote_error",
+   "F05_acceptance.py::test_send_after_remote_receive_error_still_answers_400",
+   "F05_acceptance.py::test_sending_http10_response_is_unrecoverable_local_error",
+   "F05_acceptance.py::test_server_can_still_send_400_after_remote_receive_error"
+  ],
+  "newly_passed": []
+ },
+ "C20": {
+  "newly_failed": [
+   "F01_acceptance.py::test_header_value_bytes_1_2_127_kept",
+   "F01_acceptance.py::test_set_cookie_byte_1_kept"
+  ],
+  "newly_passed": []
+ },
+ "C21": {
+  "newly_failed": [
+   "F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get"
+  ],
+  "newly_passed": []
+ },
+ "G01": {
+  "newly_failed": [
+   "F05_acceptance.py::test_client_http11_unfinished_cl_empty_feed_is_remote",
+   "F05_acceptance.py::test_content_length_100_cut_after_12345_is_remote_not_closed",
+   "F05_acceptance.py::test_default_suggested_status_is_400",
+   "F05_acceptance.py::test_further_pull_after_remote_error_is_remote",
+   "F05_acceptance.py::test_get_encode_fails_when_package_not_importable",
+   "F05_acceptance.py::test_gibberish_blank_line_is_unrecoverable_remote_error",
+   "F05_acceptance.py::test_http10_unfinished_cl_empty_feed_is_remote",
+   "F05_acceptance.py::test_incomplete_chunked_empty_feed_is_remote",
+   "F05_acceptance.py::test_local_remote_and_runtime_errors_are_distinguishable",
+   "F05_acceptance.py::test_mark_send_as_failed_after_server_send",
+   "F05_acceptance.py::test_mid_request_line_empty_feed_is_remote",
+   "F05_acceptance.py::test_missing_host_is_recoverable_local_error",
+   "F05_acceptance.py::test_our_error_cannot_be_left_after_local_send",
+   "F05_acceptance.py::test_oversize_incomplete_headers_suggest_431",
+   "F05_acceptance.py::test_runtime_unparseable_line_is_remote_error",
+   "F05_acceptance.py::test_send_after_mark_failed_is_local_error",
+   "F05_acceptance.py::test_send_after_remote_receive_error_still_answers_400",
+   "F05_acceptance.py::test_sending_http10_non_get_request_is_unrecoverable_local_error",
+   "F05_acceptance.py::test_sending_http10_request_is_unrecoverable_local_error",
+   "F05_acceptance.py::test_sending_http10_response_from_other_legal_position",
+   "F05_acceptance.py::test_sending_http10_response_is_unrecoverable_local_error",
+   "F05_acceptance.py::test_server_can_still_send_400_after_remote_receive_error",
+   "F05_acceptance.py::test_start_next_cycle_before_done_is_recoverable_local_error",
+   "F05_acceptance.py::test_their_error_cannot_be_left_after_remote_pull",
+   "F05_acceptance.py::test_transfer_encoding_gzip_suggests_501",
+   "F05_acceptance.py::test_valid_http11_send_fails_after_http10_send_error",
+   "F05_acceptance.py::test_well_formed_feed_after_remote_error_still_remote"
+  ],
+  "newly_passed": []
+ },
+ "G03": {
+  "newly_failed": [
+   "F04_acceptance.py::test_http10_response_keep_alive_token_does_not_enable_reuse"
+  ],
+  "newly_passed": []
+ },
+ "G05": {
+  "newly_failed": [
+   "F02_acceptance.py::test_client_after_request_rejects_lone_nul_space_and_tls_server_hello",
+   "F02_acceptance.py::test_client_blank_line_only_after_request_refused",
+   "F02_acceptance.py::test_nonempty_feed_after_empty_eof_is_runtime_error_not_protocol",
+   "F02_acceptance.py::test_server_blank_line_only_refused",
+   "F02_acceptance.py::test_server_rejects_lone_nul_space_and_tls_client_hello"
+  ],
+  "newly_passed": []
+ },
+ "G06": {
+  "newly_failed": [
+   "F05_acceptance.py::test_pipelined_leftovers_fail_only_when_next_message_is_parsed",
+   "F05_acceptance.py::test_runtime_pipelined_leftovers_fail_only_when_parsed"
+  ],
+  "newly_passed": []
+ },
+ "G07": {
+  "newly_failed": [
+   "F05_acceptance.py::test_complete_10000_body_succeeds_at_limit_5000",
+   "F05_acceptance.py::test_complete_framed_body_not_10000_succeeds_under_smaller_limit"
+  ],
+  "newly_passed": []
+ },
+ "G08": {
+  "newly_failed": [
+   "F05_acceptance.py::test_limit_counts_line_plus_headers_not_value_alone"
+  ],
+  "newly_passed": []
+ },
+ "G09": {
+  "newly_failed": [
+   "F03_acceptance.py::test_chunked_eom_without_trailers_is_final_chunk",
+   "F03_acceptance.py::test_empty_data_on_chunked_encodes_no_bytes"
+  ],
+  "newly_passed": []
+ },
+ "G14": {
+  "newly_failed": [
+   "F02_acceptance.py::test_further_empty_chunks_after_eof_do_not_fail",
+   "F06_acceptance.py::test_further_empty_feeds_after_close_remain_allowed"
+  ],
+  "newly_passed": []
+ },
+ "G16": {
+  "newly_failed": [
+   "F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs",
+   "F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle"
+  ],
+  "newly_passed": []
+ },
+ "G21": {
+  "newly_failed": [
+   "F02_acceptance.py::test_client_pulls_100_then_200",
+   "F02_acceptance.py::test_informational_100_status_line_empty_reason_unless_supplied",
+   "F02_acceptance.py::test_response_200_cl11_empty_reason_unless_supplied"
+  ],
+  "newly_passed": []
+ },
+ "G22": {
+  "newly_failed": [
+   "F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request",
+   "F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote",
+   "F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote"
+  ],
+  "newly_passed": []
+ },
+ "G31": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G33": {
+  "newly_failed": [
+   "F05_acceptance.py::test_mark_send_as_failed_twice_is_idempotent"
+  ],
+  "newly_passed": []
+ },
+ "G34": {
+  "newly_failed": [
+   "F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent",
+   "F06_acceptance.py::test_idle_already_closed_send_is_idempotent"
+  ],
+  "newly_passed": []
+ },
+ "G47": {
+  "newly_failed": [
+   "F01_acceptance.py::test_construction_preserves_caller_order_including_host_not_first",
+   "F01_acceptance.py::test_runtime_header_order_and_raw_casing",
+   "F02_acceptance.py::test_host_is_written_before_foo_even_when_not_first"
+  ],
+  "newly_passed": []
+ },
+ "G48": {
+  "newly_failed": [
+   "F01_acceptance.py::test_disagreeing_comma_pieces_1_1_2_refused",
+   "F01_acceptance.py::test_disagreeing_comma_pieces_not_public_refused",
+   "F01_acceptance.py::test_single_content_length_0_comma_0_collapses"
+  ],
+  "newly_passed": []
+ },
+ "G49": {
+  "newly_failed": [
+   "F01_acceptance.py::test_integer_status_constant_stored_as_plain_int",
+   "F01_acceptance.py::test_second_integer_status_constant_stored_as_plain_int"
+  ],
+  "newly_passed": []
+ }
+}

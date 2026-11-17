@@ -1,0 +1,9 @@
+run_id	task	model	status	job	attempts	last_message
+r27b-case010-haiku-markdown-4	work/tasks/case010-markdown	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-markdown-4	1	
+r27b-case010-haiku-compiler-4	work/tasks/case010-compiler	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-compiler-4	1	
+r27b-case010-haiku-oracle-4	work/tasks/case010-oracle	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-oracle-4	1	
+r27b-case010-haiku-review-4	work/tasks/case010-review	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-review-4	1	
+r27b-case010-haiku-markdown-5	work/tasks/case010-markdown	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-markdown-5	1	
+r27b-case010-haiku-compiler-5	work/tasks/case010-compiler	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-compiler-5	1	
+r27b-case010-haiku-oracle-5	work/tasks/case010-oracle	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-oracle-5	1	
+r27b-case010-haiku-review-5	work/tasks/case010-review	anthropic/claude-haiku-5-5	done	r27b-zero2repo-haiku-topup-case010-r27b-case010-haiku-review-5	1	

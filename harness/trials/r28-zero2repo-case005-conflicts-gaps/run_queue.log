@@ -1,0 +1,145 @@
+2026-11-11T16:34:43-05:00	start trial r28-zero2repo-case005-conflicts-gaps, claude 2.1.316, budget none, earlystop_rerun 1, one=1
+2026-11-11T16:34:44-05:00	run r28-case005-sonnet-markdown-1 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-markdown
+2026-11-11T16:41:01-05:00	harbor r28-case005-sonnet-markdown-1 exit 0 after 377 s
+2026-11-11T16:41:01-05:00	done r28-case005-sonnet-markdown-1 turns 8 cost_usd_est 0.6321387000000002 reward {"reward": 0.9898734177215189, "tests_passed": 391, "tests_total": 395, "tests_failed": 4, "tests_error": 0, "official_reward": 0.0} 
+2026-11-11T16:41:01-05:00	usage five_hour 0.41 (resets 2026-11-11T21:00:00-05:00) seven_day 0.51 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:41:01-05:00	end --one: stopping after one run
+2026-11-11T21:46:09-05:00	start trial r28-zero2repo-case005-conflicts-gaps, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-11T21:46:09-05:00	run r28-case005-sonnet-compiler-1 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-export-compiler
+2026-11-11T21:52:59-05:00	harbor r28-case005-sonnet-compiler-1 exit 0 after 410 s
+2026-11-11T21:52:59-05:00	done r28-case005-sonnet-compiler-1 turns 11 cost_usd_est 0.7503414999999999 reward {"reward": 0.9898734177215189, "tests_passed": 391, "tests_total": 395, "tests_failed": 4, "tests_error": 0, "official_reward": 0.0} 
+2026-11-11T21:52:59-05:00	usage five_hour 0.34 (resets 2026-11-12T02:00:00-05:00) seven_day 0.61 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T21:54:59-05:00	run r28-case005-sonnet-oracle-1 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-export-oracle
+2026-11-11T22:00:24-05:00	harbor r28-case005-sonnet-oracle-1 exit 0 after 325 s
+2026-11-11T22:00:24-05:00	done r28-case005-sonnet-oracle-1 turns 10 cost_usd_est 0.704148 reward {"reward": 0.9974683544303797, "tests_passed": 394, "tests_total": 395, "tests_failed": 1, "tests_error": 0, "official_reward": 0.0} 
+2026-11-11T22:00:24-05:00	usage five_hour 0.49 (resets 2026-11-12T02:00:00-05:00) seven_day 0.62 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T22:02:24-05:00	run r28-case005-sonnet-review-1 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-review-list
+2026-11-11T22:07:03-05:00	harbor r28-case005-sonnet-review-1 exit 0 after 279 s
+2026-11-11T22:07:03-05:00	done r28-case005-sonnet-review-1 turns 6 cost_usd_est 0.5876332000000001 reward {"reward": 1.0, "tests_passed": 395, "tests_total": 395, "tests_failed": 0, "tests_error": 0, "official_reward": 1.0} 
+2026-11-11T22:07:03-05:00	usage five_hour 0.59 (resets 2026-11-12T02:00:00-05:00) seven_day 0.63 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T22:09:03-05:00	run r28-case005-haiku-markdown-1 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-markdown
+2026-11-11T22:22:53-05:00	harbor r28-case005-haiku-markdown-1 exit 0 after 830 s
+2026-11-11T22:22:53-05:00	done r28-case005-haiku-markdown-1 turns 24 cost_usd_est 0.56795667 reward {"reward": 0.9518987341772152, "tests_passed": 376, "tests_total": 395, "tests_failed": 19, "tests_error": 0, "official_reward": 0.0} 
+2026-11-11T22:22:53-05:00	usage five_hour 0.75 (resets 2026-11-12T02:00:00-05:00) seven_day 0.64 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T22:24:54-05:00	run r28-case005-haiku-compiler-1 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-compiler
+2026-11-11T22:38:56-05:00	harbor r28-case005-haiku-compiler-1 exit 0 after 842 s
+2026-11-11T22:38:56-05:00	done r28-case005-haiku-compiler-1 turns 55 cost_usd_est 0.7688698799999999 reward {"reward": 0.9746835443037974, "tests_passed": 385, "tests_total": 395, "tests_failed": 10, "tests_error": 0, "official_reward": 0.0} 
+2026-11-11T22:38:56-05:00	usage five_hour 0.9 (resets 2026-11-12T02:00:00-05:00) seven_day 0.65 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T22:38:56-05:00	limit usage near the limit; pausing new runs until 2026-11-12T02:00:00-05:00 + 5 min
+2026-11-12T02:07:57-05:00	run r28-case005-haiku-oracle-1 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-oracle
+2026-11-12T02:21:11-05:00	harbor r28-case005-haiku-oracle-1 exit 0 after 794 s
+2026-11-12T02:21:12-05:00	done r28-case005-haiku-oracle-1 turns 54 cost_usd_est 0.69521675 reward {"reward": 0.9772151898734177, "tests_passed": 386, "tests_total": 395, "tests_failed": 9, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T02:21:12-05:00	usage five_hour 0.17 (resets 2026-11-12T07:00:00-05:00) seven_day 0.67 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T02:23:12-05:00	run r28-case005-haiku-review-1 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-review-list
+2026-11-12T02:35:42-05:00	harbor r28-case005-haiku-review-1 exit 0 after 750 s
+2026-11-12T02:35:42-05:00	done r28-case005-haiku-review-1 turns 49 cost_usd_est 0.6398692699999999 reward {"reward": 0.959493670886076, "tests_passed": 379, "tests_total": 395, "tests_failed": 16, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T02:35:42-05:00	usage five_hour 0.36 (resets 2026-11-12T07:00:00-05:00) seven_day 0.69 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T02:37:42-05:00	run r28-case005-sonnet-compiler-2 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-export-compiler
+2026-11-12T02:43:46-05:00	harbor r28-case005-sonnet-compiler-2 exit 0 after 364 s
+2026-11-12T02:43:46-05:00	done r28-case005-sonnet-compiler-2 turns 10 cost_usd_est 0.7449222 reward {"reward": 0.9873417721518988, "tests_passed": 390, "tests_total": 395, "tests_failed": 5, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T02:43:46-05:00	usage five_hour 0.5 (resets 2026-11-12T07:00:00-05:00) seven_day 0.7 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T02:45:46-05:00	run r28-case005-sonnet-oracle-2 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-export-oracle
+2026-11-12T02:51:53-05:00	harbor r28-case005-sonnet-oracle-2 exit 0 after 367 s
+2026-11-12T02:51:54-05:00	done r28-case005-sonnet-oracle-2 turns 13 cost_usd_est 0.7551684999999999 reward {"reward": 0.9924050632911392, "tests_passed": 392, "tests_total": 395, "tests_failed": 3, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T02:51:54-05:00	usage five_hour 0.73 (resets 2026-11-12T07:00:00-05:00) seven_day 0.73 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T02:53:54-05:00	run r28-case005-sonnet-review-2 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-review-list
+2026-11-12T02:59:24-05:00	harbor r28-case005-sonnet-review-2 exit 0 after 330 s
+2026-11-12T02:59:24-05:00	done r28-case005-sonnet-review-2 turns 11 cost_usd_est 0.6751514999999999 reward {"reward": 0.9898734177215189, "tests_passed": 391, "tests_total": 395, "tests_failed": 4, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T02:59:24-05:00	usage five_hour 0.84 (resets 2026-11-12T07:00:00-05:00) seven_day 0.74 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T03:01:24-05:00	run r28-case005-sonnet-markdown-2 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-markdown
+2026-11-12T03:06:38-05:00	harbor r28-case005-sonnet-markdown-2 exit 0 after 314 s
+2026-11-12T03:06:39-05:00	done r28-case005-sonnet-markdown-2 turns 7 cost_usd_est 0.6195029 reward {"reward": 0.9848101265822785, "tests_passed": 389, "tests_total": 395, "tests_failed": 6, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T03:06:39-05:00	usage five_hour 0.93 (resets 2026-11-12T07:00:00-05:00) seven_day 0.74 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T03:06:39-05:00	limit usage near the limit; pausing new runs until 2026-11-12T07:00:00-05:00 + 5 min
+2026-11-12T07:07:40-05:00	run r28-case005-haiku-compiler-2 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-compiler
+2026-11-12T07:22:10-05:00	harbor r28-case005-haiku-compiler-2 exit 0 after 870 s
+2026-11-12T07:22:10-05:00	done r28-case005-haiku-compiler-2 turns 37 cost_usd_est 0.6490556800000001 reward {"reward": 0.9772151898734177, "tests_passed": 386, "tests_total": 395, "tests_failed": 9, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T07:22:10-05:00	usage five_hour 0.19 (resets 2026-11-12T12:00:00-05:00) seven_day 0.77 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T07:24:10-05:00	run r28-case005-haiku-oracle-2 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-oracle
+2026-11-12T07:37:56-05:00	harbor r28-case005-haiku-oracle-2 exit 0 after 826 s
+2026-11-12T07:37:56-05:00	done r28-case005-haiku-oracle-2 turns 55 cost_usd_est 0.6875113300000001 reward {"reward": 0.9822784810126582, "tests_passed": 388, "tests_total": 395, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T07:37:56-05:00	usage five_hour 0.33 (resets 2026-11-12T12:00:00-05:00) seven_day 0.78 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T07:39:56-05:00	run r28-case005-haiku-review-2 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-review-list
+2026-11-12T07:55:04-05:00	harbor r28-case005-haiku-review-2 exit 0 after 908 s
+2026-11-12T07:55:04-05:00	done r28-case005-haiku-review-2 turns 34 cost_usd_est 0.6430636199999998 reward {"reward": 0.9746835443037974, "tests_passed": 385, "tests_total": 395, "tests_failed": 10, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T07:55:04-05:00	usage five_hour 0.63 (resets 2026-11-12T12:00:00-05:00) seven_day 0.81 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T07:57:04-05:00	run r28-case005-haiku-markdown-2 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-markdown
+2026-11-12T08:09:31-05:00	harbor r28-case005-haiku-markdown-2 exit 0 after 747 s
+2026-11-12T08:09:31-05:00	done r28-case005-haiku-markdown-2 turns 33 cost_usd_est 0.5111461199999999 reward {"reward": 0.959493670886076, "tests_passed": 379, "tests_total": 395, "tests_failed": 16, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T08:09:31-05:00	usage five_hour 0.86 (resets 2026-11-12T12:00:00-05:00) seven_day 0.82 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T08:11:31-05:00	run r28-case005-sonnet-oracle-3 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-export-oracle
+2026-11-12T08:17:13-05:00	harbor r28-case005-sonnet-oracle-3 exit 0 after 342 s
+2026-11-12T08:17:13-05:00	done r28-case005-sonnet-oracle-3 turns 9 cost_usd_est 0.6782145 reward {"reward": 0.9949367088607595, "tests_passed": 393, "tests_total": 395, "tests_failed": 2, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T08:17:13-05:00	usage five_hour 0.97 (resets 2026-11-12T12:00:00-05:00) seven_day 0.83 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T08:17:13-05:00	limit usage near the limit; pausing new runs until 2026-11-12T12:00:00-05:00 + 5 min
+2026-11-12T12:07:14-05:00	run r28-case005-sonnet-review-3 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-review-list
+2026-11-12T12:12:53-05:00	harbor r28-case005-sonnet-review-3 exit 0 after 339 s
+2026-11-12T12:12:53-05:00	done r28-case005-sonnet-review-3 turns 7 cost_usd_est 0.7246482000000001 reward {"reward": 0.9974683544303797, "tests_passed": 394, "tests_total": 395, "tests_failed": 1, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T12:12:53-05:00	usage five_hour 0.14 (resets 2026-11-12T17:00:00-05:00) seven_day 0.84 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T12:14:53-05:00	run r28-case005-sonnet-markdown-3 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-markdown
+2026-11-12T12:20:26-05:00	harbor r28-case005-sonnet-markdown-3 exit 0 after 333 s
+2026-11-12T12:20:26-05:00	done r28-case005-sonnet-markdown-3 turns 7 cost_usd_est 0.6338870000000001 reward {"reward": 1.0, "tests_passed": 395, "tests_total": 395, "tests_failed": 0, "tests_error": 0, "official_reward": 1.0} 
+2026-11-12T12:20:26-05:00	usage five_hour 0.3 (resets 2026-11-12T17:00:00-05:00) seven_day 0.85 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T12:22:26-05:00	run r28-case005-sonnet-compiler-3 attempt 1 model anthropic/claude-sonnet-5-5 task case005-r28-export-compiler
+2026-11-12T12:27:36-05:00	harbor r28-case005-sonnet-compiler-3 exit 0 after 310 s
+2026-11-12T12:27:36-05:00	done r28-case005-sonnet-compiler-3 turns 9 cost_usd_est 0.648477 reward {"reward": 0.9898734177215189, "tests_passed": 391, "tests_total": 395, "tests_failed": 4, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T12:27:36-05:00	usage five_hour 0.4 (resets 2026-11-12T17:00:00-05:00) seven_day 0.85 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T12:29:36-05:00	run r28-case005-haiku-oracle-3 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-oracle
+2026-11-12T12:44:33-05:00	harbor r28-case005-haiku-oracle-3 exit 0 after 897 s
+2026-11-12T12:44:33-05:00	done r28-case005-haiku-oracle-3 turns 52 cost_usd_est 0.9790323 reward {"reward": 0.9645569620253165, "tests_passed": 381, "tests_total": 395, "tests_failed": 14, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T12:44:33-05:00	usage five_hour 0.65 (resets 2026-11-12T17:00:00-05:00) seven_day 0.87 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T12:46:33-05:00	run r28-case005-haiku-review-3 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-review-list
+2026-11-12T12:58:32-05:00	harbor r28-case005-haiku-review-3 exit 0 after 719 s
+2026-11-12T12:58:33-05:00	done r28-case005-haiku-review-3 turns 25 cost_usd_est 0.46541767 reward {"reward": 0.9696202531645569, "tests_passed": 383, "tests_total": 395, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T12:58:33-05:00	usage five_hour 0.83 (resets 2026-11-12T17:00:00-05:00) seven_day 0.88 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T13:00:33-05:00	run r28-case005-haiku-markdown-3 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-markdown
+2026-11-12T13:11:48-05:00	harbor r28-case005-haiku-markdown-3 exit 0 after 675 s
+2026-11-12T13:11:48-05:00	done r28-case005-haiku-markdown-3 turns 34 cost_usd_est 0.47287477 reward {"reward": 0.9468354430379747, "tests_passed": 374, "tests_total": 395, "tests_failed": 21, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T13:11:48-05:00	usage five_hour 0.95 (resets 2026-11-12T17:00:00-05:00) seven_day 0.89 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T13:11:48-05:00	limit usage near the limit; pausing new runs until 2026-11-12T17:00:00-05:00 + 5 min
+2026-11-12T17:07:50-05:00	run r28-case005-haiku-compiler-3 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-compiler
+2026-11-12T17:23:23-05:00	harbor r28-case005-haiku-compiler-3 exit 0 after 933 s
+2026-11-12T17:23:24-05:00	done r28-case005-haiku-compiler-3 turns 57 cost_usd_est 0.6519960499999999 reward {"reward": 0.9544303797468354, "tests_passed": 377, "tests_total": 395, "tests_failed": 18, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T17:23:24-05:00	usage five_hour 0.1 (resets 2026-11-12T22:00:00-05:00) seven_day 0.89 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T17:25:24-05:00	run r28-case005-haiku-review-4 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-review-list
+2026-11-12T17:40:37-05:00	harbor r28-case005-haiku-review-4 exit 0 after 913 s
+2026-11-12T17:40:37-05:00	done r28-case005-haiku-review-4 turns 32 cost_usd_est 0.5993167 reward {"reward": 0.9822784810126582, "tests_passed": 388, "tests_total": 395, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T17:40:37-05:00	usage five_hour 0.2 (resets 2026-11-12T22:00:00-05:00) seven_day 0.9 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T17:42:37-05:00	run r28-case005-haiku-markdown-4 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-markdown
+2026-11-12T17:54:46-05:00	harbor r28-case005-haiku-markdown-4 exit 0 after 729 s
+2026-11-12T17:54:46-05:00	done r28-case005-haiku-markdown-4 turns 24 cost_usd_est 0.48711767 reward {"reward": 0.9569620253164557, "tests_passed": 378, "tests_total": 395, "tests_failed": 17, "tests_error": 0, "official_reward": 0.0} 
+2026-11-12T17:54:46-05:00	usage five_hour 0.3 (resets 2026-11-12T22:00:00-05:00) seven_day 0.91 (resets 2026-11-16T16:00:00-05:00)
+2026-11-12T17:56:46-05:00	run r28-case005-haiku-compiler-4 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-compiler
+2026-11-12T18:11:57-05:00	harbor r28-case005-haiku-compiler-4 exit 0 after 911 s
+2026-11-12T18:11:57-05:00	retry r28-case005-haiku-compiler-4 will be retried: rc 0, is_error noresult, subtype -, turns 0, reward none, exception {"exception_type": "RuntimeError", "exception_message": "Docker compose command failed for environment zero2repo-case005-export. Command: docker compose --project-name case005-r28-export-compiler__uxzw6iu__env --project-directory /home/victor/Workspace/sdd-compiler/harness/trials/r28-zero2repo-case005-conflicts-gaps/work/tasks/case005-r28-export-compiler/environment -f /tmp/tmp5mwtkv7g/case005-r28, result: none
+error during connect: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.56/containers/json?all=1&filters=%7B%22status%22%3A%7B%22created%22%3Atrue%2C%22exited%22%3Atrue%7D%7D": EOF
+error during connect: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.56/networks": EOF
+2026-11-12T18:11:58-05:00	usage five_hour 0.42 (resets 2026-11-12T22:00:00-05:00) seven_day 0.92 (resets 2026-11-16T16:00:00-05:00)
+2026-11-16T18:07:54-05:00	start trial r28-zero2repo-case005-conflicts-gaps, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-16T18:07:54-05:00	kept r28-case005-haiku-compiler-4 earlier job renamed (attempt 1)
+2026-11-16T18:07:54-05:00	run r28-case005-haiku-compiler-4 attempt 2 model anthropic/claude-haiku-5-5 task case005-r28-export-compiler
+2026-11-16T18:23:42-05:00	harbor r28-case005-haiku-compiler-4 exit 0 after 948 s
+2026-11-16T18:23:43-05:00	done r28-case005-haiku-compiler-4 turns 75 cost_usd_est 0.9116652199999997 reward {"reward": 0.9670886075949368, "tests_passed": 382, "tests_total": 395, "tests_failed": 13, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T18:23:43-05:00	usage five_hour 0.54 (resets 2026-11-16T23:00:00-05:00) seven_day 0.05 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T18:25:43-05:00	run r28-case005-haiku-oracle-4 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-oracle
+2026-11-16T18:42:19-05:00	harbor r28-case005-haiku-oracle-4 exit 0 after 996 s
+2026-11-16T18:42:19-05:00	done r28-case005-haiku-oracle-4 turns 49 cost_usd_est 1.0249112599999997 reward {"reward": 0.9822784810126582, "tests_passed": 388, "tests_total": 395, "tests_failed": 7, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T18:42:19-05:00	usage five_hour 0.76 (resets 2026-11-16T23:00:00-05:00) seven_day 0.07 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T18:44:19-05:00	run r28-case005-haiku-markdown-5 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-markdown
+2026-11-16T18:55:59-05:00	harbor r28-case005-haiku-markdown-5 exit 0 after 700 s
+2026-11-16T18:55:59-05:00	done r28-case005-haiku-markdown-5 turns 27 cost_usd_est 0.41105005 reward {"reward": 0.9721518987341772, "tests_passed": 384, "tests_total": 395, "tests_failed": 11, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T18:55:59-05:00	usage five_hour 0.89 (resets 2026-11-16T23:00:00-05:00) seven_day 0.08 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T18:57:59-05:00	run r28-case005-haiku-compiler-5 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-compiler
+2026-11-16T19:14:01-05:00	harbor r28-case005-haiku-compiler-5 exit 0 after 962 s
+2026-11-16T19:14:02-05:00	done r28-case005-haiku-compiler-5 turns 52 cost_usd_est 0.5075246600000001 reward {"reward": 0.9620253164556962, "tests_passed": 380, "tests_total": 395, "tests_failed": 15, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T19:14:02-05:00	usage five_hour 0.97 (resets 2026-11-16T23:00:00-05:00) seven_day 0.09 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T19:14:02-05:00	limit usage near the limit; pausing new runs until 2026-11-16T23:00:00-05:00 + 5 min
+2026-11-16T23:07:03-05:00	run r28-case005-haiku-oracle-5 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-export-oracle
+2026-11-16T23:24:43-05:00	harbor r28-case005-haiku-oracle-5 exit 0 after 1060 s
+2026-11-16T23:24:43-05:00	done r28-case005-haiku-oracle-5 turns 58 cost_usd_est 1.0256973499999997 reward {"reward": 0.9696202531645569, "tests_passed": 383, "tests_total": 395, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T23:24:43-05:00	usage five_hour 0.35 (resets 2026-11-17T04:00:00-05:00) seven_day 0.13 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T23:26:43-05:00	run r28-case005-haiku-review-5 attempt 1 model anthropic/claude-haiku-5-5 task case005-r28-review-list
+2026-11-16T23:38:07-05:00	harbor r28-case005-haiku-review-5 exit 0 after 684 s
+2026-11-16T23:38:07-05:00	done r28-case005-haiku-review-5 turns 28 cost_usd_est 0.4540015399999999 reward {"reward": 0.9696202531645569, "tests_passed": 383, "tests_total": 395, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T23:38:07-05:00	usage five_hour 0.48 (resets 2026-11-17T04:00:00-05:00) seven_day 0.14 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T23:40:07-05:00	end no pending or limited row left

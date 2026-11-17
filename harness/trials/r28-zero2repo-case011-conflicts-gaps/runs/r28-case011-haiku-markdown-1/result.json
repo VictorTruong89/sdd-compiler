@@ -1,0 +1,134 @@
+{
+    "id": "701346c2-a7fe-456e-9b6e-7150d6c1b491",
+    "task_name": "sdd-compiler/zero2repo-case011-markdown",
+    "trial_name": "case011-r28-markdown__7opYkLR",
+    "trial_uri": "file:///home/victor/Workspace/sdd-compiler/harness/trials/r28-zero2repo-case011-conflicts-gaps/work/jobs/r28-zero2repo-case011-conflicts-gaps-r28-case011-haiku-markdown-1/case011-r28-markdown__7opYkLR",
+    "task_id": {
+        "path": "/home/victor/Workspace/sdd-compiler/harness/trials/r28-zero2repo-case011-conflicts-gaps/work/tasks/case011-r28-markdown"
+    },
+    "source": null,
+    "task_checksum": "e44f24d797c16653d62abe2447ea47922abf6afc618e6267674336d399013b87",
+    "config": {
+        "task": {
+            "path": "/home/victor/Workspace/sdd-compiler/harness/trials/r28-zero2repo-case011-conflicts-gaps/work/tasks/case011-r28-markdown",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "case011-r28-markdown__7opYkLR",
+        "trials_dir": "jobs/r28-zero2repo-case011-conflicts-gaps-r28-case011-haiku-markdown-1",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "claude-code",
+            "import_path": null,
+            "model_name": "anthropic/claude-haiku-5-5",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.1.316",
+                "disallowed_tools": "Task,CronCreate,CronDelete,CronList,DesignSync,EnterWorktree,ExitWorktree,ListAgents,NotebookEdit,RemoteTrigger,ReportFindings,ScheduleWakeup,SendMessage,Skill,TaskStop,ToolSearch,WebFetch,WebSearch,Workflow"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "a2b6124d-e721-4d3b-9379-1d76399b6ee9",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "claude-code",
+        "version": "2.1.316",
+        "model_info": {
+            "name": "claude-haiku-5-5",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 3410636,
+        "n_cache_tokens": 3240094,
+        "n_output_tokens": 149477,
+        "cost_usd": 0.4801694,
+        "model_usage": {
+            "claude-haiku-5-5": {
+                "n_input_tokens": 3410636,
+                "n_cache_tokens": 3240094,
+                "n_output_tokens": 149477,
+                "cost_usd": 0.42111215
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.9844236760124611,
+            "tests_passed": 316,
+            "tests_total": 321,
+            "tests_failed": 5,
+            "tests_error": 0,
+            "official_reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-12T03:06:06.063524Z",
+    "finished_at": "2026-11-12T03:17:20.397496Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T03:06:06.084707Z",
+        "finished_at": "2026-11-12T03:06:08.977011Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T03:06:08.977067Z",
+        "finished_at": "2026-11-12T03:06:50.497258Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T03:06:50.497382Z",
+        "finished_at": "2026-11-12T03:17:06.536873Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-12T03:17:08.118213Z",
+        "finished_at": "2026-11-12T03:17:09.852514Z"
+    },
+    "step_results": null
+}

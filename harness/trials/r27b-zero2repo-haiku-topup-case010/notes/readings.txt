@@ -1,0 +1,11 @@
+# run | named conflicts | remarks
+# Round 27b case010, reader 1 (Claude Code, model Claude Opus 5.5), the strict rule of rounds 17-21 (both sides' content stated). Read 2026-11-17.
+# Answer key: round 19's (15 conflicts). Compiler export flags 9 of 15; unflagged C04 C05 C08 C13 C14 C17; C18 flagged with the wrong rationale (CF-000054, emoticons), as in rounds 19 and 27.
+haiku-markdown-4 | C01 C04 C05 C08 C11 C13 C15 C16 C17 | 11 entries; #11 (C22) states only the closing-quote side, "a literal reading, not a resolved conflict": not named; C03 C09 C14 C18 C21 absent
+haiku-markdown-5 | C01 C05 C09 C11 C15 C16 C17 | 7 entries; C03 C04 C08 C13 C14 C18 C21 C22 absent
+haiku-compiler-4 | C01 C03 C04 C05 C09 C11 C13 C15 C16 C17 C18 C21 C22 | 9 flagged rows; CF-000054 as emoticons, but C18 named in the unflagged list ("case preservation off (it is on by default)" vs lowercasing by default); unflagged C13 C04 C17 C05 named; C08 C14 absent
+haiku-compiler-5 | C01 C03 C05 C09 C11 C13 C14 C15 C16 C17 C21 C22 | 13 CFs covered; C18 as emoticons only (side A never stated); C14 (#11) and C13 C05 C17 named as unflagged; C04 C08 absent
+haiku-oracle-4 | C01 C03 C04 C05 C08 C09 C11 C13 C14 C15 C16 C17 C21 C22 | 19-CF table; C18 only as CF-000054 emoticons
+haiku-oracle-5 | C01 C03 C04 C05 C08 C09 C11 C13 C14 C15 C16 C17 C21 C22 | 15 CF entries; C18 only as emoticons (#6)
+haiku-review-4 | C01 C03 C04 C05 C08 C09 C11 C13 C14 C15 C16 C17 C18 | 15 review entries; C22 under "Other choices (not conflicts)" with side B only ("override of the Penn rule"): not named; C21 absent
+haiku-review-5 | C01 C03 C04 C05 C08 C09 C11 C13 C14 C15 C16 C17 C18 | 15 review entries; C21 both forms stated under "Choices where the spec is silent", as two tokenizers, not as a disagreement: borderline, not named; C22 absent

@@ -1,0 +1,16 @@
+# run | named conflicts | remarks
+# Round 27, reader 1 (Claude Code, model Claude Opus 5.5), the strict rule of rounds 17-21 (both sides' content stated). Read 2026-11-11.
+# Compiler export flags: case006 15 of 24 (14 found + C10 through CF-000151, its side B against the original PRD sentence carrying side A; round 21's C13 rule); unflagged C01 C03 C06 C12 C18 C20 C23 C25 C29.
+# case010 9 of 15 (C01 C03 C09 C11 C15 C16 C18 C21 C22); unflagged C04 C05 C08 C13 C14 C17. C18 is flagged with the wrong rationale (CF-000054: lowercasing vs emoticons), as in round 19.
+sonnet-case010-1 | C01 C03 C04 C08 C09 C11 C13 C15 C16 C17 C21 C22 | 9 flagged entries; C18 (CF-000054) restated as emoticon case, "not a real clash", side A (preservation on by default) never stated; C21 C22 restated with both sides, resolved as different tokenizers; C17 named inside the CF-000073 entry; unflagged C08 C04 C13 named as "Unlisted"; C05 C14 absent
+sonnet-case010-2 | C01 C03 C04 C05 C08 C09 C11 C13 C15 C16 C17 C21 C22 | rule "Interface Contract more authoritative"; C18 as emoticon exception only; unflagged C17 C04 C05 C13 C08 named; C14 absent
+sonnet-case010-3 | C01 C03 C04 C05 C08 C09 C11 C13 C15 C16 C17 C21 C22 | as run 2; C18 emoticon only; C14 absent
+haiku-case010-1 | C01 C03 C05 C08 C09 C11 C13 C15 C16 C17 C21 C22 | rule "Contract signatures and refusals, PRD defaults"; C18 (#6) emoticon only; unflagged C17 C05 C13 C08 named (#10-13); C04 C14 absent
+haiku-case010-2 | C01 C03 C04 C05 C09 C11 C14 C15 C16 C17 C18 C21 C22 | C18 named twice: #6 (flag, emoticon) and #14 "case preservation is on by default" vs "lowercased unless the caller asks"; unflagged C14 C04 C05 C17 named; C08 C13 absent
+haiku-case010-3 | C01 C03 C05 C09 C11 C13 C15 C16 C17 C18 C21 C22 | C18 named inside CF-000054: "(it is on by default)" vs N-000067 "lowercases unless the caller asks"; unflagged C17 C05 C13 named; C04 C08 C14 absent; C11 built joined (named)
+sonnet-case006-1 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C18 C20 C21 C22 C23 C25 C26 C27 C29 | 24 numbered entries with no CF ids, every one with both sides; C12 and C13 together in #14; C18 #23 "FP-08 re-asks; FP-13 not asked again"
+sonnet-case006-2 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C20 C21 C22 C23 C25 C26 C27 C29 | table of the 15 flagged with both sides; 8 unflagged in "Disagreements the export did not list"; C18 absent
+sonnet-case006-3 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C20 C21 C22 C23 C25 C26 C27 C29 | 15 flagged with both sides; 8 unflagged ("Unflagged disagreements"), C29 as Contract enum case vs signature case_sensitive=True; C18 absent
+haiku-case006-1 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C20 C21 C22 C23 C26 C27 C29 | 15 flagged, each side quoted with N-ids; 7 unflagged in section B; C06 "reconciled, not really in conflict" but both sides stated; C18 C25 absent
+haiku-case006-2 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C20 C21 C22 C23 C26 C27 C29 | 15 flagged with both sides; 7 unflagged (#16-22); C18 C25 absent
+haiku-case006-3 | C01 C02 C03 C04 C05 C07 C08 C09 C10 C12 C13 C14 C15 C17 C20 C21 C22 C26 C27 C29 | 15 flagged with both sides; 5 unflagged (#16-20) plus a prompting entry that is no planted item; C06 C18 C23 C25 absent

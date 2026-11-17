@@ -1,0 +1,4832 @@
+{
+ "r28-case011-haiku-compiler-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.6995887900000002,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": false,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 314,
+  "total": 321,
+  "turns": 44
+ },
+ "r28-case011-haiku-compiler-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.8322273099999999,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": false,
+   "C22": true,
+   "C24": false,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 315,
+  "total": 321,
+  "turns": 83
+ },
+ "r28-case011-haiku-compiler-3": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.7925558400000001,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": true
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 317,
+  "total": 321,
+  "turns": 47
+ },
+ "r28-case011-haiku-compiler-4": {
+  "built": {
+   "C02": "alternative",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.64115006,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F07_acceptance.py::test_reverse_and_join_named_oracles"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "B",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 315,
+  "total": 321,
+  "turns": 58
+ },
+ "r28-case011-haiku-compiler-5": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.7684038500000002,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 314,
+  "total": 321,
+  "turns": 45
+ },
+ "r28-case011-haiku-markdown-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.4801694,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": true
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 316,
+  "total": 321,
+  "turns": 32
+ },
+ "r28-case011-haiku-markdown-2": {
+  "built": {
+   "C02": "alternative",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.36776914999999993,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F07_acceptance.py::test_reverse_and_join_named_oracles"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "B",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 315,
+  "total": 321,
+  "turns": 35
+ },
+ "r28-case011-haiku-markdown-3": {
+  "built": {
+   "C02": "alternative",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.35236245,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F07_acceptance.py::test_reverse_and_join_named_oracles"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": false,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "B",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 316,
+  "total": 321,
+  "turns": 27
+ },
+ "r28-case011-haiku-markdown-4": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "alternative",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.554861,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C12": [
+    "F05_acceptance.py::test_compile_then_search_multiselect_list",
+    "F05_acceptance.py::test_multiselect_list_on_null_current_value_is_null",
+    "F05_acceptance.py::test_runtime_multiselect_list_and_null_current"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": false,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": true,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "B",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 314,
+  "total": 321,
+  "turns": 47
+ },
+ "r28-case011-haiku-markdown-5": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "alternative",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 267,
+  "core_total": 271,
+  "cost": 0.57318447,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F07_acceptance.py::test_reverse_and_join_named_oracles"
+   ],
+   "C12": [
+    "F05_acceptance.py::test_compile_then_search_multiselect_list",
+    "F05_acceptance.py::test_multiselect_list_on_null_current_value_is_null",
+    "F05_acceptance.py::test_runtime_multiselect_list_and_null_current"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": true
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "B",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 309,
+  "total": 321,
+  "turns": 42
+ },
+ "r28-case011-haiku-oracle-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.7990206899999999,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": false,
+   "G69": true
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 316,
+  "total": 321,
+  "turns": 61
+ },
+ "r28-case011-haiku-oracle-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "alternative",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.9015470200000004,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G29": [
+    "F08_acceptance.py::test_compile_then_search_merge_is_host_ordinary_mapping",
+    "F08_acceptance.py::test_merge_ignores_supplied_mapping_type"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "B",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 313,
+  "total": 321,
+  "turns": 54
+ },
+ "r28-case011-haiku-oracle-3": {
+  "built": {
+   "C02": "alternative",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 267,
+  "core_total": 271,
+  "cost": 0.6888726000000002,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F07_acceptance.py::test_reverse_and_join_named_oracles"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "B",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 311,
+  "total": 321,
+  "turns": 48
+ },
+ "r28-case011-haiku-oracle-4": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.6572146600000003,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": false,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "A",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 318,
+  "total": 321,
+  "turns": 65
+ },
+ "r28-case011-haiku-oracle-5": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "alternative",
+   "G28": "upstream",
+   "G29": "alternative",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.8166634700000001,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G27": [
+    "F07_acceptance.py::test_compile_path_function_failures",
+    "F07_acceptance.py::test_host_non_json_current_value_and_to_string_conversion"
+   ],
+   "G29": [
+    "F08_acceptance.py::test_compile_then_search_merge_is_host_ordinary_mapping",
+    "F08_acceptance.py::test_merge_ignores_supplied_mapping_type"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "B",
+   "G28": "A",
+   "G29": "B",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 311,
+  "total": 321,
+  "turns": 67
+ },
+ "r28-case011-haiku-review-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.4710675599999999,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 316,
+  "total": 321,
+  "turns": 32
+ },
+ "r28-case011-haiku-review-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.35310985,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 317,
+  "total": 321,
+  "turns": 30
+ },
+ "r28-case011-haiku-review-3": {
+  "built": {
+   "C02": "alternative",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "other",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "alternative",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 267,
+  "core_total": 271,
+  "cost": 0.42880007,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C02": [
+    "F07_acceptance.py::test_reverse_and_join_named_oracles"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G27": [
+    "F07_acceptance.py::test_compile_path_function_failures",
+    "F07_acceptance.py::test_host_non_json_current_value_and_to_string_conversion"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ],
+   "G54": [
+    "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+    "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "B",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "error: InvalidTypeError: value has no JSON form",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "B",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 307,
+  "total": 321,
+  "turns": 23
+ },
+ "r28-case011-haiku-review-4": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 215,
+  "core_total": 271,
+  "cost": 0.4986409500000001,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "C24": [
+    "F01_acceptance.py::test_illformed_search_is_value_error_not_successful_null[lone-equals]"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G27": [
+    "F07_acceptance.py::test_compile_path_function_failures"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 257,
+  "total": 321,
+  "turns": 39
+ },
+ "r28-case011-haiku-review-5": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "alternative",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.4774955,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C12": [
+    "F05_acceptance.py::test_compile_then_search_multiselect_list",
+    "F05_acceptance.py::test_multiselect_list_on_null_current_value_is_null",
+    "F05_acceptance.py::test_runtime_multiselect_list_and_null_current"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": true,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "B",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 313,
+  "total": 321,
+  "turns": 42
+ },
+ "r28-case011-sonnet-compiler-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "alternative",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "alternative",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.5982788,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C24": [
+    "F01_acceptance.py::test_illformed_search_is_value_error_not_successful_null[lone-equals]"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ],
+   "G29": [
+    "F08_acceptance.py::test_compile_then_search_merge_is_host_ordinary_mapping",
+    "F08_acceptance.py::test_merge_ignores_supplied_mapping_type"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": false,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": false,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "A",
+   "C20": "A",
+   "C22": "A",
+   "C24": "B",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "B",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 317,
+  "total": 321,
+  "turns": 11
+ },
+ "r28-case011-sonnet-compiler-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.5894370000000001,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "A",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 320,
+  "total": 321,
+  "turns": 11
+ },
+ "r28-case011-sonnet-compiler-3": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.5982668000000001,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": true,
+   "G28": false,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 317,
+  "total": 321,
+  "turns": 11
+ },
+ "r28-case011-sonnet-markdown-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 269,
+  "core_total": 271,
+  "cost": 0.5583357999999999,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C05": [
+    "F07_acceptance.py::test_not_null_first_non_null_empty_list_is_not_null"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": false,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": false,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": false,
+   "G29": true,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 314,
+  "total": 321,
+  "turns": 12
+ },
+ "r28-case011-sonnet-markdown-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.4513832,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": false,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": false,
+   "C19": false,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": false,
+   "G27": false,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 316,
+  "total": 321,
+  "turns": 6
+ },
+ "r28-case011-sonnet-markdown-3": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "alternative",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 215,
+  "core_total": 271,
+  "cost": 0.4857006,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "C24": [
+    "F01_acceptance.py::test_illformed_search_is_value_error_not_successful_null[lone-equals]"
+   ],
+   "G27": [
+    "F07_acceptance.py::test_compile_path_function_failures"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": false,
+   "C08": false,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": false,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": false,
+   "G27": true,
+   "G28": false,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "B",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 258,
+  "total": 321,
+  "turns": 8
+ },
+ "r28-case011-sonnet-oracle-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.5404078,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "A",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 319,
+  "total": 321,
+  "turns": 13
+ },
+ "r28-case011-sonnet-oracle-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.5005014,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": true,
+   "G27": false,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 317,
+  "total": 321,
+  "turns": 10
+ },
+ "r28-case011-sonnet-oracle-3": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "upstream",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.6004028,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": true,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "A",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 320,
+  "total": 321,
+  "turns": 12
+ },
+ "r28-case011-sonnet-review-1": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "other",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 269,
+  "core_total": 271,
+  "cost": 0.4445519,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C05": [
+    "F07_acceptance.py::test_not_null_first_non_null_empty_list_is_not_null"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ],
+   "G27": [
+    "F07_acceptance.py::test_compile_path_function_failures",
+    "F07_acceptance.py::test_host_non_json_current_value_and_to_string_conversion"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": false,
+   "G27": true,
+   "G28": false,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": true,
+   "G60": true,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "error: InvalidTypeError: value is not a JSON type",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 311,
+  "total": 321,
+  "turns": 7
+ },
+ "r28-case011-sonnet-review-2": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "upstream",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 269,
+  "core_total": 271,
+  "cost": 0.47738569999999997,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C05": [
+    "F07_acceptance.py::test_not_null_first_non_null_empty_list_is_not_null"
+   ],
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G25": [
+    "F05_acceptance.py::test_raw_string_quote_and_backslash"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": true,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": true,
+   "G25": true,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": false,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "A",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 314,
+  "total": 321,
+  "turns": 7
+ },
+ "r28-case011-sonnet-review-3": {
+  "built": {
+   "C02": "upstream",
+   "C05": "upstream",
+   "C08": "upstream",
+   "C12": "upstream",
+   "C14": "upstream",
+   "C15": "upstream",
+   "C17": "upstream",
+   "C19": "alternative",
+   "C20": "upstream",
+   "C22": "upstream",
+   "C24": "upstream",
+   "C26": "upstream",
+   "G03": "upstream",
+   "G22": "upstream",
+   "G25": "upstream",
+   "G27": "upstream",
+   "G28": "alternative",
+   "G29": "upstream",
+   "G34": "upstream",
+   "G35": "upstream",
+   "G54": "upstream",
+   "G60": "upstream",
+   "G61": "upstream",
+   "G69": "upstream"
+  },
+  "core": 271,
+  "core_total": 271,
+  "cost": 0.5051583000000001,
+  "exposure": {
+   "C02": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C12": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C19": {
+    "A": true,
+    "B": true
+   },
+   "C20": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   },
+   "C24": {
+    "A": true,
+    "B": true
+   },
+   "C26": {
+    "A": true,
+    "B": true
+   }
+  },
+  "footprint_failed": {
+   "C19": [
+    "F05_acceptance.py::test_compile_then_search_raw_string",
+    "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+    "F05_acceptance.py::test_runtime_raw_string"
+   ],
+   "G28": [
+    "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+   ]
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C02": true,
+   "C05": true,
+   "C08": true,
+   "C12": true,
+   "C14": true,
+   "C15": true,
+   "C17": true,
+   "C19": false,
+   "C20": true,
+   "C22": true,
+   "C24": true,
+   "C26": true,
+   "G03": true,
+   "G22": false,
+   "G25": false,
+   "G27": true,
+   "G28": true,
+   "G29": false,
+   "G34": false,
+   "G35": false,
+   "G54": false,
+   "G60": true,
+   "G61": false,
+   "G69": false
+  },
+  "probe_evidence": {
+   "C02": "A",
+   "C05": "A",
+   "C08": "A",
+   "C12": "A",
+   "C14": "A",
+   "C15": "A",
+   "C17": "A",
+   "C19": "B",
+   "C20": "A",
+   "C22": "A",
+   "C24": "A",
+   "C26": "A",
+   "G03": "A",
+   "G22": "A",
+   "G25": "A",
+   "G27": "A",
+   "G28": "B",
+   "G29": "A",
+   "G34": "A",
+   "G35": "A",
+   "G54": "A",
+   "G60": "A",
+   "G61": "A",
+   "G69": "A"
+  },
+  "tests": 317,
+  "total": 321,
+  "turns": 7
+ }
+}

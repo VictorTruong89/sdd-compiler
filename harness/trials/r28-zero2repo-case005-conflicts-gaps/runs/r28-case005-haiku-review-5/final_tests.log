@@ -1,0 +1,1041 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.1, pluggy-1.7.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 395 items
+
+../tests/final/tests/F01_acceptance.py ................................. [  8%]
+..................................................FF                     [ 21%]
+../tests/final/tests/F02_acceptance.py ................................. [ 29%]
+.......................                                                  [ 35%]
+../tests/final/tests/F03_acceptance.py ................................. [ 44%]
+............................                                             [ 51%]
+../tests/final/tests/F04_acceptance.py ................................. [ 59%]
+..........................                                               [ 66%]
+../tests/final/tests/F05_acceptance.py ................................. [ 74%]
+............                                                             [ 77%]
+../tests/final/tests/F06_acceptance.py .....F........F..............FFF  [ 85%]
+../tests/final/tests/F07_acceptance.py ...............FFF........F...... [ 93%]
+....F...................                                                 [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_set_cookie_byte_1_kept __________________________
+
+    def test_set_cookie_byte_1_kept():
+        value = b"a=\x01"
+>       ev = require_event(
+            request_result(
+                headers=[("Host", "example.com"), ("Set-Cookie", value)],
+            )
+        )
+
+/tests/final/tests/F01_acceptance.py:1269: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F01_helpers.py:152: in require_event
+    value = require_value(result)
+            ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=LocalProtocolError('header value contains a forbidden control byte'), exc_info=(<clas...share', 'XDG_STATE_HOME': '/tmp/harness-home-6uykxv7q/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_value(result: CallResult) -> Any:
+        """Return the value of a call that returned.
+    
+        Raises:
+            HarnessError: if an exception was captured — never returns
+                ``None`` to mean "the call failed". A successful return of
+                ``None`` is a real ``None`` value and is returned as such.
+        """
+        if result.exception is not None:
+>           raise HarnessError(
+                "call raised "
+                f"{type(result.exception).__name__}: {result.exception!r}; "
+                "there is no return value to observe"
+            )
+E           _harness.HarnessError: call raised LocalProtocolError: LocalProtocolError('header value contains a forbidden control byte'); there is no return value to observe
+
+/tests/final/tests/_harness.py:607: HarnessError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='Request' cwd='/tmp/harness-ws-_rzz00wx'
+[harness] call_done exception=LocalProtocolError value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['headers', 'method', 'target'] exc=LocalProtocolError
+_____________________ test_header_value_bytes_1_2_127_kept _____________________
+
+    def test_header_value_bytes_1_2_127_kept():
+        name = "X-" + runtime_token()[:6]
+        value = bytes([1, 2, 127])
+>       ev = require_event(
+            request_result(headers=[("Host", "example.com"), (name, value)])
+        )
+
+/tests/final/tests/F01_acceptance.py:1281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F01_helpers.py:152: in require_event
+    value = require_value(result)
+            ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=LocalProtocolError('header value contains a forbidden control byte'), exc_info=(<clas...share', 'XDG_STATE_HOME': '/tmp/harness-home-jrbg9rny/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_value(result: CallResult) -> Any:
+        """Return the value of a call that returned.
+    
+        Raises:
+            HarnessError: if an exception was captured — never returns
+                ``None`` to mean "the call failed". A successful return of
+                ``None`` is a real ``None`` value and is returned as such.
+        """
+        if result.exception is not None:
+>           raise HarnessError(
+                "call raised "
+                f"{type(result.exception).__name__}: {result.exception!r}; "
+                "there is no return value to observe"
+            )
+E           _harness.HarnessError: call raised LocalProtocolError: LocalProtocolError('header value contains a forbidden control byte'); there is no return value to observe
+
+/tests/final/tests/_harness.py:607: HarnessError
+----------------------------- Captured stdout call -----------------------------
+runtime_token='t18e8bb3196413850'
+[harness] call fn='Request' cwd='/tmp/harness-ws-2m1xwdb2'
+[harness] call_done exception=LocalProtocolError value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['headers', 'method', 'target'] exc=LocalProtocolError
+_________________ test_idle_already_closed_send_is_idempotent __________________
+
+    def test_idle_already_closed_send_is_idempotent():
+        client = client_connection()
+        send_connection_closed(client)
+        require_our_state(client, "CLOSED")
+>       again = send_connection_closed(client)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F06_acceptance.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F06_helpers.py:49: in send_connection_closed
+    require_no_extra_bytes(result)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=LocalProtocolError('cannot send connection-closed in state CLOSED'), exc_info=(<class...share', 'XDG_STATE_HOME': '/tmp/harness-home-jlssklwh/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_no_extra_bytes(result: CallResult) -> bytes:
+        """Require send succeeded and produced no extra payload.
+    
+        ``None`` and a zero-length buffer both mean no bytes. An exception
+        is never classified as "no bytes".
+        """
+        if result.exception is not None:
+>           raise HarnessError(
+                "send raised "
+                f"{type(result.exception).__name__}: {result.exception!r}; "
+                "cannot treat a failure as no extra bytes"
+            )
+E           _harness.HarnessError: send raised LocalProtocolError: LocalProtocolError('cannot send connection-closed in state CLOSED'); cannot treat a failure as no extra bytes
+
+/tests/final/tests/F02_helpers.py:194: HarnessError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='Connection' cwd='/tmp/harness-ws-y1xko78e'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-kuv07r8x'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-a24umm16'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_no_extra_bytes empty
+send_connection_closed no bytes
+connection_side_states our=CLOSED their=MUST_CLOSE
+named_state CLOSED=CLOSED
+require_our_state CLOSED ok
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-3b38gjvh'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-9dh19_r3'
+[harness] call_done exception=LocalProtocolError value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=LocalProtocolError value_type=None
+___________ test_connection_closed_when_already_closed_is_idempotent ___________
+
+    def test_connection_closed_when_already_closed_is_idempotent():
+        client, server, _resp = complete_empty_http11_cycle(host="a", target="/")
+        require_both_done(client)
+        send_connection_closed(client)
+        require_our_state(client, "CLOSED")
+>       again = send_connection_closed(client)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F06_acceptance.py:403: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F06_helpers.py:49: in send_connection_closed
+    require_no_extra_bytes(result)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=LocalProtocolError('cannot send connection-closed in state CLOSED'), exc_info=(<class...share', 'XDG_STATE_HOME': '/tmp/harness-home-bjvbwcxe/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_no_extra_bytes(result: CallResult) -> bytes:
+        """Require send succeeded and produced no extra payload.
+    
+        ``None`` and a zero-length buffer both mean no bytes. An exception
+        is never classified as "no bytes".
+        """
+        if result.exception is not None:
+>           raise HarnessError(
+                "send raised "
+                f"{type(result.exception).__name__}: {result.exception!r}; "
+                "cannot treat a failure as no extra bytes"
+            )
+E           _harness.HarnessError: send raised LocalProtocolError: LocalProtocolError('cannot send connection-closed in state CLOSED'); cannot treat a failure as no extra bytes
+
+/tests/final/tests/F02_helpers.py:194: HarnessError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='Connection' cwd='/tmp/harness-ws-yv_dsvw0'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+[harness] call fn='Request' cwd='/tmp/harness-ws-hoe4pqbx'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['target', 'headers', 'method'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-0n8t7o4u'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=27
+[harness] call fn='EndOfMessage' cwd='/tmp/harness-ws-gogmc9_l'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='end-of-message' fields=[] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-ujouxxy3'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+send_completed_eom len=0
+client_sent_named_get host='a' target='/' len=27
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-yjvc7_az'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-6wxqc9zi'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=27 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-d75qbvex'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Request
+need_data_token=NEED_DATA
+require_pulled_event type=Request
+pull_kind request type=Request
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-v76qs9jr'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=EndOfMessage
+need_data_token=NEED_DATA
+require_pulled_event type=EndOfMessage
+pull_kind end-of-message type=EndOfMessage
+[harness] call fn='Response' cwd='/tmp/harness-ws-y4o8t7f0'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='response' fields=['status_code', 'headers'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-0g_b9ngn'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=45
+[harness] call fn='EndOfMessage' cwd='/tmp/harness-ws-mp3wj2s0'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='end-of-message' fields=[] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-lq0q9qpq'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+send_completed_eom len=5
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-37_lmxr1'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=50 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-sfe6fc0f'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Response
+need_data_token=NEED_DATA
+require_pulled_event type=Response
+pull_kind response type=Response
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-mwnp5myr'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=EndOfMessage
+need_data_token=NEED_DATA
+require_pulled_event type=EndOfMessage
+pull_kind end-of-message type=EndOfMessage
+pull_response_then_eom response=Response eom=EndOfMessage
+connection_side_states our=DONE their=DONE
+named_state DONE=DONE
+require_both_done ok
+connection_side_states our=DONE their=DONE
+named_state DONE=DONE
+require_both_done ok
+complete_empty_http11_cycle host='a' target='/'
+connection_side_states our=DONE their=DONE
+named_state DONE=DONE
+require_both_done ok
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-35pt6xr5'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-zkaniuwz'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_no_extra_bytes empty
+send_connection_closed no bytes
+connection_side_states our=CLOSED their=MUST_CLOSE
+named_state CLOSED=CLOSED
+require_our_state CLOSED ok
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-b1he0sty'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-kjpgs5xl'
+[harness] call_done exception=LocalProtocolError value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=LocalProtocolError value_type=None
+__________ test_complete_new_request_while_peer_must_close_is_remote ___________
+
+    def test_complete_new_request_while_peer_must_close_is_remote():
+        empty_peer = server_connection()
+        send_connection_closed(empty_peer)
+        require_client_server_states(empty_peer, "MUST_CLOSE", "CLOSED")
+        feed_empty(empty_peer)
+        pull_connection_closed(empty_peer)
+        print("MUST_CLOSE empty-feed neighbor is connection-closed", flush=True)
+    
+        server = server_connection()
+        send_connection_closed(server)
+        require_client_server_states(server, "MUST_CLOSE", "CLOSED")
+        raw = complete_new_get_bytes(host="a", target="/")
+        feed_ok(server, raw)
+        result = pull_next(server)
+>       require_remote_refusal(result)
+
+/tests/final/tests/F06_acceptance.py:879: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_helpers.py:264: in require_remote_refusal
+    exc = require_exception(result)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=PAUSED, exception=None, exc_info=None, stdout=b'', stderr=b'', cwd='/tmp/harness-ws-4b2x_t_7', enviro...share', 'XDG_STATE_HOME': '/tmp/harness-home-o7vouzsr/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_exception(result: CallResult) -> BaseException:
+        """Return the exception captured from a call.
+    
+        Raises:
+            HarnessError: if the callable returned — never returns ``None``
+                to mean "no exception".
+        """
+        if result.exception is None:
+>           raise HarnessError(
+                "call returned a value; there is no exception to observe "
+                f"(value type={type(result.value)!r})"
+            )
+E           _harness.HarnessError: call returned a value; there is no exception to observe (value type=<class 'httpwire._sentinels._Sentinel'>)
+
+/tests/final/tests/_harness.py:623: HarnessError
+----------------------------- Captured stdout call -----------------------------
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-pmte3inz'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-gn84b_ah'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-xvph8t2r'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_no_extra_bytes empty
+send_connection_closed no bytes
+connection_side_states our=CLOSED their=MUST_CLOSE
+client_role=CLIENT
+server_role=SERVER
+connection_pair_states client=MUST_CLOSE server=CLOSED
+named_state MUST_CLOSE=MUST_CLOSE
+named_state CLOSED=CLOSED
+require_client_server_states client=MUST_CLOSE server=CLOSED
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-flojo546'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=0 exc=None
+feed_empty ok
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-p7a1agzm'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=ConnectionClosed
+need_data_token=NEED_DATA
+require_pulled_event type=ConnectionClosed
+require_connection_closed_event type=ConnectionClosed
+MUST_CLOSE empty-feed neighbor is connection-closed
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-3ssiqa8s'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-33ae7tpe'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-0got2_6o'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_no_extra_bytes empty
+send_connection_closed no bytes
+connection_side_states our=CLOSED their=MUST_CLOSE
+client_role=CLIENT
+server_role=SERVER
+connection_pair_states client=MUST_CLOSE server=CLOSED
+named_state MUST_CLOSE=MUST_CLOSE
+named_state CLOSED=CLOSED
+require_client_server_states client=MUST_CLOSE server=CLOSED
+complete_new_get_bytes host='a' target='/' len=27
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-etqm7x57'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=27 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-4b2x_t_7'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=_Sentinel
+________ test_runtime_complete_request_while_peer_must_close_is_remote _________
+
+    def test_runtime_complete_request_while_peer_must_close_is_remote():
+        host = runtime_host()
+        target = runtime_target()
+        server = server_connection()
+        send_connection_closed(server)
+        require_client_server_states(server, "MUST_CLOSE", "CLOSED")
+        raw = complete_new_get_bytes(host=host, target=target)
+        feed_ok(server, raw)
+        result = pull_next(server)
+>       require_remote_refusal(result)
+
+/tests/final/tests/F06_acceptance.py:898: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_helpers.py:264: in require_remote_refusal
+    exc = require_exception(result)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=PAUSED, exception=None, exc_info=None, stdout=b'', stderr=b'', cwd='/tmp/harness-ws-2b7ejj8t', enviro...share', 'XDG_STATE_HOME': '/tmp/harness-home-t9vn1tqz/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_exception(result: CallResult) -> BaseException:
+        """Return the exception captured from a call.
+    
+        Raises:
+            HarnessError: if the callable returned — never returns ``None``
+                to mean "no exception".
+        """
+        if result.exception is None:
+>           raise HarnessError(
+                "call returned a value; there is no exception to observe "
+                f"(value type={type(result.value)!r})"
+            )
+E           _harness.HarnessError: call returned a value; there is no exception to observe (value type=<class 'httpwire._sentinels._Sentinel'>)
+
+/tests/final/tests/_harness.py:623: HarnessError
+----------------------------- Captured stdout call -----------------------------
+runtime_token='t18e8bb320fc5c281'
+runtime_host='t18e8bb320fc5c281.test'
+runtime_token='t18e8bb320fc5f7bc'
+runtime_target='/t18e8bb3'
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-1syrn5de'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-745rq3l0'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-3drvinab'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_no_extra_bytes empty
+send_connection_closed no bytes
+connection_side_states our=CLOSED their=MUST_CLOSE
+client_role=CLIENT
+server_role=SERVER
+connection_pair_states client=MUST_CLOSE server=CLOSED
+named_state MUST_CLOSE=MUST_CLOSE
+named_state CLOSED=CLOSED
+require_client_server_states client=MUST_CLOSE server=CLOSED
+complete_new_get_bytes host='t18e8bb320fc5c281.test' target='/t18e8bb3' len=56
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-v5_d6aft'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=56 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-2b7ejj8t'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=_Sentinel
+_ test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request _
+
+    def test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request():
+        request_bytes = complete_new_get_bytes(host="a", target="/")
+    
+        remote_server = server_connection()
+        send_connection_closed(remote_server)
+        require_client_server_states(remote_server, "MUST_CLOSE", "CLOSED")
+        feed_ok(remote_server, request_bytes)
+        remote_pull = pull_next(remote_server)
+>       remote_exc = require_remote_refusal(remote_pull)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F06_acceptance.py:918: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_helpers.py:264: in require_remote_refusal
+    exc = require_exception(result)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=PAUSED, exception=None, exc_info=None, stdout=b'', stderr=b'', cwd='/tmp/harness-ws-bt3b7w1l', enviro...share', 'XDG_STATE_HOME': '/tmp/harness-home-8xeyljqe/.local/state', 'LC_ALL': 'C.UTF-8', 'TERM': 'dumb'}, warnings=())
+
+    def require_exception(result: CallResult) -> BaseException:
+        """Return the exception captured from a call.
+    
+        Raises:
+            HarnessError: if the callable returned — never returns ``None``
+                to mean "no exception".
+        """
+        if result.exception is None:
+>           raise HarnessError(
+                "call returned a value; there is no exception to observe "
+                f"(value type={type(result.value)!r})"
+            )
+E           _harness.HarnessError: call returned a value; there is no exception to observe (value type=<class 'httpwire._sentinels._Sentinel'>)
+
+/tests/final/tests/_harness.py:623: HarnessError
+----------------------------- Captured stdout call -----------------------------
+complete_new_get_bytes host='a' target='/' len=27
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-bolyejph'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='ConnectionClosed' cwd='/tmp/harness-ws-hh6taoxy'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='connection-closed' fields=[] exc=None
+make_connection_closed type=ConnectionClosed
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-i4rs1i1d'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_no_extra_bytes empty
+send_connection_closed no bytes
+connection_side_states our=CLOSED their=MUST_CLOSE
+client_role=CLIENT
+server_role=SERVER
+connection_pair_states client=MUST_CLOSE server=CLOSED
+named_state MUST_CLOSE=MUST_CLOSE
+named_state CLOSED=CLOSED
+require_client_server_states client=MUST_CLOSE server=CLOSED
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-hamn0sxg'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=27 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-bt3b7w1l'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=_Sentinel
+_________________ test_client_data_12345_clears_waiting_flags __________________
+
+    def test_client_data_12345_clears_waiting_flags():
+        client, server = _expect_pair_flags_on()
+        encoded = require_send_bytes(send_event(client, make_data(b"12345")))
+        _require_payload_in_send(encoded, b"12345")
+>       require_waiting_flags(client, client_waiting=False, they_waiting=False)
+
+/tests/final/tests/F07_acceptance.py:662: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+conn = <httpwire._connection.Connection object at 0x77193e9ace60>
+
+    def require_waiting_flags(
+        conn: Any, *, client_waiting: bool, they_waiting: bool
+    ) -> None:
+        """Require both waiting flags match. Unreadable flags raise."""
+        got_client = client_waiting_flag(conn)
+        got_they = they_are_waiting_flag(conn)
+        if got_client is not client_waiting or got_they is not they_waiting:
+>           raise AssertionError(
+                f"waiting flags client={got_client} they={got_they}, "
+                f"expected client={client_waiting} they={they_waiting}"
+            )
+E           AssertionError: waiting flags client=True they=False, expected client=False they=False
+
+/tests/final/tests/F07_helpers.py:174: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='Connection' cwd='/tmp/harness-ws-x0cjlc74'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-9f8k8jp5'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='Request' cwd='/tmp/harness-ws-_xngnuqk'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['headers', 'method', 'target'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-amjwcxde'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=80
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-cc2d8o0d'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=80 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-59v4ulf2'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Request
+need_data_token=NEED_DATA
+require_pulled_event type=Request
+pull_kind request type=Request
+waiting_reports checked: client-waiting true on both, they-waiting true only on server
+client_waiting_flag=True
+they_are_waiting_flag=False
+require_waiting_flags client=True they=False
+client_waiting_flag=True
+they_are_waiting_flag=True
+require_waiting_flags client=True they=True
+[harness] call fn='Data' cwd='/tmp/harness-ws-ejuareda'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='data' fields=['data'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-r5uv7qps'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=5
+payload_in_send payload_len=5 encoded_len=5
+client_waiting_flag=True
+they_are_waiting_flag=False
+____________________ test_runtime_data_clears_waiting_flags ____________________
+
+    def test_runtime_data_clears_waiting_flags():
+        client, server = _expect_pair_flags_on()
+        payload = _runtime_body(6)
+        assert payload != b"12345"
+        encoded = require_send_bytes(send_event(client, make_data(payload)))
+        _require_payload_in_send(encoded, payload)
+>       require_waiting_flags(client, client_waiting=False, they_waiting=False)
+
+/tests/final/tests/F07_acceptance.py:674: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+conn = <httpwire._connection.Connection object at 0x77193e9acc80>
+
+    def require_waiting_flags(
+        conn: Any, *, client_waiting: bool, they_waiting: bool
+    ) -> None:
+        """Require both waiting flags match. Unreadable flags raise."""
+        got_client = client_waiting_flag(conn)
+        got_they = they_are_waiting_flag(conn)
+        if got_client is not client_waiting or got_they is not they_waiting:
+>           raise AssertionError(
+                f"waiting flags client={got_client} they={got_they}, "
+                f"expected client={client_waiting} they={they_waiting}"
+            )
+E           AssertionError: waiting flags client=True they=False, expected client=False they=False
+
+/tests/final/tests/F07_helpers.py:174: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='Connection' cwd='/tmp/harness-ws-1yfiicip'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-oqqm5dsy'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='Request' cwd='/tmp/harness-ws-ek372aeh'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['headers', 'method', 'target'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-jb27z500'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=80
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-380p_7ol'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=80 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-zp735g2m'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Request
+need_data_token=NEED_DATA
+require_pulled_event type=Request
+pull_kind request type=Request
+waiting_reports checked: client-waiting true on both, they-waiting true only on server
+client_waiting_flag=True
+they_are_waiting_flag=False
+require_waiting_flags client=True they=False
+client_waiting_flag=True
+they_are_waiting_flag=True
+require_waiting_flags client=True they=True
+runtime_token='t18e8bb32166bf306'
+runtime_body n=6 b't18e8b'
+[harness] call fn='Data' cwd='/tmp/harness-ws-niryd25r'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='data' fields=['data'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-kswvg5is'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=6
+payload_in_send payload_len=6 encoded_len=6
+client_waiting_flag=True
+they_are_waiting_flag=False
+_______________ test_client_end_of_message_clears_waiting_flags ________________
+
+    def test_client_end_of_message_clears_waiting_flags():
+        """End-of-message on the chunked Expect request, with no data event first.
+    
+        Line 301 names that send as an independent clear. A Content-Length
+        walk cannot isolate it: satisfying the count requires a data
+        event, which already clears the flags. Do not stack
+        Transfer-Encoding with Content-Length.
+        """
+        client, server = _chunked_expect_pair_flags_on()
+        eom = require_send_bytes(send_event(client, make_eom()))
+        print(f"client EOM-anyway encoded len={len(eom)}", flush=True)
+>       require_waiting_flags(client, client_waiting=False, they_waiting=False)
+
+/tests/final/tests/F07_acceptance.py:691: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+conn = <httpwire._connection.Connection object at 0x77193e9ada90>
+
+    def require_waiting_flags(
+        conn: Any, *, client_waiting: bool, they_waiting: bool
+    ) -> None:
+        """Require both waiting flags match. Unreadable flags raise."""
+        got_client = client_waiting_flag(conn)
+        got_they = they_are_waiting_flag(conn)
+        if got_client is not client_waiting or got_they is not they_waiting:
+>           raise AssertionError(
+                f"waiting flags client={got_client} they={got_they}, "
+                f"expected client={client_waiting} they={they_waiting}"
+            )
+E           AssertionError: waiting flags client=True they=False, expected client=False they=False
+
+/tests/final/tests/F07_helpers.py:174: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='Connection' cwd='/tmp/harness-ws-yk1du9cm'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-0z9ghw_0'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='Request' cwd='/tmp/harness-ws-j0e5zuis'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['method', 'headers', 'target'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-v21j5ehs'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=88
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-5ovzeltw'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=88 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-h_zsnzqf'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Request
+need_data_token=NEED_DATA
+require_pulled_event type=Request
+pull_kind request type=Request
+waiting_reports checked: client-waiting true on both, they-waiting true only on server
+client_waiting_flag=True
+they_are_waiting_flag=False
+require_waiting_flags client=True they=False
+client_waiting_flag=True
+they_are_waiting_flag=True
+require_waiting_flags client=True they=True
+chunked Expect flags on before any body event
+[harness] call fn='EndOfMessage' cwd='/tmp/harness-ws-12rpb94k'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='end-of-message' fields=[] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-tap73efg'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=5
+client EOM-anyway encoded len=5
+client_waiting_flag=True
+they_are_waiting_flag=False
+___________________ test_runtime_connect_2xx_not_200_accepts ___________________
+
+    def test_runtime_connect_2xx_not_200_accepts():
+        status = runtime_2xx_except_200()
+        target = runtime_connect_target()
+        host = runtime_host()
+        print(f"runtime CONNECT accept status={status} target={target!r}", flush=True)
+        client = client_connection()
+        server = server_connection()
+        finish_proposing_request(
+            client,
+            server,
+            connect_request(target=target, host=host, content_length=1),
+            b"1",
+        )
+>       pulled = accept_connect(client, server, status)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F07_acceptance.py:934: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F07_helpers.py:608: in accept_connect
+    require_both_switched(client)
+/tests/final/tests/F07_helpers.py:234: in require_both_switched
+    require_our_state(conn, "SWITCHED_PROTOCOL")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+conn = <httpwire._connection.Connection object at 0x77193e9aef30>
+name = 'SWITCHED_PROTOCOL'
+
+    def require_our_state(conn: Any, name: str) -> Any:
+        """Require our-state equals the named package-root state."""
+        our, _their = connection_side_states(conn)
+        expected = named_state(name)
+        if our != expected:
+>           raise AssertionError(
+                f"our_state is {our!r}, expected named state {name}"
+            )
+E           AssertionError: our_state is DONE, expected named state SWITCHED_PROTOCOL
+
+/tests/final/tests/F03_helpers.py:81: AssertionError
+----------------------------- Captured stdout call -----------------------------
+runtime_int=788
+runtime_2xx_except_200=205
+runtime_token='t18e8bb321ffb36c6'
+runtime_connect_target='t18e8bb321ff.test:9443'
+runtime_token='t18e8bb321ffb4d36'
+runtime_host='t18e8bb321ffb4d36.test'
+runtime CONNECT accept status=205 target='t18e8bb321ff.test:9443'
+[harness] call fn='Connection' cwd='/tmp/harness-ws-oacf7uyt'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-rzhoqbs5'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='Request' cwd='/tmp/harness-ws-g0_s7skm'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['method', 'target', 'headers'] exc=None
+connect_request target='t18e8bb321ff.test:9443' host='t18e8bb321ffb4d36.test' cl=1 upgrade=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-4titxk0n'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=92
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-zszyta_0'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=92 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-96dw3upd'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Request
+need_data_token=NEED_DATA
+require_pulled_event type=Request
+pull_kind request type=Request
+connection_side_states our=SEND_BODY their=SEND_RESPONSE
+named_state SEND_BODY=SEND_BODY
+require_our_state SEND_BODY ok
+named_state MIGHT_SWITCH_PROTOCOL=MIGHT_SWITCH_PROTOCOL
+connection_side_states our=SEND_BODY their=SEND_RESPONSE
+send_proposal_headers encoded_len=92 pulled=Request
+[harness] call fn='Data' cwd='/tmp/harness-ws-tnoi681f'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='data' fields=['data'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-2zeso83_'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=1
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-f3l0364j'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=1 exc=None
+finish_proposal_body data_len=1
+[harness] call fn='EndOfMessage' cwd='/tmp/harness-ws-he2x80wo'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='end-of-message' fields=[] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-6qavjnee'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+connection_side_states our=MIGHT_SWITCH_PROTOCOL their=SEND_RESPONSE
+named_state MIGHT_SWITCH_PROTOCOL=MIGHT_SWITCH_PROTOCOL
+require_our_state MIGHT_SWITCH_PROTOCOL ok
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-nbhs6zej'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Data
+need_data_token=NEED_DATA
+require_pulled_event type=Data
+pull_kind data type=Data
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-m30sedmj'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=EndOfMessage
+need_data_token=NEED_DATA
+require_pulled_event type=EndOfMessage
+pull_kind end-of-message type=EndOfMessage
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-kdqg8gea'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=_Sentinel
+need_data_token=NEED_DATA
+paused_result=PAUSED
+require_paused ok
+finish_proposal_body client MIGHT_SWITCH server paused
+[harness] call fn='Response' cwd='/tmp/harness-ws-evhv0w2l'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='response' fields=['status_code', 'headers'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-2zi_v373'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=45
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-uwdxytm3'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=45 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-greav0ms'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Response
+need_data_token=NEED_DATA
+require_pulled_event type=Response
+pull_kind response type=Response
+connection_side_states our=DONE their=SEND_BODY
+named_state SWITCHED_PROTOCOL=SWITCHED_PROTOCOL
+____________________ test_runtime_dual_proposal_accept_each ____________________
+
+    def test_runtime_dual_proposal_accept_each():
+        target = runtime_connect_target()
+        upgrade = runtime_upgrade_value()
+        host = runtime_host()
+        status = runtime_2xx_except_200()
+        print(
+            f"runtime dual target={target!r} upgrade={upgrade!r} 2xx={status}",
+            flush=True,
+        )
+        connect_client = client_connection()
+        connect_server = server_connection()
+        finish_proposing_request(
+            connect_client,
+            connect_server,
+            connect_request(
+                target=target, host=host, content_length=1, upgrade=upgrade
+            ),
+            b"1",
+        )
+>       pulled_c = accept_connect(connect_client, connect_server, status)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F07_acceptance.py:1182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F07_helpers.py:608: in accept_connect
+    require_both_switched(client)
+/tests/final/tests/F07_helpers.py:234: in require_both_switched
+    require_our_state(conn, "SWITCHED_PROTOCOL")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+conn = <httpwire._connection.Connection object at 0x77193e9afd40>
+name = 'SWITCHED_PROTOCOL'
+
+    def require_our_state(conn: Any, name: str) -> Any:
+        """Require our-state equals the named package-root state."""
+        our, _their = connection_side_states(conn)
+        expected = named_state(name)
+        if our != expected:
+>           raise AssertionError(
+                f"our_state is {our!r}, expected named state {name}"
+            )
+E           AssertionError: our_state is DONE, expected named state SWITCHED_PROTOCOL
+
+/tests/final/tests/F03_helpers.py:81: AssertionError
+----------------------------- Captured stdout call -----------------------------
+runtime_token='t18e8bb3228284d26'
+runtime_connect_target='t18e8bb32282.test:9443'
+runtime_token='t18e8bb3228287835'
+runtime_upgrade_value='t18e8bb3-proto'
+runtime_token='t18e8bb3228288a2a'
+runtime_host='t18e8bb3228288a2a.test'
+runtime_int=105
+runtime_2xx_except_200=208
+runtime dual target='t18e8bb32282.test:9443' upgrade='t18e8bb3-proto' 2xx=208
+[harness] call fn='Connection' cwd='/tmp/harness-ws-w79otis_'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+client_connection type=Connection
+server_role=SERVER
+[harness] call fn='Connection' cwd='/tmp/harness-ws-id6parke'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+connection_for role=SERVER type=Connection
+server_connection type=Connection
+[harness] call fn='Request' cwd='/tmp/harness-ws-4ehesopu'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='request' fields=['method', 'target', 'headers'] exc=None
+connect_request target='t18e8bb32282.test:9443' host='t18e8bb3228288a2a.test' cl=1 upgrade='t18e8bb3-proto'
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-fx5uln4f'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=117
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-5ekmprb9'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=117 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-xp2j8adg'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Request
+need_data_token=NEED_DATA
+require_pulled_event type=Request
+pull_kind request type=Request
+connection_side_states our=SEND_BODY their=SEND_RESPONSE
+named_state SEND_BODY=SEND_BODY
+require_our_state SEND_BODY ok
+named_state MIGHT_SWITCH_PROTOCOL=MIGHT_SWITCH_PROTOCOL
+connection_side_states our=SEND_BODY their=SEND_RESPONSE
+send_proposal_headers encoded_len=117 pulled=Request
+[harness] call fn='Data' cwd='/tmp/harness-ws-icrihqs4'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='data' fields=['data'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-kkswge8v'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=1
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-s2v7b2tv'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=1 exc=None
+finish_proposal_body data_len=1
+[harness] call fn='EndOfMessage' cwd='/tmp/harness-ws-_j1bzf51'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='end-of-message' fields=[] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-g_tsl3j6'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+connection_side_states our=MIGHT_SWITCH_PROTOCOL their=SEND_RESPONSE
+named_state MIGHT_SWITCH_PROTOCOL=MIGHT_SWITCH_PROTOCOL
+require_our_state MIGHT_SWITCH_PROTOCOL ok
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-989n4w1d'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Data
+need_data_token=NEED_DATA
+require_pulled_event type=Data
+pull_kind data type=Data
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-i4cxcudw'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=EndOfMessage
+need_data_token=NEED_DATA
+require_pulled_event type=EndOfMessage
+pull_kind end-of-message type=EndOfMessage
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-cla9qv3e'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=_Sentinel
+need_data_token=NEED_DATA
+paused_result=PAUSED
+require_paused ok
+finish_proposal_body client MIGHT_SWITCH server paused
+[harness] call fn='Response' cwd='/tmp/harness-ws-lsi3viho'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+construct kind='response' fields=['status_code', 'headers'] exc=None
+[harness] call fn='Connection.send' cwd='/tmp/harness-ws-wgn2z1_4'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+send_event exc=None value_type=bytes
+require_send_bytes len=45
+[harness] call fn='Connection.receive_data' cwd='/tmp/harness-ws-vhpm8nw8'
+[harness] call_done exception=None value_is_none=True stdout_len=0 stderr_len=0 environ_keys=11
+feed_bytes n=45 exc=None
+[harness] call fn='Connection.next_event' cwd='/tmp/harness-ws-7ad4iud1'
+[harness] call_done exception=None value_is_none=False stdout_len=0 stderr_len=0 environ_keys=11
+pull_next exc=None value_type=Response
+need_data_token=NEED_DATA
+require_pulled_event type=Response
+pull_kind response type=Response
+connection_side_states our=DONE their=SEND_BODY
+named_state SWITCHED_PROTOCOL=SWITCHED_PROTOCOL
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_set_cookie_byte_1_kept - ...
+FAILED ../tests/final/tests/F01_acceptance.py::test_header_value_bytes_1_2_127_kept
+FAILED ../tests/final/tests/F06_acceptance.py::test_idle_already_closed_send_is_idempotent
+FAILED ../tests/final/tests/F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent
+FAILED ../tests/final/tests/F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote
+FAILED ../tests/final/tests/F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote
+FAILED ../tests/final/tests/F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request
+FAILED ../tests/final/tests/F07_acceptance.py::test_client_data_12345_clears_waiting_flags
+FAILED ../tests/final/tests/F07_acceptance.py::test_runtime_data_clears_waiting_flags
+FAILED ../tests/final/tests/F07_acceptance.py::test_client_end_of_message_clears_waiting_flags
+FAILED ../tests/final/tests/F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts
+FAILED ../tests/final/tests/F07_acceptance.py::test_runtime_dual_proposal_accept_each
+======================== 12 failed, 383 passed in 3.47s ========================
+CODING_BENCH_COLLECTION_AUDIT={"collected": ["tests/F01_acceptance.py::test_get_slash_host_constructs_when_package_importable", "tests/F01_acceptance.py::test_six_event_kinds_are_distinguishable", "tests/F01_acceptance.py::test_get_slash_host_example_com_is_request", "tests/F01_acceptance.py::test_informational_100_empty_headers", "tests/F01_acceptance.py::test_response_204_http10_empty_headers", "tests/F01_acceptance.py::test_data_payload_asdf_recovered", "tests/F01_acceptance.py::test_runtime_data_payload_recovered", "tests/F01_acceptance.py::test_end_of_message_defaults_to_empty_trailers", "tests/F01_acceptance.py::test_connection_closed_has_no_fields", "tests/F01_acceptance.py::test_runtime_request_constructs", "tests/F01_acceptance.py::test_method_target_version_from_ascii_text_are_bytes", "tests/F01_acceptance.py::test_method_target_version_from_byte_buffer_are_bytes", "tests/F01_acceptance.py::test_request_http_version_defaults_to_1_1", "tests/F01_acceptance.py::test_http10_version_compares_less_than_1_1", "tests/F01_acceptance.py::test_http10_get_slash_empty_headers_succeeds", "tests/F01_acceptance.py::test_host_spelled_hOSt_ordinary_and_raw", "tests/F01_acceptance.py::test_runtime_mixed_case_host_ordinary_and_raw", "tests/F01_acceptance.py::test_http11_missing_host_empty_headers_is_local_protocol_error", "tests/F01_acceptance.py::test_http11_missing_host_with_only_non_host_header_is_local_protocol_error", "tests/F01_acceptance.py::test_two_hosts_refused_on_http10", "tests/F01_acceptance.py::test_two_hosts_refused_on_http11", "tests/F01_acceptance.py::test_two_hosts_mixed_case_refused", "tests/F01_acceptance.py::test_valid_request_still_constructs_after_missing_host_refusal", "tests/F01_acceptance.py::test_valid_construction_after_non_host_refusal", "tests/F01_acceptance.py::test_missing_host_leaves_connection_unaffected", "tests/F01_acceptance.py::test_informational_100_and_199_succeed", "tests/F01_acceptance.py::test_response_204_and_999_succeed", "tests/F01_acceptance.py::test_response_200_is_final_not_informational", "tests/F01_acceptance.py::test_runtime_interior_informational_and_response_succeed", "tests/F01_acceptance.py::test_informational_and_response_default_version_1_1", "tests/F01_acceptance.py::test_reason_defaults_empty_and_ok_stored_as_bytes", "tests/F01_acceptance.py::test_integer_status_constant_stored_as_plain_int", "tests/F01_acceptance.py::test_second_integer_status_constant_stored_as_plain_int", "tests/F01_acceptance.py::test_informational_200_refused", "tests/F01_acceptance.py::test_response_100_refused", "tests/F01_acceptance.py::test_non_integer_status_text_100_refused", "tests/F01_acceptance.py::test_runtime_non_integer_status_refused", "tests/F01_acceptance.py::test_informational_status_below_100_refused", "tests/F01_acceptance.py::test_response_status_1000_or_greater_refused", "tests/F01_acceptance.py::test_host_then_connection_ordinary_and_raw", "tests/F01_acceptance.py::test_construction_preserves_caller_order_including_host_not_first", "tests/F01_acceptance.py::test_headers_from_ascii_and_byte_buffer_are_bytes", "tests/F01_acceptance.py::test_header_value_uppercase_preserved", "tests/F01_acceptance.py::test_informational_headers_ordinary_and_raw", "tests/F01_acceptance.py::test_response_headers_ordinary_and_raw", "tests/F01_acceptance.py::test_end_of_message_trailing_headers_normalized", "tests/F01_acceptance.py::test_runtime_header_order_and_raw_casing", "tests/F01_acceptance.py::test_content_length_1_normalized", "tests/F01_acceptance.py::test_two_content_length_0_collapse", "tests/F01_acceptance.py::test_single_content_length_0_comma_0_collapses", "tests/F01_acceptance.py::test_eighteen_digit_content_length_succeeds", "tests/F01_acceptance.py::test_runtime_content_length_accepted", "tests/F01_acceptance.py::test_content_length_asdf_and_1x_refused", "tests/F01_acceptance.py::test_disagreeing_content_length_headers_refused", "tests/F01_acceptance.py::test_disagreeing_content_length_pair_not_public_refused", "tests/F01_acceptance.py::test_disagreeing_comma_pieces_1_1_2_refused", "tests/F01_acceptance.py::test_disagreeing_comma_pieces_not_public_refused", "tests/F01_acceptance.py::test_thirty_three_ones_content_length_refused", "tests/F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused", "tests/F01_acceptance.py::test_three_content_length_not_all_equal_refused", "tests/F01_acceptance.py::test_content_length_mixed_case_disagreeing_refused", "tests/F01_acceptance.py::test_content_length_asdf_refused_on_non_request", "tests/F01_acceptance.py::test_transfer_encoding_chunked_normalized", "tests/F01_acceptance.py::test_transfer_encoding_cHuNkEd_normalized", "tests/F01_acceptance.py::test_transfer_encoding_third_mixed_case_chunked_normalized", "tests/F01_acceptance.py::test_second_transfer_encoding_chunked_refused", "tests/F01_acceptance.py::test_second_transfer_encoding_mixed_case_names_refused", "tests/F01_acceptance.py::test_transfer_encoding_gzip_is_local_error_status_501", "tests/F01_acceptance.py::test_chunked_together_with_gzip_is_501", "tests/F01_acceptance.py::test_deflate_transfer_encoding_is_501", "tests/F01_acceptance.py::test_runtime_non_chunked_transfer_encoding_is_501", "tests/F01_acceptance.py::test_gzip_501_differs_from_missing_host_400", "tests/F01_acceptance.py::test_transfer_encoding_gzip_refused_on_non_request", "tests/F01_acceptance.py::test_header_name_leading_or_trailing_whitespace_refused", "tests/F01_acceptance.py::test_header_name_leading_or_trailing_tab_refused", "tests/F01_acceptance.py::test_header_name_space_nul_nonascii_control_refused", "tests/F01_acceptance.py::test_header_value_cr_lf_ff_vt_nul_refused", "tests/F01_acceptance.py::test_header_value_leading_trailing_space_or_tab_refused", "tests/F01_acceptance.py::test_header_illegal_name_or_value_refused_on_response", "tests/F01_acceptance.py::test_header_illegal_name_or_value_refused_on_informational_or_eom", "tests/F01_acceptance.py::test_target_nul_space_127_238_embedded_in_slash_refused", "tests/F01_acceptance.py::test_method_not_a_single_token_refused", "tests/F01_acceptance.py::test_runtime_method_not_a_token_refused", "tests/F01_acceptance.py::test_set_cookie_byte_1_kept", "tests/F01_acceptance.py::test_header_value_bytes_1_2_127_kept", "tests/F02_acceptance.py::test_client_get_encodes_and_server_pulls_when_package_importable", "tests/F02_acceptance.py::test_client_get_encode_fails_when_package_not_importable", "tests/F02_acceptance.py::test_client_and_server_roles_are_complementary_and_idle", "tests/F02_acceptance.py::test_nine_named_states_are_distinct_and_queryable", "tests/F02_acceptance.py::test_our_their_and_pair_states_agree_when_idle", "tests/F02_acceptance.py::test_role_that_is_neither_client_nor_server_is_refused", "tests/F02_acceptance.py::test_second_non_role_value_is_refused", "tests/F02_acceptance.py::test_fresh_client_pull_is_need_data", "tests/F02_acceptance.py::test_fresh_server_pull_is_need_data", "tests/F02_acceptance.py::test_client_get_slash_cl10_encodes_http11_request_line", "tests/F02_acceptance.py::test_client_states_after_get_send_are_send_body_and_send_response", "tests/F02_acceptance.py::test_client_peer_http_version_absent_after_request_send", "tests/F02_acceptance.py::test_server_feed_only_leaves_idle_and_peer_version_absent", "tests/F02_acceptance.py::test_server_pull_of_that_get_matches_and_records_peer_1_1", "tests/F02_acceptance.py::test_runtime_host_and_target_round_trip", "tests/F02_acceptance.py::test_informational_100_status_line_empty_reason_unless_supplied", "tests/F02_acceptance.py::test_runtime_reason_is_written_after_status_code", "tests/F02_acceptance.py::test_response_200_cl11_empty_reason_unless_supplied", "tests/F02_acceptance.py::test_both_sides_send_body_after_final_response", "tests/F02_acceptance.py::test_client_pulls_100_then_200", "tests/F02_acceptance.py::test_cl_data_12345_encodes_as_exactly_those_bytes", "tests/F02_acceptance.py::test_cl_data_67890_then_eom_encodes_no_extra_bytes", "tests/F02_acceptance.py::test_last_cl_bytes_then_further_pull_is_end_of_message", "tests/F02_acceptance.py::test_both_sides_done_after_matching_eoms", "tests/F02_acceptance.py::test_runtime_split_body_round_trip_under_content_length", "tests/F02_acceptance.py::test_send_returns_bytes_and_does_not_require_a_socket", "tests/F02_acceptance.py::test_feed_stores_pull_parses_one_event", "tests/F02_acceptance.py::test_split_200_for_xml_httpbin_returns_need_data_then_response", "tests/F02_acceptance.py::test_runtime_split_response_retains_bytes_across_fragments", "tests/F02_acceptance.py::test_http10_get_slash_no_headers_pulls_version_1_0_and_eom", "tests/F02_acceptance.py::test_http10_response_can_be_pulled_as_version_1_0", "tests/F02_acceptance.py::test_peer_http_version_stays_after_later_events_this_cycle", "tests/F02_acceptance.py::test_host_is_written_before_foo_even_when_not_first", "tests/F02_acceptance.py::test_runtime_host_is_first_among_headers", "tests/F02_acceptance.py::test_encoded_header_names_keep_construction_casing", "tests/F02_acceptance.py::test_mixed_line_endings_on_200_pull_as_that_response", "tests/F02_acceptance.py::test_lone_lf_200_is_accepted", "tests/F02_acceptance.py::test_request_header_block_accepts_lone_lf_and_mixed_endings", "tests/F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason", "tests/F02_acceptance.py::test_empty_and_tab_only_header_values_pull_empty", "tests/F02_acceptance.py::test_single_character_header_value_is_accepted", "tests/F02_acceptance.py::test_obsolete_fold_some_joins_named_value", "tests/F02_acceptance.py::test_last_header_may_be_folded", "tests/F02_acceptance.py::test_folded_first_header_is_remote_protocol_error", "tests/F02_acceptance.py::test_header_name_trailing_space_or_tab_before_colon_refused", "tests/F02_acceptance.py::test_nameless_colon_header_refused", "tests/F02_acceptance.py::test_garbage_after_request_line_refused", "tests/F02_acceptance.py::test_garbage_after_response_line_refused", "tests/F02_acceptance.py::test_nul_in_header_value_refused", "tests/F02_acceptance.py::test_target_containing_nul_space_127_238_refused", "tests/F02_acceptance.py::test_server_rejects_lone_nul_space_and_tls_client_hello", "tests/F02_acceptance.py::test_client_after_request_rejects_lone_nul_space_and_tls_server_hello", "tests/F02_acceptance.py::test_server_blank_line_only_refused", "tests/F02_acceptance.py::test_client_blank_line_only_after_request_refused", "tests/F02_acceptance.py::test_nonempty_feed_after_empty_eof_is_runtime_error_not_protocol", "tests/F02_acceptance.py::test_further_empty_chunks_after_eof_do_not_fail", "tests/F03_acceptance.py::test_empty_body_get_round_trips_when_package_importable", "tests/F03_acceptance.py::test_empty_body_get_encode_fails_when_package_not_importable", "tests/F03_acceptance.py::test_request_without_framing_headers_is_empty_body", "tests/F03_acceptance.py::test_runtime_request_without_framing_headers_is_empty_body", "tests/F03_acceptance.py::test_post_without_framing_headers_is_empty_body", "tests/F03_acceptance.py::test_content_length_10_request_is_ten_raw_bytes", "tests/F03_acceptance.py::test_runtime_content_length_request_is_exact_raw_bytes", "tests/F03_acceptance.py::test_content_length_0_request_is_empty_body", "tests/F03_acceptance.py::test_chunked_request_two_payloads_and_trailer", "tests/F03_acceptance.py::test_empty_data_on_chunked_encodes_no_bytes", "tests/F03_acceptance.py::test_chunked_eom_without_trailers_is_final_chunk", "tests/F03_acceptance.py::test_runtime_chunked_request_recovers_payloads_and_trailer", "tests/F03_acceptance.py::test_content_length_response_is_exact_raw_bytes", "tests/F03_acceptance.py::test_runtime_content_length_response_is_exact_raw_bytes", "tests/F03_acceptance.py::test_content_length_0_response_keeps_content_length", "tests/F03_acceptance.py::test_unframed_200_to_http11_is_chunked", "tests/F03_acceptance.py::test_explicit_chunked_200_to_http11_is_chunked", "tests/F03_acceptance.py::test_unframed_200_to_http10_is_close_delimited", "tests/F03_acceptance.py::test_response_before_any_request_is_close_delimited", "tests/F03_acceptance.py::test_runtime_unknown_length_follows_peer_version", "tests/F03_acceptance.py::test_http10_unframed_200_empty_feed_is_eom_then_closed", "tests/F03_acceptance.py::test_http10_empty_feed_is_not_remote_error", "tests/F03_acceptance.py::test_unfinished_content_length_empty_feed_is_remote_error", "tests/F03_acceptance.py::test_unfinished_chunked_empty_feed_is_remote_error", "tests/F03_acceptance.py::test_runtime_http10_close_delimited_body", "tests/F03_acceptance.py::test_response_te_wins_over_content_length", "tests/F03_acceptance.py::test_runtime_response_te_wins_over_content_length", "tests/F03_acceptance.py::test_response_te_and_content_length_to_http10_is_close_delimited", "tests/F03_acceptance.py::test_head_204_304_complete_with_empty_body", "tests/F03_acceptance.py::test_empty_body_data_event_is_not_sent", "tests/F03_acceptance.py::test_empty_body_ignores_caller_framing_headers", "tests/F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get", "tests/F03_acceptance.py::test_head_to_http10_advertises_close_like_get", "tests/F03_acceptance.py::test_whole_five_byte_chunk_is_start_and_end", "tests/F03_acceptance.py::test_split_five_byte_chunk_is_start_middle_end", "tests/F03_acceptance.py::test_runtime_split_chunk_marks", "tests/F03_acceptance.py::test_two_chunks_in_one_feed_are_two_both_events", "tests/F03_acceptance.py::test_chunk_extension_discarded_payload_kept", "tests/F03_acceptance.py::test_runtime_chunk_extension_discarded", "tests/F03_acceptance.py::test_spaces_after_chunk_size_accepted", "tests/F03_acceptance.py::test_tabs_after_chunk_size_accepted", "tests/F03_acceptance.py::test_chunk_marks_are_ignored_when_data_is_sent", "tests/F03_acceptance.py::test_passthrough_content_length_is_only_placeholder", "tests/F03_acceptance.py::test_passthrough_content_length_eom_then_succeeds", "tests/F03_acceptance.py::test_passthrough_short_placeholder_eom_is_local_error", "tests/F03_acceptance.py::test_passthrough_chunked_keeps_placeholder_among_framing", "tests/F03_acceptance.py::test_passthrough_http10_is_only_placeholder", "tests/F03_acceptance.py::test_runtime_passthrough_placeholder_identity", "tests/F03_acceptance.py::test_data_exceeding_content_length_is_local_error", "tests/F03_acceptance.py::test_eom_before_content_length_satisfied_is_local_error", "tests/F03_acceptance.py::test_response_data_exceeding_content_length_is_local_error", "tests/F03_acceptance.py::test_response_eom_before_content_length_satisfied_is_local_error", "tests/F03_acceptance.py::test_trailers_on_content_length_are_local_error", "tests/F03_acceptance.py::test_trailers_on_http10_close_delimited_are_local_error", "tests/F03_acceptance.py::test_trailers_to_http10_peer_refused_even_if_caller_asked_chunked", "tests/F03_acceptance.py::test_chunk_size_longer_than_32_hex_digits_is_remote_error", "tests/F03_acceptance.py::test_runtime_overlong_chunk_size_is_remote_error", "tests/F03_acceptance.py::test_two_digit_hex_chunk_size_is_accepted", "tests/F03_acceptance.py::test_runtime_two_digit_hex_chunk_size_is_accepted", "tests/F03_acceptance.py::test_chunk_size_containing_nul_is_remote_error", "tests/F03_acceptance.py::test_chunk_size_3_not_followed_by_crlf_is_remote_error", "tests/F04_acceptance.py::test_reuse_cycle_round_trips_when_package_importable", "tests/F04_acceptance.py::test_reuse_cycle_encode_fails_when_package_not_importable", "tests/F04_acceptance.py::test_cycle_walk_idle_to_done_without_informational", "tests/F04_acceptance.py::test_informational_keeps_server_in_send_response", "tests/F04_acceptance.py::test_two_informational_responses_stay_in_send_response", "tests/F04_acceptance.py::test_three_informational_responses_stay_in_send_response", "tests/F04_acceptance.py::test_data_events_stay_in_send_body_then_eom_is_done", "tests/F04_acceptance.py::test_server_408_from_idle_encodes_without_request", "tests/F04_acceptance.py::test_runtime_final_response_from_idle_encodes", "tests/F04_acceptance.py::test_runtime_idle_final_with_close_completes_must_close", "tests/F04_acceptance.py::test_http11_without_close_ends_done_and_reuse_works", "tests/F04_acceptance.py::test_comma_list_close_token_disables_keepalive", "tests/F04_acceptance.py::test_runtime_comma_list_close_token_disables_keepalive", "tests/F04_acceptance.py::test_close_substring_in_other_token_does_not_disable_keepalive", "tests/F04_acceptance.py::test_response_comma_list_close_token_disables_keepalive", "tests/F04_acceptance.py::test_runtime_close_substring_does_not_disable_keepalive", "tests/F04_acceptance.py::test_request_connection_close_echoed_on_204", "tests/F04_acceptance.py::test_request_connection_close_echoed_on_non_204", "tests/F04_acceptance.py::test_http11_204_without_close_still_reuses", "tests/F04_acceptance.py::test_bodied_request_close_is_must_close_after_eom", "tests/F04_acceptance.py::test_http10_get_adds_close_on_bare_200", "tests/F04_acceptance.py::test_runtime_http10_get_target_adds_close", "tests/F04_acceptance.py::test_http10_non_get_adds_close", "tests/F04_acceptance.py::test_http10_response_disables_reuse", "tests/F04_acceptance.py::test_http10_keep_alive_token_does_not_enable_reuse", "tests/F04_acceptance.py::test_http10_response_keep_alive_token_does_not_enable_reuse", "tests/F04_acceptance.py::test_http10_non_200_response_disables_reuse", "tests/F04_acceptance.py::test_disabled_keepalive_adds_close_when_caller_set_keep_alive", "tests/F04_acceptance.py::test_server_set_close_disables_keepalive", "tests/F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs", "tests/F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle", "tests/F04_acceptance.py::test_runtime_second_cycle_after_start", "tests/F04_acceptance.py::test_client_second_request_before_response_pulled_is_local_error", "tests/F04_acceptance.py::test_client_second_request_after_done_without_start_is_local_error", "tests/F04_acceptance.py::test_client_second_request_succeeds_after_start", "tests/F04_acceptance.py::test_client_third_request_without_second_start_is_local_error", "tests/F04_acceptance.py::test_client_second_get_without_start_is_local_error", "tests/F04_acceptance.py::test_three_pipelined_gets_are_delivered_one_cycle_at_a_time", "tests/F04_acceptance.py::test_paused_after_first_eom_is_not_need_data", "tests/F04_acceptance.py::test_paused_after_response_eom_before_start", "tests/F04_acceptance.py::test_paused_after_second_response_eom_before_start", "tests/F04_acceptance.py::test_feeding_while_paused_does_not_reveal_next_request", "tests/F04_acceptance.py::test_after_third_request_pull_is_need_data", "tests/F04_acceptance.py::test_leftover_bytes_after_third_are_paused_in_trailing_data", "tests/F04_acceptance.py::test_leftover_non_get_after_third_is_paused_in_trailing_data", "tests/F04_acceptance.py::test_empty_body_pipelined_second_request_is_paused", "tests/F04_acceptance.py::test_runtime_pipelined_targets_are_serialized", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_from_send_body_is_local_error_not_error", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_before_server_done_is_local_error", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_on_server_before_response_is_local_error", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_after_failed_attempt_still_works_when_both_done", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_after_http10_exchange_is_refused", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_client_send_body_server_done_is_local_error", "tests/F04_acceptance.py::test_client_sending_response_is_local_error", "tests/F04_acceptance.py::test_client_sending_response_after_request_is_local_error", "tests/F04_acceptance.py::test_client_sending_non_200_response_is_local_error", "tests/F04_acceptance.py::test_client_sending_non_200_response_after_request_is_local_error", "tests/F04_acceptance.py::test_server_sending_request_is_local_error", "tests/F04_acceptance.py::test_server_sending_request_after_leave_idle_is_local_error", "tests/F05_acceptance.py::test_protocol_error_path_round_trips_when_package_importable", "tests/F05_acceptance.py::test_get_encode_fails_when_package_not_importable", "tests/F05_acceptance.py::test_local_remote_and_runtime_errors_are_distinguishable", "tests/F05_acceptance.py::test_default_suggested_status_is_400", "tests/F05_acceptance.py::test_transfer_encoding_gzip_suggests_501", "tests/F05_acceptance.py::test_oversize_incomplete_headers_suggest_431", "tests/F05_acceptance.py::test_missing_host_is_recoverable_local_error", "tests/F05_acceptance.py::test_non_host_invalid_construction_is_recoverable", "tests/F05_acceptance.py::test_start_next_cycle_before_done_is_recoverable_local_error", "tests/F05_acceptance.py::test_gibberish_blank_line_is_unrecoverable_remote_error", "tests/F05_acceptance.py::test_server_can_still_send_400_after_remote_receive_error", "tests/F05_acceptance.py::test_send_after_remote_receive_error_still_answers_400", "tests/F05_acceptance.py::test_further_pull_after_remote_error_is_remote", "tests/F05_acceptance.py::test_well_formed_feed_after_remote_error_still_remote", "tests/F05_acceptance.py::test_their_error_cannot_be_left_after_remote_pull", "tests/F05_acceptance.py::test_runtime_unparseable_line_is_remote_error", "tests/F05_acceptance.py::test_sending_http10_request_is_unrecoverable_local_error", "tests/F05_acceptance.py::test_sending_http10_non_get_request_is_unrecoverable_local_error", "tests/F05_acceptance.py::test_sending_http10_response_is_unrecoverable_local_error", "tests/F05_acceptance.py::test_sending_http10_response_from_other_legal_position", "tests/F05_acceptance.py::test_valid_http11_send_fails_after_http10_send_error", "tests/F05_acceptance.py::test_our_error_cannot_be_left_after_local_send", "tests/F05_acceptance.py::test_mark_send_as_failed_sets_our_error_leaves_their", "tests/F05_acceptance.py::test_mark_send_as_failed_twice_is_idempotent", "tests/F05_acceptance.py::test_send_after_mark_failed_is_local_error", "tests/F05_acceptance.py::test_mark_send_as_failed_after_server_send", "tests/F05_acceptance.py::test_marked_failed_connection_cannot_return_to_idle", "tests/F05_acceptance.py::test_big_header_4000a_succeeds_at_limit_5000", "tests/F05_acceptance.py::test_big_header_4000a_fails_at_limit_4000_status_431", "tests/F05_acceptance.py::test_complete_10000_body_succeeds_at_limit_5000", "tests/F05_acceptance.py::test_complete_framed_body_not_10000_succeeds_under_smaller_limit", "tests/F05_acceptance.py::test_pipelined_leftovers_fail_only_when_next_message_is_parsed", "tests/F05_acceptance.py::test_runtime_pipelined_leftovers_fail_only_when_parsed", "tests/F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit", "tests/F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes", "tests/F05_acceptance.py::test_oversize_unfinished_response_headers_are_remote_431", "tests/F05_acceptance.py::test_runtime_oversize_unfinished_response_headers", "tests/F05_acceptance.py::test_limit_counts_line_plus_headers_not_value_alone", "tests/F05_acceptance.py::test_runtime_header_crosses_custom_limit", "tests/F05_acceptance.py::test_content_length_100_cut_after_12345_is_remote_not_closed", "tests/F05_acceptance.py::test_incomplete_chunked_empty_feed_is_remote", "tests/F05_acceptance.py::test_http10_close_delimited_empty_feed_is_eom_then_closed", "tests/F05_acceptance.py::test_http10_unfinished_cl_empty_feed_is_remote", "tests/F05_acceptance.py::test_client_http11_unfinished_cl_empty_feed_is_remote", "tests/F05_acceptance.py::test_mid_request_line_empty_feed_is_remote", "tests/F06_acceptance.py::test_shutdown_path_round_trips_when_package_importable", "tests/F06_acceptance.py::test_get_encode_fails_when_package_not_importable", "tests/F06_acceptance.py::test_fresh_client_send_closed_is_closed_must_close_and_no_bytes", "tests/F06_acceptance.py::test_fresh_server_send_closed_is_closed_must_close_and_no_bytes", "tests/F06_acceptance.py::test_idle_peer_sends_connection_closed_both_sides_closed", "tests/F06_acceptance.py::test_idle_already_closed_send_is_idempotent", "tests/F06_acceptance.py::test_empty_feed_pulls_connection_closed_repeatedly", "tests/F06_acceptance.py::test_further_empty_feeds_after_close_remain_allowed", "tests/F06_acceptance.py::test_client_empty_feed_also_yields_repeated_connection_closed", "tests/F06_acceptance.py::test_client_half_close_after_get_foo_leaves_server_send_response", "tests/F06_acceptance.py::test_server_still_sends_response_after_client_half_close", "tests/F06_acceptance.py::test_runtime_half_close_still_allows_response", "tests/F06_acceptance.py::test_finished_content_length_half_close_still_receives_response", "tests/F06_acceptance.py::test_either_side_may_close_after_both_done", "tests/F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent", "tests/F06_acceptance.py::test_must_close_server_sends_connection_closed_to_closed", "tests/F06_acceptance.py::test_empty_feed_after_both_done_is_connection_closed", "tests/F06_acceptance.py::test_runtime_cycle_then_connection_closed", "tests/F06_acceptance.py::test_runtime_http10_must_close_sends_to_closed", "tests/F06_acceptance.py::test_pipelined_get_1_and_2_then_empty_feed_server_answers_both_then_closes", "tests/F06_acceptance.py::test_runtime_two_pipelined_gets_then_half_close", "tests/F06_acceptance.py::test_two_pipelined_gets_without_empty_feed_do_not_yield_connection_closed", "tests/F06_acceptance.py::test_server_in_send_response_cannot_send_connection_closed", "tests/F06_acceptance.py::test_server_send_response_after_bodied_request_cannot_send_connection_closed", "tests/F06_acceptance.py::test_server_cannot_send_connection_closed_after_client_half_close", "tests/F06_acceptance.py::test_client_empty_feed_while_waiting_for_response_is_remote_not_closed", "tests/F06_acceptance.py::test_client_mid_content_length_10_cannot_send_connection_closed", "tests/F06_acceptance.py::test_server_mid_content_length_cannot_send_connection_closed", "tests/F06_acceptance.py::test_runtime_mid_content_length_cannot_send_connection_closed", "tests/F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote", "tests/F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote", "tests/F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request", "tests/F07_acceptance.py::test_expect_path_round_trips_when_package_importable", "tests/F07_acceptance.py::test_get_encode_fails_when_package_not_importable", "tests/F07_acceptance.py::test_informational_100_is_pulled_before_final_200", "tests/F07_acceptance.py::test_client_still_sends_request_body_after_informational", "tests/F07_acceptance.py::test_two_informational_100_then_102_then_body_then_final", "tests/F07_acceptance.py::test_runtime_informational_then_body_then_final", "tests/F07_acceptance.py::test_http11_expect_content_length_100_sets_waiting_flags", "tests/F07_acceptance.py::test_they_are_waiting_only_on_server", "tests/F07_acceptance.py::test_expect_matching_is_case_insensitive", "tests/F07_acceptance.py::test_non_get_expect_sets_waiting_flags", "tests/F07_acceptance.py::test_chunked_expect_sets_waiting_flags", "tests/F07_acceptance.py::test_informational_100_clears_waiting_flags", "tests/F07_acceptance.py::test_informational_102_clears_waiting_flags", "tests/F07_acceptance.py::test_final_200_clears_waiting_flags", "tests/F07_acceptance.py::test_final_non_200_clears_waiting_flags", "tests/F07_acceptance.py::test_client_data_12345_clears_waiting_flags", "tests/F07_acceptance.py::test_runtime_data_clears_waiting_flags", "tests/F07_acceptance.py::test_client_end_of_message_clears_waiting_flags", "tests/F07_acceptance.py::test_runtime_expect_sets_waiting_flags", "tests/F07_acceptance.py::test_http10_expect_does_not_set_waiting_flags", "tests/F07_acceptance.py::test_http11_versus_http10_expect_differs_only_in_waiting_flags", "tests/F07_acceptance.py::test_connect_switch_state_appears_only_after_request_eom", "tests/F07_acceptance.py::test_connect_non_one_content_length_might_switch_after_eom", "tests/F07_acceptance.py::test_connect_empty_body_might_switch_only_after_eom", "tests/F07_acceptance.py::test_connect_404_then_eom_allows_next_cycle", "tests/F07_acceptance.py::test_connect_200_enters_switched_protocol", "tests/F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts", "tests/F07_acceptance.py::test_runtime_connect_non_2xx_denies_and_reuses", "tests/F07_acceptance.py::test_upgrade_switch_state_appears_only_after_request_eom", "tests/F07_acceptance.py::test_upgrade_101_enters_switched_like_connect_accept", "tests/F07_acceptance.py::test_upgrade_200_is_denial_and_allows_next_cycle", "tests/F07_acceptance.py::test_upgrade_100_is_not_acceptance", "tests/F07_acceptance.py::test_runtime_upgrade_accept_and_deny", "tests/F07_acceptance.py::test_non_get_upgrade_101_enters_switched", "tests/F07_acceptance.py::test_dual_proposal_2xx_accepts_connect", "tests/F07_acceptance.py::test_dual_proposal_101_accepts_upgrade", "tests/F07_acceptance.py::test_dual_proposal_non_2xx_is_denial_and_reuses", "tests/F07_acceptance.py::test_runtime_dual_proposal_accept_each", "tests/F07_acceptance.py::test_client_in_might_switch_cannot_send_another_request", "tests/F07_acceptance.py::test_second_request_succeeds_after_denial_and_next_cycle", "tests/F07_acceptance.py::test_start_next_cycle_while_might_switch_is_local_not_error", "tests/F07_acceptance.py::test_connect_200_trailing_123_then_456_receive_still_open", "tests/F07_acceptance.py::test_upgrade_101_same_trailing_and_paused", "tests/F07_acceptance.py::test_switched_does_not_parse_leftover_http_as_request", "tests/F07_acceptance.py::test_http_send_after_switched_is_local_protocol_error", "tests/F07_acceptance.py::test_no_start_next_cycle_out_of_switched", "tests/F07_acceptance.py::test_runtime_switched_trailing_concatenates", "tests/F07_acceptance.py::test_empty_feed_while_might_switch_stays_paused_with_receive_closed", "tests/F07_acceptance.py::test_empty_feed_then_denial_pulls_connection_closed", "tests/F07_acceptance.py::test_empty_feed_then_acceptance_stays_paused", "tests/F07_acceptance.py::test_empty_feed_after_acceptance_stays_paused", "tests/F07_acceptance.py::test_leftover_get_http10_after_denial_and_next_cycle", "tests/F07_acceptance.py::test_runtime_leftover_http10_after_denial", "tests/F07_acceptance.py::test_leftover_not_parsed_until_denial_and_start", "tests/F07_acceptance.py::test_need_data_unblocks_after_more_bytes_of_current_message", "tests/F07_acceptance.py::test_pipelining_paused_unblocks_after_start_without_switch_deny", "tests/F07_acceptance.py::test_switch_paused_does_not_unblock_by_feeding_or_start_alone"], "issues": [], "reports": {"tests/F01_acceptance.py::test_chunked_together_with_gzip_is_501": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_connection_closed_has_no_fields": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_construction_preserves_caller_order_including_host_not_first": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_content_length_1_normalized": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_content_length_asdf_and_1x_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_content_length_asdf_refused_on_non_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_content_length_mixed_case_disagreeing_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_data_payload_asdf_recovered": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_deflate_transfer_encoding_is_501": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_disagreeing_comma_pieces_1_1_2_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_disagreeing_comma_pieces_not_public_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_disagreeing_content_length_headers_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_disagreeing_content_length_pair_not_public_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_eighteen_digit_content_length_succeeds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_end_of_message_defaults_to_empty_trailers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_end_of_message_trailing_headers_normalized": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_get_slash_host_constructs_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_get_slash_host_example_com_is_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_gzip_501_differs_from_missing_host_400": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_illegal_name_or_value_refused_on_informational_or_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_illegal_name_or_value_refused_on_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_name_leading_or_trailing_tab_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_name_leading_or_trailing_whitespace_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_name_space_nul_nonascii_control_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_value_bytes_1_2_127_kept": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_value_cr_lf_ff_vt_nul_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_value_leading_trailing_space_or_tab_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_header_value_uppercase_preserved": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_headers_from_ascii_and_byte_buffer_are_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_host_spelled_hOSt_ordinary_and_raw": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_host_then_connection_ordinary_and_raw": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_http10_get_slash_empty_headers_succeeds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_http10_version_compares_less_than_1_1": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_http11_missing_host_empty_headers_is_local_protocol_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_http11_missing_host_with_only_non_host_header_is_local_protocol_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_informational_100_and_199_succeed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_informational_100_empty_headers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_informational_200_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_informational_and_response_default_version_1_1": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_informational_headers_ordinary_and_raw": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_informational_status_below_100_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_integer_status_constant_stored_as_plain_int": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_method_not_a_single_token_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_method_target_version_from_ascii_text_are_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_method_target_version_from_byte_buffer_are_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_missing_host_leaves_connection_unaffected": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_non_integer_status_text_100_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_reason_defaults_empty_and_ok_stored_as_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_request_http_version_defaults_to_1_1": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_response_100_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_response_200_is_final_not_informational": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_response_204_and_999_succeed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_response_204_http10_empty_headers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_response_headers_ordinary_and_raw": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_response_status_1000_or_greater_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_content_length_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_data_payload_recovered": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_header_order_and_raw_casing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_interior_informational_and_response_succeed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_method_not_a_token_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_mixed_case_host_ordinary_and_raw": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_non_chunked_transfer_encoding_is_501": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_non_integer_status_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_runtime_request_constructs": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_second_integer_status_constant_stored_as_plain_int": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_second_transfer_encoding_chunked_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_second_transfer_encoding_mixed_case_names_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_set_cookie_byte_1_kept": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_single_content_length_0_comma_0_collapses": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_six_event_kinds_are_distinguishable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_target_nul_space_127_238_embedded_in_slash_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_thirty_three_ones_content_length_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_three_content_length_not_all_equal_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_transfer_encoding_cHuNkEd_normalized": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_transfer_encoding_chunked_normalized": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_transfer_encoding_gzip_is_local_error_status_501": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_transfer_encoding_gzip_refused_on_non_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_transfer_encoding_third_mixed_case_chunked_normalized": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_two_content_length_0_collapse": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_two_hosts_mixed_case_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_two_hosts_refused_on_http10": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_two_hosts_refused_on_http11": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_valid_construction_after_non_host_refusal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_valid_request_still_constructs_after_missing_host_refusal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_both_sides_done_after_matching_eoms": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_both_sides_send_body_after_final_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_cl_data_12345_encodes_as_exactly_those_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_cl_data_67890_then_eom_encodes_no_extra_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_after_request_rejects_lone_nul_space_and_tls_server_hello": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_and_server_roles_are_complementary_and_idle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_blank_line_only_after_request_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_get_encode_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_get_encodes_and_server_pulls_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_get_slash_cl10_encodes_http11_request_line": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_peer_http_version_absent_after_request_send": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_pulls_100_then_200": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_client_states_after_get_send_are_send_body_and_send_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_empty_and_tab_only_header_values_pull_empty": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_encoded_header_names_keep_construction_casing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_feed_stores_pull_parses_one_event": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_folded_first_header_is_remote_protocol_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_fresh_client_pull_is_need_data": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_fresh_server_pull_is_need_data": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_further_empty_chunks_after_eof_do_not_fail": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_garbage_after_request_line_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_garbage_after_response_line_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_header_name_trailing_space_or_tab_before_colon_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_host_is_written_before_foo_even_when_not_first": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_http10_get_slash_no_headers_pulls_version_1_0_and_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_http10_response_can_be_pulled_as_version_1_0": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_informational_100_status_line_empty_reason_unless_supplied": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_last_cl_bytes_then_further_pull_is_end_of_message": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_last_header_may_be_folded": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_lone_lf_200_is_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_mixed_line_endings_on_200_pull_as_that_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_nameless_colon_header_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_nine_named_states_are_distinct_and_queryable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_nonempty_feed_after_empty_eof_is_runtime_error_not_protocol": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_nul_in_header_value_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_obsolete_fold_some_joins_named_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_our_their_and_pair_states_agree_when_idle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_peer_http_version_stays_after_later_events_this_cycle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_request_header_block_accepts_lone_lf_and_mixed_endings": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_response_200_cl11_empty_reason_unless_supplied": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_role_that_is_neither_client_nor_server_is_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_runtime_host_and_target_round_trip": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_runtime_host_is_first_among_headers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_runtime_reason_is_written_after_status_code": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_runtime_split_body_round_trip_under_content_length": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_runtime_split_response_retains_bytes_across_fragments": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_second_non_role_value_is_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_send_returns_bytes_and_does_not_require_a_socket": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_server_blank_line_only_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_server_feed_only_leaves_idle_and_peer_version_absent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_server_pull_of_that_get_matches_and_records_peer_1_1": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_server_rejects_lone_nul_space_and_tls_client_hello": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_single_character_header_value_is_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_split_200_for_xml_httpbin_returns_need_data_then_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_target_containing_nul_space_127_238_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunk_extension_discarded_payload_kept": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunk_marks_are_ignored_when_data_is_sent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunk_size_3_not_followed_by_crlf_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunk_size_containing_nul_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunk_size_longer_than_32_hex_digits_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunked_eom_without_trailers_is_final_chunk": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_chunked_request_two_payloads_and_trailer": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_content_length_0_request_is_empty_body": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_content_length_0_response_keeps_content_length": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_content_length_10_request_is_ten_raw_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_content_length_response_is_exact_raw_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_data_exceeding_content_length_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_body_data_event_is_not_sent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_body_get_encode_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_body_get_round_trips_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_body_ignores_caller_framing_headers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_data_on_chunked_encodes_no_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_eom_before_content_length_satisfied_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_explicit_chunked_200_to_http11_is_chunked": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_head_204_304_complete_with_empty_body": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_head_to_http10_advertises_close_like_get": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_http10_empty_feed_is_not_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_http10_unframed_200_empty_feed_is_eom_then_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_passthrough_chunked_keeps_placeholder_among_framing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_passthrough_content_length_eom_then_succeeds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_passthrough_content_length_is_only_placeholder": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_passthrough_http10_is_only_placeholder": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_passthrough_short_placeholder_eom_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_post_without_framing_headers_is_empty_body": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_request_without_framing_headers_is_empty_body": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_response_before_any_request_is_close_delimited": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_response_data_exceeding_content_length_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_response_eom_before_content_length_satisfied_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_response_te_and_content_length_to_http10_is_close_delimited": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_response_te_wins_over_content_length": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_chunk_extension_discarded": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_chunked_request_recovers_payloads_and_trailer": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_content_length_request_is_exact_raw_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_content_length_response_is_exact_raw_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_http10_close_delimited_body": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_overlong_chunk_size_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_passthrough_placeholder_identity": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_request_without_framing_headers_is_empty_body": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_response_te_wins_over_content_length": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_split_chunk_marks": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_two_digit_hex_chunk_size_is_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_runtime_unknown_length_follows_peer_version": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_spaces_after_chunk_size_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_split_five_byte_chunk_is_start_middle_end": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_tabs_after_chunk_size_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_trailers_on_content_length_are_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_trailers_on_http10_close_delimited_are_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_trailers_to_http10_peer_refused_even_if_caller_asked_chunked": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_two_chunks_in_one_feed_are_two_both_events": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_two_digit_hex_chunk_size_is_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unfinished_chunked_empty_feed_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unfinished_content_length_empty_feed_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unframed_200_to_http10_is_close_delimited": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unframed_200_to_http11_is_chunked": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_whole_five_byte_chunk_is_start_and_end": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_after_failed_attempt_still_works_when_both_done": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_after_http10_exchange_is_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_before_server_done_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_client_send_body_server_done_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_from_send_body_is_local_error_not_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_on_server_before_response_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_after_third_request_pull_is_need_data": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_bodied_request_close_is_must_close_after_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_second_get_without_start_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_second_request_after_done_without_start_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_second_request_before_response_pulled_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_second_request_succeeds_after_start": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_sending_non_200_response_after_request_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_sending_non_200_response_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_sending_response_after_request_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_sending_response_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_client_third_request_without_second_start_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_close_substring_in_other_token_does_not_disable_keepalive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_comma_list_close_token_disables_keepalive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_cycle_walk_idle_to_done_without_informational": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_data_events_stay_in_send_body_then_eom_is_done": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_disabled_keepalive_adds_close_when_caller_set_keep_alive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_empty_body_pipelined_second_request_is_paused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_feeding_while_paused_does_not_reveal_next_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http10_get_adds_close_on_bare_200": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http10_keep_alive_token_does_not_enable_reuse": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http10_non_200_response_disables_reuse": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http10_non_get_adds_close": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http10_response_disables_reuse": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http10_response_keep_alive_token_does_not_enable_reuse": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http11_204_without_close_still_reuses": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_http11_without_close_ends_done_and_reuse_works": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_informational_keeps_server_in_send_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_leftover_bytes_after_third_are_paused_in_trailing_data": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_leftover_non_get_after_third_is_paused_in_trailing_data": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_paused_after_first_eom_is_not_need_data": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_paused_after_response_eom_before_start": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_paused_after_second_response_eom_before_start": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_request_connection_close_echoed_on_204": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_request_connection_close_echoed_on_non_204": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_response_comma_list_close_token_disables_keepalive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_reuse_cycle_encode_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_reuse_cycle_round_trips_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_close_substring_does_not_disable_keepalive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_comma_list_close_token_disables_keepalive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_final_response_from_idle_encodes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_http10_get_target_adds_close": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_idle_final_with_close_completes_must_close": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_pipelined_targets_are_serialized": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_second_cycle_after_start": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_server_408_from_idle_encodes_without_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_server_sending_request_after_leave_idle_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_server_sending_request_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_server_set_close_disables_keepalive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_three_informational_responses_stay_in_send_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_three_pipelined_gets_are_delivered_one_cycle_at_a_time": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_two_informational_responses_stay_in_send_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_big_header_4000a_fails_at_limit_4000_status_431": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_big_header_4000a_succeeds_at_limit_5000": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_client_http11_unfinished_cl_empty_feed_is_remote": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_complete_10000_body_succeeds_at_limit_5000": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_complete_framed_body_not_10000_succeeds_under_smaller_limit": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_content_length_100_cut_after_12345_is_remote_not_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_default_suggested_status_is_400": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_further_pull_after_remote_error_is_remote": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_get_encode_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_gibberish_blank_line_is_unrecoverable_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_http10_close_delimited_empty_feed_is_eom_then_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_http10_unfinished_cl_empty_feed_is_remote": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_incomplete_chunked_empty_feed_is_remote": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_limit_counts_line_plus_headers_not_value_alone": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_local_remote_and_runtime_errors_are_distinguishable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_mark_send_as_failed_after_server_send": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_mark_send_as_failed_sets_our_error_leaves_their": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_mark_send_as_failed_twice_is_idempotent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_marked_failed_connection_cannot_return_to_idle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_mid_request_line_empty_feed_is_remote": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_missing_host_is_recoverable_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_non_host_invalid_construction_is_recoverable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_our_error_cannot_be_left_after_local_send": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_oversize_incomplete_headers_suggest_431": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_oversize_unfinished_response_headers_are_remote_431": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_pipelined_leftovers_fail_only_when_next_message_is_parsed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_protocol_error_path_round_trips_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_runtime_header_crosses_custom_limit": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_runtime_oversize_unfinished_response_headers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_runtime_pipelined_leftovers_fail_only_when_parsed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_runtime_unparseable_line_is_remote_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_send_after_mark_failed_is_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_send_after_remote_receive_error_still_answers_400": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_sending_http10_non_get_request_is_unrecoverable_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_sending_http10_request_is_unrecoverable_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_sending_http10_response_from_other_legal_position": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_sending_http10_response_is_unrecoverable_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_server_can_still_send_400_after_remote_receive_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_start_next_cycle_before_done_is_recoverable_local_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_their_error_cannot_be_left_after_remote_pull": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_transfer_encoding_gzip_suggests_501": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_valid_http11_send_fails_after_http10_send_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_well_formed_feed_after_remote_error_still_remote": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_client_empty_feed_also_yields_repeated_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_client_empty_feed_while_waiting_for_response_is_remote_not_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_client_half_close_after_get_foo_leaves_server_send_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_client_mid_content_length_10_cannot_send_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_either_side_may_close_after_both_done": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_empty_feed_after_both_done_is_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_empty_feed_pulls_connection_closed_repeatedly": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_finished_content_length_half_close_still_receives_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_fresh_client_send_closed_is_closed_must_close_and_no_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_fresh_server_send_closed_is_closed_must_close_and_no_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_further_empty_feeds_after_close_remain_allowed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_get_encode_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_idle_already_closed_send_is_idempotent": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_idle_peer_sends_connection_closed_both_sides_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_must_close_server_sends_connection_closed_to_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_pipelined_get_1_and_2_then_empty_feed_server_answers_both_then_closes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_runtime_cycle_then_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_runtime_half_close_still_allows_response": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_runtime_http10_must_close_sends_to_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_runtime_mid_content_length_cannot_send_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_runtime_two_pipelined_gets_then_half_close": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_server_cannot_send_connection_closed_after_client_half_close": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_server_in_send_response_cannot_send_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_server_mid_content_length_cannot_send_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_server_send_response_after_bodied_request_cannot_send_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_server_still_sends_response_after_client_half_close": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_shutdown_path_round_trips_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_two_pipelined_gets_without_empty_feed_do_not_yield_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_chunked_expect_sets_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_client_data_12345_clears_waiting_flags": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_client_end_of_message_clears_waiting_flags": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_client_in_might_switch_cannot_send_another_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_client_still_sends_request_body_after_informational": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_connect_200_enters_switched_protocol": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_connect_200_trailing_123_then_456_receive_still_open": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_connect_404_then_eom_allows_next_cycle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_connect_empty_body_might_switch_only_after_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_connect_non_one_content_length_might_switch_after_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_connect_switch_state_appears_only_after_request_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_dual_proposal_101_accepts_upgrade": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_dual_proposal_2xx_accepts_connect": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_dual_proposal_non_2xx_is_denial_and_reuses": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_empty_feed_after_acceptance_stays_paused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_empty_feed_then_acceptance_stays_paused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_empty_feed_then_denial_pulls_connection_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_empty_feed_while_might_switch_stays_paused_with_receive_closed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_expect_matching_is_case_insensitive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_expect_path_round_trips_when_package_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_final_200_clears_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_final_non_200_clears_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_get_encode_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_http10_expect_does_not_set_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_http11_expect_content_length_100_sets_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_http11_versus_http10_expect_differs_only_in_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_http_send_after_switched_is_local_protocol_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_informational_100_clears_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_informational_100_is_pulled_before_final_200": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_informational_102_clears_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_leftover_get_http10_after_denial_and_next_cycle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_leftover_not_parsed_until_denial_and_start": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_need_data_unblocks_after_more_bytes_of_current_message": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_no_start_next_cycle_out_of_switched": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_non_get_expect_sets_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_non_get_upgrade_101_enters_switched": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_pipelining_paused_unblocks_after_start_without_switch_deny": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_connect_non_2xx_denies_and_reuses": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_data_clears_waiting_flags": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_dual_proposal_accept_each": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_expect_sets_waiting_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_informational_then_body_then_final": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_leftover_http10_after_denial": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_switched_trailing_concatenates": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_runtime_upgrade_accept_and_deny": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_second_request_succeeds_after_denial_and_next_cycle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_start_next_cycle_while_might_switch_is_local_not_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_switch_paused_does_not_unblock_by_feeding_or_start_alone": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_switched_does_not_parse_leftover_http_as_request": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_they_are_waiting_only_on_server": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_two_informational_100_then_102_then_body_then_final": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_upgrade_100_is_not_acceptance": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_upgrade_101_enters_switched_like_connect_accept": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_upgrade_101_same_trailing_and_paused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_upgrade_200_is_denial_and_allows_next_cycle": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_upgrade_switch_state_appears_only_after_request_eom": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}}, "selected": ["tests/F01_acceptance.py::test_get_slash_host_constructs_when_package_importable", "tests/F01_acceptance.py::test_six_event_kinds_are_distinguishable", "tests/F01_acceptance.py::test_get_slash_host_example_com_is_request", "tests/F01_acceptance.py::test_informational_100_empty_headers", "tests/F01_acceptance.py::test_response_204_http10_empty_headers", "tests/F01_acceptance.py::test_data_payload_asdf_recovered", "tests/F01_acceptance.py::test_runtime_data_payload_recovered", "tests/F01_acceptance.py::test_end_of_message_defaults_to_empty_trailers", "tests/F01_acceptance.py::test_connection_closed_has_no_fields", "tests/F01_acceptance.py::test_runtime_request_constructs", "tests/F01_acceptance.py::test_method_target_version_from_ascii_text_are_bytes", "tests/F01_acceptance.py::test_method_target_version_from_byte_buffer_are_bytes", "tests/F01_acceptance.py::test_request_http_version_defaults_to_1_1", "tests/F01_acceptance.py::test_http10_version_compares_less_than_1_1", "tests/F01_acceptance.py::test_http10_get_slash_empty_headers_succeeds", "tests/F01_acceptance.py::test_host_spelled_hOSt_ordinary_and_raw", "tests/F01_acceptance.py::test_runtime_mixed_case_host_ordinary_and_raw", "tests/F01_acceptance.py::test_http11_missing_host_empty_headers_is_local_protocol_error", "tests/F01_acceptance.py::test_http11_missing_host_with_only_non_host_header_is_local_protocol_error", "tests/F01_acceptance.py::test_two_hosts_refused_on_http10", "tests/F01_acceptance.py::test_two_hosts_refused_on_http11", "tests/F01_acceptance.py::test_two_hosts_mixed_case_refused", "tests/F01_acceptance.py::test_valid_request_still_constructs_after_missing_host_refusal", "tests/F01_acceptance.py::test_valid_construction_after_non_host_refusal", "tests/F01_acceptance.py::test_missing_host_leaves_connection_unaffected", "tests/F01_acceptance.py::test_informational_100_and_199_succeed", "tests/F01_acceptance.py::test_response_204_and_999_succeed", "tests/F01_acceptance.py::test_response_200_is_final_not_informational", "tests/F01_acceptance.py::test_runtime_interior_informational_and_response_succeed", "tests/F01_acceptance.py::test_informational_and_response_default_version_1_1", "tests/F01_acceptance.py::test_reason_defaults_empty_and_ok_stored_as_bytes", "tests/F01_acceptance.py::test_integer_status_constant_stored_as_plain_int", "tests/F01_acceptance.py::test_second_integer_status_constant_stored_as_plain_int", "tests/F01_acceptance.py::test_informational_200_refused", "tests/F01_acceptance.py::test_response_100_refused", "tests/F01_acceptance.py::test_non_integer_status_text_100_refused", "tests/F01_acceptance.py::test_runtime_non_integer_status_refused", "tests/F01_acceptance.py::test_informational_status_below_100_refused", "tests/F01_acceptance.py::test_response_status_1000_or_greater_refused", "tests/F01_acceptance.py::test_host_then_connection_ordinary_and_raw", "tests/F01_acceptance.py::test_construction_preserves_caller_order_including_host_not_first", "tests/F01_acceptance.py::test_headers_from_ascii_and_byte_buffer_are_bytes", "tests/F01_acceptance.py::test_header_value_uppercase_preserved", "tests/F01_acceptance.py::test_informational_headers_ordinary_and_raw", "tests/F01_acceptance.py::test_response_headers_ordinary_and_raw", "tests/F01_acceptance.py::test_end_of_message_trailing_headers_normalized", "tests/F01_acceptance.py::test_runtime_header_order_and_raw_casing", "tests/F01_acceptance.py::test_content_length_1_normalized", "tests/F01_acceptance.py::test_two_content_length_0_collapse", "tests/F01_acceptance.py::test_single_content_length_0_comma_0_collapses", "tests/F01_acceptance.py::test_eighteen_digit_content_length_succeeds", "tests/F01_acceptance.py::test_runtime_content_length_accepted", "tests/F01_acceptance.py::test_content_length_asdf_and_1x_refused", "tests/F01_acceptance.py::test_disagreeing_content_length_headers_refused", "tests/F01_acceptance.py::test_disagreeing_content_length_pair_not_public_refused", "tests/F01_acceptance.py::test_disagreeing_comma_pieces_1_1_2_refused", "tests/F01_acceptance.py::test_disagreeing_comma_pieces_not_public_refused", "tests/F01_acceptance.py::test_thirty_three_ones_content_length_refused", "tests/F01_acceptance.py::test_runtime_longer_than_digit_limit_content_length_refused", "tests/F01_acceptance.py::test_three_content_length_not_all_equal_refused", "tests/F01_acceptance.py::test_content_length_mixed_case_disagreeing_refused", "tests/F01_acceptance.py::test_content_length_asdf_refused_on_non_request", "tests/F01_acceptance.py::test_transfer_encoding_chunked_normalized", "tests/F01_acceptance.py::test_transfer_encoding_cHuNkEd_normalized", "tests/F01_acceptance.py::test_transfer_encoding_third_mixed_case_chunked_normalized", "tests/F01_acceptance.py::test_second_transfer_encoding_chunked_refused", "tests/F01_acceptance.py::test_second_transfer_encoding_mixed_case_names_refused", "tests/F01_acceptance.py::test_transfer_encoding_gzip_is_local_error_status_501", "tests/F01_acceptance.py::test_chunked_together_with_gzip_is_501", "tests/F01_acceptance.py::test_deflate_transfer_encoding_is_501", "tests/F01_acceptance.py::test_runtime_non_chunked_transfer_encoding_is_501", "tests/F01_acceptance.py::test_gzip_501_differs_from_missing_host_400", "tests/F01_acceptance.py::test_transfer_encoding_gzip_refused_on_non_request", "tests/F01_acceptance.py::test_header_name_leading_or_trailing_whitespace_refused", "tests/F01_acceptance.py::test_header_name_leading_or_trailing_tab_refused", "tests/F01_acceptance.py::test_header_name_space_nul_nonascii_control_refused", "tests/F01_acceptance.py::test_header_value_cr_lf_ff_vt_nul_refused", "tests/F01_acceptance.py::test_header_value_leading_trailing_space_or_tab_refused", "tests/F01_acceptance.py::test_header_illegal_name_or_value_refused_on_response", "tests/F01_acceptance.py::test_header_illegal_name_or_value_refused_on_informational_or_eom", "tests/F01_acceptance.py::test_target_nul_space_127_238_embedded_in_slash_refused", "tests/F01_acceptance.py::test_method_not_a_single_token_refused", "tests/F01_acceptance.py::test_runtime_method_not_a_token_refused", "tests/F01_acceptance.py::test_set_cookie_byte_1_kept", "tests/F01_acceptance.py::test_header_value_bytes_1_2_127_kept", "tests/F02_acceptance.py::test_client_get_encodes_and_server_pulls_when_package_importable", "tests/F02_acceptance.py::test_client_get_encode_fails_when_package_not_importable", "tests/F02_acceptance.py::test_client_and_server_roles_are_complementary_and_idle", "tests/F02_acceptance.py::test_nine_named_states_are_distinct_and_queryable", "tests/F02_acceptance.py::test_our_their_and_pair_states_agree_when_idle", "tests/F02_acceptance.py::test_role_that_is_neither_client_nor_server_is_refused", "tests/F02_acceptance.py::test_second_non_role_value_is_refused", "tests/F02_acceptance.py::test_fresh_client_pull_is_need_data", "tests/F02_acceptance.py::test_fresh_server_pull_is_need_data", "tests/F02_acceptance.py::test_client_get_slash_cl10_encodes_http11_request_line", "tests/F02_acceptance.py::test_client_states_after_get_send_are_send_body_and_send_response", "tests/F02_acceptance.py::test_client_peer_http_version_absent_after_request_send", "tests/F02_acceptance.py::test_server_feed_only_leaves_idle_and_peer_version_absent", "tests/F02_acceptance.py::test_server_pull_of_that_get_matches_and_records_peer_1_1", "tests/F02_acceptance.py::test_runtime_host_and_target_round_trip", "tests/F02_acceptance.py::test_informational_100_status_line_empty_reason_unless_supplied", "tests/F02_acceptance.py::test_runtime_reason_is_written_after_status_code", "tests/F02_acceptance.py::test_response_200_cl11_empty_reason_unless_supplied", "tests/F02_acceptance.py::test_both_sides_send_body_after_final_response", "tests/F02_acceptance.py::test_client_pulls_100_then_200", "tests/F02_acceptance.py::test_cl_data_12345_encodes_as_exactly_those_bytes", "tests/F02_acceptance.py::test_cl_data_67890_then_eom_encodes_no_extra_bytes", "tests/F02_acceptance.py::test_last_cl_bytes_then_further_pull_is_end_of_message", "tests/F02_acceptance.py::test_both_sides_done_after_matching_eoms", "tests/F02_acceptance.py::test_runtime_split_body_round_trip_under_content_length", "tests/F02_acceptance.py::test_send_returns_bytes_and_does_not_require_a_socket", "tests/F02_acceptance.py::test_feed_stores_pull_parses_one_event", "tests/F02_acceptance.py::test_split_200_for_xml_httpbin_returns_need_data_then_response", "tests/F02_acceptance.py::test_runtime_split_response_retains_bytes_across_fragments", "tests/F02_acceptance.py::test_http10_get_slash_no_headers_pulls_version_1_0_and_eom", "tests/F02_acceptance.py::test_http10_response_can_be_pulled_as_version_1_0", "tests/F02_acceptance.py::test_peer_http_version_stays_after_later_events_this_cycle", "tests/F02_acceptance.py::test_host_is_written_before_foo_even_when_not_first", "tests/F02_acceptance.py::test_runtime_host_is_first_among_headers", "tests/F02_acceptance.py::test_encoded_header_names_keep_construction_casing", "tests/F02_acceptance.py::test_mixed_line_endings_on_200_pull_as_that_response", "tests/F02_acceptance.py::test_lone_lf_200_is_accepted", "tests/F02_acceptance.py::test_request_header_block_accepts_lone_lf_and_mixed_endings", "tests/F02_acceptance.py::test_omitted_reason_phrase_pulls_empty_reason", "tests/F02_acceptance.py::test_empty_and_tab_only_header_values_pull_empty", "tests/F02_acceptance.py::test_single_character_header_value_is_accepted", "tests/F02_acceptance.py::test_obsolete_fold_some_joins_named_value", "tests/F02_acceptance.py::test_last_header_may_be_folded", "tests/F02_acceptance.py::test_folded_first_header_is_remote_protocol_error", "tests/F02_acceptance.py::test_header_name_trailing_space_or_tab_before_colon_refused", "tests/F02_acceptance.py::test_nameless_colon_header_refused", "tests/F02_acceptance.py::test_garbage_after_request_line_refused", "tests/F02_acceptance.py::test_garbage_after_response_line_refused", "tests/F02_acceptance.py::test_nul_in_header_value_refused", "tests/F02_acceptance.py::test_target_containing_nul_space_127_238_refused", "tests/F02_acceptance.py::test_server_rejects_lone_nul_space_and_tls_client_hello", "tests/F02_acceptance.py::test_client_after_request_rejects_lone_nul_space_and_tls_server_hello", "tests/F02_acceptance.py::test_server_blank_line_only_refused", "tests/F02_acceptance.py::test_client_blank_line_only_after_request_refused", "tests/F02_acceptance.py::test_nonempty_feed_after_empty_eof_is_runtime_error_not_protocol", "tests/F02_acceptance.py::test_further_empty_chunks_after_eof_do_not_fail", "tests/F03_acceptance.py::test_empty_body_get_round_trips_when_package_importable", "tests/F03_acceptance.py::test_empty_body_get_encode_fails_when_package_not_importable", "tests/F03_acceptance.py::test_request_without_framing_headers_is_empty_body", "tests/F03_acceptance.py::test_runtime_request_without_framing_headers_is_empty_body", "tests/F03_acceptance.py::test_post_without_framing_headers_is_empty_body", "tests/F03_acceptance.py::test_content_length_10_request_is_ten_raw_bytes", "tests/F03_acceptance.py::test_runtime_content_length_request_is_exact_raw_bytes", "tests/F03_acceptance.py::test_content_length_0_request_is_empty_body", "tests/F03_acceptance.py::test_chunked_request_two_payloads_and_trailer", "tests/F03_acceptance.py::test_empty_data_on_chunked_encodes_no_bytes", "tests/F03_acceptance.py::test_chunked_eom_without_trailers_is_final_chunk", "tests/F03_acceptance.py::test_runtime_chunked_request_recovers_payloads_and_trailer", "tests/F03_acceptance.py::test_content_length_response_is_exact_raw_bytes", "tests/F03_acceptance.py::test_runtime_content_length_response_is_exact_raw_bytes", "tests/F03_acceptance.py::test_content_length_0_response_keeps_content_length", "tests/F03_acceptance.py::test_unframed_200_to_http11_is_chunked", "tests/F03_acceptance.py::test_explicit_chunked_200_to_http11_is_chunked", "tests/F03_acceptance.py::test_unframed_200_to_http10_is_close_delimited", "tests/F03_acceptance.py::test_response_before_any_request_is_close_delimited", "tests/F03_acceptance.py::test_runtime_unknown_length_follows_peer_version", "tests/F03_acceptance.py::test_http10_unframed_200_empty_feed_is_eom_then_closed", "tests/F03_acceptance.py::test_http10_empty_feed_is_not_remote_error", "tests/F03_acceptance.py::test_unfinished_content_length_empty_feed_is_remote_error", "tests/F03_acceptance.py::test_unfinished_chunked_empty_feed_is_remote_error", "tests/F03_acceptance.py::test_runtime_http10_close_delimited_body", "tests/F03_acceptance.py::test_response_te_wins_over_content_length", "tests/F03_acceptance.py::test_runtime_response_te_wins_over_content_length", "tests/F03_acceptance.py::test_response_te_and_content_length_to_http10_is_close_delimited", "tests/F03_acceptance.py::test_head_204_304_complete_with_empty_body", "tests/F03_acceptance.py::test_empty_body_data_event_is_not_sent", "tests/F03_acceptance.py::test_empty_body_ignores_caller_framing_headers", "tests/F03_acceptance.py::test_head_to_http11_advertises_chunked_like_get", "tests/F03_acceptance.py::test_head_to_http10_advertises_close_like_get", "tests/F03_acceptance.py::test_whole_five_byte_chunk_is_start_and_end", "tests/F03_acceptance.py::test_split_five_byte_chunk_is_start_middle_end", "tests/F03_acceptance.py::test_runtime_split_chunk_marks", "tests/F03_acceptance.py::test_two_chunks_in_one_feed_are_two_both_events", "tests/F03_acceptance.py::test_chunk_extension_discarded_payload_kept", "tests/F03_acceptance.py::test_runtime_chunk_extension_discarded", "tests/F03_acceptance.py::test_spaces_after_chunk_size_accepted", "tests/F03_acceptance.py::test_tabs_after_chunk_size_accepted", "tests/F03_acceptance.py::test_chunk_marks_are_ignored_when_data_is_sent", "tests/F03_acceptance.py::test_passthrough_content_length_is_only_placeholder", "tests/F03_acceptance.py::test_passthrough_content_length_eom_then_succeeds", "tests/F03_acceptance.py::test_passthrough_short_placeholder_eom_is_local_error", "tests/F03_acceptance.py::test_passthrough_chunked_keeps_placeholder_among_framing", "tests/F03_acceptance.py::test_passthrough_http10_is_only_placeholder", "tests/F03_acceptance.py::test_runtime_passthrough_placeholder_identity", "tests/F03_acceptance.py::test_data_exceeding_content_length_is_local_error", "tests/F03_acceptance.py::test_eom_before_content_length_satisfied_is_local_error", "tests/F03_acceptance.py::test_response_data_exceeding_content_length_is_local_error", "tests/F03_acceptance.py::test_response_eom_before_content_length_satisfied_is_local_error", "tests/F03_acceptance.py::test_trailers_on_content_length_are_local_error", "tests/F03_acceptance.py::test_trailers_on_http10_close_delimited_are_local_error", "tests/F03_acceptance.py::test_trailers_to_http10_peer_refused_even_if_caller_asked_chunked", "tests/F03_acceptance.py::test_chunk_size_longer_than_32_hex_digits_is_remote_error", "tests/F03_acceptance.py::test_runtime_overlong_chunk_size_is_remote_error", "tests/F03_acceptance.py::test_two_digit_hex_chunk_size_is_accepted", "tests/F03_acceptance.py::test_runtime_two_digit_hex_chunk_size_is_accepted", "tests/F03_acceptance.py::test_chunk_size_containing_nul_is_remote_error", "tests/F03_acceptance.py::test_chunk_size_3_not_followed_by_crlf_is_remote_error", "tests/F04_acceptance.py::test_reuse_cycle_round_trips_when_package_importable", "tests/F04_acceptance.py::test_reuse_cycle_encode_fails_when_package_not_importable", "tests/F04_acceptance.py::test_cycle_walk_idle_to_done_without_informational", "tests/F04_acceptance.py::test_informational_keeps_server_in_send_response", "tests/F04_acceptance.py::test_two_informational_responses_stay_in_send_response", "tests/F04_acceptance.py::test_three_informational_responses_stay_in_send_response", "tests/F04_acceptance.py::test_data_events_stay_in_send_body_then_eom_is_done", "tests/F04_acceptance.py::test_server_408_from_idle_encodes_without_request", "tests/F04_acceptance.py::test_runtime_final_response_from_idle_encodes", "tests/F04_acceptance.py::test_runtime_idle_final_with_close_completes_must_close", "tests/F04_acceptance.py::test_http11_without_close_ends_done_and_reuse_works", "tests/F04_acceptance.py::test_comma_list_close_token_disables_keepalive", "tests/F04_acceptance.py::test_runtime_comma_list_close_token_disables_keepalive", "tests/F04_acceptance.py::test_close_substring_in_other_token_does_not_disable_keepalive", "tests/F04_acceptance.py::test_response_comma_list_close_token_disables_keepalive", "tests/F04_acceptance.py::test_runtime_close_substring_does_not_disable_keepalive", "tests/F04_acceptance.py::test_request_connection_close_echoed_on_204", "tests/F04_acceptance.py::test_request_connection_close_echoed_on_non_204", "tests/F04_acceptance.py::test_http11_204_without_close_still_reuses", "tests/F04_acceptance.py::test_bodied_request_close_is_must_close_after_eom", "tests/F04_acceptance.py::test_http10_get_adds_close_on_bare_200", "tests/F04_acceptance.py::test_runtime_http10_get_target_adds_close", "tests/F04_acceptance.py::test_http10_non_get_adds_close", "tests/F04_acceptance.py::test_http10_response_disables_reuse", "tests/F04_acceptance.py::test_http10_keep_alive_token_does_not_enable_reuse", "tests/F04_acceptance.py::test_http10_response_keep_alive_token_does_not_enable_reuse", "tests/F04_acceptance.py::test_http10_non_200_response_disables_reuse", "tests/F04_acceptance.py::test_disabled_keepalive_adds_close_when_caller_set_keep_alive", "tests/F04_acceptance.py::test_server_set_close_disables_keepalive", "tests/F04_acceptance.py::TestStartNextCycle::test_start_next_cycle_from_both_done_returns_idle_and_delete_404_runs", "tests/F04_acceptance.py::test_peer_http_version_still_present_after_next_cycle", "tests/F04_acceptance.py::test_runtime_second_cycle_after_start", "tests/F04_acceptance.py::test_client_second_request_before_response_pulled_is_local_error", "tests/F04_acceptance.py::test_client_second_request_after_done_without_start_is_local_error", "tests/F04_acceptance.py::test_client_second_request_succeeds_after_start", "tests/F04_acceptance.py::test_client_third_request_without_second_start_is_local_error", "tests/F04_acceptance.py::test_client_second_get_without_start_is_local_error", "tests/F04_acceptance.py::test_three_pipelined_gets_are_delivered_one_cycle_at_a_time", "tests/F04_acceptance.py::test_paused_after_first_eom_is_not_need_data", "tests/F04_acceptance.py::test_paused_after_response_eom_before_start", "tests/F04_acceptance.py::test_paused_after_second_response_eom_before_start", "tests/F04_acceptance.py::test_feeding_while_paused_does_not_reveal_next_request", "tests/F04_acceptance.py::test_after_third_request_pull_is_need_data", "tests/F04_acceptance.py::test_leftover_bytes_after_third_are_paused_in_trailing_data", "tests/F04_acceptance.py::test_leftover_non_get_after_third_is_paused_in_trailing_data", "tests/F04_acceptance.py::test_empty_body_pipelined_second_request_is_paused", "tests/F04_acceptance.py::test_runtime_pipelined_targets_are_serialized", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_from_send_body_is_local_error_not_error", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_before_server_done_is_local_error", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_on_server_before_response_is_local_error", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_after_failed_attempt_still_works_when_both_done", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_after_http10_exchange_is_refused", "tests/F04_acceptance.py::TestStartNextCycleRefusal::test_start_next_cycle_client_send_body_server_done_is_local_error", "tests/F04_acceptance.py::test_client_sending_response_is_local_error", "tests/F04_acceptance.py::test_client_sending_response_after_request_is_local_error", "tests/F04_acceptance.py::test_client_sending_non_200_response_is_local_error", "tests/F04_acceptance.py::test_client_sending_non_200_response_after_request_is_local_error", "tests/F04_acceptance.py::test_server_sending_request_is_local_error", "tests/F04_acceptance.py::test_server_sending_request_after_leave_idle_is_local_error", "tests/F05_acceptance.py::test_protocol_error_path_round_trips_when_package_importable", "tests/F05_acceptance.py::test_get_encode_fails_when_package_not_importable", "tests/F05_acceptance.py::test_local_remote_and_runtime_errors_are_distinguishable", "tests/F05_acceptance.py::test_default_suggested_status_is_400", "tests/F05_acceptance.py::test_transfer_encoding_gzip_suggests_501", "tests/F05_acceptance.py::test_oversize_incomplete_headers_suggest_431", "tests/F05_acceptance.py::test_missing_host_is_recoverable_local_error", "tests/F05_acceptance.py::test_non_host_invalid_construction_is_recoverable", "tests/F05_acceptance.py::test_start_next_cycle_before_done_is_recoverable_local_error", "tests/F05_acceptance.py::test_gibberish_blank_line_is_unrecoverable_remote_error", "tests/F05_acceptance.py::test_server_can_still_send_400_after_remote_receive_error", "tests/F05_acceptance.py::test_send_after_remote_receive_error_still_answers_400", "tests/F05_acceptance.py::test_further_pull_after_remote_error_is_remote", "tests/F05_acceptance.py::test_well_formed_feed_after_remote_error_still_remote", "tests/F05_acceptance.py::test_their_error_cannot_be_left_after_remote_pull", "tests/F05_acceptance.py::test_runtime_unparseable_line_is_remote_error", "tests/F05_acceptance.py::test_sending_http10_request_is_unrecoverable_local_error", "tests/F05_acceptance.py::test_sending_http10_non_get_request_is_unrecoverable_local_error", "tests/F05_acceptance.py::test_sending_http10_response_is_unrecoverable_local_error", "tests/F05_acceptance.py::test_sending_http10_response_from_other_legal_position", "tests/F05_acceptance.py::test_valid_http11_send_fails_after_http10_send_error", "tests/F05_acceptance.py::test_our_error_cannot_be_left_after_local_send", "tests/F05_acceptance.py::test_mark_send_as_failed_sets_our_error_leaves_their", "tests/F05_acceptance.py::test_mark_send_as_failed_twice_is_idempotent", "tests/F05_acceptance.py::test_send_after_mark_failed_is_local_error", "tests/F05_acceptance.py::test_mark_send_as_failed_after_server_send", "tests/F05_acceptance.py::test_marked_failed_connection_cannot_return_to_idle", "tests/F05_acceptance.py::test_big_header_4000a_succeeds_at_limit_5000", "tests/F05_acceptance.py::test_big_header_4000a_fails_at_limit_4000_status_431", "tests/F05_acceptance.py::test_complete_10000_body_succeeds_at_limit_5000", "tests/F05_acceptance.py::test_complete_framed_body_not_10000_succeeds_under_smaller_limit", "tests/F05_acceptance.py::test_pipelined_leftovers_fail_only_when_next_message_is_parsed", "tests/F05_acceptance.py::test_runtime_pipelined_leftovers_fail_only_when_parsed", "tests/F05_acceptance.py::test_endless_header_eventually_fails_at_default_limit", "tests/F05_acceptance.py::test_default_incomplete_limit_between_14_and_18_kibibytes", "tests/F05_acceptance.py::test_oversize_unfinished_response_headers_are_remote_431", "tests/F05_acceptance.py::test_runtime_oversize_unfinished_response_headers", "tests/F05_acceptance.py::test_limit_counts_line_plus_headers_not_value_alone", "tests/F05_acceptance.py::test_runtime_header_crosses_custom_limit", "tests/F05_acceptance.py::test_content_length_100_cut_after_12345_is_remote_not_closed", "tests/F05_acceptance.py::test_incomplete_chunked_empty_feed_is_remote", "tests/F05_acceptance.py::test_http10_close_delimited_empty_feed_is_eom_then_closed", "tests/F05_acceptance.py::test_http10_unfinished_cl_empty_feed_is_remote", "tests/F05_acceptance.py::test_client_http11_unfinished_cl_empty_feed_is_remote", "tests/F05_acceptance.py::test_mid_request_line_empty_feed_is_remote", "tests/F06_acceptance.py::test_shutdown_path_round_trips_when_package_importable", "tests/F06_acceptance.py::test_get_encode_fails_when_package_not_importable", "tests/F06_acceptance.py::test_fresh_client_send_closed_is_closed_must_close_and_no_bytes", "tests/F06_acceptance.py::test_fresh_server_send_closed_is_closed_must_close_and_no_bytes", "tests/F06_acceptance.py::test_idle_peer_sends_connection_closed_both_sides_closed", "tests/F06_acceptance.py::test_idle_already_closed_send_is_idempotent", "tests/F06_acceptance.py::test_empty_feed_pulls_connection_closed_repeatedly", "tests/F06_acceptance.py::test_further_empty_feeds_after_close_remain_allowed", "tests/F06_acceptance.py::test_client_empty_feed_also_yields_repeated_connection_closed", "tests/F06_acceptance.py::test_client_half_close_after_get_foo_leaves_server_send_response", "tests/F06_acceptance.py::test_server_still_sends_response_after_client_half_close", "tests/F06_acceptance.py::test_runtime_half_close_still_allows_response", "tests/F06_acceptance.py::test_finished_content_length_half_close_still_receives_response", "tests/F06_acceptance.py::test_either_side_may_close_after_both_done", "tests/F06_acceptance.py::test_connection_closed_when_already_closed_is_idempotent", "tests/F06_acceptance.py::test_must_close_server_sends_connection_closed_to_closed", "tests/F06_acceptance.py::test_empty_feed_after_both_done_is_connection_closed", "tests/F06_acceptance.py::test_runtime_cycle_then_connection_closed", "tests/F06_acceptance.py::test_runtime_http10_must_close_sends_to_closed", "tests/F06_acceptance.py::test_pipelined_get_1_and_2_then_empty_feed_server_answers_both_then_closes", "tests/F06_acceptance.py::test_runtime_two_pipelined_gets_then_half_close", "tests/F06_acceptance.py::test_two_pipelined_gets_without_empty_feed_do_not_yield_connection_closed", "tests/F06_acceptance.py::test_server_in_send_response_cannot_send_connection_closed", "tests/F06_acceptance.py::test_server_send_response_after_bodied_request_cannot_send_connection_closed", "tests/F06_acceptance.py::test_server_cannot_send_connection_closed_after_client_half_close", "tests/F06_acceptance.py::test_client_empty_feed_while_waiting_for_response_is_remote_not_closed", "tests/F06_acceptance.py::test_client_mid_content_length_10_cannot_send_connection_closed", "tests/F06_acceptance.py::test_server_mid_content_length_cannot_send_connection_closed", "tests/F06_acceptance.py::test_runtime_mid_content_length_cannot_send_connection_closed", "tests/F06_acceptance.py::test_complete_new_request_while_peer_must_close_is_remote", "tests/F06_acceptance.py::test_runtime_complete_request_while_peer_must_close_is_remote", "tests/F06_acceptance.py::test_bytes_after_empty_feed_remain_runtime_and_differ_from_must_close_request", "tests/F07_acceptance.py::test_expect_path_round_trips_when_package_importable", "tests/F07_acceptance.py::test_get_encode_fails_when_package_not_importable", "tests/F07_acceptance.py::test_informational_100_is_pulled_before_final_200", "tests/F07_acceptance.py::test_client_still_sends_request_body_after_informational", "tests/F07_acceptance.py::test_two_informational_100_then_102_then_body_then_final", "tests/F07_acceptance.py::test_runtime_informational_then_body_then_final", "tests/F07_acceptance.py::test_http11_expect_content_length_100_sets_waiting_flags", "tests/F07_acceptance.py::test_they_are_waiting_only_on_server", "tests/F07_acceptance.py::test_expect_matching_is_case_insensitive", "tests/F07_acceptance.py::test_non_get_expect_sets_waiting_flags", "tests/F07_acceptance.py::test_chunked_expect_sets_waiting_flags", "tests/F07_acceptance.py::test_informational_100_clears_waiting_flags", "tests/F07_acceptance.py::test_informational_102_clears_waiting_flags", "tests/F07_acceptance.py::test_final_200_clears_waiting_flags", "tests/F07_acceptance.py::test_final_non_200_clears_waiting_flags", "tests/F07_acceptance.py::test_client_data_12345_clears_waiting_flags", "tests/F07_acceptance.py::test_runtime_data_clears_waiting_flags", "tests/F07_acceptance.py::test_client_end_of_message_clears_waiting_flags", "tests/F07_acceptance.py::test_runtime_expect_sets_waiting_flags", "tests/F07_acceptance.py::test_http10_expect_does_not_set_waiting_flags", "tests/F07_acceptance.py::test_http11_versus_http10_expect_differs_only_in_waiting_flags", "tests/F07_acceptance.py::test_connect_switch_state_appears_only_after_request_eom", "tests/F07_acceptance.py::test_connect_non_one_content_length_might_switch_after_eom", "tests/F07_acceptance.py::test_connect_empty_body_might_switch_only_after_eom", "tests/F07_acceptance.py::test_connect_404_then_eom_allows_next_cycle", "tests/F07_acceptance.py::test_connect_200_enters_switched_protocol", "tests/F07_acceptance.py::test_runtime_connect_2xx_not_200_accepts", "tests/F07_acceptance.py::test_runtime_connect_non_2xx_denies_and_reuses", "tests/F07_acceptance.py::test_upgrade_switch_state_appears_only_after_request_eom", "tests/F07_acceptance.py::test_upgrade_101_enters_switched_like_connect_accept", "tests/F07_acceptance.py::test_upgrade_200_is_denial_and_allows_next_cycle", "tests/F07_acceptance.py::test_upgrade_100_is_not_acceptance", "tests/F07_acceptance.py::test_runtime_upgrade_accept_and_deny", "tests/F07_acceptance.py::test_non_get_upgrade_101_enters_switched", "tests/F07_acceptance.py::test_dual_proposal_2xx_accepts_connect", "tests/F07_acceptance.py::test_dual_proposal_101_accepts_upgrade", "tests/F07_acceptance.py::test_dual_proposal_non_2xx_is_denial_and_reuses", "tests/F07_acceptance.py::test_runtime_dual_proposal_accept_each", "tests/F07_acceptance.py::test_client_in_might_switch_cannot_send_another_request", "tests/F07_acceptance.py::test_second_request_succeeds_after_denial_and_next_cycle", "tests/F07_acceptance.py::test_start_next_cycle_while_might_switch_is_local_not_error", "tests/F07_acceptance.py::test_connect_200_trailing_123_then_456_receive_still_open", "tests/F07_acceptance.py::test_upgrade_101_same_trailing_and_paused", "tests/F07_acceptance.py::test_switched_does_not_parse_leftover_http_as_request", "tests/F07_acceptance.py::test_http_send_after_switched_is_local_protocol_error", "tests/F07_acceptance.py::test_no_start_next_cycle_out_of_switched", "tests/F07_acceptance.py::test_runtime_switched_trailing_concatenates", "tests/F07_acceptance.py::test_empty_feed_while_might_switch_stays_paused_with_receive_closed", "tests/F07_acceptance.py::test_empty_feed_then_denial_pulls_connection_closed", "tests/F07_acceptance.py::test_empty_feed_then_acceptance_stays_paused", "tests/F07_acceptance.py::test_empty_feed_after_acceptance_stays_paused", "tests/F07_acceptance.py::test_leftover_get_http10_after_denial_and_next_cycle", "tests/F07_acceptance.py::test_runtime_leftover_http10_after_denial", "tests/F07_acceptance.py::test_leftover_not_parsed_until_denial_and_start", "tests/F07_acceptance.py::test_need_data_unblocks_after_more_bytes_of_current_message", "tests/F07_acceptance.py::test_pipelining_paused_unblocks_after_start_without_switch_deny", "tests/F07_acceptance.py::test_switch_paused_does_not_unblock_by_feeding_or_start_alone"]}

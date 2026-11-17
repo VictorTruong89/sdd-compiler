@@ -1,0 +1,74 @@
+2026-11-11T16:29:00-05:00	start trial r28-zero2repo-reviews, claude 2.1.316, budget none, earlystop_rerun 0, one=0
+2026-11-11T16:29:00-05:00	run r28-haiku-review-case005-1 attempt 1 model anthropic/claude-haiku-5-5 task review-case005
+2026-11-11T16:31:27-05:00	harbor r28-haiku-review-case005-1 exit 0 after 147 s
+2026-11-11T16:31:27-05:00	done r28-haiku-review-case005-1 turns 6 cost_usd_est 0.02093255 reward {"reward": 1} 
+2026-11-11T16:31:28-05:00	usage five_hour 0.19 (resets 2026-11-11T21:00:00-05:00) seven_day 0.49 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:33:28-05:00	run r28-haiku-review-case005-2 attempt 1 model anthropic/claude-haiku-5-5 task review-case005
+2026-11-11T16:35:59-05:00	harbor r28-haiku-review-case005-2 exit 0 after 151 s
+2026-11-11T16:35:59-05:00	done r28-haiku-review-case005-2 turns 6 cost_usd_est 0.017499860000000002 reward {"reward": 1} 
+2026-11-11T16:35:59-05:00	usage five_hour 0.26 (resets 2026-11-11T21:00:00-05:00) seven_day 0.5 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:37:59-05:00	run r28-haiku-review-case005-3 attempt 1 model anthropic/claude-haiku-5-5 task review-case005
+2026-11-11T16:40:40-05:00	harbor r28-haiku-review-case005-3 exit 0 after 161 s
+2026-11-11T16:40:40-05:00	done r28-haiku-review-case005-3 turns 6 cost_usd_est 0.02239972 reward {"reward": 1} 
+2026-11-11T16:40:40-05:00	usage five_hour 0.4 (resets 2026-11-11T21:00:00-05:00) seven_day 0.51 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:42:40-05:00	run r28-sonnet-review-case005-1 attempt 1 model anthropic/claude-sonnet-5-5 task review-case005
+2026-11-11T16:44:25-05:00	harbor r28-sonnet-review-case005-1 exit 0 after 105 s
+2026-11-11T16:44:25-05:00	done r28-sonnet-review-case005-1 turns 7 cost_usd_est 0.1542054 reward {"reward": 1} 
+2026-11-11T16:44:26-05:00	usage five_hour 0.43 (resets 2026-11-11T21:00:00-05:00) seven_day 0.52 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:46:26-05:00	run r28-sonnet-review-case005-2 attempt 1 model anthropic/claude-sonnet-5-5 task review-case005
+2026-11-11T16:48:11-05:00	harbor r28-sonnet-review-case005-2 exit 0 after 105 s
+2026-11-11T16:48:11-05:00	done r28-sonnet-review-case005-2 turns 5 cost_usd_est 0.15674700000000003 reward {"reward": 1} 
+2026-11-11T16:48:11-05:00	usage five_hour 0.47 (resets 2026-11-11T21:00:00-05:00) seven_day 0.52 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:50:11-05:00	run r28-sonnet-review-case005-3 attempt 1 model anthropic/claude-sonnet-5-5 task review-case005
+2026-11-11T16:51:57-05:00	harbor r28-sonnet-review-case005-3 exit 0 after 106 s
+2026-11-11T16:51:57-05:00	done r28-sonnet-review-case005-3 turns 6 cost_usd_est 0.1620721 reward {"reward": 1} 
+2026-11-11T16:51:57-05:00	usage five_hour 0.5 (resets 2026-11-11T21:00:00-05:00) seven_day 0.52 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:53:57-05:00	run r28-haiku-review-case011-1 attempt 1 model anthropic/claude-haiku-5-5 task review-case011
+2026-11-11T16:56:20-05:00	harbor r28-haiku-review-case011-1 exit 0 after 143 s
+2026-11-11T16:56:20-05:00	done r28-haiku-review-case011-1 turns 7 cost_usd_est 0.01700654 reward {"reward": 1} 
+2026-11-11T16:56:20-05:00	usage five_hour 0.51 (resets 2026-11-11T21:00:00-05:00) seven_day 0.52 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T16:58:20-05:00	run r28-haiku-review-case011-2 attempt 1 model anthropic/claude-haiku-5-5 task review-case011
+2026-11-11T17:01:23-05:00	harbor r28-haiku-review-case011-2 exit 0 after 183 s
+2026-11-11T17:01:24-05:00	done r28-haiku-review-case011-2 turns 6 cost_usd_est 0.025187980000000006 reward {"reward": 1} 
+2026-11-11T17:01:24-05:00	usage five_hour 0.54 (resets 2026-11-11T21:00:00-05:00) seven_day 0.53 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:03:24-05:00	run r28-haiku-review-case011-3 attempt 1 model anthropic/claude-haiku-5-5 task review-case011
+2026-11-11T17:05:49-05:00	harbor r28-haiku-review-case011-3 exit 0 after 145 s
+2026-11-11T17:05:49-05:00	done r28-haiku-review-case011-3 turns 6 cost_usd_est 0.018469489999999998 reward {"reward": 1} 
+2026-11-11T17:05:49-05:00	usage five_hour 0.56 (resets 2026-11-11T21:00:00-05:00) seven_day 0.53 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:07:49-05:00	run r28-sonnet-review-case011-1 attempt 1 model anthropic/claude-sonnet-5-5 task review-case011
+2026-11-11T17:09:30-05:00	harbor r28-sonnet-review-case011-1 exit 0 after 101 s
+2026-11-11T17:09:30-05:00	done r28-sonnet-review-case011-1 turns 5 cost_usd_est 0.13197920000000002 reward {"reward": 1} 
+2026-11-11T17:09:30-05:00	usage five_hour 0.58 (resets 2026-11-11T21:00:00-05:00) seven_day 0.53 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:11:30-05:00	run r28-sonnet-review-case011-2 attempt 1 model anthropic/claude-sonnet-5-5 task review-case011
+2026-11-11T17:13:11-05:00	harbor r28-sonnet-review-case011-2 exit 0 after 101 s
+2026-11-11T17:13:11-05:00	done r28-sonnet-review-case011-2 turns 5 cost_usd_est 0.1312746 reward {"reward": 1} 
+2026-11-11T17:13:11-05:00	usage five_hour 0.6 (resets 2026-11-11T21:00:00-05:00) seven_day 0.53 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:15:11-05:00	run r28-sonnet-review-case011-3 attempt 1 model anthropic/claude-sonnet-5-5 task review-case011
+2026-11-11T17:16:51-05:00	harbor r28-sonnet-review-case011-3 exit 0 after 100 s
+2026-11-11T17:16:51-05:00	done r28-sonnet-review-case011-3 turns 5 cost_usd_est 0.12901859999999998 reward {"reward": 1} 
+2026-11-11T17:16:51-05:00	usage five_hour 0.63 (resets 2026-11-11T21:00:00-05:00) seven_day 0.53 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:18:51-05:00	run r28-haiku-review-case001-1 attempt 1 model anthropic/claude-haiku-5-5 task review-case001
+2026-11-11T17:20:56-05:00	harbor r28-haiku-review-case001-1 exit 0 after 125 s
+2026-11-11T17:20:56-05:00	done r28-haiku-review-case001-1 turns 7 cost_usd_est 0.013193609999999998 reward {"reward": 1} 
+2026-11-11T17:20:56-05:00	usage five_hour 0.65 (resets 2026-11-11T21:00:00-05:00) seven_day 0.53 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:22:56-05:00	run r28-haiku-review-case001-2 attempt 1 model anthropic/claude-haiku-5-5 task review-case001
+2026-11-11T17:24:42-05:00	harbor r28-haiku-review-case001-2 exit 0 after 106 s
+2026-11-11T17:24:42-05:00	done r28-haiku-review-case001-2 turns 6 cost_usd_est 0.01016953 reward {"reward": 1} 
+2026-11-11T17:24:42-05:00	usage five_hour 0.66 (resets 2026-11-11T21:00:00-05:00) seven_day 0.54 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:26:42-05:00	run r28-haiku-review-case001-3 attempt 1 model anthropic/claude-haiku-5-5 task review-case001
+2026-11-11T17:28:30-05:00	harbor r28-haiku-review-case001-3 exit 0 after 108 s
+2026-11-11T17:28:30-05:00	done r28-haiku-review-case001-3 turns 6 cost_usd_est 0.01053088 reward {"reward": 1} 
+2026-11-11T17:28:30-05:00	usage five_hour 0.68 (resets 2026-11-11T21:00:00-05:00) seven_day 0.54 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:30:30-05:00	run r28-sonnet-review-case001-1 attempt 1 model anthropic/claude-sonnet-5-5 task review-case001
+2026-11-11T17:32:02-05:00	harbor r28-sonnet-review-case001-1 exit 0 after 92 s
+2026-11-11T17:32:02-05:00	done r28-sonnet-review-case001-1 turns 4 cost_usd_est 0.10311010000000001 reward {"reward": 1} 
+2026-11-11T17:32:02-05:00	usage five_hour 0.7 (resets 2026-11-11T21:00:00-05:00) seven_day 0.54 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:34:02-05:00	run r28-sonnet-review-case001-2 attempt 1 model anthropic/claude-sonnet-5-5 task review-case001
+2026-11-11T17:35:35-05:00	harbor r28-sonnet-review-case001-2 exit 0 after 93 s
+2026-11-11T17:35:35-05:00	done r28-sonnet-review-case001-2 turns 4 cost_usd_est 0.06195579999999999 reward {"reward": 1} 
+2026-11-11T17:35:35-05:00	usage five_hour 0.72 (resets 2026-11-11T21:00:00-05:00) seven_day 0.54 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:37:35-05:00	run r28-sonnet-review-case001-3 attempt 1 model anthropic/claude-sonnet-5-5 task review-case001
+2026-11-11T17:39:11-05:00	harbor r28-sonnet-review-case001-3 exit 0 after 96 s
+2026-11-11T17:39:11-05:00	done r28-sonnet-review-case001-3 turns 5 cost_usd_est 0.0716402 reward {"reward": 1} 
+2026-11-11T17:39:11-05:00	usage five_hour 0.74 (resets 2026-11-11T21:00:00-05:00) seven_day 0.54 (resets 2026-11-16T16:00:00-05:00)
+2026-11-11T17:41:11-05:00	end no pending or limited row left

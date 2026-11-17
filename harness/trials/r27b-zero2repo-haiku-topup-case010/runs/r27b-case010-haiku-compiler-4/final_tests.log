@@ -1,0 +1,1995 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.1, pluggy-1.7.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 197 items
+
+../tests/final/tests/F01_acceptance.py .......FF..FF........F........... [ 16%]
+.....                                                                    [ 19%]
+../tests/final/tests/F02_acceptance.py ..FF.F......FFF.FFF..FF.......... [ 36%]
+.                                                                        [ 36%]
+../tests/final/tests/F03_acceptance.py ..........................        [ 49%]
+../tests/final/tests/F04_acceptance.py ..............................    [ 64%]
+../tests/final/tests/F05_acceptance.py ..............F.F............     [ 79%]
+../tests/final/tests/F06_acceptance.py ...............                   [ 87%]
+../tests/final/tests/F07_acceptance.py .F...............F.FF..F.         [100%]
+
+=================================== FAILURES ===================================
+_______________ test_recommended_cannot_splits_each_into_can_not _______________
+
+pyfuncitem = <Function test_recommended_cannot_splits_each_into_can_not>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_recommended_cannot_splits_each_into_can_not _______________
+
+    def test_recommended_cannot_splits_each_into_can_not():
+        with _empty_resources():
+            tokens = _recommended_line(CANNOT_LINE)
+        print(f"recommended cannot={tokens!r}", flush=True)
+>       assert "cannot" not in tokens
+E       AssertionError: assert 'cannot' not in ['I', 'cannot', 'cannot', 'work', 'under', 'these', ...]
+
+/tests/final/tests/F01_acceptance.py:270: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='word_tokenize' cwd='/tmp/harness-ws-acw7aleu'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+recommended cannot=['I', 'cannot', 'cannot', 'work', 'under', 'these', 'conditions', '!']
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not
+1 failed in 0.02s
+
+____________________ test_recommended_runtime_cannot_splits ____________________
+
+pyfuncitem = <Function test_recommended_runtime_cannot_splits>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F01_acceptance.py::test_recommended_runtime_cannot_splits failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________________ test_recommended_runtime_cannot_splits ____________________
+
+    def test_recommended_runtime_cannot_splits():
+        left = _word()
+        right = _word()
+        sentence = f"{left} cannot {right}."
+        with _empty_resources():
+            tokens = _recommended_line(sentence)
+        print(f"recommended runtime cannot sentence={sentence!r} tokens={tokens!r}", flush=True)
+>       assert "cannot" not in tokens
+E       AssertionError: assert 'cannot' not in ['k383ce9e2', 'cannot', 'k87e10e42', '.']
+
+/tests/final/tests/F01_acceptance.py:284: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='word_tokenize' cwd='/tmp/harness-ws-hucb2mam'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+recommended runtime cannot sentence='k383ce9e2 cannot k87e10e42.' tokens=['k383ce9e2', 'cannot', 'k87e10e42', '.']
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_runtime_cannot_splits
+1 failed in 0.02s
+
+__________ test_recommended_leading_straight_quote_becomes_backticks ___________
+
+pyfuncitem = <Function test_recommended_leading_straight_quote_becomes_backticks>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_recommended_leading_straight_quote_becomes_backticks ___________
+
+    def test_recommended_leading_straight_quote_becomes_backticks():
+        with _empty_resources():
+            tokens = _recommended_line(SLOCUM)
+        print(f"recommended slocum={tokens!r}", flush=True)
+>       assert "``" in tokens
+E       assert '``' in ["''", 'We', 'beat', 'some', 'pretty', 'good', ...]
+
+/tests/final/tests/F01_acceptance.py:325: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='word_tokenize' cwd='/tmp/harness-ws-xb20dea2'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+recommended slocum=["''", 'We', 'beat', 'some', 'pretty', 'good', 'teams', 'to', 'get', 'here', ',', "''", 'Slocum', 'said', '.']
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks
+1 failed in 0.02s
+
+_______________ test_recommended_runtime_leading_quote_rewritten _______________
+
+pyfuncitem = <Function test_recommended_runtime_leading_quote_rewritten>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_recommended_runtime_leading_quote_rewritten _______________
+
+    def test_recommended_runtime_leading_quote_rewritten():
+        body = _word()
+        name = "Q" + uuid.uuid4().hex[:6]
+        sentence = f'"{body}," {name} said.'
+        with _empty_resources():
+            tokens = _recommended_line(sentence)
+        print(f"recommended runtime quote sentence={sentence!r} tokens={tokens!r}", flush=True)
+>       assert "``" in tokens
+E       assert '``' in ["''", 'k0c46e04b', ',', "''", 'Q1f610d', 'said', ...]
+
+/tests/final/tests/F01_acceptance.py:336: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='word_tokenize' cwd='/tmp/harness-ws-eflhdt3n'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+recommended runtime quote sentence='"k0c46e04b," Q1f610d said.' tokens=["''", 'k0c46e04b', ',', "''", 'Q1f610d', 'said', '.']
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten
+1 failed in 0.02s
+
+___________ test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends ____________
+
+pyfuncitem = <Function test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends ____________
+
+    def test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends():
+        left = _word()
+        right = _word()
+        text = f"  {left}   {right}  "
+        with _empty_resources():
+            tokens = tokens_of(GAP_WHITESPACE, text)
+        print(f"regexp gap text={text!r} tokens={tokens!r}", flush=True)
+        assert left in tokens
+        assert right in tokens
+>       assert "" not in tokens
+E       AssertionError: assert '' not in ['', 'kd73b7a69', 'kf47a0d2c', '']
+
+/tests/final/tests/F01_acceptance.py:449: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='RegexpTokenizer.tokenize' cwd='/tmp/harness-ws-ry63ihlc'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+regexp gap text='  kd73b7a69   kf47a0d2c  ' tokens=['', 'kd73b7a69', 'kf47a0d2c', '']
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends
+1 failed in 0.01s
+
+___________________ test_default_porter_running_case_matches ___________________
+
+pyfuncitem = <Function test_default_porter_running_case_matches>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_default_porter_running_case_matches failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________________ test_default_porter_running_case_matches ___________________
+
+    def test_default_porter_running_case_matches():
+        with _empty_resources():
+            porter = _porter()
+            upper = stem_of(porter.stem, "Running")
+            lower = stem_of(porter.stem, "running")
+        print(f"Running={upper!r} running={lower!r}", flush=True)
+>       assert upper == lower
+E       AssertionError: assert 'Run' == 'run'
+E         
+E         - run
+E         + Run
+
+/tests/final/tests/F02_acceptance.py:249: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='PorterStemmer' cwd='/tmp/harness-ws-tdf8nzr7'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='PorterStemmer.stem' cwd='/tmp/harness-ws-8ecu8kz7'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='PorterStemmer.stem' cwd='/tmp/harness-ws-w2zhjcuh'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='PorterStemmer.stem' cwd='/tmp/harness-ws-1i1kaluf'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+Running='Run' running='run'
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_default_porter_running_case_matches
+1 failed in 0.01s
+
+__________ test_default_porter_runtime_capitalized_named_word_matches __________
+
+pyfuncitem = <Function test_default_porter_runtime_capitalized_named_word_matches>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_default_porter_runtime_capitalized_named_word_matches __________
+
+    def test_default_porter_runtime_capitalized_named_word_matches():
+        word, expected = PORTER_PAIRS[0]
+        capitalized = word[0].upper() + word[1:]
+        with _empty_resources():
+            porter = _porter()
+            got = stem_of(porter.stem, capitalized)
+            lower = stem_of(porter.stem, word)
+        print(
+            f"capitalized {capitalized!r} -> {got!r}; lower {word!r} -> {lower!r}",
+            flush=True,
+        )
+>       assert got == expected
+E       AssertionError: assert 'Caress' == 'caress'
+E         
+E         - caress
+E         ? ^
+E         + Caress
+E         ? ^
+
+/tests/final/tests/F02_acceptance.py:263: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='PorterStemmer' cwd='/tmp/harness-ws-a86xh49z'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='PorterStemmer.stem' cwd='/tmp/harness-ws-rkozo45c'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='PorterStemmer.stem' cwd='/tmp/harness-ws-baec_4oj'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='PorterStemmer.stem' cwd='/tmp/harness-ws-vnqn_x7_'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+capitalized 'Caresses' -> 'Caress'; lower 'caresses' -> 'caress'
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches
+1 failed in 0.02s
+
+__________________________ test_lancaster_named_pairs __________________________
+
+pyfuncitem = <Function test_lancaster_named_pairs>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________________________ test_lancaster_named_pairs __________________________
+
+    def test_lancaster_named_pairs():
+        with _empty_resources():
+            lancaster = _lancaster()
+            got = [
+                (word, stem_of(lancaster.stem, word)) for word, _expected in LANCASTER_PAIRS
+            ]
+        print(f"lancaster pairs={got!r}", flush=True)
+>       assert got == list(LANCASTER_PAIRS)
+E       AssertionError: assert [('maximum', ..., 'cry'), ...] == [('maximum', ..., 'cry'), ...]
+E         
+E         At index 1 diff: ('presumably', 'presumy') != ('presumably', 'presum')
+E         Use -v to get more diff
+
+/tests/final/tests/F02_acceptance.py:290: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='LancasterStemmer' cwd='/tmp/harness-ws-g8bowt3c'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-hq4lzqni'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-78af6b1c'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-nskpch0f'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-s35v1p5p'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-2t02hhxh'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-j4reo5b9'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-fkjprjr5'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='LancasterStemmer.stem' cwd='/tmp/harness-ws-joxe4j5j'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+lancaster pairs=[('maximum', 'maxim'), ('presumably', 'presumy'), ('multiply', 'multiply'), ('owed', 'ow'), ('saying', 'say'), ('crying', 'cry'), ('cement', 'cem')]
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs - A...
+1 failed in 0.02s
+
+______ test_snowball_german_schranke_and_skip_off_keinen_without_wordlist ______
+
+pyfuncitem = <Function test_snowball_german_schranke_and_skip_off_keinen_without_wordlist>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_snowball_german_schranke_and_skip_off_keinen_without_wordlist ______
+
+    def test_snowball_german_schranke_and_skip_off_keinen_without_wordlist():
+        with _empty_resources():
+>           german = _snowball("german", skip=False)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'german' is not implemented in this librar... library"), <traceback object at 0x7ecf96eb6cc0>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-ig1asmdl', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'german' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-o9dcsimv'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-ig1asmdl'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist
+1 failed in 0.03s
+
+_______ test_snowball_german_skip_on_does_not_construct_without_wordlist _______
+
+pyfuncitem = <Function test_snowball_german_skip_on_does_not_construct_without_wordlist>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_snowball_german_skip_on_does_not_construct_without_wordlist _______
+
+    def test_snowball_german_skip_on_does_not_construct_without_wordlist():
+        with _empty_resources():
+>           off = _snowball("german", skip=False)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:386: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'german' is not implemented in this librar... library"), <traceback object at 0x72ae9325ac40>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-qipr8aiu', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'german' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-i0fc1dgn'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-qipr8aiu'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist
+1 failed in 0.03s
+
+_______ test_snowball_german_skip_on_leaves_keinen_when_wordlist_present _______
+
+pyfuncitem = <Function test_snowball_german_skip_on_leaves_keinen_when_wordlist_present>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_snowball_german_skip_on_leaves_keinen_when_wordlist_present _______
+
+    def test_snowball_german_skip_on_leaves_keinen_when_wordlist_present():
+        with _stopwords_present("german", ["keinen"]):
+>           off = _snowball("german", skip=False)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:400: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'german' is not implemented in this librar... library"), <traceback object at 0x76d9cc2e7100>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-uiuj38y4', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'german' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+wrote 'german' stopwords list at /tmp/harness-data-sbr0dxjk/corpora/stopwords/german (1 words)
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-8jbb4tdq'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-uiuj38y4'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present
+1 failed in 0.03s
+
+_______________________ test_snowball_arabic_named_pairs _______________________
+
+pyfuncitem = <Function test_snowball_arabic_named_pairs>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________ test_snowball_arabic_named_pairs _______________________
+
+    def test_snowball_arabic_named_pairs():
+        with _empty_resources():
+>           arabic = _snowball("arabic")
+                     ^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:437: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'arabic' is not implemented in this librar... library"), <traceback object at 0x71c6fec6ef00>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-u128sh93', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'arabic' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-36klhgbp'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-u128sh93'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs
+1 failed in 0.03s
+
+_______________________ test_snowball_spanish_visionado ________________________
+
+pyfuncitem = <Function test_snowball_spanish_visionado>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________ test_snowball_spanish_visionado ________________________
+
+    def test_snowball_spanish_visionado():
+        with _empty_resources():
+>           got = stem_of(_snowball("spanish").stem, "Visionado")
+                          ^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:445: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'spanish' is not implemented in this libra... library"), <traceback object at 0x74152e1fa900>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-r3jrf8er', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'spanish' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-tbnk9wtc'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-r3jrf8er'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado
+1 failed in 0.03s
+
+_______________________ test_snowball_russian_named_pair _______________________
+
+pyfuncitem = <Function test_snowball_russian_named_pair>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________ test_snowball_russian_named_pair _______________________
+
+    def test_snowball_russian_named_pair():
+        with _empty_resources():
+>           got = stem_of(_snowball("russian").stem, "авантненькая")
+                          ^^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:452: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'russian' is not implemented in this libra... library"), <traceback object at 0x7062d40c28c0>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-x7t42e0q', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'russian' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-0007oylq'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-x7t42e0q'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair
+1 failed in 0.03s
+
+__________ test_snowball_listed_language_without_named_stem_is_usable __________
+
+pyfuncitem = <Function test_snowball_listed_language_without_named_stem_is_usable>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_snowball_listed_language_without_named_stem_is_usable __________
+
+    def test_snowball_listed_language_without_named_stem_is_usable():
+        word = _alpha_token()
+        with _empty_resources():
+>           danish = _snowball("danish")
+                     ^^^^^^^^^^^^^^^^^^^
+
+/tests/final/tests/F02_acceptance.py:493: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'danish' is not implemented in this librar... library"), <traceback object at 0x7ad83b96f340>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-bfdzlow_', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'danish' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-tz3y7_bo'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-bfdzlow_'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable
+1 failed in 0.03s
+
+___________________ test_snowball_ten_languages_named_pairs ____________________
+
+pyfuncitem = <Function test_snowball_ten_languages_named_pairs>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________________ test_snowball_ten_languages_named_pairs ____________________
+
+    def test_snowball_ten_languages_named_pairs():
+        """Each previously unpinned listed language has stems != the original word."""
+        with _empty_resources():
+            observed = {
+                language: [
+>                   (word, stem_of(_snowball(language).stem, word))
+                                   ^^^^^^^^^^^^^^^^^^^
+                    for word, _expected in pairs
+                ]
+                for language, pairs in SNOWBALL_NAMED_PAIRS.items()
+            }
+
+/tests/final/tests/F02_acceptance.py:506: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F02_acceptance.py:204: in _snowball
+    return require_constructed(
+/tests/final/tests/_helpers.py:280: in require_constructed
+    require_stem(probe)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CallResult(value=None, exception=NotImplementedError("Snowball stemming for 'danish' is not implemented in this librar... library"), <traceback object at 0x7baabc43ad80>), stdout=b'', stderr=b'', cwd='/tmp/harness-ws-c11t4c9v', warnings=())
+
+    def require_stem(result: CallResult) -> str:
+        """Return the successful stem string, or raise.
+    
+        A product exception or a non-str value is a hard failure. An empty
+        string is a successful stem, never a stand-in for "the call could
+        not be performed". Never maps a failure onto the original word.
+        """
+        if not isinstance(result, CallResult):
+            raise HarnessError(
+                f"require_stem expects a CallResult; got {type(result)!r}"
+            )
+        if result.exception is not None:
+            stderr = _stderr_snippet(result)
+>           raise AssertionError(
+                "stemmer did not return a stem string: "
+                f"{type(result.exception).__name__}: {result.exception}; "
+                f"stderr={stderr!r}"
+            )
+E           AssertionError: stemmer did not return a stem string: NotImplementedError: Snowball stemming for 'danish' is not implemented in this library; stderr=''
+
+/tests/final/tests/_helpers.py:236: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='SnowballStemmer' cwd='/tmp/harness-ws-iekcpks3'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+[harness] call fn='SnowballStemmer.stem' cwd='/tmp/harness-ws-c11t4c9v'
+[harness] call_done exception=NotImplementedError stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs
+1 failed in 0.03s
+
+___________ test_generate_quoted_empty_string_is_a_then_empty_token ____________
+
+pyfuncitem = <Function test_generate_quoted_empty_string_is_a_then_empty_token>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_generate_quoted_empty_string_is_a_then_empty_token ____________
+
+    def test_generate_quoted_empty_string_is_a_then_empty_token():
+        with _empty_resources():
+            grammar = _read_cfg(_quoted_empty_grammar("a", "b"))
+            sentences = generated_of(generate, grammar, n=20)
+        got = _as_tuple_set(sentences)
+        print(f"quoted-empty generated={sorted(got)!r}", flush=True)
+        assert ("a", "b") in got
+>       assert ("a", "") in got
+E       AssertionError: assert ('a', '') in {('a',), ('a', 'b')}
+
+/tests/final/tests/F05_acceptance.py:464: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] call fn='CFG.fromstring' cwd='/tmp/harness-ws-g130uwpd'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+grammar start='S'
+grammar production count=4
+grammar reader yielded a grammar with readable start and productions
+[harness] call fn='generate' cwd='/tmp/harness-ws-7snhxszn'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+generated 2 strings
+quoted-empty generated=[('a',), ('a', 'b')]
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token
+1 failed in 0.02s
+
+____________ test_generate_runtime_quoted_empty_vs_empty_production ____________
+
+pyfuncitem = <Function test_generate_runtime_quoted_empty_vs_empty_production>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_generate_runtime_quoted_empty_vs_empty_production ____________
+
+    def test_generate_runtime_quoted_empty_vs_empty_production():
+        a = _runtime_token()
+        b = _runtime_token(forbidden={a})
+        print(f"runtime generate a={a!r} b={b!r}", flush=True)
+        with _empty_resources():
+            quoted = _read_cfg(_quoted_empty_grammar(a, b))
+            empty_prod = _read_cfg(_empty_production_grammar(a, b))
+            quoted_sents = generated_of(generate, quoted, n=20)
+            empty_sents = generated_of(generate, empty_prod, n=20)
+        quoted_set = _as_tuple_set(quoted_sents)
+        empty_set = _as_tuple_set(empty_sents)
+        print(f"quoted={sorted(quoted_set)!r} empty-prod={sorted(empty_set)!r}", flush=True)
+        assert (a, b) in quoted_set
+>       assert (a, "") in quoted_set
+E       AssertionError: assert ('wece1866a', '') in {('wece1866a',), ('wece1866a', 'wb40cab3b')}
+
+/tests/final/tests/F05_acceptance.py:491: AssertionError
+----------------------------- Captured stdout call -----------------------------
+runtime generate a='wece1866a' b='wb40cab3b'
+[harness] call fn='CFG.fromstring' cwd='/tmp/harness-ws-62cmy9t7'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+grammar start='S'
+grammar production count=4
+grammar reader yielded a grammar with readable start and productions
+[harness] call fn='CFG.fromstring' cwd='/tmp/harness-ws-2sdn7rfi'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+grammar start='S'
+grammar production count=4
+grammar reader yielded a grammar with readable start and productions
+[harness] call fn='generate' cwd='/tmp/harness-ws-kl1d7aku'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+generated 2 strings
+[harness] call fn='generate' cwd='/tmp/harness-ws-mlwga5jf'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+generated 2 strings
+quoted=[('wece1866a',), ('wece1866a', 'wb40cab3b')] empty-prod=[('wece1866a',), ('wece1866a', 'wb40cab3b')]
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production
+1 failed in 0.02s
+
+__________ test_edit_distance_abc_ca_transpositions_off_three_on_two ___________
+
+pyfuncitem = <Function test_edit_distance_abc_ca_transpositions_off_three_on_two>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_edit_distance_abc_ca_transpositions_off_three_on_two ___________
+
+    def test_edit_distance_abc_ca_transpositions_off_three_on_two():
+        with _empty_resources():
+            off = _edit(
+                "abc",
+                "ca",
+                substitution_cost=1,
+                transpositions=False,
+                what="edit abc/ca transpositions off",
+            )
+            print(f"abc/ca transpositions-off={off!r}", flush=True)
+            assert off == 3
+    
+            on = _edit(
+                "abc",
+                "ca",
+                substitution_cost=1,
+                transpositions=True,
+                what="edit abc/ca transpositions on",
+            )
+            print(f"abc/ca transpositions-on={on!r}", flush=True)
+>           assert on == 2
+E           assert 3.0 == 2
+
+/tests/final/tests/F07_acceptance.py:205: AssertionError
+----------------------------- Captured stdout call -----------------------------
+edit 'abc' vs 'ca' cost=1 transpositions=False
+[harness] call fn='edit_distance' cwd='/tmp/harness-ws-b4eg_aaw'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+edit abc/ca transpositions off=3.0
+abc/ca transpositions-off=3.0
+edit 'abc' vs 'ca' cost=1 transpositions=True
+[harness] call fn='edit_distance' cwd='/tmp/harness-ws-xjwfa5ab'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+edit abc/ca transpositions on=3.0
+abc/ca transpositions-on=3.0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two
+1 failed in 0.01s
+
+_________________ test_empty_test_precision_is_absent_not_zero _________________
+
+pyfuncitem = <Function test_empty_test_precision_is_absent_not_zero>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_empty_test_precision_is_absent_not_zero _________________
+
+    def test_empty_test_precision_is_absent_not_zero():
+        with _empty_resources():
+            reference = set(_runtime_elements(3))
+            empty_test: set[str] = set()
+            print(f"empty-test precision reference={reference!r}", flush=True)
+            require_no_score(
+                call(precision, reference, empty_test),
+                what="precision nonempty vs empty test",
+            )
+    
+            left, right = set(_runtime_elements(2)), set(_runtime_elements(2))
+            print(f"disjoint f-measure contrast {left!r} vs {right!r}", flush=True)
+            assert left and right
+            assert left.isdisjoint(right)
+>           disjoint_f = score_number(
+                call(f_measure, left, right),
+                what="f-measure nonempty disjoint contrast",
+            )
+
+/tests/final/tests/F07_acceptance.py:553: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/_helpers.py:2155: in score_number
+    value = _as_real_number(result.value, what=what)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = None
+
+    def _as_real_number(value: Any, *, what: str) -> float:
+        """Return *value* as a float, or raise. Successful ``0`` is kept."""
+        if not _is_real_number(value):
+>           raise AssertionError(
+                f"{what} is not a real number: {type(value).__name__} {value!r}"
+            )
+E           AssertionError: f-measure nonempty disjoint contrast is not a real number: NoneType None
+
+/tests/final/tests/_helpers.py:1828: AssertionError
+----------------------------- Captured stdout call -----------------------------
+empty-test precision reference={'e58f23ce70c', 'e5c5f3a6725', 'e6baeab949d'}
+[harness] call fn='precision' cwd='/tmp/harness-ws-n4q510up'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+precision nonempty vs empty test returned None (not a number)
+disjoint f-measure contrast {'ecc1157b08c', 'e5972b06ade'} vs {'e4b5fccf819', 'ea8e6beec1d'}
+[harness] call fn='f_measure' cwd='/tmp/harness-ws-f4z7x0sj'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero
+1 failed in 0.03s
+
+_________________ test_fmeasure_absent_when_either_side_empty __________________
+
+pyfuncitem = <Function test_fmeasure_absent_when_either_side_empty>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_fmeasure_absent_when_either_side_empty __________________
+
+    def test_fmeasure_absent_when_either_side_empty():
+        with _empty_resources():
+            left, right = set(_runtime_elements(2)), set(_runtime_elements(2))
+            print(f"nonempty disjoint f-measure contrast {left!r} vs {right!r}", flush=True)
+            assert left and right
+            assert left.isdisjoint(right)
+>           disjoint_f = score_number(
+                call(f_measure, left, right),
+                what="f-measure nonempty disjoint contrast",
+            )
+
+/tests/final/tests/F07_acceptance.py:587: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/_helpers.py:2155: in score_number
+    value = _as_real_number(result.value, what=what)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = None
+
+    def _as_real_number(value: Any, *, what: str) -> float:
+        """Return *value* as a float, or raise. Successful ``0`` is kept."""
+        if not _is_real_number(value):
+>           raise AssertionError(
+                f"{what} is not a real number: {type(value).__name__} {value!r}"
+            )
+E           AssertionError: f-measure nonempty disjoint contrast is not a real number: NoneType None
+
+/tests/final/tests/_helpers.py:1828: AssertionError
+----------------------------- Captured stdout call -----------------------------
+nonempty disjoint f-measure contrast {'ef17ddf2910', 'e41f4f066c6'} vs {'e52653be9c4', 'e47fc847e2a'}
+[harness] call fn='f_measure' cwd='/tmp/harness-ws-_52jbriu'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty
+1 failed in 0.03s
+
+___________________ test_fmeasure_nonempty_disjoint_is_zero ____________________
+
+pyfuncitem = <Function test_fmeasure_nonempty_disjoint_is_zero>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________________ test_fmeasure_nonempty_disjoint_is_zero ____________________
+
+    def test_fmeasure_nonempty_disjoint_is_zero():
+        with _empty_resources():
+            left = set(_runtime_elements(2))
+            right = set(_runtime_elements(2))
+            print(f"runtime nonempty disjoint f-measure {left!r} vs {right!r}", flush=True)
+            assert left and right
+            assert left.isdisjoint(right)
+>           score = score_number(
+                call(f_measure, left, right),
+                what="f-measure runtime nonempty disjoint",
+            )
+
+/tests/final/tests/F07_acceptance.py:615: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/_helpers.py:2155: in score_number
+    value = _as_real_number(result.value, what=what)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = None
+
+    def _as_real_number(value: Any, *, what: str) -> float:
+        """Return *value* as a float, or raise. Successful ``0`` is kept."""
+        if not _is_real_number(value):
+>           raise AssertionError(
+                f"{what} is not a real number: {type(value).__name__} {value!r}"
+            )
+E           AssertionError: f-measure runtime nonempty disjoint is not a real number: NoneType None
+
+/tests/final/tests/_helpers.py:1828: AssertionError
+----------------------------- Captured stdout call -----------------------------
+runtime nonempty disjoint f-measure {'ec0cb994bcb', 'e0ce59f7b5f'} vs {'ea88b76f319', 'e848cf9a520'}
+[harness] call fn='f_measure' cwd='/tmp/harness-ws-4ydw3n79'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero
+1 failed in 0.03s
+
+_ test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals _
+
+pyfuncitem = <Function test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals>
+
+    @pytest.hookimpl(tryfirst=True)
+    def pytest_pyfunc_call(pyfuncitem):
+        if os.environ.get(_FRESH_CHILD_FLAG) == "1":
+            return None
+        import subprocess
+    
+        env = dict(os.environ)
+        env[_FRESH_CHILD_FLAG] = "1"
+        target = f"{pyfuncitem.path}::{pyfuncitem.name}"
+        cmd = [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--rootdir",
+            str(pyfuncitem.config.rootpath),
+            target,
+        ]
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=os.getcwd(),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=_FRESH_CHILD_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AssertionError(f"fresh-interpreter run of {target} timed out") from exc
+        output = (proc.stdout or "") + (proc.stderr or "")
+        print(output[-20000:], flush=True)
+        if proc.returncode != 0:
+>           raise AssertionError(
+                f"{target} failed in a fresh interpreter (exit {proc.returncode})"
+            )
+E           AssertionError: /tests/final/tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals failed in a fresh interpreter (exit 1)
+
+/tests/final/tests/conftest.py:99: AssertionError
+----------------------------- Captured stdout call -----------------------------
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals _
+
+    def test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals():
+        with _empty_resources():
+            pair = _runtime_tokens(2, prefix="b2")
+            print(f"two-token identity pair={pair!r}", flush=True)
+            assert len(pair) == 2
+    
+            unigram = score_number(
+                call(bleu, [list(pair)], pair, weights=UNIGRAM_WEIGHTS),
+                what="unigram BLEU two-token identity live baseline",
+            )
+            print(f"unigram two-token identity={unigram!r}", flush=True)
+            assert unigram == 1
+    
+            default = score_number(
+                call(bleu, [list(pair)], pair),
+                what="default four-weight unsmoothed two-token identity",
+            )
+            print(f"default four-weight two-token identity={default!r}", flush=True)
+>           assert round(default, 4) == 0
+E           assert 1.0 == 0
+E            +  where 1.0 = round(1.0, 4)
+
+/tests/final/tests/F07_acceptance.py:717: AssertionError
+----------------------------- Captured stdout call -----------------------------
+two-token identity pair=['b26f96afdad8', 'b2e61a191c09']
+[harness] call fn='bleu' cwd='/tmp/harness-ws-vkmhwidp'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+unigram BLEU two-token identity live baseline=1.0
+unigram two-token identity=1.0
+[harness] call fn='bleu' cwd='/tmp/harness-ws-e2o309v6'
+[harness] call_done exception=None stdout_len=0 stderr_len=0
+default four-weight unsmoothed two-token identity=1.0
+default four-weight two-token identity=1.0
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals
+1 failed in 0.01s
+
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_runtime_cannot_splits
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks
+FAILED ../tests/final/tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten
+FAILED ../tests/final/tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends
+FAILED ../tests/final/tests/F02_acceptance.py::test_default_porter_running_case_matches
+FAILED ../tests/final/tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches
+FAILED ../tests/final/tests/F02_acceptance.py::test_lancaster_named_pairs - A...
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_spanish_visionado
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_russian_named_pair
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable
+FAILED ../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs
+FAILED ../tests/final/tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token
+FAILED ../tests/final/tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production
+FAILED ../tests/final/tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two
+FAILED ../tests/final/tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero
+FAILED ../tests/final/tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty
+FAILED ../tests/final/tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero
+FAILED ../tests/final/tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals
+======================= 23 failed, 174 passed in 24.33s ========================
+CODING_BENCH_COLLECTION_AUDIT={"collected": ["tests/F01_acceptance.py::test_wordpunct_hello_world_is_four_tokens", "tests/F01_acceptance.py::test_wordpunct_muffin_is_eleven_tokens_and_splits_decimal", "tests/F01_acceptance.py::test_wordpunct_runtime_currency_splits_decimal", "tests/F01_acceptance.py::test_treebank_and_recommended_keep_muffin_decimal_unlike_wordpunct", "tests/F01_acceptance.py::test_treebank_and_recommended_keep_runtime_decimal_unlike_wordpunct", "tests/F01_acceptance.py::test_treebank_theyll_splits_clitic", "tests/F01_acceptance.py::test_treebank_runtime_ll_clitic_splits", "tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not", "tests/F01_acceptance.py::test_recommended_runtime_cannot_splits", "tests/F01_acceptance.py::test_recommended_mortgage_keeps_grouped_and_decimal_amounts", "tests/F01_acceptance.py::test_recommended_runtime_grouped_and_decimal_amounts", "tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks", "tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten", "tests/F01_acceptance.py::test_recommended_homepage_thirteen_tokens_without_sentence_split", "tests/F01_acceptance.py::test_recommended_runtime_oclock_and_nt_without_sentence_split", "tests/F01_acceptance.py::test_whitespace_keeps_currency_and_york_period", "tests/F01_acceptance.py::test_whitespace_runtime_keeps_currency_and_word_period", "tests/F01_acceptance.py::test_blankline_muffin_paragraph_and_thanks", "tests/F01_acceptance.py::test_blankline_runtime_paragraphs", "tests/F01_acceptance.py::test_regexp_capitalized_words_on_muffin_string", "tests/F01_acceptance.py::test_regexp_runtime_capitalized_word_included", "tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends", "tests/F01_acceptance.py::test_tweet_strips_myke_keeps_colon_lets_and_accents", "tests/F01_acceptance.py::test_tweet_runtime_handle_stripped_accent_kept", "tests/F01_acceptance.py::test_spans_on_muffin_recover_tokens_ordered_and_nonoverlapping", "tests/F01_acceptance.py::test_spans_on_runtime_currency_recover_tokens", "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_three_muffin_sentences", "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_same_atoms_other_order", "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_single_atom_is_one_sentence", "tests/F01_acceptance.py::test_recommended_word_with_sentence_split_three_points_no_glue", "tests/F01_acceptance.py::test_sentence_split_fails_without_punkt_wordpunct_still_works", "tests/F01_acceptance.py::test_recommended_word_sentence_split_fails_without_punkt", "tests/F01_acceptance.py::test_cli_tokenize_fails_without_punkt", "tests/F01_acceptance.py::test_cli_tokenize_hello_world_joined_by_spaces", "tests/F01_acceptance.py::test_cli_one_output_line_per_nonempty_input_line", "tests/F01_acceptance.py::test_empty_string_empty_list_on_named_tokenizers", "tests/F01_acceptance.py::test_spaces_only_empty_list_on_wordpunct_and_whitespace", "tests/F01_acceptance.py::test_wordpunct_fails_when_package_not_importable", "tests/F02_acceptance.py::test_default_porter_nineteen_named_pairs", "tests/F02_acceptance.py::test_default_porter_oed_succeeds_as_o", "tests/F02_acceptance.py::test_default_porter_running_case_matches", "tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches", "tests/F02_acceptance.py::test_default_porter_I_lowercase_settings_differ", "tests/F02_acceptance.py::test_lancaster_named_pairs", "tests/F02_acceptance.py::test_lancaster_maximum_is_maxim_default_porter_is_not", "tests/F02_acceptance.py::test_snowball_english_running_and_generously", "tests/F02_acceptance.py::test_snowball_porter_generously_differs_from_english", "tests/F02_acceptance.py::test_snowball_english_skip_off_having_without_wordlist", "tests/F02_acceptance.py::test_snowball_english_skip_on_does_not_construct_without_wordlist", "tests/F02_acceptance.py::test_snowball_english_skip_on_leaves_having_when_wordlist_present", "tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist", "tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist", "tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present", "tests/F02_acceptance.py::test_snowball_german_skip_on_fails_with_only_english_wordlist", "tests/F02_acceptance.py::test_snowball_arabic_named_pairs", "tests/F02_acceptance.py::test_snowball_spanish_visionado", "tests/F02_acceptance.py::test_snowball_russian_named_pair", "tests/F02_acceptance.py::test_snowball_klingon_fails_identifying_language_english_succeeds", "tests/F02_acceptance.py::test_snowball_runtime_unsupported_language_is_identified", "tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable", "tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs", "tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str", "tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str", "tests/F02_acceptance.py::test_regexp_strips_trailing_ing_from_running_not_snowball_english", "tests/F02_acceptance.py::test_regexp_leaves_run_unchanged", "tests/F02_acceptance.py::test_regexp_runtime_trailing_ing_stripped", "tests/F02_acceptance.py::test_regexp_ing_not_stripped_when_not_trailing", "tests/F02_acceptance.py::test_regexp_two_suffix_configs_differ_on_shared_word", "tests/F02_acceptance.py::test_default_porter_two_word_string_is_one_token", "tests/F02_acceptance.py::test_lancaster_two_word_string_is_one_token", "tests/F02_acceptance.py::test_wordnet_lemmatizer_fails_without_wordnet_graded_stemmers_do_not", "tests/F02_acceptance.py::test_default_porter_stems_in_isolated_subprocess", "tests/F03_acceptance.py::test_default_tagger_nn_on_this_is_a_test", "tests/F03_acceptance.py::test_default_tagger_runtime_tag_applies_to_every_token", "tests/F03_acceptance.py::test_unigram_trained_the_dog_and_cat_tags_seen_words", "tests/F03_acceptance.py::test_unigram_leaves_xyz_untagged_unlike_default_nn", "tests/F03_acceptance.py::test_unigram_runtime_seen_and_unseen_tokens", "tests/F03_acceptance.py::test_unigram_backoff_nn_tags_xyz_keeps_the_as_dt", "tests/F03_acceptance.py::test_unigram_backoff_runtime_fills_only_unseen", "tests/F03_acceptance.py::test_regexp_number_rule_tags_3_as_cd_leaves_saw_dogs_untagged", "tests/F03_acceptance.py::test_regexp_runtime_digits_cd_non_number_untagged", "tests/F03_acceptance.py::test_regexp_two_configs_differ_on_shared_token", "tests/F03_acceptance.py::test_regexp_backoff_fills_non_number_keeps_cd", "tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_graded_trainables", "tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_recommended_english", "tests/F03_acceptance.py::test_recommended_english_john_list_ptb_category_structure", "tests/F03_acceptance.py::test_recommended_english_homepage_proper_vs_common_noun", "tests/F03_acceptance.py::test_recommended_russian_rnc_named_s_v_and_category_contrasts", "tests/F03_acceptance.py::test_recommended_russian_universal_maps_noun_and_verb", "tests/F03_acceptance.py::test_recommended_refuses_raw_john_string_token_list_succeeds", "tests/F03_acceptance.py::test_recommended_refuses_runtime_raw_string_token_list_succeeds", "tests/F03_acceptance.py::test_recommended_korean_does_not_succeed_english_does", "tests/F03_acceptance.py::test_recommended_runtime_unsupported_language_does_not_succeed", "tests/F03_acceptance.py::test_recommended_fails_without_perceptron_trainable_taggers_do_not", "tests/F03_acceptance.py::test_recommended_russian_fails_when_only_english_perceptron_installed", "tests/F03_acceptance.py::test_recommended_english_fails_when_only_russian_perceptron_installed", "tests/F03_acceptance.py::test_english_universal_mapping_absent_without_tables_ptb_still_works", "tests/F03_acceptance.py::test_russian_universal_succeeds_without_universal_tables_english_does_not", "tests/F04_acceptance.py::test_np_grammar_chunks_the_big_dog_leaves_barked_as_leaf", "tests/F04_acceptance.py::test_np_grammar_chunks_dog_only_then_barked_leaf", "tests/F04_acceptance.py::test_np_grammar_barked_alone_has_no_noun_phrase", "tests/F04_acceptance.py::test_np_grammar_determiner_noun_zero_adjectives", "tests/F04_acceptance.py::test_np_grammar_determiner_adjective_without_noun_is_not_a_chunk", "tests/F04_acceptance.py::test_np_grammar_two_adjectives_then_noun", "tests/F04_acceptance.py::test_np_grammar_adjective_noun_without_determiner", "tests/F04_acceptance.py::test_np_grammar_chunks_every_matching_sequence", "tests/F04_acceptance.py::test_np_grammar_adjacent_matches_are_two_chunks", "tests/F04_acceptance.py::test_np_grammar_runtime_tokens_optional_dt_jj_nn", "tests/F04_acceptance.py::test_np_grammar_whitespace_in_tag_pattern_ignored", "tests/F04_acceptance.py::test_two_grammars_differ_on_the_big_dog_list", "tests/F04_acceptance.py::test_runtime_tag_pattern_is_consulted", "tests/F04_acceptance.py::test_four_or_more_n_chunks_two_separated_four_token_runs_not_term_jury", "tests/F04_acceptance.py::test_four_or_more_n_concatenated_runs_are_one_ten_token_chunk", "tests/F04_acceptance.py::test_four_or_more_n_runtime_separated_and_concatenated", "tests/F04_acceptance.py::test_four_or_more_n_runtime_length_threshold", "tests/F04_acceptance.py::test_same_clause_chunk_then_chink_two_nps_sat_on_as_leaves", "tests/F04_acceptance.py::test_chunk_everything_without_chink_is_one_noun_phrase", "tests/F04_acceptance.py::test_later_clause_chink_leaves_whole_list_one_noun_phrase", "tests/F04_acceptance.py::test_same_clause_chink_runtime_tokens", "tests/F04_acceptance.py::test_later_clause_chunks_remaining_vbd_after_noun_phrase", "tests/F04_acceptance.py::test_later_clause_chunks_remaining_vbd_runtime_tokens", "tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_named_sentences", "tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_runtime_tagged_list", "tests/F04_acceptance.py::test_chunk_structure_root_defaults_to_sentence_label", "tests/F04_acceptance.py::test_empty_tagged_list_sentence_root_no_children", "tests/F04_acceptance.py::test_non_text_non_stage_grammar_is_refused", "tests/F04_acceptance.py::test_named_entity_fails_without_resource_chunk_grammar_still_works", "tests/F04_acceptance.py::test_named_entity_fails_without_ne_resource_when_perceptron_present", "tests/F05_acceptance.py::test_fourteen_production_grammar_start_s_and_named_terminals", "tests/F05_acceptance.py::test_cfg_reader_runtime_start_count_and_terminals_follow_caller", "tests/F05_acceptance.py::test_chart_five_token_sentence_exactly_one_s_tree", "tests/F05_acceptance.py::test_chart_runtime_five_token_sentence_exactly_one_tree", "tests/F05_acceptance.py::test_chart_rug_sentence_two_pp_attachments", "tests/F05_acceptance.py::test_chart_runtime_pp_attachment_ambiguity", "tests/F05_acceptance.py::test_chart_ungrammatical_covered_tokens_empty_parse_set", "tests/F05_acceptance.py::test_chart_empty_token_list_empty_parse_set", "tests/F05_acceptance.py::test_chart_uncovered_token_is_refused_not_empty_set", "tests/F05_acceptance.py::test_chart_runtime_uncovered_vs_covered_ungrammatical", "tests/F05_acceptance.py::test_shift_reduce_five_token_same_shape_as_chart", "tests/F05_acceptance.py::test_shift_reduce_runtime_five_token_same_covering", "tests/F05_acceptance.py::test_chart_consults_caller_grammar_swapped_terminals_same_length", "tests/F05_acceptance.py::test_chart_same_five_tokens_np_n_det_empty_set", "tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token", "tests/F05_acceptance.py::test_generate_empty_production_is_one_token_a", "tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production", "tests/F05_acceptance.py::test_bracketed_tree_equals_constructed_s_i_saw_him", "tests/F05_acceptance.py::test_pretty_print_shows_labels_and_leaves_in_order", "tests/F05_acceptance.py::test_changing_inner_np_label_to_x_breaks_equality_and_pretty_print", "tests/F05_acceptance.py::test_trees_equal_iff_labels_and_children_match", "tests/F05_acceptance.py::test_tree_length_is_immediate_child_count", "tests/F05_acceptance.py::test_s_i_saw_him_leaves_in_order", "tests/F05_acceptance.py::test_children_by_position_np_then_vp", "tests/F05_acceptance.py::test_runtime_bracketed_tree_equals_constructed", "tests/F05_acceptance.py::test_runtime_pretty_print_and_children_by_position", "tests/F05_acceptance.py::test_tree_rejects_string_as_child_list", "tests/F05_acceptance.py::test_tree_rejects_missing_child_list", "tests/F05_acceptance.py::test_tree_empty_child_list_succeeds_and_differs_from_refusals", "tests/F06_acceptance.py::test_naive_bayes_nice_only_positive_bad_only_negative_with_ranked_probs", "tests/F06_acceptance.py::test_naive_bayes_runtime_features_and_labels_rank_and_swap", "tests/F06_acceptance.py::test_naive_bayes_unseen_feature_does_not_flip_or_zero_all_probs", "tests/F06_acceptance.py::test_decision_tree_full_training_featuresets_positive_and_negative", "tests/F06_acceptance.py::test_decision_tree_runtime_full_featuresets_follow_training_labels", "tests/F06_acceptance.py::test_accuracy_classifier_pos_pos_neg_against_pos_neg_neg_is_two_thirds", "tests/F06_acceptance.py::test_accuracy_classifier_length_four_is_half", "tests/F06_acceptance.py::test_accuracy_classifier_same_bag_permutation_is_one_third", "tests/F06_acceptance.py::test_accuracy_is_position_fraction_not_label_set_or_bag", "tests/F06_acceptance.py::test_accuracy_mismatched_lengths_does_not_succeed", "tests/F06_acceptance.py::test_accuracy_runtime_lists_match_position_fraction", "tests/F06_acceptance.py::test_naive_bayes_lists_seen_labels_and_not_an_unseen_third", "tests/F06_acceptance.py::test_empty_of_training_features_returns_a_trained_label", "tests/F06_acceptance.py::test_decision_tree_empty_of_training_features_returns_a_trained_label", "tests/F06_acceptance.py::test_naive_bayes_runtime_label_inventory_and_empty_query", "tests/F07_acceptance.py::test_edit_distance_rain_shine_substitution_cost_one_is_three_cost_two_is_five", "tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two", "tests/F07_acceptance.py::test_edit_distance_acbdef_abcdef_transpositions_off_two_on_one", "tests/F07_acceptance.py::test_edit_distance_runtime_adjacent_transposition_off_two_on_one", "tests/F07_acceptance.py::test_edit_distance_identity_and_empty_is_zero", "tests/F07_acceptance.py::test_edit_distance_rain_shine_is_symmetric", "tests/F07_acceptance.py::test_jaccard_identical_sets_are_zero", "tests/F07_acceptance.py::test_jaccard_disjoint_nonempty_sets_are_one", "tests/F07_acceptance.py::test_jaccard_one_two_three_versus_two_three_four_is_one_half", "tests/F07_acceptance.py::test_jaccard_runtime_two_of_four_overlap_is_one_half", "tests/F07_acceptance.py::test_accuracy_one_two_three_versus_one_two_four_is_two_thirds", "tests/F07_acceptance.py::test_accuracy_list_against_itself_is_one", "tests/F07_acceptance.py::test_accuracy_permutation_is_neither_one_nor_two_thirds", "tests/F07_acceptance.py::test_accuracy_mismatched_lengths_does_not_succeed", "tests/F07_acceptance.py::test_precision_recall_fmeasure_named_sets_are_two_thirds", "tests/F07_acceptance.py::test_precision_recall_runtime_two_of_three_cousin_is_two_thirds", "tests/F07_acceptance.py::test_precision_recall_unequal_sizes_differ_from_two_thirds_and_each_other", "tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero", "tests/F07_acceptance.py::test_empty_reference_recall_is_absent", "tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty", "tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero", "tests/F07_acceptance.py::test_precision_recall_refuse_lists_and_other_non_sets", "tests/F07_acceptance.py::test_unigram_bleu_no_overlap_is_zero_identity_is_one", "tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals", "tests/F07_acceptance.py::test_bleu_guide_to_action_beats_insure_the_troops"], "issues": [], "reports": {"tests/F01_acceptance.py::test_blankline_muffin_paragraph_and_thanks": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_blankline_runtime_paragraphs": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_cli_one_output_line_per_nonempty_input_line": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_cli_tokenize_fails_without_punkt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_cli_tokenize_hello_world_joined_by_spaces": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_empty_string_empty_list_on_named_tokenizers": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_homepage_thirteen_tokens_without_sentence_split": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_mortgage_keeps_grouped_and_decimal_amounts": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_runtime_cannot_splits": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_runtime_grouped_and_decimal_amounts": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_runtime_oclock_and_nt_without_sentence_split": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_same_atoms_other_order": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_single_atom_is_one_sentence": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_three_muffin_sentences": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_word_sentence_split_fails_without_punkt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_recommended_word_with_sentence_split_three_points_no_glue": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_regexp_capitalized_words_on_muffin_string": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_regexp_runtime_capitalized_word_included": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_sentence_split_fails_without_punkt_wordpunct_still_works": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_spaces_only_empty_list_on_wordpunct_and_whitespace": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_spans_on_muffin_recover_tokens_ordered_and_nonoverlapping": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_spans_on_runtime_currency_recover_tokens": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_treebank_and_recommended_keep_muffin_decimal_unlike_wordpunct": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_treebank_and_recommended_keep_runtime_decimal_unlike_wordpunct": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_treebank_runtime_ll_clitic_splits": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_treebank_theyll_splits_clitic": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_tweet_runtime_handle_stripped_accent_kept": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_tweet_strips_myke_keeps_colon_lets_and_accents": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_whitespace_keeps_currency_and_york_period": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_whitespace_runtime_keeps_currency_and_word_period": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_wordpunct_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_wordpunct_hello_world_is_four_tokens": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_wordpunct_muffin_is_eleven_tokens_and_splits_decimal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_wordpunct_runtime_currency_splits_decimal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_I_lowercase_settings_differ": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_nineteen_named_pairs": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_oed_succeeds_as_o": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_running_case_matches": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_stems_in_isolated_subprocess": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_default_porter_two_word_string_is_one_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_lancaster_maximum_is_maxim_default_porter_is_not": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_lancaster_named_pairs": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_lancaster_two_word_string_is_one_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_regexp_ing_not_stripped_when_not_trailing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_regexp_leaves_run_unchanged": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_regexp_runtime_trailing_ing_stripped": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_regexp_strips_trailing_ing_from_running_not_snowball_english": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_regexp_two_suffix_configs_differ_on_shared_word": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_arabic_named_pairs": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_english_running_and_generously": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_english_skip_off_having_without_wordlist": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_english_skip_on_does_not_construct_without_wordlist": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_english_skip_on_leaves_having_when_wordlist_present": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_german_skip_on_fails_with_only_english_wordlist": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_klingon_fails_identifying_language_english_succeeds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_porter_generously_differs_from_english": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_runtime_unsupported_language_is_identified": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_russian_named_pair": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_spanish_visionado": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_wordnet_lemmatizer_fails_without_wordnet_graded_stemmers_do_not": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_default_tagger_nn_on_this_is_a_test": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_default_tagger_runtime_tag_applies_to_every_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_graded_trainables": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_recommended_english": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_english_universal_mapping_absent_without_tables_ptb_still_works": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_english_fails_when_only_russian_perceptron_installed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_english_homepage_proper_vs_common_noun": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_english_john_list_ptb_category_structure": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_fails_without_perceptron_trainable_taggers_do_not": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_korean_does_not_succeed_english_does": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_refuses_raw_john_string_token_list_succeeds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_refuses_runtime_raw_string_token_list_succeeds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_runtime_unsupported_language_does_not_succeed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_russian_fails_when_only_english_perceptron_installed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_russian_rnc_named_s_v_and_category_contrasts": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_recommended_russian_universal_maps_noun_and_verb": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_regexp_backoff_fills_non_number_keeps_cd": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_regexp_number_rule_tags_3_as_cd_leaves_saw_dogs_untagged": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_regexp_runtime_digits_cd_non_number_untagged": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_regexp_two_configs_differ_on_shared_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_russian_universal_succeeds_without_universal_tables_english_does_not": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unigram_backoff_nn_tags_xyz_keeps_the_as_dt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unigram_backoff_runtime_fills_only_unseen": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unigram_leaves_xyz_untagged_unlike_default_nn": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unigram_runtime_seen_and_unseen_tokens": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unigram_trained_the_dog_and_cat_tags_seen_words": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_chunk_everything_without_chink_is_one_noun_phrase": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_named_sentences": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_runtime_tagged_list": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_chunk_structure_root_defaults_to_sentence_label": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_empty_tagged_list_sentence_root_no_children": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_four_or_more_n_chunks_two_separated_four_token_runs_not_term_jury": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_four_or_more_n_concatenated_runs_are_one_ten_token_chunk": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_four_or_more_n_runtime_length_threshold": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_four_or_more_n_runtime_separated_and_concatenated": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_later_clause_chink_leaves_whole_list_one_noun_phrase": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_later_clause_chunks_remaining_vbd_after_noun_phrase": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_later_clause_chunks_remaining_vbd_runtime_tokens": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_named_entity_fails_without_ne_resource_when_perceptron_present": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_named_entity_fails_without_resource_chunk_grammar_still_works": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_non_text_non_stage_grammar_is_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_adjacent_matches_are_two_chunks": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_adjective_noun_without_determiner": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_barked_alone_has_no_noun_phrase": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_chunks_dog_only_then_barked_leaf": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_chunks_every_matching_sequence": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_chunks_the_big_dog_leaves_barked_as_leaf": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_determiner_adjective_without_noun_is_not_a_chunk": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_determiner_noun_zero_adjectives": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_runtime_tokens_optional_dt_jj_nn": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_two_adjectives_then_noun": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_np_grammar_whitespace_in_tag_pattern_ignored": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_runtime_tag_pattern_is_consulted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_same_clause_chink_runtime_tokens": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_same_clause_chunk_then_chink_two_nps_sat_on_as_leaves": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_two_grammars_differ_on_the_big_dog_list": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_bracketed_tree_equals_constructed_s_i_saw_him": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_cfg_reader_runtime_start_count_and_terminals_follow_caller": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_changing_inner_np_label_to_x_breaks_equality_and_pretty_print": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_consults_caller_grammar_swapped_terminals_same_length": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_empty_token_list_empty_parse_set": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_five_token_sentence_exactly_one_s_tree": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_rug_sentence_two_pp_attachments": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_runtime_five_token_sentence_exactly_one_tree": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_runtime_pp_attachment_ambiguity": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_runtime_uncovered_vs_covered_ungrammatical": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_same_five_tokens_np_n_det_empty_set": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_uncovered_token_is_refused_not_empty_set": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_chart_ungrammatical_covered_tokens_empty_parse_set": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_children_by_position_np_then_vp": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_fourteen_production_grammar_start_s_and_named_terminals": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_generate_empty_production_is_one_token_a": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_pretty_print_shows_labels_and_leaves_in_order": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_runtime_bracketed_tree_equals_constructed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_runtime_pretty_print_and_children_by_position": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_s_i_saw_him_leaves_in_order": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_shift_reduce_five_token_same_shape_as_chart": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_shift_reduce_runtime_five_token_same_covering": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_tree_empty_child_list_succeeds_and_differs_from_refusals": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_tree_length_is_immediate_child_count": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_tree_rejects_missing_child_list": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_tree_rejects_string_as_child_list": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_trees_equal_iff_labels_and_children_match": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_accuracy_classifier_length_four_is_half": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_accuracy_classifier_pos_pos_neg_against_pos_neg_neg_is_two_thirds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_accuracy_classifier_same_bag_permutation_is_one_third": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_accuracy_is_position_fraction_not_label_set_or_bag": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_accuracy_mismatched_lengths_does_not_succeed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_accuracy_runtime_lists_match_position_fraction": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_decision_tree_empty_of_training_features_returns_a_trained_label": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_decision_tree_full_training_featuresets_positive_and_negative": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_decision_tree_runtime_full_featuresets_follow_training_labels": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_empty_of_training_features_returns_a_trained_label": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_naive_bayes_lists_seen_labels_and_not_an_unseen_third": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_naive_bayes_nice_only_positive_bad_only_negative_with_ranked_probs": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_naive_bayes_runtime_features_and_labels_rank_and_swap": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_naive_bayes_runtime_label_inventory_and_empty_query": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_naive_bayes_unseen_feature_does_not_flip_or_zero_all_probs": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_accuracy_list_against_itself_is_one": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_accuracy_mismatched_lengths_does_not_succeed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_accuracy_one_two_three_versus_one_two_four_is_two_thirds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_accuracy_permutation_is_neither_one_nor_two_thirds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_bleu_guide_to_action_beats_insure_the_troops": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_edit_distance_acbdef_abcdef_transpositions_off_two_on_one": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_edit_distance_identity_and_empty_is_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_edit_distance_rain_shine_is_symmetric": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_edit_distance_rain_shine_substitution_cost_one_is_three_cost_two_is_five": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_edit_distance_runtime_adjacent_transposition_off_two_on_one": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_empty_reference_recall_is_absent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_jaccard_disjoint_nonempty_sets_are_one": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_jaccard_identical_sets_are_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_jaccard_one_two_three_versus_two_three_four_is_one_half": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_jaccard_runtime_two_of_four_overlap_is_one_half": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_precision_recall_fmeasure_named_sets_are_two_thirds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_precision_recall_refuse_lists_and_other_non_sets": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_precision_recall_runtime_two_of_three_cousin_is_two_thirds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_precision_recall_unequal_sizes_differ_from_two_thirds_and_each_other": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_unigram_bleu_no_overlap_is_zero_identity_is_one": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}}, "selected": ["tests/F01_acceptance.py::test_wordpunct_hello_world_is_four_tokens", "tests/F01_acceptance.py::test_wordpunct_muffin_is_eleven_tokens_and_splits_decimal", "tests/F01_acceptance.py::test_wordpunct_runtime_currency_splits_decimal", "tests/F01_acceptance.py::test_treebank_and_recommended_keep_muffin_decimal_unlike_wordpunct", "tests/F01_acceptance.py::test_treebank_and_recommended_keep_runtime_decimal_unlike_wordpunct", "tests/F01_acceptance.py::test_treebank_theyll_splits_clitic", "tests/F01_acceptance.py::test_treebank_runtime_ll_clitic_splits", "tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not", "tests/F01_acceptance.py::test_recommended_runtime_cannot_splits", "tests/F01_acceptance.py::test_recommended_mortgage_keeps_grouped_and_decimal_amounts", "tests/F01_acceptance.py::test_recommended_runtime_grouped_and_decimal_amounts", "tests/F01_acceptance.py::test_recommended_leading_straight_quote_becomes_backticks", "tests/F01_acceptance.py::test_recommended_runtime_leading_quote_rewritten", "tests/F01_acceptance.py::test_recommended_homepage_thirteen_tokens_without_sentence_split", "tests/F01_acceptance.py::test_recommended_runtime_oclock_and_nt_without_sentence_split", "tests/F01_acceptance.py::test_whitespace_keeps_currency_and_york_period", "tests/F01_acceptance.py::test_whitespace_runtime_keeps_currency_and_word_period", "tests/F01_acceptance.py::test_blankline_muffin_paragraph_and_thanks", "tests/F01_acceptance.py::test_blankline_runtime_paragraphs", "tests/F01_acceptance.py::test_regexp_capitalized_words_on_muffin_string", "tests/F01_acceptance.py::test_regexp_runtime_capitalized_word_included", "tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends", "tests/F01_acceptance.py::test_tweet_strips_myke_keeps_colon_lets_and_accents", "tests/F01_acceptance.py::test_tweet_runtime_handle_stripped_accent_kept", "tests/F01_acceptance.py::test_spans_on_muffin_recover_tokens_ordered_and_nonoverlapping", "tests/F01_acceptance.py::test_spans_on_runtime_currency_recover_tokens", "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_three_muffin_sentences", "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_same_atoms_other_order", "tests/F01_acceptance.py::test_recommended_sentence_tokenizer_single_atom_is_one_sentence", "tests/F01_acceptance.py::test_recommended_word_with_sentence_split_three_points_no_glue", "tests/F01_acceptance.py::test_sentence_split_fails_without_punkt_wordpunct_still_works", "tests/F01_acceptance.py::test_recommended_word_sentence_split_fails_without_punkt", "tests/F01_acceptance.py::test_cli_tokenize_fails_without_punkt", "tests/F01_acceptance.py::test_cli_tokenize_hello_world_joined_by_spaces", "tests/F01_acceptance.py::test_cli_one_output_line_per_nonempty_input_line", "tests/F01_acceptance.py::test_empty_string_empty_list_on_named_tokenizers", "tests/F01_acceptance.py::test_spaces_only_empty_list_on_wordpunct_and_whitespace", "tests/F01_acceptance.py::test_wordpunct_fails_when_package_not_importable", "tests/F02_acceptance.py::test_default_porter_nineteen_named_pairs", "tests/F02_acceptance.py::test_default_porter_oed_succeeds_as_o", "tests/F02_acceptance.py::test_default_porter_running_case_matches", "tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches", "tests/F02_acceptance.py::test_default_porter_I_lowercase_settings_differ", "tests/F02_acceptance.py::test_lancaster_named_pairs", "tests/F02_acceptance.py::test_lancaster_maximum_is_maxim_default_porter_is_not", "tests/F02_acceptance.py::test_snowball_english_running_and_generously", "tests/F02_acceptance.py::test_snowball_porter_generously_differs_from_english", "tests/F02_acceptance.py::test_snowball_english_skip_off_having_without_wordlist", "tests/F02_acceptance.py::test_snowball_english_skip_on_does_not_construct_without_wordlist", "tests/F02_acceptance.py::test_snowball_english_skip_on_leaves_having_when_wordlist_present", "tests/F02_acceptance.py::test_snowball_german_schranke_and_skip_off_keinen_without_wordlist", "tests/F02_acceptance.py::test_snowball_german_skip_on_does_not_construct_without_wordlist", "tests/F02_acceptance.py::test_snowball_german_skip_on_leaves_keinen_when_wordlist_present", "tests/F02_acceptance.py::test_snowball_german_skip_on_fails_with_only_english_wordlist", "tests/F02_acceptance.py::test_snowball_arabic_named_pairs", "tests/F02_acceptance.py::test_snowball_spanish_visionado", "tests/F02_acceptance.py::test_snowball_russian_named_pair", "tests/F02_acceptance.py::test_snowball_klingon_fails_identifying_language_english_succeeds", "tests/F02_acceptance.py::test_snowball_runtime_unsupported_language_is_identified", "tests/F02_acceptance.py::test_snowball_listed_language_without_named_stem_is_usable", "tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs", "tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_verb_to_str", "tests/F02_acceptance.py::test_arlstem_and_arlstem2_construct_and_stem_noun_to_str", "tests/F02_acceptance.py::test_regexp_strips_trailing_ing_from_running_not_snowball_english", "tests/F02_acceptance.py::test_regexp_leaves_run_unchanged", "tests/F02_acceptance.py::test_regexp_runtime_trailing_ing_stripped", "tests/F02_acceptance.py::test_regexp_ing_not_stripped_when_not_trailing", "tests/F02_acceptance.py::test_regexp_two_suffix_configs_differ_on_shared_word", "tests/F02_acceptance.py::test_default_porter_two_word_string_is_one_token", "tests/F02_acceptance.py::test_lancaster_two_word_string_is_one_token", "tests/F02_acceptance.py::test_wordnet_lemmatizer_fails_without_wordnet_graded_stemmers_do_not", "tests/F02_acceptance.py::test_default_porter_stems_in_isolated_subprocess", "tests/F03_acceptance.py::test_default_tagger_nn_on_this_is_a_test", "tests/F03_acceptance.py::test_default_tagger_runtime_tag_applies_to_every_token", "tests/F03_acceptance.py::test_unigram_trained_the_dog_and_cat_tags_seen_words", "tests/F03_acceptance.py::test_unigram_leaves_xyz_untagged_unlike_default_nn", "tests/F03_acceptance.py::test_unigram_runtime_seen_and_unseen_tokens", "tests/F03_acceptance.py::test_unigram_backoff_nn_tags_xyz_keeps_the_as_dt", "tests/F03_acceptance.py::test_unigram_backoff_runtime_fills_only_unseen", "tests/F03_acceptance.py::test_regexp_number_rule_tags_3_as_cd_leaves_saw_dogs_untagged", "tests/F03_acceptance.py::test_regexp_runtime_digits_cd_non_number_untagged", "tests/F03_acceptance.py::test_regexp_two_configs_differ_on_shared_token", "tests/F03_acceptance.py::test_regexp_backoff_fills_non_number_keeps_cd", "tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_graded_trainables", "tests/F03_acceptance.py::test_empty_token_list_tags_as_empty_on_recommended_english", "tests/F03_acceptance.py::test_recommended_english_john_list_ptb_category_structure", "tests/F03_acceptance.py::test_recommended_english_homepage_proper_vs_common_noun", "tests/F03_acceptance.py::test_recommended_russian_rnc_named_s_v_and_category_contrasts", "tests/F03_acceptance.py::test_recommended_russian_universal_maps_noun_and_verb", "tests/F03_acceptance.py::test_recommended_refuses_raw_john_string_token_list_succeeds", "tests/F03_acceptance.py::test_recommended_refuses_runtime_raw_string_token_list_succeeds", "tests/F03_acceptance.py::test_recommended_korean_does_not_succeed_english_does", "tests/F03_acceptance.py::test_recommended_runtime_unsupported_language_does_not_succeed", "tests/F03_acceptance.py::test_recommended_fails_without_perceptron_trainable_taggers_do_not", "tests/F03_acceptance.py::test_recommended_russian_fails_when_only_english_perceptron_installed", "tests/F03_acceptance.py::test_recommended_english_fails_when_only_russian_perceptron_installed", "tests/F03_acceptance.py::test_english_universal_mapping_absent_without_tables_ptb_still_works", "tests/F03_acceptance.py::test_russian_universal_succeeds_without_universal_tables_english_does_not", "tests/F04_acceptance.py::test_np_grammar_chunks_the_big_dog_leaves_barked_as_leaf", "tests/F04_acceptance.py::test_np_grammar_chunks_dog_only_then_barked_leaf", "tests/F04_acceptance.py::test_np_grammar_barked_alone_has_no_noun_phrase", "tests/F04_acceptance.py::test_np_grammar_determiner_noun_zero_adjectives", "tests/F04_acceptance.py::test_np_grammar_determiner_adjective_without_noun_is_not_a_chunk", "tests/F04_acceptance.py::test_np_grammar_two_adjectives_then_noun", "tests/F04_acceptance.py::test_np_grammar_adjective_noun_without_determiner", "tests/F04_acceptance.py::test_np_grammar_chunks_every_matching_sequence", "tests/F04_acceptance.py::test_np_grammar_adjacent_matches_are_two_chunks", "tests/F04_acceptance.py::test_np_grammar_runtime_tokens_optional_dt_jj_nn", "tests/F04_acceptance.py::test_np_grammar_whitespace_in_tag_pattern_ignored", "tests/F04_acceptance.py::test_two_grammars_differ_on_the_big_dog_list", "tests/F04_acceptance.py::test_runtime_tag_pattern_is_consulted", "tests/F04_acceptance.py::test_four_or_more_n_chunks_two_separated_four_token_runs_not_term_jury", "tests/F04_acceptance.py::test_four_or_more_n_concatenated_runs_are_one_ten_token_chunk", "tests/F04_acceptance.py::test_four_or_more_n_runtime_separated_and_concatenated", "tests/F04_acceptance.py::test_four_or_more_n_runtime_length_threshold", "tests/F04_acceptance.py::test_same_clause_chunk_then_chink_two_nps_sat_on_as_leaves", "tests/F04_acceptance.py::test_chunk_everything_without_chink_is_one_noun_phrase", "tests/F04_acceptance.py::test_later_clause_chink_leaves_whole_list_one_noun_phrase", "tests/F04_acceptance.py::test_same_clause_chink_runtime_tokens", "tests/F04_acceptance.py::test_later_clause_chunks_remaining_vbd_after_noun_phrase", "tests/F04_acceptance.py::test_later_clause_chunks_remaining_vbd_runtime_tokens", "tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_named_sentences", "tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_runtime_tagged_list", "tests/F04_acceptance.py::test_chunk_structure_root_defaults_to_sentence_label", "tests/F04_acceptance.py::test_empty_tagged_list_sentence_root_no_children", "tests/F04_acceptance.py::test_non_text_non_stage_grammar_is_refused", "tests/F04_acceptance.py::test_named_entity_fails_without_resource_chunk_grammar_still_works", "tests/F04_acceptance.py::test_named_entity_fails_without_ne_resource_when_perceptron_present", "tests/F05_acceptance.py::test_fourteen_production_grammar_start_s_and_named_terminals", "tests/F05_acceptance.py::test_cfg_reader_runtime_start_count_and_terminals_follow_caller", "tests/F05_acceptance.py::test_chart_five_token_sentence_exactly_one_s_tree", "tests/F05_acceptance.py::test_chart_runtime_five_token_sentence_exactly_one_tree", "tests/F05_acceptance.py::test_chart_rug_sentence_two_pp_attachments", "tests/F05_acceptance.py::test_chart_runtime_pp_attachment_ambiguity", "tests/F05_acceptance.py::test_chart_ungrammatical_covered_tokens_empty_parse_set", "tests/F05_acceptance.py::test_chart_empty_token_list_empty_parse_set", "tests/F05_acceptance.py::test_chart_uncovered_token_is_refused_not_empty_set", "tests/F05_acceptance.py::test_chart_runtime_uncovered_vs_covered_ungrammatical", "tests/F05_acceptance.py::test_shift_reduce_five_token_same_shape_as_chart", "tests/F05_acceptance.py::test_shift_reduce_runtime_five_token_same_covering", "tests/F05_acceptance.py::test_chart_consults_caller_grammar_swapped_terminals_same_length", "tests/F05_acceptance.py::test_chart_same_five_tokens_np_n_det_empty_set", "tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token", "tests/F05_acceptance.py::test_generate_empty_production_is_one_token_a", "tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production", "tests/F05_acceptance.py::test_bracketed_tree_equals_constructed_s_i_saw_him", "tests/F05_acceptance.py::test_pretty_print_shows_labels_and_leaves_in_order", "tests/F05_acceptance.py::test_changing_inner_np_label_to_x_breaks_equality_and_pretty_print", "tests/F05_acceptance.py::test_trees_equal_iff_labels_and_children_match", "tests/F05_acceptance.py::test_tree_length_is_immediate_child_count", "tests/F05_acceptance.py::test_s_i_saw_him_leaves_in_order", "tests/F05_acceptance.py::test_children_by_position_np_then_vp", "tests/F05_acceptance.py::test_runtime_bracketed_tree_equals_constructed", "tests/F05_acceptance.py::test_runtime_pretty_print_and_children_by_position", "tests/F05_acceptance.py::test_tree_rejects_string_as_child_list", "tests/F05_acceptance.py::test_tree_rejects_missing_child_list", "tests/F05_acceptance.py::test_tree_empty_child_list_succeeds_and_differs_from_refusals", "tests/F06_acceptance.py::test_naive_bayes_nice_only_positive_bad_only_negative_with_ranked_probs", "tests/F06_acceptance.py::test_naive_bayes_runtime_features_and_labels_rank_and_swap", "tests/F06_acceptance.py::test_naive_bayes_unseen_feature_does_not_flip_or_zero_all_probs", "tests/F06_acceptance.py::test_decision_tree_full_training_featuresets_positive_and_negative", "tests/F06_acceptance.py::test_decision_tree_runtime_full_featuresets_follow_training_labels", "tests/F06_acceptance.py::test_accuracy_classifier_pos_pos_neg_against_pos_neg_neg_is_two_thirds", "tests/F06_acceptance.py::test_accuracy_classifier_length_four_is_half", "tests/F06_acceptance.py::test_accuracy_classifier_same_bag_permutation_is_one_third", "tests/F06_acceptance.py::test_accuracy_is_position_fraction_not_label_set_or_bag", "tests/F06_acceptance.py::test_accuracy_mismatched_lengths_does_not_succeed", "tests/F06_acceptance.py::test_accuracy_runtime_lists_match_position_fraction", "tests/F06_acceptance.py::test_naive_bayes_lists_seen_labels_and_not_an_unseen_third", "tests/F06_acceptance.py::test_empty_of_training_features_returns_a_trained_label", "tests/F06_acceptance.py::test_decision_tree_empty_of_training_features_returns_a_trained_label", "tests/F06_acceptance.py::test_naive_bayes_runtime_label_inventory_and_empty_query", "tests/F07_acceptance.py::test_edit_distance_rain_shine_substitution_cost_one_is_three_cost_two_is_five", "tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two", "tests/F07_acceptance.py::test_edit_distance_acbdef_abcdef_transpositions_off_two_on_one", "tests/F07_acceptance.py::test_edit_distance_runtime_adjacent_transposition_off_two_on_one", "tests/F07_acceptance.py::test_edit_distance_identity_and_empty_is_zero", "tests/F07_acceptance.py::test_edit_distance_rain_shine_is_symmetric", "tests/F07_acceptance.py::test_jaccard_identical_sets_are_zero", "tests/F07_acceptance.py::test_jaccard_disjoint_nonempty_sets_are_one", "tests/F07_acceptance.py::test_jaccard_one_two_three_versus_two_three_four_is_one_half", "tests/F07_acceptance.py::test_jaccard_runtime_two_of_four_overlap_is_one_half", "tests/F07_acceptance.py::test_accuracy_one_two_three_versus_one_two_four_is_two_thirds", "tests/F07_acceptance.py::test_accuracy_list_against_itself_is_one", "tests/F07_acceptance.py::test_accuracy_permutation_is_neither_one_nor_two_thirds", "tests/F07_acceptance.py::test_accuracy_mismatched_lengths_does_not_succeed", "tests/F07_acceptance.py::test_precision_recall_fmeasure_named_sets_are_two_thirds", "tests/F07_acceptance.py::test_precision_recall_runtime_two_of_three_cousin_is_two_thirds", "tests/F07_acceptance.py::test_precision_recall_unequal_sizes_differ_from_two_thirds_and_each_other", "tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero", "tests/F07_acceptance.py::test_empty_reference_recall_is_absent", "tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty", "tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero", "tests/F07_acceptance.py::test_precision_recall_refuse_lists_and_other_non_sets", "tests/F07_acceptance.py::test_unigram_bleu_no_overlap_is_zero_identity_is_one", "tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals", "tests/F07_acceptance.py::test_bleu_guide_to_action_beats_insure_the_troops"]}

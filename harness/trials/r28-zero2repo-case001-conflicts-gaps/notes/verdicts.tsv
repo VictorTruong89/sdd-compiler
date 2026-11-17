@@ -1,0 +1,28 @@
+conflict	verdict	reason (judged on the owner's behalf)	source
+CF-000001	open	planted pair C13 (answer key)	notes/recall.json
+CF-000008	open	planted pair C10 (answer key)	notes/recall.json
+CF-000009	open	planted pair C11 (answer key)	notes/recall.json
+CF-000011	false	both original: dotted keys may extend an implicit dotted table; a later header or dotted key may not reopen a defined table (different operations, PRD 85 and 96)	read against the original case001 spec
+CF-000012	open	planted pair C36 (answer key)	notes/recall.json
+CF-000014	false	different subjects: the planted sentence is about the form of line endings kept (CR/LF), the other about a line-ending backslash removing a line ending; neither states the other's case	read against the original case001 spec
+CF-000015	open	planted pair C12 (answer key)	notes/recall.json
+CF-000023	open	planted C29 side B against the Contract failure row, which states side A (a subclass instance is refused)	read against the original case001 spec
+CF-000025	false	B is the refusal case of FP-02 (a scalar TOML forbids); A is the success case	read against the original case001 spec
+CF-000028	open	real: the planted sentence (a tab in a one-line string must be written as backslash-t) cannot hold for a literal-string key, where escapes are never processed; not side A of C14	read against the original case001 spec
+CF-000029	false	B is the refusal case of FP-02; A is the entry's success case	read against the original case001 spec
+CF-000032	open	real: planted C29 side B refuses only exact dict/list, the overview forbids dictionaries and lists as conversion results (a subclass instance is a dictionary)	read against the original case001 spec
+CF-000034	false	no clash: a \x escape with lowercase digits is still accepted under both	read against the original case001 spec
+CF-000035	open	real: as CF-000028, the planted sentence cannot hold for a literal string, whose interior is taken as written	read against the original case001 spec
+CF-000036	false	line feeds in multiline strings are line endings, not the raw control characters FP-02 refuses (TOML v1.1.0)	read against the original case001 spec
+CF-000037	open	planted pair C16 (answer key)	notes/recall.json
+CF-000038	false	A is the failure case of FP-04; B the success case of an empty document	read against the original case001 spec
+CF-000041	false	B is the refusal case of FP-02; A the success case	read against the original case001 spec
+CF-000044	false	B is the refusal case of FP-02; A the success case	read against the original case001 spec
+CF-000045	open	planted C04 side B against a second sentence stating side A (the first six fraction digits are read; later digits dropped)	read against the original case001 spec
+CF-000047	false	different refusals: a text-mode file is a type error (FP-03); a forbidden scalar is a decode error (FP-02)	read against the original case001 spec
+CF-000051	false	"""comments"" in the surface list names what the parser reads, not what the mapping holds; no clash"	read against the original case001 spec
+CF-000059	open	planted pair C07 (answer key)	notes/recall.json
+CF-000062	open	planted pair C03 (answer key)	notes/recall.json
+CF-000065	open	planted pair C08 (answer key)	notes/recall.json
+CF-000068	open	planted pair C18 (answer key)	notes/recall.json
+CF-000069	open	planted pair C04 (answer key)	notes/recall.json

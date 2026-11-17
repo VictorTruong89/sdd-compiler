@@ -1,0 +1,321 @@
+{
+ "BASE_failed": [],
+ "C01": {
+  "newly_failed": [
+   "F07_acceptance.py::test_avg_empty_list_is_successful_null_and_sum_empty_is_zero",
+   "F07_acceptance.py::test_compile_then_search_numeric_builtins",
+   "F07_acceptance.py::test_named_arity_and_type_examples_are_distinct_from_other_kinds",
+   "F07_acceptance.py::test_runtime_numeric_builtins",
+   "F07_acceptance.py::test_unknown_arity_type_failures_are_distinguishable_from_successful_null"
+  ],
+  "newly_passed": []
+ },
+ "C02": {
+  "newly_failed": [
+   "F07_acceptance.py::test_reverse_and_join_named_oracles"
+  ],
+  "newly_passed": []
+ },
+ "C03": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_then_search_merge_and_not_null",
+   "F07_acceptance.py::test_merge_later_key_wins",
+   "F07_acceptance.py::test_runtime_merge_and_not_null"
+  ],
+  "newly_passed": []
+ },
+ "C04": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_then_search_max_min_sort",
+   "F07_acceptance.py::test_empty_list_max_min_null_and_sort_empty_array",
+   "F07_acceptance.py::test_runtime_max_min_sort",
+   "F07_acceptance.py::test_unknown_arity_type_failures_are_distinguishable_from_successful_null"
+  ],
+  "newly_passed": []
+ },
+ "C05": {
+  "newly_failed": [
+   "F07_acceptance.py::test_not_null_first_non_null_empty_list_is_not_null",
+   "F07_acceptance.py::test_runtime_merge_and_not_null"
+  ],
+  "newly_passed": []
+ },
+ "C06": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_then_search_map",
+   "F07_acceptance.py::test_map_keeps_nulls_unlike_a_projection",
+   "F07_acceptance.py::test_map_nested_path_and_flatten_reference",
+   "F07_acceptance.py::test_runtime_map_preserves_length_and_nulls"
+  ],
+  "newly_passed": []
+ },
+ "C07": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "C08": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_then_search_string_and_array_builtins",
+   "F07_acceptance.py::test_length_counts_characters_elements_and_keys",
+   "F07_acceptance.py::test_runtime_string_and_array_builtins"
+  ],
+  "newly_passed": []
+ },
+ "C09": {
+  "newly_failed": [
+   "F06_acceptance.py::test_compile_then_search_ordering",
+   "F06_acceptance.py::test_runtime_ordering_numbers_strings_and_decimal",
+   "F06_acceptance.py::test_string_fields_compare_in_host_unicode_order"
+  ],
+  "newly_passed": []
+ },
+ "C10": {
+  "newly_failed": [
+   "F06_acceptance.py::test_compile_then_search_ordering",
+   "F06_acceptance.py::test_host_decimal_participates_as_number",
+   "F06_acceptance.py::test_runtime_ordering_numbers_strings_and_decimal"
+  ],
+  "newly_passed": []
+ },
+ "C11": {
+  "newly_failed": [
+   "F05_acceptance.py::test_compile_then_search_multiselect_hash",
+   "F05_acceptance.py::test_multiselect_hash_on_null_current_value_is_null",
+   "F05_acceptance.py::test_multiselect_hash_stores_null_for_missing_field",
+   "F05_acceptance.py::test_runtime_multiselect_hash_missing_field_and_null_current"
+  ],
+  "newly_passed": []
+ },
+ "C12": {
+  "newly_failed": [
+   "F05_acceptance.py::test_compile_then_search_multiselect_list",
+   "F05_acceptance.py::test_multiselect_list_on_null_current_value_is_null",
+   "F05_acceptance.py::test_runtime_multiselect_list_and_null_current"
+  ],
+  "newly_passed": []
+ },
+ "C13": {
+  "newly_failed": [
+   "F03_acceptance.py::test_out_of_range_slice_is_successful_empty_array",
+   "F03_acceptance.py::test_runtime_zero_step_slice_is_value_error_not_syntax",
+   "F03_acceptance.py::test_zero_step_slice_is_value_error_not_empty_array_or_syntax"
+  ],
+  "newly_passed": []
+ },
+ "C14": {
+  "newly_failed": [
+   "F03_acceptance.py::test_runtime_slice_projection_and_non_array_null",
+   "F03_acceptance.py::test_slice_on_non_array_is_successful_null"
+  ],
+  "newly_passed": []
+ },
+ "C15": {
+  "newly_failed": [
+   "F04_acceptance.py::test_filter_on_non_array_is_successful_null",
+   "F04_acceptance.py::test_runtime_filter_on_non_array_is_successful_null"
+  ],
+  "newly_passed": []
+ },
+ "C16": {
+  "newly_failed": [
+   "F04_acceptance.py::test_compile_then_search_nested_wildcard_and_index_after",
+   "F04_acceptance.py::test_list_versus_object_wildcard_require_matching_kind",
+   "F04_acceptance.py::test_list_wildcard_on_missing_or_non_array_is_successful_null",
+   "F04_acceptance.py::test_nested_list_wildcard_drops_string_parent",
+   "F04_acceptance.py::test_runtime_nested_wildcard_and_index_after_wildcard"
+  ],
+  "newly_passed": []
+ },
+ "C17": {
+  "newly_failed": [
+   "F04_acceptance.py::test_list_versus_object_wildcard_require_matching_kind",
+   "F04_acceptance.py::test_object_wildcard_on_non_object_is_successful_null",
+   "F04_acceptance.py::test_runtime_object_wildcard_is_values_multiset"
+  ],
+  "newly_passed": []
+ },
+ "C18": {
+  "newly_failed": [
+   "F03_acceptance.py::test_flatten_then_index_on_string_drops_nulls_to_empty_array",
+   "F03_acceptance.py::test_index_on_string_is_successful_null",
+   "F03_acceptance.py::test_runtime_flatten_projection",
+   "F03_acceptance.py::test_runtime_out_of_range_and_non_array_index_are_successful_null"
+  ],
+  "newly_passed": []
+ },
+ "C19": {
+  "newly_failed": [
+   "F05_acceptance.py::test_compile_then_search_raw_string",
+   "F05_acceptance.py::test_raw_string_does_not_interpret_unicode_escape",
+   "F05_acceptance.py::test_runtime_raw_string"
+  ],
+  "newly_passed": []
+ },
+ "C20": {
+  "newly_failed": [
+   "F03_acceptance.py::test_compile_then_search_zero_step_is_value_error_not_empty",
+   "F03_acceptance.py::test_runtime_zero_step_slice_is_value_error_not_syntax",
+   "F03_acceptance.py::test_zero_step_slice_is_value_error_not_empty_array_or_syntax"
+  ],
+  "newly_passed": []
+ },
+ "C21": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_path_function_failures",
+   "F07_acceptance.py::test_quoted_identifier_is_not_a_function_name"
+  ],
+  "newly_passed": []
+ },
+ "C22": {
+  "newly_failed": [
+   "F05_acceptance.py::test_compile_then_search_expression_reference_is_deferred",
+   "F05_acceptance.py::test_expression_reference_is_not_evaluated_immediately",
+   "F05_acceptance.py::test_runtime_expression_reference_is_deferred"
+  ],
+  "newly_passed": []
+ },
+ "C23": {
+  "newly_failed": [
+   "F08_acceptance.py::test_compile_then_search_custom_add_with_options",
+   "F08_acceptance.py::test_compile_then_search_custom_length",
+   "F08_acceptance.py::test_compile_then_search_custom_unknown_arity_type_failures",
+   "F08_acceptance.py::test_custom_add_and_my_subtract_named_oracles",
+   "F08_acceptance.py::test_custom_function_on_one_provider_is_absent_from_another",
+   "F08_acceptance.py::test_custom_length_maps_null_to_zero_and_array_to_host_len",
+   "F08_acceptance.py::test_custom_unknown_arity_type_failures_are_distinguishable",
+   "F08_acceptance.py::test_host_non_json_refused_by_custom_json_typed_function",
+   "F08_acceptance.py::test_later_no_options_search_keeps_length_and_rejects_custom_add",
+   "F08_acceptance.py::test_options_object_carries_mapping_type_and_provider_together",
+   "F08_acceptance.py::test_options_without_provider_do_not_create_custom_add",
+   "F08_acceptance.py::test_runtime_binary_custom_functions",
+   "F08_acceptance.py::test_runtime_custom_length_array_object_missing_and_string",
+   "F08_acceptance.py::test_same_parsed_expression_without_options_does_not_see_custom_add"
+  ],
+  "newly_passed": []
+ },
+ "C24": {
+  "newly_failed": [
+   "F01_acceptance.py::test_illformed_search_is_value_error_not_successful_null[lone-equals]"
+  ],
+  "newly_passed": []
+ },
+ "C25": {
+  "newly_failed": [
+   "F01_acceptance.py::test_compile_foo_hyphen_bar_is_syntax_value_error",
+   "F01_acceptance.py::test_illformed_search_is_value_error_not_successful_null['foo-bar']",
+   "F01_acceptance.py::test_illformed_search_is_value_error_not_successful_null[lone-hyphen]",
+   "F02_acceptance.py::test_quoted_hyphenated_key_selects_hyphenated_field",
+   "F02_acceptance.py::test_unquoted_hyphen_is_syntax_unlike_quoted_hyphen"
+  ],
+  "newly_passed": []
+ },
+ "C26": {
+  "newly_failed": [
+   "F07_acceptance.py::test_runtime_conversion_builtins",
+   "F07_acceptance.py::test_to_array_to_string_to_number_named_oracles"
+  ],
+  "newly_passed": []
+ },
+ "C27": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G03": {
+  "newly_failed": [
+   "F07_acceptance.py::test_empty_list_max_min_null_and_sort_empty_array",
+   "F07_acceptance.py::test_runtime_max_min_sort"
+  ],
+  "newly_passed": []
+ },
+ "G04": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_then_search_by_functions",
+   "F07_acceptance.py::test_runtime_sort_by_max_by_min_by",
+   "F07_acceptance.py::test_sort_by_is_stable_on_equal_keys"
+  ],
+  "newly_passed": []
+ },
+ "G07": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_then_search_conversion_builtins",
+   "F07_acceptance.py::test_runtime_conversion_builtins",
+   "F07_acceptance.py::test_to_array_to_string_to_number_named_oracles"
+  ],
+  "newly_passed": []
+ },
+ "G22": {
+  "newly_failed": [
+   "F06_acceptance.py::test_compile_then_search_ordering",
+   "F06_acceptance.py::test_mixed_type_ordering_is_successful_null",
+   "F06_acceptance.py::test_runtime_ordering_numbers_strings_and_decimal"
+  ],
+  "newly_passed": []
+ },
+ "G25": {
+  "newly_failed": [
+   "F05_acceptance.py::test_raw_string_quote_and_backslash"
+  ],
+  "newly_passed": []
+ },
+ "G27": {
+  "newly_failed": [
+   "F07_acceptance.py::test_compile_path_function_failures",
+   "F07_acceptance.py::test_host_non_json_current_value_and_to_string_conversion"
+  ],
+  "newly_passed": []
+ },
+ "G28": {
+  "newly_failed": [
+   "F07_acceptance.py::test_host_decimal_refused_as_invalid_type_by_number_function"
+  ],
+  "newly_passed": []
+ },
+ "G29": {
+  "newly_failed": [
+   "F08_acceptance.py::test_compile_then_search_merge_is_host_ordinary_mapping",
+   "F08_acceptance.py::test_merge_ignores_supplied_mapping_type"
+  ],
+  "newly_passed": []
+ },
+ "G34": {
+  "newly_failed": [
+   "F08_acceptance.py::test_nested_multiselect_hash_uses_supplied_type_on_every_hash"
+  ],
+  "newly_passed": []
+ },
+ "G35": {
+  "newly_failed": [
+   "F08_acceptance.py::test_compile_then_search_uses_same_mapping_options",
+   "F08_acceptance.py::test_runtime_declaration_order_and_type"
+  ],
+  "newly_passed": []
+ },
+ "G54": {
+  "newly_failed": [
+   "F05_acceptance.py::test_json_literal_whitespace_unicode_and_escaped_backtick",
+   "F05_acceptance.py::test_runtime_json_literal_unicode_and_subexpression"
+  ],
+  "newly_passed": []
+ },
+ "G60": {
+  "newly_failed": [
+   "F07_acceptance.py::test_avg_empty_list_is_successful_null_and_sum_empty_is_zero",
+   "F07_acceptance.py::test_compile_then_search_numeric_builtins",
+   "F07_acceptance.py::test_runtime_numeric_builtins"
+  ],
+  "newly_passed": []
+ },
+ "G61": {
+  "newly_failed": [
+   "F07_acceptance.py::test_runtime_sort_by_max_by_min_by",
+   "F07_acceptance.py::test_sort_by_orders_by_age_and_empty_is_empty_array"
+  ],
+  "newly_passed": []
+ },
+ "G69": {
+  "newly_failed": [
+   "F08_acceptance.py::test_same_parsed_expression_without_options_does_not_see_custom_add"
+  ],
+  "newly_passed": []
+ }
+}

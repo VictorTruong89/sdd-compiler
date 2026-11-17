@@ -1,0 +1,8 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.1, pluggy-1.7.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 476 items
+
+../tests/final/tests/F01_acceptance.py ..........

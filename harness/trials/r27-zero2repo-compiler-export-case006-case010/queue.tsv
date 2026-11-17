@@ -1,0 +1,13 @@
+run_id	task	model	status	job	attempts	last_message
+r27-sonnet-case010-1	work/tasks/case010-r27-export-compiler	anthropic/claude-sonnet-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-sonnet-case010-1	1	
+r27-haiku-case010-1	work/tasks/case010-r27-export-compiler	anthropic/claude-haiku-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-haiku-case010-1	1	
+r27-haiku-case010-2	work/tasks/case010-r27-export-compiler	anthropic/claude-haiku-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-haiku-case010-2	1	
+r27-sonnet-case010-2	work/tasks/case010-r27-export-compiler	anthropic/claude-sonnet-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-sonnet-case010-2	1	
+r27-haiku-case010-3	work/tasks/case010-r27-export-compiler	anthropic/claude-haiku-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-haiku-case010-3	1	
+r27-sonnet-case010-3	work/tasks/case010-r27-export-compiler	anthropic/claude-sonnet-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-sonnet-case010-3	1	
+r27-sonnet-case006-1	work/tasks/case006-r27-export-compiler	anthropic/claude-sonnet-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-sonnet-case006-1	1	
+r27-haiku-case006-1	work/tasks/case006-r27-export-compiler	anthropic/claude-haiku-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-haiku-case006-1	1	
+r27-haiku-case006-2	work/tasks/case006-r27-export-compiler	anthropic/claude-haiku-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-haiku-case006-2	1	
+r27-sonnet-case006-2	work/tasks/case006-r27-export-compiler	anthropic/claude-sonnet-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-sonnet-case006-2	1	
+r27-haiku-case006-3	work/tasks/case006-r27-export-compiler	anthropic/claude-haiku-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-haiku-case006-3	1	
+r27-sonnet-case006-3	work/tasks/case006-r27-export-compiler	anthropic/claude-sonnet-5-5	done	r27-zero2repo-compiler-export-case006-case010-r27-sonnet-case006-3	1	

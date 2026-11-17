@@ -1,0 +1,262 @@
+{
+ "r28-haiku-review-case005-1": {
+  "case": "case005",
+  "model": "haiku",
+  "entries": 16,
+  "found": 15,
+  "of": 17,
+  "missed": [
+   "C12",
+   "C18"
+  ],
+  "real_other": 0,
+  "false": 1,
+  "recall": 0.882,
+  "precision": 0.938,
+  "cost": 0.02093255
+ },
+ "r28-haiku-review-case005-2": {
+  "case": "case005",
+  "model": "haiku",
+  "entries": 15,
+  "found": 15,
+  "of": 17,
+  "missed": [
+   "C12",
+   "C15"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.882,
+  "precision": 1.0,
+  "cost": 0.017499860000000002
+ },
+ "r28-haiku-review-case005-3": {
+  "case": "case005",
+  "model": "haiku",
+  "entries": 17,
+  "found": 17,
+  "of": 17,
+  "missed": [],
+  "real_other": 0,
+  "false": 0,
+  "recall": 1.0,
+  "precision": 1.0,
+  "cost": 0.02239972
+ },
+ "r28-sonnet-review-case005-1": {
+  "case": "case005",
+  "model": "sonnet",
+  "entries": 15,
+  "found": 15,
+  "of": 17,
+  "missed": [
+   "C12",
+   "C15"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.882,
+  "precision": 1.0,
+  "cost": 0.1542054
+ },
+ "r28-sonnet-review-case005-2": {
+  "case": "case005",
+  "model": "sonnet",
+  "entries": 16,
+  "found": 16,
+  "of": 17,
+  "missed": [
+   "C12"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.941,
+  "precision": 1.0,
+  "cost": 0.15674700000000003
+ },
+ "r28-sonnet-review-case005-3": {
+  "case": "case005",
+  "model": "sonnet",
+  "entries": 16,
+  "found": 16,
+  "of": 17,
+  "missed": [
+   "C12"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.941,
+  "precision": 1.0,
+  "cost": 0.1620721
+ },
+ "r28-haiku-review-case011-1": {
+  "case": "case011",
+  "model": "haiku",
+  "entries": 14,
+  "found": 11,
+  "of": 12,
+  "missed": [
+   "C19"
+  ],
+  "real_other": 2,
+  "false": 1,
+  "recall": 0.917,
+  "precision": 0.929,
+  "cost": 0.01700654
+ },
+ "r28-haiku-review-case011-2": {
+  "case": "case011",
+  "model": "haiku",
+  "entries": 15,
+  "found": 12,
+  "of": 12,
+  "missed": [],
+  "real_other": 3,
+  "false": 0,
+  "recall": 1.0,
+  "precision": 1.0,
+  "cost": 0.025187980000000006
+ },
+ "r28-haiku-review-case011-3": {
+  "case": "case011",
+  "model": "haiku",
+  "entries": 13,
+  "found": 12,
+  "of": 12,
+  "missed": [],
+  "real_other": 1,
+  "false": 0,
+  "recall": 1.0,
+  "precision": 1.0,
+  "cost": 0.018469489999999998
+ },
+ "r28-sonnet-review-case011-1": {
+  "case": "case011",
+  "model": "sonnet",
+  "entries": 12,
+  "found": 12,
+  "of": 12,
+  "missed": [],
+  "real_other": 0,
+  "false": 0,
+  "recall": 1.0,
+  "precision": 1.0,
+  "cost": 0.13197920000000002
+ },
+ "r28-sonnet-review-case011-2": {
+  "case": "case011",
+  "model": "sonnet",
+  "entries": 12,
+  "found": 12,
+  "of": 12,
+  "missed": [],
+  "real_other": 0,
+  "false": 0,
+  "recall": 1.0,
+  "precision": 1.0,
+  "cost": 0.1312746
+ },
+ "r28-sonnet-review-case011-3": {
+  "case": "case011",
+  "model": "sonnet",
+  "entries": 12,
+  "found": 12,
+  "of": 12,
+  "missed": [],
+  "real_other": 0,
+  "false": 0,
+  "recall": 1.0,
+  "precision": 1.0,
+  "cost": 0.12901859999999998
+ },
+ "r28-haiku-review-case001-1": {
+  "case": "case001",
+  "model": "haiku",
+  "entries": 14,
+  "found": 14,
+  "of": 15,
+  "missed": [
+   "C16"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.933,
+  "precision": 1.0,
+  "cost": 0.013193609999999998
+ },
+ "r28-haiku-review-case001-2": {
+  "case": "case001",
+  "model": "haiku",
+  "entries": 12,
+  "found": 12,
+  "of": 15,
+  "missed": [
+   "C12",
+   "C16",
+   "C17"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.8,
+  "precision": 1.0,
+  "cost": 0.01016953
+ },
+ "r28-haiku-review-case001-3": {
+  "case": "case001",
+  "model": "haiku",
+  "entries": 14,
+  "found": 13,
+  "of": 15,
+  "missed": [
+   "C16",
+   "C17"
+  ],
+  "real_other": 0,
+  "false": 1,
+  "recall": 0.867,
+  "precision": 0.929,
+  "cost": 0.01053088
+ },
+ "r28-sonnet-review-case001-1": {
+  "case": "case001",
+  "model": "sonnet",
+  "entries": 16,
+  "found": 15,
+  "of": 15,
+  "missed": [],
+  "real_other": 0,
+  "false": 1,
+  "recall": 1.0,
+  "precision": 0.938,
+  "cost": 0.10311010000000001
+ },
+ "r28-sonnet-review-case001-2": {
+  "case": "case001",
+  "model": "sonnet",
+  "entries": 14,
+  "found": 14,
+  "of": 15,
+  "missed": [
+   "C17"
+  ],
+  "real_other": 0,
+  "false": 0,
+  "recall": 0.933,
+  "precision": 1.0,
+  "cost": 0.06195579999999999
+ },
+ "r28-sonnet-review-case001-3": {
+  "case": "case001",
+  "model": "sonnet",
+  "entries": 16,
+  "found": 15,
+  "of": 15,
+  "missed": [],
+  "real_other": 0,
+  "false": 1,
+  "recall": 1.0,
+  "precision": 0.938,
+  "cost": 0.0716402
+ }
+}

@@ -1,0 +1,19 @@
+run_id	task	model	status	job	attempts	last_message
+r28-haiku-review-case005-1	work/tasks/review-case005	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case005-1	1	
+r28-haiku-review-case005-2	work/tasks/review-case005	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case005-2	1	
+r28-haiku-review-case005-3	work/tasks/review-case005	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case005-3	1	
+r28-sonnet-review-case005-1	work/tasks/review-case005	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case005-1	1	
+r28-sonnet-review-case005-2	work/tasks/review-case005	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case005-2	1	
+r28-sonnet-review-case005-3	work/tasks/review-case005	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case005-3	1	
+r28-haiku-review-case011-1	work/tasks/review-case011	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case011-1	1	
+r28-haiku-review-case011-2	work/tasks/review-case011	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case011-2	1	
+r28-haiku-review-case011-3	work/tasks/review-case011	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case011-3	1	
+r28-sonnet-review-case011-1	work/tasks/review-case011	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case011-1	1	
+r28-sonnet-review-case011-2	work/tasks/review-case011	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case011-2	1	
+r28-sonnet-review-case011-3	work/tasks/review-case011	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case011-3	1	
+r28-haiku-review-case001-1	work/tasks/review-case001	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case001-1	1	
+r28-haiku-review-case001-2	work/tasks/review-case001	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case001-2	1	
+r28-haiku-review-case001-3	work/tasks/review-case001	anthropic/claude-haiku-5-5	done	r28-zero2repo-reviews-r28-haiku-review-case001-3	1	
+r28-sonnet-review-case001-1	work/tasks/review-case001	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case001-1	1	
+r28-sonnet-review-case001-2	work/tasks/review-case001	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case001-2	1	
+r28-sonnet-review-case001-3	work/tasks/review-case001	anthropic/claude-sonnet-5-5	done	r28-zero2repo-reviews-r28-sonnet-review-case001-3	1	

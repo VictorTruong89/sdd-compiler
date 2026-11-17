@@ -1,0 +1,1 @@
+{"judge_error": null, "official_reward_raw": 0.0, "failed_tests": ["../tests/final/tests/F02_acceptance.py::test_decimal_integers_and_signed_zeros", "../tests/final/tests/F04_acceptance.py::test_frozen_or_overwrite_is_decode_error_with_location"], "error_tests": []}

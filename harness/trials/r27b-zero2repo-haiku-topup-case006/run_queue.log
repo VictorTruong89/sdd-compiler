@@ -1,0 +1,41 @@
+2026-11-16T23:06:41-05:00	start trial r27b-zero2repo-haiku-topup-case006, claude 2.1.316, budget none, earlystop_rerun 1, one=0
+2026-11-16T23:06:41-05:00	run r27b-case006-haiku-markdown-4 attempt 1 model anthropic/claude-haiku-5-5 task case006-markdown
+2026-11-16T23:31:34-05:00	harbor r27b-case006-haiku-markdown-4 exit 0 after 1493 s
+2026-11-16T23:31:34-05:00	earlystop r27b-case006-haiku-markdown-4 turns 55 cost_usd_est 0.5991331200000001 reward {"reward": 0.0, "tests_passed": 0, "tests_total": 0, "tests_failed": 0, "tests_error": 0, "official_reward": 0.0}; set aside as r27b-case006-haiku-markdown-4.earlystop-20261116T233134 and queued once more: passed 0; output-limit cut True; last message cites a limit False
+2026-11-16T23:33:34-05:00	run r27b-case006-haiku-markdown-4 attempt 2 model anthropic/claude-haiku-5-5 task case006-markdown
+2026-11-16T23:49:09-05:00	harbor r27b-case006-haiku-markdown-4 exit 0 after 935 s
+2026-11-16T23:49:09-05:00	done r27b-case006-haiku-markdown-4 turns 55 cost_usd_est 1.0574564700000002 reward {"reward": 0.9747899159663865, "tests_passed": 464, "tests_total": 476, "tests_failed": 12, "tests_error": 0, "official_reward": 0.0} 
+2026-11-16T23:49:09-05:00	usage five_hour 0.58 (resets 2026-11-17T04:00:00-05:00) seven_day 0.15 (resets 2026-11-23T16:00:00-05:00)
+2026-11-16T23:51:09-05:00	run r27b-case006-haiku-compiler-4 attempt 1 model anthropic/claude-haiku-5-5 task case006-compiler
+2026-11-17T00:13:49-05:00	harbor r27b-case006-haiku-compiler-4 exit 0 after 1360 s
+2026-11-17T00:13:49-05:00	done r27b-case006-haiku-compiler-4 turns 74 cost_usd_est 1.71817915 reward {"reward": 0.9810924369747899, "tests_passed": 467, "tests_total": 476, "tests_failed": 9, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T00:13:49-05:00	usage five_hour 0.79 (resets 2026-11-17T04:00:00-05:00) seven_day 0.16 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T00:15:49-05:00	run r27b-case006-haiku-oracle-4 attempt 1 model anthropic/claude-haiku-5-5 task case006-oracle
+2026-11-17T00:33:33-05:00	harbor r27b-case006-haiku-oracle-4 exit 0 after 1064 s
+2026-11-17T00:33:33-05:00	limited r27b-case006-haiku-oracle-4 turns 71 cost_usd_est 1.4837867100000006 message: You've hit your 5-hour limit · resets 9am (UTC) 429
+2026-11-17T00:33:33-05:00	limit reset parsed: 2026-11-17T04:00:00-05:00; sleeping until 5 min after
+2026-11-17T04:05:34-05:00	run r27b-case006-haiku-oracle-4 attempt 1 model anthropic/claude-haiku-5-5 task case006-oracle
+2026-11-17T04:25:24-05:00	harbor r27b-case006-haiku-oracle-4 exit 0 after 1190 s
+2026-11-17T04:25:24-05:00	done r27b-case006-haiku-oracle-4 turns 54 cost_usd_est 1.21210066 reward {"reward": 0.9831932773109243, "tests_passed": 468, "tests_total": 476, "tests_failed": 8, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T04:25:24-05:00	usage five_hour 0.17 (resets 2026-11-17T09:00:00-05:00) seven_day 0.2 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T04:27:24-05:00	run r27b-case006-haiku-review-4 attempt 1 model anthropic/claude-haiku-5-5 task case006-review
+2026-11-17T04:46:37-05:00	harbor r27b-case006-haiku-review-4 exit 0 after 1153 s
+2026-11-17T04:46:37-05:00	done r27b-case006-haiku-review-4 turns 49 cost_usd_est 1.2669172499999994 reward {"reward": 0.9705882352941176, "tests_passed": 462, "tests_total": 476, "tests_failed": 14, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T04:46:37-05:00	usage five_hour 0.31 (resets 2026-11-17T09:00:00-05:00) seven_day 0.21 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T04:48:37-05:00	run r27b-case006-haiku-markdown-5 attempt 1 model anthropic/claude-haiku-5-5 task case006-markdown
+2026-11-17T05:06:19-05:00	harbor r27b-case006-haiku-markdown-5 exit 0 after 1062 s
+2026-11-17T05:06:19-05:00	done r27b-case006-haiku-markdown-5 turns 70 cost_usd_est 0.4993310700000002 reward {"reward": 0.9138655462184874, "tests_passed": 435, "tests_total": 476, "tests_failed": 41, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T05:06:19-05:00	usage five_hour 0.36 (resets 2026-11-17T09:00:00-05:00) seven_day 0.21 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T05:08:19-05:00	run r27b-case006-haiku-compiler-5 attempt 1 model anthropic/claude-haiku-5-5 task case006-compiler
+2026-11-17T05:25:15-05:00	harbor r27b-case006-haiku-compiler-5 exit 0 after 1016 s
+2026-11-17T05:25:16-05:00	done r27b-case006-haiku-compiler-5 turns 80 cost_usd_est 1.4999397200000002 reward {"reward": 0.9201680672268907, "tests_passed": 438, "tests_total": 476, "tests_failed": 38, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T05:25:16-05:00	usage five_hour 0.48 (resets 2026-11-17T09:00:00-05:00) seven_day 0.22 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T05:27:16-05:00	run r27b-case006-haiku-oracle-5 attempt 1 model anthropic/claude-haiku-5-5 task case006-oracle
+2026-11-17T05:44:53-05:00	harbor r27b-case006-haiku-oracle-5 exit 0 after 1057 s
+2026-11-17T05:44:54-05:00	done r27b-case006-haiku-oracle-5 turns 67 cost_usd_est 1.34592832 reward {"reward": 0.9432773109243697, "tests_passed": 449, "tests_total": 476, "tests_failed": 27, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T05:44:54-05:00	usage five_hour 0.58 (resets 2026-11-17T09:00:00-05:00) seven_day 0.23 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T05:46:54-05:00	run r27b-case006-haiku-review-5 attempt 1 model anthropic/claude-haiku-5-5 task case006-review
+2026-11-17T06:05:46-05:00	harbor r27b-case006-haiku-review-5 exit 0 after 1132 s
+2026-11-17T06:05:46-05:00	done r27b-case006-haiku-review-5 turns 64 cost_usd_est 1.3265874999999998 reward {"reward": 0.9663865546218487, "tests_passed": 460, "tests_total": 476, "tests_failed": 16, "tests_error": 0, "official_reward": 0.0} 
+2026-11-17T06:05:46-05:00	usage five_hour 0.68 (resets 2026-11-17T09:00:00-05:00) seven_day 0.24 (resets 2026-11-23T16:00:00-05:00)
+2026-11-17T06:07:46-05:00	end no pending or limited row left

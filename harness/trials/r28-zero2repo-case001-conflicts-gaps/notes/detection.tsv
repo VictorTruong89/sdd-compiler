@@ -1,0 +1,609 @@
+run	item	named	stated	flagged	built	note
+r28-case001-sonnet-markdown-1	C03	no			upstream	
+r28-case001-sonnet-markdown-1	C04	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C07	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C08	no			alternative	
+r28-case001-sonnet-markdown-1	C10	no			upstream	
+r28-case001-sonnet-markdown-1	C11	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C12	no			upstream	
+r28-case001-sonnet-markdown-1	C13	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C14	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C16	no			upstream	
+r28-case001-sonnet-markdown-1	C17	no			upstream	
+r28-case001-sonnet-markdown-1	C18	no			upstream	
+r28-case001-sonnet-markdown-1	C29	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C35	yes	both		upstream	
+r28-case001-sonnet-markdown-1	C36	no			upstream	
+r28-case001-sonnet-markdown-1	G01			no	upstream	
+r28-case001-sonnet-markdown-1	G03			no	alternative	
+r28-case001-sonnet-markdown-1	G09			no	upstream	"G13: invalid UTF-8 in load raises TOMLDecodeError (unstated, value given); G09 borderline: ""excessive nesting reported as TOMLDecodeError"" gives no depth, counted not flagged"
+r28-case001-sonnet-markdown-1	G13			yes	upstream	"G13: invalid UTF-8 in load raises TOMLDecodeError (unstated, value given); G09 borderline: ""excessive nesting reported as TOMLDecodeError"" gives no depth, counted not flagged"
+r28-case001-sonnet-compiler-1	C03	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C04	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C07	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C08	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C10	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C11	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C12	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C13	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C14	yes	both		upstream	"C14 side A stated as ""TOML allows raw tab"" (content stated: counted named); G09 borderline (RecursionError converted, no depth): not flagged"
+r28-case001-sonnet-compiler-1	C16	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C17	no			upstream	
+r28-case001-sonnet-compiler-1	C18	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C29	yes	both		upstream	
+r28-case001-sonnet-compiler-1	C35	no			upstream	
+r28-case001-sonnet-compiler-1	C36	yes	both		upstream	
+r28-case001-sonnet-compiler-1	G01			no	upstream	
+r28-case001-sonnet-compiler-1	G03			no	upstream	
+r28-case001-sonnet-compiler-1	G09			no	upstream	"C14 side A stated as ""TOML allows raw tab"" (content stated: counted named); G09 borderline (RecursionError converted, no depth): not flagged"
+r28-case001-sonnet-compiler-1	G13			yes	upstream	
+r28-case001-sonnet-oracle-1	C03	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C04	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C07	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C08	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C10	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C11	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C12	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C13	no			upstream	"C13 and C36 borderline: node ids and topic only (""N-000135 vs N-000178 quote before closing delimiter""; ""N-000021 vs N-000098""), sides' content not stated: counted not named; G09 borderline (may raise RecursionError, no depth)"
+r28-case001-sonnet-oracle-1	C14	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C16	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C17	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C18	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C29	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C35	yes	both		upstream	
+r28-case001-sonnet-oracle-1	C36	no			upstream	"C13 and C36 borderline: node ids and topic only (""N-000135 vs N-000178 quote before closing delimiter""; ""N-000021 vs N-000098""), sides' content not stated: counted not named; G09 borderline (may raise RecursionError, no depth)"
+r28-case001-sonnet-oracle-1	G01			no	upstream	
+r28-case001-sonnet-oracle-1	G03			no	upstream	
+r28-case001-sonnet-oracle-1	G09			no	upstream	"C13 and C36 borderline: node ids and topic only (""N-000135 vs N-000178 quote before closing delimiter""; ""N-000021 vs N-000098""), sides' content not stated: counted not named; G09 borderline (may raise RecursionError, no depth)"
+r28-case001-sonnet-oracle-1	G13			yes	upstream	
+r28-case001-sonnet-review-1	C03	yes	both		upstream	
+r28-case001-sonnet-review-1	C04	yes	both		upstream	
+r28-case001-sonnet-review-1	C07	yes	both		upstream	
+r28-case001-sonnet-review-1	C08	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C10	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C11	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C12	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C13	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C14	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C16	no			upstream	
+r28-case001-sonnet-review-1	C17	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C18	no			upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	C29	yes	both		upstream	
+r28-case001-sonnet-review-1	C35	yes	both		upstream	
+r28-case001-sonnet-review-1	C36	yes	both		upstream	
+r28-case001-sonnet-review-1	G01			no	upstream	
+r28-case001-sonnet-review-1	G03			no	upstream	
+r28-case001-sonnet-review-1	G09			no	upstream	C08 C10 C11 C12 C13 C14 C17 C18 borderline: review id and the built choice only, side B's content not stated: counted not named; G09 borderline (no depth)
+r28-case001-sonnet-review-1	G13			yes	upstream	
+r28-case001-haiku-markdown-1	C03	yes	both		upstream	
+r28-case001-haiku-markdown-1	C04	yes	both		upstream	
+r28-case001-haiku-markdown-1	C07	yes	both		upstream	
+r28-case001-haiku-markdown-1	C08	yes	both		upstream	
+r28-case001-haiku-markdown-1	C10	no			upstream	
+r28-case001-haiku-markdown-1	C11	no			upstream	
+r28-case001-haiku-markdown-1	C12	no			upstream	
+r28-case001-haiku-markdown-1	C13	yes	both		upstream	
+r28-case001-haiku-markdown-1	C14	yes	both		upstream	
+r28-case001-haiku-markdown-1	C16	yes	both		upstream	"C16 named (#12 states the Contract side and ""may be either case (PRD FP-02)""; corrected 2026-11-16 after reader 2); G01: a string running to end-of-document reported at its opening quote (under Gaps); G03: table-redefinition errors at the header's name (under Gaps)"
+r28-case001-haiku-markdown-1	C17	yes	both		upstream	
+r28-case001-haiku-markdown-1	C18	yes	both		upstream	
+r28-case001-haiku-markdown-1	C29	yes	both		upstream	
+r28-case001-haiku-markdown-1	C35	yes	both		upstream	
+r28-case001-haiku-markdown-1	C36	yes	both		upstream	
+r28-case001-haiku-markdown-1	G01			yes	upstream	"C16 named (#12 states the Contract side and ""may be either case (PRD FP-02)""; corrected 2026-11-16 after reader 2); G01: a string running to end-of-document reported at its opening quote (under Gaps); G03: table-redefinition errors at the header's name (under Gaps)"
+r28-case001-haiku-markdown-1	G03			yes	upstream	"C16 named (#12 states the Contract side and ""may be either case (PRD FP-02)""; corrected 2026-11-16 after reader 2); G01: a string running to end-of-document reported at its opening quote (under Gaps); G03: table-redefinition errors at the header's name (under Gaps)"
+r28-case001-haiku-markdown-1	G09			no	upstream	
+r28-case001-haiku-markdown-1	G13			yes	upstream	
+r28-case001-haiku-compiler-1	C03	yes	both		upstream	
+r28-case001-haiku-compiler-1	C04	yes	both		upstream	
+r28-case001-haiku-compiler-1	C07	yes	both		upstream	
+r28-case001-haiku-compiler-1	C08	yes	both		upstream	
+r28-case001-haiku-compiler-1	C10	yes	both		upstream	
+r28-case001-haiku-compiler-1	C11	yes	both		upstream	
+r28-case001-haiku-compiler-1	C12	yes	both		upstream	
+r28-case001-haiku-compiler-1	C13	yes	both		upstream	
+r28-case001-haiku-compiler-1	C14	yes	both		upstream	
+r28-case001-haiku-compiler-1	C16	yes	both		upstream	
+r28-case001-haiku-compiler-1	C17	no			upstream	
+r28-case001-haiku-compiler-1	C18	yes	both		upstream	
+r28-case001-haiku-compiler-1	C29	yes	both		upstream	
+r28-case001-haiku-compiler-1	C35	no			upstream	
+r28-case001-haiku-compiler-1	C36	yes	both		upstream	
+r28-case001-haiku-compiler-1	G01			no	upstream	
+r28-case001-haiku-compiler-1	G03			no	upstream	
+r28-case001-haiku-compiler-1	G09			yes	upstream	"G09: ""Nesting depth: not limited by the parser … the spec does not give a limit"" (unstated, value given); G13: UnicodeDecodeError propagates"
+r28-case001-haiku-compiler-1	G13			yes	upstream	"G09: ""Nesting depth: not limited by the parser … the spec does not give a limit"" (unstated, value given); G13: UnicodeDecodeError propagates"
+r28-case001-haiku-oracle-1	C03	yes	both		upstream	
+r28-case001-haiku-oracle-1	C04	yes	both		upstream	
+r28-case001-haiku-oracle-1	C07	yes	both		upstream	
+r28-case001-haiku-oracle-1	C08	yes	both		upstream	
+r28-case001-haiku-oracle-1	C10	yes	both		upstream	
+r28-case001-haiku-oracle-1	C11	yes	both		upstream	
+r28-case001-haiku-oracle-1	C12	yes	both		upstream	
+r28-case001-haiku-oracle-1	C13	yes	both		upstream	
+r28-case001-haiku-oracle-1	C14	yes	both		upstream	
+r28-case001-haiku-oracle-1	C16	yes	both		upstream	
+r28-case001-haiku-oracle-1	C17	yes	both		upstream	
+r28-case001-haiku-oracle-1	C18	yes	both		upstream	
+r28-case001-haiku-oracle-1	C29	yes	both		upstream	
+r28-case001-haiku-oracle-1	C35	yes	both		upstream	
+r28-case001-haiku-oracle-1	C36	yes	both		upstream	
+r28-case001-haiku-oracle-1	G01			no	upstream	
+r28-case001-haiku-oracle-1	G03			no	upstream	
+r28-case001-haiku-oracle-1	G09			yes	upstream	"G09: ""a limit of this implementation (roughly a few hundred levels)"" under unstated; G13: UnicodeDecodeError propagates"
+r28-case001-haiku-oracle-1	G13			yes	upstream	"G09: ""a limit of this implementation (roughly a few hundred levels)"" under unstated; G13: UnicodeDecodeError propagates"
+r28-case001-haiku-review-1	C03	yes	both		upstream	
+r28-case001-haiku-review-1	C04	yes	both		upstream	
+r28-case001-haiku-review-1	C07	yes	both		upstream	
+r28-case001-haiku-review-1	C08	yes	both		upstream	
+r28-case001-haiku-review-1	C10	yes	both		upstream	
+r28-case001-haiku-review-1	C11	yes	both		upstream	
+r28-case001-haiku-review-1	C12	yes	both		upstream	
+r28-case001-haiku-review-1	C13	yes	both		upstream	
+r28-case001-haiku-review-1	C14	yes	both		upstream	
+r28-case001-haiku-review-1	C16	no			upstream	
+r28-case001-haiku-review-1	C17	yes	both		upstream	
+r28-case001-haiku-review-1	C18	yes	both		upstream	
+r28-case001-haiku-review-1	C29	yes	both		upstream	
+r28-case001-haiku-review-1	C35	yes	both		upstream	
+r28-case001-haiku-review-1	C36	yes	both		upstream	
+r28-case001-haiku-review-1	G01			yes	upstream	"G01: ""failures at the end of input, pos is the length of the document""; G09: explicit stack, verified at 5000 levels; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-review-1	G03			no	upstream	
+r28-case001-haiku-review-1	G09			yes	upstream	"G01: ""failures at the end of input, pos is the length of the document""; G09: explicit stack, verified at 5000 levels; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-review-1	G13			yes	upstream	"G01: ""failures at the end of input, pos is the length of the document""; G09: explicit stack, verified at 5000 levels; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-sonnet-compiler-2	C03	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C04	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C07	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C08	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C10	yes	both		upstream	
+r28-case001-sonnet-compiler-2	C11	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C12	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C13	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C14	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C16	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C17	no			upstream	
+r28-case001-sonnet-compiler-2	C18	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	C29	yes	both		upstream	
+r28-case001-sonnet-compiler-2	C35	no			upstream	
+r28-case001-sonnet-compiler-2	C36	no			upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	G01			no	upstream	
+r28-case001-sonnet-compiler-2	G03			yes	upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	G09			no	upstream	C04 C07 C03 C08 C11 C12 C13 C14 C16 C18 C36 borderline: CF id with node ids and the built choice only, sides' content not stated: counted not named; G03: pos at the header start for header conflicts; G09 borderline (RecursionError not caught, no depth)
+r28-case001-sonnet-compiler-2	G13			yes	upstream	
+r28-case001-sonnet-oracle-2	C03	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C04	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C07	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C08	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C10	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C11	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C12	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C13	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C14	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C16	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C17	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C18	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C29	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C35	yes	both		upstream	
+r28-case001-sonnet-oracle-2	C36	no			upstream	C36 borderline: only one side's content stated; G09 borderline (no depth)
+r28-case001-sonnet-oracle-2	G01			no	upstream	
+r28-case001-sonnet-oracle-2	G03			no	upstream	
+r28-case001-sonnet-oracle-2	G09			no	upstream	C36 borderline: only one side's content stated; G09 borderline (no depth)
+r28-case001-sonnet-oracle-2	G13			yes	upstream	
+r28-case001-sonnet-review-2	C03	yes	both		upstream	
+r28-case001-sonnet-review-2	C04	yes	both		upstream	
+r28-case001-sonnet-review-2	C07	yes	both		upstream	
+r28-case001-sonnet-review-2	C08	yes	both		upstream	
+r28-case001-sonnet-review-2	C10	yes	both		upstream	
+r28-case001-sonnet-review-2	C11	yes	both		upstream	
+r28-case001-sonnet-review-2	C12	yes	both		upstream	
+r28-case001-sonnet-review-2	C13	yes	both		upstream	
+r28-case001-sonnet-review-2	C14	yes	both		upstream	
+r28-case001-sonnet-review-2	C16	no			upstream	
+r28-case001-sonnet-review-2	C17	yes	both		upstream	
+r28-case001-sonnet-review-2	C18	yes	both		upstream	
+r28-case001-sonnet-review-2	C29	yes	both		upstream	
+r28-case001-sonnet-review-2	C35	yes	both		upstream	
+r28-case001-sonnet-review-2	C36	yes	both		upstream	
+r28-case001-sonnet-review-2	G01			yes	upstream	G01: pos is the start of the construct for unterminated cases (alternative)
+r28-case001-sonnet-review-2	G03			no	upstream	
+r28-case001-sonnet-review-2	G09			no	upstream	
+r28-case001-sonnet-review-2	G13			yes	upstream	
+r28-case001-sonnet-markdown-2	C03	no			upstream	
+r28-case001-sonnet-markdown-2	C04	yes	both		upstream	
+r28-case001-sonnet-markdown-2	C07	yes	both		upstream	
+r28-case001-sonnet-markdown-2	C08	yes	both		upstream	
+r28-case001-sonnet-markdown-2	C10	yes	both		upstream	
+r28-case001-sonnet-markdown-2	C11	no			upstream	
+r28-case001-sonnet-markdown-2	C12	no			upstream	
+r28-case001-sonnet-markdown-2	C13	yes	both		upstream	
+r28-case001-sonnet-markdown-2	C14	no			upstream	
+r28-case001-sonnet-markdown-2	C16	no			upstream	C16 not named (#7 Contract side only); G09 borderline (no depth)
+r28-case001-sonnet-markdown-2	C17	no			upstream	
+r28-case001-sonnet-markdown-2	C18	no			upstream	
+r28-case001-sonnet-markdown-2	C29	no			upstream	
+r28-case001-sonnet-markdown-2	C35	yes	both		upstream	
+r28-case001-sonnet-markdown-2	C36	no			upstream	
+r28-case001-sonnet-markdown-2	G01			no	upstream	
+r28-case001-sonnet-markdown-2	G03			no	upstream	
+r28-case001-sonnet-markdown-2	G09			no	upstream	C16 not named (#7 Contract side only); G09 borderline (no depth)
+r28-case001-sonnet-markdown-2	G13			yes	upstream	
+r28-case001-haiku-compiler-2	C03	yes	both		upstream	
+r28-case001-haiku-compiler-2	C04	yes	both		upstream	
+r28-case001-haiku-compiler-2	C07	yes	both		upstream	
+r28-case001-haiku-compiler-2	C08	yes	both		upstream	
+r28-case001-haiku-compiler-2	C10	yes	both		upstream	
+r28-case001-haiku-compiler-2	C11	yes	both		upstream	
+r28-case001-haiku-compiler-2	C12	yes	both		upstream	
+r28-case001-haiku-compiler-2	C13	yes	both		upstream	
+r28-case001-haiku-compiler-2	C14	yes	both		upstream	
+r28-case001-haiku-compiler-2	C16	yes	both		upstream	
+r28-case001-haiku-compiler-2	C17	yes	both		upstream	
+r28-case001-haiku-compiler-2	C18	yes	both		upstream	
+r28-case001-haiku-compiler-2	C29	yes	both		upstream	
+r28-case001-haiku-compiler-2	C35	yes	both		upstream	
+r28-case001-haiku-compiler-2	C36	yes	both		upstream	
+r28-case001-haiku-compiler-2	G01			no	upstream	
+r28-case001-haiku-compiler-2	G03			no	alternative	
+r28-case001-haiku-compiler-2	G09			yes	upstream	"G09: recursive parser, ""deeper than about a few hundred levels raises RecursionError … known limit"""
+r28-case001-haiku-compiler-2	G13			yes	upstream	
+r28-case001-haiku-oracle-2	C03	yes	both		upstream	
+r28-case001-haiku-oracle-2	C04	yes	both		upstream	
+r28-case001-haiku-oracle-2	C07	yes	both		upstream	
+r28-case001-haiku-oracle-2	C08	yes	both		upstream	
+r28-case001-haiku-oracle-2	C10	yes	both		upstream	
+r28-case001-haiku-oracle-2	C11	yes	both		upstream	
+r28-case001-haiku-oracle-2	C12	yes	both		upstream	
+r28-case001-haiku-oracle-2	C13	yes	both		upstream	
+r28-case001-haiku-oracle-2	C14	yes	both		upstream	
+r28-case001-haiku-oracle-2	C16	yes	both		upstream	
+r28-case001-haiku-oracle-2	C17	yes	both		upstream	
+r28-case001-haiku-oracle-2	C18	yes	both		upstream	
+r28-case001-haiku-oracle-2	C29	yes	both		upstream	
+r28-case001-haiku-oracle-2	C35	yes	both		upstream	
+r28-case001-haiku-oracle-2	C36	yes	both		upstream	
+r28-case001-haiku-oracle-2	G01			yes	upstream	G01: end-of-input errors use the end offset; G09: nesting over 250 levels refused (alternative value)
+r28-case001-haiku-oracle-2	G03			no	upstream	
+r28-case001-haiku-oracle-2	G09			yes	alternative	G01: end-of-input errors use the end offset; G09: nesting over 250 levels refused (alternative value)
+r28-case001-haiku-oracle-2	G13			yes	upstream	
+r28-case001-haiku-review-2	C03	yes	both		upstream	
+r28-case001-haiku-review-2	C04	yes	both		upstream	
+r28-case001-haiku-review-2	C07	yes	both		upstream	
+r28-case001-haiku-review-2	C08	yes	both		upstream	
+r28-case001-haiku-review-2	C10	yes	both		upstream	
+r28-case001-haiku-review-2	C11	yes	both		upstream	
+r28-case001-haiku-review-2	C12	yes	both		upstream	
+r28-case001-haiku-review-2	C13	yes	both		upstream	
+r28-case001-haiku-review-2	C14	yes	both		upstream	
+r28-case001-haiku-review-2	C16	yes	both		upstream	"C16 named (assumptions: Contract wording against ""the PRD says … digits may be either case""; corrected 2026-11-16 after reader 2); G01: premature end reports pos == len(doc); G03: redefined table reported at the start of the header"
+r28-case001-haiku-review-2	C17	yes	both		upstream	
+r28-case001-haiku-review-2	C18	yes	both		upstream	
+r28-case001-haiku-review-2	C29	yes	both		upstream	
+r28-case001-haiku-review-2	C35	yes	both		upstream	
+r28-case001-haiku-review-2	C36	yes	both		upstream	
+r28-case001-haiku-review-2	G01			yes	upstream	"C16 named (assumptions: Contract wording against ""the PRD says … digits may be either case""; corrected 2026-11-16 after reader 2); G01: premature end reports pos == len(doc); G03: redefined table reported at the start of the header"
+r28-case001-haiku-review-2	G03			yes	upstream	"C16 named (assumptions: Contract wording against ""the PRD says … digits may be either case""; corrected 2026-11-16 after reader 2); G01: premature end reports pos == len(doc); G03: redefined table reported at the start of the header"
+r28-case001-haiku-review-2	G09			no	upstream	
+r28-case001-haiku-review-2	G13			yes	upstream	
+r28-case001-haiku-markdown-2	C03	yes	both		upstream	
+r28-case001-haiku-markdown-2	C04	yes	both		upstream	
+r28-case001-haiku-markdown-2	C07	yes	both		upstream	
+r28-case001-haiku-markdown-2	C08	yes	both		upstream	
+r28-case001-haiku-markdown-2	C10	no			upstream	
+r28-case001-haiku-markdown-2	C11	no			upstream	
+r28-case001-haiku-markdown-2	C12	no			upstream	
+r28-case001-haiku-markdown-2	C13	yes	both		upstream	
+r28-case001-haiku-markdown-2	C14	no			upstream	
+r28-case001-haiku-markdown-2	C16	no			upstream	C16 not named (#11 one side); G09: about 490 array levels refused (measured)
+r28-case001-haiku-markdown-2	C17	yes	both		upstream	
+r28-case001-haiku-markdown-2	C18	yes	both		upstream	
+r28-case001-haiku-markdown-2	C29	yes	both		upstream	
+r28-case001-haiku-markdown-2	C35	yes	both		upstream	
+r28-case001-haiku-markdown-2	C36	yes	both		upstream	
+r28-case001-haiku-markdown-2	G01			no	upstream	
+r28-case001-haiku-markdown-2	G03			no	upstream	
+r28-case001-haiku-markdown-2	G09			yes	upstream	C16 not named (#11 one side); G09: about 490 array levels refused (measured)
+r28-case001-haiku-markdown-2	G13			yes	upstream	
+r28-case001-sonnet-oracle-3	C03	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C04	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C07	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C08	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C10	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C11	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C12	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C13	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C14	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C16	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C17	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C18	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C29	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C35	yes	both		upstream	
+r28-case001-sonnet-oracle-3	C36	yes	both		upstream	
+r28-case001-sonnet-oracle-3	G01			no	upstream	
+r28-case001-sonnet-oracle-3	G03			no	upstream	
+r28-case001-sonnet-oracle-3	G09			no	upstream	G09 borderline (no depth)
+r28-case001-sonnet-oracle-3	G13			yes	upstream	
+r28-case001-sonnet-review-3	C03	yes	both		upstream	
+r28-case001-sonnet-review-3	C04	yes	both		upstream	
+r28-case001-sonnet-review-3	C07	yes	both		upstream	
+r28-case001-sonnet-review-3	C08	yes	both		upstream	
+r28-case001-sonnet-review-3	C10	yes	both		upstream	
+r28-case001-sonnet-review-3	C11	yes	both		upstream	
+r28-case001-sonnet-review-3	C12	yes	both		upstream	
+r28-case001-sonnet-review-3	C13	yes	both		upstream	
+r28-case001-sonnet-review-3	C14	yes	both		upstream	
+r28-case001-sonnet-review-3	C16	no			upstream	
+r28-case001-sonnet-review-3	C17	yes	both		upstream	
+r28-case001-sonnet-review-3	C18	yes	both		upstream	
+r28-case001-sonnet-review-3	C29	yes	both		upstream	
+r28-case001-sonnet-review-3	C35	yes	both		upstream	
+r28-case001-sonnet-review-3	C36	yes	both		upstream	
+r28-case001-sonnet-review-3	G01			no	upstream	
+r28-case001-sonnet-review-3	G03			no	alternative	
+r28-case001-sonnet-review-3	G09			no	upstream	G09 borderline (no depth)
+r28-case001-sonnet-review-3	G13			yes	upstream	
+r28-case001-sonnet-markdown-3	C03	no			upstream	
+r28-case001-sonnet-markdown-3	C04	yes	both		upstream	
+r28-case001-sonnet-markdown-3	C07	yes	both		upstream	
+r28-case001-sonnet-markdown-3	C08	yes	both		upstream	
+r28-case001-sonnet-markdown-3	C10	yes	both		upstream	
+r28-case001-sonnet-markdown-3	C11	no			upstream	
+r28-case001-sonnet-markdown-3	C12	no			upstream	
+r28-case001-sonnet-markdown-3	C13	yes	both		upstream	
+r28-case001-sonnet-markdown-3	C14	no			upstream	
+r28-case001-sonnet-markdown-3	C16	no			upstream	
+r28-case001-sonnet-markdown-3	C17	no			upstream	
+r28-case001-sonnet-markdown-3	C18	no			upstream	
+r28-case001-sonnet-markdown-3	C29	no			upstream	
+r28-case001-sonnet-markdown-3	C35	yes	both		upstream	
+r28-case001-sonnet-markdown-3	C36	no			upstream	
+r28-case001-sonnet-markdown-3	G01			no	upstream	
+r28-case001-sonnet-markdown-3	G03			no	upstream	
+r28-case001-sonnet-markdown-3	G09			no	upstream	G09 borderline (no depth)
+r28-case001-sonnet-markdown-3	G13			yes	upstream	
+r28-case001-sonnet-compiler-3	C03	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C04	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C07	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C08	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C10	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C11	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C12	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C13	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C14	no			upstream	C14 borderline: side A only in the built text, counted not named; C17 named from the unstated list (both sides stated)
+r28-case001-sonnet-compiler-3	C16	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C17	yes	both		upstream	C14 borderline: side A only in the built text, counted not named; C17 named from the unstated list (both sides stated)
+r28-case001-sonnet-compiler-3	C18	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C29	yes	both		upstream	
+r28-case001-sonnet-compiler-3	C35	no			upstream	
+r28-case001-sonnet-compiler-3	C36	yes	both		upstream	
+r28-case001-sonnet-compiler-3	G01			no	upstream	
+r28-case001-sonnet-compiler-3	G03			no	upstream	
+r28-case001-sonnet-compiler-3	G09			no	upstream	
+r28-case001-sonnet-compiler-3	G13			yes	upstream	
+r28-case001-haiku-oracle-3	C03	yes	both		upstream	
+r28-case001-haiku-oracle-3	C04	yes	both		upstream	
+r28-case001-haiku-oracle-3	C07	yes	both		upstream	
+r28-case001-haiku-oracle-3	C08	yes	both		upstream	
+r28-case001-haiku-oracle-3	C10	yes	both		upstream	
+r28-case001-haiku-oracle-3	C11	yes	both		upstream	
+r28-case001-haiku-oracle-3	C12	yes	both		upstream	
+r28-case001-haiku-oracle-3	C13	yes	both		upstream	
+r28-case001-haiku-oracle-3	C14	yes	both		upstream	
+r28-case001-haiku-oracle-3	C16	yes	both		upstream	
+r28-case001-haiku-oracle-3	C17	yes	both		upstream	
+r28-case001-haiku-oracle-3	C18	yes	both		upstream	
+r28-case001-haiku-oracle-3	C29	yes	both		upstream	
+r28-case001-haiku-oracle-3	C35	yes	both		upstream	
+r28-case001-haiku-oracle-3	C36	yes	both		upstream	
+r28-case001-haiku-oracle-3	G01			yes	upstream	G01: running out of input reports len(doc); G03: invalid header at the start of its key; G09: explicit stack, tested to 5000
+r28-case001-haiku-oracle-3	G03			yes	upstream	G01: running out of input reports len(doc); G03: invalid header at the start of its key; G09: explicit stack, tested to 5000
+r28-case001-haiku-oracle-3	G09			yes	upstream	G01: running out of input reports len(doc); G03: invalid header at the start of its key; G09: explicit stack, tested to 5000
+r28-case001-haiku-oracle-3	G13			yes	upstream	
+r28-case001-haiku-review-3	C03	yes	both		upstream	
+r28-case001-haiku-review-3	C04	yes	both		upstream	
+r28-case001-haiku-review-3	C07	yes	both		upstream	
+r28-case001-haiku-review-3	C08	yes	both		upstream	
+r28-case001-haiku-review-3	C10	yes	both		upstream	
+r28-case001-haiku-review-3	C11	yes	both		upstream	
+r28-case001-haiku-review-3	C12	yes	both		upstream	
+r28-case001-haiku-review-3	C13	yes	both		upstream	
+r28-case001-haiku-review-3	C14	yes	both		upstream	
+r28-case001-haiku-review-3	C16	no			upstream	
+r28-case001-haiku-review-3	C17	yes	both		upstream	
+r28-case001-haiku-review-3	C18	yes	both		upstream	
+r28-case001-haiku-review-3	C29	yes	both		upstream	
+r28-case001-haiku-review-3	C35	yes	both		upstream	
+r28-case001-haiku-review-3	C36	yes	both		upstream	
+r28-case001-haiku-review-3	G01			yes	upstream	
+r28-case001-haiku-review-3	G03			yes	upstream	
+r28-case001-haiku-review-3	G09			no	upstream	G09 borderline (RecursionError converted, no depth)
+r28-case001-haiku-review-3	G13			yes	upstream	
+r28-case001-haiku-markdown-3	C03	yes	both		upstream	
+r28-case001-haiku-markdown-3	C04	yes	both		upstream	
+r28-case001-haiku-markdown-3	C07	yes	both		upstream	
+r28-case001-haiku-markdown-3	C08	yes	both		upstream	
+r28-case001-haiku-markdown-3	C10	no			upstream	
+r28-case001-haiku-markdown-3	C11	no			upstream	
+r28-case001-haiku-markdown-3	C12	no			upstream	
+r28-case001-haiku-markdown-3	C13	yes	both		upstream	
+r28-case001-haiku-markdown-3	C14	no			upstream	
+r28-case001-haiku-markdown-3	C16	no			upstream	C16 not named (Contract wording only); G09: 400 levels parse, deeper RecursionError
+r28-case001-haiku-markdown-3	C17	no			upstream	
+r28-case001-haiku-markdown-3	C18	yes	both		upstream	
+r28-case001-haiku-markdown-3	C29	yes	both		upstream	
+r28-case001-haiku-markdown-3	C35	no			upstream	
+r28-case001-haiku-markdown-3	C36	yes	both		upstream	
+r28-case001-haiku-markdown-3	G01			yes	upstream	
+r28-case001-haiku-markdown-3	G03			yes	upstream	
+r28-case001-haiku-markdown-3	G09			yes	upstream	C16 not named (Contract wording only); G09: 400 levels parse, deeper RecursionError
+r28-case001-haiku-markdown-3	G13			yes	upstream	
+r28-case001-haiku-compiler-3	C03	yes	both		upstream	
+r28-case001-haiku-compiler-3	C04	yes	both		upstream	
+r28-case001-haiku-compiler-3	C07	yes	both		upstream	
+r28-case001-haiku-compiler-3	C08	yes	both		upstream	
+r28-case001-haiku-compiler-3	C10	yes	both		upstream	
+r28-case001-haiku-compiler-3	C11	yes	both		upstream	
+r28-case001-haiku-compiler-3	C12	yes	both		upstream	
+r28-case001-haiku-compiler-3	C13	yes	both		upstream	
+r28-case001-haiku-compiler-3	C14	yes	both		upstream	
+r28-case001-haiku-compiler-3	C16	yes	both		upstream	
+r28-case001-haiku-compiler-3	C17	yes	both		upstream	"C35, C17 named in ""not in MAP.md""; G09: about 1000 levels refused, ""Not specified""; G13: TOMLDecodeError with replacement-decoded doc; G01 not flagged (report wording only, no offset value)"
+r28-case001-haiku-compiler-3	C18	yes	both		upstream	
+r28-case001-haiku-compiler-3	C29	yes	both		upstream	
+r28-case001-haiku-compiler-3	C35	yes	both		upstream	"C35, C17 named in ""not in MAP.md""; G09: about 1000 levels refused, ""Not specified""; G13: TOMLDecodeError with replacement-decoded doc; G01 not flagged (report wording only, no offset value)"
+r28-case001-haiku-compiler-3	C36	yes	both		upstream	
+r28-case001-haiku-compiler-3	G01			no	upstream	"C35, C17 named in ""not in MAP.md""; G09: about 1000 levels refused, ""Not specified""; G13: TOMLDecodeError with replacement-decoded doc; G01 not flagged (report wording only, no offset value)"
+r28-case001-haiku-compiler-3	G03			no	alternative	
+r28-case001-haiku-compiler-3	G09			yes	upstream	"C35, C17 named in ""not in MAP.md""; G09: about 1000 levels refused, ""Not specified""; G13: TOMLDecodeError with replacement-decoded doc; G01 not flagged (report wording only, no offset value)"
+r28-case001-haiku-compiler-3	G13			yes	upstream	"C35, C17 named in ""not in MAP.md""; G09: about 1000 levels refused, ""Not specified""; G13: TOMLDecodeError with replacement-decoded doc; G01 not flagged (report wording only, no offset value)"
+r28-case001-haiku-review-4	C03	yes	both		upstream	
+r28-case001-haiku-review-4	C04	yes	both		upstream	
+r28-case001-haiku-review-4	C07	yes	both		upstream	
+r28-case001-haiku-review-4	C08	yes	both		upstream	
+r28-case001-haiku-review-4	C10	yes	both		upstream	
+r28-case001-haiku-review-4	C11	yes	both		upstream	
+r28-case001-haiku-review-4	C12	yes	both		upstream	
+r28-case001-haiku-review-4	C13	yes	both		upstream	
+r28-case001-haiku-review-4	C14	yes	both		upstream	
+r28-case001-haiku-review-4	C16	no			upstream	"C16 not named (Contract wording only, under assumptions); G09: Python's limit, ""a few hundred levels"", refused; G13: TOMLDecodeError, ""Not specified""; G01 not flagged (report wording only)"
+r28-case001-haiku-review-4	C17	yes	both		upstream	
+r28-case001-haiku-review-4	C18	yes	both		upstream	
+r28-case001-haiku-review-4	C29	yes	both		upstream	
+r28-case001-haiku-review-4	C35	yes	both		upstream	
+r28-case001-haiku-review-4	C36	yes	both		upstream	
+r28-case001-haiku-review-4	G01			no	upstream	"C16 not named (Contract wording only, under assumptions); G09: Python's limit, ""a few hundred levels"", refused; G13: TOMLDecodeError, ""Not specified""; G01 not flagged (report wording only)"
+r28-case001-haiku-review-4	G03			no	upstream	
+r28-case001-haiku-review-4	G09			yes	upstream	"C16 not named (Contract wording only, under assumptions); G09: Python's limit, ""a few hundred levels"", refused; G13: TOMLDecodeError, ""Not specified""; G01 not flagged (report wording only)"
+r28-case001-haiku-review-4	G13			yes	upstream	"C16 not named (Contract wording only, under assumptions); G09: Python's limit, ""a few hundred levels"", refused; G13: TOMLDecodeError, ""Not specified""; G01 not flagged (report wording only)"
+r28-case001-haiku-markdown-4	C03	yes	both		upstream	
+r28-case001-haiku-markdown-4	C04	yes	both		upstream	
+r28-case001-haiku-markdown-4	C07	yes	both		upstream	
+r28-case001-haiku-markdown-4	C08	yes	both		upstream	
+r28-case001-haiku-markdown-4	C10	yes	both		upstream	
+r28-case001-haiku-markdown-4	C11	yes	both		upstream	
+r28-case001-haiku-markdown-4	C12	no			upstream	
+r28-case001-haiku-markdown-4	C13	yes	both		upstream	
+r28-case001-haiku-markdown-4	C14	yes	both		upstream	
+r28-case001-haiku-markdown-4	C16	no			upstream	"C16 not named (#11 Contract side only); G01: end-of-input offset is the document length (unstated list); G13: TOMLDecodeError, ""Not specified""; G09 borderline (RecursionError converted, no depth)"
+r28-case001-haiku-markdown-4	C17	yes	both		upstream	
+r28-case001-haiku-markdown-4	C18	no			upstream	
+r28-case001-haiku-markdown-4	C29	yes	both		upstream	
+r28-case001-haiku-markdown-4	C35	no			upstream	
+r28-case001-haiku-markdown-4	C36	no			upstream	
+r28-case001-haiku-markdown-4	G01			yes	upstream	"C16 not named (#11 Contract side only); G01: end-of-input offset is the document length (unstated list); G13: TOMLDecodeError, ""Not specified""; G09 borderline (RecursionError converted, no depth)"
+r28-case001-haiku-markdown-4	G03			no	upstream	
+r28-case001-haiku-markdown-4	G09			no	upstream	"C16 not named (#11 Contract side only); G01: end-of-input offset is the document length (unstated list); G13: TOMLDecodeError, ""Not specified""; G09 borderline (RecursionError converted, no depth)"
+r28-case001-haiku-markdown-4	G13			yes	upstream	"C16 not named (#11 Contract side only); G01: end-of-input offset is the document length (unstated list); G13: TOMLDecodeError, ""Not specified""; G09 borderline (RecursionError converted, no depth)"
+r28-case001-haiku-compiler-4	C03	yes	both		upstream	
+r28-case001-haiku-compiler-4	C04	yes	both		upstream	
+r28-case001-haiku-compiler-4	C07	yes	both		upstream	
+r28-case001-haiku-compiler-4	C08	yes	both		upstream	
+r28-case001-haiku-compiler-4	C10	yes	both		upstream	
+r28-case001-haiku-compiler-4	C11	yes	both		upstream	
+r28-case001-haiku-compiler-4	C12	yes	both		upstream	
+r28-case001-haiku-compiler-4	C13	yes	both		upstream	
+r28-case001-haiku-compiler-4	C14	yes	both		upstream	
+r28-case001-haiku-compiler-4	C16	yes	both		upstream	
+r28-case001-haiku-compiler-4	C17	yes	both		upstream	
+r28-case001-haiku-compiler-4	C18	yes	both		upstream	
+r28-case001-haiku-compiler-4	C29	yes	both		upstream	
+r28-case001-haiku-compiler-4	C35	no			upstream	"C35 not named (empty quoted key only, no Contract side); G01: end of input pos = len(doc); G09: about 490 levels, ""spec sets no limit""; G03 borderline (""position where the construct starts"", headers not named): not flagged"
+r28-case001-haiku-compiler-4	C36	yes	both		upstream	
+r28-case001-haiku-compiler-4	G01			yes	upstream	"C35 not named (empty quoted key only, no Contract side); G01: end of input pos = len(doc); G09: about 490 levels, ""spec sets no limit""; G03 borderline (""position where the construct starts"", headers not named): not flagged"
+r28-case001-haiku-compiler-4	G03			no	upstream	"C35 not named (empty quoted key only, no Contract side); G01: end of input pos = len(doc); G09: about 490 levels, ""spec sets no limit""; G03 borderline (""position where the construct starts"", headers not named): not flagged"
+r28-case001-haiku-compiler-4	G09			yes	upstream	"C35 not named (empty quoted key only, no Contract side); G01: end of input pos = len(doc); G09: about 490 levels, ""spec sets no limit""; G03 borderline (""position where the construct starts"", headers not named): not flagged"
+r28-case001-haiku-compiler-4	G13			yes	upstream	
+r28-case001-haiku-oracle-4	C03	yes	both		upstream	
+r28-case001-haiku-oracle-4	C04	yes	both		upstream	
+r28-case001-haiku-oracle-4	C07	yes	both		upstream	
+r28-case001-haiku-oracle-4	C08	yes	both		upstream	
+r28-case001-haiku-oracle-4	C10	yes	both		upstream	
+r28-case001-haiku-oracle-4	C11	yes	both		upstream	
+r28-case001-haiku-oracle-4	C12	yes	both		upstream	
+r28-case001-haiku-oracle-4	C13	yes	both		upstream	
+r28-case001-haiku-oracle-4	C14	yes	both		upstream	
+r28-case001-haiku-oracle-4	C16	yes	both		upstream	
+r28-case001-haiku-oracle-4	C17	yes	both		upstream	
+r28-case001-haiku-oracle-4	C18	yes	both		upstream	
+r28-case001-haiku-oracle-4	C29	yes	both		upstream	
+r28-case001-haiku-oracle-4	C35	yes	both		upstream	
+r28-case001-haiku-oracle-4	C36	yes	both		upstream	
+r28-case001-haiku-oracle-4	G01			no	upstream	"G13: TOMLDecodeError, ""spec defines only the valid-UTF-8 path""; G09 borderline (RecursionError, no depth); G01 not flagged (report wording only)"
+r28-case001-haiku-oracle-4	G03			no	alternative	
+r28-case001-haiku-oracle-4	G09			no	upstream	"G13: TOMLDecodeError, ""spec defines only the valid-UTF-8 path""; G09 borderline (RecursionError, no depth); G01 not flagged (report wording only)"
+r28-case001-haiku-oracle-4	G13			yes	upstream	"G13: TOMLDecodeError, ""spec defines only the valid-UTF-8 path""; G09 borderline (RecursionError, no depth); G01 not flagged (report wording only)"
+r28-case001-haiku-markdown-5	C03	yes	both		upstream	
+r28-case001-haiku-markdown-5	C04	yes	both		upstream	
+r28-case001-haiku-markdown-5	C07	yes	both		upstream	
+r28-case001-haiku-markdown-5	C08	yes	both		upstream	
+r28-case001-haiku-markdown-5	C10	yes	both		upstream	
+r28-case001-haiku-markdown-5	C11	no			upstream	
+r28-case001-haiku-markdown-5	C12	no			upstream	
+r28-case001-haiku-markdown-5	C13	yes	both		upstream	
+r28-case001-haiku-markdown-5	C14	no			upstream	
+r28-case001-haiku-markdown-5	C16	no			upstream	"C16 not named (#11 Contract side only); G01: end of the document for an unexpected end; G03: key/table conflicts at the start of the header; G09: ""hundreds of levels"", ""the spec states none""; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-markdown-5	C17	yes	both		upstream	
+r28-case001-haiku-markdown-5	C18	no			upstream	
+r28-case001-haiku-markdown-5	C29	yes	both		upstream	
+r28-case001-haiku-markdown-5	C35	yes	both		upstream	
+r28-case001-haiku-markdown-5	C36	yes	both		upstream	
+r28-case001-haiku-markdown-5	G01			yes	upstream	"C16 not named (#11 Contract side only); G01: end of the document for an unexpected end; G03: key/table conflicts at the start of the header; G09: ""hundreds of levels"", ""the spec states none""; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-markdown-5	G03			yes	upstream	"C16 not named (#11 Contract side only); G01: end of the document for an unexpected end; G03: key/table conflicts at the start of the header; G09: ""hundreds of levels"", ""the spec states none""; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-markdown-5	G09			yes	upstream	"C16 not named (#11 Contract side only); G01: end of the document for an unexpected end; G03: key/table conflicts at the start of the header; G09: ""hundreds of levels"", ""the spec states none""; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-markdown-5	G13			yes	upstream	"C16 not named (#11 Contract side only); G01: end of the document for an unexpected end; G03: key/table conflicts at the start of the header; G09: ""hundreds of levels"", ""the spec states none""; G13: TOMLDecodeError with replacement-decoded doc"
+r28-case001-haiku-compiler-5	C03	yes	both		upstream	
+r28-case001-haiku-compiler-5	C04	yes	both		upstream	
+r28-case001-haiku-compiler-5	C07	yes	both		upstream	
+r28-case001-haiku-compiler-5	C08	yes	both		upstream	
+r28-case001-haiku-compiler-5	C10	yes	both		upstream	
+r28-case001-haiku-compiler-5	C11	yes	both		upstream	
+r28-case001-haiku-compiler-5	C12	yes	both		upstream	
+r28-case001-haiku-compiler-5	C13	yes	both		upstream	
+r28-case001-haiku-compiler-5	C14	yes	both		upstream	
+r28-case001-haiku-compiler-5	C16	yes	both		upstream	
+r28-case001-haiku-compiler-5	C17	no			upstream	"C17 not named (escape case-insensitivity only, refusal side not stated); C35 not named (one side); G09: about 500 levels, ""Not stated""; G13: TOMLDecodeError, ""Not stated"""
+r28-case001-haiku-compiler-5	C18	yes	both		upstream	
+r28-case001-haiku-compiler-5	C29	yes	both		upstream	
+r28-case001-haiku-compiler-5	C35	no			upstream	"C17 not named (escape case-insensitivity only, refusal side not stated); C35 not named (one side); G09: about 500 levels, ""Not stated""; G13: TOMLDecodeError, ""Not stated"""
+r28-case001-haiku-compiler-5	C36	yes	both		upstream	
+r28-case001-haiku-compiler-5	G01			no	upstream	
+r28-case001-haiku-compiler-5	G03			no	alternative	
+r28-case001-haiku-compiler-5	G09			yes	upstream	"C17 not named (escape case-insensitivity only, refusal side not stated); C35 not named (one side); G09: about 500 levels, ""Not stated""; G13: TOMLDecodeError, ""Not stated"""
+r28-case001-haiku-compiler-5	G13			yes	upstream	"C17 not named (escape case-insensitivity only, refusal side not stated); C35 not named (one side); G09: about 500 levels, ""Not stated""; G13: TOMLDecodeError, ""Not stated"""
+r28-case001-haiku-oracle-5	C03	yes	both		upstream	
+r28-case001-haiku-oracle-5	C04	yes	both		upstream	
+r28-case001-haiku-oracle-5	C07	yes	both		upstream	
+r28-case001-haiku-oracle-5	C08	yes	both		upstream	
+r28-case001-haiku-oracle-5	C10	yes	both		upstream	
+r28-case001-haiku-oracle-5	C11	yes	both		upstream	
+r28-case001-haiku-oracle-5	C12	yes	both		upstream	
+r28-case001-haiku-oracle-5	C13	yes	both		upstream	
+r28-case001-haiku-oracle-5	C14	yes	both		upstream	
+r28-case001-haiku-oracle-5	C16	yes	both		upstream	
+r28-case001-haiku-oracle-5	C17	yes	both		upstream	
+r28-case001-haiku-oracle-5	C18	yes	both		upstream	
+r28-case001-haiku-oracle-5	C29	yes	both		upstream	
+r28-case001-haiku-oracle-5	C35	yes	both		upstream	
+r28-case001-haiku-oracle-5	C36	yes	both		upstream	
+r28-case001-haiku-oracle-5	G01			no	upstream	
+r28-case001-haiku-oracle-5	G03			no	alternative	
+r28-case001-haiku-oracle-5	G09			no	upstream	"G13: TOMLDecodeError at the first bad byte, ""Not stated""; G09 borderline (may raise RecursionError, no depth)"
+r28-case001-haiku-oracle-5	G13			yes	upstream	"G13: TOMLDecodeError at the first bad byte, ""Not stated""; G09 borderline (may raise RecursionError, no depth)"
+r28-case001-haiku-review-5	C03	yes	both		upstream	
+r28-case001-haiku-review-5	C04	yes	both		upstream	
+r28-case001-haiku-review-5	C07	yes	both		upstream	
+r28-case001-haiku-review-5	C08	yes	both		upstream	
+r28-case001-haiku-review-5	C10	yes	both		upstream	
+r28-case001-haiku-review-5	C11	yes	both		upstream	
+r28-case001-haiku-review-5	C12	yes	both		upstream	
+r28-case001-haiku-review-5	C13	yes	both		upstream	
+r28-case001-haiku-review-5	C14	yes	both		upstream	
+r28-case001-haiku-review-5	C16	no			upstream	"C16 not named (Contract wording only); G01: at the end of the document pos is len(doc); G09: about 300 levels refused; G13: UnicodeDecodeError, ""spec only covers valid UTF-8"""
+r28-case001-haiku-review-5	C17	yes	both		upstream	
+r28-case001-haiku-review-5	C18	yes	both		upstream	
+r28-case001-haiku-review-5	C29	yes	both		upstream	
+r28-case001-haiku-review-5	C35	yes	both		upstream	
+r28-case001-haiku-review-5	C36	yes	both		upstream	
+r28-case001-haiku-review-5	G01			yes	upstream	"C16 not named (Contract wording only); G01: at the end of the document pos is len(doc); G09: about 300 levels refused; G13: UnicodeDecodeError, ""spec only covers valid UTF-8"""
+r28-case001-haiku-review-5	G03			no	upstream	
+r28-case001-haiku-review-5	G09			yes	upstream	"C16 not named (Contract wording only); G01: at the end of the document pos is len(doc); G09: about 300 levels refused; G13: UnicodeDecodeError, ""spec only covers valid UTF-8"""
+r28-case001-haiku-review-5	G13			yes	upstream	"C16 not named (Contract wording only); G01: at the end of the document pos is len(doc); G09: about 300 levels refused; G13: UnicodeDecodeError, ""spec only covers valid UTF-8"""

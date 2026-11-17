@@ -1,0 +1,734 @@
+{
+ "r27-haiku-case010-1": {
+  "core": 163,
+  "core_total": 173,
+  "cost": 0.7712442700000002,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C21": true,
+   "C22": true
+  },
+  "probe_evidence": {
+   "C01": "3",
+   "C03": "None",
+   "C04": "RAISES",
+   "C05": "0.0",
+   "C08": "RAISES",
+   "C09": "['a', 'b']",
+   "C11": "2",
+   "C13": "[['a']]",
+   "C14": "RAISES",
+   "C15": "RAISES",
+   "C16": "tie",
+   "C17": "run",
+   "C18": "['Hello', 'World']",
+   "C21": "['I', 'cannot', 'go']",
+   "C22": "''"
+  },
+  "sides": {
+   "C01": "B",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C08": "A",
+   "C09": "A",
+   "C11": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C17": "A",
+   "C18": "A",
+   "C21": "B",
+   "C22": "B"
+  },
+  "tests": 177,
+  "total": 197,
+  "turns": 50
+ },
+ "r27-haiku-case010-2": {
+  "core": 162,
+  "core_total": 173,
+  "cost": 1.01569837,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C08": false,
+   "C09": true,
+   "C11": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C21": true,
+   "C22": true
+  },
+  "probe_evidence": {
+   "C01": "2",
+   "C03": "None",
+   "C04": "RAISES",
+   "C05": "0.0",
+   "C08": "RAISES",
+   "C09": "['a', 'b']",
+   "C11": "2",
+   "C13": "[['a']]",
+   "C14": "RAISES",
+   "C15": "RAISES",
+   "C16": "tie",
+   "C17": "run",
+   "C18": "['Hello', 'World']",
+   "C21": "['I', 'cannot', 'go']",
+   "C22": "''"
+  },
+  "sides": {
+   "C01": "A",
+   "C03": "B",
+   "C04": "A",
+   "C05": "A",
+   "C08": "A",
+   "C09": "A",
+   "C11": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C17": "A",
+   "C18": "A",
+   "C21": "B",
+   "C22": "B"
+  },
+  "tests": 177,
+  "total": 197,
+  "turns": 54
+ },
+ "r27-haiku-case010-3": {
+  "core": 154,
+  "core_total": 173,
+  "cost": 0.86498367,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C21": true,
+   "C22": true
+  },
+  "probe_evidence": {
+   "C01": "3",
+   "C03": "None",
+   "C04": "RAISES",
+   "C05": "1.0",
+   "C08": "RAISES",
+   "C09": "['', 'a', 'b', '']",
+   "C11": "1",
+   "C13": "[['a']]",
+   "C14": "RAISES",
+   "C15": "RAISES",
+   "C16": "tie",
+   "C17": "Run",
+   "C18": "['Hello', 'World']",
+   "C21": "['I', 'cannot', 'go']",
+   "C22": "''"
+  },
+  "sides": {
+   "C01": "B",
+   "C03": "B",
+   "C04": "A",
+   "C05": "B",
+   "C08": "A",
+   "C09": "B",
+   "C11": "B",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "A",
+   "C17": "B",
+   "C18": "A",
+   "C21": "B",
+   "C22": "B"
+  },
+  "tests": 163,
+  "total": 197,
+  "turns": 46
+ },
+ "r27-sonnet-case010-1": {
+  "core": 171,
+  "core_total": 173,
+  "cost": 2.0755746000000004,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C13": true,
+   "C14": true,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C21": true,
+   "C22": true
+  },
+  "probe_evidence": {
+   "C01": "3",
+   "C03": "0",
+   "C04": "RAISES",
+   "C05": "1.0",
+   "C08": "RAISES",
+   "C09": "['', 'a', 'b', '']",
+   "C11": "2",
+   "C13": "[['a']]",
+   "C14": "RAISES",
+   "C15": "RAISES",
+   "C16": "ti",
+   "C17": "Run",
+   "C18": "['Hello', 'World']",
+   "C21": "['I', 'cannot', 'go']",
+   "C22": "''"
+  },
+  "sides": {
+   "C01": "B",
+   "C03": "A",
+   "C04": "A",
+   "C05": "B",
+   "C08": "A",
+   "C09": "B",
+   "C11": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C17": "B",
+   "C18": "A",
+   "C21": "B",
+   "C22": "B"
+  },
+  "tests": 183,
+  "total": 197,
+  "turns": 30
+ },
+ "r27-sonnet-case010-2": {
+  "core": 166,
+  "core_total": 173,
+  "cost": 1.5769057000000002,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C21": true,
+   "C22": true
+  },
+  "probe_evidence": {
+   "C01": "3",
+   "C03": "None",
+   "C04": "RAISES",
+   "C05": "1.0",
+   "C08": "RAISES",
+   "C09": "['', 'a', 'b', '']",
+   "C11": "2",
+   "C13": "[['a']]",
+   "C14": "RAISES",
+   "C15": "RAISES",
+   "C16": "ti",
+   "C17": "Run",
+   "C18": "['Hello', 'World']",
+   "C21": "['I', 'cannot', 'go']",
+   "C22": "``"
+  },
+  "sides": {
+   "C01": "B",
+   "C03": "B",
+   "C04": "A",
+   "C05": "B",
+   "C08": "A",
+   "C09": "B",
+   "C11": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C17": "B",
+   "C18": "A",
+   "C21": "B",
+   "C22": "A"
+  },
+  "tests": 177,
+  "total": 197,
+  "turns": 19
+ },
+ "r27-sonnet-case010-3": {
+  "core": 169,
+  "core_total": 173,
+  "cost": 1.4016679,
+  "exposure": {
+   "C01": {
+    "A": true,
+    "B": true
+   },
+   "C03": {
+    "A": true,
+    "B": true
+   },
+   "C04": {
+    "A": true,
+    "B": true
+   },
+   "C05": {
+    "A": true,
+    "B": true
+   },
+   "C08": {
+    "A": true,
+    "B": true
+   },
+   "C09": {
+    "A": true,
+    "B": true
+   },
+   "C11": {
+    "A": true,
+    "B": true
+   },
+   "C13": {
+    "A": true,
+    "B": true
+   },
+   "C14": {
+    "A": true,
+    "B": true
+   },
+   "C15": {
+    "A": true,
+    "B": true
+   },
+   "C16": {
+    "A": true,
+    "B": true
+   },
+   "C17": {
+    "A": true,
+    "B": true
+   },
+   "C18": {
+    "A": true,
+    "B": true
+   },
+   "C21": {
+    "A": true,
+    "B": true
+   },
+   "C22": {
+    "A": true,
+    "B": true
+   }
+  },
+  "notes_md": true,
+  "notes_mentions": {
+   "C01": true,
+   "C03": true,
+   "C04": true,
+   "C05": true,
+   "C08": true,
+   "C09": true,
+   "C11": true,
+   "C13": true,
+   "C14": false,
+   "C15": true,
+   "C16": true,
+   "C17": true,
+   "C18": true,
+   "C21": true,
+   "C22": true
+  },
+  "probe_evidence": {
+   "C01": "3",
+   "C03": "None",
+   "C04": "RAISES",
+   "C05": "1.0",
+   "C08": "RAISES",
+   "C09": "['', 'a', 'b', '']",
+   "C11": "2",
+   "C13": "[['a']]",
+   "C14": "RAISES",
+   "C15": "RAISES",
+   "C16": "ti",
+   "C17": "Run",
+   "C18": "['Hello', 'World']",
+   "C21": "['I', 'cannot', 'go']",
+   "C22": "''"
+  },
+  "sides": {
+   "C01": "B",
+   "C03": "B",
+   "C04": "A",
+   "C05": "B",
+   "C08": "A",
+   "C09": "B",
+   "C11": "A",
+   "C13": "B",
+   "C14": "A",
+   "C15": "A",
+   "C16": "B",
+   "C17": "B",
+   "C18": "A",
+   "C21": "B",
+   "C22": "B"
+  },
+  "tests": 178,
+  "total": 197,
+  "turns": 20
+ }
+}

@@ -1,0 +1,354 @@
+{
+ "case006-haiku-markdown": {
+  "runs": 3,
+  "named_per_run": [
+   10,
+   7,
+   9
+  ],
+  "named_pct": 36.1,
+  "flagged_pct": 28.9,
+  "flagged": "13 / 45",
+  "unflagged": "13 / 27",
+  "unflagged_pct": 48.1,
+  "side_b": "11 / 72",
+  "side_b_unnamed": 7,
+  "core": [
+   386,
+   383,
+   401
+  ],
+  "core_pct": 87.6,
+  "cost_mean": 0.46
+ },
+ "case006-haiku-compiler export": {
+  "runs": 3,
+  "named_per_run": [
+   22,
+   22,
+   20
+  ],
+  "named_pct": 88.9,
+  "flagged_pct": 100.0,
+  "flagged": "45 / 45",
+  "unflagged": "19 / 27",
+  "unflagged_pct": 70.4,
+  "side_b": "6 / 72",
+  "side_b_unnamed": 1,
+  "core": [
+   436,
+   435,
+   428
+  ],
+  "core_pct": 97.3,
+  "cost_mean": 1.44
+ },
+ "case006-haiku-oracle export": {
+  "runs": 3,
+  "named_per_run": [
+   24,
+   24,
+   24
+  ],
+  "named_pct": 100.0,
+  "flagged_pct": 100.0,
+  "flagged": "45 / 45",
+  "unflagged": "27 / 27",
+  "unflagged_pct": 100.0,
+  "side_b": "7 / 72",
+  "side_b_unnamed": 0,
+  "core": [
+   376,
+   419,
+   431
+  ],
+  "core_pct": 91.8,
+  "cost_mean": 1.22
+ },
+ "case006-haiku-review list": {
+  "runs": 3,
+  "named_per_run": [
+   22,
+   22,
+   24
+  ],
+  "named_pct": 94.4,
+  "flagged_pct": 91.1,
+  "flagged": "41 / 45",
+  "unflagged": "27 / 27",
+  "unflagged_pct": 100.0,
+  "side_b": "2 / 72",
+  "side_b_unnamed": 0,
+  "core": [
+   383,
+   406,
+   429
+  ],
+  "core_pct": 91.2,
+  "cost_mean": 0.89
+ },
+ "case006-sonnet-markdown": {
+  "runs": 3,
+  "named_per_run": [
+   18,
+   18,
+   17
+  ],
+  "named_pct": 73.6,
+  "flagged_pct": 60.0,
+  "flagged": "27 / 45",
+  "unflagged": "26 / 27",
+  "unflagged_pct": 96.3,
+  "side_b": "4 / 72",
+  "side_b_unnamed": 1,
+  "core": [
+   439,
+   438,
+   439
+  ],
+  "core_pct": 98.6,
+  "cost_mean": 2.12
+ },
+ "case006-sonnet-compiler export": {
+  "runs": 3,
+  "named_per_run": [
+   24,
+   23,
+   23
+  ],
+  "named_pct": 97.2,
+  "flagged_pct": 100.0,
+  "flagged": "45 / 45",
+  "unflagged": "25 / 27",
+  "unflagged_pct": 92.6,
+  "side_b": "30 / 72",
+  "side_b_unnamed": 0,
+  "core": [
+   436,
+   438,
+   437
+  ],
+  "core_pct": 98.2,
+  "cost_mean": 2.28
+ },
+ "case006-sonnet-oracle export": {
+  "runs": 3,
+  "named_per_run": [
+   24,
+   24,
+   24
+  ],
+  "named_pct": 100.0,
+  "flagged_pct": 100.0,
+  "flagged": "45 / 45",
+  "unflagged": "27 / 27",
+  "unflagged_pct": 100.0,
+  "side_b": "28 / 72",
+  "side_b_unnamed": 0,
+  "core": [
+   437,
+   437,
+   439
+  ],
+  "core_pct": 98.4,
+  "cost_mean": 2.22
+ },
+ "case006-sonnet-review list": {
+  "runs": 3,
+  "named_per_run": [
+   22,
+   23,
+   20
+  ],
+  "named_pct": 90.3,
+  "flagged_pct": 91.1,
+  "flagged": "41 / 45",
+  "unflagged": "24 / 27",
+  "unflagged_pct": 88.9,
+  "side_b": "4 / 72",
+  "side_b_unnamed": 1,
+  "core": [
+   439,
+   438,
+   439
+  ],
+  "core_pct": 98.6,
+  "cost_mean": 2.02
+ },
+ "case010-haiku-markdown": {
+  "runs": 3,
+  "named_per_run": [
+   11,
+   6,
+   6
+  ],
+  "named_pct": 51.1,
+  "flagged_pct": 48.1,
+  "flagged": "13 / 27",
+  "unflagged": "10 / 18",
+  "unflagged_pct": 55.6,
+  "side_b": "15 / 45",
+  "side_b_unnamed": 9,
+  "core": [
+   151,
+   151,
+   164
+  ],
+  "core_pct": 89.8,
+  "cost_mean": 0.52
+ },
+ "case010-haiku-compiler export": {
+  "runs": 3,
+  "named_per_run": [
+   12,
+   13,
+   12
+  ],
+  "named_pct": 82.2,
+  "flagged_pct": 96.3,
+  "flagged": "26 / 27",
+  "unflagged": "11 / 18",
+  "unflagged_pct": 61.1,
+  "side_b": "18 / 45",
+  "side_b_unnamed": 1,
+  "core": [
+   163,
+   162,
+   154
+  ],
+  "core_pct": 92.3,
+  "cost_mean": 0.88
+ },
+ "case010-haiku-oracle export": {
+  "runs": 3,
+  "named_per_run": [
+   14,
+   14,
+   15
+  ],
+  "named_pct": 95.6,
+  "flagged_pct": 92.6,
+  "flagged": "25 / 27",
+  "unflagged": "18 / 18",
+  "unflagged_pct": 100.0,
+  "side_b": "18 / 45",
+  "side_b_unnamed": 0,
+  "core": [
+   157,
+   158,
+   162
+  ],
+  "core_pct": 91.9,
+  "cost_mean": 0.98
+ },
+ "case010-haiku-review list": {
+  "runs": 3,
+  "named_per_run": [
+   13,
+   13,
+   13
+  ],
+  "named_pct": 86.7,
+  "flagged_pct": 77.8,
+  "flagged": "21 / 27",
+  "unflagged": "18 / 18",
+  "unflagged_pct": 100.0,
+  "side_b": "16 / 45",
+  "side_b_unnamed": 6,
+  "core": [
+   162,
+   162,
+   156
+  ],
+  "core_pct": 92.5,
+  "cost_mean": 0.62
+ },
+ "case010-sonnet-markdown": {
+  "runs": 3,
+  "named_per_run": [
+   11,
+   11,
+   8
+  ],
+  "named_pct": 66.7,
+  "flagged_pct": 66.7,
+  "flagged": "18 / 27",
+  "unflagged": "12 / 18",
+  "unflagged_pct": 66.7,
+  "side_b": "10 / 45",
+  "side_b_unnamed": 6,
+  "core": [
+   171,
+   165,
+   168
+  ],
+  "core_pct": 97.1,
+  "cost_mean": 1.44
+ },
+ "case010-sonnet-compiler export": {
+  "runs": 3,
+  "named_per_run": [
+   12,
+   13,
+   13
+  ],
+  "named_pct": 84.4,
+  "flagged_pct": 88.9,
+  "flagged": "24 / 27",
+  "unflagged": "14 / 18",
+  "unflagged_pct": 77.8,
+  "side_b": "25 / 45",
+  "side_b_unnamed": 1,
+  "core": [
+   171,
+   166,
+   169
+  ],
+  "core_pct": 97.5,
+  "cost_mean": 1.68
+ },
+ "case010-sonnet-oracle export": {
+  "runs": 3,
+  "named_per_run": [
+   14,
+   14,
+   14
+  ],
+  "named_pct": 93.3,
+  "flagged_pct": 88.9,
+  "flagged": "24 / 27",
+  "unflagged": "18 / 18",
+  "unflagged_pct": 100.0,
+  "side_b": "11 / 45",
+  "side_b_unnamed": 0,
+  "core": [
+   168,
+   171,
+   164
+  ],
+  "core_pct": 96.9,
+  "cost_mean": 1.57
+ },
+ "case010-sonnet-review list": {
+  "runs": 3,
+  "named_per_run": [
+   13,
+   13,
+   13
+  ],
+  "named_pct": 86.7,
+  "flagged_pct": 77.8,
+  "flagged": "21 / 27",
+  "unflagged": "18 / 18",
+  "unflagged_pct": 100.0,
+  "side_b": "6 / 45",
+  "side_b_unnamed": 6,
+  "core": [
+   165,
+   170,
+   165
+  ],
+  "core_pct": 96.3,
+  "cost_mean": 1.34
+ }
+}

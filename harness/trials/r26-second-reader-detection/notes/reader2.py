@@ -28,9 +28,19 @@ ROUNDS = {
     "r23": "r23-zero2repo-case016-review-list",
     "r24": "r24-zero2repo-case016-settled-list",
     "r25": "r25-zero2repo-review-list-case006-case010",
+    "r27": "r27-zero2repo-compiler-export-case006-case010",
+    "r28a": "r28-zero2repo-case005-conflicts-gaps",
+    "r28b": "r28-zero2repo-case011-conflicts-gaps",
+    "r28c": "r28-zero2repo-case001-conflicts-gaps",
+    "r27ba": "r27b-zero2repo-haiku-topup-case006",
+    "r27bb": "r27b-zero2repo-haiku-topup-case010",
 }
-# r25 has no answer key of its own: case006 runs use round 18's, case010 runs round 19's (same planted spec).
-KEY_OF = {"r18": "r18", "r19": "r19", "r21": "r21", "r23": "r21", "r24": "r21"}
+# r25 and r27 have no answer key of their own: case006 runs use round 18's, case010 runs round 19's (same
+# planted spec). Round 28 (added 2026-11-16): one folder and answer key per case (r28a case005, r28b case011,
+# r28c case001). Round 27b (added 2026-11-17): Haiku top-up, r27ba case006 (round 18's key), r27bb
+# case010 (round 19's key).
+KEY_OF = {"r27ba": "r18", "r27bb": "r19", "r18": "r18", "r19": "r19", "r21": "r21", "r23": "r21", "r24": "r21",
+          "r28a": "r28a", "r28b": "r28b", "r28c": "r28c"}
 RULE = ("*Named*: `NOTES.md`, in one place or in lines that refer to each other, states the content of side A, "
         "the content of side B, and presents them as disagreeing or as a choice. A conflict id or topic alone is "
         "not enough. Which side was built does not matter.")
@@ -85,7 +95,7 @@ def reader1():
 
 
 def key_for(rnd, run):
-    if rnd == "r25":
+    if rnd in ("r25", "r27"):
         return "r18" if "case006" in run else "r19"
     return KEY_OF[rnd]
 
@@ -163,7 +173,8 @@ def table():
         a = d["answer"][item]
         n2 = "yes" if str(a.get("named", "")).lower().startswith("y") else "no"
         out.append((rnd, run, item, n1, n2, a.get("quote", "")[:200].replace("\t", " ").replace("\n", " ")))
-        arm = run.split("-")[2] if rnd != "r25" else "review-" + run.split("-")[2]
+        arm = {"r25": "review-" + run.split("-")[2], "r27": "compiler-" + run.split("-")[2]}.get(
+            rnd, run.split("-")[3] if rnd.startswith(("r28", "r27b")) else run.split("-")[2])
         for g in ("all", rnd, f"{rnd}-{arm}"):
             groups.setdefault(g, []).append((n1, n2))
     for f in (T / "work/raw").glob("*.json"):

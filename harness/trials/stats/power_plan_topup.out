@@ -1,0 +1,104 @@
+== Per-case effects (arm mean minus Markdown mean, points of %)
+  haiku  oracle   core    +3.3    +2.7    +4.1    +0.0    +0.0    -0.1
+  haiku  oracle   named  +53.3   +42.7   +29.4   +12.9   +18.3   +33.3
+  haiku  review   core    +3.1    +2.7    +4.4    -0.4    -4.1    +0.0
+  haiku  review   named  +47.5   +34.7   +24.7    +5.9   +16.7   +28.0
+  haiku  compiler core    +6.2    +2.8    +5.0    +0.0    +0.3    +0.0
+  haiku  compiler named  +45.0   +30.7   +14.1    -1.2    +6.7   +26.7
+  sonnet oracle   core    -0.2    -0.2    -0.4    +0.0    +7.1    +0.0
+  sonnet oracle   named  +26.4   +26.7   +15.7   +17.6   +47.2   +51.1
+  sonnet review   core    +0.0    -0.8    +0.3    +0.0    +6.6    +0.0
+  sonnet review   named  +16.7   +20.0   +25.5    +9.8   +38.9   +33.3
+  sonnet compiler core    -0.4    +0.4    +0.3    +0.0    +7.1    -0.5
+  sonnet compiler named  +23.6   +17.8    +9.8    -3.9   +30.6   +20.0
+
+== Run-to-run SD, pooled within cells (points of %)
+  haiku  core   3.08
+  haiku  named  7.09
+  sonnet core   2.53
+  sonnet named 12.13
+
+== Tests over the cases (t over case differences; sign test needs all K same sign: p = 2 x 0.5^K)
+  haiku  oracle  core  mean  +1.68  t-test p 0.086  one-sided 95% lower bound  +0.09  tau 0.57
+  haiku  oracle  named mean +31.67  t-test p 0.004  one-sided 95% lower bound +19.32  tau 13.95
+  haiku  review  core  mean  +0.94  t-test p 0.492  one-sided 95% lower bound  -1.61  tau 1.89
+  haiku  review  named mean +26.24  t-test p 0.007  one-sided 95% lower bound +14.40  tau 13.26
+  haiku  compiler core  mean  +2.38  t-test p 0.086  one-sided 95% lower bound  +0.13  tau 2.18
+  haiku  compiler named mean +20.32  t-test p 0.033  one-sided 95% lower bound  +6.35  tau 15.83
+  sonnet oracle  core  mean  +1.05  t-test p 0.426  one-sided 95% lower bound  -1.40  tau 0.90
+  sonnet oracle  named mean +30.79  t-test p 0.004  one-sided 95% lower bound +18.47  tau 14.13
+  sonnet review  core  mean  +1.03  t-test p 0.406  one-sided 95% lower bound  -1.25  tau 0.00
+  sonnet review  named mean +24.03  t-test p 0.003  one-sided 95% lower bound +15.15  tau 6.54
+  sonnet compiler core  mean  +1.16  t-test p 0.381  one-sided 95% lower bound  -1.27  tau 0.83
+  sonnet compiler named mean +16.30  t-test p 0.021  one-sided 95% lower bound  +6.41  tau 3.42
+
+== Power, set 1 non-inferiority (true difference 0; one-sided 95 % lower bound over cases > -delta)
+  sonnet delta   2 n 3: sigma 2.53 tau 0.90  K=3: 0.28  K=4: 0.40  K=5: 0.51  K=6: 0.59  K=8: 0.74
+  sonnet delta   2 n 5: sigma 2.53 tau 0.90  K=3: 0.35  K=4: 0.51  K=5: 0.64  K=6: 0.73  K=8: 0.86
+  sonnet delta   2 n 8: sigma 2.53 tau 0.90  K=3: 0.43  K=4: 0.62  K=5: 0.76  K=6: 0.85  K=8: 0.95
+  haiku  delta   5 n 3: sigma 3.08 tau 1.89  K=3: 0.57  K=4: 0.78  K=5: 0.89  K=6: 0.95  K=8: 0.99
+  haiku  delta   5 n 5: sigma 3.08 tau 1.89  K=3: 0.67  K=4: 0.86  K=5: 0.95  K=6: 0.99  K=8: 1.00
+  haiku  delta   5 n 8: sigma 3.08 tau 1.89  K=3: 0.73  K=4: 0.92  K=5: 0.98  K=6: 1.00  K=8: 1.00
+  haiku  delta   3 n 3: sigma 3.08 tau 1.89  K=3: 0.30  K=4: 0.44  K=5: 0.56  K=6: 0.64  K=8: 0.79
+  haiku  delta   3 n 5: sigma 3.08 tau 1.89  K=3: 0.36  K=4: 0.52  K=5: 0.65  K=6: 0.74  K=8: 0.88
+  haiku  delta   3 n 8: sigma 3.08 tau 1.89  K=3: 0.41  K=4: 0.59  K=5: 0.73  K=6: 0.82  K=8: 0.93
+
+== Power, set 2a superiority (t-test over cases, alpha 0.05), effect = smallest observed arm mean
+  haiku  n 3: effect  26.2 tau 13.95 sigma  7.09  K=3: 0.39  K=4: 0.65  K=5: 0.82  K=6: 0.92
+  haiku  n 5: effect  26.2 tau 13.95 sigma  7.09  K=3: 0.39  K=4: 0.67  K=5: 0.84  K=6: 0.94
+  sonnet n 3: effect  24.0 tau 14.13 sigma 12.13  K=3: 0.29  K=4: 0.48  K=5: 0.65  K=6: 0.76
+  sonnet n 5: effect  24.0 tau 14.13 sigma 12.13  K=3: 0.31  K=4: 0.53  K=5: 0.71  K=6: 0.84
+
+== Silent inventions per run (set 2b), cases with gaps
+  ('case001', 'haiku', 'compiler'): [2, 2, 2, 1, 2]  mean 1.80
+  ('case001', 'haiku', 'markdown'): [1, 2, 0, 2, 0]  mean 1.00
+  ('case001', 'haiku', 'oracle'): [2, 1, 0, 3, 3]  mean 1.80
+  ('case001', 'haiku', 'review'): [1, 1, 1, 2, 1]  mean 1.20
+  ('case001', 'sonnet', 'compiler'): [3, 2, 3]  mean 2.67
+  ('case001', 'sonnet', 'markdown'): [3, 3, 3]  mean 3.00
+  ('case001', 'sonnet', 'oracle'): [3, 3, 3]  mean 3.00
+  ('case001', 'sonnet', 'review'): [3, 2, 3]  mean 2.67
+  ('case005', 'haiku', 'compiler'): [8, 9, 9, 8, 8]  mean 8.40
+  ('case005', 'haiku', 'markdown'): [9, 8, 10, 9, 10]  mean 9.20
+  ('case005', 'haiku', 'oracle'): [10, 9, 9, 9, 9]  mean 9.20
+  ('case005', 'haiku', 'review'): [8, 10, 10, 8, 8]  mean 8.80
+  ('case005', 'sonnet', 'compiler'): [10, 11, 10]  mean 10.33
+  ('case005', 'sonnet', 'markdown'): [9, 9, 10]  mean 9.33
+  ('case005', 'sonnet', 'oracle'): [10, 11, 10]  mean 10.33
+  ('case005', 'sonnet', 'review'): [11, 9, 8]  mean 9.33
+  ('case010', 'haiku', 'compiler'): [11, 10, 12]  mean 11.00
+  ('case010', 'haiku', 'markdown'): [12, 10, 10]  mean 10.67
+  ('case010', 'sonnet', 'compiler'): [14, 14, 12]  mean 13.33
+  ('case010', 'sonnet', 'markdown'): [13, 14, 13]  mean 13.33
+  ('case011', 'haiku', 'compiler'): [7, 8, 8, 7, 4]  mean 6.80
+  ('case011', 'haiku', 'markdown'): [5, 3, 7, 5, 4]  mean 4.80
+  ('case011', 'haiku', 'oracle'): [6, 6, 6, 7, 7]  mean 6.40
+  ('case011', 'haiku', 'review'): [5, 6, 3, 5, 7]  mean 5.20
+  ('case011', 'sonnet', 'compiler'): [11, 11, 10]  mean 10.67
+  ('case011', 'sonnet', 'markdown'): [9, 11, 10]  mean 10.00
+  ('case011', 'sonnet', 'oracle'): [10, 11, 9]  mean 10.00
+  ('case011', 'sonnet', 'review'): [8, 8, 9]  mean 8.33
+  ('case016', 'haiku', 'compiler'): [12, 13, 11, 13, 13]  mean 12.40
+  ('case016', 'haiku', 'markdown'): [11, 14, 12, 13, 12]  mean 12.40
+  ('case016', 'haiku', 'oracle'): [12, 14, 13, 12, 15]  mean 13.20
+  ('case016', 'haiku', 'review'): [12, 12, 14, 13, 13]  mean 12.80
+  ('case016', 'sonnet', 'compiler'): [14, 14, 14]  mean 14.00
+  ('case016', 'sonnet', 'markdown'): [14, 15, 12]  mean 13.67
+  ('case016', 'sonnet', 'oracle'): [14, 13, 13]  mean 13.33
+  ('case016', 'sonnet', 'review'): [13, 13, 14]  mean 13.33
+  pooled run SD 0.97 gaps
+  power to show export - Markdown > -2 gaps (one side of an equivalence test): K2-n3: 0.37  K2-n5: 0.42  K3-n3: 0.76  K3-n5: 0.85  K4-n3: 0.94  K4-n5: 0.98  K6-n3: 1.00  K6-n5: 1.00
+
+== Silent invention, equivalence over cases (90 % interval of arm - Markdown, margin 2 gaps)
+  haiku-compiler                 K=5 mean +0.47  90% CI [-0.52, +1.46]  equivalent
+  haiku-compiler-without-case001 K=4 mean +0.38  90% CI [-1.00, +1.77]  equivalent
+  haiku-oracle                   K=4 mean +0.80  90% CI [+0.03, +1.57]  equivalent
+  haiku-oracle-without-case001   K=3 mean +0.80  90% CI [-0.55, +2.15]  not shown
+  haiku-review                   K=4 mean +0.15  90% CI [-0.30, +0.60]  equivalent
+  haiku-review-without-case001   K=3 mean +0.13  90% CI [-0.65, +0.91]  equivalent
+  sonnet-compiler                K=5 mean +0.33  90% CI [-0.17, +0.84]  equivalent
+  sonnet-compiler-without-case001 K=4 mean +0.50  90% CI [-0.01, +1.01]  equivalent
+  sonnet-oracle                  K=4 mean +0.17  90% CI [-0.51, +0.85]  equivalent
+  sonnet-oracle-without-case001  K=3 mean +0.22  90% CI [-0.95, +1.39]  equivalent
+  sonnet-review                  K=4 mean -0.58  90% CI [-1.45, +0.29]  equivalent
+  sonnet-review-without-case001  K=3 mean -0.67  90% CI [-2.15, +0.82]  not shown

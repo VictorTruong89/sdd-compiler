@@ -1,0 +1,11 @@
+# run | named conflicts | remarks
+# Round 27b case006, reader 1 (Claude Code, model Claude Opus 5.5), the strict rule of rounds 17-21 (both sides' content stated). Read 2026-11-17.
+# Answer key: round 18's (24 conflicts). Compiler export flags 15 of 24; unflagged C01 C03 C06 C12 C18 C20 C23 C25 C29 (round 27).
+haiku-markdown-4 | C01 C02 C03 C04 C05 C06 C07 C10 C12 C14 C15 C20 C21 C23 C25 C27 C29 | rerun after early stop (first attempt kept as .earlystop-…); 16 numbered entries; C08 C09 C13 C17 C18 C22 C26 absent (env list states only "first non-empty wins")
+haiku-markdown-5 | C01 C03 C04 C05 C06 C07 C12 C14 C15 C20 C25 C26 C29 | 13 numbered entries; C02 C08 C09 C10 C13 C17 C18 C21 C22 C23 C27 absent
+haiku-compiler-4 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C20 C21 C22 C23 C26 C27 C29 | 15 flagged entries plus 7 "found while building" (C06 C29 C12 C20 C01 C03 C23); C18 C25 absent
+haiku-compiler-5 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C18 C20 C21 C22 C23 C25 C26 C27 C29 | 15 flagged entries plus 11 found while building, all 9 unflagged named; all 24
+haiku-oracle-4 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C18 C20 C21 C22 C23 C25 C26 C27 C29 | 22 entries, all 24 with both sides
+haiku-oracle-5 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C18 C20 C21 C22 C23 C25 C26 C27 C29 | 24 entries plus 3 unflagged; C10 sides' ids muddled (N-000238 put on the "off" side) but both contents stated: named
+haiku-review-4 | C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C12 C13 C14 C15 C17 C18 C20 C21 C23 C25 C26 C27 C29 | 25 review entries + X-01 (C08); C22 (pause) absent
+haiku-review-5 | C01 C02 C03 C04 C05 C06 C07 C09 C10 C12 C13 C14 C15 C17 C18 C20 C21 C23 C25 C26 C27 C29 | 25 review entries; C08 and C22 absent

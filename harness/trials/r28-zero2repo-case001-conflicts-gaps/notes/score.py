@@ -1,0 +1,118 @@
+"""Score this trial's runs beyond Zero2Repo's judge. No model call.
+
+    python3 notes/score.py runs/<run_id> [...]          -> notes/scores.json (merged by run id)
+
+Round 28, case001 (copied from round 21's notes/score.py; method unchanged): case001's 302 tests; this round's
+probe prints {item: "A" | "B" | other} (A = upstream / side A, B = alternative / side B), mapped to round 21's
+upstream / alternative / other.
+Round 21: round 19's scorer (conflicts: exposure phrases, sides) and round 20's (gaps: built value) in one. Items are the kept conflicts and gaps (`KEPT_C`, `KEPT_G` in notes/plant.py).
+Per run:
+  - tests: the judge's passed / total; core: the tests outside this round's footprint union (conflicts
+    and gaps together; notes/footprint.json, ANSWER_KEY.md); footprint tests failed, by name;
+  - built: notes/probe.sh on the agent's saved code (`app.tgz`), in a container with no network:
+    upstream (side A of a conflict; the removed fact of a gap) / alternative (side B; the gap's
+    alternative) / other / not built;
+  - exposure (conflicts): per side, whether any tool result in the transcript contains that side's phrase;
+  - notes: the agent's NOTES.md (saved as runs/<id>/NOTES.md) and a keyword triage per item. The triage
+    only points the reader; named / flagged is the reading recorded in notes/detection.tsv;
+  - turns and $ est. (Claude Code's result line).
+"""
+import json
+import re
+import subprocess
+import sys
+import tarfile
+import tempfile
+from pathlib import Path
+
+T = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(T / "notes"))
+from plant import KEPT_C, KEPT_G, PHRASES                          # noqa: E402
+ITEMS = list(KEPT_C) + list(KEPT_G)
+_FP = json.loads((T / "notes/footprint.json").read_text())
+FOOT = {t for i in ITEMS for t in _FP[i]["newly_failed"] + _FP[i]["newly_passed"]}
+TOTAL = 302
+CORE_TOTAL = TOTAL - len(FOOT)
+PHRASES = {i: PHRASES[i] for i in KEPT_C}
+# Keyword triage only points the reader to lines of NOTES.md; the reading is notes/detection.tsv.
+KEYWORDS = {
+    "C03": r"second.{0,40}(omit|optional|required)|without seconds", "C04": r"truncat|round", "C07": r"trailing comma", "C08": r"signed zero|[+-]0",
+    "C10": r"crlf|carriage return|\r\n", "C11": r"multiline literal.{0,60}(newline|line feed)|first line feed|opening delimiter", "C12": r"line.ending backslash|continuation|indent",
+    "C13": r"quote.{0,40}(closing|delimiter)|five quotes|\"\"\"\"\"", "C14": r"tab", "C16": r"hex.{0,40}(case|lowercase|uppercase)", "C17": r"escape.{0,40}(case|uppercase|lowercase)",
+    "C18": r"separator|space between|date and time", "C29": r"subclass", "C35": r"empty (quoted )?key", "C36": r"sub-?table|dotted key.{0,60}header",
+    "G01": r"end of (the )?document|offset.{0,40}length|len\(", "G03": r"header.{0,60}(offset|position|location)", "G09": r"depth|nest|recursion", "G13": r"utf-?8|latin|encoding|decode",
+}
+
+
+def transcript(tmp: Path):
+    session = next(tmp.rglob("agent/sessions/projects/-app/*.jsonl"))
+    # split on "\n" only: str.splitlines() also splits on U+2028, U+0085 ..., which some prose holds
+    # inside JSON strings (round 21 check run)
+    lines = [json.loads(x) for x in next(tmp.rglob("agent/claude-code.txt")).read_text().split("\n")
+             if '"type":"result"' in x]
+    # a background task can wake the agent after its final answer: one more result line, whose num_turns
+    # counts only that wake-up (round 21, r21-haiku-compiler-5: 63 + 1). Turns are summed; the cost is
+    # cumulative, so the last line's is kept.
+    result = dict(lines[-1], num_turns=sum(x.get("num_turns") or 0 for x in lines), result_lines=len(lines))
+    outputs = []
+    for line in session.read_text().split("\n"):
+        if not line.strip():
+            continue
+        d = json.loads(line)
+        if d.get("type") == "user" and isinstance(d["message"]["content"], list):
+            for x in d["message"]["content"]:
+                if x.get("type") == "tool_result":
+                    c = x.get("content")
+                    if isinstance(c, list):
+                        c = "".join(y.get("text", "") for y in c if isinstance(y, dict))
+                    outputs.append(c or "")
+    return "\n".join(outputs), result
+
+
+def score(run: Path) -> dict:
+    detail = json.loads((run / "reward_detail.json").read_text())
+    reward = json.loads((run / "reward.json").read_text())
+    failed = {t.split("/")[-1] for t in detail.get("failed_tests") or []}
+    total = reward.get("tests_total") or 0
+    row = {"tests": reward.get("tests_passed"), "total": total,
+           "core": (CORE_TOTAL - len(failed - FOOT)) if total == TOTAL else None, "core_total": CORE_TOTAL,
+           "footprint_failed": {i: sorted(failed & set(_FP[i]["newly_failed"] + _FP[i]["newly_passed"])) for i in ITEMS
+                                if failed & set(_FP[i]["newly_failed"] + _FP[i]["newly_passed"])}}
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        (tmp / "app").mkdir()
+        with tarfile.open(run / "app.tgz") as tar:
+            tar.extractall(tmp / "app", filter="data")
+        probe = subprocess.run(["bash", str(T / "notes/probe.sh"), str(tmp / "app")] + ITEMS, capture_output=True, text=True)
+        built = json.loads(probe.stdout) if probe.returncode == 0 else {}
+        side = {"A": "upstream", "B": "alternative", "neither": "other"}
+        row["built"] = {i: side.get(built.get(i), "probe-error" if i not in built else "other") for i in ITEMS}
+        row["probe_evidence"] = {i: built.get(i) for i in ITEMS}
+        notes = next((p for p in [tmp / "app/NOTES.md"] + sorted((tmp / "app").glob("**/NOTES.md")) if p.exists()), None)
+        text = notes.read_text(errors="replace") if notes else ""
+        (run / "NOTES.md").write_text(text) if notes else None
+        row["notes_md"] = bool(notes)
+        row["notes_mentions"] = {i: bool(re.search(KEYWORDS[i], text, re.I)) for i in ITEMS}
+        (tmp / "agent").mkdir()
+        if (run / "agent.tgz").exists():
+            with tarfile.open(run / "agent.tgz") as tar:
+                tar.extractall(tmp / "agent", filter="data")
+            outputs, result = transcript(tmp / "agent")
+            row["exposure"] = {i: {"A": a in outputs, "B": b in outputs} for i, (a, b) in PHRASES.items()}
+            row["turns"], row["cost"] = result.get("num_turns"), result.get("total_cost_usd")
+        else:
+            row["exposure"], row["turns"], row["cost"] = {}, None, None
+    return row
+
+
+if __name__ == "__main__":
+    out = T / "notes/scores.json"
+    scores = json.loads(out.read_text()) if out.exists() else {}
+    for arg in sys.argv[1:]:
+        run = Path(arg)
+        scores[run.name] = score(run)
+        s = scores[run.name]
+        print(run.name, f"tests {s['tests']}/{s['total']} core {s['core']}/{s['core_total']}",
+              " ".join(f"{i}={v}" for i, v in s["built"].items()), "notes" if s["notes_md"] else "no-notes",
+              f"turns {s['turns']} $ {s['cost']}")
+    out.write_text(json.dumps(scores, indent=1, sort_keys=True) + "\n")

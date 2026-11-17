@@ -90,3 +90,26 @@ Over all six rounds, 8 disagreements in 1 382 readings: reader 1 held on 6, read
 model biases are not excluded; it saw the answer key's sides, as reader 1 did; export notes cite conflict
 ids, so it is blind to arm by label, not by content. A human sample (the owner's audit sheets) remains
 the stronger check.
+
+## Results added: rounds 27, 27b and 28 (2026-11-16 to 2026-11-17)
+
+`ROUNDS` and `KEY_OF` gained r27 (rounds 18/19 keys by case), r27ba / r27bb (round 27b, keys of rounds 18 and 19)
+and r28a / r28b / r28c (case005, case011, case001, their own keys). Same prompt, model, rule and blinding; codes
+continue the seeded shuffle (`work/codes.json`). `python3 notes/reader2.py read r27 r28a r28b r28c r27ba r27bb`,
+then `table`.
+
+| Round | n | Agreement | κ | Reader 1 yes | Reader 2 yes | R1 yes, R2 no | R1 no, R2 yes |
+|---|---|---|---|---|---|---|---|
+| r27 | 234 | 0.991 | 0.954 | 209 | 211 | 0 | 2 |
+| r27ba | 192 | 1.000 | 1.000 | 169 | 169 | 0 | 0 |
+| r27bb | 120 | 1.000 | 1.000 | 95 | 95 | 0 | 0 |
+| r28a | 544 | 0.998 | 0.990 | 491 | 490 | 1 | 0 |
+| r28b | 384 | 1.000 | 1.000 | 323 | 323 | 0 | 0 |
+| r28c | 480 | 0.983 | 0.944 | 389 | 395 | 1 | 7 |
+| all | 3336 | 0.995 | 0.980 | 2804 | 2814 | 4 | 14 |
+
+Adjudication by reader 1 on re-reading: round 27's 2 (case010 C18, emoticon clash only) and case005's 1
+(`haiku-compiler-5` C04, both sides stated) hold. On case001, 10 disagreed before adjudication: 2 were corrected
+(`haiku-markdown-1`, `haiku-review-2` C16, now named; "corrected 2026-11-16 after reader 2" in its readings)
+and 8 hold. Over rounds 18–28: 21 disagreements, 3 corrected reader 1 (with round 26's one), 18 held. The
+table above is after the corrections. Cost of reader 2 so far $8.44 est.

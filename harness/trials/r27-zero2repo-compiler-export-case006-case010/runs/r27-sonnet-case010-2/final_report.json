@@ -1,0 +1,63 @@
+{
+  "reward": 0.0,
+  "judge_error": null,
+  "judge_mode": "final_tests",
+  "final": {
+    "final_step": "final",
+    "status": "failed",
+    "exit_code": 1,
+    "log": "/logs/verifier/final_tests.log",
+    "passed_count": 177,
+    "failed_count": 20,
+    "error_count": 0,
+    "skipped_count": 0,
+    "total_count": 197,
+    "pass_rate": 0.8984771573604061,
+    "test_framework": "pytest",
+    "counts_parsed": true,
+    "passed": 177,
+    "failed": 20,
+    "total": 197,
+    "failed_tests": [
+      "../tests/final/tests/F01_acceptance.py::test_recommended_cannot_splits_each_into_can_not",
+      "../tests/final/tests/F01_acceptance.py::test_recommended_runtime_cannot_splits",
+      "../tests/final/tests/F01_acceptance.py::test_regexp_gap_mode_no_empty_tokens_at_whitespace_ends",
+      "../tests/final/tests/F02_acceptance.py::test_default_porter_nineteen_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_default_porter_running_case_matches",
+      "../tests/final/tests/F02_acceptance.py::test_default_porter_runtime_capitalized_named_word_matches",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_arabic_named_pairs",
+      "../tests/final/tests/F02_acceptance.py::test_snowball_ten_languages_named_pairs",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_chunks_two_separated_four_token_runs_not_term_jury",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_concatenated_runs_are_one_ten_token_chunk",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_runtime_separated_and_concatenated",
+      "../tests/final/tests/F04_acceptance.py::test_four_or_more_n_runtime_length_threshold",
+      "../tests/final/tests/F04_acceptance.py::test_chunk_leaves_equal_input_on_named_sentences",
+      "../tests/final/tests/F05_acceptance.py::test_generate_quoted_empty_string_is_a_then_empty_token",
+      "../tests/final/tests/F05_acceptance.py::test_generate_runtime_quoted_empty_vs_empty_production",
+      "../tests/final/tests/F07_acceptance.py::test_edit_distance_abc_ca_transpositions_off_three_on_two",
+      "../tests/final/tests/F07_acceptance.py::test_empty_test_precision_is_absent_not_zero",
+      "../tests/final/tests/F07_acceptance.py::test_fmeasure_absent_when_either_side_empty",
+      "../tests/final/tests/F07_acceptance.py::test_fmeasure_nonempty_disjoint_is_zero",
+      "../tests/final/tests/F07_acceptance.py::test_default_four_weight_unsmoothed_two_token_identity_is_zero_to_four_decimals"
+    ],
+    "error_tests": [],
+    "test_files": [
+      "/tests/final/tests/F01_acceptance.py",
+      "/tests/final/tests/F02_acceptance.py",
+      "/tests/final/tests/F03_acceptance.py",
+      "/tests/final/tests/F04_acceptance.py",
+      "/tests/final/tests/F05_acceptance.py",
+      "/tests/final/tests/F06_acceptance.py",
+      "/tests/final/tests/F07_acceptance.py"
+    ],
+    "test_command_ran": "python3 -I /tests/pytest_launcher.py /tests/final/tests/F01_acceptance.py /tests/final/tests/F02_acceptance.py /tests/final/tests/F03_acceptance.py /tests/final/tests/F04_acceptance.py /tests/final/tests/F05_acceptance.py /tests/final/tests/F06_acceptance.py /tests/final/tests/F07_acceptance.py"
+  },
+  "runner": {},
+  "install": {
+    "install_command": "",
+    "install_command_status": "skipped",
+    "build_command": "",
+    "build_command_status": "skipped",
+    "reason": "judge does not execute candidate install/build"
+  }
+}

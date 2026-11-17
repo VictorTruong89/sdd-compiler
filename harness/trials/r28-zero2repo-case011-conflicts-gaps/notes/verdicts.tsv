@@ -1,0 +1,26 @@
+conflict	verdict	reason (judged on the owner's behalf)	source
+CF-000004	false	the second sentence is the stated fallback for text that is not valid JSON; no clash (FP-05)	read against the original case011 spec
+CF-000005	open	planted pair C15 (answer key)	notes/recall.json
+CF-000007	open	planted pair C14 (answer key)	notes/recall.json
+CF-000008	false	"""requires an array"" means it projects only over arrays; on anything else it yields null, as the same bullet says"	read against the original case011 spec
+CF-000009	false	"""requires an object"" means it projects only over objects; on anything else it yields null, as the same bullet says"	read against the original case011 spec
+CF-000010	false	two different placements: a form that begins an operand (rank 2) versus a bracket written as a step (rank 5)	read against the original case011 spec
+CF-000011	open	planted pair C12 (answer key)	notes/recall.json
+CF-000012	false	"different functions: ""the empty array yields null"" is a fragment of the avg / max / min / max_by bullets, not join"	read against the original case011 spec
+CF-000015	open	planted pair C05 (answer key)	notes/recall.json
+CF-000018	false	"a zero step is a refusal of its own kind (FP-03 boundary); ""selects nothing"" is about valid slices"	read against the original case011 spec
+CF-000020	false	different calls: search(expression, data, options) versus <parsed>.search(value, options)	read against the original case011 spec
+CF-000026	false	"""returns nothing"" restates ""raises"" for a refusal; no clash"	read against the original case011 spec
+CF-000027	open	planted pair C17 (answer key)	notes/recall.json
+CF-000029	false	"different subjects: ""yields a non-null value"" is the bare expression reference (FP-05), not every expression"	read against the original case011 spec
+CF-000030	false	B is about the unknown-function, arity and type kinds, not grammar-level syntax failures	read against the original case011 spec
+CF-000031	false	the implementer's choice is an explicit exception the spec states for one placement	read against the original case011 spec
+CF-000032	false	the implementer's choice is an explicit exception the spec states for one placement	read against the original case011 spec
+CF-000035	open	planted pair C08 (answer key)	notes/recall.json
+CF-000038	false	"""requires an object"" does not state the result on a non-object; the planted sentence's result is not contradicted by it (as CF-000009)"	read against the original case011 spec
+CF-000040	false	the exact list is the built-in set; a provider adds custom functions beside it (FP-08)	read against the original case011 spec
+CF-000041	false	different calls: search(expression, data) versus <parsed>.search(value)	read against the original case011 spec
+CF-000042	false	"different senses: the planted sentence scopes ""counts as null"" to not_null; the slice result is still an empty array, not null"	read against the original case011 spec
+CF-000043	false	"""anything else"" lists the forms that are not steps; a function call after a dot is a dot step (FP-04)"	read against the original case011 spec
+CF-000044	false	the invalid-type rule is about custom-function arguments, not the document	read against the original case011 spec
+CF-000049	open	planted pair C19 (answer key)	notes/recall.json

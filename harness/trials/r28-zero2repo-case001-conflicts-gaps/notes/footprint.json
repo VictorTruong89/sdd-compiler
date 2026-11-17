@@ -1,0 +1,256 @@
+{
+ "BASE_failed": [],
+ "C01": {
+  "newly_failed": [
+   "F02_acceptance.py::test_multiline_basic_escape_e_or_x",
+   "F02_acceptance.py::test_quoted_key_e_or_x_distinct_from_literal",
+   "F02_acceptance.py::test_two_char_escapes_including_e",
+   "F02_acceptance.py::test_unknown_basic_escape_refused",
+   "F03_acceptance.py::test_fp02_scalar_representative_binary_matches_string"
+  ],
+  "newly_passed": []
+ },
+ "C02": {
+  "newly_failed": [
+   "F02_acceptance.py::test_basic_x20_space_vs_literal_x20_chars",
+   "F02_acceptance.py::test_hex_digits_case_insensitive",
+   "F02_acceptance.py::test_incomplete_hex_escapes_refused",
+   "F02_acceptance.py::test_multiline_basic_escape_e_or_x",
+   "F02_acceptance.py::test_named_hex_escape_hello_lf",
+   "F02_acceptance.py::test_non_hex_digits_in_advertised_hex_escape_refused",
+   "F02_acceptance.py::test_quoted_key_e_or_x_distinct_from_literal",
+   "F02_acceptance.py::test_runtime_x_escape",
+   "F02_acceptance.py::test_x_u_U_same_scalar",
+   "F03_acceptance.py::test_runtime_fp02_scalar_binary_matches_string"
+  ],
+  "newly_passed": []
+ },
+ "C03": {
+  "newly_failed": [
+   "F02_acceptance.py::test_local_time_and_omitted_seconds",
+   "F02_acceptance.py::test_runtime_local_time"
+  ],
+  "newly_passed": []
+ },
+ "C04": {
+  "newly_failed": [
+   "F02_acceptance.py::test_fractional_seconds_six_digits_and_truncated"
+  ],
+  "newly_passed": []
+ },
+ "C05": {
+  "newly_failed": [
+   "F01_acceptance.py::test_inline_table_comment_after_closing_brace",
+   "F01_acceptance.py::test_inline_table_multiline_and_comments",
+   "F01_acceptance.py::test_inline_table_trailing_comma",
+   "F01_acceptance.py::test_runtime_inline_comments_after_brace_and_comma",
+   "F01_acceptance.py::test_runtime_inline_table_v11_newlines",
+   "F03_acceptance.py::test_runtime_v11_inline_table_binary_matches_string",
+   "F03_acceptance.py::test_v11_inline_table_binary_matches_string"
+  ],
+  "newly_passed": []
+ },
+ "C06": {
+  "newly_failed": [
+   "F01_acceptance.py::test_inline_table_multiline_and_comments",
+   "F01_acceptance.py::test_runtime_inline_comments_after_brace_and_comma",
+   "F01_acceptance.py::test_runtime_inline_table_v11_newlines",
+   "F03_acceptance.py::test_runtime_v11_inline_table_binary_matches_string",
+   "F03_acceptance.py::test_v11_inline_table_binary_matches_string"
+  ],
+  "newly_passed": []
+ },
+ "C07": {
+  "newly_failed": [
+   "F01_acceptance.py::test_array_multiline_with_comments_between_elements",
+   "F01_acceptance.py::test_array_trailing_comma",
+   "F01_acceptance.py::test_runtime_array_order_and_comments"
+  ],
+  "newly_passed": []
+ },
+ "C08": {
+  "newly_failed": [
+   "F02_acceptance.py::test_decimal_integers_and_signed_zeros"
+  ],
+  "newly_passed": []
+ },
+ "C09": {
+  "newly_failed": [
+   "F02_acceptance.py::test_nan_spellings_are_nan",
+   "F04_acceptance.py::test_mixed_case_inf_nan_are_decode_error",
+   "F05_acceptance.py::test_named_special_float_tokens_are_decimals",
+   "F05_acceptance.py::test_specials_without_converter_are_python_floats"
+  ],
+  "newly_passed": []
+ },
+ "C10": {
+  "newly_failed": [
+   "F01_acceptance.py::test_crlf_inside_string_equals_lf"
+  ],
+  "newly_passed": []
+ },
+ "C11": {
+  "newly_failed": [
+   "F02_acceptance.py::test_multiline_literal_discards_opening_lf_no_escapes",
+   "F02_acceptance.py::test_multiline_literal_four_and_five_apostrophe_close",
+   "F02_acceptance.py::test_multiline_literal_interior_apostrophe_kept"
+  ],
+  "newly_passed": []
+ },
+ "C12": {
+  "newly_failed": [
+   "F02_acceptance.py::test_multiline_basic_line_join_strips_continuation_indent",
+   "F02_acceptance.py::test_multiline_basic_trailing_ws_escape_before_lf_closer"
+  ],
+  "newly_passed": []
+ },
+ "C13": {
+  "newly_failed": [
+   "F02_acceptance.py::test_multiline_basic_four_and_five_quote_close"
+  ],
+  "newly_passed": []
+ },
+ "C14": {
+  "newly_failed": [
+   "F02_acceptance.py::test_raw_control_sibling_in_oneline_string_refused",
+   "F02_acceptance.py::test_raw_formfeed_in_oneline_string_refused",
+   "F02_acceptance.py::test_raw_tab_in_oneline_string_allowed"
+  ],
+  "newly_passed": []
+ },
+ "C15": {
+  "newly_failed": [
+   "F02_acceptance.py::test_binary_integers",
+   "F02_acceptance.py::test_hex_integers",
+   "F02_acceptance.py::test_octal_integers",
+   "F02_acceptance.py::test_runtime_underscored_decimal",
+   "F02_acceptance.py::test_underscores_in_integer_digits"
+  ],
+  "newly_passed": []
+ },
+ "C16": {
+  "newly_failed": [
+   "F02_acceptance.py::test_digits_outside_base_refused",
+   "F02_acceptance.py::test_hex_integers"
+  ],
+  "newly_passed": []
+ },
+ "C17": {
+  "newly_failed": [
+   "F02_acceptance.py::test_hex_digits_case_insensitive",
+   "F02_acceptance.py::test_u_U_hex_letter_case"
+  ],
+  "newly_passed": []
+ },
+ "C18": {
+  "newly_failed": [
+   "F02_acceptance.py::test_datetime_separator_T_t_space_same_instant",
+   "F02_acceptance.py::test_offset_datetime_omitted_seconds",
+   "F02_acceptance.py::test_runtime_omitted_seconds_offset_and_local"
+  ],
+  "newly_passed": []
+ },
+ "C19": {
+  "newly_failed": [
+   "F02_acceptance.py::test_datetime_separator_T_t_space_same_instant",
+   "F02_acceptance.py::test_local_datetime_naive",
+   "F02_acceptance.py::test_z_and_z_suffix_are_utc"
+  ],
+  "newly_passed": []
+ },
+ "C25": {
+  "newly_failed": [
+   "F04_acceptance.py::test_binary_buffer_val_dot_is_decode_error",
+   "F04_acceptance.py::test_binary_interior_line_shifts_with_leading_newlines",
+   "F04_acceptance.py::test_binary_runtime_dot_is_decode_error",
+   "F04_acceptance.py::test_binary_val_dot_is_decode_error",
+   "F04_acceptance.py::test_constructed_offset_13_is_line_3_column_2",
+   "F04_acceptance.py::test_constructed_offset_across_newline_increases_line",
+   "F04_acceptance.py::test_constructed_offset_zero_is_line_1_column_1",
+   "F04_acceptance.py::test_end_of_document_distinct_from_interior_dot",
+   "F04_acceptance.py::test_form_feed_in_comment_is_decode_error",
+   "F04_acceptance.py::test_frozen_or_overwrite_is_decode_error_with_location",
+   "F04_acceptance.py::test_interior_column_shifts_with_leading_spaces",
+   "F04_acceptance.py::test_interior_line_shifts_with_leading_newlines",
+   "F04_acceptance.py::test_lone_dot_is_interior_decode_error",
+   "F04_acceptance.py::test_missing_comma_in_array_is_decode_error",
+   "F04_acceptance.py::test_missing_comma_in_inline_table_is_decode_error",
+   "F04_acceptance.py::test_runtime_dot_column_shifts_with_leading_spaces",
+   "F04_acceptance.py::test_runtime_dot_line_shifts_with_leading_newlines",
+   "F04_acceptance.py::test_runtime_dot_value_is_interior_decode_error",
+   "F04_acceptance.py::test_val_dot_is_interior_decode_error",
+   "F04_acceptance.py::test_wrong_case_booleans_are_decode_error"
+  ],
+  "newly_passed": []
+ },
+ "C28": {
+  "newly_failed": [
+   "F05_acceptance.py::test_binary_custom_callable_return_is_bound_value",
+   "F05_acceptance.py::test_custom_callable_on_exponent_binds_document_text",
+   "F05_acceptance.py::test_custom_callable_return_is_bound_value",
+   "F05_acceptance.py::test_tuple_return_is_allowed"
+  ],
+  "newly_passed": []
+ },
+ "C29": {
+  "newly_failed": [
+   "F05_acceptance.py::test_dict_and_list_subtype_converters_are_value_error"
+  ],
+  "newly_passed": []
+ },
+ "C35": {
+  "newly_failed": [
+   "F01_acceptance.py::test_empty_quoted_key",
+   "F01_acceptance.py::test_runtime_empty_quoted_key"
+  ],
+  "newly_passed": []
+ },
+ "C36": {
+  "newly_failed": [
+   "F01_acceptance.py::test_new_subtable_after_dotted_keys_fruit_apple_texture",
+   "F01_acceptance.py::test_runtime_new_subtable_after_dotted_keys"
+  ],
+  "newly_passed": []
+ },
+ "G01": {
+  "newly_failed": [
+   "F04_acceptance.py::test_end_of_document_distinct_from_interior_dot",
+   "F04_acceptance.py::test_fwfw_equals_is_end_of_document"
+  ],
+  "newly_passed": []
+ },
+ "G03": {
+  "newly_failed": [
+   "F04_acceptance.py::test_frozen_or_overwrite_is_decode_error_with_location"
+  ],
+  "newly_passed": []
+ },
+ "G04": {
+  "newly_failed": [],
+  "newly_passed": []
+ },
+ "G05": {
+  "newly_failed": [
+   "F05_acceptance.py::test_binary_inf_is_decimal",
+   "F05_acceptance.py::test_custom_callable_on_special_token_is_bound_value",
+   "F05_acceptance.py::test_named_special_float_tokens_are_decimals",
+   "F05_acceptance.py::test_runtime_special_float_token_is_decimal"
+  ],
+  "newly_passed": []
+ },
+ "G09": {
+  "newly_failed": [
+   "F01_acceptance.py::test_inline_array_nested_470_succeeds",
+   "F01_acceptance.py::test_stated_nesting_depths_all_yield_mappings"
+  ],
+  "newly_passed": []
+ },
+ "G13": {
+  "newly_failed": [
+   "F03_acceptance.py::test_invalid_utf8_does_not_succeed",
+   "F03_acceptance.py::test_invalid_utf8_sibling_does_not_succeed",
+   "F03_acceptance.py::test_invalid_utf8_via_binary_buffer"
+  ],
+  "newly_passed": []
+ }
+}

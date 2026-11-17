@@ -1,0 +1,49 @@
+conflict	verdict	reason (judged on the owner's behalf)	source
+CF-000001	false	"""same as send"" is about state and refusals; the bullet itself says the result is a list of pieces"	read against the original case005 spec
+CF-000002	false	a non-empty chunk after an empty one is caller misuse of the feed, not illegal peer bytes (Contract)	read against the original case005 spec
+CF-000003	open	planted pair C10 (answer key)	notes/recall.json
+CF-000005	open	planted pair C06 (answer key)	notes/recall.json
+CF-000011	false	chunk encoding applies under chunked framing only (FP-03); Content-Length framing is the other case	read against the original case005 spec
+CF-000012	false	different framings: Content-Length / close-delimited (no extra framing) versus chunked	read against the original case005 spec
+CF-000013	false	HEAD, 204 and 304 are the stated exceptions to close-delimited framing	read against the original case005 spec
+CF-000014	false	"""produces no bytes"" is scoped to a refused or empty send; no clash"	read against the original case005 spec
+CF-000021	false	the passthrough variant is stated as its own entry with pieces; not the plain send	read against the original case005 spec
+CF-000023	false	the passthrough exception for non-bytes-like data is stated in the same bullet	read against the original case005 spec
+CF-000025	false	"""the send produces no bytes"" is a different case (a send that produces nothing); no clash"	read against the original case005 spec
+CF-000026	open	planted pair C20 (answer key)	notes/recall.json
+CF-000029	false	different states: connection-closed is yielded only when the peer may send it; otherwise need-data	read against the original case005 spec
+CF-000031	false	different framings (chunked versus Content-Length / close-delimited)	read against the original case005 spec
+CF-000034	false	different requests: CONNECT versus Upgrade (FP-07)	read against the original case005 spec
+CF-000035	false	different framings: Content-Length (empty) versus chunked (zero-size chunk)	read against the original case005 spec
+CF-000036	false	different framings: chunked versus Content-Length	read against the original case005 spec
+CF-000039	false	different states: paused while the peer is DONE; the 431 limit applies while an event is incomplete	read against the original case005 spec
+CF-000040	false	different states: need-data unless the peer may send connection-closed	read against the original case005 spec
+CF-000042	false	"""no connection object is produced"" is the refusal case of construction"	read against the original case005 spec
+CF-000045	false	"""no connection object is produced"" is the refusal case of construction"	read against the original case005 spec
+CF-000046	false	an accepting response is the stated exception (FP-07)	read against the original case005 spec
+CF-000047	false	the next cycle starts a new message pair; no state returns to IDLE within a cycle	read against the original case005 spec
+CF-000048	open	planted pair C03 (answer key)	notes/recall.json
+CF-000050	open	planted pair C21 (answer key)	notes/recall.json
+CF-000051	false	different states: paused while the peer is DONE; need-data otherwise	read against the original case005 spec
+CF-000052	false	the limit is the stated exception for an oversize incomplete event	read against the original case005 spec
+CF-000054	false	"""returns nothing"" is about a refusal"	read against the original case005 spec
+CF-000056	false	different states: paused forever after a switch; continuing an event otherwise	read against the original case005 spec
+CF-000057	false	different states (after a switch acceptance versus an incomplete event)	read against the original case005 spec
+CF-000058	false	requests (empty body) versus responses (unknown length), as each sentence says	read against the original case005 spec
+CF-000061	false	different cases: after a switch acceptance versus an ordinary close	read against the original case005 spec
+CF-000063	false	"""any other final response is a denial"" is about switch proposals, not an IDLE server"	read against the original case005 spec
+CF-000064	false	"""a final response is a denial"" is about an Upgrade proposal, not an IDLE server"	read against the original case005 spec
+CF-000068	false	"""a final response is a denial"" is about an Upgrade proposal; 2xx accepts CONNECT (different request kinds)"	read against the original case005 spec
+CF-000070	false	a denial ends the pause before acceptance; after acceptance paused is permanent (different cases)	read against the original case005 spec
+CF-000072	false	"""no connection object is produced"" is the refusal case of construction"	read against the original case005 spec
+CF-000074	open	planted pair C05 (answer key)	notes/recall.json
+CF-000075	open	planted C04 side B against a second sentence stating side A (a continuation line is joined to the previous header's value)	read against the original case005 spec
+CF-000076	open	planted C04 side B against a second sentence stating side A (the continuation line is kept, its leading whitespace replaced by one space)	read against the original case005 spec
+CF-000077	false	"""no connection object is produced"" is the refusal case of construction"	read against the original case005 spec
+CF-000078	false	different errors: the feed-order runtime error versus the closed-receive-side case, each named	read against the original case005 spec
+CF-000079	false	before an answer (pending proposal) versus after an accepted switch	read against the original case005 spec
+CF-000080	false	the same fact stated twice (permanent / paused forever); no clash	read against the original case005 spec
+CF-000081	false	"need-data is a sentinel, not an event instance; ""becomes a real event"" means a later pull yields one"	read against the original case005 spec
+CF-000083	open	planted pair C13 (answer key)	notes/recall.json
+CF-000084	false	two views: the ordinary view (lowercase) and the raw view (as supplied), each named in the Contract	read against the original case005 spec
+CF-000096	false	chunk extensions come before the optional whitespace in the same size-line grammar; no clash	read against the original case005 spec

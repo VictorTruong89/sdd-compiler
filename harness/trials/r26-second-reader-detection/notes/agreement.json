@@ -1,12 +1,12 @@
 {
  "all": {
-  "n": 1382,
+  "n": 3336,
   "agree": 0.995,
-  "kappa": 0.983,
-  "r1_yes": 1128,
-  "r2_yes": 1131,
-  "r1_yes_r2_no": 2,
-  "r1_no_r2_yes": 5
+  "kappa": 0.98,
+  "r1_yes": 2804,
+  "r2_yes": 2814,
+  "r1_yes_r2_no": 4,
+  "r1_no_r2_yes": 14
  },
  "r18": {
   "n": 288,
@@ -161,5 +161,257 @@
   "r1_yes_r2_no": 0,
   "r1_no_r2_yes": 0
  },
- "_cost_usd_est": 3.09
+ "r27": {
+  "n": 234,
+  "agree": 0.991,
+  "kappa": 0.954,
+  "r1_yes": 209,
+  "r2_yes": 211,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 2
+ },
+ "r27-compiler-case006": {
+  "n": 144,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 134,
+  "r2_yes": 134,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27-compiler-case010": {
+  "n": 90,
+  "agree": 0.978,
+  "kappa": 0.915,
+  "r1_yes": 75,
+  "r2_yes": 77,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 2
+ },
+ "r27ba": {
+  "n": 192,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 169,
+  "r2_yes": 169,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27ba-compiler": {
+  "n": 48,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 46,
+  "r2_yes": 46,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27ba-markdown": {
+  "n": 48,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 30,
+  "r2_yes": 30,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27ba-oracle": {
+  "n": 48,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 48,
+  "r2_yes": 48,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27ba-review": {
+  "n": 48,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 45,
+  "r2_yes": 45,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27bb": {
+  "n": 120,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 95,
+  "r2_yes": 95,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27bb-compiler": {
+  "n": 30,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 25,
+  "r2_yes": 25,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27bb-markdown": {
+  "n": 30,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 16,
+  "r2_yes": 16,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27bb-oracle": {
+  "n": 30,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 28,
+  "r2_yes": 28,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r27bb-review": {
+  "n": 30,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 26,
+  "r2_yes": 26,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28a": {
+  "n": 544,
+  "agree": 0.998,
+  "kappa": 0.99,
+  "r1_yes": 491,
+  "r2_yes": 490,
+  "r1_yes_r2_no": 1,
+  "r1_no_r2_yes": 0
+ },
+ "r28a-compiler": {
+  "n": 136,
+  "agree": 0.993,
+  "kappa": 0.974,
+  "r1_yes": 113,
+  "r2_yes": 112,
+  "r1_yes_r2_no": 1,
+  "r1_no_r2_yes": 0
+ },
+ "r28a-markdown": {
+  "n": 136,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 116,
+  "r2_yes": 116,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28a-oracle": {
+  "n": 136,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 136,
+  "r2_yes": 136,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28a-review": {
+  "n": 136,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 126,
+  "r2_yes": 126,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28b": {
+  "n": 384,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 323,
+  "r2_yes": 323,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28b-compiler": {
+  "n": 96,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 79,
+  "r2_yes": 79,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28b-markdown": {
+  "n": 96,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 64,
+  "r2_yes": 64,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28b-oracle": {
+  "n": 96,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 92,
+  "r2_yes": 92,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28b-review": {
+  "n": 96,
+  "agree": 1.0,
+  "kappa": 1.0,
+  "r1_yes": 88,
+  "r2_yes": 88,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 0
+ },
+ "r28c": {
+  "n": 480,
+  "agree": 0.983,
+  "kappa": 0.944,
+  "r1_yes": 389,
+  "r2_yes": 395,
+  "r1_yes_r2_no": 1,
+  "r1_no_r2_yes": 7
+ },
+ "r28c-compiler": {
+  "n": 120,
+  "agree": 0.975,
+  "kappa": 0.912,
+  "r1_yes": 98,
+  "r2_yes": 101,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 3
+ },
+ "r28c-markdown": {
+  "n": 120,
+  "agree": 0.975,
+  "kappa": 0.948,
+  "r1_yes": 69,
+  "r2_yes": 72,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 3
+ },
+ "r28c-oracle": {
+  "n": 120,
+  "agree": 0.992,
+  "kappa": 0.796,
+  "r1_yes": 117,
+  "r2_yes": 118,
+  "r1_yes_r2_no": 0,
+  "r1_no_r2_yes": 1
+ },
+ "r28c-review": {
+  "n": 120,
+  "agree": 0.992,
+  "kappa": 0.963,
+  "r1_yes": 105,
+  "r2_yes": 104,
+  "r1_yes_r2_no": 1,
+  "r1_no_r2_yes": 0
+ },
+ "_cost_usd_est": 8.44
 }

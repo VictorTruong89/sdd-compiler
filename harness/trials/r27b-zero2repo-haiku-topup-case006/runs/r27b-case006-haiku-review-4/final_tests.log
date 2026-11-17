@@ -1,0 +1,984 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.1, pluggy-1.7.0
+cachedir: /tmp/cb-pytest-cache
+rootdir: /tests/final
+configfile: ../../dev/null
+collected 476 items
+
+../tests/final/tests/F01_acceptance.py ...........................       [  5%]
+../tests/final/tests/F02_acceptance.py ................................. [ 12%]
+...........                                                              [ 14%]
+../tests/final/tests/F03_acceptance.py .......................F......... [ 21%]
+.......FFF...............F...................                            [ 31%]
+../tests/final/tests/F04_acceptance.py ................F.......          [ 36%]
+../tests/final/tests/F05_acceptance.py ...F............F............     [ 42%]
+../tests/final/tests/F06_acceptance.py ...............................   [ 48%]
+../tests/final/tests/F07_acceptance.py ................................. [ 55%]
+........                                                                 [ 57%]
+../tests/final/tests/F08_acceptance.py .....F.........................   [ 64%]
+../tests/final/tests/F09_acceptance.py .....................FF.....      [ 69%]
+../tests/final/tests/F10_acceptance.py ........F....                     [ 72%]
+../tests/final/tests/F11_acceptance.py ................................. [ 79%]
+....F.....                                                               [ 81%]
+../tests/final/tests/F12_acceptance.py ..............................F.. [ 88%]
+....                                                                     [ 89%]
+../tests/final/tests/F13_acceptance.py ..............................    [ 95%]
+../tests/final/tests/F14_acceptance.py ....................              [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_on_off_pair_tokens ____________________________
+
+    def test_on_off_pair_tokens():
+        greeting = _option_hi()
+        on_option_ident = _option_ident()
+        off_option_ident = _option_ident()
+        slash_name = _option_ident()
+        plus_ch = _shorts(1)[0]
+        dest_a, dest_b, dest_c = _option_ident(), _option_ident(), _option_ident()
+    
+        def make(*decls, dest_name: str):
+            def inner(**kwargs) -> None:
+                print(greeting, flush=True)
+                _emit_enc(kwargs[dest_name])
+    
+            inner.__name__ = f"{_option_ident()}_{_option_ident()}"
+            return _option_leaf(inner, option(*decls, dest_name))
+    
+        dashed = make(f"--{on_option_ident}/--{off_option_ident}", dest_name=dest_a)
+        slashed = make(f"/{slash_name};/no-{slash_name}", dest_name=dest_b)
+        plused = make(f"+{plus_ch}/-{plus_ch}", dest_name=dest_c)
+    
+        cases = (
+            (dashed, f"--{on_option_ident}", f"--{off_option_ident}"),
+            (slashed, f"/{slash_name}", f"/no-{slash_name}"),
+            (plused, f"+{plus_ch}", f"-{plus_ch}"),
+        )
+        for cli, on_tok, off_tok in cases:
+            on_run = _option_run(cli, [on_tok])
+            off_run = _option_run(cli, [off_tok])
+            omitted = _option_run(cli, [])
+            print(
+                f"on={on_run.stdout_text!r} off={off_run.stdout_text!r} "
+                f"omit={omitted.stdout_text!r}",
+                flush=True,
+            )
+>           assert_success_marker_present(on_run, greeting)
+
+/tests/final/tests/F03_acceptance.py:968: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=2, stdout=b'', stderr=b"Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: No such opti...ystemExit(2), <traceback object at 0x75a3a2f49b00>), args=('/kf73b03d7',), cwd='/tmp/harness-ws-mlzxru5y', warnings=())
+marker = 'GREET:7b68339f104c4224b2834dbd8fa51091:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 2; stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: No such option: /k\n"
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=['--k53412c2b'] standalone=True cwd='/tmp/harness-ws-p8207uy4'
+[harness] exit=0 stdout_len=49 stderr_len=0 exception=None
+[harness] invoke prog='app' args=['--kcd52391a'] standalone=True cwd='/tmp/harness-ws-etsauhrn'
+[harness] exit=0 stdout_len=50 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-4iwvw5rx'
+[harness] exit=0 stdout_len=50 stderr_len=0 exception=None
+on='GREET:7b68339f104c4224b2834dbd8fa51091:\nENC:True\n' off='GREET:7b68339f104c4224b2834dbd8fa51091:\nENC:False\n' omit='GREET:7b68339f104c4224b2834dbd8fa51091:\nENC:False\n'
+[harness] invoke prog='app' args=['/kf73b03d7'] standalone=True cwd='/tmp/harness-ws-mlzxru5y'
+[harness] exit=2 stdout_len=0 stderr_len=75 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: No such option: /k\n"
+[harness] invoke prog='app' args=['/no-kf73b03d7'] standalone=True cwd='/tmp/harness-ws-t7u441lo'
+[harness] exit=2 stdout_len=0 stderr_len=75 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: No such option: /n\n"
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-55pq2j0e'
+[harness] exit=0 stdout_len=49 stderr_len=0 exception=None
+on='' off='' omit='GREET:7b68339f104c4224b2834dbd8fa51091:\nENC:None\n'
+___________ test_repeatable_and_multivalue_env_splits_on_whitespace ____________
+
+    def test_repeatable_and_multivalue_env_splits_on_whitespace():
+        greeting = _option_hi()
+        flag = f"--{_option_ident()}"
+        dest = _option_ident()
+        env_name = _option_env()
+        a, b = _option_ident(), _option_ident()
+        blob = f"{a} {b}"
+    
+        def seq_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            _print_seq(kwargs[dest])
+    
+        seq_cb.__name__ = f"{_option_ident()}_{_option_ident()}"
+        repeatable = _option_leaf(seq_cb, option(flag, dest, multiple=True, envvar=env_name))
+    
+        def whole_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            print(f"W:{kwargs[dest]}", flush=True)
+    
+        whole_cb.__name__ = f"{_option_ident()}_{_option_ident()}"
+        single = _option_leaf(whole_cb, option(flag, dest, envvar=env_name))
+    
+        def pair_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            pair = kwargs[dest]
+            print(f"P:{pair[0]}|{pair[1]}", flush=True)
+    
+        pair_cb.__name__ = f"{_option_ident()}_{_option_ident()}"
+        multi = _option_leaf(pair_cb, option(flag, dest, nargs=2, envvar=env_name))
+    
+        split = _option_run(repeatable, [], env={env_name: blob})
+        whole = _option_run(single, [], env={env_name: blob})
+        paired = _option_run(multi, [], env={env_name: blob})
+        print(
+            f"split={split.stdout_text!r} whole={whole.stdout_text!r} "
+            f"pair={paired.stdout_text!r}",
+            flush=True,
+        )
+        assert_success_marker_present(split, greeting)
+>       assert "N:2" in split.stdout_text
+E       AssertionError: assert 'N:2' in 'GREET:35181cf4667a4b6e8d309db921adb737:\nN:1\nV:0:kc3405315 k653ae91f\n'
+E        +  where 'GREET:35181cf4667a4b6e8d309db921adb737:\nN:1\nV:0:kc3405315 k653ae91f\n' = InvokeResult(exit_code=0, stdout=b'GREET:35181cf4667a4b6e8d309db921adb737:\nN:1\nV:0:kc3405315 k653ae91f\n', stderr=b'...5 k653ae91f\n', return_value=None, exception=None, exc_info=None, args=(), cwd='/tmp/harness-ws-va_gofkn', warnings=()).stdout_text
+
+/tests/final/tests/F03_acceptance.py:1578: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-va_gofkn'
+[harness] exit=0 stdout_len=68 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-pjzokbvx'
+[harness] exit=0 stdout_len=62 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-sxkpgsp9'
+[harness] exit=0 stdout_len=62 stderr_len=0 exception=None
+split='GREET:35181cf4667a4b6e8d309db921adb737:\nN:1\nV:0:kc3405315 k653ae91f\n' whole='GREET:35181cf4667a4b6e8d309db921adb737:\nW:kc3405315 k653ae91f\n' pair='GREET:35181cf4667a4b6e8d309db921adb737:\nP:kc3405315|k653ae91f\n'
+___________________ test_path_type_env_splits_on_os_pathsep ____________________
+
+    def test_path_type_env_splits_on_os_pathsep():
+        greeting = _option_hi()
+        flag = f"--{_option_ident()}"
+        dest = _option_ident()
+        env_name = _option_env()
+        left = f"/tmp/{_option_ident()}"
+        right = f"/var/{_option_ident()}"
+        blob = os.pathsep.join((left, right))
+    
+        def callback(**kwargs) -> None:
+            print(greeting, flush=True)
+            _print_seq(kwargs[dest])
+    
+        callback.__name__ = f"{_option_ident()}_{_option_ident()}"
+        leaf = _option_leaf(
+            callback,
+            option(flag, dest, multiple=True, type=Path(), envvar=env_name),
+        )
+    
+        result = _option_run(leaf, [], env={env_name: blob})
+        print(f"path={result.stdout_text!r}", flush=True)
+        assert_success_marker_present(result, greeting)
+>       assert "N:2" in result.stdout_text
+E       AssertionError: assert 'N:2' in 'GREET:fefa9c67793b4beea32099edaeaad080:\nN:1\nV:0:/tmp/k2ef63262:/var/kc4ae809f\n'
+E        +  where 'GREET:fefa9c67793b4beea32099edaeaad080:\nN:1\nV:0:/tmp/k2ef63262:/var/kc4ae809f\n' = InvokeResult(exit_code=0, stdout=b'GREET:fefa9c67793b4beea32099edaeaad080:\nN:1\nV:0:/tmp/k2ef63262:/var/kc4ae809f\n',...r/kc4ae809f\n', return_value=None, exception=None, exc_info=None, args=(), cwd='/tmp/harness-ws-t78nzzjc', warnings=()).stdout_text
+
+/tests/final/tests/F03_acceptance.py:1609: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-t78nzzjc'
+[harness] exit=0 stdout_len=78 stderr_len=0 exception=None
+path='GREET:fefa9c67793b4beea32099edaeaad080:\nN:1\nV:0:/tmp/k2ef63262:/var/kc4ae809f\n'
+___________________ test_file_type_env_splits_on_os_pathsep ____________________
+
+    def test_file_type_env_splits_on_os_pathsep():
+        greeting = _option_hi()
+        flag = f"--{_option_ident()}"
+        dest = _option_ident()
+        env_name = _option_env()
+        left, right = _two_empty_file_paths()
+        blob = os.pathsep.join((left, right))
+    
+        def callback(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_path_texts(kwargs[dest])
+    
+        callback.__name__ = f"{_option_ident()}_{_option_ident()}"
+        leaf = _option_leaf(
+            callback,
+            option(flag, dest, multiple=True, type=File(), envvar=env_name),
+        )
+    
+        result = _option_run(leaf, [], env={env_name: blob})
+        print(f"file={result.stdout_text!r} left={left!r} right={right!r}", flush=True)
+>       assert_success_marker_present(result, greeting)
+
+/tests/final/tests/F03_acceptance.py:1634: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=2, stdout=b'', stderr=b"Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid valu...stemExit'>, SystemExit(2), <traceback object at 0x75a3a2c51e40>), args=(), cwd='/tmp/harness-ws-7b4vbvf1', warnings=())
+marker = 'GREET:5a671fdc1ad0455b96de7cd4ed0d16e9:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 2; stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid value for '--k88f0db9f': '/tmp/f03-env-files-dt0c0vxh/k1c59ef40.txt:/tmp/f03-env-files-dt0c0vxh/kdd6d4c04.txt': No such file or directory\n"
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-7b4vbvf1'
+[harness] exit=2 stdout_len=0 stderr_len=202 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid value for '--k88f0db9f': '/tmp/f03-env-files-dt0c0vxh/k1c59ef40.txt:/tmp/f03-env-files-dt0c0vxh/kdd6d4c04.txt': No such file or directory\n"
+file='' left='/tmp/f03-env-files-dt0c0vxh/k1c59ef40.txt' right='/tmp/f03-env-files-dt0c0vxh/kdd6d4c04.txt'
+_____________ test_nonboolean_flag_value_env_exact_or_bool_tokens ______________
+
+    def test_nonboolean_flag_value_env_exact_or_bool_tokens():
+        greeting = _option_hi()
+        flag = f"--{_option_ident()}"
+        dest = _option_ident()
+        env_name = _option_env()
+        flag_val = _option_ident()
+        default_val = _option_ident()
+        unknown = unrelated_dispatch_token(flag_val, *_BOOL_ON, *_BOOL_OFF)
+    
+        def callback(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_enc(kwargs[dest])
+    
+        callback.__name__ = f"{_option_ident()}_{_option_ident()}"
+        leaf = _option_leaf(
+            callback,
+            option(
+                flag,
+                dest,
+                flag_value=flag_val,
+                default=default_val,
+                envvar=env_name,
+            ),
+        )
+    
+        exact = _option_run(leaf, [], env={env_name: flag_val})
+        true_tok = _option_run(leaf, [], env={env_name: "true"})
+        false_tok = _option_run(leaf, [], env={env_name: "false"})
+        unknown_run = _option_run(leaf, [], env={env_name: unknown})
+        empty = _option_run(leaf, [], env={env_name: ""})
+        print(
+            f"exact={exact.stdout_text!r} true={true_tok.stdout_text!r} "
+            f"false={false_tok.stdout_text!r} unk={unknown_run.stdout_text!r} "
+            f"empty={empty.stdout_text!r}",
+            flush=True,
+        )
+        assert_success_marker_present(exact, greeting)
+        assert_success_marker_present(true_tok, greeting)
+        assert_success_marker_present(false_tok, greeting)
+        assert_success_marker_present(unknown_run, greeting)
+        assert_success_marker_present(empty, greeting)
+        exact_enc = _enc_of(exact, greeting)
+        true_enc = _enc_of(true_tok, greeting)
+        false_enc = _enc_of(false_tok, greeting)
+        unknown_enc = _enc_of(unknown_run, greeting)
+        empty_enc = _enc_of(empty, greeting)
+        assert exact_enc == repr(flag_val)
+>       assert true_enc == repr(flag_val)
+E       assert "'true'" == "'k3c0cc137'"
+E         
+E         - 'k3c0cc137'
+E         + 'true'
+
+/tests/final/tests/F03_acceptance.py:1840: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-48xmx8m8'
+[harness] exit=0 stdout_len=56 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-q4fogh_a'
+[harness] exit=0 stdout_len=51 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-yzca_m9w'
+[harness] exit=0 stdout_len=52 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-9ntp_1ku'
+[harness] exit=0 stdout_len=61 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-ilcu5n7k'
+[harness] exit=0 stdout_len=56 stderr_len=0 exception=None
+exact="GREET:076029df43534b0ab131e186095fbce4:\nENC:'k3c0cc137'\n" true="GREET:076029df43534b0ab131e186095fbce4:\nENC:'true'\n" false="GREET:076029df43534b0ab131e186095fbce4:\nENC:'false'\n" unk="GREET:076029df43534b0ab131e186095fbce4:\nENC:'zxq-c5f15d9db2'\n" empty="GREET:076029df43534b0ab131e186095fbce4:\nENC:'k8052e837'\n"
+_______________ test_non_unary_env_splits_like_multivalue_option _______________
+
+    def test_non_unary_env_splits_like_multivalue_option():
+        greeting = _arg_hi()
+        pair_dest = _arg_ident()
+        unary_dest = _arg_ident()
+        var_dest = _arg_ident()
+        path_dest = _arg_ident()
+        env_pair = _env_name()
+        env_unary = _env_name()
+        env_var = _env_name()
+        env_path = _env_name()
+        left = _arg_ident()
+        right = _arg_ident()
+        blob = f"{left} {right}"
+        path_left = f"/tmp/{_arg_ident()}"
+        path_right = f"/var/{_arg_ident()}"
+        path_blob = f"{path_left}:{path_right}"
+    
+        def pair_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_bound(kwargs[pair_dest])
+    
+        pair_cb.__name__ = f"{_arg_ident()}_{_arg_ident()}"
+        pair = _arg_leaf(
+            pair_cb, argument(pair_dest, nargs=2, required=False, envvar=env_pair)
+        )
+    
+        def unary_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_bound(kwargs[unary_dest])
+    
+        unary_cb.__name__ = f"{_arg_ident()}_{_arg_ident()}"
+        unary = _arg_leaf(
+            unary_cb, argument(unary_dest, required=False, envvar=env_unary)
+        )
+    
+        def var_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_bound(kwargs[var_dest])
+    
+        var_cb.__name__ = f"{_arg_ident()}_{_arg_ident()}"
+        variadic = _arg_leaf(var_cb, argument(var_dest, nargs=-1, envvar=env_var))
+    
+        def path_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_bound(kwargs[path_dest])
+    
+        path_cb.__name__ = f"{_arg_ident()}_{_arg_ident()}"
+        paths = _arg_leaf(
+            path_cb,
+            argument(path_dest, nargs=-1, type=Path(), envvar=env_path),
+        )
+    
+        paired = _arg_run(pair, [], env={env_pair: blob})
+        whole = _arg_run(unary, [], env={env_unary: blob})
+        split_var = _arg_run(variadic, [], env={env_var: blob})
+        empty_var = _arg_run(variadic, [], env={env_var: ""})
+        path_run = _arg_run(paths, [], env={env_path: path_blob})
+        print(
+            f"pair={paired.stdout_text!r} whole={whole.stdout_text!r} "
+            f"var={split_var.stdout_text!r} empty={empty_var.stdout_text!r} "
+            f"path={path_run.stdout_text!r}",
+            flush=True,
+        )
+        assert_success_marker_present(paired, greeting)
+        assert _kind(paired) == "2"
+        assert _seq_member(paired, 0) == left
+        assert _seq_member(paired, 1) == right
+        assert_success_marker_present(whole, greeting)
+        assert _scalar(whole) == blob
+>       assert_success_marker_present(split_var, greeting)
+
+/tests/final/tests/F04_acceptance.py:859: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=2, stdout=b'', stderr=b"Usage: app [OPTIONS] [K44EC2053]...\nTry 'app --help' for help.\n\nErro...stemExit'>, SystemExit(2), <traceback object at 0x75a3a2d79180>), args=(), cwd='/tmp/harness-ws-e40zr0m3', warnings=())
+marker = 'GREET:accb7e06bb1948759a7c05fbbcd01775:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 2; stderr="Usage: app [OPTIONS] [K44EC2053]...\nTry 'app --help' for help.\n\nError: 'K44EC2053' takes exactly one value.\n"
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-w166i0tb'
+[harness] exit=0 stdout_len=72 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-vlm20zrb'
+[harness] exit=0 stdout_len=71 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-e40zr0m3'
+[harness] exit=2 stdout_len=0 stderr_len=108 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS] [K44EC2053]...\nTry 'app --help' for help.\n\nError: 'K44EC2053' takes exactly one value.\n"
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-pkbcr9i2'
+[harness] exit=0 stdout_len=44 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-hyhrk41b'
+[harness] exit=2 stdout_len=0 stderr_len=108 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS] [K0A27332B]...\nTry 'app --help' for help.\n\nError: 'K0A27332B' takes exactly one value.\n"
+pair='GREET:accb7e06bb1948759a7c05fbbcd01775:\nN:2\nV:0:k5c350187\nV:1:kc92b5101\n' whole='GREET:accb7e06bb1948759a7c05fbbcd01775:\nN:SCALAR\nV:k5c350187 kc92b5101\n' var='' empty='GREET:accb7e06bb1948759a7c05fbbcd01775:\nN:0\n' path=''
+_______________ test_boolean_value_type_tokens_case_insensitive ________________
+
+    def test_boolean_value_type_tokens_case_insensitive():
+        greeting = _type_hi()
+        flag = f"--{_type_ident()}"
+        dest = _type_ident()
+        default_on = True
+    
+        def callback(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_bool(kwargs[dest])
+    
+        callback.__name__ = f"{_type_ident()}_{_type_ident()}"
+        typed = _type_leaf(callback, option(flag, dest, type=BOOL))
+        inferred = _type_leaf(callback, option(flag, dest, default=default_on))
+        as_text = _type_leaf(callback, option(flag, dest, type=STRING))
+    
+        for token in _BOOL_ON:
+            result = _type_run(typed, [flag, token])
+            print(f"on {token!r} -> {result.stdout_text!r}", flush=True)
+>           assert_success_marker_present(result, greeting)
+
+/tests/final/tests/F05_acceptance.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=2, stdout=b'', stderr=b"Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Got unexpect...Exit(2), <traceback object at 0x75a3a36b3800>), args=('--k0ed293f9', '1'), cwd='/tmp/harness-ws-qq2n96ug', warnings=())
+marker = 'GREET:54d3a16f8460470e844fac5fb6ca5c5b:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 2; stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Got unexpected extra argument (1)\n"
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=['--k0ed293f9', '1'] standalone=True cwd='/tmp/harness-ws-qq2n96ug'
+[harness] exit=2 stdout_len=0 stderr_len=90 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Got unexpected extra argument (1)\n"
+on '1' -> ''
+________________ test_choice_must_be_unique_after_normalization ________________
+
+    def test_choice_must_be_unique_after_normalization():
+        greeting = _type_hi()
+        flag = f"--{_type_ident()}"
+        dest = _type_ident()
+        first = f"Ab{_type_ident()}"
+        second = f"Cd{_type_ident()}"
+        stem = f"Xy{_type_ident()}"
+        folded = stem.swapcase()
+        assert first.casefold() != second.casefold()
+        assert folded != stem
+        assert folded.casefold() == stem.casefold()
+    
+        def callback(**kwargs) -> None:
+            print(greeting, flush=True)
+            _emit_choice(kwargs[dest])
+    
+        callback.__name__ = f"{_type_ident()}_{_type_ident()}"
+        unique = _type_leaf(
+            callback,
+            option(flag, dest, type=Choice([first, second], case_sensitive=False)),
+        )
+        first_run = _type_run(unique, [flag, first])
+        second_run = _type_run(unique, [flag, second])
+        print(
+            f"unique_first={first_run.stdout_text!r} "
+            f"unique_second={second_run.stdout_text!r}",
+            flush=True,
+        )
+        assert_success_marker_present(first_run, greeting)
+        assert marker_occurs(_type_stdout(first_run), f"ORIG:{first}")
+        assert_success_marker_present(second_run, greeting)
+        assert marker_occurs(_type_stdout(second_run), f"ORIG:{second}")
+    
+        colliding = _type_leaf(
+            callback,
+            option(flag, dest, type=Choice([stem, folded], case_sensitive=False)),
+        )
+        for token in (stem, folded):
+            result = _type_run(colliding, [flag, token])
+            print(
+                f"colliding token={token!r} code={result.exit_code!r} "
+                f"out={result.stdout_text!r}",
+                flush=True,
+            )
+            assert_success_marker_present(result, greeting)
+            text = _type_stdout(result)
+>           assert marker_occurs(text, f"ORIG:{stem}"), (
+                "a token that collides after normalization must deliver the "
+                f"first registered original {stem!r}; stdout={text!r}"
+            )
+E           AssertionError: a token that collides after normalization must deliver the first registered original 'Xykc234285b'; stdout='GREET:438db9d70e894e4aa448f4afda92eca0:\nORIG:xYKC234285B\n'
+E           assert False
+E            +  where False = marker_occurs('GREET:438db9d70e894e4aa448f4afda92eca0:\nORIG:xYKC234285B\n', 'ORIG:Xykc234285b')
+
+/tests/final/tests/F05_acceptance.py:681: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=['--k4555a374', 'Abk8316a411'] standalone=True cwd='/tmp/harness-ws-l1m1o692'
+[harness] exit=0 stdout_len=57 stderr_len=0 exception=None
+[harness] invoke prog='app' args=['--k4555a374', 'Cdk86e36b47'] standalone=True cwd='/tmp/harness-ws-fao650zv'
+[harness] exit=0 stdout_len=57 stderr_len=0 exception=None
+unique_first='GREET:438db9d70e894e4aa448f4afda92eca0:\nORIG:Abk8316a411\n' unique_second='GREET:438db9d70e894e4aa448f4afda92eca0:\nORIG:Cdk86e36b47\n'
+[harness] invoke prog='app' args=['--k4555a374', 'Xykc234285b'] standalone=True cwd='/tmp/harness-ws-in8g049e'
+[harness] exit=0 stdout_len=57 stderr_len=0 exception=None
+colliding token='Xykc234285b' code=0 out='GREET:438db9d70e894e4aa448f4afda92eca0:\nORIG:Xykc234285b\n'
+[harness] invoke prog='app' args=['--k4555a374', 'xYKC234285B'] standalone=True cwd='/tmp/harness-ws-uz_84q4m'
+[harness] exit=0 stdout_len=57 stderr_len=0 exception=None
+colliding token='xYKC234285B' code=0 out='GREET:438db9d70e894e4aa448f4afda92eca0:\nORIG:xYKC234285B\n'
+______________ test_required_prompt_asks_on_omit_and_on_bare_flag ______________
+
+    def test_required_prompt_asks_on_omit_and_on_bare_flag():
+        greeting = _greeting()
+        flag, dest = _opt()
+        stdin_n = _runtime_int()
+        off = _int_leaf(
+            greeting, flag, dest, prompt=True, prompt_required=False, required=True
+        )
+        on = _int_leaf(greeting, flag, dest, prompt=True, required=True)
+    
+        omit_off = _dispatch(off, [], stdin=f"{stdin_n}\n")
+        bare_off = _dispatch(off, [flag], stdin=f"{stdin_n}\n")
+        omit_on = _dispatch(on, [], stdin=f"{stdin_n}\n")
+        print(
+            f"omit_off={omit_off.stdout_text!r} bare_off={bare_off.stdout_text!r} "
+            f"omit_on={omit_on.stdout_text!r}",
+            flush=True,
+        )
+>       _require_arith(omit_off, greeting, stdin_n)
+
+/tests/final/tests/F08_acceptance.py:370: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/final/tests/F08_acceptance.py:182: in _require_arith
+    assert_success_marker_present(result, greeting)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=2, stdout=b'', stderr=b"Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Missing opti...stemExit'>, SystemExit(2), <traceback object at 0x75a3a2c0a040>), args=(), cwd='/tmp/harness-ws-qjp37a12', warnings=())
+marker = 'GREET:3531c393f58f4540a0fd83dee17463da:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 2; stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Missing option '--k124a3553'.\n"
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-qjp37a12'
+[harness] exit=2 stdout_len=0 stderr_len=86 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Missing option '--k124a3553'.\n"
+[harness] invoke prog='app' args=['--k124a3553'] standalone=True cwd='/tmp/harness-ws-34j7i2iq'
+[harness] exit=0 stdout_len=58 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-e4_ju1on'
+[harness] exit=0 stdout_len=58 stderr_len=0 exception=None
+omit_off='' bare_off='K124a3553: GREET:3531c393f58f4540a0fd83dee17463da:\n\nT:211\n' omit_on='K124a3553: GREET:3531c393f58f4540a0fd83dee17463da:\n\nT:211\n'
+_________________ test_file_type_env_list_splits_on_os_pathsep _________________
+
+    def test_file_type_env_list_splits_on_os_pathsep():
+        greeting = _greeting()
+        flag, dest = _opt()
+        env_name = f"E{_word().upper()}"
+        left_name = f"{_word()}.txt"
+        right_name = f"{_word()}.txt"
+        left = _payload()
+        right = _payload()
+        salt = _salt()
+        left_mark = _payload_mark(left, salt)
+        right_mark = _payload_mark(right, salt)
+        blob = f"{left_name}{os.pathsep}{right_name}"
+    
+        def file_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            values = kwargs[dest]
+            print(f"N:{len(values)}", flush=True)
+            marks = [_payload_mark(item.read(), salt) for item in values]
+            print(f"MARKS:{','.join(marks)}", flush=True)
+    
+        def string_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            values = kwargs[dest]
+            print(f"N:{len(values)}", flush=True)
+            print(f"BLOB:{values[0] if values else ''}", flush=True)
+    
+        file_cb.__name__ = f"{_word()}_{_word()}"
+        string_cb.__name__ = f"{_word()}_{_word()}"
+        file_cli = _cmd(
+            file_cb, option(flag, dest, multiple=True, type=File(), envvar=env_name)
+        )
+        string_cli = _cmd(
+            string_cb,
+            option(flag, dest, multiple=True, type=STRING, envvar=env_name),
+        )
+    
+        with workspace() as ws:
+            ws.write(left_name, left)
+            ws.write(right_name, right)
+            files = _invoke(ws, file_cli, [], env={env_name: blob})
+            strings = _invoke(ws, string_cli, [], env={env_name: blob})
+    
+        print(f"blob={blob!r} left={left_mark} right={right_mark}", flush=True)
+>       require_success_marker_present(files, greeting)
+
+/tests/final/tests/F09_acceptance.py:1232: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=2, stdout=b'', stderr=b"Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid valu...stemExit'>, SystemExit(2), <traceback object at 0x75a3a36b1f40>), args=(), cwd='/tmp/harness-ws-cahhrurh', warnings=())
+marker = 'GREET:2801550672384dcc95d77337f041b2b7:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 2; stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid value for '--k9b3c3ffe': 'k879b16b5.txt:kb21a3d03.txt': No such file or directory\n"
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-cahhrurh'
+[harness] exit=2 stdout_len=0 stderr_len=146 exception=SystemExit
+[harness] stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid value for '--k9b3c3ffe': 'k879b16b5.txt:kb21a3d03.txt': No such file or directory\n"
+exit=2 stdout='' stderr="Usage: app [OPTIONS]\nTry 'app --help' for help.\n\nError: Invalid value for '--k9b3c3ffe': 'k879b16b5.txt:kb21a3d03.txt': No such file or directory\n"
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-cahhrurh'
+[harness] exit=0 stdout_len=77 stderr_len=0 exception=None
+exit=0 stdout='GREET:2801550672384dcc95d77337f041b2b7:\nN:1\nBLOB:k879b16b5.txt:kb21a3d03.txt\n' stderr=''
+blob='k879b16b5.txt:kb21a3d03.txt' left=K:207480 right=K:203560
+_________________ test_path_type_env_list_splits_on_os_pathsep _________________
+
+    def test_path_type_env_list_splits_on_os_pathsep():
+        greeting = _greeting()
+        flag, dest = _opt()
+        env_name = f"E{_word().upper()}"
+        left_name = f"{_word()}.txt"
+        right_name = f"{_word()}.txt"
+        left = _payload()
+        right = _payload()
+        salt = _salt()
+        left_mark = _payload_mark(left, salt)
+        right_mark = _payload_mark(right, salt)
+        blob = f"{left_name}{os.pathsep}{right_name}"
+    
+        def path_cb(**kwargs) -> None:
+            print(greeting, flush=True)
+            values = kwargs[dest]
+            print(f"N:{len(values)}", flush=True)
+            for index, value in enumerate(values):
+                print(f"P{index}:{os.fspath(value)}", flush=True)
+                print(f"OPEN{index}:{is_readable_file_object(value)}", flush=True)
+                with open(os.fspath(value), encoding="utf-8") as independent:
+                    print(
+                        f"DISK{index}:{_payload_mark(independent.read(), salt)}",
+                        flush=True,
+                    )
+    
+        path_cb.__name__ = f"{_word()}_{_word()}"
+        path_cli = _cmd(
+            path_cb, option(flag, dest, multiple=True, type=Path(), envvar=env_name)
+        )
+    
+        with workspace() as ws:
+            ws.write(left_name, left)
+            ws.write(right_name, right)
+            paths = _invoke(ws, path_cli, [], env={env_name: blob})
+    
+        print(f"blob={blob!r} left={left_mark} right={right_mark}", flush=True)
+>       require_success_marker_present(paths, greeting)
+
+/tests/final/tests/F09_acceptance.py:1279: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = InvokeResult(exit_code=1, stdout=b'GREET:7804c1d395794670898c7887cfd1930a:\nN:1\nP0:k5b1eb0bb.txt:kab8be3ec.txt\nOPEN0... such file or directory'), <traceback object at 0x75a3a2f50d00>), args=(), cwd='/tmp/harness-ws-5bqccc90', warnings=())
+marker = 'GREET:7804c1d395794670898c7887cfd1930a:'
+
+    def require_success_marker_present(result: Any, marker: str) -> None:
+        """Standalone success: status 0, *marker* appears at least once on stdout."""
+        if not marker:
+            raise ValueError("marker must be a non-empty string")
+        code, stdout, stderr = _status_and_streams(result)
+>       assert code == 0, (
+               ^^^^^^^^^
+            f"expected success exit 0, got {code}; stderr={stderr!r}"
+        )
+E       AssertionError: expected success exit 0, got 1; stderr=''
+
+/tests/final/tests/_helpers.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-5bqccc90'
+[harness] exit=1 stdout_len=87 stderr_len=0 exception=FileNotFoundError
+exit=1 stdout='GREET:7804c1d395794670898c7887cfd1930a:\nN:1\nP0:k5b1eb0bb.txt:kab8be3ec.txt\nOPEN0:False\n' stderr=''
+blob='k5b1eb0bb.txt:kab8be3ec.txt' left=K:263962 right=K:208823
+____ test_chaining_current_subcommand_name_is_neither_one_child_nor_absent _____
+
+    def test_chaining_current_subcommand_name_is_neither_one_child_nor_absent():
+        a_hi = _greeting()
+        a2_hi = _greeting()
+        a_name = f"c-{_word()}"
+        a2_name = f"c-{_word()}"
+        assert a_name != a2_name
+    
+        def _make(*, chain: bool, invoke_without_command: bool = False):
+            names: list[Any] = []
+    
+            @_name_callback
+            def root(ctx, **kwargs: Any) -> None:
+                names.append(ctx.invoked_subcommand)
+    
+            cli = _grp(
+                root,
+                inject=pass_context,
+                chain=chain,
+                invoke_without_command=invoke_without_command,
+            )
+            cli.add_command(_leaf(a_hi, name=a_name))
+            cli.add_command(_leaf(a2_hi, name=a2_name))
+            return cli, names
+    
+        nc_cli, nc_box = _make(chain=False)
+        nc_a = _dispatch(nc_cli, [a_name])
+        nc_a2 = _dispatch(nc_cli, [a2_name])
+        nc_name = _recorded_name(nc_box)
+        if len(nc_box) < 2:
+            raise RuntimeError(
+                f"non-chain group did not record both names; box={nc_box!r}"
+            )
+        nc_name_2 = nc_box[1]
+        print(
+            f"nonchain a={nc_name!r} a2={nc_name_2!r} "
+            f"stdout_a={nc_a.stdout_text!r}",
+            flush=True,
+        )
+        require_success_marker_present(nc_a, a_hi)
+        require_success_marker_present(nc_a2, a2_hi)
+        assert nc_name == a_name, (
+            f"non-chain current name is not the child; got={nc_name!r} "
+            f"child={a_name!r}"
+        )
+        assert nc_name_2 == a2_name, (
+            f"non-chain current name did not follow the child; "
+            f"got={nc_name_2!r} child={a2_name!r}"
+        )
+        assert nc_name != nc_name_2
+    
+        ch_cli, ch_box = _make(chain=True)
+        ch_a = _dispatch(ch_cli, [a_name])
+        ch_name = _recorded_name(ch_box)
+        print(
+            f"chain-named name={ch_name!r} stdout={ch_a.stdout_text!r}",
+            flush=True,
+        )
+        require_success_marker_present(ch_a, a_hi)
+        assert ch_name != a_name, (
+            f"chain-mode current name is the child name {a_name!r}; "
+            f"got={ch_name!r}"
+        )
+    
+        empty_cli, empty_box = _make(chain=True, invoke_without_command=True)
+        empty = _dispatch(empty_cli, [])
+        empty_name = _recorded_name(empty_box)
+        print(
+            f"chain-empty name={empty_name!r} stdout={empty.stdout_text!r}",
+            flush=True,
+        )
+        assert empty.exit_code == 0, (
+            f"empty chain expected exit 0, got {empty.exit_code}; "
+            f"stderr={empty.stderr_text!r}"
+        )
+        assert a_hi not in _stdout(empty)
+        assert empty_name != a_name, (
+            f"empty-chain current name is the child name {a_name!r}; "
+            f"got={empty_name!r}"
+        )
+>       assert ch_name != empty_name, (
+            "chain-named current name is not distinguishable from no-subcommand; "
+            f"named={ch_name!r} empty={empty_name!r}"
+        )
+E       AssertionError: chain-named current name is not distinguishable from no-subcommand; named=<chained subcommands> empty=<chained subcommands>
+E       assert <chained subcommands> != <chained subcommands>
+
+/tests/final/tests/F10_acceptance.py:759: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=['c-k43885355'] standalone=True cwd='/tmp/harness-ws-g7syv0ed'
+[harness] exit=0 stdout_len=40 stderr_len=0 exception=None
+[harness] invoke prog='app' args=['c-k0801cab8'] standalone=True cwd='/tmp/harness-ws-rn69_ppz'
+[harness] exit=0 stdout_len=40 stderr_len=0 exception=None
+nonchain a='c-k43885355' a2='c-k0801cab8' stdout_a='GREET:56d5dd95d7d2463588377ce9eca60cb8:\n'
+[harness] invoke prog='app' args=['c-k43885355'] standalone=True cwd='/tmp/harness-ws-d9yoqdwx'
+[harness] exit=0 stdout_len=40 stderr_len=0 exception=None
+chain-named name=<chained subcommands> stdout='GREET:56d5dd95d7d2463588377ce9eca60cb8:\n'
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-r1ghmx5q'
+[harness] exit=0 stdout_len=0 stderr_len=0 exception=None
+chain-empty name=<chained subcommands> stdout=''
+_________________ test_pause_does_nothing_when_not_interactive _________________
+
+    def test_pause_does_nothing_when_not_interactive():
+        greeting = _greeting()
+    
+        def paused() -> None:
+            print(greeting, flush=True)
+            pause()
+    
+        def untouched() -> None:
+            print(greeting, flush=True)
+    
+        paused_result = require_completed_within(
+            lambda: _dispatch(_cmd(paused), []),
+            2.0,
+        )
+        baseline = _dispatch(_cmd(untouched), [])
+        print(
+            f"pause-off={paused_result.stdout_text!r} baseline={baseline.stdout_text!r}",
+            flush=True,
+        )
+        require_success_marker_present(paused_result, greeting)
+        require_success_marker_present(baseline, greeting)
+>       assert _remainder(_stdout(paused_result), greeting) == _remainder(
+            _stdout(baseline), greeting
+        ), (
+            "non-interactive pause was not a no-op; "
+            f"paused={paused_result.stdout_text!r} baseline={baseline.stdout_text!r}"
+        )
+E       AssertionError: non-interactive pause was not a no-op; paused='GREET:09b15e74deac42bcbb12090493cfc4c8:\nPress any key to continue...\n' baseline='GREET:09b15e74deac42bcbb12090493cfc4c8:\n'
+E       assert '\nPress any ...continue...\n' == '\n'
+E         
+E         Strings contain only whitespace, escaping them using repr()
+E         - '\n'
+E         + '\nPress any key to continue...\n'
+
+/tests/final/tests/F11_acceptance.py:1473: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-d73n2qmz'
+[harness] exit=0 stdout_len=69 stderr_len=0 exception=None
+[harness] invoke prog='app' args=[] standalone=True cwd='/tmp/harness-ws-jll7xve0'
+[harness] exit=0 stdout_len=40 stderr_len=0 exception=None
+pause-off='GREET:09b15e74deac42bcbb12090493cfc4c8:\nPress any key to continue...\n' baseline='GREET:09b15e74deac42bcbb12090493cfc4c8:\n'
+_____ test_parameter_completer_sees_context_parameter_and_incomplete_token _____
+
+    def test_parameter_completer_sees_context_parameter_and_incomplete_token():
+        greeting = _greeting()
+        exe = _exe()
+        mark = f"MK{uuid.uuid4().hex}"
+        ctx_flag = f"--n{_word()}"
+        ctx_dest = _word()
+        flag_a = f"--a{_word()}"
+        flag_b = f"--b{_word()}"
+        dest_a = _word()
+        dest_b = _word()
+        meta_a = f"MA{uuid.uuid4().hex}"
+        meta_b = f"MB{uuid.uuid4().hex}"
+        token_x = f"tx{_word()}"
+        token_y = f"ty{_word()}"
+        count_left = 14 + uuid.uuid4().int % 40
+        count_right = count_left + 11
+        transformed_left = str(count_left * 3 + 7)
+        transformed_right = str(count_right * 3 + 7)
+        assert mark not in token_x and mark not in token_y
+        assert mark not in str(count_left) and mark not in transformed_left
+    
+        def completer(ctx, param, incomplete):
+            meta = param.metavar or "nometa"
+            raw = ctx.params.get(ctx_dest)
+            transformed = ""
+            if isinstance(raw, int):
+                transformed = str(raw * 3 + 7)
+            token_part = incomplete if incomplete else "emptytok"
+            return [f"{mark}:{meta}:{transformed}:{token_part}"]
+    
+        cli = _leaf(
+            greeting,
+            option(ctx_flag, ctx_dest, type=INT),
+            option(flag_a, dest_a, metavar=meta_a, shell_complete=completer),
+            option(flag_b, dest_b, metavar=meta_b, shell_complete=completer),
+        )
+        at_a_left = _complete(
+            cli,
+            exe,
+            "bash",
+            completed=(ctx_flag, str(count_left), flag_a),
+            incomplete=token_x,
+        )
+        at_a_right_ctx = _complete(
+            cli,
+            exe,
+            "bash",
+            completed=(ctx_flag, str(count_right), flag_a),
+            incomplete=token_x,
+        )
+        at_a_token = _complete(
+            cli,
+            exe,
+            "bash",
+            completed=(ctx_flag, str(count_left), flag_a),
+            incomplete=token_y,
+        )
+        at_a_empty = _complete(
+            cli,
+            exe,
+            "bash",
+            completed=(ctx_flag, str(count_left), flag_a),
+            incomplete="",
+        )
+        at_b = _complete(
+            cli,
+            exe,
+            "bash",
+            completed=(ctx_flag, str(count_left), flag_b),
+            incomplete=token_x,
+        )
+        print(
+            f"a_left={at_a_left.stdout_text!r} a_ctx={at_a_right_ctx.stdout_text!r} "
+            f"a_tok={at_a_token.stdout_text!r} a_empty={at_a_empty.stdout_text!r} "
+            f"b={at_b.stdout_text!r}",
+            flush=True,
+        )
+        for result in (at_a_left, at_a_right_ctx, at_a_token, at_a_empty, at_b):
+            assert_callback_skipped(result, greeting)
+            _require_name(result.stdout_text, mark, present=True)
+        _require_name(at_a_left.stdout_text, meta_a, present=True)
+>       _require_name(at_a_left.stdout_text, transformed_left, present=True)
+
+/tests/final/tests/F12_acceptance.py:1248: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+stream = 'MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::txk2272fe57\n'
+name = '73'
+
+    def _require_name(stream: str, name: str, *, present: bool) -> None:
+        if present:
+>           assert name in stream, (
+                f"expected {name!r} in suggestion stream; stream={stream!r}"
+            )
+E           AssertionError: expected '73' in suggestion stream; stream='MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::txk2272fe57\n'
+E           assert '73' in 'MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::txk2272fe57\n'
+
+/tests/final/tests/F12_acceptance.py:158: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[harness] invoke prog='kc285e0a5-k7810b5d4' args=[] standalone=True cwd='/tmp/harness-ws-8488_hz6'
+[harness] exit=0 stdout_len=83 stderr_len=0 exception=None
+[harness] invoke prog='kc285e0a5-k7810b5d4' args=[] standalone=True cwd='/tmp/harness-ws-az50h3wp'
+[harness] exit=0 stdout_len=83 stderr_len=0 exception=None
+[harness] invoke prog='kc285e0a5-k7810b5d4' args=[] standalone=True cwd='/tmp/harness-ws-ekpquhdv'
+[harness] exit=0 stdout_len=83 stderr_len=0 exception=None
+[harness] invoke prog='kc285e0a5-k7810b5d4' args=[] standalone=True cwd='/tmp/harness-ws-cmx988ef'
+[harness] exit=0 stdout_len=80 stderr_len=0 exception=None
+[harness] invoke prog='kc285e0a5-k7810b5d4' args=[] standalone=True cwd='/tmp/harness-ws-2hajzhvc'
+[harness] exit=0 stdout_len=83 stderr_len=0 exception=None
+a_left='MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::txk2272fe57\n' a_ctx='MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::txk2272fe57\n' a_tok='MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::tyk845686b6\n' a_empty='MKae55724726d94289857b4b1c3b2bcea1:MA990798fe6860485abc0cc68e2561f844::emptytok\n' b='MKae55724726d94289857b4b1c3b2bcea1:MB1f179f2e1be742759238ef43295969f1::txk2272fe57\n'
+=========================== short test summary info ============================
+FAILED ../tests/final/tests/F03_acceptance.py::test_on_off_pair_tokens - Asse...
+FAILED ../tests/final/tests/F03_acceptance.py::test_repeatable_and_multivalue_env_splits_on_whitespace
+FAILED ../tests/final/tests/F03_acceptance.py::test_path_type_env_splits_on_os_pathsep
+FAILED ../tests/final/tests/F03_acceptance.py::test_file_type_env_splits_on_os_pathsep
+FAILED ../tests/final/tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens
+FAILED ../tests/final/tests/F04_acceptance.py::test_non_unary_env_splits_like_multivalue_option
+FAILED ../tests/final/tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive
+FAILED ../tests/final/tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization
+FAILED ../tests/final/tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag
+FAILED ../tests/final/tests/F09_acceptance.py::test_file_type_env_list_splits_on_os_pathsep
+FAILED ../tests/final/tests/F09_acceptance.py::test_path_type_env_list_splits_on_os_pathsep
+FAILED ../tests/final/tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent
+FAILED ../tests/final/tests/F11_acceptance.py::test_pause_does_nothing_when_not_interactive
+FAILED ../tests/final/tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token
+======================== 14 failed, 462 passed in 8.52s ========================
+CODING_BENCH_COLLECTION_AUDIT={"collected": ["tests/F01_acceptance.py::test_underscore_name_invoked_with_dash", "tests/F01_acceptance.py::test_function_name_lowercased_before_dash_mapping", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_command]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_cmd]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_group]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_grp]", "tests/F01_acceptance.py::test_explicit_name_overrides_mapped_name", "tests/F01_acceptance.py::test_valid_args_run_callback_once_exit_zero", "tests/F01_acceptance.py::test_greeting_absent_when_callback_does_not_run", "tests/F01_acceptance.py::test_parameterless_command_runs_on_empty_args", "tests/F01_acceptance.py::test_inferred_destination_receives_converted_value", "tests/F01_acceptance.py::test_declared_destination_receives_converted_value", "tests/F01_acceptance.py::test_script_program_invocation_runs_callback", "tests/F01_acceptance.py::test_deprecated_command_still_runs_and_exits_zero", "tests/F01_acceptance.py::test_deprecation_warning_distinct_from_greeting_and_usage_failure", "tests/F01_acceptance.py::test_custom_deprecation_note_appears_in_warning", "tests/F01_acceptance.py::test_help_marks_deprecated_unlike_nondeprecated_twin", "tests/F01_acceptance.py::test_standalone_success_exits_zero_and_discards_return_value", "tests/F01_acceptance.py::test_non_standalone_success_returns_callback_value", "tests/F01_acceptance.py::test_standalone_usage_error_exits_class_two", "tests/F01_acceptance.py::test_non_standalone_failure_propagates_to_caller", "tests/F01_acceptance.py::test_unknown_option_does_not_run_callback", "tests/F01_acceptance.py::test_missing_required_parameter_does_not_run_callback", "tests/F01_acceptance.py::test_conversion_failure_does_not_run_callback", "tests/F01_acceptance.py::test_leftover_tokens_fail_unless_extra_arguments_allowed", "tests/F01_acceptance.py::test_ascii_environment_encoding_does_not_abort", "tests/F01_acceptance.py::test_invocation_fails_when_package_not_importable", "tests/F02_acceptance.py::test_help_prints_page_without_running_callback_exits_zero", "tests/F02_acceptance.py::test_help_eager_exits_without_required_params", "tests/F02_acceptance.py::test_help_page_contains_description_and_option_help", "tests/F02_acceptance.py::test_group_help_does_not_run_group_callback", "tests/F02_acceptance.py::test_docstring_is_description_unless_explicit_help", "tests/F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted", "tests/F02_acceptance.py::test_argument_help_appears_in_positional_arguments_section", "tests/F02_acceptance.py::test_subcommand_short_help_is_first_sentence", "tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line", "tests/F02_acceptance.py::test_explicit_short_help_overrides_first_sentence", "tests/F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end", "tests/F02_acceptance.py::test_usage_brackets_optional_not_required_argument", "tests/F02_acceptance.py::test_variadic_argument_marked_with_trailing_ellipsis", "tests/F02_acceptance.py::test_author_options_placeholder_appears_on_usage", "tests/F02_acceptance.py::test_invoke_without_command_brackets_leading_command_token", "tests/F02_acceptance.py::test_chaining_group_usage_marks_repeatable_command_unit", "tests/F02_acceptance.py::test_argument_default_metavar_is_name_uppercased", "tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name", "tests/F02_acceptance.py::test_flag_and_count_options_have_no_metavar", "tests/F02_acceptance.py::test_choice_type_supplies_own_metavar_placeholder", "tests/F02_acceptance.py::test_author_metavar_override_appears", "tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80", "tests/F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks", "tests/F02_acceptance.py::test_backspace_paragraph_keeps_breaks_and_strips_marker", "tests/F02_acceptance.py::test_show_default_per_parameter_and_via_context", "tests/F02_acceptance.py::test_custom_default_description_replaces_raw_default", "tests/F02_acceptance.py::test_off_boolean_flag_default_stays_hidden", "tests/F02_acceptance.py::test_show_environment_variable_name_appears", "tests/F02_acceptance.py::test_hidden_option_omitted_from_help_but_accepted", "tests/F02_acceptance.py::test_hidden_command_omitted_from_group_help_but_invocable", "tests/F02_acceptance.py::test_hidden_group_omitted_from_parent_help_but_invocable", "tests/F02_acceptance.py::test_context_replaces_help_option_names", "tests/F02_acceptance.py::test_author_option_wins_only_when_every_help_name_reused", "tests/F02_acceptance.py::test_parameter_named_help_does_not_disable_automatic_help", "tests/F02_acceptance.py::test_extra_help_option_prints_help_and_exits", "tests/F02_acceptance.py::test_disabled_automatic_help_makes_help_unknown_unless_declared", "tests/F02_acceptance.py::test_version_option_eager_exits_without_required_params", "tests/F02_acceptance.py::test_version_detects_installed_distribution", "tests/F02_acceptance.py::test_version_resolves_import_name_to_distribution", "tests/F02_acceptance.py::test_custom_version_prints_callback_string_not_template", "tests/F02_acceptance.py::test_first_eager_flag_on_command_line_wins", "tests/F02_acceptance.py::test_missing_subcommand_help_is_usage_error_not_success", "tests/F02_acceptance.py::test_leaf_no_args_is_help_is_usage_error", "tests/F02_acceptance.py::test_invoke_without_command_skips_no_args_help", "tests/F03_acceptance.py::test_option_declared_on_command_or_group", "tests/F03_acceptance.py::test_omitted_optional_without_default_is_absent", "tests/F03_acceptance.py::test_declared_default_used_when_omitted", "tests/F03_acceptance.py::test_type_inferred_from_integer_default", "tests/F03_acceptance.py::test_callable_default_runs_only_when_no_earlier_source", "tests/F03_acceptance.py::test_short_long_and_alias_set_same_destination", "tests/F03_acceptance.py::test_long_option_equals_and_space_forms", "tests/F03_acceptance.py::test_short_value_next_token_or_attached", "tests/F03_acceptance.py::test_stacked_shorts_equivalent_to_separate_flags", "tests/F03_acceptance.py::test_stacked_last_flag_takes_attached_or_next_token", "tests/F03_acceptance.py::test_multichar_short_is_stacked_not_named_dbg", "tests/F03_acceptance.py::test_destination_inferred_from_long_then_short", "tests/F03_acceptance.py::test_identifier_name_wins_inference_over_dashed_long", "tests/F03_acceptance.py::test_double_dash_ends_option_parsing", "tests/F03_acceptance.py::test_leaf_mixes_option_after_argument", "tests/F03_acceptance.py::test_leaf_mixing_can_be_disabled", "tests/F03_acceptance.py::test_group_options_stop_at_subcommand_by_default", "tests/F03_acceptance.py::test_group_mixing_can_be_enabled", "tests/F03_acceptance.py::test_child_option_after_subcommand_is_parsed", "tests/F03_acceptance.py::test_help_before_subcommand_is_help_for_parent", "tests/F03_acceptance.py::test_omitted_required_option_is_usage_error_naming_option", "tests/F03_acceptance.py::test_required_option_satisfied_from_named_env", "tests/F03_acceptance.py::test_boolean_flag_omitted_false_unless_true_default", "tests/F03_acceptance.py::test_on_off_pair_tokens", "tests/F03_acceptance.py::test_slash_and_plus_prefixes", "tests/F03_acceptance.py::test_feature_switch_explicit_default_beats_auto_false", "tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied", "tests/F03_acceptance.py::test_counting_option_zero_when_omitted_stacked_shorts_count", "tests/F03_acceptance.py::test_repeatable_option_collects_sequence", "tests/F03_acceptance.py::test_repeatable_omitted_no_default_is_empty_tuple", "tests/F03_acceptance.py::test_repeatable_omitted_default_delivered_as_tuple", "tests/F03_acceptance.py::test_one_element_sequence_is_the_way_to_default_one_string", "tests/F03_acceptance.py::test_multi_value_fixed_arity_not_consume_rest", "tests/F03_acceptance.py::test_tuple_type_sets_arity_and_converts_positions", "tests/F03_acceptance.py::test_optional_value_flag_alone_token_or_default", "tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error", "tests/F03_acceptance.py::test_named_env_fills_when_flag_omitted", "tests/F03_acceptance.py::test_empty_env_is_unset_next_source_wins", "tests/F03_acceptance.py::test_option_env_list_first_set_wins", "tests/F03_acceptance.py::test_option_env_exact_match_not_whitespace_trimmed", "tests/F03_acceptance.py::test_repeatable_and_multivalue_env_splits_on_whitespace", "tests/F03_acceptance.py::test_path_type_env_splits_on_os_pathsep", "tests/F03_acceptance.py::test_file_type_env_splits_on_os_pathsep", "tests/F03_acceptance.py::test_env_delivers_converted_integer", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[true]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[1]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[yes]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[on]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[t]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[y]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[false]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[0]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[no]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[off]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[f]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[n]", "tests/F03_acceptance.py::test_unknown_boolean_env_is_usage_error_not_silent_off", "tests/F03_acceptance.py::test_whitespace_only_boolean_env_deactivates_empty_unset", "tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens", "tests/F03_acceptance.py::test_paired_option_uses_only_attached_option_env", "tests/F03_acceptance.py::test_command_line_beats_environment", "tests/F03_acceptance.py::test_command_line_value_must_never_prompt", "tests/F03_acceptance.py::test_fill_order_command_line_env_map_declared", "tests/F03_acceptance.py::test_feature_switch_more_explicit_source_wins", "tests/F03_acceptance.py::test_parameter_callback_replaces_converted_value", "tests/F03_acceptance.py::test_parameter_callback_may_refuse", "tests/F03_acceptance.py::test_parameter_callback_runs_for_env_and_map_sources", "tests/F03_acceptance.py::test_parameter_callback_runs_for_prompt_source", "tests/F03_acceptance.py::test_eager_flag_finishes_when_required_non_eager_missing", "tests/F03_acceptance.py::test_missing_parameter_still_runs_its_callback", "tests/F03_acceptance.py::test_repeatable_parameter_callback_fires_once_with_all_values", "tests/F03_acceptance.py::test_hidden_from_callback_still_parsed", "tests/F03_acceptance.py::test_deprecated_option_warns_only_when_user_supplied", "tests/F03_acceptance.py::test_deprecated_option_cannot_be_required_or_prompted", "tests/F03_acceptance.py::test_unknown_option_is_usage_error_without_ignore", "tests/F03_acceptance.py::test_ignore_unknown_leaves_long_option_intact_as_extra", "tests/F03_acceptance.py::test_ignore_unknown_may_split_short_stack", "tests/F03_acceptance.py::test_missing_value_for_required_value_option_is_usage_error", "tests/F04_acceptance.py::test_minimal_argument_is_required_positional_text", "tests/F04_acceptance.py::test_argument_declared_on_a_group_is_delivered_to_the_group_callback", "tests/F04_acceptance.py::test_argument_name_is_not_an_option_flag", "tests/F04_acceptance.py::test_optional_or_defaulted_argument_may_be_omitted", "tests/F04_acceptance.py::test_two_unary_arguments_each_deliver_a_scalar", "tests/F04_acceptance.py::test_type_inferred_from_integer_default", "tests/F04_acceptance.py::test_fixed_arity_delivers_sequence_not_joined_string", "tests/F04_acceptance.py::test_unary_then_variadic_delivers_source_and_rest", "tests/F04_acceptance.py::test_omitted_variadic_empty_unless_required", "tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest", "tests/F04_acceptance.py::test_double_dash_protects_option_shaped_tokens", "tests/F04_acceptance.py::test_option_shaped_token_without_separator_is_unknown", "tests/F04_acceptance.py::test_named_env_fills_when_position_omitted", "tests/F04_acceptance.py::test_empty_or_absent_env_does_not_supply", "tests/F04_acceptance.py::test_env_name_list_first_set_wins", "tests/F04_acceptance.py::test_auto_prefix_does_not_fill_argument", "tests/F04_acceptance.py::test_non_unary_env_splits_like_multivalue_option", "tests/F04_acceptance.py::test_command_line_beats_argument_environment", "tests/F04_acceptance.py::test_ignore_unknown_consumes_option_shaped_as_argument", "tests/F04_acceptance.py::test_ignore_unknown_leftover_option_shaped_beyond_arity_is_usage_error", "tests/F04_acceptance.py::test_missing_required_argument_is_usage_error_identifying_argument", "tests/F04_acceptance.py::test_extra_tokens_beyond_arity_are_usage_error_unless_allowed_or_variadic", "tests/F04_acceptance.py::test_deprecated_argument_warns_only_when_user_supplied", "tests/F04_acceptance.py::test_deprecated_argument_cannot_be_required", "tests/F05_acceptance.py::test_string_is_default_unicode_text", "tests/F05_acceptance.py::test_integer_type_or_integer_default_delivers_int", "tests/F05_acceptance.py::test_float_type_or_float_default_delivers_float", "tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive", "tests/F05_acceptance.py::test_boolean_used_automatically_for_flags", "tests/F05_acceptance.py::test_argument_uses_attached_integer_type", "tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred", "tests/F05_acceptance.py::test_default_datetime_formats_parse_naive_values", "tests/F05_acceptance.py::test_datetime_rejects_non_matching_token", "tests/F05_acceptance.py::test_author_replaces_datetime_format_list", "tests/F05_acceptance.py::test_datetime_formats_tried_in_order_first_success_wins", "tests/F05_acceptance.py::test_tuple_converts_each_position_with_inner_type", "tests/F05_acceptance.py::test_passthrough_does_not_convert_token", "tests/F05_acceptance.py::test_choice_returns_original_list_entry_case_insensitive", "tests/F05_acceptance.py::test_choice_returns_original_enum_member_case_insensitive", "tests/F05_acceptance.py::test_unknown_choice_is_usage_error", "tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization", "tests/F05_acceptance.py::test_repeatable_choice_default_is_sequence_of_originals", "tests/F05_acceptance.py::test_help_lists_choice_values", "tests/F05_acceptance.py::test_integer_range_closed_bounds_without_clamp", "tests/F05_acceptance.py::test_integer_range_clamp_replaces_with_nearest_included_bound", "tests/F05_acceptance.py::test_integer_range_open_or_omitted_bounds", "tests/F05_acceptance.py::test_integer_open_bound_clamp_uses_nearest_included", "tests/F05_acceptance.py::test_float_range_same_rules_and_closed_clamp", "tests/F05_acceptance.py::test_float_range_refuses_clamp_when_bound_open", "tests/F05_acceptance.py::test_custom_type_converts_string_and_passes_through_ready_value", "tests/F05_acceptance.py::test_conversion_function_is_accepted_as_type", "tests/F05_acceptance.py::test_conversion_works_at_prompt_without_parameter", "tests/F05_acceptance.py::test_conversion_failure_is_usage_error_identifying_parameter", "tests/F06_acceptance.py::test_named_subcommand_runs_matching_callback_only", "tests/F06_acceptance.py::test_group_option_does_not_leak_into_child", "tests/F06_acceptance.py::test_named_child_help_or_version_still_runs_group", "tests/F06_acceptance.py::test_group_level_help_or_version_skips_group_and_does_not_group_run", "tests/F06_acceptance.py::test_help_before_subcommand_is_group_help", "tests/F06_acceptance.py::test_nested_groups_run_outside_in", "tests/F06_acceptance.py::test_grandchild_is_unreachable_without_middle_group", "tests/F06_acceptance.py::test_nested_group_empty_args_is_that_groups_help_page", "tests/F06_acceptance.py::test_nested_option_ownership_at_every_layer", "tests/F06_acceptance.py::test_empty_group_args_use_usage_help_page", "tests/F06_acceptance.py::test_unknown_subcommand_is_usage_error_without_help_page", "tests/F06_acceptance.py::test_group_options_or_arguments_only_is_usage_error_without_help_page", "tests/F06_acceptance.py::test_group_argument_then_child_binds_and_dispatches", "tests/F06_acceptance.py::test_invoke_without_command_runs_group_on_empty_and_before_child", "tests/F06_acceptance.py::test_context_distinguishes_group_only_from_group_then_child", "tests/F06_acceptance.py::test_group_can_disable_no_args_is_help", "tests/F06_acceptance.py::test_leaf_default_empty_runs_leaf_not_help", "tests/F06_acceptance.py::test_group_command_helper_attaches_immediately", "tests/F06_acceptance.py::test_late_registration_invokes_like_immediate", "tests/F06_acceptance.py::test_late_registration_from_another_module", "tests/F06_acceptance.py::test_explicit_name_independent_of_function_name", "tests/F06_acceptance.py::test_custom_lookup_loads_only_the_requested_child", "tests/F06_acceptance.py::test_lazy_loaded_command_invokes_like_eager", "tests/F06_acceptance.py::test_custom_listing_and_lookup_resolve_alias", "tests/F06_acceptance.py::test_nested_resolve_loads_middle_then_group_leaf", "tests/F06_acceptance.py::test_help_loads_immediate_children_not_grandchildren", "tests/F06_acceptance.py::test_command_collection_dispatches_union_of_sources", "tests/F06_acceptance.py::test_command_collection_empty_args_is_usage_help_page", "tests/F06_acceptance.py::test_command_collection_help_lists_union", "tests/F06_acceptance.py::test_hidden_child_omitted_from_parent_help_but_reachable", "tests/F06_acceptance.py::test_chaining_group_refuses_nested_group", "tests/F07_acceptance.py::test_child_reads_parent_author_object_flag", "tests/F07_acceptance.py::test_child_replaced_author_object_is_what_descendant_sees", "tests/F07_acceptance.py::test_callback_may_request_context_as_first_argument", "tests/F07_acceptance.py::test_typed_object_is_found_on_parent_chain", "tests/F07_acceptance.py::test_ensure_creates_empty_typed_object_when_absent", "tests/F07_acceptance.py::test_ensure_reuses_typed_object_already_on_chain", "tests/F07_acceptance.py::test_toplevel_prefix_fills_omitted_option", "tests/F07_acceptance.py::test_dashed_command_and_option_names_build_prefix_key", "tests/F07_acceptance.py::test_each_command_name_is_in_the_prefix_key", "tests/F07_acceptance.py::test_dashed_prefix_is_normalized_in_the_key", "tests/F07_acceptance.py::test_option_may_opt_out_of_automatic_prefix", "tests/F07_acceptance.py::test_opted_out_option_uses_prefix_key_only_if_explicitly_named", "tests/F07_acceptance.py::test_automatic_prefix_does_not_fill_sibling_argument", "tests/F07_acceptance.py::test_command_line_beats_prefix_environment", "tests/F07_acceptance.py::test_required_option_satisfied_from_prefix_key", "tests/F07_acceptance.py::test_nested_default_map_used_when_flag_omitted_and_beaten_by_cli", "tests/F07_acceptance.py::test_wrong_nested_key_does_not_fill_this_child", "tests/F07_acceptance.py::test_default_map_from_command_declaration", "tests/F07_acceptance.py::test_nested_default_map_fills_omitted_argument", "tests/F07_acceptance.py::test_default_map_string_splits_like_environment", "tests/F07_acceptance.py::test_default_map_sequence_is_used_as_is", "tests/F07_acceptance.py::test_arity1_repeatable_default_map_string_is_refused", "tests/F07_acceptance.py::test_nested_map_delivers_converted_integer", "tests/F07_acceptance.py::test_required_option_satisfied_from_nested_map", "tests/F07_acceptance.py::test_source_distinguishes_five_origins_for_the_same_value", "tests/F07_acceptance.py::test_command_line_source_does_not_consume_prompt_stdin", "tests/F07_acceptance.py::test_source_distinguishes_cli_map_declared_for_argument", "tests/F07_acceptance.py::test_undeclared_extra_key_is_not_converted_or_tracked", "tests/F07_acceptance.py::test_group_resource_stays_open_through_child_and_closes_after_invoke", "tests/F07_acceptance.py::test_resource_cleanup_runs_on_standalone_process_exit", "tests/F07_acceptance.py::test_resource_cleanup_runs_after_child_usage_failure", "tests/F07_acceptance.py::test_lowercase_normalizer_matches_option_name", "tests/F07_acceptance.py::test_lowercase_normalizer_matches_choice_value", "tests/F07_acceptance.py::test_lowercase_normalizer_matches_command_name", "tests/F07_acceptance.py::test_invoke_supplies_caller_chosen_values", "tests/F07_acceptance.py::test_forward_fills_from_current_command_values", "tests/F07_acceptance.py::test_current_context_is_thread_local_unless_entered", "tests/F07_acceptance.py::test_echo_inherits_color_flag_only_on_entered_thread", "tests/F07_acceptance.py::test_invocation_force_color_on_keeps_styles_on_pipe", "tests/F07_acceptance.py::test_invocation_autodetect_strips_styles_on_pipe", "tests/F07_acceptance.py::test_invocation_force_color_off_strips_styles_on_terminal", "tests/F08_acceptance.py::test_omitted_prompted_option_reads_converted_stdin", "tests/F08_acceptance.py::test_command_line_value_skips_prompt", "tests/F08_acceptance.py::test_custom_prompt_string_replaces_name_derived_prompt", "tests/F08_acceptance.py::test_prompt_not_required_on_omit_uses_default_without_reading_stdin", "tests/F08_acceptance.py::test_prompt_not_required_on_omit_asks_when_flag_has_no_value", "tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag", "tests/F08_acceptance.py::test_required_prompt_still_skips_when_value_is_on_command_line", "tests/F08_acceptance.py::test_required_prompt_eof_is_abort_not_usage", "tests/F08_acceptance.py::test_environment_value_skips_prompt_even_on_eof", "tests/F08_acceptance.py::test_static_declared_default_still_prompts", "tests/F08_acceptance.py::test_callable_default_still_prompts_and_is_invoked", "tests/F08_acceptance.py::test_default_map_value_still_prompts", "tests/F08_acceptance.py::test_empty_line_answer_uses_shown_default", "tests/F08_acceptance.py::test_standalone_prompt_converts_with_declared_type", "tests/F08_acceptance.py::test_standalone_prompt_infers_type_from_default", "tests/F08_acceptance.py::test_standalone_confirm_returns_boolean_without_abort", "tests/F08_acceptance.py::test_standalone_confirm_abort_on_no_is_abort_class", "tests/F08_acceptance.py::test_standalone_prompt_reasks_until_valid_or_eof", "tests/F08_acceptance.py::test_standalone_prompt_strips_ansi_when_stream_is_not_a_terminal", "tests/F08_acceptance.py::test_standalone_confirm_strips_ansi_when_stream_is_not_a_terminal", "tests/F08_acceptance.py::test_hidden_input_not_echoed_visible_prompt_is", "tests/F08_acceptance.py::test_confirmation_prompt_asks_twice_and_reasks_on_mismatch", "tests/F08_acceptance.py::test_password_option_accepts_matching_hidden_lines", "tests/F08_acceptance.py::test_confirmation_option_yes_flag_skips_question", "tests/F08_acceptance.py::test_confirmation_option_omit_and_decline_aborts_without_callback", "tests/F08_acceptance.py::test_confirmation_option_omit_and_accept_runs_callback", "tests/F08_acceptance.py::test_confirmation_option_eof_is_abort", "tests/F08_acceptance.py::test_confirmation_option_custom_flag_name", "tests/F08_acceptance.py::test_option_prompt_reasks_on_conversion_failure", "tests/F08_acceptance.py::test_option_prompt_eof_after_invalid_is_abort_not_usage", "tests/F08_acceptance.py::test_deprecated_plus_prompt_declaration_is_refused", "tests/F09_acceptance.py::test_file_type_default_read_delivers_open_file", "tests/F09_acceptance.py::test_dash_means_stdin_on_read_and_stdout_on_write", "tests/F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash", "tests/F09_acceptance.py::test_text_and_binary_modes", "tests/F09_acceptance.py::test_declared_text_encoding_is_used", "tests/F09_acceptance.py::test_missing_read_target_is_usage_before_callback", "tests/F09_acceptance.py::test_default_write_does_not_truncate_until_used", "tests/F09_acceptance.py::test_lazy_forced_off_opens_write_immediately", "tests/F09_acceptance.py::test_lazy_forced_on_write_does_not_truncate_until_used", "tests/F09_acceptance.py::test_atomic_write_keeps_original_until_close_then_replaces", "tests/F09_acceptance.py::test_non_lazy_unopenable_write_is_usage", "tests/F09_acceptance.py::test_lazy_unopenable_write_is_general_file_error", "tests/F09_acceptance.py::test_file_failures_identify_the_path", "tests/F09_acceptance.py::test_path_type_delivers_path_not_open_file", "tests/F09_acceptance.py::test_path_exists_accepts_present_rejects_missing_as_usage", "tests/F09_acceptance.py::test_path_file_and_directory_allowance_are_independent", "tests/F09_acceptance.py::test_path_executable_readable_writable_checks", "tests/F09_acceptance.py::test_missing_path_skips_further_checks_when_exists_not_required", "tests/F09_acceptance.py::test_path_resolve_absolute_follows_symlinks_without_expanding_tilde", "tests/F09_acceptance.py::test_path_allow_dash_means_stream_token_without_opening", "tests/F09_acceptance.py::test_path_produced_as_requested_object_type", "tests/F09_acceptance.py::test_file_type_env_list_splits_on_os_pathsep", "tests/F09_acceptance.py::test_path_type_env_list_splits_on_os_pathsep", "tests/F09_acceptance.py::test_filename_formatting_prints_non_unicode_without_failing", "tests/F09_acceptance.py::test_open_helper_dash_obeys_same_stdin_stdout_rule", "tests/F09_acceptance.py::test_open_helper_keeps_stdio_open_and_closes_real_files", "tests/F09_acceptance.py::test_open_helper_lazy_forced_on_write_does_not_truncate_until_used", "tests/F09_acceptance.py::test_open_helper_opens_immediately_when_lazy_omitted", "tests/F10_acceptance.py::test_chaining_runs_each_subcommand_in_command_line_order", "tests/F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments", "tests/F10_acceptance.py::test_non_chaining_group_does_not_run_a_second_child_name", "tests/F10_acceptance.py::test_chaining_result_callback_receives_ordered_sequence_of_returns", "tests/F10_acceptance.py::test_non_chain_result_callback_receives_single_value_or_group_return", "tests/F10_acceptance.py::test_result_callback_receives_group_parameters", "tests/F10_acceptance.py::test_empty_chain_with_invoke_without_command_runs_result_callback_not_help", "tests/F10_acceptance.py::test_chained_shared_name_lower_then_show_transforms_then_prints", "tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent", "tests/F10_acceptance.py::test_consume_rest_on_non_last_child_is_declared_and_eats_later_names", "tests/F10_acceptance.py::test_consume_rest_on_last_child_still_dispatches_earlier_children", "tests/F10_acceptance.py::test_attaching_a_group_under_a_chaining_group_is_refused_at_declaration", "tests/F10_acceptance.py::test_chained_child_file_closes_after_callback_group_file_stays_for_result_callback", "tests/F11_acceptance.py::test_echo_writes_text_to_stdout_with_trailing_newline", "tests/F11_acceptance.py::test_echo_suppressed_newline_does_not_append_newline", "tests/F11_acceptance.py::test_echo_error_stream_flag_writes_stderr_not_stdout", "tests/F11_acceptance.py::test_echo_writes_binary_payload", "tests/F11_acceptance.py::test_echo_unicode_survives_misconfigured_ascii_stream", "tests/F11_acceptance.py::test_echo_autodetect_strips_styles_on_pipe", "tests/F11_acceptance.py::test_echo_autodetect_keeps_styles_on_terminal", "tests/F11_acceptance.py::test_echo_force_color_on_keeps_named_style_on_pipe", "tests/F11_acceptance.py::test_echo_force_color_off_strips_styles_on_terminal", "tests/F11_acceptance.py::test_named_foreground_colors_each_wrap_and_differ", "tests/F11_acceptance.py::test_named_background_colors_each_wrap_unlike_foreground", "tests/F11_acceptance.py::test_integer_and_rgb_colors_wrap_boundaries_valid", "tests/F11_acceptance.py::test_independent_style_switches_each_wrap_and_differ", "tests/F11_acceptance.py::test_invalid_colors_fail_the_style_call_not_as_omitted", "tests/F11_acceptance.py::test_two_integer_color_sequence_fails_the_style_call", "tests/F11_acceptance.py::test_styled_echo_is_echo_plus_styling_in_one_step", "tests/F11_acceptance.py::test_unstyling_removes_ansi_sequences", "tests/F11_acceptance.py::test_style_default_reset_does_not_leak_into_later_text", "tests/F11_acceptance.py::test_pager_noninteractive_writes_stdout_without_launching_pager", "tests/F11_acceptance.py::test_pager_string_chunk_iterator_and_writable_stream_deliver_text", "tests/F11_acceptance.py::test_pager_writable_stream_launches_when_interactive", "tests/F11_acceptance.py::test_pager_flushes_chunks_before_generator_finishes", "tests/F11_acceptance.py::test_pager_does_not_close_process_stdout", "tests/F11_acceptance.py::test_pager_strips_styles_when_destination_is_not_a_terminal", "tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles", "tests/F11_acceptance.py::test_progress_bar_visits_every_item_without_a_terminal", "tests/F11_acceptance.py::test_progress_bar_visits_every_item_when_explicitly_hidden", "tests/F11_acceptance.py::test_progress_bar_label_once_without_terminal_hidden_prints_nothing", "tests/F11_acceptance.py::test_progress_bar_explicitly_hidden_on_terminal_prints_nothing", "tests/F11_acceptance.py::test_progress_bar_irregular_advance_uses_delta_not_one_step_per_item", "tests/F11_acceptance.py::test_progress_bar_on_terminal_snapshots_differ_as_it_advances", "tests/F11_acceptance.py::test_progress_bar_known_length_terminal_unlike_unknown_length", "tests/F11_acceptance.py::test_progress_bar_known_length_terminal_includes_remaining_time_estimate", "tests/F11_acceptance.py::test_app_dir_unix_default_xdg_override_and_posix_forced", "tests/F11_acceptance.py::test_app_dir_macos_layout", "tests/F11_acceptance.py::test_getchar_reads_terminal_even_when_stdin_is_a_pipe", "tests/F11_acceptance.py::test_getchar_interrupt_and_eof_are_distinct_failures_not_raw_characters", "tests/F11_acceptance.py::test_pause_does_nothing_when_not_interactive", "tests/F11_acceptance.py::test_pause_prints_and_waits_when_interactive", "tests/F11_acceptance.py::test_editor_on_string_returns_saved_text_or_absent", "tests/F11_acceptance.py::test_editor_on_filename_returns_no_text", "tests/F11_acceptance.py::test_application_launch_opens_url_or_filename_with_default_application", "tests/F11_acceptance.py::test_screen_clear_is_noop_off_terminal_and_unlike_on_terminal", "tests/F12_acceptance.py::test_matching_complete_variable_enters_source_mode", "tests/F12_acceptance.py::test_wrong_complete_variable_name_runs_command", "tests/F12_acceptance.py::test_python_script_run_ignores_installed_complete_variable", "tests/F12_acceptance.py::test_bash_source_prints_script_skips_callback", "tests/F12_acceptance.py::test_four_source_modes_are_shell_specific", "tests/F12_acceptance.py::test_source_mode_is_not_the_help_page", "tests/F12_acceptance.py::test_bash_complete_at_group_prints_suggestions_skips_callback", "tests/F12_acceptance.py::test_complete_stream_unlike_source_and_unlike_normal_run", "tests/F12_acceptance.py::test_four_complete_modes_all_suggest_visible_subcommand_names", "tests/F12_acceptance.py::test_four_complete_modes_honour_nonempty_prefix", "tests/F12_acceptance.py::test_empty_token_lists_visible_subcommands_not_hidden", "tests/F12_acceptance.py::test_hidden_command_not_suggested_even_as_full_token", "tests/F12_acceptance.py::test_subcommand_prefix_excludes_nonmatching_sibling", "tests/F12_acceptance.py::test_nested_group_completes_immediate_child_not_grandchild", "tests/F12_acceptance.py::test_hidden_command_still_runs_when_fully_typed", "tests/F12_acceptance.py::test_complete_lists_custom_group_immediate_children", "tests/F12_acceptance.py::test_complete_does_not_load_grandchild", "tests/F12_acceptance.py::test_options_listed_only_after_a_dash", "tests/F12_acceptance.py::test_dash_lists_visible_options_including_help_not_hidden", "tests/F12_acceptance.py::test_option_prefix_excludes_nonmatching_option", "tests/F12_acceptance.py::test_hidden_option_not_suggested_as_prefix_or_full_token", "tests/F12_acceptance.py::test_hidden_option_still_accepted_when_fully_typed", "tests/F12_acceptance.py::test_choice_suggests_only_allowed_values_matching_prefix", "tests/F12_acceptance.py::test_choice_empty_incomplete_lists_all_allowed_values", "tests/F12_acceptance.py::test_choice_argument_completes_without_a_dash", "tests/F12_acceptance.py::test_file_type_carries_incomplete_token_not_directory_entries", "tests/F12_acceptance.py::test_path_type_carries_incomplete_token_not_directory_entries", "tests/F12_acceptance.py::test_directories_only_path_asks_shell_for_directories_only", "tests/F12_acceptance.py::test_bash_file_completion_registers_and_lists_directory_candidates", "tests/F12_acceptance.py::test_file_argument_carries_incomplete_token_not_directory_entries", "tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token", "tests/F12_acceptance.py::test_custom_type_completion_unlike_string_sibling", "tests/F12_acceptance.py::test_zsh_and_fish_include_author_help_next_to_value", "tests/F12_acceptance.py::test_bash_and_powershell_suggest_value_without_requiring_help", "tests/F12_acceptance.py::test_unmatched_subcommand_token_is_empty_suggestions_not_usage_error", "tests/F12_acceptance.py::test_unmatched_choice_prefix_is_empty_suggestions_not_usage_error", "tests/F12_acceptance.py::test_unrecognized_instruction_skips_callback_and_is_neither_source_nor_complete", "tests/F13_acceptance.py::test_successful_callback_exits_zero", "tests/F13_acceptance.py::test_intentional_help_exits_zero_skips_callback", "tests/F13_acceptance.py::test_intentional_version_exits_zero_skips_callback", "tests/F13_acceptance.py::test_author_clean_stop_defaults_to_zero", "tests/F13_acceptance.py::test_author_clean_stop_uses_supplied_status", "tests/F13_acceptance.py::test_clean_stop_supplied_status_one", "tests/F13_acceptance.py::test_unknown_option_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_unknown_subcommand_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_missing_required_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_conversion_failure_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_extra_token_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_option_missing_value_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_missing_subcommand_help_is_usage_not_intentional_help", "tests/F13_acceptance.py::test_missing_required_option_identifies_the_option", "tests/F13_acceptance.py::test_missing_required_argument_identifies_the_argument", "tests/F13_acceptance.py::test_conversion_failure_identifies_the_parameter", "tests/F13_acceptance.py::test_conversion_failure_identifies_the_argument", "tests/F13_acceptance.py::test_unknown_option_need_not_name_a_declared_parameter", "tests/F13_acceptance.py::test_confirm_decline_is_abort_skips_protected_callback", "tests/F13_acceptance.py::test_prompt_eof_is_abort_not_success", "tests/F13_acceptance.py::test_keyboard_interrupt_is_abort_not_success", "tests/F13_acceptance.py::test_author_abort_skips_remaining_work", "tests/F13_acceptance.py::test_lazy_file_failure_is_general_error_not_usage", "tests/F13_acceptance.py::test_success_usage_abort_are_mutually_distinguishable", "tests/F13_acceptance.py::test_non_standalone_usage_propagates", "tests/F13_acceptance.py::test_non_standalone_abort_propagates", "tests/F13_acceptance.py::test_non_standalone_general_error_propagates", "tests/F13_acceptance.py::test_non_standalone_callback_return_bubbles", "tests/F13_acceptance.py::test_non_standalone_clean_stop_bubbles_status", "tests/F13_acceptance.py::test_non_standalone_chaining_returns_bubble", "tests/F14_acceptance.py::test_invoke_plain_name_token_greets_that_name", "tests/F14_acceptance.py::test_invoke_runtime_token_greets_that_token_not_another_name", "tests/F14_acceptance.py::test_result_exposes_stdout_text_and_bytes", "tests/F14_acceptance.py::test_invoke_help_exits_zero_shows_help_skips_callback", "tests/F14_acceptance.py::test_result_exposes_stderr_separately_from_stdout", "tests/F14_acceptance.py::test_subcommand_selected_by_tokens_after_group_option", "tests/F14_acceptance.py::test_invoke_input_is_fed_to_stdin", "tests/F14_acceptance.py::test_visible_prompt_echoes_typed_line_and_shows_prompt", "tests/F14_acceptance.py::test_hidden_prompt_does_not_echo_typed_line", "tests/F14_acceptance.py::test_optional_mode_echoes_every_stdin_read_not_only_prompts", "tests/F14_acceptance.py::test_invoke_environment_is_applied_for_that_run", "tests/F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent", "tests/F14_acceptance.py::test_isolated_filesystem_parent_gets_child_dir_left_in_place", "tests/F14_acceptance.py::test_default_capture_records_interpreter_streams_without_real_fd", "tests/F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2", "tests/F14_acceptance.py::test_extra_invoke_keywords_apply_as_context_settings_terminal_width", "tests/F14_acceptance.py::test_invoke_color_setting_is_in_force", "tests/F14_acceptance.py::test_standalone_raise_returns_result_with_status_and_inspectable_exception", "tests/F14_acceptance.py::test_runner_told_not_to_catch_propagates", "tests/F14_acceptance.py::test_non_standalone_exposes_exception_on_result"], "issues": [], "reports": {"tests/F01_acceptance.py::test_ascii_environment_encoding_does_not_abort": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_conversion_failure_does_not_run_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_custom_deprecation_note_appears_in_warning": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_declared_destination_receives_converted_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_deprecated_command_still_runs_and_exits_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_deprecation_warning_distinct_from_greeting_and_usage_failure": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_explicit_name_overrides_mapped_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_function_name_lowercased_before_dash_mapping": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_greeting_absent_when_callback_does_not_run": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_help_marks_deprecated_unlike_nondeprecated_twin": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_inferred_destination_receives_converted_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_invocation_fails_when_package_not_importable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_leftover_tokens_fail_unless_extra_arguments_allowed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_missing_required_parameter_does_not_run_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_non_standalone_failure_propagates_to_caller": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_non_standalone_success_returns_callback_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_parameterless_command_runs_on_empty_args": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_script_program_invocation_runs_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_standalone_success_exits_zero_and_discards_return_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_standalone_usage_error_exits_class_two": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_cmd]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_command]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_group]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_grp]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_underscore_name_invoked_with_dash": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_unknown_option_does_not_run_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F01_acceptance.py::test_valid_args_run_callback_once_exit_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_argument_default_metavar_is_name_uppercased": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_argument_help_appears_in_positional_arguments_section": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_author_metavar_override_appears": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_author_option_wins_only_when_every_help_name_reused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_author_options_placeholder_appears_on_usage": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_backspace_paragraph_keeps_breaks_and_strips_marker": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_chaining_group_usage_marks_repeatable_command_unit": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_choice_type_supplies_own_metavar_placeholder": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_context_replaces_help_option_names": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_custom_default_description_replaces_raw_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_custom_version_prints_callback_string_not_template": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_disabled_automatic_help_makes_help_unknown_unless_declared": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_docstring_is_description_unless_explicit_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_explicit_short_help_overrides_first_sentence": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_extra_help_option_prints_help_and_exits": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_first_eager_flag_on_command_line_wins": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_flag_and_count_options_have_no_metavar": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_group_help_does_not_run_group_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_help_eager_exits_without_required_params": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_help_page_contains_description_and_option_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_help_prints_page_without_running_callback_exits_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_hidden_command_omitted_from_group_help_but_invocable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_hidden_group_omitted_from_parent_help_but_invocable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_hidden_option_omitted_from_help_but_accepted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_invoke_without_command_brackets_leading_command_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_invoke_without_command_skips_no_args_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_leaf_no_args_is_help_is_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_missing_subcommand_help_is_usage_error_not_success": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_off_boolean_flag_default_stays_hidden": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_parameter_named_help_does_not_disable_automatic_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_show_default_per_parameter_and_via_context": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_show_environment_variable_name_appears": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_subcommand_short_help_is_first_sentence": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_usage_brackets_optional_not_required_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_variadic_argument_marked_with_trailing_ellipsis": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_version_detects_installed_distribution": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_version_option_eager_exits_without_required_params": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F02_acceptance.py::test_version_resolves_import_name_to_distribution": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[0]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[f]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[false]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[n]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[no]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[off]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[1]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[on]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[t]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[true]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[y]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[yes]": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_boolean_flag_omitted_false_unless_true_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_callable_default_runs_only_when_no_earlier_source": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_child_option_after_subcommand_is_parsed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_command_line_beats_environment": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_command_line_value_must_never_prompt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_counting_option_zero_when_omitted_stacked_shorts_count": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_declared_default_used_when_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_deprecated_option_cannot_be_required_or_prompted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_deprecated_option_warns_only_when_user_supplied": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_destination_inferred_from_long_then_short": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_double_dash_ends_option_parsing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_eager_flag_finishes_when_required_non_eager_missing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_empty_env_is_unset_next_source_wins": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_env_delivers_converted_integer": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_feature_switch_explicit_default_beats_auto_false": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_feature_switch_more_explicit_source_wins": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_file_type_env_splits_on_os_pathsep": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_fill_order_command_line_env_map_declared": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_group_mixing_can_be_enabled": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_group_options_stop_at_subcommand_by_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_help_before_subcommand_is_help_for_parent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_hidden_from_callback_still_parsed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_identifier_name_wins_inference_over_dashed_long": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_ignore_unknown_leaves_long_option_intact_as_extra": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_ignore_unknown_may_split_short_stack": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_leaf_mixes_option_after_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_leaf_mixing_can_be_disabled": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_long_option_equals_and_space_forms": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_missing_parameter_still_runs_its_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_missing_value_for_required_value_option_is_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_multi_value_fixed_arity_not_consume_rest": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_multichar_short_is_stacked_not_named_dbg": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_named_env_fills_when_flag_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_omitted_optional_without_default_is_absent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_omitted_required_option_is_usage_error_naming_option": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_on_off_pair_tokens": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_one_element_sequence_is_the_way_to_default_one_string": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_option_declared_on_command_or_group": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_option_env_exact_match_not_whitespace_trimmed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_option_env_list_first_set_wins": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_optional_value_flag_alone_token_or_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_paired_option_uses_only_attached_option_env": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_parameter_callback_may_refuse": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_parameter_callback_replaces_converted_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_parameter_callback_runs_for_env_and_map_sources": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_parameter_callback_runs_for_prompt_source": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_path_type_env_splits_on_os_pathsep": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_repeatable_and_multivalue_env_splits_on_whitespace": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_repeatable_omitted_default_delivered_as_tuple": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_repeatable_omitted_no_default_is_empty_tuple": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_repeatable_option_collects_sequence": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_repeatable_parameter_callback_fires_once_with_all_values": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_required_option_satisfied_from_named_env": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_short_long_and_alias_set_same_destination": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_short_value_next_token_or_attached": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_slash_and_plus_prefixes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_stacked_last_flag_takes_attached_or_next_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_stacked_shorts_equivalent_to_separate_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_tuple_type_sets_arity_and_converts_positions": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_type_inferred_from_integer_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unknown_boolean_env_is_usage_error_not_silent_off": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_unknown_option_is_usage_error_without_ignore": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F03_acceptance.py::test_whitespace_only_boolean_env_deactivates_empty_unset": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_argument_declared_on_a_group_is_delivered_to_the_group_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_argument_name_is_not_an_option_flag": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_auto_prefix_does_not_fill_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_command_line_beats_argument_environment": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_deprecated_argument_cannot_be_required": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_deprecated_argument_warns_only_when_user_supplied": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_double_dash_protects_option_shaped_tokens": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_empty_or_absent_env_does_not_supply": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_env_name_list_first_set_wins": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_extra_tokens_beyond_arity_are_usage_error_unless_allowed_or_variadic": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_fixed_arity_delivers_sequence_not_joined_string": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_ignore_unknown_consumes_option_shaped_as_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_ignore_unknown_leftover_option_shaped_beyond_arity_is_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_minimal_argument_is_required_positional_text": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_missing_required_argument_is_usage_error_identifying_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_named_env_fills_when_position_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_non_unary_env_splits_like_multivalue_option": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_omitted_variadic_empty_unless_required": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_option_shaped_token_without_separator_is_unknown": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_optional_or_defaulted_argument_may_be_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_two_unary_arguments_each_deliver_a_scalar": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_type_inferred_from_integer_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F04_acceptance.py::test_unary_then_variadic_delivers_source_and_rest": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_argument_uses_attached_integer_type": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_author_replaces_datetime_format_list": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_boolean_used_automatically_for_flags": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_choice_returns_original_enum_member_case_insensitive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_choice_returns_original_list_entry_case_insensitive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_conversion_failure_is_usage_error_identifying_parameter": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_conversion_function_is_accepted_as_type": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_conversion_works_at_prompt_without_parameter": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_custom_type_converts_string_and_passes_through_ready_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_datetime_formats_tried_in_order_first_success_wins": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_datetime_rejects_non_matching_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_default_datetime_formats_parse_naive_values": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_float_range_refuses_clamp_when_bound_open": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_float_range_same_rules_and_closed_clamp": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_float_type_or_float_default_delivers_float": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_help_lists_choice_values": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_integer_open_bound_clamp_uses_nearest_included": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_integer_range_clamp_replaces_with_nearest_included_bound": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_integer_range_closed_bounds_without_clamp": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_integer_range_open_or_omitted_bounds": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_integer_type_or_integer_default_delivers_int": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_passthrough_does_not_convert_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_repeatable_choice_default_is_sequence_of_originals": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_string_is_default_unicode_text": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_tuple_converts_each_position_with_inner_type": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_unknown_choice_is_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_chaining_group_refuses_nested_group": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_command_collection_dispatches_union_of_sources": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_command_collection_empty_args_is_usage_help_page": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_command_collection_help_lists_union": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_context_distinguishes_group_only_from_group_then_child": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_custom_listing_and_lookup_resolve_alias": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_custom_lookup_loads_only_the_requested_child": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_empty_group_args_use_usage_help_page": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_explicit_name_independent_of_function_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_grandchild_is_unreachable_without_middle_group": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_group_argument_then_child_binds_and_dispatches": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_group_can_disable_no_args_is_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_group_command_helper_attaches_immediately": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_group_level_help_or_version_skips_group_and_does_not_group_run": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_group_option_does_not_leak_into_child": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_group_options_or_arguments_only_is_usage_error_without_help_page": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_help_before_subcommand_is_group_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_help_loads_immediate_children_not_grandchildren": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_hidden_child_omitted_from_parent_help_but_reachable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_invoke_without_command_runs_group_on_empty_and_before_child": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_late_registration_from_another_module": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_late_registration_invokes_like_immediate": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_lazy_loaded_command_invokes_like_eager": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_leaf_default_empty_runs_leaf_not_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_named_child_help_or_version_still_runs_group": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_named_subcommand_runs_matching_callback_only": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_nested_group_empty_args_is_that_groups_help_page": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_nested_groups_run_outside_in": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_nested_option_ownership_at_every_layer": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_nested_resolve_loads_middle_then_group_leaf": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F06_acceptance.py::test_unknown_subcommand_is_usage_error_without_help_page": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_arity1_repeatable_default_map_string_is_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_automatic_prefix_does_not_fill_sibling_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_callback_may_request_context_as_first_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_child_reads_parent_author_object_flag": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_child_replaced_author_object_is_what_descendant_sees": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_command_line_beats_prefix_environment": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_command_line_source_does_not_consume_prompt_stdin": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_current_context_is_thread_local_unless_entered": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_dashed_command_and_option_names_build_prefix_key": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_dashed_prefix_is_normalized_in_the_key": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_default_map_from_command_declaration": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_default_map_sequence_is_used_as_is": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_default_map_string_splits_like_environment": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_each_command_name_is_in_the_prefix_key": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_echo_inherits_color_flag_only_on_entered_thread": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_ensure_creates_empty_typed_object_when_absent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_ensure_reuses_typed_object_already_on_chain": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_forward_fills_from_current_command_values": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_group_resource_stays_open_through_child_and_closes_after_invoke": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_invocation_autodetect_strips_styles_on_pipe": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_invocation_force_color_off_strips_styles_on_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_invocation_force_color_on_keeps_styles_on_pipe": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_invoke_supplies_caller_chosen_values": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_lowercase_normalizer_matches_choice_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_lowercase_normalizer_matches_command_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_lowercase_normalizer_matches_option_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_nested_default_map_fills_omitted_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_nested_default_map_used_when_flag_omitted_and_beaten_by_cli": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_nested_map_delivers_converted_integer": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_opted_out_option_uses_prefix_key_only_if_explicitly_named": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_option_may_opt_out_of_automatic_prefix": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_required_option_satisfied_from_nested_map": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_required_option_satisfied_from_prefix_key": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_resource_cleanup_runs_after_child_usage_failure": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_resource_cleanup_runs_on_standalone_process_exit": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_source_distinguishes_cli_map_declared_for_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_source_distinguishes_five_origins_for_the_same_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_toplevel_prefix_fills_omitted_option": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_typed_object_is_found_on_parent_chain": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_undeclared_extra_key_is_not_converted_or_tracked": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F07_acceptance.py::test_wrong_nested_key_does_not_fill_this_child": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_callable_default_still_prompts_and_is_invoked": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_command_line_value_skips_prompt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_confirmation_option_custom_flag_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_confirmation_option_eof_is_abort": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_confirmation_option_omit_and_accept_runs_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_confirmation_option_omit_and_decline_aborts_without_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_confirmation_option_yes_flag_skips_question": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_confirmation_prompt_asks_twice_and_reasks_on_mismatch": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_custom_prompt_string_replaces_name_derived_prompt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_default_map_value_still_prompts": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_deprecated_plus_prompt_declaration_is_refused": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_empty_line_answer_uses_shown_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_environment_value_skips_prompt_even_on_eof": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_hidden_input_not_echoed_visible_prompt_is": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_omitted_prompted_option_reads_converted_stdin": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_option_prompt_eof_after_invalid_is_abort_not_usage": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_option_prompt_reasks_on_conversion_failure": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_password_option_accepts_matching_hidden_lines": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_prompt_not_required_on_omit_asks_when_flag_has_no_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_prompt_not_required_on_omit_uses_default_without_reading_stdin": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_required_prompt_eof_is_abort_not_usage": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_required_prompt_still_skips_when_value_is_on_command_line": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_confirm_abort_on_no_is_abort_class": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_confirm_returns_boolean_without_abort": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_confirm_strips_ansi_when_stream_is_not_a_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_prompt_converts_with_declared_type": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_prompt_infers_type_from_default": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_prompt_reasks_until_valid_or_eof": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_standalone_prompt_strips_ansi_when_stream_is_not_a_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F08_acceptance.py::test_static_declared_default_still_prompts": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_atomic_write_keeps_original_until_close_then_replaces": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_dash_means_stdin_on_read_and_stdout_on_write": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_declared_text_encoding_is_used": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_default_write_does_not_truncate_until_used": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_file_failures_identify_the_path": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_file_type_default_read_delivers_open_file": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_file_type_env_list_splits_on_os_pathsep": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_filename_formatting_prints_non_unicode_without_failing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_lazy_forced_off_opens_write_immediately": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_lazy_forced_on_write_does_not_truncate_until_used": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_lazy_unopenable_write_is_general_file_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_missing_path_skips_further_checks_when_exists_not_required": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_missing_read_target_is_usage_before_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_non_lazy_unopenable_write_is_usage": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_open_helper_dash_obeys_same_stdin_stdout_rule": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_open_helper_keeps_stdio_open_and_closes_real_files": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_open_helper_lazy_forced_on_write_does_not_truncate_until_used": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_open_helper_opens_immediately_when_lazy_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_allow_dash_means_stream_token_without_opening": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_executable_readable_writable_checks": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_exists_accepts_present_rejects_missing_as_usage": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_file_and_directory_allowance_are_independent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_produced_as_requested_object_type": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_resolve_absolute_follows_symlinks_without_expanding_tilde": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_type_delivers_path_not_open_file": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_path_type_env_list_splits_on_os_pathsep": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F09_acceptance.py::test_text_and_binary_modes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_attaching_a_group_under_a_chaining_group_is_refused_at_declaration": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_chained_child_file_closes_after_callback_group_file_stays_for_result_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_chained_shared_name_lower_then_show_transforms_then_prints": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_chaining_result_callback_receives_ordered_sequence_of_returns": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_chaining_runs_each_subcommand_in_command_line_order": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_consume_rest_on_last_child_still_dispatches_earlier_children": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_consume_rest_on_non_last_child_is_declared_and_eats_later_names": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_empty_chain_with_invoke_without_command_runs_result_callback_not_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_non_chain_result_callback_receives_single_value_or_group_return": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_non_chaining_group_does_not_run_a_second_child_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F10_acceptance.py::test_result_callback_receives_group_parameters": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_app_dir_macos_layout": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_app_dir_unix_default_xdg_override_and_posix_forced": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_application_launch_opens_url_or_filename_with_default_application": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_autodetect_keeps_styles_on_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_autodetect_strips_styles_on_pipe": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_error_stream_flag_writes_stderr_not_stdout": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_force_color_off_strips_styles_on_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_force_color_on_keeps_named_style_on_pipe": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_suppressed_newline_does_not_append_newline": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_unicode_survives_misconfigured_ascii_stream": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_writes_binary_payload": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_echo_writes_text_to_stdout_with_trailing_newline": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_editor_on_filename_returns_no_text": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_editor_on_string_returns_saved_text_or_absent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_getchar_interrupt_and_eof_are_distinct_failures_not_raw_characters": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_getchar_reads_terminal_even_when_stdin_is_a_pipe": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_independent_style_switches_each_wrap_and_differ": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_integer_and_rgb_colors_wrap_boundaries_valid": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_invalid_colors_fail_the_style_call_not_as_omitted": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_named_background_colors_each_wrap_unlike_foreground": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_named_foreground_colors_each_wrap_and_differ": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_does_not_close_process_stdout": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_flushes_chunks_before_generator_finishes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_noninteractive_writes_stdout_without_launching_pager": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_string_chunk_iterator_and_writable_stream_deliver_text": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_strips_styles_when_destination_is_not_a_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pager_writable_stream_launches_when_interactive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pause_does_nothing_when_not_interactive": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_pause_prints_and_waits_when_interactive": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_explicitly_hidden_on_terminal_prints_nothing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_irregular_advance_uses_delta_not_one_step_per_item": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_known_length_terminal_includes_remaining_time_estimate": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_known_length_terminal_unlike_unknown_length": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_label_once_without_terminal_hidden_prints_nothing": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_on_terminal_snapshots_differ_as_it_advances": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_visits_every_item_when_explicitly_hidden": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_progress_bar_visits_every_item_without_a_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_screen_clear_is_noop_off_terminal_and_unlike_on_terminal": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_style_default_reset_does_not_leak_into_later_text": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_styled_echo_is_echo_plus_styling_in_one_step": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_two_integer_color_sequence_fails_the_style_call": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F11_acceptance.py::test_unstyling_removes_ansi_sequences": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_bash_and_powershell_suggest_value_without_requiring_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_bash_complete_at_group_prints_suggestions_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_bash_file_completion_registers_and_lists_directory_candidates": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_bash_source_prints_script_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_choice_argument_completes_without_a_dash": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_choice_empty_incomplete_lists_all_allowed_values": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_choice_suggests_only_allowed_values_matching_prefix": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_complete_does_not_load_grandchild": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_complete_lists_custom_group_immediate_children": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_complete_stream_unlike_source_and_unlike_normal_run": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_custom_type_completion_unlike_string_sibling": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_dash_lists_visible_options_including_help_not_hidden": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_directories_only_path_asks_shell_for_directories_only": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_empty_token_lists_visible_subcommands_not_hidden": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_file_argument_carries_incomplete_token_not_directory_entries": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_file_type_carries_incomplete_token_not_directory_entries": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_four_complete_modes_all_suggest_visible_subcommand_names": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_four_complete_modes_honour_nonempty_prefix": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_four_source_modes_are_shell_specific": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_hidden_command_not_suggested_even_as_full_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_hidden_command_still_runs_when_fully_typed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_hidden_option_not_suggested_as_prefix_or_full_token": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_hidden_option_still_accepted_when_fully_typed": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_matching_complete_variable_enters_source_mode": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_nested_group_completes_immediate_child_not_grandchild": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_option_prefix_excludes_nonmatching_option": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_options_listed_only_after_a_dash": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token": {"call": ["failed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_path_type_carries_incomplete_token_not_directory_entries": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_python_script_run_ignores_installed_complete_variable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_source_mode_is_not_the_help_page": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_subcommand_prefix_excludes_nonmatching_sibling": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_unmatched_choice_prefix_is_empty_suggestions_not_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_unmatched_subcommand_token_is_empty_suggestions_not_usage_error": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_unrecognized_instruction_skips_callback_and_is_neither_source_nor_complete": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_wrong_complete_variable_name_runs_command": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F12_acceptance.py::test_zsh_and_fish_include_author_help_next_to_value": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_author_abort_skips_remaining_work": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_author_clean_stop_defaults_to_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_author_clean_stop_uses_supplied_status": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_clean_stop_supplied_status_one": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_confirm_decline_is_abort_skips_protected_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_conversion_failure_identifies_the_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_conversion_failure_identifies_the_parameter": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_conversion_failure_is_usage_class_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_extra_token_is_usage_class_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_intentional_help_exits_zero_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_intentional_version_exits_zero_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_keyboard_interrupt_is_abort_not_success": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_lazy_file_failure_is_general_error_not_usage": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_missing_required_argument_identifies_the_argument": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_missing_required_is_usage_class_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_missing_required_option_identifies_the_option": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_missing_subcommand_help_is_usage_not_intentional_help": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_non_standalone_abort_propagates": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_non_standalone_callback_return_bubbles": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_non_standalone_chaining_returns_bubble": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_non_standalone_clean_stop_bubbles_status": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_non_standalone_general_error_propagates": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_non_standalone_usage_propagates": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_option_missing_value_is_usage_class_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_prompt_eof_is_abort_not_success": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_success_usage_abort_are_mutually_distinguishable": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_successful_callback_exits_zero": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_unknown_option_is_usage_class_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_unknown_option_need_not_name_a_declared_parameter": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F13_acceptance.py::test_unknown_subcommand_is_usage_class_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_default_capture_records_interpreter_streams_without_real_fd": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_extra_invoke_keywords_apply_as_context_settings_terminal_width": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_hidden_prompt_does_not_echo_typed_line": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_invoke_color_setting_is_in_force": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_invoke_environment_is_applied_for_that_run": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_invoke_help_exits_zero_shows_help_skips_callback": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_invoke_input_is_fed_to_stdin": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_invoke_plain_name_token_greets_that_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_invoke_runtime_token_greets_that_token_not_another_name": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_isolated_filesystem_parent_gets_child_dir_left_in_place": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_non_standalone_exposes_exception_on_result": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_optional_mode_echoes_every_stdin_read_not_only_prompts": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_result_exposes_stderr_separately_from_stdout": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_result_exposes_stdout_text_and_bytes": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_runner_told_not_to_catch_propagates": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_standalone_raise_returns_result_with_status_and_inspectable_exception": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_subcommand_selected_by_tokens_after_group_option": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}, "tests/F14_acceptance.py::test_visible_prompt_echoes_typed_line_and_shows_prompt": {"call": ["passed"], "setup": ["passed"], "teardown": ["passed"]}}, "selected": ["tests/F01_acceptance.py::test_underscore_name_invoked_with_dash", "tests/F01_acceptance.py::test_function_name_lowercased_before_dash_mapping", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_command]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_cmd]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_group]", "tests/F01_acceptance.py::test_trailing_command_suffix_stripped_from_invoked_name[_grp]", "tests/F01_acceptance.py::test_explicit_name_overrides_mapped_name", "tests/F01_acceptance.py::test_valid_args_run_callback_once_exit_zero", "tests/F01_acceptance.py::test_greeting_absent_when_callback_does_not_run", "tests/F01_acceptance.py::test_parameterless_command_runs_on_empty_args", "tests/F01_acceptance.py::test_inferred_destination_receives_converted_value", "tests/F01_acceptance.py::test_declared_destination_receives_converted_value", "tests/F01_acceptance.py::test_script_program_invocation_runs_callback", "tests/F01_acceptance.py::test_deprecated_command_still_runs_and_exits_zero", "tests/F01_acceptance.py::test_deprecation_warning_distinct_from_greeting_and_usage_failure", "tests/F01_acceptance.py::test_custom_deprecation_note_appears_in_warning", "tests/F01_acceptance.py::test_help_marks_deprecated_unlike_nondeprecated_twin", "tests/F01_acceptance.py::test_standalone_success_exits_zero_and_discards_return_value", "tests/F01_acceptance.py::test_non_standalone_success_returns_callback_value", "tests/F01_acceptance.py::test_standalone_usage_error_exits_class_two", "tests/F01_acceptance.py::test_non_standalone_failure_propagates_to_caller", "tests/F01_acceptance.py::test_unknown_option_does_not_run_callback", "tests/F01_acceptance.py::test_missing_required_parameter_does_not_run_callback", "tests/F01_acceptance.py::test_conversion_failure_does_not_run_callback", "tests/F01_acceptance.py::test_leftover_tokens_fail_unless_extra_arguments_allowed", "tests/F01_acceptance.py::test_ascii_environment_encoding_does_not_abort", "tests/F01_acceptance.py::test_invocation_fails_when_package_not_importable", "tests/F02_acceptance.py::test_help_prints_page_without_running_callback_exits_zero", "tests/F02_acceptance.py::test_help_eager_exits_without_required_params", "tests/F02_acceptance.py::test_help_page_contains_description_and_option_help", "tests/F02_acceptance.py::test_group_help_does_not_run_group_callback", "tests/F02_acceptance.py::test_docstring_is_description_unless_explicit_help", "tests/F02_acceptance.py::test_form_feed_truncates_description_and_is_omitted", "tests/F02_acceptance.py::test_argument_help_appears_in_positional_arguments_section", "tests/F02_acceptance.py::test_subcommand_short_help_is_first_sentence", "tests/F02_acceptance.py::test_long_short_help_ellipsized_to_one_line", "tests/F02_acceptance.py::test_explicit_short_help_overrides_first_sentence", "tests/F02_acceptance.py::test_group_help_lists_children_options_and_epilog_at_end", "tests/F02_acceptance.py::test_usage_brackets_optional_not_required_argument", "tests/F02_acceptance.py::test_variadic_argument_marked_with_trailing_ellipsis", "tests/F02_acceptance.py::test_author_options_placeholder_appears_on_usage", "tests/F02_acceptance.py::test_invoke_without_command_brackets_leading_command_token", "tests/F02_acceptance.py::test_chaining_group_usage_marks_repeatable_command_unit", "tests/F02_acceptance.py::test_argument_default_metavar_is_name_uppercased", "tests/F02_acceptance.py::test_value_option_metavar_is_type_name_not_parameter_name", "tests/F02_acceptance.py::test_flag_and_count_options_have_no_metavar", "tests/F02_acceptance.py::test_choice_type_supplies_own_metavar_placeholder", "tests/F02_acceptance.py::test_author_metavar_override_appears", "tests/F02_acceptance.py::test_help_rewrapped_to_width_capped_at_default_80", "tests/F02_acceptance.py::test_single_newlines_in_paragraph_are_not_hard_breaks", "tests/F02_acceptance.py::test_backspace_paragraph_keeps_breaks_and_strips_marker", "tests/F02_acceptance.py::test_show_default_per_parameter_and_via_context", "tests/F02_acceptance.py::test_custom_default_description_replaces_raw_default", "tests/F02_acceptance.py::test_off_boolean_flag_default_stays_hidden", "tests/F02_acceptance.py::test_show_environment_variable_name_appears", "tests/F02_acceptance.py::test_hidden_option_omitted_from_help_but_accepted", "tests/F02_acceptance.py::test_hidden_command_omitted_from_group_help_but_invocable", "tests/F02_acceptance.py::test_hidden_group_omitted_from_parent_help_but_invocable", "tests/F02_acceptance.py::test_context_replaces_help_option_names", "tests/F02_acceptance.py::test_author_option_wins_only_when_every_help_name_reused", "tests/F02_acceptance.py::test_parameter_named_help_does_not_disable_automatic_help", "tests/F02_acceptance.py::test_extra_help_option_prints_help_and_exits", "tests/F02_acceptance.py::test_disabled_automatic_help_makes_help_unknown_unless_declared", "tests/F02_acceptance.py::test_version_option_eager_exits_without_required_params", "tests/F02_acceptance.py::test_version_detects_installed_distribution", "tests/F02_acceptance.py::test_version_resolves_import_name_to_distribution", "tests/F02_acceptance.py::test_custom_version_prints_callback_string_not_template", "tests/F02_acceptance.py::test_first_eager_flag_on_command_line_wins", "tests/F02_acceptance.py::test_missing_subcommand_help_is_usage_error_not_success", "tests/F02_acceptance.py::test_leaf_no_args_is_help_is_usage_error", "tests/F02_acceptance.py::test_invoke_without_command_skips_no_args_help", "tests/F03_acceptance.py::test_option_declared_on_command_or_group", "tests/F03_acceptance.py::test_omitted_optional_without_default_is_absent", "tests/F03_acceptance.py::test_declared_default_used_when_omitted", "tests/F03_acceptance.py::test_type_inferred_from_integer_default", "tests/F03_acceptance.py::test_callable_default_runs_only_when_no_earlier_source", "tests/F03_acceptance.py::test_short_long_and_alias_set_same_destination", "tests/F03_acceptance.py::test_long_option_equals_and_space_forms", "tests/F03_acceptance.py::test_short_value_next_token_or_attached", "tests/F03_acceptance.py::test_stacked_shorts_equivalent_to_separate_flags", "tests/F03_acceptance.py::test_stacked_last_flag_takes_attached_or_next_token", "tests/F03_acceptance.py::test_multichar_short_is_stacked_not_named_dbg", "tests/F03_acceptance.py::test_destination_inferred_from_long_then_short", "tests/F03_acceptance.py::test_identifier_name_wins_inference_over_dashed_long", "tests/F03_acceptance.py::test_double_dash_ends_option_parsing", "tests/F03_acceptance.py::test_leaf_mixes_option_after_argument", "tests/F03_acceptance.py::test_leaf_mixing_can_be_disabled", "tests/F03_acceptance.py::test_group_options_stop_at_subcommand_by_default", "tests/F03_acceptance.py::test_group_mixing_can_be_enabled", "tests/F03_acceptance.py::test_child_option_after_subcommand_is_parsed", "tests/F03_acceptance.py::test_help_before_subcommand_is_help_for_parent", "tests/F03_acceptance.py::test_omitted_required_option_is_usage_error_naming_option", "tests/F03_acceptance.py::test_required_option_satisfied_from_named_env", "tests/F03_acceptance.py::test_boolean_flag_omitted_false_unless_true_default", "tests/F03_acceptance.py::test_on_off_pair_tokens", "tests/F03_acceptance.py::test_slash_and_plus_prefixes", "tests/F03_acceptance.py::test_feature_switch_explicit_default_beats_auto_false", "tests/F03_acceptance.py::test_feature_switch_last_declared_wins_when_tied", "tests/F03_acceptance.py::test_counting_option_zero_when_omitted_stacked_shorts_count", "tests/F03_acceptance.py::test_repeatable_option_collects_sequence", "tests/F03_acceptance.py::test_repeatable_omitted_no_default_is_empty_tuple", "tests/F03_acceptance.py::test_repeatable_omitted_default_delivered_as_tuple", "tests/F03_acceptance.py::test_one_element_sequence_is_the_way_to_default_one_string", "tests/F03_acceptance.py::test_multi_value_fixed_arity_not_consume_rest", "tests/F03_acceptance.py::test_tuple_type_sets_arity_and_converts_positions", "tests/F03_acceptance.py::test_optional_value_flag_alone_token_or_default", "tests/F03_acceptance.py::test_bare_string_default_on_repeatable_is_usage_error", "tests/F03_acceptance.py::test_named_env_fills_when_flag_omitted", "tests/F03_acceptance.py::test_empty_env_is_unset_next_source_wins", "tests/F03_acceptance.py::test_option_env_list_first_set_wins", "tests/F03_acceptance.py::test_option_env_exact_match_not_whitespace_trimmed", "tests/F03_acceptance.py::test_repeatable_and_multivalue_env_splits_on_whitespace", "tests/F03_acceptance.py::test_path_type_env_splits_on_os_pathsep", "tests/F03_acceptance.py::test_file_type_env_splits_on_os_pathsep", "tests/F03_acceptance.py::test_env_delivers_converted_integer", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[true]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[1]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[yes]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[on]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[t]", "tests/F03_acceptance.py::test_boolean_env_tokens_activate_and_deactivate[y]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[false]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[0]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[no]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[off]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[f]", "tests/F03_acceptance.py::test_boolean_env_off_tokens_deactivate[n]", "tests/F03_acceptance.py::test_unknown_boolean_env_is_usage_error_not_silent_off", "tests/F03_acceptance.py::test_whitespace_only_boolean_env_deactivates_empty_unset", "tests/F03_acceptance.py::test_nonboolean_flag_value_env_exact_or_bool_tokens", "tests/F03_acceptance.py::test_paired_option_uses_only_attached_option_env", "tests/F03_acceptance.py::test_command_line_beats_environment", "tests/F03_acceptance.py::test_command_line_value_must_never_prompt", "tests/F03_acceptance.py::test_fill_order_command_line_env_map_declared", "tests/F03_acceptance.py::test_feature_switch_more_explicit_source_wins", "tests/F03_acceptance.py::test_parameter_callback_replaces_converted_value", "tests/F03_acceptance.py::test_parameter_callback_may_refuse", "tests/F03_acceptance.py::test_parameter_callback_runs_for_env_and_map_sources", "tests/F03_acceptance.py::test_parameter_callback_runs_for_prompt_source", "tests/F03_acceptance.py::test_eager_flag_finishes_when_required_non_eager_missing", "tests/F03_acceptance.py::test_missing_parameter_still_runs_its_callback", "tests/F03_acceptance.py::test_repeatable_parameter_callback_fires_once_with_all_values", "tests/F03_acceptance.py::test_hidden_from_callback_still_parsed", "tests/F03_acceptance.py::test_deprecated_option_warns_only_when_user_supplied", "tests/F03_acceptance.py::test_deprecated_option_cannot_be_required_or_prompted", "tests/F03_acceptance.py::test_unknown_option_is_usage_error_without_ignore", "tests/F03_acceptance.py::test_ignore_unknown_leaves_long_option_intact_as_extra", "tests/F03_acceptance.py::test_ignore_unknown_may_split_short_stack", "tests/F03_acceptance.py::test_missing_value_for_required_value_option_is_usage_error", "tests/F04_acceptance.py::test_minimal_argument_is_required_positional_text", "tests/F04_acceptance.py::test_argument_declared_on_a_group_is_delivered_to_the_group_callback", "tests/F04_acceptance.py::test_argument_name_is_not_an_option_flag", "tests/F04_acceptance.py::test_optional_or_defaulted_argument_may_be_omitted", "tests/F04_acceptance.py::test_two_unary_arguments_each_deliver_a_scalar", "tests/F04_acceptance.py::test_type_inferred_from_integer_default", "tests/F04_acceptance.py::test_fixed_arity_delivers_sequence_not_joined_string", "tests/F04_acceptance.py::test_unary_then_variadic_delivers_source_and_rest", "tests/F04_acceptance.py::test_omitted_variadic_empty_unless_required", "tests/F04_acceptance.py::test_two_variadics_are_not_independent_consume_rest", "tests/F04_acceptance.py::test_double_dash_protects_option_shaped_tokens", "tests/F04_acceptance.py::test_option_shaped_token_without_separator_is_unknown", "tests/F04_acceptance.py::test_named_env_fills_when_position_omitted", "tests/F04_acceptance.py::test_empty_or_absent_env_does_not_supply", "tests/F04_acceptance.py::test_env_name_list_first_set_wins", "tests/F04_acceptance.py::test_auto_prefix_does_not_fill_argument", "tests/F04_acceptance.py::test_non_unary_env_splits_like_multivalue_option", "tests/F04_acceptance.py::test_command_line_beats_argument_environment", "tests/F04_acceptance.py::test_ignore_unknown_consumes_option_shaped_as_argument", "tests/F04_acceptance.py::test_ignore_unknown_leftover_option_shaped_beyond_arity_is_usage_error", "tests/F04_acceptance.py::test_missing_required_argument_is_usage_error_identifying_argument", "tests/F04_acceptance.py::test_extra_tokens_beyond_arity_are_usage_error_unless_allowed_or_variadic", "tests/F04_acceptance.py::test_deprecated_argument_warns_only_when_user_supplied", "tests/F04_acceptance.py::test_deprecated_argument_cannot_be_required", "tests/F05_acceptance.py::test_string_is_default_unicode_text", "tests/F05_acceptance.py::test_integer_type_or_integer_default_delivers_int", "tests/F05_acceptance.py::test_float_type_or_float_default_delivers_float", "tests/F05_acceptance.py::test_boolean_value_type_tokens_case_insensitive", "tests/F05_acceptance.py::test_boolean_used_automatically_for_flags", "tests/F05_acceptance.py::test_argument_uses_attached_integer_type", "tests/F05_acceptance.py::test_uuid_type_converts_text_and_is_never_inferred", "tests/F05_acceptance.py::test_default_datetime_formats_parse_naive_values", "tests/F05_acceptance.py::test_datetime_rejects_non_matching_token", "tests/F05_acceptance.py::test_author_replaces_datetime_format_list", "tests/F05_acceptance.py::test_datetime_formats_tried_in_order_first_success_wins", "tests/F05_acceptance.py::test_tuple_converts_each_position_with_inner_type", "tests/F05_acceptance.py::test_passthrough_does_not_convert_token", "tests/F05_acceptance.py::test_choice_returns_original_list_entry_case_insensitive", "tests/F05_acceptance.py::test_choice_returns_original_enum_member_case_insensitive", "tests/F05_acceptance.py::test_unknown_choice_is_usage_error", "tests/F05_acceptance.py::test_choice_must_be_unique_after_normalization", "tests/F05_acceptance.py::test_repeatable_choice_default_is_sequence_of_originals", "tests/F05_acceptance.py::test_help_lists_choice_values", "tests/F05_acceptance.py::test_integer_range_closed_bounds_without_clamp", "tests/F05_acceptance.py::test_integer_range_clamp_replaces_with_nearest_included_bound", "tests/F05_acceptance.py::test_integer_range_open_or_omitted_bounds", "tests/F05_acceptance.py::test_integer_open_bound_clamp_uses_nearest_included", "tests/F05_acceptance.py::test_float_range_same_rules_and_closed_clamp", "tests/F05_acceptance.py::test_float_range_refuses_clamp_when_bound_open", "tests/F05_acceptance.py::test_custom_type_converts_string_and_passes_through_ready_value", "tests/F05_acceptance.py::test_conversion_function_is_accepted_as_type", "tests/F05_acceptance.py::test_conversion_works_at_prompt_without_parameter", "tests/F05_acceptance.py::test_conversion_failure_is_usage_error_identifying_parameter", "tests/F06_acceptance.py::test_named_subcommand_runs_matching_callback_only", "tests/F06_acceptance.py::test_group_option_does_not_leak_into_child", "tests/F06_acceptance.py::test_named_child_help_or_version_still_runs_group", "tests/F06_acceptance.py::test_group_level_help_or_version_skips_group_and_does_not_group_run", "tests/F06_acceptance.py::test_help_before_subcommand_is_group_help", "tests/F06_acceptance.py::test_nested_groups_run_outside_in", "tests/F06_acceptance.py::test_grandchild_is_unreachable_without_middle_group", "tests/F06_acceptance.py::test_nested_group_empty_args_is_that_groups_help_page", "tests/F06_acceptance.py::test_nested_option_ownership_at_every_layer", "tests/F06_acceptance.py::test_empty_group_args_use_usage_help_page", "tests/F06_acceptance.py::test_unknown_subcommand_is_usage_error_without_help_page", "tests/F06_acceptance.py::test_group_options_or_arguments_only_is_usage_error_without_help_page", "tests/F06_acceptance.py::test_group_argument_then_child_binds_and_dispatches", "tests/F06_acceptance.py::test_invoke_without_command_runs_group_on_empty_and_before_child", "tests/F06_acceptance.py::test_context_distinguishes_group_only_from_group_then_child", "tests/F06_acceptance.py::test_group_can_disable_no_args_is_help", "tests/F06_acceptance.py::test_leaf_default_empty_runs_leaf_not_help", "tests/F06_acceptance.py::test_group_command_helper_attaches_immediately", "tests/F06_acceptance.py::test_late_registration_invokes_like_immediate", "tests/F06_acceptance.py::test_late_registration_from_another_module", "tests/F06_acceptance.py::test_explicit_name_independent_of_function_name", "tests/F06_acceptance.py::test_custom_lookup_loads_only_the_requested_child", "tests/F06_acceptance.py::test_lazy_loaded_command_invokes_like_eager", "tests/F06_acceptance.py::test_custom_listing_and_lookup_resolve_alias", "tests/F06_acceptance.py::test_nested_resolve_loads_middle_then_group_leaf", "tests/F06_acceptance.py::test_help_loads_immediate_children_not_grandchildren", "tests/F06_acceptance.py::test_command_collection_dispatches_union_of_sources", "tests/F06_acceptance.py::test_command_collection_empty_args_is_usage_help_page", "tests/F06_acceptance.py::test_command_collection_help_lists_union", "tests/F06_acceptance.py::test_hidden_child_omitted_from_parent_help_but_reachable", "tests/F06_acceptance.py::test_chaining_group_refuses_nested_group", "tests/F07_acceptance.py::test_child_reads_parent_author_object_flag", "tests/F07_acceptance.py::test_child_replaced_author_object_is_what_descendant_sees", "tests/F07_acceptance.py::test_callback_may_request_context_as_first_argument", "tests/F07_acceptance.py::test_typed_object_is_found_on_parent_chain", "tests/F07_acceptance.py::test_ensure_creates_empty_typed_object_when_absent", "tests/F07_acceptance.py::test_ensure_reuses_typed_object_already_on_chain", "tests/F07_acceptance.py::test_toplevel_prefix_fills_omitted_option", "tests/F07_acceptance.py::test_dashed_command_and_option_names_build_prefix_key", "tests/F07_acceptance.py::test_each_command_name_is_in_the_prefix_key", "tests/F07_acceptance.py::test_dashed_prefix_is_normalized_in_the_key", "tests/F07_acceptance.py::test_option_may_opt_out_of_automatic_prefix", "tests/F07_acceptance.py::test_opted_out_option_uses_prefix_key_only_if_explicitly_named", "tests/F07_acceptance.py::test_automatic_prefix_does_not_fill_sibling_argument", "tests/F07_acceptance.py::test_command_line_beats_prefix_environment", "tests/F07_acceptance.py::test_required_option_satisfied_from_prefix_key", "tests/F07_acceptance.py::test_nested_default_map_used_when_flag_omitted_and_beaten_by_cli", "tests/F07_acceptance.py::test_wrong_nested_key_does_not_fill_this_child", "tests/F07_acceptance.py::test_default_map_from_command_declaration", "tests/F07_acceptance.py::test_nested_default_map_fills_omitted_argument", "tests/F07_acceptance.py::test_default_map_string_splits_like_environment", "tests/F07_acceptance.py::test_default_map_sequence_is_used_as_is", "tests/F07_acceptance.py::test_arity1_repeatable_default_map_string_is_refused", "tests/F07_acceptance.py::test_nested_map_delivers_converted_integer", "tests/F07_acceptance.py::test_required_option_satisfied_from_nested_map", "tests/F07_acceptance.py::test_source_distinguishes_five_origins_for_the_same_value", "tests/F07_acceptance.py::test_command_line_source_does_not_consume_prompt_stdin", "tests/F07_acceptance.py::test_source_distinguishes_cli_map_declared_for_argument", "tests/F07_acceptance.py::test_undeclared_extra_key_is_not_converted_or_tracked", "tests/F07_acceptance.py::test_group_resource_stays_open_through_child_and_closes_after_invoke", "tests/F07_acceptance.py::test_resource_cleanup_runs_on_standalone_process_exit", "tests/F07_acceptance.py::test_resource_cleanup_runs_after_child_usage_failure", "tests/F07_acceptance.py::test_lowercase_normalizer_matches_option_name", "tests/F07_acceptance.py::test_lowercase_normalizer_matches_choice_value", "tests/F07_acceptance.py::test_lowercase_normalizer_matches_command_name", "tests/F07_acceptance.py::test_invoke_supplies_caller_chosen_values", "tests/F07_acceptance.py::test_forward_fills_from_current_command_values", "tests/F07_acceptance.py::test_current_context_is_thread_local_unless_entered", "tests/F07_acceptance.py::test_echo_inherits_color_flag_only_on_entered_thread", "tests/F07_acceptance.py::test_invocation_force_color_on_keeps_styles_on_pipe", "tests/F07_acceptance.py::test_invocation_autodetect_strips_styles_on_pipe", "tests/F07_acceptance.py::test_invocation_force_color_off_strips_styles_on_terminal", "tests/F08_acceptance.py::test_omitted_prompted_option_reads_converted_stdin", "tests/F08_acceptance.py::test_command_line_value_skips_prompt", "tests/F08_acceptance.py::test_custom_prompt_string_replaces_name_derived_prompt", "tests/F08_acceptance.py::test_prompt_not_required_on_omit_uses_default_without_reading_stdin", "tests/F08_acceptance.py::test_prompt_not_required_on_omit_asks_when_flag_has_no_value", "tests/F08_acceptance.py::test_required_prompt_asks_on_omit_and_on_bare_flag", "tests/F08_acceptance.py::test_required_prompt_still_skips_when_value_is_on_command_line", "tests/F08_acceptance.py::test_required_prompt_eof_is_abort_not_usage", "tests/F08_acceptance.py::test_environment_value_skips_prompt_even_on_eof", "tests/F08_acceptance.py::test_static_declared_default_still_prompts", "tests/F08_acceptance.py::test_callable_default_still_prompts_and_is_invoked", "tests/F08_acceptance.py::test_default_map_value_still_prompts", "tests/F08_acceptance.py::test_empty_line_answer_uses_shown_default", "tests/F08_acceptance.py::test_standalone_prompt_converts_with_declared_type", "tests/F08_acceptance.py::test_standalone_prompt_infers_type_from_default", "tests/F08_acceptance.py::test_standalone_confirm_returns_boolean_without_abort", "tests/F08_acceptance.py::test_standalone_confirm_abort_on_no_is_abort_class", "tests/F08_acceptance.py::test_standalone_prompt_reasks_until_valid_or_eof", "tests/F08_acceptance.py::test_standalone_prompt_strips_ansi_when_stream_is_not_a_terminal", "tests/F08_acceptance.py::test_standalone_confirm_strips_ansi_when_stream_is_not_a_terminal", "tests/F08_acceptance.py::test_hidden_input_not_echoed_visible_prompt_is", "tests/F08_acceptance.py::test_confirmation_prompt_asks_twice_and_reasks_on_mismatch", "tests/F08_acceptance.py::test_password_option_accepts_matching_hidden_lines", "tests/F08_acceptance.py::test_confirmation_option_yes_flag_skips_question", "tests/F08_acceptance.py::test_confirmation_option_omit_and_decline_aborts_without_callback", "tests/F08_acceptance.py::test_confirmation_option_omit_and_accept_runs_callback", "tests/F08_acceptance.py::test_confirmation_option_eof_is_abort", "tests/F08_acceptance.py::test_confirmation_option_custom_flag_name", "tests/F08_acceptance.py::test_option_prompt_reasks_on_conversion_failure", "tests/F08_acceptance.py::test_option_prompt_eof_after_invalid_is_abort_not_usage", "tests/F08_acceptance.py::test_deprecated_plus_prompt_declaration_is_refused", "tests/F09_acceptance.py::test_file_type_default_read_delivers_open_file", "tests/F09_acceptance.py::test_dash_means_stdin_on_read_and_stdout_on_write", "tests/F09_acceptance.py::test_copy_dash_to_file_then_file_to_dash", "tests/F09_acceptance.py::test_text_and_binary_modes", "tests/F09_acceptance.py::test_declared_text_encoding_is_used", "tests/F09_acceptance.py::test_missing_read_target_is_usage_before_callback", "tests/F09_acceptance.py::test_default_write_does_not_truncate_until_used", "tests/F09_acceptance.py::test_lazy_forced_off_opens_write_immediately", "tests/F09_acceptance.py::test_lazy_forced_on_write_does_not_truncate_until_used", "tests/F09_acceptance.py::test_atomic_write_keeps_original_until_close_then_replaces", "tests/F09_acceptance.py::test_non_lazy_unopenable_write_is_usage", "tests/F09_acceptance.py::test_lazy_unopenable_write_is_general_file_error", "tests/F09_acceptance.py::test_file_failures_identify_the_path", "tests/F09_acceptance.py::test_path_type_delivers_path_not_open_file", "tests/F09_acceptance.py::test_path_exists_accepts_present_rejects_missing_as_usage", "tests/F09_acceptance.py::test_path_file_and_directory_allowance_are_independent", "tests/F09_acceptance.py::test_path_executable_readable_writable_checks", "tests/F09_acceptance.py::test_missing_path_skips_further_checks_when_exists_not_required", "tests/F09_acceptance.py::test_path_resolve_absolute_follows_symlinks_without_expanding_tilde", "tests/F09_acceptance.py::test_path_allow_dash_means_stream_token_without_opening", "tests/F09_acceptance.py::test_path_produced_as_requested_object_type", "tests/F09_acceptance.py::test_file_type_env_list_splits_on_os_pathsep", "tests/F09_acceptance.py::test_path_type_env_list_splits_on_os_pathsep", "tests/F09_acceptance.py::test_filename_formatting_prints_non_unicode_without_failing", "tests/F09_acceptance.py::test_open_helper_dash_obeys_same_stdin_stdout_rule", "tests/F09_acceptance.py::test_open_helper_keeps_stdio_open_and_closes_real_files", "tests/F09_acceptance.py::test_open_helper_lazy_forced_on_write_does_not_truncate_until_used", "tests/F09_acceptance.py::test_open_helper_opens_immediately_when_lazy_omitted", "tests/F10_acceptance.py::test_chaining_runs_each_subcommand_in_command_line_order", "tests/F10_acceptance.py::test_chaining_options_bind_per_command_before_that_commands_arguments", "tests/F10_acceptance.py::test_non_chaining_group_does_not_run_a_second_child_name", "tests/F10_acceptance.py::test_chaining_result_callback_receives_ordered_sequence_of_returns", "tests/F10_acceptance.py::test_non_chain_result_callback_receives_single_value_or_group_return", "tests/F10_acceptance.py::test_result_callback_receives_group_parameters", "tests/F10_acceptance.py::test_empty_chain_with_invoke_without_command_runs_result_callback_not_help", "tests/F10_acceptance.py::test_chained_shared_name_lower_then_show_transforms_then_prints", "tests/F10_acceptance.py::test_chaining_current_subcommand_name_is_neither_one_child_nor_absent", "tests/F10_acceptance.py::test_consume_rest_on_non_last_child_is_declared_and_eats_later_names", "tests/F10_acceptance.py::test_consume_rest_on_last_child_still_dispatches_earlier_children", "tests/F10_acceptance.py::test_attaching_a_group_under_a_chaining_group_is_refused_at_declaration", "tests/F10_acceptance.py::test_chained_child_file_closes_after_callback_group_file_stays_for_result_callback", "tests/F11_acceptance.py::test_echo_writes_text_to_stdout_with_trailing_newline", "tests/F11_acceptance.py::test_echo_suppressed_newline_does_not_append_newline", "tests/F11_acceptance.py::test_echo_error_stream_flag_writes_stderr_not_stdout", "tests/F11_acceptance.py::test_echo_writes_binary_payload", "tests/F11_acceptance.py::test_echo_unicode_survives_misconfigured_ascii_stream", "tests/F11_acceptance.py::test_echo_autodetect_strips_styles_on_pipe", "tests/F11_acceptance.py::test_echo_autodetect_keeps_styles_on_terminal", "tests/F11_acceptance.py::test_echo_force_color_on_keeps_named_style_on_pipe", "tests/F11_acceptance.py::test_echo_force_color_off_strips_styles_on_terminal", "tests/F11_acceptance.py::test_named_foreground_colors_each_wrap_and_differ", "tests/F11_acceptance.py::test_named_background_colors_each_wrap_unlike_foreground", "tests/F11_acceptance.py::test_integer_and_rgb_colors_wrap_boundaries_valid", "tests/F11_acceptance.py::test_independent_style_switches_each_wrap_and_differ", "tests/F11_acceptance.py::test_invalid_colors_fail_the_style_call_not_as_omitted", "tests/F11_acceptance.py::test_two_integer_color_sequence_fails_the_style_call", "tests/F11_acceptance.py::test_styled_echo_is_echo_plus_styling_in_one_step", "tests/F11_acceptance.py::test_unstyling_removes_ansi_sequences", "tests/F11_acceptance.py::test_style_default_reset_does_not_leak_into_later_text", "tests/F11_acceptance.py::test_pager_noninteractive_writes_stdout_without_launching_pager", "tests/F11_acceptance.py::test_pager_string_chunk_iterator_and_writable_stream_deliver_text", "tests/F11_acceptance.py::test_pager_writable_stream_launches_when_interactive", "tests/F11_acceptance.py::test_pager_flushes_chunks_before_generator_finishes", "tests/F11_acceptance.py::test_pager_does_not_close_process_stdout", "tests/F11_acceptance.py::test_pager_strips_styles_when_destination_is_not_a_terminal", "tests/F11_acceptance.py::test_pager_keeps_styles_when_destination_supports_styles", "tests/F11_acceptance.py::test_progress_bar_visits_every_item_without_a_terminal", "tests/F11_acceptance.py::test_progress_bar_visits_every_item_when_explicitly_hidden", "tests/F11_acceptance.py::test_progress_bar_label_once_without_terminal_hidden_prints_nothing", "tests/F11_acceptance.py::test_progress_bar_explicitly_hidden_on_terminal_prints_nothing", "tests/F11_acceptance.py::test_progress_bar_irregular_advance_uses_delta_not_one_step_per_item", "tests/F11_acceptance.py::test_progress_bar_on_terminal_snapshots_differ_as_it_advances", "tests/F11_acceptance.py::test_progress_bar_known_length_terminal_unlike_unknown_length", "tests/F11_acceptance.py::test_progress_bar_known_length_terminal_includes_remaining_time_estimate", "tests/F11_acceptance.py::test_app_dir_unix_default_xdg_override_and_posix_forced", "tests/F11_acceptance.py::test_app_dir_macos_layout", "tests/F11_acceptance.py::test_getchar_reads_terminal_even_when_stdin_is_a_pipe", "tests/F11_acceptance.py::test_getchar_interrupt_and_eof_are_distinct_failures_not_raw_characters", "tests/F11_acceptance.py::test_pause_does_nothing_when_not_interactive", "tests/F11_acceptance.py::test_pause_prints_and_waits_when_interactive", "tests/F11_acceptance.py::test_editor_on_string_returns_saved_text_or_absent", "tests/F11_acceptance.py::test_editor_on_filename_returns_no_text", "tests/F11_acceptance.py::test_application_launch_opens_url_or_filename_with_default_application", "tests/F11_acceptance.py::test_screen_clear_is_noop_off_terminal_and_unlike_on_terminal", "tests/F12_acceptance.py::test_matching_complete_variable_enters_source_mode", "tests/F12_acceptance.py::test_wrong_complete_variable_name_runs_command", "tests/F12_acceptance.py::test_python_script_run_ignores_installed_complete_variable", "tests/F12_acceptance.py::test_bash_source_prints_script_skips_callback", "tests/F12_acceptance.py::test_four_source_modes_are_shell_specific", "tests/F12_acceptance.py::test_source_mode_is_not_the_help_page", "tests/F12_acceptance.py::test_bash_complete_at_group_prints_suggestions_skips_callback", "tests/F12_acceptance.py::test_complete_stream_unlike_source_and_unlike_normal_run", "tests/F12_acceptance.py::test_four_complete_modes_all_suggest_visible_subcommand_names", "tests/F12_acceptance.py::test_four_complete_modes_honour_nonempty_prefix", "tests/F12_acceptance.py::test_empty_token_lists_visible_subcommands_not_hidden", "tests/F12_acceptance.py::test_hidden_command_not_suggested_even_as_full_token", "tests/F12_acceptance.py::test_subcommand_prefix_excludes_nonmatching_sibling", "tests/F12_acceptance.py::test_nested_group_completes_immediate_child_not_grandchild", "tests/F12_acceptance.py::test_hidden_command_still_runs_when_fully_typed", "tests/F12_acceptance.py::test_complete_lists_custom_group_immediate_children", "tests/F12_acceptance.py::test_complete_does_not_load_grandchild", "tests/F12_acceptance.py::test_options_listed_only_after_a_dash", "tests/F12_acceptance.py::test_dash_lists_visible_options_including_help_not_hidden", "tests/F12_acceptance.py::test_option_prefix_excludes_nonmatching_option", "tests/F12_acceptance.py::test_hidden_option_not_suggested_as_prefix_or_full_token", "tests/F12_acceptance.py::test_hidden_option_still_accepted_when_fully_typed", "tests/F12_acceptance.py::test_choice_suggests_only_allowed_values_matching_prefix", "tests/F12_acceptance.py::test_choice_empty_incomplete_lists_all_allowed_values", "tests/F12_acceptance.py::test_choice_argument_completes_without_a_dash", "tests/F12_acceptance.py::test_file_type_carries_incomplete_token_not_directory_entries", "tests/F12_acceptance.py::test_path_type_carries_incomplete_token_not_directory_entries", "tests/F12_acceptance.py::test_directories_only_path_asks_shell_for_directories_only", "tests/F12_acceptance.py::test_bash_file_completion_registers_and_lists_directory_candidates", "tests/F12_acceptance.py::test_file_argument_carries_incomplete_token_not_directory_entries", "tests/F12_acceptance.py::test_parameter_completer_sees_context_parameter_and_incomplete_token", "tests/F12_acceptance.py::test_custom_type_completion_unlike_string_sibling", "tests/F12_acceptance.py::test_zsh_and_fish_include_author_help_next_to_value", "tests/F12_acceptance.py::test_bash_and_powershell_suggest_value_without_requiring_help", "tests/F12_acceptance.py::test_unmatched_subcommand_token_is_empty_suggestions_not_usage_error", "tests/F12_acceptance.py::test_unmatched_choice_prefix_is_empty_suggestions_not_usage_error", "tests/F12_acceptance.py::test_unrecognized_instruction_skips_callback_and_is_neither_source_nor_complete", "tests/F13_acceptance.py::test_successful_callback_exits_zero", "tests/F13_acceptance.py::test_intentional_help_exits_zero_skips_callback", "tests/F13_acceptance.py::test_intentional_version_exits_zero_skips_callback", "tests/F13_acceptance.py::test_author_clean_stop_defaults_to_zero", "tests/F13_acceptance.py::test_author_clean_stop_uses_supplied_status", "tests/F13_acceptance.py::test_clean_stop_supplied_status_one", "tests/F13_acceptance.py::test_unknown_option_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_unknown_subcommand_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_missing_required_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_conversion_failure_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_extra_token_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_option_missing_value_is_usage_class_skips_callback", "tests/F13_acceptance.py::test_missing_subcommand_help_is_usage_not_intentional_help", "tests/F13_acceptance.py::test_missing_required_option_identifies_the_option", "tests/F13_acceptance.py::test_missing_required_argument_identifies_the_argument", "tests/F13_acceptance.py::test_conversion_failure_identifies_the_parameter", "tests/F13_acceptance.py::test_conversion_failure_identifies_the_argument", "tests/F13_acceptance.py::test_unknown_option_need_not_name_a_declared_parameter", "tests/F13_acceptance.py::test_confirm_decline_is_abort_skips_protected_callback", "tests/F13_acceptance.py::test_prompt_eof_is_abort_not_success", "tests/F13_acceptance.py::test_keyboard_interrupt_is_abort_not_success", "tests/F13_acceptance.py::test_author_abort_skips_remaining_work", "tests/F13_acceptance.py::test_lazy_file_failure_is_general_error_not_usage", "tests/F13_acceptance.py::test_success_usage_abort_are_mutually_distinguishable", "tests/F13_acceptance.py::test_non_standalone_usage_propagates", "tests/F13_acceptance.py::test_non_standalone_abort_propagates", "tests/F13_acceptance.py::test_non_standalone_general_error_propagates", "tests/F13_acceptance.py::test_non_standalone_callback_return_bubbles", "tests/F13_acceptance.py::test_non_standalone_clean_stop_bubbles_status", "tests/F13_acceptance.py::test_non_standalone_chaining_returns_bubble", "tests/F14_acceptance.py::test_invoke_plain_name_token_greets_that_name", "tests/F14_acceptance.py::test_invoke_runtime_token_greets_that_token_not_another_name", "tests/F14_acceptance.py::test_result_exposes_stdout_text_and_bytes", "tests/F14_acceptance.py::test_invoke_help_exits_zero_shows_help_skips_callback", "tests/F14_acceptance.py::test_result_exposes_stderr_separately_from_stdout", "tests/F14_acceptance.py::test_subcommand_selected_by_tokens_after_group_option", "tests/F14_acceptance.py::test_invoke_input_is_fed_to_stdin", "tests/F14_acceptance.py::test_visible_prompt_echoes_typed_line_and_shows_prompt", "tests/F14_acceptance.py::test_hidden_prompt_does_not_echo_typed_line", "tests/F14_acceptance.py::test_optional_mode_echoes_every_stdin_read_not_only_prompts", "tests/F14_acceptance.py::test_invoke_environment_is_applied_for_that_run", "tests/F14_acceptance.py::test_isolated_filesystem_new_empty_dir_removed_when_no_parent", "tests/F14_acceptance.py::test_isolated_filesystem_parent_gets_child_dir_left_in_place", "tests/F14_acceptance.py::test_default_capture_records_interpreter_streams_without_real_fd", "tests/F14_acceptance.py::test_descriptor_capture_records_os_writes_to_fd_1_and_2", "tests/F14_acceptance.py::test_extra_invoke_keywords_apply_as_context_settings_terminal_width", "tests/F14_acceptance.py::test_invoke_color_setting_is_in_force", "tests/F14_acceptance.py::test_standalone_raise_returns_result_with_status_and_inspectable_exception", "tests/F14_acceptance.py::test_runner_told_not_to_catch_propagates", "tests/F14_acceptance.py::test_non_standalone_exposes_exception_on_result"]}
