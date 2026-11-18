@@ -301,7 +301,7 @@ disagreements already present in Zero2Repo's own text, found by four of the six 
 is not an arm effect. On the first three cases Haiku's core was higher with every flag source (oracle +4.2,
 +2.1, +4.1; review list +3.6, +2.7, +4.4; compiler export +9.7, +2.5, +5.0 points). That pattern did not
 repeat on the new cases (−4.1 to +0.3), and over six cases no arm's gain is significant (p = 0.10–0.47).
-Round 27b's two extra Haiku runs per arm on case006 also scored the Markdown higher than round 18 did a week
+Round 27b's two extra Haiku runs per arm on case006 also scored the Markdown higher than round 18 did two weeks
 earlier (97.5 and 91.2 % against 86.1–90.1 %). With n = 5 the case006 Markdown mean rises from 87.6 to
 90.3 % and the compiler export's gain there falls from +9.7 to +6.2. So we read the old case006 gap as time
 or chance. On the conflict-related footprint tests the export did not help either. The rules the tests check
