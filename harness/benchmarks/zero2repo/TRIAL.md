@@ -5,20 +5,21 @@
 > the owner decides) · **Recommendation: strongest candidate seen so far for "tests only check what the
 > specification states"; worth a no-model check next (build one case as a Harbor task, run `nop`).**
 > Asked by the owner after round 12 (DevEval tests depend on unstated details).
-> Rules: no number that was not printed by a command here; claims about the paper come from a
-> summarising fetch of the arXiv HTML and are marked so.
+> Rules: no number that was not printed by a command here. Claims about the paper first came from a
+> summarising fetch of the arXiv HTML (2026-10-14); on 2026-11-20 the full text (v3 PDF) was read and
+> they were checked against it (§2).
 
 ## 1. Source
 
 | | |
 |---|---|
-| Paper | arXiv:2609.38269, *Zero2Repo: Can Coding Agents Build Repositories from Scratch?* (v2 01 Oct 2026). Read through a summarising fetch only |
+| Paper | arXiv:2609.38269, *Zero2Repo: Can Coding Agents Build Repositories from Scratch?* Yang, Shi, … Ai, Yang (26 authors), cs.SE. First seen as v2 (01 Oct 2026) through a summarising fetch; **full text of v3 (18 Oct 2026, 19 pages) read 2026-11-20**. Cited in the final report as `yang2026zero2repo` |
 | Code / data | `github.com/OpenEdgeHQ/Zero2Repo`, created 2026-05-29, last push 2026-10-14, 11 stars (GitHub API, 2026-10-14) |
 | Version tried | commit `0ecc523` (2026-10-14), shallow clone, 20 MB |
 | Licence | **None found**: no LICENSE file; the README's "License" section says "See repository license terms". GitHub reports no licence. Redistribution is therefore not allowed by default; keep it in `download/` only |
 | Downloaded to | `download/Zero2Repo/` (ignored by git) |
 
-## 2. What a case is (read from `benchmark/cases/case001`, the README and the paper summary)
+## 2. What a case is (read from `benchmark/cases/case001`, the README and the paper)
 
 - **Agent sees:** `Full_PRD.md` (features with normal, boundary and failure cases), `Interface_Contract.md`
   (package name, public entry points, signatures, return and error types), sometimes
@@ -31,10 +32,13 @@
 - **Traceability:** `coverage_matrix.json` maps feature ids (F01…) to capabilities; test files are
   per feature (`F01_acceptance.py` …); `review_verdict.json` records a scored review (e.g.
   `prd_accuracy` 5 with a rationale that "each [obligation] has a live hidden assertion").
-- **Per the paper (summary):** tests are rewritten against the Interface Contract only, expected values
-  computed independently, adversarial checks reject hollow implementations, and structural checks
-  "verify that requirements, interface references, and test references agree". The authors report one
-  gap found after release (task 009 relies on `GIT_SSH`, not in the spec).
+- **Per the paper (v3 full text, §3.2; confirmed 2026-11-20):** acceptance tests "turn PRD feature points
+  into executable checks against the interfaces fixed by the Interface Contract", and upstream tests are
+  rewritten against these interfaces; expected outcomes are "computed without calling the candidate";
+  adversarial validation requires implementations with injected defects or prohibited shortcuts to get
+  zero reward; and structural checks "verify that requirements, interface references, and test references
+  agree". *Not found in v3:* the summary's claim of one gap found after release (task 009 relies on
+  `GIT_SSH`, not in the spec). Either v2 had it or the summary was wrong; v2 was not read.
 - **No reference solution is shipped**, so a reference (`oracle`) check like DevEval's is not possible
   without rebuilding the upstream code under the new names.
 

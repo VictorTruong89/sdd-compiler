@@ -43,32 +43,27 @@
 \maketitle
 
 \begin{abstract}
-Spec-driven development gives an AI coding agent a written specification instead of a chat. Real
-specifications drift: two documents, or two paragraphs, say different things. We built a compiler,
-\code{sddc}, that turns a folder of Markdown specifications into a graph of quoted requirements and reports
-each pair it judges contradictory, and asked whether an agent builds better software from the compiled
-form. In controlled runs of Claude Code (Claude Haiku and Sonnet) on six public Zero2Repo cases
-(4\,800--19\,000 words, 197--476 hidden tests) with 12--24 contradictions planted from an answer key written
-before any run, \textbf{the compiled form did not raise hidden-test scores}: over the six cases no arm's
-core score differed from the Markdown's by a margin we could detect, and every arm passed a
-non-inferiority bound (2 points for Sonnet, 5 for Haiku). What changed was \textbf{whether the agent noticed
-and reported the contradictions}: with every planted conflict flagged, naming rose in all six cases for
-both models (by 13--64 points; t-test over cases $p \le 0.007$, sign test $p = 0.031$). The gain followed the
-flags item by item, and \textbf{a one-pass LLM review supplied better flags than the compiler} (recall
-90--91\,\% against 57\,\% of 100 planted conflicts, precision 93--99\,\% against 28\,\%, for cents instead of
-dollars). Handing that review list to the agent beside the plain Markdown raised naming in all six cases
-($p \le 0.012$), and nearly every listed conflict was named (518 of 530 readings). With its false entries
-struck and a ruling on each entry, the list carried the rulings into the code (118 of 120 built). No
-format changed silent invention of facts we removed from the specification (equivalence within $\pm 2$
-gaps per run on 4--5 cases with gaps). For specifications that fit one context, the useful artefact is a
-short, checked list of conflicts with rulings, not a graph.
+Spec-driven development (SDD) has an AI coding agent build from a written specification of requirements,
+constraints and acceptance criteria rather than from ad-hoc prompts. A main weakness is specification
+drift: two documents, or two paragraphs, say different things. In earlier work we built \code{sddc}, a
+compiler that turns a folder of Markdown specifications into a graph of quoted requirements and reports
+each pair it judges contradictory. This project asks \textbf{whether an agent builds better software from
+that graph than from the Markdown}. In controlled runs of Claude Code (Claude Haiku and Sonnet) on six
+public Zero2Repo cases (4\,800--19\,000 words, 197--476 hidden tests) with 12--24 planted contradictions,
+the graph neither raised nor lowered hidden-test scores. What changed was \textbf{whether the agent noticed
+and reported the contradictions}: when they were flagged, the agent named far more of them, in all six
+cases and for both models (sign test $p = 0.031$). A plain conflict list from a one-pass LLM review,
+given beside the Markdown, did the same, and when a person added a ruling to each listed conflict, the
+agent built the ruling almost every time (118 of 120). No format changed how often the agent silently
+invented facts removed from the specification. For specifications that fit one agent's context,
+\textbf{the useful artefact is a checked list of conflicts with rulings, not a graph}.
 \end{abstract}
 
 % ------------------------------------------------------------------ 1
 \section{Introduction}
 
-Coding agents now build whole repositories from documents \owner{cite Zero2Repo}
-\citep{chen2026repo0,peng2026repogenesis}. Spec-driven development makes the documents the source of truth;
+Coding agents now build whole repositories from documents
+\citep{chen2026repo0,peng2026repogenesis,yang2026zero2repo}. Spec-driven development makes the documents the source of truth;
 but a product requirements document (PRD) and an interface contract written by different people, or
 revised at different times, contradict each other, and an agent that does not notice builds one side
 silently. Our proposal claimed that \emph{an agent produces code of higher quality from a structured,
@@ -83,9 +78,9 @@ supported}, and the experiments say what to do instead. Our contributions:
   \item Evidence on six cases and two models that a compiled graph does not change hidden-test scores,
   while \textbf{flagged} conflicts are named far more often, and only the flagged ones
   (\S\ref{sec:core}--\ref{sec:naming}).
-  \item A baseline the literature and our proposal lacked: a plain LLM review is a better and cheaper
-  conflict detector than the compiler on these specifications, and its list carries the same help to the
-  coding agent (\S\ref{sec:review}--\ref{sec:list}).
+  \item A baseline the literature and our proposal lacked: the conflict list from a plain LLM review,
+  handed to the agent beside the Markdown, carries the same help without the compiler, and with a
+  person's rulings added it decides what is built (\S\ref{sec:list}).
   \item A negative result on hallucination: no format makes an agent say that the specification is silent
   (\S\ref{sec:silent}).
 \end{enumerate}
@@ -96,7 +91,7 @@ supported}, and the experiments say what to do instead. Our contributions:
 \textbf{Repository-level generation from documents.} SWE-bench \citep{jimenez2024swebench} and SWE-agent
 \citep{yang2024sweagent} evaluate edits to existing code; ProjectEval \citep{liu2025projecteval}, DevBench
 \citep{kumarappan2026devbench}, RepoGenesis \citep{peng2026repogenesis} and Repo0 \citep{chen2026repo0}
-build projects from descriptions. Zero2Repo \owner{cite} gives a PRD and an interface contract per case and
+build projects from descriptions. Zero2Repo \citep{yang2026zero2repo} gives a PRD and an interface contract per case and
 scores the build with hidden tests; we use it because its tests are written against a stated contract.
 None of these plants contradictions in the specification. \textbf{Requirements to code.} TraceDev
 \citep{chen2026tracedev} and WiseSpec \citep{tian2026wisespec} use requirements traceability inside
@@ -142,10 +137,10 @@ both sides, and each point the specification does not state.
 \node[box, right=of ve, fill=black!5] (ex) {export: map,\\checklist,\\packs};
 \draw[arr] (md) -- (cl); \draw[arr] (cl) -- (pr); \draw[arr] (pr) -- (ju);
 \draw[arr] (ju) -- (ve); \draw[arr] (ve) -- (ex);
-\node[box, below=4mm of pr, fill=black!5] (rv) {one-pass LLM review $\rightarrow$ \code{CONFLICTS.md} (review list, \S\ref{sec:review})};
+\node[box, below=4mm of pr, fill=black!5] (rv) {one-pass LLM review $\rightarrow$ \code{CONFLICTS.md} (review list, \S\ref{sec:list})};
 \draw[arr] (md.south) |- (rv.west);
 \end{tikzpicture}
-\caption{The compiler \code{sddc} (top) and the plain review that replaced its flags (bottom).}
+\caption{The compiler \code{sddc} (top) and the plain review list, a second source of flags (bottom).}
 \label{fig:pipeline}
 \end{figure}
 
@@ -158,7 +153,7 @@ The compiler uses Haiku only.
 
 \subsubsection{Why a compiler and not retrieval (RAG)\proposed}\label{sec:rag}
 
-A retrieval-augmented system \owner{cite Lewis et al.\ 2020, open first} splits the documents into chunks,
+A retrieval-augmented system \citep{lewis2020rag} splits the documents into chunks,
 embeds them, and gives the model the $k$ chunks most similar to a query; GraphRAG
 \citep{edge2024graphrag} adds an entity graph and community summaries for questions about a whole corpus.
 We built a compiler instead, for four reasons recorded in our design notes before any trial; no RAG
@@ -182,8 +177,8 @@ with both quotes, so what the agent was given can be audited.
 to a conflict id and survives a rebuild, and the model only answers narrow, schema-bound questions. A RAG
 index stores chunks, not claims or verdicts.
 The results narrow this argument: our specifications fit one context, so no selection step was needed at
-all, and a plain one-pass review read everything and found more conflicts than the compiler
-(\S\ref{sec:review}). Specifications larger than one context, the target of both retrieval and the
+all, and a plain list from a one-pass review of the whole text helped the agent at least as much as
+the compiler's flags (\S\ref{sec:list}). Specifications larger than one context, the target of both retrieval and the
 compiler's incremental design, are untested.
 
 \subsection{Planted conflicts and gaps}\label{sec:planted}
@@ -224,7 +219,7 @@ case001 (\code{tomli})    &  4\,801 & 302 & 15 & 4  & 265 & 28 \\
 planted specification, false contradictions removed by verdicts, nothing added. \textbf{Oracle export:} the
 compiler export plus the planted conflicts it missed, injected from the answer key: an upper bound for a
 perfect compiler. \textbf{Review list:} the Markdown plus \code{CONFLICTS.md} from one plain LLM review of the
-same Markdown (\S\ref{sec:review}), unfiltered, chosen by a fixed rule (the first Haiku review of the case).
+same Markdown (asked only to list contradictions, no code), unfiltered, chosen by a fixed rule (the first Haiku review of the case).
 \textbf{Settled list} (case016 only): the review list with its false entries struck and a ruling added to
 each entry; the planted side B is ruled on alternate entries so that following the ruling can be told from
 default behaviour.
@@ -335,7 +330,7 @@ the three new cases the core was at or near the ceiling in every arm: 85 of 96 r
 test. The two low cells come from two runs, a case011 Markdown run (Sonnet) and a case011 review-list run
 (Haiku), each at 215 of 271. Both failed the same 56 tests because they gave the error for an unfinished
 expression (\code{foo.}) a different kind from the one the tests expect, one of the disagreements already
-present in Zero2Repo's own text (four of the six reviews of case011 found it), so it is not an arm
+present in Zero2Repo's own text, so it is not an arm
 effect. On the first three cases Haiku's core was higher with every flag source (oracle $+4.2$, $+2.1$,
 $+4.1$; review list $+3.6$, $+2.7$, $+4.4$; compiler export $+9.7$, $+2.5$, $+5.0$ points). That pattern did not
 repeat on the new cases ($-4.1$ to $+0.3$), and over six cases no arm's gain is significant
@@ -364,32 +359,7 @@ ever built on side B without being named, while Markdown runs did so 35 times. W
 Haiku on case006 and case010) every naming test still passes ($p = 0.004$, $0.007$, $0.033$), although the two
 extra case006 Markdown runs named 70.8 and 54.2\,\% against 29--42\,\% in round 18.
 
-\subsection{A plain review is the better detector}\label{sec:review}
-
-Asked only to list contradictions in the same planted Markdown, with no code, the same models found far
-more planted conflicts than the compiler, with far fewer false entries (Table~\ref{tab:detect}). The new
-cases (round 28) repeat the first three (round 22, same prompt and reading): per case the reviews found
-87--100\,\% of the planted conflicts against 41--73\,\% for the compiler. The compiler is not dominated item by
-item: two case010 conflicts (exceptions in a list, each against a rule a few lines earlier) were found only
-by its pairwise check, and one case005 conflict was found by no detector. The reviews also found six real
-disagreements present in the original Zero2Repo texts.
-
-\begin{table}[t]
-\caption{Conflict detectors on the planted Markdown of the six cases (100 planted conflicts).}
-\label{tab:detect}
-\centering\footnotesize
-\begin{tabular}{llll}
-\toprule
-Detector & Found & Precision & \$ est.\ per spec \\
-\midrule
-\code{sddc} compile (Haiku) & 57.0\,\% & 28.0\,\% (79 of 282 contradictions) & 1.45--3.58 \\
-Haiku review (3 per case) & 90.3\,\% (271 of 300) & 93.4\,\% of entries & 0.02--0.12 \\
-Sonnet review (3 per case) & 91.0\,\% (273 of 300) & 98.9\,\% of entries & 0.16--0.47 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{The review list replaces the export's flags, and a settled list carries rulings}\label{sec:list}
+\subsection{A review list as the source of flags, and a settled list carries rulings}\label{sec:list}
 
 On case016, the Markdown plus one review list (15 of 17 flagged, 3 false entries) gave 89.4\,\% (Haiku) and
 96.1\,\% (Sonnet) naming, against 78.8 and 80.4\,\% from the compiler export, with the same core and the fewest
@@ -443,10 +413,10 @@ the agent then names the conflict but mostly builds the original side, so the te
 see little change. \textbf{What carried the gain was the flag, not the graph.} Unflagged conflicts in the
 compiler export gained nothing consistent over the Markdown although they sat in the same packs, flagged
 ones rose to 87--100\,\% in eleven of twelve cells, and a flat list from a review gave the same gain.
-\textbf{Where the compiler still has a place.} Its pairwise check reaches items a whole-document read passes
-over, and its rulings and checklist are structure a person can audit. \textbf{Cost.} An export run costs
+\textbf{Where the compiler still has a place.} Its rulings and checklist are structure a person can
+audit. \textbf{Cost.} An export run costs
 Haiku 1.6--3.1$\times$ a Markdown run, plus a compile of \$1.45--3.58 est.\ and a verdict on each false
-contradiction (203 of the 282 raised); a review costs \$0.02--0.47 est. \textbf{What the settled list adds}
+contradiction (203 of the 282 raised). \textbf{What the settled list adds}
 is control: a person's rulings, not the agent's default, decide what is built, and striking a false entry
 removes the build it caused. \textbf{The measure holds:} an arm-blind second reader read all 3\,336 item
 readings; of 21 disagreements, reader 2 was right in 3 (reader 1 corrected) and reader 1 held in 18. After
@@ -467,7 +437,8 @@ many conflicts are open. (7) \textbf{Specifications fit one context}, so the lar
 tested. (8) \textbf{Costs are API-price estimates}, not money billed. (9) \textbf{Time:} on case006 and
 case010 the arms come from rounds weeks apart, and round 27b shows drift in the Markdown baseline; round 28
 interleaved all arms. (10) \textbf{No retrieval (RAG) baseline was run}; \S\ref{sec:rag} argues from the
-design.
+design. (11) \textbf{The compiler's accuracy as a detector is out of scope}: we measure what its output
+does to the agent, so the compiler-export arm is bounded by what the compiler flags.
 
 % ------------------------------------------------------------------ 7
 \section{What we learned: a retrospective\proposed}\label{sec:retro}
@@ -478,8 +449,8 @@ This is a course project, so we report the process too.
 gaps, and leaving their tests out of the core, made formats distinguishable; even so, the core hit its
 ceiling on the new cases, so the ceiling needs checking in every case.
 \textbf{(2) Build the plainest baseline first.} We compared formats for 21 rounds before asking a model,
-with no tools, to list the contradictions; that review was the better detector, and run first it would
-have set the research question weeks earlier.
+with no tools, to list the contradictions; its list gave the agent the same help as the flags, and run
+first it would have set the research question weeks earlier.
 \textbf{(3) Change one thing at a time, and run arms side by side.} Early rounds changed three conditions
 at once, and arms run weeks apart drifted (round 27b); round 28 interleaved all arms.
 \textbf{(4) Fix the answer and the reading rule before the runs,} and have a blind second reader check
@@ -500,8 +471,8 @@ every decision and commit.
 
 A compiled specification graph did not make an AI coding agent's code better on six public cases with
 planted contradictions. What helped was telling the agent where the contradictions are: flagged
-conflicts were named, and built knowingly, while unflagged ones were not. A one-pass LLM review supplied
-those flags better and more cheaply than our compiler, and its list carried the help to the agent. The
+conflicts were named, and built knowingly, while unflagged ones were not. A plain conflict list from a
+one-pass LLM review carried the same help to the agent without the compiler. The
 list's errors travel too, so the practical pipeline is: review, let a person strike false entries and
 rule, and hand the agent the short settled list beside the specification. Agents still fill silent gaps
 without saying so, whatever the format.
@@ -512,7 +483,8 @@ without saying so, whatever the format.
 \appendix
 
 \section{Contributions}
-\owner{to fill: who did what (the owner works alone, approved).}
+Victor Truong did all the work: design, implementation, experiments and writing, with the AI assistance
+described in Appendix~B.
 
 \section{Use of AI tools}
 We used \textbf{Claude Code} (Anthropic) to write the compiler (\code{sddc}) and its tests from our
@@ -525,7 +497,7 @@ compares requirements inside the compiler, and Claude Haiku and Sonnet are the c
 under test. \owner{state what you checked yourself (figures, citations, code) before submission.}
 
 \section{Reproduction}
-Code: the \code{sdd-compiler} repository \owner{link}. Every table is produced by a script that reads the
+Code: the \code{sdd-compiler} repository, \url{https://github.com/VictorTruong89/sdd-compiler}. Every table is produced by a script that reads the
 saved runs and needs no model call: per-round \code{notes/tables.py} under \code{harness/trials/}, the review
 scorers of rounds 22 and 28, \code{harness/trials/stats/power\_plan.py} (\code{TOPUP=1} adds round 27b), and
 \code{r26-second-reader-detection/notes/reader2.py table}. Model runs are not seeded (Claude Code exposes no
